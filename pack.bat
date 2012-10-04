@@ -1,0 +1,2 @@
+bash pack.sh
+pause
