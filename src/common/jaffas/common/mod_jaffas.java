@@ -18,7 +18,7 @@ import net.minecraftforge.common.Configuration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.1")
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.2")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
@@ -175,13 +175,14 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.peanut);
         createJaffaItem(JaffaItem.cream);
         createJaffaItem(JaffaItem.roll);
-        createJaffaItem(JaffaItem.creamRoll);
         createJaffaItem(JaffaItem.cakeTin);
         createJaffaItem(JaffaItem.browniesInTin);
-        createJaffaItem(JaffaItem.brownie);
 
         createJaffaItem(JaffaItem.rollRaw);
         createJaffaItem(JaffaItem.browniesInTinRaw);
+
+        createJaffaFood(JaffaItem.creamRoll, 4, 1F);
+        createJaffaFood(JaffaItem.brownie, 2, 0.6F);
 
         installRecipes();
 
@@ -283,7 +284,7 @@ public class mod_jaffas {
 
         GameRegistry.addSmelting(getItem(JaffaItem.browniesInTinRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.browniesInTin)), 1F);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.brownie), 8), "S", "T", 'S', new ItemStack(Item.swordSteel), 'T', new ItemStack(getItem(JaffaItem.browniesInTin)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.brownie), 15), "S", "T", 'S', new ItemStack(Item.swordSteel), 'T', new ItemStack(getItem(JaffaItem.browniesInTin)));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.rollRaw), 10), new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(Item.stick));
 
