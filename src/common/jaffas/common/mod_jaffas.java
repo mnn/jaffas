@@ -18,15 +18,18 @@ import net.minecraftforge.common.Configuration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.0")
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
     private static MinecraftServer server;
     public static JaffaItem[] mallets;
+    public static JaffaItem[] malletHeads;
 
     public enum JaffaItem {
-        pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans, butter, mallet, malletStone, malletIron, malletDiamond,
+        pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
+        butter, mallet, malletStone, malletIron, malletDiamond, malletHead, malletHeadStone, malletHeadIron, malletHeadDiamond,
+        brownPastry, puffPastry, peanut, cream, roll, creamRoll, cakeTin, browniesInTin, brownie, rollRaw, browniesInTinRaw
     }
 
     public static final int startID = 3753;
@@ -45,7 +48,7 @@ public class mod_jaffas {
 
     private void InitializeItemInfos() {
         ItemsInfo = new Hashtable<JaffaItem, JaffaItemInfo>();
-        AddItemInfo(JaffaItem.pastry, "Pastry", 0, "Pastry");
+        AddItemInfo(JaffaItem.pastry, "Pastry", 13, "Pastry");
         AddItemInfo(JaffaItem.cake, "Cake", 1, "Sponge Cake");
         AddItemInfo(JaffaItem.jamO, "Jam Orange", 2, "Orange Jam");
         AddItemInfo(JaffaItem.jamR, "Jam Red", 3, "Jam");
@@ -57,10 +60,25 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.beans, "Beans", 8, "Cocoa Powder");
         AddItemInfo(JaffaItem.sweetBeans, "Sweet Beans", 9, "Sweet Cocoa Powder");
         AddItemInfo(JaffaItem.butter, "Butter", 12, "Butter");
-        AddItemInfo(JaffaItem.mallet, "Mallet", 11, "Little Wooden Mallet");
-        AddItemInfo(JaffaItem.malletStone, "Mallet Stone", 11, "Little Stone Mallet");
-        AddItemInfo(JaffaItem.malletIron, "Mallet Iron", 11, "Little Iron Mallet");
-        AddItemInfo(JaffaItem.malletDiamond, "Mallet Diamond", 11, "Little Diamond Mallet");
+        AddItemInfo(JaffaItem.mallet, "Mallet", 23, "Little Wooden Mallet");
+        AddItemInfo(JaffaItem.malletStone, "Mallet Stone", 24, "Little Stone Mallet");
+        AddItemInfo(JaffaItem.malletIron, "Mallet Iron", 25, "Little Iron Mallet");
+        AddItemInfo(JaffaItem.malletDiamond, "Mallet Diamond", 26, "Little Diamond Mallet");
+        AddItemInfo(JaffaItem.malletHead, "Mallet Head", 27, "Wooden Mallet Head");
+        AddItemInfo(JaffaItem.malletHeadStone, "Mallet Head Stone", 28, "Stone Mallet Head");
+        AddItemInfo(JaffaItem.malletHeadIron, "Mallet Head Iron", 29, "Iron Mallet Head");
+        AddItemInfo(JaffaItem.malletHeadDiamond, "Mallet Head Diamond", 30, "Diamond Mallet Head");
+        AddItemInfo(JaffaItem.brownPastry, "Brown Pastry", 14, "Brown Pastry");
+        AddItemInfo(JaffaItem.puffPastry, "Puff Pastry", 15, "Puff Pastry");
+        AddItemInfo(JaffaItem.peanut, "Peanut", 16, "Peanut");
+        AddItemInfo(JaffaItem.cream, "Cream", 17, "Cream");
+        AddItemInfo(JaffaItem.roll, "Roll", 18, "Roll");
+        AddItemInfo(JaffaItem.creamRoll, "Cream Roll", 19, "Cream Roll");
+        AddItemInfo(JaffaItem.cakeTin, "Cake Tin", 20, "Cake Tin");
+        AddItemInfo(JaffaItem.browniesInTin, "Brownies", 21, "Brownies");
+        AddItemInfo(JaffaItem.brownie, "Brownie", 22, "Brownie");
+        AddItemInfo(JaffaItem.rollRaw, "Roll Raw", 31, "Raw Roll");
+        AddItemInfo(JaffaItem.browniesInTinRaw, "Raw Brownies", 32, "Raw Brownies");
     }
 
     public mod_jaffas() {
@@ -139,11 +157,31 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.butter);
 
         createJaffaTool(JaffaItem.mallet, 8);
-        createJaffaTool(JaffaItem.malletStone, 24);
-        createJaffaTool(JaffaItem.malletIron, 128);
+        createJaffaTool(JaffaItem.malletStone, 16);
+        createJaffaTool(JaffaItem.malletIron, 64);
         createJaffaTool(JaffaItem.malletDiamond, 512);
 
         mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
+
+        createJaffaItem(JaffaItem.malletHead);
+        createJaffaItem(JaffaItem.malletHeadStone);
+        createJaffaItem(JaffaItem.malletHeadIron);
+        createJaffaItem(JaffaItem.malletHeadDiamond);
+
+        malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
+
+        createJaffaItem(JaffaItem.brownPastry);
+        createJaffaItem(JaffaItem.puffPastry);
+        createJaffaItem(JaffaItem.peanut);
+        createJaffaItem(JaffaItem.cream);
+        createJaffaItem(JaffaItem.roll);
+        createJaffaItem(JaffaItem.creamRoll);
+        createJaffaItem(JaffaItem.cakeTin);
+        createJaffaItem(JaffaItem.browniesInTin);
+        createJaffaItem(JaffaItem.brownie);
+
+        createJaffaItem(JaffaItem.rollRaw);
+        createJaffaItem(JaffaItem.browniesInTinRaw);
 
         installRecipes();
 
@@ -210,8 +248,56 @@ public class mod_jaffas {
         GameRegistry.addSmelting(getItem(JaffaItem.pastry).shiftedIndex, new ItemStack(
                 getItem(JaffaItem.cake)), 0.1F);
 
+        AddMalletRecipes();
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.malletHeadDiamond)), "BIS", "IDI", "SIB",
+                'B', new ItemStack(Item.slimeBall), 'I', new ItemStack(Item.ingotIron),
+                'S', new ItemStack(Item.silk), 'D', new ItemStack(Block.blockDiamond));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.malletHead)), "SP ", "PWP", " P ",
+                'S', new ItemStack(Item.silk), 'P', new ItemStack(Block.planks, 1, -1),
+                'W', new ItemStack(Block.wood, 1, -1));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.malletHeadStone)), "SC ", "COC", " CS",
+                'S', new ItemStack(Item.silk), 'C', new ItemStack(Block.cobblestone),
+                'O', new ItemStack(Block.stone));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.malletHeadIron)), "SOS", "OBO", "SOS",
+                'S', new ItemStack(Item.silk), 'B', new ItemStack(Block.blockSteel),
+                'O', new ItemStack(Block.stone));
+
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.beans)), new ItemStack(Item.dyePowder, 1, 3));
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.bucketMilk));
+        AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.cakeTin)), new ItemStack(Item.ingotIron));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.brownPastry)), new ItemStack(getItem(JaffaItem.peanut)),
+                new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(getItem(JaffaItem.butter)),
+                new ItemStack(getItem(JaffaItem.butter)), new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.egg),
+                new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.wheat));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.peanut)), "SSS", 'S', new ItemStack(Item.seeds));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.browniesInTinRaw)), "P", "T", 'P', new ItemStack(getItem(JaffaItem.brownPastry)), 'T', new ItemStack(getItem(JaffaItem.cakeTin)));
+
+        GameRegistry.addSmelting(getItem(JaffaItem.browniesInTinRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.browniesInTin)), 1F);
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.brownie), 8), "S", "T", 'S', new ItemStack(Item.swordSteel), 'T', new ItemStack(getItem(JaffaItem.browniesInTin)));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.rollRaw), 10), new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(Item.stick));
+
+        GameRegistry.addSmelting(getItem(JaffaItem.rollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.roll)), 0.1F);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), new ItemStack(Item.bucketMilk));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.creamRoll)), "RC", 'R', new ItemStack(getItem(JaffaItem.roll)), 'C', new ItemStack(getItem(JaffaItem.cream)));
+    }
+
+    private void AddMalletRecipes() {
+        for (int i = 0; i < mallets.length; i++) {
+            GameRegistry.addRecipe(new ItemStack(getItem(mallets[i])), "H", "S", "S", 'H', new ItemStack(getItem(malletHeads[i])), 'S', Item.stick);
+        }
     }
 
     private void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
