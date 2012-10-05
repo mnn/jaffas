@@ -33,8 +33,13 @@ public class MalletHelper {
     }
 
     public static boolean isMallet(int itemID) {
-        // TODO: extract shifted stuff getting
-        return itemID == mod_jaffas.ItemsInfo.get(mod_jaffas.JaffaItem.mallet).getItem().shiftedIndex;
+        for(int i=0; i<mod_jaffas.mallets.length; i++){
+            if (mod_jaffas.ItemsInfo.get(mod_jaffas.mallets[i]).getItem().shiftedIndex == itemID){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public ItemStack getMallet() {

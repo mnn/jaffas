@@ -23,9 +23,10 @@ import java.util.logging.Level;
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
     private static MinecraftServer server;
+    public static JaffaItem[] mallets;
 
     public enum JaffaItem {
-        pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans, butter, mallet
+        pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans, butter, mallet, malletStone, malletIron, malletDiamond,
     }
 
     public static final int startID = 3753;
@@ -56,7 +57,10 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.beans, "Beans", 8, "Cocoa Powder");
         AddItemInfo(JaffaItem.sweetBeans, "Sweet Beans", 9, "Sweet Cocoa Powder");
         AddItemInfo(JaffaItem.butter, "Butter", 12, "Butter");
-        AddItemInfo(JaffaItem.mallet, "Mallet", 11, "Little Mallet");
+        AddItemInfo(JaffaItem.mallet, "Mallet", 11, "Little Wooden Mallet");
+        AddItemInfo(JaffaItem.malletStone, "Mallet Stone", 11, "Little Stone Mallet");
+        AddItemInfo(JaffaItem.malletIron, "Mallet Iron", 11, "Little Iron Mallet");
+        AddItemInfo(JaffaItem.malletDiamond, "Mallet Diamond", 11, "Little Diamond Mallet");
     }
 
     public mod_jaffas() {
@@ -134,8 +138,12 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.sweetBeans);
         createJaffaItem(JaffaItem.butter);
 
-        //createJaffaItem(JaffaItem.mallet);
         createJaffaTool(JaffaItem.mallet, 8);
+        createJaffaTool(JaffaItem.malletStone, 24);
+        createJaffaTool(JaffaItem.malletIron, 128);
+        createJaffaTool(JaffaItem.malletDiamond, 512);
+
+        mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
 
         installRecipes();
 
@@ -164,22 +172,6 @@ public class mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.mallet)), "X",
                 "Y", 'X', Block.planks, 'Y', Item.stick);
-
-        // cocoa powder
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.beans), 8),
-                new ItemStack(getItem(JaffaItem.mallet), 1),
-                new ItemStack(Item.dyePowder, 1, 3),
-                new ItemStack(Item.dyePowder, 1, 3),
-                new ItemStack(Item.dyePowder, 1, 3),
-                new ItemStack(Item.dyePowder, 1, 3),
-                new ItemStack(Item.dyePowder, 1, 3),
-                new ItemStack(Item.dyePowder, 1, 3),
-                new ItemStack(Item.dyePowder, 1, 3),
-                new ItemStack(Item.dyePowder, 1, 3));
-
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.beans), 1),
-                new ItemStack(getItem(JaffaItem.mallet), 1, -1),
-                new ItemStack(Item.dyePowder, 1, 3));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.sweetBeans)),
                 new ItemStack(getItem(JaffaItem.beans)),
@@ -214,24 +206,18 @@ public class mod_jaffas {
                 new ItemStack(getItem(JaffaItem.jamO)), 'Z',
                 new ItemStack(getItem(JaffaItem.cake)));
 
-        // butter
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.butter), 8),
-                new ItemStack(getItem(JaffaItem.mallet), 1),
-                new ItemStack(Item.bucketMilk),
-                new ItemStack(Item.bucketMilk),
-                new ItemStack(Item.bucketMilk),
-                new ItemStack(Item.bucketMilk),
-                new ItemStack(Item.bucketMilk),
-                new ItemStack(Item.bucketMilk),
-                new ItemStack(Item.bucketMilk),
-                new ItemStack(Item.bucketMilk));
-
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.butter), 1),
-                new ItemStack(getItem(JaffaItem.mallet), 1, -1),
-                new ItemStack(Item.bucketMilk));
 
         GameRegistry.addSmelting(getItem(JaffaItem.pastry).shiftedIndex, new ItemStack(
                 getItem(JaffaItem.cake)), 0.1F);
+
+        AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.beans)), new ItemStack(Item.dyePowder, 1, 3));
+        AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.bucketMilk));
+    }
+
+    private void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
+        for (int i = 0; i < mallets.length; i++) {
+            GameRegistry.addRecipe(output, "M", "O", 'M', new ItemStack(getItem(mallets[i]), 1, -1), 'O', input);
+        }
     }
 
     private Item getItem(JaffaItem item) {

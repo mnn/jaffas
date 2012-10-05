@@ -32,7 +32,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
             int damage;
 
             if (recipeTest.getIngredientsCount() == 9) {
-                //got automation recipe - hurt mallet realy bad
+                //got automation recipe - hurt mallet really bad
                 damage = 8;
             } else if (recipeTest.getIngredientsCount() == 2) {
                 //simple recipe, minor damage

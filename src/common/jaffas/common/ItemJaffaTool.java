@@ -1,5 +1,6 @@
 package jaffas.common;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 
 public class ItemJaffaTool extends Item {
@@ -7,6 +8,7 @@ public class ItemJaffaTool extends Item {
         super(id);
         setMaxStackSize(1);
         setMaxDamage(usageCount);
+        this.setTabToDisplayOn(CreativeTabs.tabTools);
     }
 
     public String getTextureFile(){
