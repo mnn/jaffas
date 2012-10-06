@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.4
+- added packs
+- jaffa cakes bomb
+- added buff to food
+
+## 0.3.3
+- more food (hotdog, chocolate bar)
+
 ## 0.3.2
 - fixed new food items to be eatable
 - fixed helper command
