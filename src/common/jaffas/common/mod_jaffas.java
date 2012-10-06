@@ -20,7 +20,7 @@ import net.minecraftforge.common.Configuration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.3")
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.4")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
@@ -50,6 +50,10 @@ public class mod_jaffas {
 
     private int getID() {
         return this.actualID++;
+    }
+
+    private int getBlockID() {
+        return getID() + 256;
     }
 
     private void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
@@ -103,7 +107,7 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.wrapperJaffas, "Wrapper Jaffas", 50, "Jaffa Cakes Wrapper");
         AddItemInfo(JaffaItem.jaffasPack, "Jaffa Cakes Pack", 51, "Jaffa Cakes Pack");
         AddItemInfo(JaffaItem.jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange Jaffa Cakes Pack");
-        AddItemInfo(JaffaItem.jaffasPackR, "Red Jaffa Cakes Pack", 51, "Jaffa Cakes Pack");
+        AddItemInfo(JaffaItem.jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple Jaffa Cakes Pack");
     }
 
     public mod_jaffas() {
@@ -129,8 +133,8 @@ public class mod_jaffas {
                 info.setId(id);
             }
 
-            blockJaffaBombID = config.getOrCreateIntProperty("jaffa bomb", Configuration.CATEGORY_BLOCK, getID()).getInt();
-            blockFridgeID = config.getOrCreateIntProperty("fridge", Configuration.CATEGORY_BLOCK, getID()).getInt();
+            blockJaffaBombID = config.getOrCreateIntProperty("jaffa bomb", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            blockFridgeID = config.getOrCreateIntProperty("fridge", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
@@ -153,6 +157,13 @@ public class mod_jaffas {
         return newJaffaItem;
     }
 
+    private ItemJaffaPack createJaffaPack(JaffaItem ji, ItemStack content) {
+        JaffaItemInfo info = ItemsInfo.get(ji);
+        ItemJaffaPack newJaffaItem = new ItemJaffaPack(info.getId(), content);
+        finilizeItemSetup(info, newJaffaItem);
+        return newJaffaItem;
+    }
+
     private ItemJaffaFood createJaffaFood(JaffaItem ji, int healAmount, float saturation) {
         JaffaItemInfo info = ItemsInfo.get(ji);
         ItemJaffaFood newJaffaItem = new ItemJaffaFood(info.getId(), healAmount, saturation);
@@ -166,6 +177,7 @@ public class mod_jaffas {
         finilizeItemSetup(info, newJaffaItem);
         return newJaffaItem;
     }
+
 
     @Init
     public void load(FMLInitializationEvent event) {
@@ -237,9 +249,10 @@ public class mod_jaffas {
         createJaffaFood(JaffaItem.chocolateBar, 1, 0.5F).setPotionEffect(Potion.moveSpeed.id, 60, 1, 0.15F);
 
         createJaffaItem(JaffaItem.wrapperJaffas);
-        createJaffaItem(JaffaItem.jaffasPack);
-        createJaffaItem(JaffaItem.jaffasPackO);
-        createJaffaItem(JaffaItem.jaffasPackR);
+
+        createJaffaPack(JaffaItem.jaffasPack, new ItemStack(getItem(JaffaItem.jaffa), 8));
+        createJaffaPack(JaffaItem.jaffasPackR, new ItemStack(getItem(JaffaItem.jaffaR), 8));
+        createJaffaPack(JaffaItem.jaffasPackO, new ItemStack(getItem(JaffaItem.jaffaO), 8));
 
         installRecipes();
 
