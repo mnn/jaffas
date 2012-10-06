@@ -45,7 +45,34 @@ public class JaffaBombBlock extends Block {
         w.createExplosion((Entity) null, par2, par3, par4, blastStrengh);
 
         for (int i = 0; i < itemCount; i++) {
-            EntityItem entity = new EntityItem(w, par2 + rand.nextGaussian(), par3 + 1 + rand.nextGaussian() * 0.5, par4 + rand.nextGaussian(), new ItemStack(mod_jaffas.ItemsInfo.get(mod_jaffas.JaffaItem.jaffa).getItem()));
+            int counter = 0;
+            boolean notAir;
+            double pX, pY, pZ;
+
+            do {
+                pX = par2 + rand.nextGaussian();
+                pY = par3 + 1 + rand.nextGaussian() * 0.5;
+                pZ = par4 + rand.nextGaussian();
+
+                notAir = w.getBlockId((int) Math.floor(pX), (int) Math.floor(pY), (int) Math.floor(pZ)) != 0;
+                counter++;
+            } while (notAir && counter < 5);
+
+            ItemStack item;
+
+            mod_jaffas.JaffaItem jaffaItem;
+            if (rand.nextDouble() > 0.5) {
+                jaffaItem = mod_jaffas.JaffaItem.jaffa;
+            } else {
+                if (rand.nextDouble() > 0.5) {
+                    jaffaItem = mod_jaffas.JaffaItem.jaffaO;
+                } else {
+                    jaffaItem = mod_jaffas.JaffaItem.jaffaR;
+                }
+            }
+            item = new ItemStack(mod_jaffas.ItemsInfo.get(jaffaItem).getItem());
+
+            EntityItem entity = new EntityItem(w, pX, pY, pZ, item);
             entity.addVelocity(rand.nextGaussian() * 0.5, 0.1 + rand.nextDouble() * 1.5, rand.nextGaussian() * 0.5);
             w.spawnEntityInWorld(entity);
         }
@@ -63,5 +90,15 @@ public class JaffaBombBlock extends Block {
         }
     }
 
+    public int quantityDropped(Random par1Random) {
+        return 0;
+    }
 
+    public int idDropped(int par1, Random par2Random, int par3) {
+        return 0;
+    }
+
+    public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) {
+        detonate(par1World, par2, par3, par4);
+    }
 }

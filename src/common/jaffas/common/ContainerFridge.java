@@ -17,7 +17,7 @@ public class ContainerFridge extends Container {
         for (int i = 0; i < 20; i++) {
             col = i % colsPerRow;
             row = i / colsPerRow;
-            addSlotToContainer(new Slot(tileEntity, i, 8 + col * 18, 12 + row * 18));
+            addSlotToContainer(new Slot(tileEntity, i, 8 + col * 18, 11 + row * 18));
         }
 
         //addSlotToContainer(new Slot(tileEntity, 0, 76, 37));
@@ -33,7 +33,7 @@ public class ContainerFridge extends Container {
 
 
     protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
-        int yshift = 30;
+        int yshift = 29;
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {

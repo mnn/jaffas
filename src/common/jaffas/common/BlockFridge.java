@@ -89,14 +89,20 @@ public class BlockFridge extends BlockContainer {
      */
     public int getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
         int front = 0;
+        /*
+//        TileEntity tile = ModLoader.getMinecraftInstance().getIntegratedServer().theWorldServer[0].getBlockTileEntity(x, y, z);
+        TileEntity tile = ModLoader.getMinecraftServerInstance().worldServerForDimension(0).getBlockTileEntity(x, y, z);
 
-        TileEntity tile = ModLoader.getMinecraftInstance().getIntegratedServer().theWorldServer[0].getBlockTileEntity(x, y, z);
 
         if (tile != null) {
             front = ((TileEntityFridge) tile).getFront();
         } else {
-            ModLoader.getMinecraftInstance().getIntegratedServer().theWorldServer[0].markBlockAsNeedsUpdate(x, y, z);
+            //ModLoader.getMinecraftInstance().getIntegratedServer().theWorldServer[0].markBlockAsNeedsUpdate(x, y, z);
+            ModLoader.getMinecraftServerInstance().worldServerForDimension(0).markBlockAsNeedsUpdate(x, y, z);
         }
+        */
+
+        front = access.getBlockMetadata(x, y, z);
 
         int back, left = 0, right = 0;
         switch (front) {
@@ -228,24 +234,29 @@ public class BlockFridge extends BlockContainer {
         int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         TileEntity blockEntity = w.getBlockTileEntity(x, y, z);
+        int front = 0;
+
         switch (var) {
             case 0:
-                ((TileEntityFridge) blockEntity).setFront(2);
+                front = 2;
                 break;
 
             case 1:
-                ((TileEntityFridge) blockEntity).setFront(5);
+                front = 5;
                 break;
 
             case 2:
-                ((TileEntityFridge) blockEntity).setFront(3);
+                front = 3;
                 break;
 
             case 3:
-                ((TileEntityFridge) blockEntity).setFront(4);
+                front = 4;
                 break;
 
         }
+
+        ((TileEntityFridge) blockEntity).setFront(front);
+        w.setBlockMetadata(x, y, z, front);
 
         w.markBlockAsNeedsUpdate(x, y, z);
         w.notifyBlockChange(x, y, z, blockID);
