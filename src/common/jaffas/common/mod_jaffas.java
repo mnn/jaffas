@@ -8,7 +8,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.server.MinecraftServer;
@@ -26,10 +28,20 @@ public class mod_jaffas {
     public static JaffaItem[] mallets;
     public static JaffaItem[] malletHeads;
 
+    public static JaffaBombBlock blockJaffaBomb;
+    public static int blockJaffaBombID;
+
+    public static BlockFridge blockFridge;
+    public static int blockFridgeID;
+
+    private static IGuiHandler guiHandler;
+    public static Object instance;
+
     public enum JaffaItem {
         pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
         butter, mallet, malletStone, malletIron, malletDiamond, malletHead, malletHeadStone, malletHeadIron, malletHeadDiamond,
-        brownPastry, puffPastry, peanut, cream, roll, creamRoll, cakeTin, browniesInTin, brownie, rollRaw, browniesInTinRaw
+        brownPastry, puffPastry, peanut, cream, roll, creamRoll, cakeTin, browniesInTin, brownie, rollRaw, browniesInTinRaw,
+        bunRaw, bun, sausageRaw, sausage, hotdog, flour, chocolateWrapper, chocolateBar
     }
 
     public static final int startID = 3753;
@@ -79,10 +91,19 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.brownie, "Brownie", 22, "Brownie");
         AddItemInfo(JaffaItem.rollRaw, "Roll Raw", 31, "Raw Roll");
         AddItemInfo(JaffaItem.browniesInTinRaw, "Raw Brownies", 32, "Raw Brownies");
+        AddItemInfo(JaffaItem.bunRaw, "Raw Bun", 44, "Raw Bun");
+        AddItemInfo(JaffaItem.bun, "Bun", 45, "Bun");
+        AddItemInfo(JaffaItem.sausageRaw, "Sausage Raw", 46, "Raw Sausage");
+        AddItemInfo(JaffaItem.sausage, "Sausage", 47, "Sausage");
+        AddItemInfo(JaffaItem.hotdog, "Hotdog", 48, "Hotdog");
+        AddItemInfo(JaffaItem.flour, "Flour", 49, "Flour");
+        AddItemInfo(JaffaItem.chocolateWrapper, "Chocolate Wrapper", 33, "Chocolate Wrapper");
+        AddItemInfo(JaffaItem.chocolateBar, "Chocolate Bar", 34, "Chocolate Bar");
     }
 
     public mod_jaffas() {
         InitializeItemInfos();
+        instance = this;
     }
 
     @SidedProxy(clientSide = "jaffas.common.ClientProxyTutorial", serverSide = "jaffas.common.CommonProxyTutorial")
@@ -102,6 +123,9 @@ public class mod_jaffas {
                 int id = config.getOrCreateIntProperty(info.getConfigName(), Configuration.CATEGORY_ITEM, getID()).getInt();
                 info.setId(id);
             }
+
+            blockJaffaBombID = config.getOrCreateIntProperty("jaffa bomb", Configuration.CATEGORY_BLOCK, getID()).getInt();
+            blockFridgeID = config.getOrCreateIntProperty("fridge", Configuration.CATEGORY_BLOCK, getID()).getInt();
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
@@ -140,15 +164,26 @@ public class mod_jaffas {
 
     @Init
     public void load(FMLInitializationEvent event) {
+        blockFridge = new BlockFridge(blockFridgeID);
+        GameRegistry.registerBlock(blockFridge);
+        LanguageRegistry.addName(blockFridge, "Fridge");
+        GameRegistry.registerTileEntity(TileEntityFridge.class, "Fridge");
+
+        guiHandler = new GuiHandler();
+        NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+
+        blockJaffaBomb = new JaffaBombBlock(blockJaffaBombID, 35, Material.rock);
+        GameRegistry.registerBlock(blockJaffaBomb);
+        LanguageRegistry.addName(blockJaffaBomb, "Jaffa Cakes BOMB");
 
         createJaffaItem(JaffaItem.pastry);
         createJaffaItem(JaffaItem.jamO);
         createJaffaItem(JaffaItem.jamR);
 
         createJaffaFood(JaffaItem.cake, 1, 0.2F);
-        createJaffaFood(JaffaItem.jaffaO, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.25F);
-        createJaffaFood(JaffaItem.jaffaR, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.25F);
-        createJaffaFood(JaffaItem.jaffa, 2, 0.5F);
+        createJaffaFood(JaffaItem.jaffaO, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
+        createJaffaFood(JaffaItem.jaffaR, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
+        createJaffaFood(JaffaItem.jaffa, 2, 0.5F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.2F);
 
         createJaffaItem(JaffaItem.chocolate);
         createJaffaItem(JaffaItem.apples);
@@ -181,8 +216,20 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.rollRaw);
         createJaffaItem(JaffaItem.browniesInTinRaw);
 
-        createJaffaFood(JaffaItem.creamRoll, 4, 1F);
-        createJaffaFood(JaffaItem.brownie, 2, 0.6F);
+        createJaffaFood(JaffaItem.creamRoll, 4, 1F).setPotionEffect(Potion.digSpeed.id, 30, 1, 0.15F);
+        createJaffaFood(JaffaItem.brownie, 2, 0.6F).setPotionEffect(Potion.jump.id, 30, 1, 0.15F);
+
+        createJaffaItem(JaffaItem.bunRaw);
+        createJaffaItem(JaffaItem.bun);
+        createJaffaItem(JaffaItem.sausageRaw);
+        createJaffaItem(JaffaItem.sausage);
+        createJaffaItem(JaffaItem.flour);
+
+        createJaffaFood(JaffaItem.hotdog, 3, 0.7F).setPotionEffect(Potion.damageBoost.id, 30, 1, 0.15F);
+
+        createJaffaItem(JaffaItem.chocolateWrapper);
+
+        createJaffaFood(JaffaItem.chocolateBar, 1, 0.5F).setPotionEffect(Potion.moveSpeed.id, 30, 1, 0.15F);
 
         installRecipes();
 
@@ -208,9 +255,6 @@ public class mod_jaffas {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(Item.sugar),
                 new ItemStack(Item.egg), new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.wheat), new ItemStack(Item.wheat),
                 new ItemStack(Item.wheat));
-
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.mallet)), "X",
-                "Y", 'X', Block.planks, 'Y', Item.stick);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.sweetBeans)),
                 new ItemStack(getItem(JaffaItem.beans)),
@@ -293,6 +337,13 @@ public class mod_jaffas {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), new ItemStack(Item.bucketMilk));
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.creamRoll)), "RC", 'R', new ItemStack(getItem(JaffaItem.roll)), 'C', new ItemStack(getItem(JaffaItem.cream)));
+
+        // 3 mouka = 6 klasy + papir ~ shapeless
+        // 5 parek = 3 syrovy pork chop + mouka
+        // 10 houska = 2 testa
+        // parek v rohliku = parek + houska
+        // 8 obal tycinka =  fial. barva + 8 papir
+        // 2 tycinky = obal + 2x cokolada
     }
 
     private void AddMalletRecipes() {

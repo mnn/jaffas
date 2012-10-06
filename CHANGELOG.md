@@ -13,7 +13,7 @@
 ## 0.3
 - complete rework of items handling
 - cleaned codes (removed unsued files, ...)
-- tool for repeated usage (after while it break)
+- tool for repeated usage (after while it breaks)
 
 ## 0.2
 - initial version
