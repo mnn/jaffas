@@ -21,7 +21,7 @@ import java.util.Hashtable;
 import java.util.logging.Level;
 
 @Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.4")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
     private static MinecraftServer server;
@@ -42,7 +42,8 @@ public class mod_jaffas {
         butter, mallet, malletStone, malletIron, malletDiamond, malletHead, malletHeadStone, malletHeadIron, malletHeadDiamond,
         brownPastry, puffPastry, peanut, cream, roll, creamRoll, cakeTin, browniesInTin, brownie, rollRaw, browniesInTinRaw,
         bunRaw, bun, sausageRaw, sausage, hotdog, flour, chocolateWrapper, chocolateBar, wrapperJaffas, jaffasPack, jaffasPackO,
-        jaffasPackR
+        jaffasPackR, vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
+        vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen
     }
 
     public static final int startID = 3753;
@@ -108,6 +109,19 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.jaffasPack, "Jaffa Cakes Pack", 51, "Jaffa Cakes Pack");
         AddItemInfo(JaffaItem.jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange Jaffa Cakes Pack");
         AddItemInfo(JaffaItem.jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple Jaffa Cakes Pack");
+        AddItemInfo(JaffaItem.vanillaBeans, "Vanilla Beans", 52, "Vanilla Beans");
+        AddItemInfo(JaffaItem.waferIcecream, "Wafer Ice-cream", 53, "Wafer");
+        AddItemInfo(JaffaItem.cone, "Icecream Cone", 54, "Cone");
+        AddItemInfo(JaffaItem.vanillaPowder, "Vanilla Powder", 55, "Vanilla Powder");
+        AddItemInfo(JaffaItem.vanillaIcecreamRaw, "Vanilla Ice-cream Raw", 56, "Vanilla Ice-cream");
+        AddItemInfo(JaffaItem.chocolateIcecreamRaw, "Chocolate Ice-cream Raw", 57, "Chocolate Ice-cream");
+        AddItemInfo(JaffaItem.icecreamRaw, "Ice-cream Raw", 58, "Ice-cream");
+        AddItemInfo(JaffaItem.vanillaIcecream, "Vanilla Scooped Ice-cream", 59, "Scooped Ice-cream");
+        AddItemInfo(JaffaItem.chocolateIcecream, "Chocolate Scooped Ice-cream", 60, "Scooped Ice-cream");
+        AddItemInfo(JaffaItem.russianIcecream, "Russian Ice-cream", 61, "Russian Ice-cream");
+        AddItemInfo(JaffaItem.vanillaIcecreamFrozen, "Vanilla Ice-cream Frozen", 62, "Vanilla Ice-cream *");
+        AddItemInfo(JaffaItem.chocolateIcecreamFrozen, "Chocolate Ice-cream Frozen", 63, "Chocolate Ice-cream *");
+        AddItemInfo(JaffaItem.icecreamFrozen, "Ice-cream Frozen", 64, "Ice-cream *");
     }
 
     public mod_jaffas() {
@@ -254,6 +268,23 @@ public class mod_jaffas {
         createJaffaPack(JaffaItem.jaffasPackR, new ItemStack(getItem(JaffaItem.jaffaR), 8));
         createJaffaPack(JaffaItem.jaffasPackO, new ItemStack(getItem(JaffaItem.jaffaO), 8));
 
+        /*        vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
+                vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen*/
+
+        createJaffaItem(JaffaItem.vanillaBeans);
+        createJaffaItem(JaffaItem.waferIcecream);
+        createJaffaItem(JaffaItem.cone);
+        createJaffaItem(JaffaItem.vanillaPowder);
+        createJaffaItem(JaffaItem.vanillaIcecreamRaw);
+        createJaffaItem(JaffaItem.chocolateIcecreamRaw);
+        createJaffaItem(JaffaItem.icecreamRaw);
+        createJaffaItem(JaffaItem.vanillaIcecream);
+        createJaffaItem(JaffaItem.chocolateIcecream);
+        createJaffaItem(JaffaItem.russianIcecream);
+        createJaffaItem(JaffaItem.vanillaIcecreamFrozen);
+        createJaffaItem(JaffaItem.chocolateIcecreamFrozen);
+        createJaffaItem(JaffaItem.icecreamFrozen);
+
         installRecipes();
 
         // texture stuff
@@ -272,6 +303,7 @@ public class mod_jaffas {
 
     private void addCommands(ServerCommandManager manager) {
         manager.registerCommand(new CommandJaffaHunger());
+        manager.registerCommand(new CommandFridgeDebug());
     }
 
     private void installRecipes() {
@@ -397,6 +429,26 @@ public class mod_jaffas {
                 'R', new ItemStack(getItem(JaffaItem.jaffasPackR)), 'T', new ItemStack(Block.tnt));
         GameRegistry.addRecipe(new ItemStack(blockJaffaBomb), "J", "O", "T", 'J', new ItemStack(getItem(JaffaItem.jaffasPack)),
                 'O', new ItemStack(getItem(JaffaItem.jaffasPackO)), 'T', new ItemStack(Block.tnt));
+
+        //RecipesFridge.AddRecipe(Block.dirt.blockID, new ItemStack(Block.gravel));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.vanillaBeans)), new ItemStack(Item.dyePowder, 1, 3), new ItemStack(Item.dyePowder, 1, 11));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.waferIcecream), 40), "PP", "PP", 'P', new ItemStack(getItem(JaffaItem.pastry)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.cone), 30), "P P", " P ", 'P', new ItemStack(getItem(JaffaItem.pastry)));
+
+        AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.vanillaPowder)), new ItemStack(getItem(JaffaItem.vanillaBeans)));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.vanillaIcecreamRaw), 4), new ItemStack(getItem(JaffaItem.cream)), new ItemStack(getItem(JaffaItem.vanillaPowder)), new ItemStack(Item.snowball));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.chocolateIcecreamRaw), 4), new ItemStack(getItem(JaffaItem.cream)), new ItemStack(getItem(JaffaItem.beans)), new ItemStack(Item.snowball));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.icecreamRaw), 4), new ItemStack(getItem(JaffaItem.cream)), new ItemStack(getItem(JaffaItem.cream)), new ItemStack(Item.snowball));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.vanillaIcecream)), "S", "C", 'S', new ItemStack(getItem(JaffaItem.vanillaIcecreamFrozen)), 'C', new ItemStack(getItem(JaffaItem.cone)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.chocolateIcecream)), "S", "C", 'S', new ItemStack(getItem(JaffaItem.chocolateIcecreamFrozen)), 'C', new ItemStack(getItem(JaffaItem.cone)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.russianIcecream)), "W", "I", "W", 'W', new ItemStack(getItem(JaffaItem.waferIcecream)), 'I', new ItemStack(getItem(JaffaItem.icecreamFrozen)));
+
+        RecipesFridge.AddRecipe(getItem(JaffaItem.icecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.icecreamFrozen)));
+        RecipesFridge.AddRecipe(getItem(JaffaItem.vanillaIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.vanillaIcecreamFrozen)));
+        RecipesFridge.AddRecipe(getItem(JaffaItem.chocolateIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.chocolateIcecreamFrozen)));
     }
 
     private void AddMalletRecipes() {

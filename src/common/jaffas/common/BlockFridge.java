@@ -20,6 +20,7 @@ public class BlockFridge extends BlockContainer {
         setResistance(5.0F);
         setBlockName("blockFridge");
         setCreativeTab(CreativeTabs.tabMisc);
+        setRequiresSelfNotify();
     }
 
     public String getTextureFile() {

@@ -2,13 +2,157 @@ package jaffas.common;
 
 import net.minecraft.src.*;
 
+import java.util.Random;
+
 public class TileEntityFridge extends TileEntity implements IInventory {
+    public static final int fuelSlot = 20;
+    public static Random rand = new Random();
 
     private ItemStack[] inv;
     private int front;
 
+    public int burnTime;
+    public int burnItemTime;
+    private int eventTime;
+    public float temperature;
+
+    private int tickCounter;
+
+    public static int tickDivider = 20;
+
     public TileEntityFridge() {
-        inv = new ItemStack[20];
+        inv = new ItemStack[20 + 1];
+        burnTime = 0;
+        eventTime = 0;
+        temperature = 24;
+    }
+
+    public int getBurnTimeRemainingScaled(int par1) {
+        if (burnItemTime == 0) {
+            burnItemTime = 200;
+        }
+
+        return (burnTime * par1) / burnItemTime;
+    }
+
+    public boolean isBurning() {
+        return burnTime > 0;
+    }
+
+    public static boolean isItemFuel(ItemStack par0ItemStack) {
+        return TileEntityFurnace.isItemFuel(par0ItemStack);
+    }
+
+    public void updateEntity() {
+        tickCounter++;
+
+        if (tickCounter % tickDivider == 0) {
+            // only every second do stuff
+
+            if (burnTime > 0) {
+                burnTime--;
+                addEnergy(0.1F);
+            } else {
+                melt();
+            }
+
+            if (burnTime <= 0) {
+                tryGetFuel();
+            }
+
+            if (temperature < -5) {
+                eventTime++;
+                if (eventTime > 15) {
+                    runSpecialEvent();
+                    eventTime = 0;
+                }
+            }
+        }
+    }
+
+    private void runSpecialEvent() {
+        int slotNum = Math.abs(rand.nextInt()) % fuelSlot;
+
+        //TODO
+
+        if (!worldObj.isRemote) {
+            ItemStack stack = inv[slotNum];
+
+            if (stack == null) {
+                if (rand.nextDouble() < 0.25) {
+                    ItemStack newItem = rand.nextDouble() < 0.5D ? new ItemStack(Block.ice) : new ItemStack(Item.snowball);
+
+                    inv[slotNum] = newItem;
+                    melt();
+                }
+            } else if (stack.itemID == Block.ice.blockID || stack.itemID == Item.snowball.shiftedIndex) {
+                if (rand.nextDouble() < 0.25) {
+                    if (stack.stackSize < stack.getMaxStackSize()) {
+                        stack.stackSize++;
+                        melt();
+                    }
+                }
+            } else {
+                ItemStack output = RecipesFridge.getCopyOfResult(stack.itemID);
+
+                if (output != null) {
+                    int free = -1;
+                    for (int i = 0; i < fuelSlot - 1; i++) {
+                        if (inv[i] == null) {
+                            free = i;
+                            break;
+                        }
+                    }
+
+                    if (free != -1) {
+                        // TODO adding to stack
+                        inv[slotNum].stackSize--;
+                        if (inv[slotNum].stackSize <= 0) setInventorySlotContents(slotNum, null);
+
+                        inv[free] = output;
+                        melt();
+                    }
+                }
+            }
+        }
+    }
+
+    private void tryGetFuel() {
+        ItemStack item = getStackInSlot(fuelSlot);
+        if (item == null) {
+            return;
+        }
+
+        int fuelBurnTime = TileEntityFurnace.getItemBurnTime(item);
+        if (fuelBurnTime > 0) {
+            item.stackSize--;
+
+            if (item.stackSize <= 0 && !worldObj.isRemote) setInventorySlotContents(fuelSlot, null);
+
+            burnItemTime = fuelBurnTime;
+            burnTime = fuelBurnTime;
+        } else {
+            return;
+        }
+    }
+
+
+    private void melt(int i) {
+        if (i < 1) return;
+
+        if (temperature < 24) {
+            temperature += 0.05 * i;
+        }
+    }
+
+    private void melt() {
+        melt(1);
+    }
+
+    private void addEnergy(float i) {
+        if (temperature > -10) {
+            temperature -= i;
+        }
     }
 
     @Override
@@ -31,7 +175,7 @@ public class TileEntityFridge extends TileEntity implements IInventory {
 
     @Override
     public String getInvName() {
-        return "Fridge";
+        return "container.fridge";
     }
 
     @Override
@@ -92,6 +236,11 @@ public class TileEntityFridge extends TileEntity implements IInventory {
         }
 
         setFront(tagCompound.getInteger("front"));
+        burnTime = tagCompound.getInteger("burnTime");
+        burnItemTime = tagCompound.getInteger("burnItemTime");
+        eventTime = tagCompound.getInteger("eventTime");
+        temperature = tagCompound.getFloat("temperature");
+        System.out.println("after reading - " + temperature);
     }
 
     @Override
@@ -110,6 +259,10 @@ public class TileEntityFridge extends TileEntity implements IInventory {
         }
         tagCompound.setTag("Inventory", itemList);
         tagCompound.setInteger("front", getFront());
+        tagCompound.setInteger("burnTime", burnTime);
+        tagCompound.setInteger("burnItemTime", burnItemTime);
+        tagCompound.setInteger("eventTime", eventTime);
+        tagCompound.setFloat("temperature", temperature);
     }
 
     public int getFront() {
@@ -118,5 +271,9 @@ public class TileEntityFridge extends TileEntity implements IInventory {
 
     public void setFront(int front) {
         this.front = front;
+    }
+
+    public float getTemperature() {
+        return temperature;
     }
 }

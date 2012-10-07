@@ -7,11 +7,16 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiFridge extends GuiContainer {
 
+
+    private TileEntityFridge tileEntity;
+
     public GuiFridge(InventoryPlayer inventoryPlayer,
                      TileEntityFridge tileEntity) {
         //the container is instanciated and passed to the superclass for handling
         super(new ContainerFridge(inventoryPlayer, tileEntity));
         ySize = 198;
+
+        this.tileEntity = tileEntity;
     }
 
     @Override
@@ -24,7 +29,11 @@ public class GuiFridge extends GuiContainer {
 
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
-        this.drawGradientRect(x, y, x + 100, y + 100, 0, 0);
+
+        if (tileEntity.tickDivider == 1) {
+            String s = String.valueOf(tileEntity.getTemperature());
+            fontRenderer.drawString(s, 75, 3, 4210752);
+        }
     }
 
     @Override
@@ -37,6 +46,15 @@ public class GuiFridge extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+
+        if (tileEntity.isBurning()) {
+            int burn = tileEntity.getBurnTimeRemainingScaled(14);
+            this.drawTexturedModalRect(x + 103, y + 54 + (13 - burn), 176, 14 - burn, 14, burn);
+        }
+
+        int temp = Math.round(tileEntity.temperature);
+        int tY = (int) Math.round(56 - temp * 1.2D);
+        this.drawTexturedModalRect(x + 154, y + tY, 190, 0, 1, 105 - tY);
     }
 
 }
