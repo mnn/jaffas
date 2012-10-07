@@ -20,7 +20,7 @@ import net.minecraftforge.common.Configuration;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.4")
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.5")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
@@ -46,7 +46,7 @@ public class mod_jaffas {
         vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen
     }
 
-    public static final int startID = 3753;
+    public static final int startID = 3600;
     private int actualID = startID;
 
     private int getID() {
@@ -264,12 +264,9 @@ public class mod_jaffas {
 
         createJaffaItem(JaffaItem.wrapperJaffas);
 
-        createJaffaPack(JaffaItem.jaffasPack, new ItemStack(getItem(JaffaItem.jaffa), 8));
-        createJaffaPack(JaffaItem.jaffasPackR, new ItemStack(getItem(JaffaItem.jaffaR), 8));
-        createJaffaPack(JaffaItem.jaffasPackO, new ItemStack(getItem(JaffaItem.jaffaO), 8));
-
-        /*        vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
-                vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen*/
+        createJaffaPack(JaffaItem.jaffasPack, new ItemStack(getItem(JaffaItem.jaffa), 8)).setMaxStackSize(16);
+        createJaffaPack(JaffaItem.jaffasPackR, new ItemStack(getItem(JaffaItem.jaffaR), 8)).setMaxStackSize(16);
+        createJaffaPack(JaffaItem.jaffasPackO, new ItemStack(getItem(JaffaItem.jaffaO), 8)).setMaxStackSize(16);
 
         createJaffaItem(JaffaItem.vanillaBeans);
         createJaffaItem(JaffaItem.waferIcecream);
@@ -278,12 +275,12 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.vanillaIcecreamRaw);
         createJaffaItem(JaffaItem.chocolateIcecreamRaw);
         createJaffaItem(JaffaItem.icecreamRaw);
-        createJaffaItem(JaffaItem.vanillaIcecream);
-        createJaffaItem(JaffaItem.chocolateIcecream);
-        createJaffaItem(JaffaItem.russianIcecream);
         createJaffaItem(JaffaItem.vanillaIcecreamFrozen);
         createJaffaItem(JaffaItem.chocolateIcecreamFrozen);
         createJaffaItem(JaffaItem.icecreamFrozen);
+        createJaffaFood(JaffaItem.vanillaIcecream, 2, 0.3F);
+        createJaffaFood(JaffaItem.chocolateIcecream, 2, 0.3F);
+        createJaffaFood(JaffaItem.russianIcecream, 2, 0.3F);
 
         installRecipes();
 

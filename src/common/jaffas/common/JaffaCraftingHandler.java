@@ -8,7 +8,7 @@ import net.minecraft.src.ItemStack;
 
 public class JaffaCraftingHandler implements ICraftingHandler {
 
-    private boolean debug = true;
+    private boolean debug = false;
 
     @Override
     public void onCrafting(EntityPlayer player, ItemStack item,

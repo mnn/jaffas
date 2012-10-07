@@ -240,7 +240,6 @@ public class TileEntityFridge extends TileEntity implements IInventory {
         burnItemTime = tagCompound.getInteger("burnItemTime");
         eventTime = tagCompound.getInteger("eventTime");
         temperature = tagCompound.getFloat("temperature");
-        System.out.println("after reading - " + temperature);
     }
 
     @Override
