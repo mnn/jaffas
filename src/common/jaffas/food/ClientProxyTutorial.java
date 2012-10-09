@@ -1,6 +1,5 @@
-package jaffas.common;
+package jaffas.food;
 
-import jaffas.common.CommonProxyTutorial;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxyTutorial extends CommonProxyTutorial{

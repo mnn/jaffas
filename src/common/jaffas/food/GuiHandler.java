@@ -1,4 +1,4 @@
-package jaffas.common;
+package jaffas.food;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import net.minecraft.src.EntityPlayer;

@@ -1,4 +1,4 @@
-package jaffas.common;
+package jaffas.food;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -35,7 +35,8 @@ public class mod_jaffas {
     public static int blockFridgeID;
 
     private static IGuiHandler guiHandler;
-    public static Object instance;
+    public static mod_jaffas instance;
+    public static int topDefaultID = -1;
 
     public enum JaffaItem {
         pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
@@ -48,6 +49,10 @@ public class mod_jaffas {
 
     public static final int startID = 3600;
     private int actualID = startID;
+
+    public int getActualID() {
+        return actualID;
+    }
 
     private int getID() {
         return this.actualID++;
@@ -129,7 +134,7 @@ public class mod_jaffas {
         instance = this;
     }
 
-    @SidedProxy(clientSide = "jaffas.common.ClientProxyTutorial", serverSide = "jaffas.common.CommonProxyTutorial")
+    @SidedProxy(clientSide = "jaffas.food.ClientProxyTutorial", serverSide = "jaffas.food.CommonProxyTutorial")
     public static CommonProxyTutorial proxy;
 
     @PreInit
@@ -149,6 +154,12 @@ public class mod_jaffas {
 
             blockJaffaBombID = config.getOrCreateIntProperty("jaffa bomb", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
             blockFridgeID = config.getOrCreateIntProperty("fridge", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+
+            if (mod_jaffas.topDefaultID == -1) {
+                mod_jaffas.topDefaultID = this.actualID;
+            }
+
+            System.out.println("jaffas: loading complete; topID=" + mod_jaffas.topDefaultID);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
@@ -446,6 +457,8 @@ public class mod_jaffas {
         RecipesFridge.AddRecipe(getItem(JaffaItem.icecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.icecreamFrozen)));
         RecipesFridge.AddRecipe(getItem(JaffaItem.vanillaIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.vanillaIcecreamFrozen)));
         RecipesFridge.AddRecipe(getItem(JaffaItem.chocolateIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.chocolateIcecreamFrozen)));
+
+        GameRegistry.addRecipe(new ItemStack(blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
     }
 
     private void AddMalletRecipes() {

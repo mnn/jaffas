@@ -1,4 +1,4 @@
-package jaffas.common;
+package jaffas.food;
 
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.ItemFood;

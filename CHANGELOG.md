@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.5
+- added ice-creams
+- almost finished fridge
+- moved start of default ID interval to avoid conflicts with BuilCraft 3 (3856-3913)
+
 ## 0.3.4
 - added packs
 - jaffa cakes bomb
@@ -20,7 +25,7 @@
 
 ## 0.3
 - complete rework of items handling
-- cleaned codes (removed unsued files, ...)
+- cleaned code (removed unsued files, ...)
 - tool for repeated usage (after while it breaks)
 
 ## 0.2

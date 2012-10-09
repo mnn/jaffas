@@ -1,4 +1,4 @@
-package jaffas.common;
+package jaffas.food;
 
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
