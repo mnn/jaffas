@@ -85,7 +85,7 @@ public class mod_jaffas_trees {
         LanguageRegistry.addName(blockFruitSapling, "Fruit Sapling");
 
         blockFruitLeaves = new BlockFruitLeaves(blockFruitLeavesID, 0);
-        blockFruitLeaves.setBlockName("fruitLeaves").setCreativeTab(CreativeTabs.tabDeco).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
+        blockFruitLeaves.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves").setCreativeTab(CreativeTabs.tabDeco).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
         GameRegistry.registerBlock(blockFruitLeaves);
         LanguageRegistry.addName(blockFruitLeaves, "Leaves");
 
@@ -96,6 +96,8 @@ public class mod_jaffas_trees {
         itemFruitSeeds = new ItemFruitSeeds(itemFruitSeedsID, blockFruitSapling.blockID, 1);
         itemFruitSeeds.setItemName("fruitSeeds");
         LanguageRegistry.addName(itemFruitSeeds, "Fruit Seeds");
+
+        GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
 
         installRecipes();
 

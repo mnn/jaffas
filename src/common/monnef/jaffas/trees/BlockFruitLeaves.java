@@ -18,21 +18,30 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
     public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla"};
     int[] adjacentTreeBlocks;
 
-    protected BlockFruitLeaves(int par1, int par2) {
+    public BlockFruitLeaves(int par1, int par2) {
         super(par1, par2, Material.leaves, false);
         this.baseIndexInPNG = par2;
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDeco);
-        this.setRequiresSelfNotify();
         this.setGraphicsLevel(true);
     }
 
-    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-        par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
+    public BlockFruitLeaves setLeavesRequiresSelfNotify() {
+        this.setRequiresSelfNotify();
+        return this;
     }
+
+
+/*    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+        par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
+    }*/
 
     public TileEntity createNewTileEntity(World par1World) {
         return new TileEntityFruitLeaves();
+    }
+
+    public boolean hasTileEntity(int metadata) {
+        return true;
     }
 
     public String getTextureFile() {
@@ -236,7 +245,7 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
         return getLeavesType(par1);
     }
 
-    private int getLeavesType(int par1) {
+    public static int getLeavesType(int par1) {
         return par1 & 3;
     }
 
