@@ -2,7 +2,6 @@ package jaffas.trees;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import jaffas.trees.mod_jaffas_trees;
 import net.minecraft.src.*;
 import net.minecraftforge.common.IShearable;
 
@@ -16,7 +15,7 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
      * switch the displayed version between fancy and fast graphics (fast is this index + 1).
      */
     private int baseIndexInPNG;
-    public static final String[] field_72136_a = new String[]{"oak", "spruce", "birch", "jungle"};
+    public static final String[] field_72136_a = new String[]{"apple", "spruce", "birch", "jungle"};
     int[] adjacentTreeBlocks;
 
     protected BlockFruitLeaves(int par1, int par2) {
@@ -24,6 +23,20 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
         this.baseIndexInPNG = par2;
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDeco);
+        this.setRequiresSelfNotify();
+        this.setGraphicsLevel(true);
+    }
+
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+        par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
+    }
+
+    public TileEntity createNewTileEntity(World par1World) {
+        return new TileEntityFruitLeaves();
+    }
+
+    public String getTextureFile() {
+        return "/jaffas_02.png";
     }
 
     /**
@@ -32,6 +45,8 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
         byte var7 = 1;
         int var8 = var7 + 1;
+
+        par1World.removeBlockTileEntity(par2, par3, par4);
 
         if (par1World.checkChunksExist(par2 - var8, par3 - var8, par4 - var8, par2 + var8, par3 + var8, par4 + var8)) {
             for (int var9 = -var7; var9 <= var7; ++var9) {
@@ -51,11 +66,11 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-        if (!par1World.isRemote) {
-            int var6 = par1World.getBlockMetadata(par2, par3, par4);
+    public void updateTick(World world, int x, int y, int z, Random rand) {
+        if (!world.isRemote) {
+            int metadata = world.getBlockMetadata(x, y, z);
 
-            if ((var6 & 8) != 0 && (var6 & 4) == 0) {
+            if ((metadata & 8) != 0 && (metadata & 4) == 0) {
                 byte var7 = 4;
                 int var8 = var7 + 1;
                 byte var9 = 32;
@@ -68,7 +83,7 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
 
                 int var12;
 
-                if (par1World.checkChunksExist(par2 - var8, par3 - var8, par4 - var8, par2 + var8, par3 + var8, par4 + var8)) {
+                if (world.checkChunksExist(x - var8, y - var8, z - var8, x + var8, y + var8, z + var8)) {
                     int var13;
                     int var14;
                     int var15;
@@ -76,13 +91,13 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
                     for (var12 = -var7; var12 <= var7; ++var12) {
                         for (var13 = -var7; var13 <= var7; ++var13) {
                             for (var14 = -var7; var14 <= var7; ++var14) {
-                                var15 = par1World.getBlockId(par2 + var12, par3 + var13, par4 + var14);
+                                var15 = world.getBlockId(x + var12, y + var13, z + var14);
 
                                 Block block = Block.blocksList[var15];
 
-                                if (block != null && block.canSustainLeaves(par1World, par2 + var12, par3 + var13, par4 + var14)) {
+                                if (block != null && block.canSustainLeaves(world, x + var12, y + var13, z + var14)) {
                                     this.adjacentTreeBlocks[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = 0;
-                                } else if (block != null && block.isLeaves(par1World, par2 + var12, par3 + var13, par4 + var14)) {
+                                } else if (block != null && block.isLeaves(world, x + var12, y + var13, z + var14)) {
                                     this.adjacentTreeBlocks[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = -2;
                                 } else {
                                     this.adjacentTreeBlocks[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = -1;
@@ -129,9 +144,9 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
                 var12 = this.adjacentTreeBlocks[var11 * var10 + var11 * var9 + var11];
 
                 if (var12 >= 0) {
-                    par1World.setBlockMetadata(par2, par3, par4, var6 & -9);
+                    world.setBlockMetadata(x, y, z, metadata & -9);
                 } else {
-                    this.removeLeaves(par1World, par2, par3, par4);
+                    this.removeLeaves(world, x, y, z);
                 }
             }
         }
@@ -219,7 +234,9 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
     public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
+        //return (par2 & 3) == 1 ? this.blockIndexInTexture + 80 : ((par2 & 3) == 3 ? this.blockIndexInTexture + 144 : this.blockIndexInTexture);
         return (par2 & 3) == 1 ? this.blockIndexInTexture + 80 : ((par2 & 3) == 3 ? this.blockIndexInTexture + 144 : this.blockIndexInTexture);
+        //return this.blockIndexInTexture + par2;
     }
 
     @SideOnly(Side.CLIENT)
@@ -232,8 +249,17 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
         this.blockIndexInTexture = this.baseIndexInPNG + (par1 ? 0 : 1);
     }
 
-    @SideOnly(Side.CLIENT)
+    /**
+     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
+     * coordinates.  Args: blockAccess, x, y, z, side
+     */
+    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    {
+        int var6 = par1IBlockAccess.getBlockId(par2, par3, par4);
+        return !this.graphicsLevel && var6 == this.blockID ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+    }
 
+    @SideOnly(Side.CLIENT)
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */

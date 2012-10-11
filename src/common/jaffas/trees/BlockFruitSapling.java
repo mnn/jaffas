@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockFruitSapling extends BlockFlower {
-    public static final String[] field_72270_a = new String[]{"oak", "spruce", "birch", "jungle"};
+    public static final String[] field_72270_a = new String[]{"apple", "spruce", "birch", "jungle"};
     public static Random rand = new Random();
 
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
@@ -53,8 +53,9 @@ public class BlockFruitSapling extends BlockFlower {
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
     public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
-        par2 &= 3;
-        return par2 == 1 ? 63 : (par2 == 2 ? 79 : (par2 == 3 ? 30 : super.getBlockTextureFromSideAndMetadata(par1, par2)));
+/*        par2 &= 3;
+        return par2 == 1 ? 63 : (par2 == 2 ? 79 : (par2 == 3 ? 30 : super.getBlockTextureFromSideAndMetadata(par1, par2)));*/
+        return 63;
     }
 
     /**
