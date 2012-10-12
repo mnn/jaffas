@@ -35,6 +35,15 @@ public class mod_jaffas_trees {
     private int itemFruitSeedsID;
     public static ItemFruitSeeds itemFruitSeeds;
 
+    public static boolean debug;
+
+    private int itemLemonID;
+    private int itemOrangeID;
+    private int itemPlumID;
+    public static ItemJaffaFruit itemLemon;
+    public static ItemJaffaFruit itemOrange;
+    public static ItemJaffaFruit itemPlum;
+
     private int getID() {
         return this.actualID++;
     }
@@ -68,6 +77,12 @@ public class mod_jaffas_trees {
             blockFruitSaplingID = config.getOrCreateIntProperty("fruit tree sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
             blockFruitLeavesID = config.getOrCreateIntProperty("fruit sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
             itemFruitSeedsID = config.getOrCreateIntProperty("fruit seeds", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemLemonID = config.getOrCreateIntProperty("lemon", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemOrangeID = config.getOrCreateIntProperty("orange", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemPlumID = config.getOrCreateIntProperty("plum", Configuration.CATEGORY_ITEM, getID()).getInt();
+
+
+            debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
@@ -93,11 +108,26 @@ public class mod_jaffas_trees {
         LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[1] + ".name", "Apple Seeds");
         LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[2] + ".name", "Cocoa Seeds");
         LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[3] + ".name", "Vanilla Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[4] + ".name", "Lemon Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[5] + ".name", "Orange Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[6] + ".name", "Plum Seeds");
         itemFruitSeeds = new ItemFruitSeeds(itemFruitSeedsID, blockFruitSapling.blockID, 1);
         itemFruitSeeds.setItemName("fruitSeeds");
         LanguageRegistry.addName(itemFruitSeeds, "Fruit Seeds");
 
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
+
+        itemLemon = new ItemJaffaFruit(itemLemonID);
+        itemLemon.setItemName("lemon").setIconCoord(4, 4);
+        LanguageRegistry.addName(itemLemon,"Lemon");
+
+        itemOrange = new ItemJaffaFruit(itemOrangeID);
+        itemOrange.setItemName("orange").setIconCoord(5, 4);
+        LanguageRegistry.addName(itemOrange,"Orange");
+
+        itemPlum = new ItemJaffaFruit(itemPlumID);
+        itemPlum.setItemName("plum").setIconCoord(6, 4);
+        LanguageRegistry.addName(itemPlum,"Plum");
 
         installRecipes();
 
@@ -116,6 +146,9 @@ public class mod_jaffas_trees {
     }
 
     private void addCommands(ServerCommandManager manager) {
+        if (debug) {
+            manager.registerCommand(new CommandFruitDebug());
+        }
     }
 
     private void installRecipes() {

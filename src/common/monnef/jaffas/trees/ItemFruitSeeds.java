@@ -35,7 +35,7 @@ public class ItemFruitSeeds extends ItemBlockEx {
      */
     public int getIconFromDamage(int par1) {
         //return Block.sapling.getBlockTextureFromSideAndMetadata(0, par1);
-        return 2 * 16 - 1 + par1;
+        return 2 * 16 + par1;
     }
 
     public String getItemNameIS(ItemStack par1ItemStack) {
@@ -61,6 +61,9 @@ public class ItemFruitSeeds extends ItemBlockEx {
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
         par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 4));
+        par3List.add(new ItemStack(par1, 1, 5));
+        par3List.add(new ItemStack(par1, 1, 6));
     }
 
 }

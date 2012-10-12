@@ -109,7 +109,8 @@ public class WorldGenFruitTrees extends WorldGenerator {
 
                                 if ((Math.abs(var15) != var13 || Math.abs(var17) != var13 || par2Random.nextInt(2) != 0 && var12 != 0) &&
                                         (block == null || block.canBeReplacedByLeaves(par1World, var14, var11, var16))) {
-                                    this.setBlockAndMetadata(par1World, var14, var11, var16, mod_jaffas_trees.blockFruitLeaves.blockID, this.metaLeaves);
+                                    int chosenLeaves = par2Random.nextDouble() < 0.33 ? this.metaLeaves : 0;
+                                    this.setBlockAndMetadata(par1World, var14, var11, var16, mod_jaffas_trees.blockFruitLeaves.blockID, chosenLeaves);
                                 }
                             }
                         }

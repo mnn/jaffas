@@ -70,11 +70,14 @@ public class JaffaBombBlock extends Block {
                     jaffaItem = mod_jaffas.JaffaItem.jaffaR;
                 }
             }
-            item = new ItemStack(mod_jaffas.ItemsInfo.get(jaffaItem).getItem());
 
-            EntityItem entity = new EntityItem(w, pX, pY, pZ, item);
-            entity.addVelocity(rand.nextGaussian() * 0.5, 0.1 + rand.nextDouble() * 1.5, rand.nextGaussian() * 0.5);
-            w.spawnEntityInWorld(entity);
+            if (!w.isRemote) {
+                item = new ItemStack(mod_jaffas.ItemsInfo.get(jaffaItem).getItem());
+
+                EntityItem entity = new EntityItem(w, pX, pY, pZ, item);
+                entity.addVelocity(rand.nextGaussian() * 0.5, 0.1 + rand.nextDouble() * 1.5, rand.nextGaussian() * 0.5);
+                w.spawnEntityInWorld(entity);
+            }
         }
 
         w.setBlock(par2, par3, par4, 0);

@@ -2,20 +2,31 @@ package monnef.jaffas.trees;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+import monnef.core.BitHelper;
 import net.minecraft.src.*;
-import net.minecraftforge.common.IShearable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
+public class BlockFruitLeaves extends BlockLeavesBase {
+    // Old:    .. D N T T
+    // D - decay, N - never decay, T - type
+    public static final int bitMarkedForDecay = 8;
+    public static final int bitNeverDecay = 4;
+    public static final int bitMaskLeavesType = 3;
+
+    // New: D N T T T T T
+    // warning: old denotes masks, this denotes bit number!
+    public static final int bitMarkedForDecayN = 7;
+    public static final int bitNeverDecayN = 6;
+    public static final int bitMaskLeavesTypeN = 31;
+
     /**
      * The base index in terrain.png corresponding to the fancy version of the leaf texture. This is stored so we can
      * switch the displayed version between fancy and fast graphics (fast is this index + 1).
      */
     private int baseIndexInPNG;
-    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla"};
+    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
     int[] adjacentTreeBlocks;
 
     public BlockFruitLeaves(int par1, int par2) {
@@ -32,16 +43,18 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
     }
 
 
-/*    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-        par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
-    }*/
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+        if (hasTileEntity(par1World.getBlockMetadata(par2, par3, par4))) {
+            par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
+        }
+    }
 
     public TileEntity createNewTileEntity(World par1World) {
         return new TileEntityFruitLeaves();
     }
 
     public boolean hasTileEntity(int metadata) {
-        return true;
+        return getLeavesType(metadata) != 0;
     }
 
     public String getTextureFile() {
@@ -79,7 +92,7 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
         if (!world.isRemote) {
             int metadata = world.getBlockMetadata(x, y, z);
 
-            if (areLeavesMarkedForDecay(metadata) && LeavesNeverDecay(metadata)) {
+            if (areLeavesMarkedForDecay(metadata) && areLeavesNeverDecaying(metadata)) {
                 byte var7 = 4;
                 int var8 = var7 + 1;
                 byte var9 = 32;
@@ -163,18 +176,6 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
         }
     }
 
-    private int unsetDecayBit(int metadata) {
-        return metadata & -9;
-    }
-
-    private boolean areLeavesMarkedForDecay(int metadata) {
-        return (metadata & 8) != 0;
-    }
-
-    private boolean LeavesNeverDecay(int metadata) {
-        return (metadata & 4) == 0;
-    }
-
     @SideOnly(Side.CLIENT)
 
     /**
@@ -211,21 +212,17 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
     /**
      * Drops the block items with a specified chance of dropping the specified items
      */
-    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7) {
+    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int metadata, float par6, int par7) {
         if (!par1World.isRemote) {
-            byte var8 = 20;
 
-            if ((getLeavesType(par5)) == 3) {
-                var8 = 40;
+            // sapling
+            if (par1World.rand.nextInt(20) == 0) {
+                int var9 = this.idDropped(metadata, par1World.rand, par7);
+                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(var9, 1, this.damageDropped(metadata)));
             }
 
-            if (par1World.rand.nextInt(var8) == 0) {
-                int var9 = this.idDropped(par5, par1World.rand, par7);
-                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(var9, 1, this.damageDropped(par5)));
-            }
-
-            if ((getLeavesType(par5)) == 0 && par1World.rand.nextInt(200) == 0) {
-                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(Item.appleRed, 1, 0));
+            if (par1World.rand.nextInt(20) == 0) {
+                this.dropBlockAsItem_do(par1World, par2, par3, par4, TileEntityFruitLeaves.getItemFromMetadata(metadata));
             }
         }
     }
@@ -245,8 +242,29 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
         return getLeavesType(par1);
     }
 
+    // Bit stuff
     public static int getLeavesType(int par1) {
-        return par1 & 3;
+        return par1 & bitMaskLeavesTypeN;
+    }
+
+    private int setLeavesDecay(int par4) {
+        //return par4 | bitMarkedForDecay;
+        return BitHelper.setBit(par4, bitMarkedForDecayN);
+    }
+
+    private int unsetDecayBit(int metadata) {
+        //return metadata & -9;
+        return BitHelper.unsetBit(metadata, bitMarkedForDecayN);
+    }
+
+    private boolean areLeavesMarkedForDecay(int metadata) {
+        //return (metadata & bitMarkedForDecay) != 0;
+        return BitHelper.isBitSet(metadata, bitMarkedForDecayN);
+    }
+
+    private boolean areLeavesNeverDecaying(int metadata) {
+        //return (metadata & bitNeverDecay) == 0;
+        return BitHelper.isBitSet(metadata, bitNeverDecayN);
     }
 
     /**
@@ -295,23 +313,14 @@ public class BlockFruitLeaves extends BlockLeavesBase implements IShearable {
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
         par3List.add(new ItemStack(par1, 1, 3));
-    }
-
-    @Override
-    public boolean isShearable(ItemStack item, World world, int x, int y, int z) {
-        return true;
-    }
-
-    @Override
-    public ArrayList<ItemStack> onSheared(ItemStack item, World world, int x, int y, int z, int fortune) {
-        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        ret.add(new ItemStack(this, 1, getLeavesType(world.getBlockMetadata(x, y, z))));
-        return ret;
+        par3List.add(new ItemStack(par1, 1, 4));
+        par3List.add(new ItemStack(par1, 1, 5));
+        par3List.add(new ItemStack(par1, 1, 6));
     }
 
     @Override
     public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadata(x, y, z, world.getBlockMetadata(x, y, z) | 8);
+        world.setBlockMetadata(x, y, z, setLeavesDecay(world.getBlockMetadata(x, y, z)));
     }
 
     @Override

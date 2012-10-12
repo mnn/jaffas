@@ -50,6 +50,8 @@ public class mod_jaffas {
     public static final int startID = 3600;
     private int actualID = startID;
 
+    private static boolean debug;
+
     public int getActualID() {
         return actualID;
     }
@@ -155,11 +157,13 @@ public class mod_jaffas {
             blockJaffaBombID = config.getOrCreateIntProperty("jaffa bomb", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
             blockFridgeID = config.getOrCreateIntProperty("fridge", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
 
+            debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
+
             if (mod_jaffas.topDefaultID == -1) {
                 mod_jaffas.topDefaultID = this.actualID;
             }
 
-            System.out.println("jaffas: loading complete; topID=" + mod_jaffas.topDefaultID);
+            if (debug) System.out.println("jaffas: loading complete; topID=" + mod_jaffas.topDefaultID);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
@@ -310,8 +314,10 @@ public class mod_jaffas {
     }
 
     private void addCommands(ServerCommandManager manager) {
-        manager.registerCommand(new CommandJaffaHunger());
-        manager.registerCommand(new CommandFridgeDebug());
+        if (debug) {
+            manager.registerCommand(new CommandJaffaHunger());
+            manager.registerCommand(new CommandFridgeDebug());
+        }
     }
 
     private void installRecipes() {
@@ -475,5 +481,9 @@ public class mod_jaffas {
 
     private Item getItem(JaffaItem item) {
         return ItemsInfo.get(item).getItem();
+    }
+
+    public static Item getJaffaItem(JaffaItem item) {
+        return instance.getItem(item);
     }
 }

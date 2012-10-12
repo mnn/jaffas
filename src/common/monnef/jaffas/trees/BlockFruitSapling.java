@@ -62,7 +62,8 @@ public class BlockFruitSapling extends BlockFlower {
      * Attempts to grow a sapling into a tree
      */
     public void growTree(World par1World, int par2, int par3, int par4, Random par5Random) {
-        int metadata = par1World.getBlockMetadata(par2, par3, par4) & 3;
+        int metadata = par1World.getBlockMetadata(par2, par3, par4);
+        metadata = BlockFruitLeaves.getLeavesType(metadata);
         Object var7 = null;
         int var8 = 0;
         int var9 = 0;
@@ -92,7 +93,7 @@ public class BlockFruitSapling extends BlockFlower {
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
     protected int damageDropped(int par1) {
-        return par1 & 3;
+        return BlockFruitLeaves.getLeavesType(par1);
     }
 
     @SideOnly(Side.CLIENT)
@@ -105,5 +106,8 @@ public class BlockFruitSapling extends BlockFlower {
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
         par3List.add(new ItemStack(par1, 1, 3));
+        par3List.add(new ItemStack(par1, 1, 4));
+        par3List.add(new ItemStack(par1, 1, 5));
+        par3List.add(new ItemStack(par1, 1, 6));
     }
 }

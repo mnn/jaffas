@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.3.6
+- fixed not-collectable items from jaffa bomb
+
 ## 0.3.5
 - added ice-creams
 - almost finished fridge
