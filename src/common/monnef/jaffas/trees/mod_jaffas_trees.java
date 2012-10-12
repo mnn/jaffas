@@ -16,6 +16,8 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
+import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
+
 @Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = "0.3.5", dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_trees {
@@ -49,7 +51,7 @@ public class mod_jaffas_trees {
     }
 
     private int getBlockID() {
-        return getID() + 256;
+        return getID()/* + 256*/;
     }
 
     public mod_jaffas_trees() {
@@ -61,7 +63,8 @@ public class mod_jaffas_trees {
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
-        this.startID = mod_jaffas.topDefaultID;
+        //this.startID = mod_jaffas.topDefaultID;
+        this.startID = 3500;
         this.actualID = this.startID;
 
         Configuration config = new Configuration(
@@ -119,15 +122,15 @@ public class mod_jaffas_trees {
 
         itemLemon = new ItemJaffaFruit(itemLemonID);
         itemLemon.setItemName("lemon").setIconCoord(4, 4);
-        LanguageRegistry.addName(itemLemon,"Lemon");
+        LanguageRegistry.addName(itemLemon, "Lemon");
 
         itemOrange = new ItemJaffaFruit(itemOrangeID);
         itemOrange.setItemName("orange").setIconCoord(5, 4);
-        LanguageRegistry.addName(itemOrange,"Orange");
+        LanguageRegistry.addName(itemOrange, "Orange");
 
         itemPlum = new ItemJaffaFruit(itemPlumID);
         itemPlum.setItemName("plum").setIconCoord(6, 4);
-        LanguageRegistry.addName(itemPlum,"Plum");
+        LanguageRegistry.addName(itemPlum, "Plum");
 
         installRecipes();
 
@@ -152,5 +155,20 @@ public class mod_jaffas_trees {
     }
 
     private void installRecipes() {
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.lemons)),
+                new ItemStack(mod_jaffas_trees.itemLemon),
+                new ItemStack(mod_jaffas_trees.itemLemon),
+                new ItemStack(mod_jaffas_trees.itemLemon),
+                new ItemStack(mod_jaffas_trees.itemLemon));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.oranges)),
+                new ItemStack(mod_jaffas_trees.itemOrange),
+                new ItemStack(mod_jaffas_trees.itemOrange),
+                new ItemStack(mod_jaffas_trees.itemOrange),
+                new ItemStack(mod_jaffas_trees.itemOrange));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.plums)),
+                new ItemStack(mod_jaffas_trees.itemPlum),
+                new ItemStack(mod_jaffas_trees.itemPlum),
+                new ItemStack(mod_jaffas_trees.itemPlum),
+                new ItemStack(mod_jaffas_trees.itemPlum));
     }
 }

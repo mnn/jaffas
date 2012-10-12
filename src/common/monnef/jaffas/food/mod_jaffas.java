@@ -16,6 +16,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.EnumHelper;
 
 import java.util.Hashtable;
 import java.util.logging.Level;
@@ -34,6 +35,14 @@ public class mod_jaffas {
     public static BlockFridge blockFridge;
     public static int blockFridgeID;
 
+    public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
+    public static ItemJaffaPlate itemJaffaPlate;
+    public static int itemJaffaPlateID;
+    static EnumToolMaterial EnumToolMaterialJaffas = EnumHelper.addToolMaterial("Jaffa", 2, 400, 6.0F, 6, 15);
+    public static ItemJaffaSword itemJaffaSword;
+    public static int itemJaffaSwordID;
+
+
     private static IGuiHandler guiHandler;
     public static mod_jaffas instance;
     public static int topDefaultID = -1;
@@ -44,7 +53,9 @@ public class mod_jaffas {
         brownPastry, puffPastry, peanut, cream, roll, creamRoll, cakeTin, browniesInTin, brownie, rollRaw, browniesInTinRaw,
         bunRaw, bun, sausageRaw, sausage, hotdog, flour, chocolateWrapper, chocolateBar, wrapperJaffas, jaffasPack, jaffasPackO,
         jaffasPackR, vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
-        vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen
+        vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen,
+        donutRaw, donut, donutChocolate, donutPink, donutSugar, donutSprinkled, jaffaV, jaffaL,
+        jamP, jamL, jamV, lemons, oranges, plums, jaffaP, sprinkles, bagOfSeeds, bagOfSeedsIdentified, magnifier
     }
 
     public static final int startID = 3600;
@@ -61,7 +72,7 @@ public class mod_jaffas {
     }
 
     private int getBlockID() {
-        return getID() + 256;
+        return getID() /*+ 256*/;
     }
 
     private void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
@@ -78,7 +89,7 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.jamO, "Jam Orange", 2, "Orange Jam");
         AddItemInfo(JaffaItem.jamR, "Jam Red", 3, "Jam");
         AddItemInfo(JaffaItem.jaffaO, "Jaffa Orange", 4, "Orange Jaffa Cake");
-        AddItemInfo(JaffaItem.jaffaR, "Jaffa Red", 5, "Jaffa Cake");
+        AddItemInfo(JaffaItem.jaffaR, "Jaffa Red", 5, "Apple Jaffa Cake");
         AddItemInfo(JaffaItem.jaffa, "Jaffa", 6, "Jaffa Cake");
         AddItemInfo(JaffaItem.chocolate, "Chocolate", 7, "Chocolate");
         AddItemInfo(JaffaItem.apples, "Apples", 10, "Apples");
@@ -129,6 +140,25 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.vanillaIcecreamFrozen, "Vanilla Ice-cream Frozen", 62, "Vanilla Ice-cream *");
         AddItemInfo(JaffaItem.chocolateIcecreamFrozen, "Chocolate Ice-cream Frozen", 63, "Chocolate Ice-cream *");
         AddItemInfo(JaffaItem.icecreamFrozen, "Ice-cream Frozen", 64, "Ice-cream *");
+        AddItemInfo(JaffaItem.donutRaw, "Donut Raw", 71, "Raw Donut");
+        AddItemInfo(JaffaItem.donut, "Donut", 72, "Donut");
+        AddItemInfo(JaffaItem.donutChocolate, "Donut Chocolate", 73, "Chocolate Donut");
+        AddItemInfo(JaffaItem.donutPink, "Donut Apple", 74, "Apple Donut");
+        AddItemInfo(JaffaItem.donutSugar, "Donut Sugar", 75, "Powdered Donut");
+        AddItemInfo(JaffaItem.donutSprinkled, "Donut Sprinkled", 76, "Sprinkled Donut");
+        AddItemInfo(JaffaItem.jaffaV, "Jaffa Vanilla", 77, "Vanilla Jaffa Cake");
+        AddItemInfo(JaffaItem.jaffaL, "Jaffa Lemon", 78, "Lemon Jaffa Cake");
+        AddItemInfo(JaffaItem.jamP, "Jam Plum", 79, "Plum Jam");
+        AddItemInfo(JaffaItem.jamL, "Jam Lemon", 80, "Lemon Jam");
+        AddItemInfo(JaffaItem.jamV, "Vanilla Jam", 81, "Vanilla Jam");
+        AddItemInfo(JaffaItem.lemons, "Lemons", 82, "Lemons");
+        AddItemInfo(JaffaItem.oranges, "Oranges", 83, "Oranges");
+        AddItemInfo(JaffaItem.plums, "Plums", 84, "Plums");
+        AddItemInfo(JaffaItem.sprinkles, "Sprinkles", 87, "Sprinkles");
+        AddItemInfo(JaffaItem.bagOfSeeds, "Bag Of Seeds Unidentified", 89, "Bag Of Seeds [Unidentified]");
+        AddItemInfo(JaffaItem.bagOfSeedsIdentified, "Bag Of Seeds", 89, "Bag Of Seeds");
+        AddItemInfo(JaffaItem.magnifier, "Magnifier", 91, "Magnifier");
+        AddItemInfo(JaffaItem.jaffaP, "Jaffa Plum", 86, "Plum Jaffa Cake");
     }
 
     public mod_jaffas() {
@@ -150,7 +180,11 @@ public class mod_jaffas {
 
             for (JaffaItem item : JaffaItem.values()) {
                 JaffaItemInfo info = ItemsInfo.get(item);
-                int id = config.getOrCreateIntProperty(info.getConfigName(), Configuration.CATEGORY_ITEM, getID()).getInt();
+                if (info == null) {
+                    throw new RuntimeException("got null in item list - " + item);
+                }
+                String configName = info.getConfigName();
+                int id = config.getOrCreateIntProperty(configName, Configuration.CATEGORY_ITEM, getID()).getInt();
                 info.setId(id);
             }
 
@@ -158,6 +192,9 @@ public class mod_jaffas {
             blockFridgeID = config.getOrCreateIntProperty("fridge", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
 
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
+
+            itemJaffaPlateID = config.getOrCreateIntProperty("jaffaPlate", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemJaffaSwordID = config.getOrCreateIntProperty("jaffaSword", Configuration.CATEGORY_ITEM, getID()).getInt();
 
             if (mod_jaffas.topDefaultID == -1) {
                 mod_jaffas.topDefaultID = this.actualID;
@@ -177,6 +214,13 @@ public class mod_jaffas {
         item.setIconIndex(info.getIconIndex());
         info.setItem(item);
         LanguageRegistry.addName(item, info.getTitle());
+    }
+
+    private ItemBagOfSeeds createBagOfSeed(JaffaItem ji) {
+        JaffaItemInfo info = ItemsInfo.get(ji);
+        ItemBagOfSeeds newJaffaItem = new ItemBagOfSeeds(info.getId());
+        finilizeItemSetup(info, newJaffaItem);
+        return newJaffaItem;
     }
 
     private ItemJaffaBase createJaffaItem(JaffaItem ji) {
@@ -293,9 +337,40 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.vanillaIcecreamFrozen);
         createJaffaItem(JaffaItem.chocolateIcecreamFrozen);
         createJaffaItem(JaffaItem.icecreamFrozen);
-        createJaffaFood(JaffaItem.vanillaIcecream, 2, 0.3F);
-        createJaffaFood(JaffaItem.chocolateIcecream, 2, 0.3F);
-        createJaffaFood(JaffaItem.russianIcecream, 2, 0.3F);
+        createJaffaFood(JaffaItem.vanillaIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
+        createJaffaFood(JaffaItem.chocolateIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
+        createJaffaFood(JaffaItem.russianIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
+
+        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, ModLoader.addArmor("Jaffa"), 1);
+        itemJaffaPlate.setItemName("JaffaPlate").setIconIndex(90).setTabToDisplayOn(CreativeTabs.tabCombat);
+        LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
+
+        itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, EnumToolMaterialJaffas);
+        itemJaffaSword.setItemName("jaffaSword").setIconIndex(88);
+
+        createJaffaItem(JaffaItem.donutRaw);
+        createJaffaItem(JaffaItem.donut);
+        createJaffaItem(JaffaItem.jamP);
+        createJaffaItem(JaffaItem.jamL);
+        createJaffaItem(JaffaItem.jamV);
+        createJaffaItem(JaffaItem.lemons);
+        createJaffaItem(JaffaItem.oranges);
+        createJaffaItem(JaffaItem.plums);
+        createJaffaItem(JaffaItem.sprinkles);
+        createJaffaItem(JaffaItem.bagOfSeeds);
+        //createJaffaItem(JaffaItem.bagOfSeedsIdentified);
+        createJaffaItem(JaffaItem.magnifier);
+
+        createJaffaFood(JaffaItem.jaffaP, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
+        createJaffaFood(JaffaItem.jaffaV, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
+        createJaffaFood(JaffaItem.jaffaL, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
+
+        createJaffaFood(JaffaItem.donutChocolate, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
+        createJaffaFood(JaffaItem.donutPink, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
+        createJaffaFood(JaffaItem.donutSugar, 2, 0.3F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.15F);
+        createJaffaFood(JaffaItem.donutSprinkled, 2, 0.3F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.15F);
+
+        createBagOfSeed(JaffaItem.bagOfSeedsIdentified);
 
         installRecipes();
 
@@ -342,8 +417,10 @@ public class mod_jaffas {
         GameRegistry.addSmelting(getItem(JaffaItem.apples).shiftedIndex, new ItemStack(
                 getItem(JaffaItem.jamR)), 0.5F);
 
+        /*
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jamO)), "X", "Y", 'X', new ItemStack(Item.dyePowder, 1, 14), 'Y',
                 new ItemStack(getItem(JaffaItem.jamR)));
+        */
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jaffa), 12), "X", "Y", 'X', new ItemStack(getItem(JaffaItem.chocolate)), 'Y',
                 new ItemStack(getItem(JaffaItem.cake)));
@@ -465,6 +542,38 @@ public class mod_jaffas {
         RecipesFridge.AddRecipe(getItem(JaffaItem.chocolateIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.chocolateIcecreamFrozen)));
 
         GameRegistry.addRecipe(new ItemStack(blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutRaw)), " P ", "P P", " P ", 'P', new ItemStack(getItem(JaffaItem.pastry)));
+        GameRegistry.addSmelting(getItem(JaffaItem.donutRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.donut)), 0.25F);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutChocolate)), "C", "D", 'C', new ItemStack(getItem(JaffaItem.chocolate)), 'D', new ItemStack(getItem(JaffaItem.donut)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutPink)), "C", "D", 'C', new ItemStack(getItem(JaffaItem.jamR)), 'D', new ItemStack(getItem(JaffaItem.donut)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutSugar)), "C", "D", 'C', new ItemStack(Item.sugar), 'D', new ItemStack(getItem(JaffaItem.donut)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutSprinkled)), "C", "D", 'C', new ItemStack(getItem(JaffaItem.sprinkles)), 'D', new ItemStack(getItem(JaffaItem.donutChocolate)));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jaffaL), 12), "X", "Y", "Z", 'X', new ItemStack(getItem(JaffaItem.chocolate)), 'Y',
+                new ItemStack(getItem(JaffaItem.jamL)), 'Z', new ItemStack(getItem(JaffaItem.cake)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jaffaP), 12), "X", "Y", "Z", 'X', new ItemStack(getItem(JaffaItem.chocolate)), 'Y',
+                new ItemStack(getItem(JaffaItem.jamP)), 'Z', new ItemStack(getItem(JaffaItem.cake)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jaffaV), 12), "X", "Y", "Z", 'X', new ItemStack(getItem(JaffaItem.chocolate)), 'Y',
+                new ItemStack(getItem(JaffaItem.jamV)), 'Z', new ItemStack(getItem(JaffaItem.cake)));
+
+        GameRegistry.addSmelting(getItem(JaffaItem.lemons).shiftedIndex, new ItemStack(
+                getItem(JaffaItem.jamL)), 0.5F);
+        GameRegistry.addSmelting(getItem(JaffaItem.oranges).shiftedIndex, new ItemStack(
+                getItem(JaffaItem.jamO)), 0.5F);
+        GameRegistry.addSmelting(getItem(JaffaItem.plums).shiftedIndex, new ItemStack(
+                getItem(JaffaItem.jamO)), 0.5F);
+
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.sprinkles), 16), new ItemStack(Item.sugar), new ItemStack(Item.sugar), new ItemStack(Item.sugar),
+                new ItemStack(getItem(JaffaItem.jamV)), new ItemStack(getItem(JaffaItem.jamR)), new ItemStack(Item.egg));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bagOfSeeds)), "SXS", "SLS", "SSS", 'S', new ItemStack(Item.seeds), 'X', new ItemStack(Item.silk), 'L', new ItemStack(Item.leather));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.magnifier)), "GG ", "GG ", "  I", 'G', new ItemStack(Block.glass), 'I', new ItemStack(Item.ingotIron));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bagOfSeedsIdentified)), new ItemStack(getItem(JaffaItem.magnifier)), new ItemStack(getItem(JaffaItem.bagOfSeeds)));
+
+        GameRegistry.addRecipe(new ItemStack(itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(JaffaItem.jaffa)));
+
     }
 
     private void AddMalletRecipes() {

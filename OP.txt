@@ -1,0 +1,118 @@
+[img]http://www.mediafire.com/conv/9c1f3de5715d25759b8e1a013ce6926eb3d110a7741d66dafc1502e84fe7c1eb6g.jpg[/img]
+
+This simple mod adds Jaffa Cakes (brownies, cream rolls, ice creams and more) into the game. I tried to make a not so easy craft chain - this mod has been mainly created to add extra content which could be used in factory designing and building.
+
+[size=6]Spotlight[/size]
+made by MineTeddyTheTeddy
+[youtube]http://www.youtube.com/watch?v=PvqI7VlpfPk[/youtube]
+[url]http://www.youtube.com/watch?v=PvqI7VlpfPk[/url]
+
+[size=6]Food effects[/size]
+[spoiler][img]http://imageshack.us/a/img28/203/tabulkaa.png[/img]
+[/spoiler]
+
+[size=6]Recipes[/size]
+[spoiler][b]Diagrams by Tiartyos[/b]
+[spoiler][size=5]Jaffa Cakes chains[/size]
+[img]http://www.mediafire.com/conv/c0b8967669639d3ac4fa80be39fd0a6d580d6b90b1a91701dc793b2f61ab4e766g.jpg[/img]svg file - [url="http://www.mediafire.com/download.php?pny1cgim25qoe6e"]link[/url]
+
+more diagrams maybe later
+[/spoiler]
+
+Food
+[spoiler][img]http://imageshack.us/a/img856/3072/foodb.png[/img]
+sticks, buckets, tins, iron sword and mallets aren't consumed (but mallets take damage)[/spoiler]
+
+Tools
+[spoiler][img]http://www.mediafire.com/conv/307f121d703bd01d8566858a431a4bb1e85fcf67408cc0592a7add79d406ce7e6g.jpg[/img][/spoiler]
+
+Misc
+[spoiler][img]http://imageshack.us/a/img844/3514/miscm.png[/img]
+the bomb is crafted using simple jaffas and flavoured jaffas (explodes on redstone signal or when block is broken)
+
+[img]http://www.mediafire.com/conv/859a9d0ecde7fee2f6354e33c29f01c80739c54139ffc1b2dac554ccaefaabc06g.jpg[/img]
+GUI of a fridge. This machine is used to freeze ice-creams, sometimes generates ice and snowballs. Fridge needs fuel to operate (1 coal should burn for half hour). The inner temperature has to be below -5°C for the ice to be generated and food to be frozen (frozen food is marked by a snowflake in the top right corner).[/spoiler]
+[/spoiler]
+
+[size=6]Installation[/size]
+[spoiler]0) if you don't have forge, get it - [url="http://www.minecraftforge.net/wiki/Installation/Universal"]http://www.minecraft...ation/Universal[/url]
+1) copy downloaded jar file into your "mods" directory (your mods dir on windows is usually found in "c:\Users\<Your user name>\AppData\Roaming\.minecraft\")
+
+avi12's installation video guide:
+[spoiler][youtube]http://www.youtube.com/watch?v=CnwBvg0eW-k[/youtube]
+[url]http://www.youtube.com/watch?v=CnwBvg0eW-k[/url][/spoiler]
+[/spoiler]
+
+[size=6]Changelog[/size]
+[spoiler]## 0.3.5
+- added ice-creams
+- almost finished fridge
+- moved start of default ID interval to avoid conflicts with BuilCraft 3 (3856-3913)
+
+## 0.3.4
+- added packs
+- jaffa cakes bomb
+- added buff to food
+
+## 0.3.3
+- more food (hotdog, chocolate bar)
+
+## 0.3.2
+- fixed new food items to be eatable
+- fixed helper command
+- new jar textures
+
+## 0.3.1
+- more mallets
+- new pastry texture
+- added brownies (1 hunger point), cream rolls (2 hunger points)
+
+## 0.3
+- complete rework of items handling
+- cleaned code (removed unsued files, ...)
+- tool for repeated usage (after while it breaks)
+
+## 0.2
+- initial version
+- jaffa cakes crafting chain (sponge cake gives half hunger point, small one gives 1 hunger point, lager ones give 2 hunger points)
+
+[/spoiler]
+
+[size=6]Download[/size]
+before installation/updating always [b]backup[/b] your world!
+1.3.2 / 0.3.5 (universal), tested with forge #251 - [url="http://adf.ly/2536344/jaffas-035"]link[/url]
+
+[size=6]Notes[/size]
+[spoiler]I recommend using some recipe mod - like [url="http://www.minecraftforum.net/topic/909223-125132-smp-chickenbones-mods/"]Not Enough Items (NEI)[/url] or [url="http://www.minecraftforum.net/topic/731133-132-craftguide-v152/"]CraftGuide[/url]. Jaffas mod is good for automatization because of large crafting chains. If you're planning to build your own factory remember to use [b]Automatic Crafting Table MkII[/b] from Immibiss's [url="http://www.minecraftforum.net/topic/1001131-125132-immibiss-mods-smp-tubestuff-5001-core-5003-da-5001/"]TubeStuff[/url] for recipes that doesn't consume items (auto crafting table from BuildCraft3 destroys returned items!).
+[/spoiler]
+
+[size=6]About[/size]
+[spoiler]Hello, this is my first mod (and first thing in java), so the code is a bit messy. Yet, it's tested and functional in SSP and SMP (not sure about LAN). Author of images is Tiartyos.
+
+Item IDs can be changed in config file. Default item IDs are [b]4009-4053[/b] (with ID shift, in config items are without shift). 
+
+Plans/TODO list
+[spoiler][list]
+[*]add more config options - heal amount, disable recipes, ...
+[*][s](code) fix names, remove unused clasess[/s] done
+[/list]
+thoughts[list]
+[*][s]? tools lasting longer (dmg counter) - would have to solve automation problems[/s] done
+[*]? recipes for IC2 machines, e.g. macerator - cocoa beans -> powder
+[*]? fruit trees or some plants?
+[/list]
+[/spoiler]
+[/spoiler]
+
+[size=6]Rights of Use[/size]
+[spoiler][b]You may[/b]
+- play and host the mod
+- take screenshots
+- make videos
+[b]You may not[/b]
+- link directly zip/jar file, reupload
+- add mod into modpack without written permission
+- use graphics in things not related to this mod
+[/spoiler]
+
+[url="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=U6PGB7P24WWSU&lc=CZ&item_name=monnef%27s%20Jafffas&item_number=jaffas&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted"][img]https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif[/img][/url]

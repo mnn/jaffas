@@ -199,15 +199,17 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      * Returns the quantity of items to drop on block destruction.
      */
     public int quantityDropped(Random par1Random) {
-        return par1Random.nextInt(20) == 0 ? 1 : 0;
+        return 0;
+        //return par1Random.nextInt(20) == 0 ? 1 : 0;
     }
 
     /**
      * Returns the ID of the items to drop on destruction.
      */
+    /*
     public int idDropped(int par1, Random par2Random, int par3) {
         return mod_jaffas_trees.blockFruitSapling.blockID;
-    }
+    } */
 
     /**
      * Drops the block items with a specified chance of dropping the specified items
@@ -216,10 +218,11 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         if (!par1World.isRemote) {
 
             // sapling
+            /*
             if (par1World.rand.nextInt(20) == 0) {
                 int var9 = this.idDropped(metadata, par1World.rand, par7);
                 this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(var9, 1, this.damageDropped(metadata)));
-            }
+            } */
 
             if (par1World.rand.nextInt(20) == 0) {
                 this.dropBlockAsItem_do(par1World, par2, par3, par4, TileEntityFruitLeaves.getItemFromMetadata(metadata));
