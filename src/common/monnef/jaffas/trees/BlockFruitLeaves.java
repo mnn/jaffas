@@ -25,16 +25,15 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      * The base index in terrain.png corresponding to the fancy version of the leaf texture. This is stored so we can
      * switch the displayed version between fancy and fast graphics (fast is this index + 1).
      */
-    private int baseIndexInPNG;
     public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
     int[] adjacentTreeBlocks;
 
     public BlockFruitLeaves(int par1, int par2) {
         super(par1, par2, Material.leaves, false);
-        this.baseIndexInPNG = par2;
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDeco);
-        this.setGraphicsLevel(true);
+        mod_jaffas_trees.proxy.setFancyGraphicsLevel(this, true);
+        //this.setGraphicsLevel(true);
     }
 
     public BlockFruitLeaves setLeavesRequiresSelfNotify() {
@@ -55,6 +54,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
     public boolean hasTileEntity(int metadata) {
         return getLeavesType(metadata) != 0;
+        //return true;
     }
 
     public String getTextureFile() {
@@ -92,7 +92,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         if (!world.isRemote) {
             int metadata = world.getBlockMetadata(x, y, z);
 
-            if (areLeavesMarkedForDecay(metadata) && areLeavesNeverDecaying(metadata)) {
+            if (areLeavesMarkedForDecay(metadata) && !areLeavesNeverDecaying(metadata)) {
                 byte var7 = 4;
                 int var8 = var7 + 1;
                 byte var9 = 32;
@@ -216,17 +216,10 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      */
     public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int metadata, float par6, int par7) {
         if (!par1World.isRemote) {
-
-            // sapling
             /*
             if (par1World.rand.nextInt(20) == 0) {
-                int var9 = this.idDropped(metadata, par1World.rand, par7);
-                this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(var9, 1, this.damageDropped(metadata)));
-            } */
-
-            if (par1World.rand.nextInt(20) == 0) {
                 this.dropBlockAsItem_do(par1World, par2, par3, par4, TileEntityFruitLeaves.getItemFromMetadata(metadata));
-            }
+            }                */
         }
     }
 
@@ -250,22 +243,22 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         return par1 & bitMaskLeavesTypeN;
     }
 
-    private int setLeavesDecay(int par4) {
+    public static int setLeavesDecay(int par4) {
         //return par4 | bitMarkedForDecay;
         return BitHelper.setBit(par4, bitMarkedForDecayN);
     }
 
-    private int unsetDecayBit(int metadata) {
+    private static int unsetDecayBit(int metadata) {
         //return metadata & -9;
         return BitHelper.unsetBit(metadata, bitMarkedForDecayN);
     }
 
-    private boolean areLeavesMarkedForDecay(int metadata) {
+    public static boolean areLeavesMarkedForDecay(int metadata) {
         //return (metadata & bitMarkedForDecay) != 0;
         return BitHelper.isBitSet(metadata, bitMarkedForDecayN);
     }
 
-    private boolean areLeavesNeverDecaying(int metadata) {
+    private static boolean areLeavesNeverDecaying(int metadata) {
         //return (metadata & bitNeverDecay) == 0;
         return BitHelper.isBitSet(metadata, bitNeverDecayN);
     }

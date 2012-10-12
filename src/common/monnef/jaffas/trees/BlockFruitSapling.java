@@ -38,10 +38,22 @@ public class BlockFruitSapling extends BlockFlower {
             super.updateTick(par1World, par2, par3, par4, par5Random);
 
             if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9 && par5Random.nextInt(7) == 0) {
-                int var6 = par1World.getBlockMetadata(par2, par3, par4);
+                int metadata = par1World.getBlockMetadata(par2, par3, par4);
 
-                if ((var6 & 8) == 0) {
-                    par1World.setBlockMetadataWithNotify(par2, par3, par4, var6 | 8);
+                if (mod_jaffas_trees.debug) {
+                    System.out.println("meta(" + metadata + ") markForDecay("
+                            + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
+                            + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
+                            + BlockFruitLeaves.areLeavesMarkedForDecay(BlockFruitLeaves.setLeavesDecay(metadata)) + ")");
+                }
+
+                //if ((var6 & 8) == 0) {
+                if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
+                    //par1World.setBlockMetadataWithNotify(par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
+                    par1World.setBlockMetadata(par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
+                    if (mod_jaffas_trees.debug) {
+                        System.out.println("after set: " + par1World.getBlockMetadata(par2, par3, par4));
+                    }
                 } else {
                     this.growTree(par1World, par2, par3, par4, par5Random);
                 }
@@ -86,7 +98,7 @@ public class BlockFruitSapling extends BlockFlower {
      * Determines if the same sapling is present at the given location.
      */
     public boolean isSameSapling(World par1World, int par2, int par3, int par4, int par5) {
-        return par1World.getBlockId(par2, par3, par4) == this.blockID && (par1World.getBlockMetadata(par2, par3, par4) & 3) == par5;
+        return par1World.getBlockId(par2, par3, par4) == this.blockID && (BlockFruitLeaves.getLeavesType(par1World.getBlockMetadata(par2, par3, par4))) == par5;
     }
 
     /**

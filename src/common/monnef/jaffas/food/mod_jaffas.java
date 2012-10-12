@@ -21,7 +21,7 @@ import net.minecraftforge.common.EnumHelper;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.3.5")
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.4.0")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
@@ -46,6 +46,7 @@ public class mod_jaffas {
     private static IGuiHandler guiHandler;
     public static mod_jaffas instance;
     public static int topDefaultID = -1;
+    public boolean itemsReady = false;
 
     public enum JaffaItem {
         pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
@@ -87,7 +88,7 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.pastry, "Pastry", 13, "Pastry");
         AddItemInfo(JaffaItem.cake, "Cake", 1, "Sponge Cake");
         AddItemInfo(JaffaItem.jamO, "Jam Orange", 2, "Orange Jam");
-        AddItemInfo(JaffaItem.jamR, "Jam Red", 3, "Jam");
+        AddItemInfo(JaffaItem.jamR, "Jam Red", 3, "Apple Jam");
         AddItemInfo(JaffaItem.jaffaO, "Jaffa Orange", 4, "Orange Jaffa Cake");
         AddItemInfo(JaffaItem.jaffaR, "Jaffa Red", 5, "Apple Jaffa Cake");
         AddItemInfo(JaffaItem.jaffa, "Jaffa", 6, "Jaffa Cake");
@@ -341,7 +342,8 @@ public class mod_jaffas {
         createJaffaFood(JaffaItem.chocolateIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
         createJaffaFood(JaffaItem.russianIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
 
-        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, ModLoader.addArmor("Jaffa"), 1);
+        int armorRender = proxy.addArmor("Jaffa");
+        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, 1);
         itemJaffaPlate.setItemName("JaffaPlate").setIconIndex(90).setTabToDisplayOn(CreativeTabs.tabCombat);
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 
@@ -373,6 +375,8 @@ public class mod_jaffas {
         createBagOfSeed(JaffaItem.bagOfSeedsIdentified);
 
         installRecipes();
+
+        itemsReady = true;
 
         // texture stuff
         proxy.registerRenderThings();
@@ -523,7 +527,7 @@ public class mod_jaffas {
 
         //RecipesFridge.AddRecipe(Block.dirt.blockID, new ItemStack(Block.gravel));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.vanillaBeans)), new ItemStack(Item.dyePowder, 1, 3), new ItemStack(Item.dyePowder, 1, 11));
+        //GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.vanillaBeans)), new ItemStack(Item.dyePowder, 1, 3), new ItemStack(Item.dyePowder, 1, 11));
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.waferIcecream), 40), "PP", "PP", 'P', new ItemStack(getItem(JaffaItem.pastry)));
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.cone), 30), "P P", " P ", 'P', new ItemStack(getItem(JaffaItem.pastry)));
 
@@ -562,7 +566,7 @@ public class mod_jaffas {
         GameRegistry.addSmelting(getItem(JaffaItem.oranges).shiftedIndex, new ItemStack(
                 getItem(JaffaItem.jamO)), 0.5F);
         GameRegistry.addSmelting(getItem(JaffaItem.plums).shiftedIndex, new ItemStack(
-                getItem(JaffaItem.jamO)), 0.5F);
+                getItem(JaffaItem.jamP)), 0.5F);
 
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.sprinkles), 16), new ItemStack(Item.sugar), new ItemStack(Item.sugar), new ItemStack(Item.sugar),
@@ -573,6 +577,8 @@ public class mod_jaffas {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bagOfSeedsIdentified)), new ItemStack(getItem(JaffaItem.magnifier)), new ItemStack(getItem(JaffaItem.bagOfSeeds)));
 
         GameRegistry.addRecipe(new ItemStack(itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(JaffaItem.jaffa)));
+
+        GameRegistry.addSmelting(getItem(JaffaItem.vanillaPowder).shiftedIndex, new ItemStack(getItem(JaffaItem.jamV)), 0.1F);
 
     }
 

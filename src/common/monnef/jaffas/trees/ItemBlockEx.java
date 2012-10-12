@@ -172,11 +172,11 @@ public class ItemBlockEx extends Item
         return Block.blocksList[this.blockID].getCreativeTabToDisplayOn();
     }
 
-    @SideOnly(Side.CLIENT)
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
     /*
+    @SideOnly(Side.CLIENT)
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         Block.blocksList[this.blockID].getSubBlocks(par1, par2CreativeTabs, par3List);

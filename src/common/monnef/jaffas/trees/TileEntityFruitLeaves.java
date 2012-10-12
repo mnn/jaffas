@@ -96,7 +96,9 @@ public class TileEntityFruitLeaves extends TileEntity {
             if (found) {
                 EntityItem ent = new EntityItem(world, x, newY, z, getItemFromMetadata(metadata));
                 ent.setPosition(x + 0.5, newY + 0.9, z + 0.5);
-                ent.setVelocity((rand.nextDouble() - 0.5) / 3, 0, (rand.nextDouble() - 0.5) / 3);
+                ent.motionX = (rand.nextDouble() - 0.5) / 3;
+                ent.motionY = 0;
+                ent.motionZ = (rand.nextDouble() - 0.5) / 3;
                 world.spawnEntityInWorld(ent);
             } else {
                 if (mod_jaffas_trees.debug) System.out.println("tree: not found - tries~" + tries);
@@ -104,10 +106,15 @@ public class TileEntityFruitLeaves extends TileEntity {
         }
     }
 
-    public static ItemStack getItemFromMetadata(int metadata) {
+    public ItemStack getItemFromMetadata(int metadata) {
         switch (BlockFruitLeaves.getLeavesType(metadata)) {
             case 0:
-                throw new RuntimeException("normal tree leaves cannot drop stuff!");
+                if (mod_jaffas_trees.debug) {
+                    System.err.println("normal tree! - " + metadata + ", t:" + BlockFruitLeaves.getLeavesType(metadata));
+                    debugPrintPos();
+                    return new ItemStack(Item.porkRaw);
+                } else
+                    throw new RuntimeException("normal tree leaves cannot drop stuff!");
             case 1:
                 return new ItemStack(Item.appleRed);
             case 2:
@@ -121,7 +128,16 @@ public class TileEntityFruitLeaves extends TileEntity {
             case 6:
                 return new ItemStack(mod_jaffas_trees.itemPlum);
             default:
-                throw new RuntimeException("unknown type of tree, don't have information about fruits");
+                if (mod_jaffas_trees.debug) {
+                    System.err.println("unknown type of tree - " + metadata + ", t:" + BlockFruitLeaves.getLeavesType(metadata));
+                    debugPrintPos();
+                    return new ItemStack(Item.stick);
+                } else
+                    throw new RuntimeException("unknown type of tree, don't have information about fruits: " + metadata);
         }
+    }
+
+    private void debugPrintPos() {
+        System.err.println(this.xCoord + " " + this.yCoord + " " + this.zCoord);
     }
 }

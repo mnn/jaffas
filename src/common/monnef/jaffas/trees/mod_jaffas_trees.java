@@ -14,16 +14,20 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
 
-@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = "0.3.5", dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = "0.4.0", dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_trees {
     private static MinecraftServer server;
 
     public static mod_jaffas_trees instance;
+
+    public static ArrayList<LeavesInfo> leavesList = new ArrayList<LeavesInfo>();
+    public static final int leavesBlocksCount = 3;
 
     public static int startID;
     private int actualID;
@@ -78,11 +82,14 @@ public class mod_jaffas_trees {
             }
 
             blockFruitSaplingID = config.getOrCreateIntProperty("fruit tree sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
-            blockFruitLeavesID = config.getOrCreateIntProperty("fruit sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
             itemFruitSeedsID = config.getOrCreateIntProperty("fruit seeds", Configuration.CATEGORY_ITEM, getID()).getInt();
             itemLemonID = config.getOrCreateIntProperty("lemon", Configuration.CATEGORY_ITEM, getID()).getInt();
             itemOrangeID = config.getOrCreateIntProperty("orange", Configuration.CATEGORY_ITEM, getID()).getInt();
             itemPlumID = config.getOrCreateIntProperty("plum", Configuration.CATEGORY_ITEM, getID()).getInt();
+
+            for(int i=0;i<leavesBlocksCount;i++){
+                //blockFruitLeavesID = config.getOrCreateIntProperty("fruit sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            }
 
 
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
@@ -97,6 +104,19 @@ public class mod_jaffas_trees {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
+        /*
+        int c = 0;
+        while (!mod_jaffas.instance.itemsReady) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+            }
+
+            if (c++ > 50) {
+                throw new RuntimeException("items not ready");
+            }
+        } */
+
         blockFruitSapling = new BlockFruitSapling(blockFruitSaplingID, 15);
         blockFruitSapling.setBlockName("fruitSapling").setCreativeTab(CreativeTabs.tabMisc);
         GameRegistry.registerBlock(blockFruitSapling);
