@@ -30,6 +30,17 @@ public class TileEntityFruitLeaves extends TileEntity {
         timer = Math.abs(rand.nextInt()) % timerMax;
     }
 
+    /**
+     * Gets the block type at the location of this entity (client-only).
+     */
+    public Block getBlockType() {
+        if (this.blockType == null) {
+            this.blockType = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord)];
+        }
+
+        return this.blockType;
+    }
+
     public void updateEntity() {
         if (!checked) {
             fruit = getActualLeavesType(this.getBlockType(), BlockFruitLeaves.getLeavesType(this.getBlockMetadata()));
@@ -81,7 +92,7 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     private void generateFruit(World world, int x, int y, int z, Random rand, int metadata) {
         if (rand.nextDouble() < dropChance * dropChanceMultiplier) {
-            if (this.fruit == fruitType.Vanilla && rand.nextDouble() > 0.25) {
+            if (this.fruit == fruitType.Vanilla && rand.nextInt(3) != 0) {
                 return;
             }
 

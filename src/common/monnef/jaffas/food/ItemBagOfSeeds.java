@@ -35,8 +35,8 @@ public class ItemBagOfSeeds extends Item {
                         seed = new ItemStack(Item.seeds);
                     } else {
                         int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
-                        ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / mod_jaffas_trees.leavesTypesCount).seedsItem;
-                        int meta = type % mod_jaffas_trees.leavesTypesCount;
+                        ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / 4).seedsItem;
+                        int meta = type % 4;
 
                         seed = new ItemStack(item, 1, meta);
                     }

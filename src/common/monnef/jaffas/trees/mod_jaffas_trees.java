@@ -24,6 +24,7 @@ import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_trees {
     private static MinecraftServer server;
+    public static boolean bonemealingAllowed;
 
     public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
     public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds"};
@@ -140,6 +141,7 @@ public class mod_jaffas_trees {
 
 
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
+            bonemealingAllowed = config.getOrCreateBooleanProperty("bonemeal", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
@@ -151,34 +153,8 @@ public class mod_jaffas_trees {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
-/*
-        blockFruitSapling = new BlockFruitSapling(blockFruitSaplingID, 15);
-        blockFruitSapling.setBlockName("fruitSapling").setCreativeTab(CreativeTabs.tabMisc);
-        GameRegistry.registerBlock(blockFruitSapling);
-        LanguageRegistry.addName(blockFruitSapling, "Fruit Sapling");
-
-        blockFruitLeaves = new BlockFruitLeaves(blockFruitLeavesID, 0);
-        blockFruitLeaves.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves").setCreativeTab(CreativeTabs.tabDeco).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
-        GameRegistry.registerBlock(blockFruitLeaves);
-        LanguageRegistry.addName(blockFruitLeaves, "Leaves");
-
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[0] + ".name", "[UNUSED] Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[1] + ".name", "Apple Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[2] + ".name", "Cocoa Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[3] + ".name", "Vanilla Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[4] + ".name", "Lemon Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[5] + ".name", "Orange Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[6] + ".name", "Plum Seeds");
-        itemFruitSeeds = new ItemFruitSeeds(itemFruitSeedsID, blockFruitSapling.blockID, 1);
-        itemFruitSeeds.setItemName("fruitSeeds");
-        LanguageRegistry.addName(itemFruitSeeds, "Fruit Seeds");
-        */
-
-        // TODO general stuff bellow
         AddFruitTreesSequence(0, 0, 32, 4);
         AddFruitTreesSequence(1, 4, 32 + 4, 3);
-        // end of TODO
-
 
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
 
@@ -204,7 +180,7 @@ public class mod_jaffas_trees {
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
         LeavesInfo leaves = leavesList.get(i);
-        leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture);
+        leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;
         leaves.leavesBlock.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves" + i).setCreativeTab(CreativeTabs.tabDeco).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
         GameRegistry.registerBlock(leaves.leavesBlock);

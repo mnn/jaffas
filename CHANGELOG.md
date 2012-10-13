@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.0
+- added fruit trees
+- added donuts
+- new flavours of jaffa cakes
+- hoodie
+
 ## 0.3.6
 - fixed not-collectable items from jaffa bomb
 

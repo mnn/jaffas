@@ -70,12 +70,6 @@ public class ItemFruitSeeds extends ItemBlockEx {
         for (int i = 0; i < subCount; i++) {
             par3List.add(new ItemStack(par1, 1, i));
         }
-        /*
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
-        */
     }
 
 }

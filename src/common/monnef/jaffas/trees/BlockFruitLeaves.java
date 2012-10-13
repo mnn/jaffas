@@ -27,12 +27,14 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      * switch the displayed version between fancy and fast graphics (fast is this index + 1).
      */
     int[] adjacentTreeBlocks;
+    private int subCount;
 
-    public BlockFruitLeaves(int par1, int par2) {
+    public BlockFruitLeaves(int par1, int par2, int subCount) {
         super(par1, par2, Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDeco);
         mod_jaffas_trees.proxy.setFancyGraphicsLevel(this, true);
+        this.subCount = subCount;
         //this.setGraphicsLevel(true);
     }
 
@@ -305,10 +307,8 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));
+        for (int i = 0; i < subCount; i++)
+            par3List.add(new ItemStack(par1, 1, i));
     }
 
     @Override
