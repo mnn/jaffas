@@ -6,6 +6,7 @@ import java.util.Iterator;
 
 public class ContainerFridge extends Container {
 
+    public static final int inventorySize = 20;
     protected TileEntityFridge tileEntity;
     protected float lastTemperature;
     protected int lastBurnTime;
@@ -19,7 +20,7 @@ public class ContainerFridge extends Container {
 
         int row, col;
         int colsPerRow = 4;
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < inventorySize; i++) {
             col = i % colsPerRow;
             row = i / colsPerRow;
             addSlotToContainer(new Slot(tileEntity, i, 8 + col * 18, 13 + row * 18));
@@ -105,13 +106,12 @@ public class ContainerFridge extends Container {
             stack = stackInSlot.copy();
 
             //merges the item into player inventory since its in the tileEntity
-            if (slot == 0) {
-                if (!mergeItemStack(stackInSlot, 1,
-                        inventorySlots.size(), true)) {
+            if (slot >= 0 && slot <= inventorySize + 1) {
+                if (!mergeItemStack(stackInSlot, inventorySize + 1, inventorySlots.size(), true)) {
                     return null;
                 }
                 //places it into the tileEntity is possible since its in the player inventory
-            } else if (!mergeItemStack(stackInSlot, 0, 1, false)) {
+            } else if (!mergeItemStack(stackInSlot, 0, inventorySize + 1, false)) {
                 return null;
             }
 

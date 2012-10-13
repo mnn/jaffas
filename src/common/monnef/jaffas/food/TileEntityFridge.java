@@ -71,12 +71,22 @@ public class TileEntityFridge extends TileEntity implements IInventory {
     }
 
     private void runSpecialEvent() {
-        int slotNum = Math.abs(rand.nextInt()) % fuelSlot;
-
-        //TODO
-
         if (!worldObj.isRemote) {
-            ItemStack stack = inv[slotNum];
+            int tries = 0;
+            int slotNum;
+            boolean breakCycle = false;
+            ItemStack stack;
+
+            // try harder find a slot with proper recipe input
+            do {
+                slotNum = Math.abs(rand.nextInt()) % fuelSlot;
+
+                stack = inv[slotNum];
+                if (stack != null) {
+                    breakCycle = RecipesFridge.getCopyOfResult(inv[slotNum].itemID) != null;
+                }
+            } while (tries++ < 5 && !breakCycle);
+
 
             if (stack == null) {
                 if (rand.nextDouble() < 0.25) {
@@ -97,19 +107,29 @@ public class TileEntityFridge extends TileEntity implements IInventory {
 
                 if (output != null) {
                     int free = -1;
+                    boolean addToStack = false;
+
                     for (int i = 0; i < fuelSlot - 1; i++) {
                         if (inv[i] == null) {
                             free = i;
-                            break;
+                            i = fuelSlot;
+                        } else if (inv[i].itemID == output.itemID && inv[i].stackSize < inv[i].getMaxStackSize()) {
+                            addToStack = true;
+                            free = i;
+                            i = fuelSlot;
                         }
                     }
 
                     if (free != -1) {
-                        // TODO adding to stack
                         inv[slotNum].stackSize--;
                         if (inv[slotNum].stackSize <= 0) setInventorySlotContents(slotNum, null);
 
-                        inv[free] = output;
+                        if (addToStack) {
+                            inv[free].stackSize++;
+                        } else {
+                            inv[free] = output;
+                        }
+
                         melt();
                     }
                 }
