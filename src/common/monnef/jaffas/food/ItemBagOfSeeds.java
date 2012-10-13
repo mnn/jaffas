@@ -1,5 +1,6 @@
 package monnef.jaffas.food;
 
+import monnef.jaffas.trees.ItemFruitSeeds;
 import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.src.*;
 
@@ -33,8 +34,11 @@ public class ItemBagOfSeeds extends Item {
                     if (rand.nextInt(2) == 0) {
                         seed = new ItemStack(Item.seeds);
                     } else {
-                        int type = rand.nextInt(6) + 1;
-                        seed = new ItemStack(mod_jaffas_trees.itemFruitSeeds, 1, type);
+                        int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
+                        ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / mod_jaffas_trees.leavesTypesCount).seedsItem;
+                        int meta = type % mod_jaffas_trees.leavesTypesCount;
+
+                        seed = new ItemStack(item, 1, meta);
                     }
 
                     Entity ent = new EntityItem(par2World, par3EntityPlayer.posX, par3EntityPlayer.posY + 0.5, par3EntityPlayer.posZ, seed);

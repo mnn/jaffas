@@ -28,16 +28,19 @@ public class WorldGenFruitTrees extends WorldGenerator {
      */
     private final int metaLeaves;
 
+    private final int leavesID;
+
     public WorldGenFruitTrees(boolean par1) {
-        this(par1, 4, 0, 0, false);
+        this(par1, 4, 0, 0, false, mod_jaffas_trees.leavesList.get(0).leavesID);
     }
 
-    public WorldGenFruitTrees(boolean notify, int minHeight, int metaWood, int metaLeaves, boolean vines) {
+    public WorldGenFruitTrees(boolean notify, int minHeight, int metaWood, int metaLeaves, boolean vines, int leavesID) {
         super(notify);
         this.minTreeHeight = minHeight;
         this.metaWood = metaWood;
         this.metaLeaves = metaLeaves;
         this.vinesGrow = vines;
+        this.leavesID = leavesID;
     }
 
     public boolean generate(World par1World, Random par2Random, int par3, int par4, int par5) {
@@ -109,8 +112,19 @@ public class WorldGenFruitTrees extends WorldGenerator {
 
                                 if ((Math.abs(var15) != var13 || Math.abs(var17) != var13 || par2Random.nextInt(2) != 0 && var12 != 0) &&
                                         (block == null || block.canBeReplacedByLeaves(par1World, var14, var11, var16))) {
-                                    int chosenLeaves = par2Random.nextDouble() < 0.33 ? this.metaLeaves : 0;
-                                    this.setBlockAndMetadata(par1World, var14, var11, var16, mod_jaffas_trees.blockFruitLeaves.blockID, chosenLeaves);
+
+                                    int chosenLeavesMeta;
+                                    int chosenLeavesID;
+
+                                    if (par2Random.nextInt(3) == 0) {
+                                        chosenLeavesID = this.leavesID;
+                                        chosenLeavesMeta = this.metaLeaves;
+                                    } else {
+                                        chosenLeavesID = mod_jaffas_trees.leavesList.get(0).leavesID;
+                                        chosenLeavesMeta = 0;
+                                    }
+
+                                    this.setBlockAndMetadata(par1World, var14, var11, var16, chosenLeavesID, chosenLeavesMeta);
                                 }
                             }
                         }

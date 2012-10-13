@@ -5,10 +5,12 @@ import net.minecraft.src.*;
 
 import java.util.Random;
 
+import static monnef.jaffas.trees.mod_jaffas_trees.*;
+
 
 public class TileEntityFruitLeaves extends TileEntity {
 
-    // tree has 60-110 blocks
+    // tree has 60-110 blocks /3
     // from 1 tree 1 fruit per 3minutes
 
     public static final int maxAge = 240;
@@ -21,6 +23,7 @@ public class TileEntityFruitLeaves extends TileEntity {
     private int timer;
     private static Random rand = new Random();
     private boolean checked = false;
+    private fruitType fruit;
 
     public TileEntityFruitLeaves() {
         myMaxAge = (int) (maxAge + Math.round((maxAge / 4) * rand.nextGaussian()));
@@ -28,25 +31,27 @@ public class TileEntityFruitLeaves extends TileEntity {
     }
 
     public void updateEntity() {
+        if (!checked) {
+            fruit = getActualLeavesType(this.getBlockType(), BlockFruitLeaves.getLeavesType(this.getBlockMetadata()));
+            checked = true;
+            if (fruit == fruitType.Normal) {
+                this.invalidate();
+                return;
+            }
+        }
+
         if (worldObj.isRemote) {
             return;
         }
 
         timer++;
         if (timer >= timerMax) {
-            if (!checked) {
-                checked = true;
-                if (this.getBlockMetadata() == 0) {
-                    this.invalidate();
-                    return;
-                }
-            }
 
             timer = 0;
             generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand, this.getBlockMetadata());
             age++;
             if (age > myMaxAge) {
-                worldObj.setBlockMetadata(this.xCoord, this.yCoord, this.zCoord, 0);
+                worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, mod_jaffas_trees.leavesList.get(0).leavesID, 0);
                 this.invalidate();
             }
         }
@@ -76,8 +81,7 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     private void generateFruit(World world, int x, int y, int z, Random rand, int metadata) {
         if (rand.nextDouble() < dropChance * dropChanceMultiplier) {
-            // Vanilla
-            if (BlockFruitLeaves.getLeavesType(metadata) == 3 && rand.nextDouble() > 0.25) {
+            if (this.fruit == fruitType.Vanilla && rand.nextDouble() > 0.25) {
                 return;
             }
 
@@ -85,7 +89,10 @@ public class TileEntityFruitLeaves extends TileEntity {
             int tries = 0;
             int newY = y;
 
-            while (tries <= 5 && !found && world.getBlockId(x, newY, z) == mod_jaffas_trees.blockFruitLeaves.blockID) {
+            int thisBlockID = world.getBlockId(x, y, z);
+
+            //TODO optimize
+            while (tries <= 5 && !found && (world.getBlockId(x, newY, z) == thisBlockID || world.getBlockId(x, newY, z) == mod_jaffas_trees.leavesList.get(0).leavesID)) {
                 tries++;
                 newY--;
                 if (world.getBlockId(x, newY, z) == 0) {
@@ -94,47 +101,76 @@ public class TileEntityFruitLeaves extends TileEntity {
             }
 
             if (found) {
-                EntityItem ent = new EntityItem(world, x, newY, z, getItemFromMetadata(metadata));
-                ent.setPosition(x + 0.5, newY + 0.9, z + 0.5);
-                ent.motionX = (rand.nextDouble() - 0.5) / 3;
-                ent.motionY = 0;
-                ent.motionZ = (rand.nextDouble() - 0.5) / 3;
-                world.spawnEntityInWorld(ent);
+                if (fruit != null) {
+                    ItemStack stack = getItemFromMetadataAndBlockID(this.fruit);
+                    if (stack != null) {
+                        EntityItem ent = new EntityItem(world, x, newY, z, stack);
+                        ent.setPosition(x + 0.5, newY + 0.9, z + 0.5);
+                        ent.motionX = (rand.nextDouble() - 0.5) / 3;
+                        ent.motionY = 0;
+                        ent.motionZ = (rand.nextDouble() - 0.5) / 3;
+                        world.spawnEntityInWorld(ent);
+                    } else {
+                        if (debug) {
+                            System.err.println("got null in stack: m~" + metadata + " b~" + this.getBlockType().blockID);
+                            debugPrintPos();
+                        }
+                    }
+                } else {
+                    if (debug) {
+                        System.err.println("got null in fruit: m~" + metadata + " b~" + this.getBlockType().blockID);
+                        debugPrintPos();
+                    }
+                }
             } else {
-                if (mod_jaffas_trees.debug) System.out.println("tree: not found - tries~" + tries);
+                if (debug) System.out.println("tree: not found - tries~" + tries);
             }
         }
     }
 
-    public ItemStack getItemFromMetadata(int metadata) {
-        switch (BlockFruitLeaves.getLeavesType(metadata)) {
-            case 0:
-                if (mod_jaffas_trees.debug) {
-                    System.err.println("normal tree! - " + metadata + ", t:" + BlockFruitLeaves.getLeavesType(metadata));
+    public ItemStack getItemFromMetadataAndBlockID(fruitType fruit) {
+        //public ItemStack getItemFromMetadataAndBlockID(int metadata, Block block) {
+
+        int metadata = -1, leavesMetadataType = -1, blockID = -1;
+        if (debug) {
+            metadata = this.getBlockMetadata();
+            leavesMetadataType = BlockFruitLeaves.getLeavesType(metadata);
+            blockID = this.getBlockType().blockID;
+        }
+
+        //fruitType fruit = mod_jaffas_trees.getActualLeavesType(block, metadata);
+
+        //TODO!
+
+        switch (fruit) {
+            case Normal:
+                if (debug) {
+                    System.err.println("normal tree! - " + metadata + ", t:" + leavesMetadataType);
                     debugPrintPos();
                     return new ItemStack(Item.porkRaw);
                 } else
                     throw new RuntimeException("normal tree leaves cannot drop stuff!");
-            case 1:
+            case Apple:
                 return new ItemStack(Item.appleRed);
-            case 2:
+            case Cocoa:
                 return new ItemStack(Item.dyePowder, 1, 3);
-            case 3:
+            case Vanilla:
                 return new ItemStack(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans));
-            case 4:
-                return new ItemStack(mod_jaffas_trees.itemLemon);
-            case 5:
-                return new ItemStack(mod_jaffas_trees.itemOrange);
-            case 6:
-                return new ItemStack(mod_jaffas_trees.itemPlum);
+            case Lemon:
+                return new ItemStack(itemLemon);
+            case Orange:
+                return new ItemStack(itemOrange);
+            case Plum:
+                return new ItemStack(itemPlum);
             default:
-                if (mod_jaffas_trees.debug) {
-                    System.err.println("unknown type of tree - " + metadata + ", t:" + BlockFruitLeaves.getLeavesType(metadata));
+                if (debug) {
+                    System.err.println("unknown type of tree - " + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);
                     debugPrintPos();
                     return new ItemStack(Item.stick);
                 } else
                     throw new RuntimeException("unknown type of tree, don't have information about fruits: " + metadata);
         }
+
     }
 
     private void debugPrintPos() {

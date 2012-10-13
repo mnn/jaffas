@@ -2,7 +2,6 @@ package monnef.jaffas.trees;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
-import monnef.core.BitHelper;
 import net.minecraft.src.*;
 
 import java.util.List;
@@ -21,11 +20,12 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     public static final int bitNeverDecayN = 6;
     public static final int bitMaskLeavesTypeN = 31;
 
+    public int serialNumber = -1;
+
     /**
      * The base index in terrain.png corresponding to the fancy version of the leaf texture. This is stored so we can
      * switch the displayed version between fancy and fast graphics (fast is this index + 1).
      */
-    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
     int[] adjacentTreeBlocks;
 
     public BlockFruitLeaves(int par1, int par2) {
@@ -53,8 +53,8 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     }
 
     public boolean hasTileEntity(int metadata) {
-        return getLeavesType(metadata) != 0;
-        //return true;
+        //return getLeavesType(metadata) != 0;
+        return true;
     }
 
     public String getTextureFile() {
@@ -240,27 +240,27 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
     // Bit stuff
     public static int getLeavesType(int par1) {
-        return par1 & bitMaskLeavesTypeN;
+        return par1 & bitMaskLeavesType;
     }
 
     public static int setLeavesDecay(int par4) {
-        //return par4 | bitMarkedForDecay;
-        return BitHelper.setBit(par4, bitMarkedForDecayN);
+        return par4 | bitMarkedForDecay;
+        //return BitHelper.setBit(par4, bitMarkedForDecayN);
     }
 
     private static int unsetDecayBit(int metadata) {
-        //return metadata & -9;
-        return BitHelper.unsetBit(metadata, bitMarkedForDecayN);
+        return metadata & -9;
+        //return BitHelper.unsetBit(metadata, bitMarkedForDecayN);
     }
 
     public static boolean areLeavesMarkedForDecay(int metadata) {
-        //return (metadata & bitMarkedForDecay) != 0;
-        return BitHelper.isBitSet(metadata, bitMarkedForDecayN);
+        return (metadata & bitMarkedForDecay) != 0;
+        //return BitHelper.isBitSet(metadata, bitMarkedForDecayN);
     }
 
     private static boolean areLeavesNeverDecaying(int metadata) {
-        //return (metadata & bitNeverDecay) == 0;
-        return BitHelper.isBitSet(metadata, bitNeverDecayN);
+        return (metadata & bitNeverDecay) == 1;
+        //return BitHelper.isBitSet(metadata, bitNeverDecayN);
     }
 
     /**
@@ -309,9 +309,6 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
         par3List.add(new ItemStack(par1, 1, 3));
-        par3List.add(new ItemStack(par1, 1, 4));
-        par3List.add(new ItemStack(par1, 1, 5));
-        par3List.add(new ItemStack(par1, 1, 6));
     }
 
     @Override

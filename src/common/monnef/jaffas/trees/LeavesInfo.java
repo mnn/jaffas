@@ -1,19 +1,20 @@
 package monnef.jaffas.trees;
 
-/**
- * Created with IntelliJ IDEA.
- * User: moen
- * Date: 13/10/12
- * Time: 00:20
- * To change this template use File | Settings | File Templates.
- */
 public class LeavesInfo {
-    public BlockFruitLeaves block;
-    public int ID;
+    public BlockFruitLeaves leavesBlock;
+    public BlockFruitSapling saplingBlock;
+    public ItemFruitSeeds seedsItem;
+
+    public int leavesID;
+    public int saplingID;
+    public int seedsID;
+
     public int serialNumber;
 
-    public void LeavesInfo(int id, int serialNumber) {
-        ID = id;
+    public LeavesInfo(int id, int saplingId, int seedsId, int serialNumber) {
+        leavesID = id;
         this.serialNumber = serialNumber;
+        this.saplingID = saplingId;
+        this.seedsID = seedsId;
     }
 }

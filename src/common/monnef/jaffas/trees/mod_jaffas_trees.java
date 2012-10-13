@@ -15,6 +15,7 @@ import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
@@ -24,22 +25,64 @@ import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
 public class mod_jaffas_trees {
     private static MinecraftServer server;
 
+    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
+    public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds"};
+
+    public static fruitType getActualLeavesType(Block block, int blockMetadata) {
+        BlockFruitLeaves b = (BlockFruitLeaves) block;
+        int index = b.serialNumber * 4 + blockMetadata;
+        fruitType fruitType = mod_jaffas_trees.fruitType.indexToFruitType(index);
+        if (fruitType == null) {
+            throw new RuntimeException("fruit not found!");
+        }
+
+        return fruitType;
+    }
+
+    public static enum fruitType {
+        Normal(0), Apple(1), Cocoa(2), Vanilla(3), Lemon(4), Orange(5), Plum(6);
+        private int value;
+        private int blockNumber;
+        private int metaNumber;
+
+        fruitType(int value) {
+            this.value = value;
+            this.blockNumber = value % 4;
+            this.metaNumber = value / 4;
+
+            mapper.indexToFruitMap.put(value, this);
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+        public int getBlockNumber() {
+            return blockNumber;
+        }
+
+        public static fruitType indexToFruitType(int index) {
+            return mapper.indexToFruitMap.get(index);
+        }
+
+        private static class mapper {
+            private static HashMap<Integer, fruitType> indexToFruitMap;
+
+            static {
+                indexToFruitMap = new HashMap<Integer, fruitType>();
+            }
+        }
+    }
+
     public static mod_jaffas_trees instance;
 
     public static ArrayList<LeavesInfo> leavesList = new ArrayList<LeavesInfo>();
-    public static final int leavesBlocksCount = 3;
+
+    public static final int leavesBlocksAllocated = 3;
+    public static final int leavesTypesCount = 6;
 
     public static int startID;
     private int actualID;
-
-    private int blockFruitSaplingID;
-    public static BlockFruitSapling blockFruitSapling;
-
-    private int blockFruitLeavesID;
-    public static BlockFruitLeaves blockFruitLeaves;
-
-    private int itemFruitSeedsID;
-    public static ItemFruitSeeds itemFruitSeeds;
 
     public static boolean debug;
 
@@ -81,14 +124,18 @@ public class mod_jaffas_trees {
                 throw new RuntimeException("unable to get ID from parent");
             }
 
-            blockFruitSaplingID = config.getOrCreateIntProperty("fruit tree sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
-            itemFruitSeedsID = config.getOrCreateIntProperty("fruit seeds", Configuration.CATEGORY_ITEM, getID()).getInt();
+//            blockFruitSaplingID = config.getOrCreateIntProperty("fruit tree sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
             itemLemonID = config.getOrCreateIntProperty("lemon", Configuration.CATEGORY_ITEM, getID()).getInt();
             itemOrangeID = config.getOrCreateIntProperty("orange", Configuration.CATEGORY_ITEM, getID()).getInt();
             itemPlumID = config.getOrCreateIntProperty("plum", Configuration.CATEGORY_ITEM, getID()).getInt();
 
-            for(int i=0;i<leavesBlocksCount;i++){
-                //blockFruitLeavesID = config.getOrCreateIntProperty("fruit sapling", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            //blockFruitLeavesID = config.getOrCreateIntProperty("fruit leaves", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            for (int i = 0; i < leavesBlocksAllocated; i++) {
+                int leavesID = config.getOrCreateIntProperty("fruit leaves " + i, Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+                int saplingID = config.getOrCreateIntProperty("fruit tree sapling " + i, Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+                int seedsID = config.getOrCreateIntProperty("fruit seeds " + i, Configuration.CATEGORY_ITEM, getID()).getInt();
+
+                leavesList.add(new LeavesInfo(leavesID, saplingID, seedsID, i));
             }
 
 
@@ -104,19 +151,7 @@ public class mod_jaffas_trees {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
-        /*
-        int c = 0;
-        while (!mod_jaffas.instance.itemsReady) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-            }
-
-            if (c++ > 50) {
-                throw new RuntimeException("items not ready");
-            }
-        } */
-
+/*
         blockFruitSapling = new BlockFruitSapling(blockFruitSaplingID, 15);
         blockFruitSapling.setBlockName("fruitSapling").setCreativeTab(CreativeTabs.tabMisc);
         GameRegistry.registerBlock(blockFruitSapling);
@@ -127,16 +162,23 @@ public class mod_jaffas_trees {
         GameRegistry.registerBlock(blockFruitLeaves);
         LanguageRegistry.addName(blockFruitLeaves, "Leaves");
 
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[0] + ".name", "[UNUSED] Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[1] + ".name", "Apple Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[2] + ".name", "Cocoa Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[3] + ".name", "Vanilla Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[4] + ".name", "Lemon Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[5] + ".name", "Orange Seeds");
-        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + BlockFruitLeaves.treeTypes[6] + ".name", "Plum Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[0] + ".name", "[UNUSED] Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[1] + ".name", "Apple Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[2] + ".name", "Cocoa Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[3] + ".name", "Vanilla Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[4] + ".name", "Lemon Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[5] + ".name", "Orange Seeds");
+        LanguageRegistry.instance().addStringLocalization("item.fruitSeeds." + TileEntityFruitLeaves.treeTypes[6] + ".name", "Plum Seeds");
         itemFruitSeeds = new ItemFruitSeeds(itemFruitSeedsID, blockFruitSapling.blockID, 1);
         itemFruitSeeds.setItemName("fruitSeeds");
         LanguageRegistry.addName(itemFruitSeeds, "Fruit Seeds");
+        */
+
+        // TODO general stuff bellow
+        AddFruitTreesSequence(0, 0, 32, 4);
+        AddFruitTreesSequence(1, 4, 32 + 4, 3);
+        // end of TODO
+
 
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
 
@@ -158,6 +200,29 @@ public class mod_jaffas_trees {
         proxy.registerRenderThings();
 
         //GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+    }
+
+    private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
+        LeavesInfo leaves = leavesList.get(i);
+        leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture);
+        leaves.leavesBlock.serialNumber = i;
+        leaves.leavesBlock.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves" + i).setCreativeTab(CreativeTabs.tabDeco).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
+        GameRegistry.registerBlock(leaves.leavesBlock);
+        LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
+
+        leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15);
+        leaves.saplingBlock.serialNumber = i;
+        leaves.saplingBlock.setBlockName("fruitSapling" + i).setCreativeTab(CreativeTabs.tabMisc);
+        GameRegistry.registerBlock(leaves.saplingBlock);
+        LanguageRegistry.addName(leaves.saplingBlock, "Fruit Sapling");
+
+        for (int j = 0; j < subCount; j++) {
+            LanguageRegistry.instance().addStringLocalization("item.fruitSeeds" + i + "." + j + ".name", seedsNames[j + i * 4]);
+        }
+        leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
+        leaves.seedsItem.setItemName("fruitSeeds" + i);
+        leaves.seedsItem.serialNumber = i;
+        LanguageRegistry.addName(leaves.seedsItem, "Fruit Seeds");
     }
 
     @Mod.ServerStarting

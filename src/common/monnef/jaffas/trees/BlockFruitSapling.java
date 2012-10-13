@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class BlockFruitSapling extends BlockFlower {
     public static Random rand = new Random();
+    public int serialNumber = -1;
 
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         // bonemeal
@@ -87,7 +88,7 @@ public class BlockFruitSapling extends BlockFlower {
     this.metaLeaves = par4;
     this.vinesGrow = par5;  */
 
-        var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false);
+        var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false, mod_jaffas_trees.leavesList.get(serialNumber).leavesID);
 
         if (!((WorldGenerator) var7).generate(par1World, par5Random, par2 + var8, par3, par4 + var9)) {
             par1World.setBlockAndMetadata(par2, par3, par4, this.blockID, metadata);
@@ -118,8 +119,5 @@ public class BlockFruitSapling extends BlockFlower {
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
         par3List.add(new ItemStack(par1, 1, 3));
-        par3List.add(new ItemStack(par1, 1, 4));
-        par3List.add(new ItemStack(par1, 1, 5));
-        par3List.add(new ItemStack(par1, 1, 6));
     }
 }
