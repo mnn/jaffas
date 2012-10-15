@@ -20,7 +20,7 @@ import java.util.logging.Level;
 
 import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
 
-@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = "0.4.0", dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = "0.4.1", dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_trees {
     private static MinecraftServer server;

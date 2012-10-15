@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1
+- fixed fridge's inventory to support shift-clicking
+- fridge now tries harder to find ice-cream to freeze
+- updated fruit trees textures
+
 ## 0.4.0
 - added fruit trees
 - added donuts

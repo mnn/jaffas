@@ -4,6 +4,7 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -13,6 +14,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
@@ -21,7 +23,7 @@ import net.minecraftforge.common.EnumHelper;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.4.0")
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.4.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
@@ -47,6 +49,7 @@ public class mod_jaffas {
     public static mod_jaffas instance;
     public static int topDefaultID = -1;
     public boolean itemsReady = false;
+    public boolean checkUpdates;
 
     public enum JaffaItem {
         pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
@@ -62,7 +65,7 @@ public class mod_jaffas {
     public static final int startID = 3600;
     private int actualID = startID;
 
-    private static boolean debug;
+    public static boolean debug;
 
     public int getActualID() {
         return actualID;
@@ -197,6 +200,8 @@ public class mod_jaffas {
             itemJaffaPlateID = config.getOrCreateIntProperty("jaffaPlate", Configuration.CATEGORY_ITEM, getID()).getInt();
             itemJaffaSwordID = config.getOrCreateIntProperty("jaffaSword", Configuration.CATEGORY_ITEM, getID()).getInt();
 
+            checkUpdates = config.getOrCreateBooleanProperty("checkUpdates", Configuration.CATEGORY_GENERAL, true).getBoolean(true);
+
             if (mod_jaffas.topDefaultID == -1) {
                 mod_jaffas.topDefaultID = this.actualID;
             }
@@ -255,6 +260,9 @@ public class mod_jaffas {
 
     @Init
     public void load(FMLInitializationEvent event) {
+        TickRegistry.registerScheduledTickHandler(new ClientTickHandler(), Side.CLIENT);
+        TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+
         blockFridge = new BlockFridge(blockFridgeID);
         GameRegistry.registerBlock(blockFridge);
         LanguageRegistry.addName(blockFridge, "Fridge");
@@ -549,9 +557,9 @@ public class mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutRaw)), " P ", "P P", " P ", 'P', new ItemStack(getItem(JaffaItem.pastry)));
         GameRegistry.addSmelting(getItem(JaffaItem.donutRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.donut)), 0.25F);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutChocolate),8), "C", "D", 'C', new ItemStack(getItem(JaffaItem.chocolate)), 'D', new ItemStack(getItem(JaffaItem.donut)));
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutPink),8), "C", "D", 'C', new ItemStack(getItem(JaffaItem.jamR)), 'D', new ItemStack(getItem(JaffaItem.donut)));
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutSugar),8), "C", "D", 'C', new ItemStack(Item.sugar), 'D', new ItemStack(getItem(JaffaItem.donut)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutChocolate), 8), "C", "D", 'C', new ItemStack(getItem(JaffaItem.chocolate)), 'D', new ItemStack(getItem(JaffaItem.donut)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutPink), 8), "C", "D", 'C', new ItemStack(getItem(JaffaItem.jamR)), 'D', new ItemStack(getItem(JaffaItem.donut)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutSugar), 8), "C", "D", 'C', new ItemStack(Item.sugar), 'D', new ItemStack(getItem(JaffaItem.donut)));
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutSprinkled)), "C", "D", 'C', new ItemStack(getItem(JaffaItem.sprinkles)), 'D', new ItemStack(getItem(JaffaItem.donutChocolate)));
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jaffaL), 12), "X", "Y", "Z", 'X', new ItemStack(getItem(JaffaItem.chocolate)), 'Y',
