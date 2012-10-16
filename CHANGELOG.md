@@ -1,5 +1,9 @@
 # Changelog
 
+- fridge now don't consume buckets
+- fridge supports buildcraft 3's pipes (fuel input is at bottom)
+- bushes ()
+
 ## 0.4.1
 - fixed fridge's inventory to support shift-clicking
 - fridge now tries harder to find ice-cream to freeze

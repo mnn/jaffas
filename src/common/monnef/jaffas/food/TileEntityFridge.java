@@ -379,6 +379,31 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
 
     @Override
     public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
-        return new ItemStack[0];  //To change body of implemented methods use File | Settings | File Templates.
+        int itemSlot = -1;
+
+        for (int i = 0; i < fuelSlot; i++) {
+            if (this.inv[i] != null) {
+                itemSlot = i;
+                i = fuelSlot;
+            }
+        }
+
+        if (itemSlot == -1) {
+            return null;
+        }
+
+        ItemStack stack = this.inv[itemSlot];
+        ItemStack output = stack.copy();
+        int newStackCount = stack.stackSize - maxItemCount;
+        int outputStackCount = maxItemCount;
+        if (newStackCount <= 0) {
+            if (doRemove) setInventorySlotContents(itemSlot, null);
+            outputStackCount = stack.stackSize;
+        } else {
+            if (doRemove) stack.stackSize = newStackCount;
+        }
+
+        output.stackSize = outputStackCount;
+        return new ItemStack[]{output};
     }
 }
