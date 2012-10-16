@@ -25,10 +25,11 @@ really old version of mod (0.2?)
 [size=6]Recipes[/size]
 [spoiler]Food
 [spoiler][img]http://imageshack.us/a/img822/4079/foodtv.png[/img]
-sticks, buckets, tins, iron sword and mallets aren't consumed (but mallets take damage)[/spoiler]
+Sticks, buckets, tins, iron sword and mallets aren't consumed (but mallets take damage).[/spoiler]
 
 Tools
-[spoiler][img]http://www.mediafire.com/conv/307f121d703bd01d8566858a431a4bb1e85fcf67408cc0592a7add79d406ce7e6g.jpg[/img][/spoiler]
+[spoiler][img]http://www.mediafire.com/conv/307f121d703bd01d8566858a431a4bb1e85fcf67408cc0592a7add79d406ce7e6g.jpg[/img]
+Wood and planks can be any type.[/spoiler]
 
 Misc
 [spoiler][img]http://imageshack.us/a/img266/6610/misch.png[/img]
@@ -112,37 +113,40 @@ before installation/updating always [b]backup[/b] your world!
 1.3.2 / 0.3.5 (universal), tested with forge #251 - [url="http://adf.ly/2536344/jaffas-035"]link[/url][/spoiler]
 
 [size=6]Notes[/size]
-[spoiler]I recommend using some recipe mod - like [url="http://www.minecraftforum.net/topic/909223-125132-smp-chickenbones-mods/"]Not Enough Items (NEI)[/url] or [url="http://www.minecraftforum.net/topic/731133-132-craftguide-v152/"]CraftGuide[/url]. Jaffas mod is good for automatization because of large crafting chains. If you're planning to build your own factory remember to use [b]Automatic Crafting Table MkII[/b] from Immibiss's [url="http://www.minecraftforum.net/topic/1001131-125132-immibiss-mods-smp-tubestuff-5001-core-5003-da-5001/"]TubeStuff[/url] for recipes that doesn't consume items (auto crafting table from BuildCraft3 destroys returned items!).
-[/spoiler]
+I recommend using some recipe mod - like [url="http://www.minecraftforum.net/topic/909223-125132-smp-chickenbones-mods/"]Not Enough Items (NEI)[/url] or [url="http://www.minecraftforum.net/topic/731133-132-craftguide-v152/"]CraftGuide[/url]. Jaffas mod is good for automatization because of large crafting chains. If you're planning to build your own factory remember to use [b]Automatic Crafting Table MkII[/b] from Immibiss's [url="http://www.minecraftforum.net/topic/1001131-125132-immibiss-mods-smp-tubestuff-5001-core-5003-da-5001/"]TubeStuff[/url] for recipes that doesn't consume items (auto crafting table from BuildCraft3 destroys returned items!).
+
 
 [size=6]About[/size]
-[spoiler]Hello, this is my first mod (and first thing in java), so the code is a bit messy. Yet, it's tested and functional in SSP and SMP (not sure about LAN). Author of images is Tiartyos.
+Hello, this is my first mod (and first thing in java), so the code is a bit messy. Yet, it's tested and functional in SSP and SMP (not sure about LAN). Author of images is Tiartyos.
 
 Item IDs can be changed in config file.
+
+Source files can be found there - [url]https://github.com/mnn/jaffas[/url].
 
 Plans/TODO list
 [spoiler][list]
 [*]add more config options - heal amount, disable recipes, ...
 [*][s](code) fix names, remove unused clasess[/s] done
+[*]fix fridge to not eat buckets, only lava
 [/list]
 thoughts[list]
 [*][s]? tools lasting longer (dmg counter) - would have to solve automation problems[/s] done
 [*]? recipes for IC2 machines, e.g. macerator - cocoa beans -> powder
-[*]? fruit trees or some plants?
+[*]? [s]fruit trees[/s] or some plants?
 [/list]
 [/spoiler]
-[/spoiler]
+
 
 [size=6]Rights of Use[/size]
-[spoiler][b]You may[/b]
+[b]You may[/b]
 - play and host the mod
 - take screenshots
 - make videos
+- use source code for educational purposes (but do not copy to your mod, use it just for inspiration ~ rewrite it on your own)
 [b]You may not[/b]
 - link directly zip/jar file, reupload
 - add mod into modpack without written permission
 - use graphics in things not related to this mod
-[/spoiler]
 
 
 [size=6]Donate[/size]
