@@ -94,6 +94,11 @@ public class mod_jaffas_trees {
     public static ItemJaffaFruit itemOrange;
     public static ItemJaffaFruit itemPlum;
 
+    private int itemSeedsCoffeeID;
+    public static ItemJaffaSeeds itemSeedsCoffee;
+    private int blockCoffeeID;
+    public static BlockJaffaCrops blockCoffee;
+
     private int getID() {
         return this.actualID++;
     }
@@ -139,6 +144,8 @@ public class mod_jaffas_trees {
                 leavesList.add(new LeavesInfo(leavesID, saplingID, seedsID, i));
             }
 
+            itemSeedsCoffeeID = config.getOrCreateIntProperty("coffee seeds", Configuration.CATEGORY_ITEM, getID()).getInt();
+            blockCoffeeID = config.getOrCreateIntProperty("coffee", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
 
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
             bonemealingAllowed = config.getOrCreateBooleanProperty("bonemeal", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
@@ -169,6 +176,14 @@ public class mod_jaffas_trees {
         itemPlum = new ItemJaffaFruit(itemPlumID);
         itemPlum.setItemName("plum").setIconCoord(6, 4);
         LanguageRegistry.addName(itemPlum, "Plum");
+
+        itemSeedsCoffee = new ItemJaffaSeeds(itemSeedsCoffeeID, blockCoffeeID, Block.tilledField.blockID);
+        itemSeedsCoffee.setItemName("seeds_coffee").setIconIndex(2);
+        LanguageRegistry.addName(itemSeedsCoffee, "Coffee Seeds");
+
+        blockCoffee = new BlockJaffaCrops(blockCoffeeID, 0, 7, Item.appleGold, itemSeedsCoffee, 1);
+        GameRegistry.registerBlock(blockCoffee);
+        LanguageRegistry.addName(blockCoffee, "Coffee");
 
         installRecipes();
 
