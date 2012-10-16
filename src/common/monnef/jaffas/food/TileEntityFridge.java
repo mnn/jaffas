@@ -1,10 +1,12 @@
 package monnef.jaffas.food;
 
+import buildcraft.api.core.Orientations;
+import buildcraft.api.inventory.ISpecialInventory;
 import net.minecraft.src.*;
 
 import java.util.Random;
 
-public class TileEntityFridge extends TileEntity implements IInventory {
+public class TileEntityFridge extends TileEntity implements IInventory, ISpecialInventory {
     public static final int fuelSlot = 20;
     public static Random rand = new Random();
 
@@ -132,6 +134,7 @@ public class TileEntityFridge extends TileEntity implements IInventory {
 
                         melt();
                     }
+
                 }
             }
         }
@@ -145,7 +148,11 @@ public class TileEntityFridge extends TileEntity implements IInventory {
 
         int fuelBurnTime = TileEntityFurnace.getItemBurnTime(item);
         if (fuelBurnTime > 0) {
-            item.stackSize--;
+            if (item.itemID == Item.bucketLava.shiftedIndex) {
+                setInventorySlotContents(fuelSlot, new ItemStack(Item.bucketEmpty));
+            } else {
+                item.stackSize--;
+            }
 
             if (item.stackSize <= 0 && !worldObj.isRemote) setInventorySlotContents(fuelSlot, null);
 
@@ -294,5 +301,84 @@ public class TileEntityFridge extends TileEntity implements IInventory {
 
     public float getTemperature() {
         return temperature;
+    }
+
+    //@return How many items we added
+    private int addItemToInventory(ItemStack stack, boolean doAdd) {
+        int free = -1;
+        boolean addToStack = false;
+        int ret;
+
+        for (int i = 0; i < fuelSlot - 1; i++) {
+            if (inv[i] == null) {
+                free = i;
+                i = fuelSlot;
+            } else if (inv[i].itemID == stack.itemID && inv[i].stackSize < inv[i].getMaxStackSize()) {
+                addToStack = true;
+                free = i;
+                i = fuelSlot;
+            }
+        }
+
+        if (mod_jaffas.debug) {
+            System.out.println("free~" + free + ", stack:" + stack.itemID + " - x" + stack.stackSize);
+        }
+
+        if (free != -1) {
+            if (addToStack) {
+                int newStackSize = stack.stackSize + inv[free].stackSize;
+                if (doAdd) inv[free].stackSize += stack.stackSize;
+
+                if (newStackSize > stack.getMaxStackSize()) {
+                    int overflowItemsCount = newStackSize % stack.getMaxStackSize();
+                    if (doAdd) inv[free].stackSize = stack.getMaxStackSize();
+
+                    ItemStack c = stack.copy();
+                    c.stackSize = overflowItemsCount;
+                    ret = stack.stackSize - overflowItemsCount;
+                    ret += addItemToInventory(c, doAdd);
+                } else {
+                    ret = stack.stackSize;
+                }
+            } else {
+                if (doAdd) inv[free] = stack;
+                ret = stack.stackSize;
+            }
+        } else {
+            ret = 0;
+        }
+
+        return ret;
+    }
+
+    @Override
+    public int addItem(ItemStack stack, boolean doAdd, Orientations from) {
+        if (from == Orientations.YNeg) {
+            if (this.inv[fuelSlot] == null) {
+                if (doAdd) setInventorySlotContents(fuelSlot, stack);
+                return stack.stackSize;
+            } else {
+                if (this.inv[fuelSlot].itemID != stack.itemID) {
+                    return 0;
+                } else {
+                    int newStackSize = stack.stackSize + inv[fuelSlot].stackSize;
+                    if (doAdd) inv[fuelSlot].stackSize += stack.stackSize;
+
+                    if (newStackSize > stack.getMaxStackSize()) {
+                        if (doAdd) inv[fuelSlot].stackSize = stack.getMaxStackSize();
+                        return stack.stackSize - (newStackSize % stack.getMaxStackSize());
+                    } else {
+                        return stack.stackSize;
+                    }
+                }
+            }
+        } else {
+            return this.addItemToInventory(stack, doAdd);
+        }
+    }
+
+    @Override
+    public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+        return new ItemStack[0];  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
