@@ -6,15 +6,12 @@ import net.minecraft.src.*;
 
 import java.util.Random;
 
-public class TileEntityFridge extends TileEntity implements IInventory, ISpecialInventory {
-    public static final int fuelSlot = 20;
+public class TileEntityFridge extends TileEntityJaffaMachine implements IInventory, ISpecialInventory {
     public static Random rand = new Random();
 
     private ItemStack[] inv;
     private int front;
 
-    public int burnTime;
-    public int burnItemTime;
     private int eventTime;
     public float temperature;
 
@@ -23,26 +20,10 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
     public static int tickDivider = 20;
 
     public TileEntityFridge() {
+        super();
         inv = new ItemStack[20 + 1];
-        burnTime = 0;
         eventTime = 0;
         temperature = 24;
-    }
-
-    public int getBurnTimeRemainingScaled(int par1) {
-        if (burnItemTime == 0) {
-            burnItemTime = 200;
-        }
-
-        return (burnTime * par1) / burnItemTime;
-    }
-
-    public boolean isBurning() {
-        return burnTime > 0;
-    }
-
-    public static boolean isItemFuel(ItemStack par0ItemStack) {
-        return TileEntityFurnace.isItemFuel(par0ItemStack);
     }
 
     public void updateEntity() {
@@ -51,7 +32,7 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
         if (tickCounter % tickDivider == 0) {
             // only every second do stuff
 
-            if (burnTime > 0) {
+            if (isBurning()) {
                 burnTime--;
                 addEnergy(0.1F);
             } else {
@@ -140,29 +121,6 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
         }
     }
 
-    private void tryGetFuel() {
-        ItemStack item = getStackInSlot(fuelSlot);
-        if (item == null) {
-            return;
-        }
-
-        int fuelBurnTime = TileEntityFurnace.getItemBurnTime(item);
-        if (fuelBurnTime > 0) {
-            if (item.itemID == Item.bucketLava.shiftedIndex) {
-                setInventorySlotContents(fuelSlot, new ItemStack(Item.bucketEmpty));
-            } else {
-                item.stackSize--;
-            }
-
-            if (item.stackSize <= 0 && !worldObj.isRemote) setInventorySlotContents(fuelSlot, null);
-
-            burnItemTime = fuelBurnTime;
-            burnTime = fuelBurnTime;
-        } else {
-            return;
-        }
-    }
-
 
     private void melt(int i) {
         if (i < 1) return;
@@ -174,12 +132,6 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
 
     private void melt() {
         melt(1);
-    }
-
-    private void addEnergy(float i) {
-        if (temperature > -10) {
-            temperature -= i;
-        }
     }
 
     @Override
@@ -263,8 +215,6 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
         }
 
         setFront(tagCompound.getInteger("front"));
-        burnTime = tagCompound.getInteger("burnTime");
-        burnItemTime = tagCompound.getInteger("burnItemTime");
         eventTime = tagCompound.getInteger("eventTime");
         temperature = tagCompound.getFloat("temperature");
     }
@@ -285,8 +235,6 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
         }
         tagCompound.setTag("Inventory", itemList);
         tagCompound.setInteger("front", getFront());
-        tagCompound.setInteger("burnTime", burnTime);
-        tagCompound.setInteger("burnItemTime", burnItemTime);
         tagCompound.setInteger("eventTime", eventTime);
         tagCompound.setFloat("temperature", temperature);
     }
@@ -405,5 +353,11 @@ public class TileEntityFridge extends TileEntity implements IInventory, ISpecial
 
         output.stackSize = outputStackCount;
         return new ItemStack[]{output};
+    }
+
+    protected void addEnergy(float i) {
+        if (temperature > -10) {
+            temperature -= i;
+        }
     }
 }

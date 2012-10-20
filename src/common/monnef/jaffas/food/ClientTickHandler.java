@@ -15,6 +15,13 @@ public class ClientTickHandler implements IScheduledTickHandler {
     private int tries = 0;
     private final static int aLotOfTicks = 20 * 60 * 60 * 24;
 
+    public static String data = null;
+    public static String name = "";
+    public static String clientVersionString;
+    public static Thread versionThread;
+
+    public static Object lock = new Object();
+
     public ClientTickHandler() {
         if (!mod_jaffas.instance.checkUpdates) {
             checked = true;
@@ -68,7 +75,6 @@ public class ClientTickHandler implements IScheduledTickHandler {
                 System.out.println("Doing version check");
             }
 
-            String data = "";
             EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
             if (player == null) {
                 if (mod_jaffas.debug) {
@@ -77,29 +83,40 @@ public class ClientTickHandler implements IScheduledTickHandler {
                 return;
             }
 
-            String name = player.username;
-
-            String clientVersionString = mod_jaffas.class.getAnnotation(Mod.class).version();
-            data = VersionHelper.GetVersionText(name, clientVersionString);
-            tries++;
-            if (data != null) {
-                Integer[] remoteVersion = VersionHelper.GetVersionNumbers(data);
-                if (remoteVersion != null) {
-                    Integer[] thisVersion = VersionHelper.GetVersionNumbers(clientVersionString);
-                    int cmp = VersionHelper.CompareVersions(thisVersion, remoteVersion);
-                    if (cmp == -1) {
-                        player.addChatMessage("New version (" + VersionHelper.VersionToString(remoteVersion) + ") of \"Jaffas and more!\" is available.");
-                    } else if (cmp == 1) {
-                        player.addChatMessage("Local version is newer than remote, did you forget to update version file?");
+            synchronized (lock) {
+                name = player.username;
+                clientVersionString = mod_jaffas.class.getAnnotation(Mod.class).version();
+                if (data == null) {
+                    if ((versionThread != null && !versionThread.isAlive()) || versionThread == null) {
+                        if (mod_jaffas.debug) System.out.println("starting version thread");
+                        versionThread = new Thread(new ThreadVersionCheck(), "versionCheck");
+                        versionThread.start();
                     } else {
-                        if (mod_jaffas.debug) {
-                            player.addChatMessage("[DEBUG] Version check is OK.");
-                        }
+                        if (mod_jaffas.debug) System.out.println("version thread alive but data field is empty");
                     }
-
-                    checked = true;
                 }
-            }
+
+                tries++;
+                if (data != null) {
+                    Integer[] remoteVersion = VersionHelper.GetVersionNumbers(data);
+                    data = null; // reset data to signal they're no longer valid
+                    if (remoteVersion != null) {
+                        Integer[] thisVersion = VersionHelper.GetVersionNumbers(clientVersionString);
+                        int cmp = VersionHelper.CompareVersions(thisVersion, remoteVersion);
+                        if (cmp == -1) {
+                            player.addChatMessage("New version (" + VersionHelper.VersionToString(remoteVersion) + ") of \"Jaffas and more!\" is available.");
+                        } else if (cmp == 1) {
+                            player.addChatMessage("Local version is newer than remote, did you forget to update version file?");
+                        } else {
+                            if (mod_jaffas.debug) {
+                                player.addChatMessage("[DEBUG] Version check is OK.");
+                            }
+                        }
+
+                        checked = true;
+                    }
+                }
+            } // sync
         }
     }
 
@@ -108,13 +125,13 @@ public class ClientTickHandler implements IScheduledTickHandler {
     public int nextTickSpacing() {
         if (first) {
             first = Minecraft.getMinecraft().currentScreen != null ? true : false;
-            return 20 * 2;
+            return 20 * 5;
         }
 
-        if (tries >= 2) {
+        if (tries >= 5) {
             return aLotOfTicks;
         }
 
-        return checked ? aLotOfTicks : 20 * 60 * 1;
+        return checked ? aLotOfTicks : 20 * 10;
     }
 }
