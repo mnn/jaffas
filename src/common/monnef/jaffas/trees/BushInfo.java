@@ -13,11 +13,11 @@ public class BushInfo {
     public ItemJaffaBerry itemFruit;
 
     public String name;
-    public String seedsName;
+    public String seedsTitle;
     public int seedsTexture;
-    public String plantName;
+    public String plantTitle;
     public int plantTexture;
-    public String fruitName;
+    public String fruitTitle;
     public int fruitTexture;
     public Item product;
     public int phases;
