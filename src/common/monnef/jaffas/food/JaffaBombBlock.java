@@ -81,6 +81,19 @@ public class JaffaBombBlock extends Block {
         }
 
         w.setBlock(par2, par3, par4, 0);
+
+        testNeighbourForBomb(w, par2 + 1, par3, par4);
+        testNeighbourForBomb(w, par2 - 1, par3, par4);
+        testNeighbourForBomb(w, par2, par3 + 1, par4);
+        testNeighbourForBomb(w, par2, par3 - 1, par4);
+        testNeighbourForBomb(w, par2, par3, par4 + 1);
+        testNeighbourForBomb(w, par2, par3, par4 - 1);
+    }
+
+    private void testNeighbourForBomb(World w, int x, int y, int z) {
+        if (w.getBlockId(x, y, z) == this.blockID) {
+            this.detonate(w, x, y, z);
+        }
     }
 
     /**

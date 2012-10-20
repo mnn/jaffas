@@ -15,6 +15,7 @@ import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.logging.Level;
 
@@ -94,10 +95,27 @@ public class mod_jaffas_trees {
     public static ItemJaffaFruit itemOrange;
     public static ItemJaffaFruit itemPlum;
 
+    public static enum bushType {
+        Coffee, Strawberry;
+    }
+
+    public static EnumMap<bushType, BushInfo> BushesList = new EnumMap<bushType, BushInfo>(bushType.class);
+
     private int itemSeedsCoffeeID;
     public static ItemJaffaSeeds itemSeedsCoffee;
     private int blockCoffeeID;
     public static BlockJaffaCrops blockCoffee;
+    private int itemCoffeeID;
+    public ItemJaffaBerry itemCoffee;
+
+    private int itemSeedsStrawberriesID;
+    public static ItemJaffaSeeds itemSeedsStrawberries;
+    private int blockStrawberriesID;
+    public static BlockJaffaCrops blockStrawberries;
+    private int itemStrawberriesID;
+    public Item itemStrawberries;
+
+    public final static String textureFile = "/jaffas_02.png";
 
     private int getID() {
         return this.actualID++;
@@ -119,6 +137,8 @@ public class mod_jaffas_trees {
         //this.startID = mod_jaffas.topDefaultID;
         this.startID = 3500;
         this.actualID = this.startID;
+
+        PopulateBushInfo();
 
         Configuration config = new Configuration(
                 event.getSuggestedConfigurationFile());
@@ -144,8 +164,23 @@ public class mod_jaffas_trees {
                 leavesList.add(new LeavesInfo(leavesID, saplingID, seedsID, i));
             }
 
+            for (EnumMap.Entry<bushType, BushInfo> entry : BushesList.entrySet()) {
+                BushInfo info = entry.getValue();
+
+                info.itemSeedsID = config.getOrCreateIntProperty(info.getSeedsConfigName(), Configuration.CATEGORY_ITEM, getID()).getInt();
+                info.blockID = config.getOrCreateIntProperty(info.getBlockConfigName(), Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+                info.itemFruitID = config.getOrCreateIntProperty(info.getFruitConfigName(), Configuration.CATEGORY_ITEM, getID()).getInt();
+            }
+
+            /*
             itemSeedsCoffeeID = config.getOrCreateIntProperty("coffee seeds", Configuration.CATEGORY_ITEM, getID()).getInt();
-            blockCoffeeID = config.getOrCreateIntProperty("coffee", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            blockCoffeeID = config.getOrCreateIntProperty("coffee plant", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            itemCoffeeID = config.getOrCreateIntProperty("coffee", Configuration.CATEGORY_ITEM, getID()).getInt();
+
+            itemStrawberriesID = config.getOrCreateIntProperty("strawberries seeds", Configuration.CATEGORY_ITEM, getID()).getInt();
+            blockStrawberriesID = config.getOrCreateIntProperty("strawberries plant", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            itemStrawberriesID = config.getOrCreateIntProperty("strawberries", Configuration.CATEGORY_ITEM, getID()).getInt();
+            */
 
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
             bonemealingAllowed = config.getOrCreateBooleanProperty("bonemeal", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
@@ -157,6 +192,63 @@ public class mod_jaffas_trees {
         }
     }
 
+    private void PopulateBushInfo() {
+        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 2, "Coffee Plant", 0, "Coffee", 33, Item.appleGold, 3, 1);
+    }
+
+    private void constructItemsInBushInfo() {
+        for (EnumMap.Entry<bushType, BushInfo> entry : BushesList.entrySet()) {
+            /*
+            itemSeedsCoffee = new ItemJaffaSeeds(itemSeedsCoffeeID, blockCoffeeID, Block.tilledField.blockID);
+            itemSeedsCoffee.setItemName("seeds_coffee").setIconIndex(2);
+            LanguageRegistry.addName(itemSeedsCoffee, "Coffee Seeds");
+
+            blockCoffee = new BlockJaffaCrops(blockCoffeeID, 0, 7, Item.appleGold, itemSeedsCoffee, 1);
+            GameRegistry.registerBlock(blockCoffee);
+            LanguageRegistry.addName(blockCoffee, "Coffee Plant");
+
+            itemCoffee = new ItemJaffaBerry(itemCoffeeID);
+            itemCoffee.setItemName("coffee").setIconIndex(17).setTabToDisplayOn(CreativeTabs.tabMisc);
+            LanguageRegistry.addName(itemCoffee, "Coffee");
+            */
+
+            BushInfo info = entry.getValue();
+
+            ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
+            seeds.setItemName(info.getSeedsLanguageName()).setIconIndex(info.seedsTexture);
+            LanguageRegistry.addName(seeds, info.seedsName);
+            info.itemSeeds = seeds;
+
+            BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, info.product, info.itemSeeds, info.renderer);
+            crops.setBlockName(info.getPlantLanguageName());
+            GameRegistry.registerBlock(crops);
+            LanguageRegistry.addName(crops, info.plantName);
+            info.block = crops;
+
+            ItemJaffaBerry fruit = new ItemJaffaBerry(info.itemFruitID);
+            fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setTabToDisplayOn(CreativeTabs.tabMaterials);
+            LanguageRegistry.addName(fruit, info.fruitName);
+            info.itemFruit = fruit;
+        }
+    }
+
+    private void AddBushInfo(bushType type, String name, String seedsName, int seedsTexture, String plantName, int plantTexture, String fruitName, int fruitTexture, Item product, int phases, int renderer) {
+        BushInfo info = new BushInfo();
+
+        info.name = name;
+        info.seedsName = seedsName;
+        info.seedsTexture = seedsTexture;
+        info.plantName = plantName;
+        info.plantTexture = plantTexture;
+        info.fruitName = fruitName;
+        info.fruitTexture = fruitTexture;
+        info.product = product;
+        info.phases = phases;
+        info.renderer = renderer;
+        info.type = type;
+
+        BushesList.put(type, info);
+    }
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
@@ -177,13 +269,22 @@ public class mod_jaffas_trees {
         itemPlum.setItemName("plum").setIconCoord(6, 4);
         LanguageRegistry.addName(itemPlum, "Plum");
 
+
+        //TODO generalize!
+        /*
         itemSeedsCoffee = new ItemJaffaSeeds(itemSeedsCoffeeID, blockCoffeeID, Block.tilledField.blockID);
         itemSeedsCoffee.setItemName("seeds_coffee").setIconIndex(2);
         LanguageRegistry.addName(itemSeedsCoffee, "Coffee Seeds");
 
         blockCoffee = new BlockJaffaCrops(blockCoffeeID, 0, 7, Item.appleGold, itemSeedsCoffee, 1);
         GameRegistry.registerBlock(blockCoffee);
-        LanguageRegistry.addName(blockCoffee, "Coffee");
+        LanguageRegistry.addName(blockCoffee, "Coffee Plant");
+
+        itemCoffee = new ItemJaffaBerry(itemCoffeeID);
+        itemCoffee.setItemName("coffee").setIconIndex(17).setTabToDisplayOn(CreativeTabs.tabMisc);
+        LanguageRegistry.addName(itemCoffee, "Coffee");
+*/
+        constructItemsInBushInfo();
 
         installRecipes();
 

@@ -59,7 +59,7 @@ public class mod_jaffas {
         jaffasPackR, vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
         vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen,
         donutRaw, donut, donutChocolate, donutPink, donutSugar, donutSprinkled, jaffaV, jaffaL,
-        jamP, jamL, jamV, lemons, oranges, plums, jaffaP, sprinkles, bagOfSeeds, bagOfSeedsIdentified, magnifier
+        jamP, jamL, jamV, lemons, oranges, plums, jaffaP, sprinkles, bagOfSeeds, bagOfSeedsIdentified, magnifier, jamMix
     }
 
     public static final int startID = 3600;
@@ -163,6 +163,7 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.bagOfSeedsIdentified, "Bag Of Seeds", 89, "Bag Of Seeds");
         AddItemInfo(JaffaItem.magnifier, "Magnifier", 91, "Magnifier");
         AddItemInfo(JaffaItem.jaffaP, "Jaffa Plum", 86, "Plum Jaffa Cake");
+        AddItemInfo(JaffaItem.jamMix, "Jam Mix", 79, "Mix of Jams");
     }
 
     public mod_jaffas() {
@@ -378,9 +379,11 @@ public class mod_jaffas {
         createJaffaFood(JaffaItem.donutChocolate, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
         createJaffaFood(JaffaItem.donutPink, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
         createJaffaFood(JaffaItem.donutSugar, 2, 0.3F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.15F);
-        createJaffaFood(JaffaItem.donutSprinkled, 2, 0.3F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.15F);
+        createJaffaFood(JaffaItem.donutSprinkled, 2, 0.9F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.20F);
 
         createBagOfSeed(JaffaItem.bagOfSeedsIdentified);
+
+        createJaffaItem(JaffaItem.jamMix);
 
         installRecipes();
 
@@ -578,7 +581,7 @@ public class mod_jaffas {
 
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.sprinkles), 16), new ItemStack(Item.sugar), new ItemStack(Item.sugar), new ItemStack(Item.sugar),
-                new ItemStack(getItem(JaffaItem.jamV)), new ItemStack(getItem(JaffaItem.jamR)), new ItemStack(Item.egg));
+                new ItemStack(getItem(JaffaItem.jamMix)), new ItemStack(Item.egg));
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bagOfSeeds)), "SXS", "SLS", "SSS", 'S', new ItemStack(Item.seeds), 'X', new ItemStack(Item.silk), 'L', new ItemStack(Item.leather));
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.magnifier)), "GG ", "GG ", "  I", 'G', new ItemStack(Block.glass), 'I', new ItemStack(Item.ingotIron));
@@ -587,6 +590,12 @@ public class mod_jaffas {
         GameRegistry.addRecipe(new ItemStack(itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(JaffaItem.jaffa)));
 
         GameRegistry.addSmelting(getItem(JaffaItem.vanillaPowder).shiftedIndex, new ItemStack(getItem(JaffaItem.jamV)), 0.1F);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.jamMix), 3),
+                new ItemStack(getItem(JaffaItem.jamV)), new ItemStack(getItem(JaffaItem.jamR)),
+                new ItemStack(getItem(JaffaItem.jamL)), new ItemStack(getItem(JaffaItem.jamO)),
+                new ItemStack(getItem(JaffaItem.jamP))
+        );
 
     }
 
