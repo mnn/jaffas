@@ -6,7 +6,9 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.Version;
@@ -30,6 +32,11 @@ public class mod_jaffas_trees {
 
     public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
     public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds"};
+
+    private static IGuiHandler guiHandler;
+
+    public static BlockFruitCollector blockFruitCollector;
+    public static int blockFruitCollectorID;
 
     public static fruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
@@ -77,6 +84,7 @@ public class mod_jaffas_trees {
         }
     }
 
+    @Mod.Instance("moen-jaffas-trees")
     public static mod_jaffas_trees instance;
 
     public static ArrayList<LeavesInfo> leavesList = new ArrayList<LeavesInfo>();
@@ -157,6 +165,8 @@ public class mod_jaffas_trees {
                 info.itemFruitID = config.getOrCreateIntProperty(info.getFruitConfigName(), Configuration.CATEGORY_ITEM, getID()).getInt();
             }
 
+            blockFruitCollectorID = config.getOrCreateIntProperty("fruit collector", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
             bonemealingAllowed = config.getOrCreateBooleanProperty("bonemeal", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
 
@@ -213,6 +223,9 @@ public class mod_jaffas_trees {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
+        guiHandler = new GuiHandlerTrees();
+        NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+
         AddFruitTreesSequence(0, 0, 32, 4);
         AddFruitTreesSequence(1, 4, 32 + 4, 3);
 
@@ -231,6 +244,11 @@ public class mod_jaffas_trees {
         LanguageRegistry.addName(itemPlum, "Plum");
 
         constructItemsInBushInfo();
+
+        blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
+        GameRegistry.registerBlock(blockFruitCollector);
+        LanguageRegistry.addName(blockFruitCollector,"Fruit Collector");
+        GameRegistry.registerTileEntity(TileEntityFruitCollector.class,"fruitcollector");
 
         installRecipes();
 

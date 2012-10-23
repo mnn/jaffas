@@ -6,11 +6,13 @@ import buildcraft.api.power.PowerFramework;
 import net.minecraft.src.*;
 
 public abstract class TileEntityJaffaMachine extends TileEntity implements IPowerReceptor {
-    public static final int fuelSlot = 20;
+    public static int fuelSlot = 20;
     public int burnTime;
     public int burnItemTime;
-    protected IPowerProvider powerProvider;
+    public IPowerProvider powerProvider;
     private int powerNeeded;
+
+    protected ItemStack[] inv;
 
     public TileEntityJaffaMachine(int powerNeeded) {
         super();
@@ -111,4 +113,51 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
         return powerProvider.getMaxEnergyReceived();
     }
 
+    //@return How many items we added
+    protected int addItemToInventory(ItemStack stack, boolean doAdd) {
+        int free = -1;
+        boolean addToStack = false;
+        int ret;
+
+        for (int i = 0; i < fuelSlot - 1; i++) {
+            if (inv[i] == null) {
+                free = i;
+                i = fuelSlot;
+            } else if (inv[i].itemID == stack.itemID && inv[i].stackSize < inv[i].getMaxStackSize()) {
+                addToStack = true;
+                free = i;
+                i = fuelSlot;
+            }
+        }
+
+        if (mod_jaffas.debug) {
+            System.out.println("free~" + free + ", stack:" + stack.itemID + " - x" + stack.stackSize);
+        }
+
+        if (free != -1) {
+            if (addToStack) {
+                int newStackSize = stack.stackSize + inv[free].stackSize;
+                if (doAdd) inv[free].stackSize += stack.stackSize;
+
+                if (newStackSize > stack.getMaxStackSize()) {
+                    int overflowItemsCount = newStackSize % stack.getMaxStackSize();
+                    if (doAdd) inv[free].stackSize = stack.getMaxStackSize();
+
+                    ItemStack c = stack.copy();
+                    c.stackSize = overflowItemsCount;
+                    ret = stack.stackSize - overflowItemsCount;
+                    ret += addItemToInventory(c, doAdd);
+                } else {
+                    ret = stack.stackSize;
+                }
+            } else {
+                if (doAdd) inv[free] = stack;
+                ret = stack.stackSize;
+            }
+        } else {
+            ret = 0;
+        }
+
+        return ret;
+    }
 }

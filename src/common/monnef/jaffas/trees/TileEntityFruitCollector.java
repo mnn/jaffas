@@ -1,28 +1,43 @@
-package monnef.jaffas.food;
+package monnef.jaffas.trees;
 
 import buildcraft.api.core.Orientations;
 import buildcraft.api.inventory.ISpecialInventory;
+import monnef.jaffas.food.TileEntityJaffaMachine;
+import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
-public class TileEntityFridge extends TileEntityJaffaMachine implements IInventory, ISpecialInventory {
+public class TileEntityFruitCollector extends TileEntityJaffaMachine implements IInventory, ISpecialInventory {
+
     public static Random rand = new Random();
 
-    private int front;
-
     private int eventTime;
-    public float temperature;
 
     private int tickCounter;
 
     public static int tickDivider = 20;
+    private AxisAlignedBB box;
+    private static ArrayList<Integer> fruitList;
 
-    public TileEntityFridge() {
-        super(70);
-        inv = new ItemStack[20 + 1];
+
+    static {
+        fruitList = new ArrayList<Integer>();
+        fruitList.add(mod_jaffas_trees.itemLemon.shiftedIndex);
+        fruitList.add(mod_jaffas_trees.itemOrange.shiftedIndex);
+        fruitList.add(mod_jaffas_trees.itemPlum.shiftedIndex);
+        fruitList.add(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans).shiftedIndex);
+        fruitList.add(Item.appleRed.shiftedIndex);
+    }
+
+    public TileEntityFruitCollector() {
+        super(100);
+        inv = new ItemStack[4 + 1];
         eventTime = 0;
-        temperature = 24;
+        this.fuelSlot = 4;
     }
 
     public void updateEntity() {
@@ -32,11 +47,8 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
             // only every second do stuff
 
             if (isBurning()) {
-                //burnTime--;
+                eventTime++;
                 burnTime -= 7;
-                addEnergy(0.1F);
-            } else {
-                melt(4);
             }
 
             if (burnTime <= 0) {
@@ -44,95 +56,38 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
                 tryGetFuel();
             }
 
-            if (temperature < -5) {
-                eventTime++;
-                if (eventTime > 15) {
-                    runSpecialEvent();
-                    eventTime = 0;
-                }
+            if (eventTime > 5) {
+                runSpecialEvent();
+                eventTime = 0;
             }
         }
     }
 
     private void runSpecialEvent() {
         if (!worldObj.isRemote) {
-            int tries = 0;
-            int slotNum;
-            boolean breakCycle = false;
-            ItemStack stack;
+            // TODO fruit picking
+            box = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
+            box = box.expand(7, 2, 7);
 
-            // try harder find a slot with proper recipe input
-            do {
-                slotNum = Math.abs(rand.nextInt()) % fuelSlot;
-
-                stack = inv[slotNum];
-                if (stack != null) {
-                    breakCycle = RecipesFridge.getCopyOfResult(inv[slotNum].itemID) != null;
-                }
-            } while (tries++ < 5 && !breakCycle);
-
-
-            if (stack == null) {
-                if (rand.nextDouble() < 0.25) {
-                    ItemStack newItem = rand.nextDouble() < 0.5D ? new ItemStack(Block.ice) : new ItemStack(Item.snowball);
-
-                    inv[slotNum] = newItem;
-                    melt();
-                }
-            } else if (stack.itemID == Block.ice.blockID || stack.itemID == Item.snowball.shiftedIndex) {
-                if (rand.nextDouble() < 0.25) {
-                    if (stack.stackSize < stack.getMaxStackSize()) {
-                        stack.stackSize++;
-                        melt();
-                    }
-                }
-            } else {
-                ItemStack output = RecipesFridge.getCopyOfResult(stack.itemID);
-
-                if (output != null) {
-                    int free = -1;
-                    boolean addToStack = false;
-
-                    for (int i = 0; i < fuelSlot - 1; i++) {
-                        if (inv[i] == null) {
-                            free = i;
-                            i = fuelSlot;
-                        } else if (inv[i].itemID == output.itemID && inv[i].stackSize < inv[i].getMaxStackSize()) {
-                            addToStack = true;
-                            free = i;
-                            i = fuelSlot;
-                        }
-                    }
-
-                    if (free != -1) {
-                        inv[slotNum].stackSize--;
-                        if (inv[slotNum].stackSize <= 0) setInventorySlotContents(slotNum, null);
-
-                        if (addToStack) {
-                            inv[free].stackSize++;
-                        } else {
-                            inv[free] = output;
-                        }
-
-                        melt();
-                    }
-
+            List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class, box);
+            Iterator<EntityItem> it = list.iterator();
+            boolean notFound = true;
+            EntityItem item = null;
+            while (notFound && it.hasNext()) {
+                item = it.next();
+                if (fruitList.contains(item.item.itemID)) {
+                    notFound = false;
                 }
             }
+
+            if (!notFound) {
+                // fruit found, moving
+                addItemToInventory(item.item.copy(), true);
+                item.setDead();
+            } else {
+//                if (mod_jaffas_trees.debug) System.out.println("no fruit found");
+            }
         }
-    }
-
-
-    private void melt(int i) {
-        if (i < 1) return;
-
-        if (temperature < 24) {
-            temperature += 0.05 * i;
-        }
-    }
-
-    private void melt() {
-        melt(1);
     }
 
     @Override
@@ -155,7 +110,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
 
     @Override
     public String getInvName() {
-        return "container.fridge";
+        return "container.fruitCollector";
     }
 
     @Override
@@ -215,9 +170,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
             }
         }
 
-        setFront(tagCompound.getInteger("front"));
         eventTime = tagCompound.getInteger("eventTime");
-        temperature = tagCompound.getFloat("temperature");
     }
 
     @Override
@@ -235,22 +188,9 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
             }
         }
         tagCompound.setTag("Inventory", itemList);
-        tagCompound.setInteger("front", getFront());
         tagCompound.setInteger("eventTime", eventTime);
-        tagCompound.setFloat("temperature", temperature);
     }
 
-    public int getFront() {
-        return front;
-    }
-
-    public void setFront(int front) {
-        this.front = front;
-    }
-
-    public float getTemperature() {
-        return temperature;
-    }
 
     @Override
     public int addItem(ItemStack stack, boolean doAdd, Orientations from) {
@@ -306,11 +246,5 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
 
         output.stackSize = outputStackCount;
         return new ItemStack[]{output};
-    }
-
-    protected void addEnergy(float i) {
-        if (temperature > -10) {
-            temperature -= i;
-        }
     }
 }

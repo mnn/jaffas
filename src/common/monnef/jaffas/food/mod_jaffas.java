@@ -47,6 +47,8 @@ public class mod_jaffas {
 
 
     private static IGuiHandler guiHandler;
+
+    @Mod.Instance("moen-jaffas")
     public static mod_jaffas instance;
     public static int topDefaultID = -1;
     public boolean itemsReady = false;
