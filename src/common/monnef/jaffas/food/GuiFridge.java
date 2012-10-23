@@ -33,6 +33,11 @@ public class GuiFridge extends GuiContainer {
         if (tileEntity.tickDivider == 1) {
             String s = String.valueOf(tileEntity.getTemperature());
             fontRenderer.drawString(s, 75, 3, 4210752);
+
+            if (tileEntity.powerProvider != null) {
+                s = String.valueOf(tileEntity.powerProvider.getEnergyStored());
+                fontRenderer.drawString(s, 90, 15, 4210752);
+            }
         }
     }
 

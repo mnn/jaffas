@@ -58,15 +58,10 @@ public class ClientTickHandler implements IScheduledTickHandler {
         return null;
     }
 
-
     public void onRenderTick() {
-        //System.out.println("onRenderTick");
-        //TODO: Your Code Here
     }
 
     public void onTickInGUI(GuiScreen guiscreen) {
-        //System.out.println("onTickInGUI");
-        //TODO: Your Code Here
     }
 
     public void onTickInGame() {

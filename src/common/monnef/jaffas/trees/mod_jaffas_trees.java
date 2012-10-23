@@ -9,6 +9,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.core.Version;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
@@ -21,7 +22,7 @@ import java.util.logging.Level;
 
 import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
 
-@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = "0.4.2", dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_trees {
     private static MinecraftServer server;

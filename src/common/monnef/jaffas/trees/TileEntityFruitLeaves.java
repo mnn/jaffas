@@ -140,18 +140,11 @@ public class TileEntityFruitLeaves extends TileEntity {
     }
 
     public ItemStack getItemFromMetadataAndBlockID(fruitType fruit) {
-        //public ItemStack getItemFromMetadataAndBlockID(int metadata, Block block) {
-
-        int metadata = -1, leavesMetadataType = -1, blockID = -1;
+        int metadata = -1, leavesMetadataType = -1;
         if (debug) {
             metadata = this.getBlockMetadata();
             leavesMetadataType = BlockFruitLeaves.getLeavesType(metadata);
-            blockID = this.getBlockType().blockID;
         }
-
-        //fruitType fruit = mod_jaffas_trees.getActualLeavesType(block, metadata);
-
-        //TODO!
 
         switch (fruit) {
             case Normal:

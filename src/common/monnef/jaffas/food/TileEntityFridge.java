@@ -20,7 +20,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
     public static int tickDivider = 20;
 
     public TileEntityFridge() {
-        super();
+        super(70);
         inv = new ItemStack[20 + 1];
         eventTime = 0;
         temperature = 24;
@@ -33,13 +33,15 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
             // only every second do stuff
 
             if (isBurning()) {
-                burnTime--;
+                //burnTime--;
+                burnTime -= 7;
                 addEnergy(0.1F);
             } else {
-                melt();
+                melt(4);
             }
 
             if (burnTime <= 0) {
+                burnTime = 0;
                 tryGetFuel();
             }
 

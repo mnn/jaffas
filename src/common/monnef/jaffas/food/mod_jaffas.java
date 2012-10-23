@@ -15,6 +15,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
+import monnef.core.Version;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
@@ -23,7 +24,7 @@ import net.minecraftforge.common.EnumHelper;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = "0.4.2")
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
@@ -206,8 +207,6 @@ public class mod_jaffas {
             if (mod_jaffas.topDefaultID == -1) {
                 mod_jaffas.topDefaultID = this.actualID;
             }
-
-            if (debug) System.out.println("jaffas: loading complete; topID=" + mod_jaffas.topDefaultID);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
