@@ -26,7 +26,7 @@ public class ContainerFruitCollector extends Container {
             addSlotToContainer(new Slot(tileEntity, i, 15 + col * 18, 18 + row * 18));
         }
 
-        addSlotToContainer(new Slot(tileEntity, te.fuelSlot, 102, 35));
+        addSlotToContainer(new Slot(tileEntity, te.getFuelSlot(), 102, 35));
 
         //commonly used vanilla code that adds the player's inventory
         bindPlayerInventory(inventoryPlayer);

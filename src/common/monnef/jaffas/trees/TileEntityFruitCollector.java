@@ -19,6 +19,7 @@ import java.util.Random;
 
 public class TileEntityFruitCollector extends TileEntityJaffaMachine implements IInventory, ISpecialInventory {
 
+    public static final int suckCost = 30;
     public static Random rand = new Random();
 
     private int eventTime;
@@ -69,6 +70,13 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         }
     }
 
+    public TileEntityFruitCollector() {
+        super(100);
+        inv = new ItemStack[4 + 1];
+        eventTime = 0;
+        this.fuelSlot = 4;
+    }
+
     public CollectorStates getState() {
         return this.state;
     }
@@ -86,13 +94,6 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         ((BlockFruitCollector) this.getBlockType()).spawnParticlesOfTargetedItem(worldObj, this.rand, xCoord, yCoord, zCoord, true);
     }
 
-    public TileEntityFruitCollector() {
-        super(100);
-        inv = new ItemStack[4 + 1];
-        eventTime = 0;
-        this.fuelSlot = 4;
-    }
-
     public void updateEntity() {
         tickCounter++;
 
@@ -101,19 +102,25 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
             if (isBurning()) {
                 eventTime++;
-                burnTime -= 7;
+                burnTime -= 5;
             }
 
             if (burnTime <= 0) {
                 burnTime = 0;
-                tryGetFuel();
+                if (!inventoryFull()) {
+                    tryGetFuel();
+                }
             }
 
 
             switch (state) {
                 case idle:
-                    if (eventTime > 5) {
-                        aquireTarget();
+                    if (eventTime > 5 && burnTime > suckCost) {
+                        if (aquireTarget()) {
+                            burnTime -= suckCost;
+                        } else {
+                            burnTime -= 1;
+                        }
                         eventTime = 0;
                     }
                     break;
@@ -122,9 +129,21 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                     cooldown -= 1;
                     if (cooldown <= 0) {
                         if (targetedItem != null && this.targetedItem.isEntityAlive()) {
-                            addItemToInventory(this.targetedItem.item.copy(), true);
+                            ItemStack stack = this.targetedItem.item.copy();
+                            int itemsAdded = addItemToInventory(this.targetedItem.item.copy(), true);
                             this.targetedItem.setDead();
                             if (mod_jaffas_trees.debug) System.out.println("target destroyed");
+                            int itemsLeft = stack.stackSize - itemsAdded;
+
+                            // spit out stuff we can't add
+                            if (itemsLeft != 0) {
+                                EntityItem ei = new EntityItem(worldObj, xCoord + 0.5, yCoord + 0.7, zCoord + 0.5, stack);
+                                ei.motionX = 0;
+                                ei.motionY = 0.2;
+                                ei.motionZ = 0;
+
+                                worldObj.spawnEntityInWorld(ei);
+                            }
                         }
 
                         this.state = CollectorStates.idle;
@@ -137,7 +156,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         }
     }
 
-    private void aquireTarget() {
+    private boolean aquireTarget() {
         if (!worldObj.isRemote) {
             box = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
             box = box.expand(7, 2, 7);
@@ -148,7 +167,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
             EntityItem item = null;
             while (notFound && it.hasNext()) {
                 item = it.next();
-                if (fruitList.contains(item.item.itemID)) {
+                if (fruitList.contains(item.item.itemID) && canAddToInventory(item)) {
                     notFound = false;
                 }
             }
@@ -158,13 +177,17 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                 this.targetedItem = item;
                 this.state = CollectorStates.targeted;
                 this.cooldown = 3;
-                if (mod_jaffas_trees.debug) System.out.println("target aquired!");
+//                if (mod_jaffas_trees.debug) System.out.println("target aquired!");
 
                 this.sendStateUpdatePacket();
+                return true;
             } else {
 //                if (mod_jaffas_trees.debug) System.out.println("no fruit found");
+                return false;
             }
         }
+
+        return false;
     }
 
     private void sendStateUpdatePacket() {

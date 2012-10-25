@@ -6,7 +6,7 @@ import buildcraft.api.power.PowerFramework;
 import net.minecraft.src.*;
 
 public abstract class TileEntityJaffaMachine extends TileEntity implements IPowerReceptor {
-    public static int fuelSlot = 20;
+    protected int fuelSlot;
     public int burnTime;
     public int burnItemTime;
     public IPowerProvider powerProvider;
@@ -119,7 +119,7 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
         boolean addToStack = false;
         int ret;
 
-        for (int i = 0; i < fuelSlot - 1; i++) {
+        for (int i = 0; i < fuelSlot; i++) {
             if (inv[i] == null) {
                 free = i;
                 i = fuelSlot;
@@ -159,5 +159,24 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
         }
 
         return ret;
+    }
+
+    public int getFuelSlot() {
+        return fuelSlot;
+    }
+
+    public boolean inventoryFull() {
+        for (int i = 0; i < fuelSlot; i++) {
+            ItemStack stack = this.getStackInSlot(i);
+            if (stack == null || stack.stackSize != stack.getMaxStackSize()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public boolean canAddToInventory(EntityItem item) {
+        return this.addItemToInventory(item.item, false) > 0;
     }
 }

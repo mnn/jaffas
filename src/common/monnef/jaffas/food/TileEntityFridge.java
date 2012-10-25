@@ -23,6 +23,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
         inv = new ItemStack[20 + 1];
         eventTime = 0;
         temperature = 24;
+        fuelSlot = 20;
     }
 
     public void updateEntity() {
