@@ -1,7 +1,14 @@
 package monnef.jaffas.trees;
 
-public class CommonProxyTutorial {
-	public void registerRenderThings(){}
+import net.minecraft.src.World;
 
-    public void setFancyGraphicsLevel(BlockFruitLeaves leaves, boolean value) {    }
+public class CommonProxyTutorial {
+    public void registerRenderThings() {
+    }
+
+    public void setFancyGraphicsLevel(BlockFruitLeaves leaves, boolean value) {
+    }
+
+    public void addEffect(String s, World world, double d1, double d2, double d3, double d4, double d5, double d6) {
+    }
 }

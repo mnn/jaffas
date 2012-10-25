@@ -25,10 +25,12 @@ import java.util.logging.Level;
 import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
 
 @Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = mod_jaffas_trees.channel, packetHandler = PacketHandler.class)
 public class mod_jaffas_trees {
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;
+
+    public static final String channel = "jaffas-02";
 
     public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
     public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds"};
@@ -247,8 +249,8 @@ public class mod_jaffas_trees {
 
         blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
         GameRegistry.registerBlock(blockFruitCollector);
-        LanguageRegistry.addName(blockFruitCollector,"Fruit Collector");
-        GameRegistry.registerTileEntity(TileEntityFruitCollector.class,"fruitcollector");
+        LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
+        GameRegistry.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
 
         installRecipes();
 

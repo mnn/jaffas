@@ -2,10 +2,16 @@ package monnef.jaffas.trees;
 
 import buildcraft.api.core.Orientations;
 import buildcraft.api.inventory.ISpecialInventory;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.network.PacketDispatcher;
+import cpw.mods.fml.common.network.Player;
 import monnef.jaffas.food.TileEntityJaffaMachine;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -18,11 +24,36 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
     private int eventTime;
 
     private int tickCounter;
+    private int cooldown = 0;
 
     public static int tickDivider = 20;
     private AxisAlignedBB box;
     private static ArrayList<Integer> fruitList;
 
+    private static int collectorSyncDistance = 32;
+
+    private double ix, iy, iz;
+
+    public double getIX() {
+        return ix;
+    }
+
+    public double getIY() {
+        return iy;
+    }
+
+    public double getIZ() {
+        return iz;
+    }
+
+    public static enum CollectorStates {
+        idle, targeted
+    }
+
+    public static CollectorStates[] OrdinalToState;
+
+    private CollectorStates state = CollectorStates.idle;
+    private EntityItem targetedItem = null;
 
     static {
         fruitList = new ArrayList<Integer>();
@@ -31,6 +62,28 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         fruitList.add(mod_jaffas_trees.itemPlum.shiftedIndex);
         fruitList.add(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans).shiftedIndex);
         fruitList.add(Item.appleRed.shiftedIndex);
+
+        OrdinalToState = new CollectorStates[CollectorStates.values().length];
+        for (CollectorStates state : CollectorStates.values()) {
+            OrdinalToState[state.ordinal()] = state;
+        }
+    }
+
+    public CollectorStates getState() {
+        return this.state;
+    }
+
+    public EntityItem getTargetedItem() {
+        return targetedItem;
+    }
+
+    public void updateInnerState(byte newState, double ix, double iy, double iz) {
+        this.ix = ix;
+        this.iy = iy;
+        this.iz = iz;
+        this.state = OrdinalToState[newState];
+
+        ((BlockFruitCollector) this.getBlockType()).spawnParticlesOfTargetedItem(worldObj, this.rand, xCoord, yCoord, zCoord, true);
     }
 
     public TileEntityFruitCollector() {
@@ -56,16 +109,36 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                 tryGetFuel();
             }
 
-            if (eventTime > 5) {
-                runSpecialEvent();
-                eventTime = 0;
+
+            switch (state) {
+                case idle:
+                    if (eventTime > 5) {
+                        aquireTarget();
+                        eventTime = 0;
+                    }
+                    break;
+
+                case targeted:
+                    cooldown -= 1;
+                    if (cooldown <= 0) {
+                        if (targetedItem != null && this.targetedItem.isEntityAlive()) {
+                            addItemToInventory(this.targetedItem.item.copy(), true);
+                            this.targetedItem.setDead();
+                            if (mod_jaffas_trees.debug) System.out.println("target destroyed");
+                        }
+
+                        this.state = CollectorStates.idle;
+                        this.sendStateUpdatePacket();
+                        this.targetedItem = null;
+                    }
+                    break;
             }
+
         }
     }
 
-    private void runSpecialEvent() {
+    private void aquireTarget() {
         if (!worldObj.isRemote) {
-            // TODO fruit picking
             box = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
             box = box.expand(7, 2, 7);
 
@@ -82,12 +155,51 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
             if (!notFound) {
                 // fruit found, moving
-                addItemToInventory(item.item.copy(), true);
-                item.setDead();
+                this.targetedItem = item;
+                this.state = CollectorStates.targeted;
+                this.cooldown = 3;
+                if (mod_jaffas_trees.debug) System.out.println("target aquired!");
+
+                this.sendStateUpdatePacket();
             } else {
 //                if (mod_jaffas_trees.debug) System.out.println("no fruit found");
             }
         }
+    }
+
+    private void sendStateUpdatePacket() {
+        Side side = FMLCommonHandler.instance().getEffectiveSide();
+        if (side == Side.CLIENT) {
+            return;
+        }
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+        DataOutputStream outputStream = new DataOutputStream(bos);
+        try {
+            outputStream.writeInt(this.xCoord);
+            outputStream.writeInt(this.yCoord);
+            outputStream.writeInt(this.zCoord);
+            outputStream.writeByte(this.state.ordinal());
+            outputStream.writeDouble(this.targetedItem.posX);
+            outputStream.writeDouble(this.targetedItem.posY);
+            outputStream.writeDouble(this.targetedItem.posZ);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        Packet250CustomPayload packet = new Packet250CustomPayload();
+        packet.channel = mod_jaffas_trees.channel;
+        packet.data = bos.toByteArray();
+        packet.length = bos.size();
+
+        AxisAlignedBB pbox = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
+        pbox = pbox.expand(collectorSyncDistance, collectorSyncDistance, collectorSyncDistance);
+
+        List<Player> list = worldObj.getEntitiesWithinAABB(Player.class, pbox);
+        for (Player p : list) {
+            PacketDispatcher.sendPacketToPlayer(packet, p);
+        }
+
     }
 
     @Override

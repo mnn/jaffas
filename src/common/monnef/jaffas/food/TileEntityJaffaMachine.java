@@ -131,7 +131,7 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
         }
 
         if (mod_jaffas.debug) {
-            System.out.println("free~" + free + ", stack:" + stack.itemID + " - x" + stack.stackSize);
+//            System.out.println("free~" + free + ", stack:" + stack.itemID + " - x" + stack.stackSize);
         }
 
         if (free != -1) {

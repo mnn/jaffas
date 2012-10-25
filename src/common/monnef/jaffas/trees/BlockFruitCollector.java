@@ -72,6 +72,31 @@ public class BlockFruitCollector extends BlockContainer {
         }
     }
 
+    public void randomDisplayTick(World world, int i, int j, int k, Random random) {
+        spawnParticlesOfTargetedItem(world, random, i, j, k, false);
+
+        /*
+        for (int a = 0; a < 3; a++) {
+            mod_jaffas_trees.proxy.addEffect("sucking", world, i + randomShift(random), j + randomShift(random), k + randomShift(random), 0D, 0.02D,0D);
+        }
+        */
+    }
+
+    public void spawnParticlesOfTargetedItem(World world, Random random, int i, int j, int k, boolean force) {
+        TileEntityFruitCollector et = (TileEntityFruitCollector) world.getBlockTileEntity(i, j, k);
+        if (et.getState() == TileEntityFruitCollector.CollectorStates.targeted || force) {
+            for (int a = 0; a < 15; a++) {
+                mod_jaffas_trees.proxy.addEffect("sucking", world, et.getIX() + randomShift(random), et.getIY() + randomShift(random), et.getIZ() + randomShift(random), (random.nextDouble() - 0.5) / 40D, (random.nextDouble()) / 200D, (random.nextDouble() - 0.5) / 40D);
+            }
+
+        }
+    }
+
+    private double randomShift(Random random) {
+        return random.nextDouble() % 1D - 0.5D;
+    }
+
+
     @Override
     public TileEntity createNewTileEntity(World world) {
         return new TileEntityFruitCollector();
