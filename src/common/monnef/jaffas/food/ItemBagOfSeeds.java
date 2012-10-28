@@ -34,11 +34,17 @@ public class ItemBagOfSeeds extends Item {
                     if (rand.nextInt(2) == 0) {
                         seed = new ItemStack(Item.seeds);
                     } else {
-                        int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
-                        ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / 4).seedsItem;
-                        int meta = type % 4;
+                        // choosing from our seeds (tree, bush)
+                        if (rand.nextBoolean()) {
+                            int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
+                            ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / 4).seedsItem;
+                            int meta = type % 4;
 
-                        seed = new ItemStack(item, 1, meta);
+                            seed = new ItemStack(item, 1, meta);
+                        } else {
+                            int type = rand.nextInt(mod_jaffas_trees.BushesList.size());
+                            seed = new ItemStack(mod_jaffas_trees.BushesList.get(mod_jaffas_trees.bushType.values()[type]).itemSeeds);
+                        }
                     }
 
                     Entity ent = new EntityItem(par2World, par3EntityPlayer.posX, par3EntityPlayer.posY + 0.5, par3EntityPlayer.posZ, seed);

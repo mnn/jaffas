@@ -4,6 +4,7 @@ import buildcraft.api.core.Orientations;
 import buildcraft.api.inventory.ISpecialInventory;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import monnef.jaffas.food.TileEntityJaffaMachine;
@@ -34,6 +35,8 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
     private static int collectorSyncDistance = 32;
 
     private double ix, iy, iz;
+
+    private String soundToRun = null;
 
     public double getIX() {
         return ix;
@@ -85,17 +88,33 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         return targetedItem;
     }
 
+    @SideOnly(Side.CLIENT)
     public void updateInnerState(byte newState, double ix, double iy, double iz) {
         this.ix = ix;
         this.iy = iy;
         this.iz = iz;
+        CollectorStates oldState = this.state;
         this.state = OrdinalToState[newState];
 
         ((BlockFruitCollector) this.getBlockType()).spawnParticlesOfTargetedItem(worldObj, this.rand, xCoord, yCoord, zCoord, true);
+ /*
+        if (this.state == CollectorStates.idle && oldState == CollectorStates.targeted)
+            this.soundToRun = "suck";
+//            worldObj.playSoundEffect(xCoord, yCoord, zCoord, "suck", 1, 1);
+
+        if (this.state == CollectorStates.targeted && oldState == CollectorStates.idle)
+            this.soundToRun = "sharpener";
+//            worldObj.playSoundEffect(xCoord, yCoord, zCoord, "sharpener", 1, 1);
+*/
     }
 
     public void updateEntity() {
         tickCounter++;
+
+        if (this.soundToRun != null) {
+            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, 1, 1);
+            this.soundToRun = null;
+        }
 
         if (tickCounter % tickDivider == 0) {
             // only every second do stuff
@@ -117,6 +136,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                 case idle:
                     if (eventTime > 5 && burnTime > suckCost) {
                         if (aquireTarget()) {
+                            this.soundToRun = "sharpener";
                             burnTime -= suckCost;
                         } else {
                             burnTime -= 1;
@@ -134,6 +154,8 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                             this.targetedItem.setDead();
                             if (mod_jaffas_trees.debug) System.out.println("target destroyed");
                             int itemsLeft = stack.stackSize - itemsAdded;
+
+                            this.soundToRun = "suck";
 
                             // spit out stuff we can't add
                             if (itemsLeft != 0) {

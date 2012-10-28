@@ -28,6 +28,7 @@ public class BlockJaffaCrops extends BlockFlower {
         this.product = product;
         this.seeds = seeds;
         this.renderer = renderer;
+        this.setRequiresSelfNotify();
     }
 
     public String getTextureFile() {
@@ -69,8 +70,11 @@ public class BlockJaffaCrops extends BlockFlower {
                 float var7 = this.getGrowthRate(par1World, par2, par3, par4);
 
                 if (par5Random.nextInt((int) (25.0F / var7) + 1) == 0) {
-                    ++var6;
-                    par1World.setBlockMetadataWithNotify(par2, par3, par4, var6);
+                    // slow grow a bit
+                    if (par5Random.nextBoolean()) {
+                        ++var6;
+                        par1World.setBlockMetadataWithNotify(par2, par3, par4, var6);
+                    }
                 }
             }
         }

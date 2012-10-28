@@ -107,7 +107,7 @@ public class mod_jaffas_trees {
     public static ItemJaffaFruit itemPlum;
 
     public static enum bushType {
-        Coffee, Strawberry;
+        Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato;
     }
 
     public static EnumMap<bushType, BushInfo> BushesList = new EnumMap<bushType, BushInfo>(bushType.class);
@@ -180,7 +180,13 @@ public class mod_jaffas_trees {
     }
 
     private void PopulateBushInfo() {
-        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 2, "Coffee Plant", 0, "Coffee", 33, Item.appleGold, 3, 1);
+        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 34, "Coffee Plant", 96, "Coffee", 128, null, 2, 1);
+        AddBushInfo(bushType.Strawberry, "strawberry", "Strawberry Seeds", 34, "Strawberry Plant", 99, "Strawberry", 129, null, 2, 1);
+
+        AddBushInfo(bushType.Onion, "onion", "Onion Seeds", 34, "Onion Plant", 102, "Onion", 130, null, 2, 1);
+        AddBushInfo(bushType.Paprika, "paprika", "Paprika Seeds", 34, "Paprika Plant", 105, "Paprika", 131, null, 2, 1);
+        AddBushInfo(bushType.Raspberry, "raspberry", "Raspberry Seeds", 34, "Raspberry Plant", 108, "Raspberry", 132, null, 2, 1);
+        AddBushInfo(bushType.Tomato, "tomato", "Tomato Seeds", 34, "Tomato Plant", 111, "Tomato", 133, null, 2, 1);
     }
 
     private void constructItemsInBushInfo() {
@@ -192,16 +198,17 @@ public class mod_jaffas_trees {
             LanguageRegistry.addName(seeds, info.seedsTitle);
             info.itemSeeds = seeds;
 
-            BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, info.product, info.itemSeeds, info.renderer);
+            ItemJaffaBerry fruit = new ItemJaffaBerry(info.itemFruitID);
+            fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setTabToDisplayOn(CreativeTabs.tabMaterials);
+            LanguageRegistry.addName(fruit, info.fruitTitle);
+            info.itemFruit = fruit;
+
+            BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, info.product == null ? info.itemFruit : info.product, info.itemSeeds, info.renderer);
             crops.setBlockName(info.getPlantLanguageName());
             GameRegistry.registerBlock(crops);
             LanguageRegistry.addName(crops, info.plantTitle);
             info.block = crops;
 
-            ItemJaffaBerry fruit = new ItemJaffaBerry(info.itemFruitID);
-            fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setTabToDisplayOn(CreativeTabs.tabMaterials);
-            LanguageRegistry.addName(fruit, info.fruitTitle);
-            info.itemFruit = fruit;
         }
     }
 

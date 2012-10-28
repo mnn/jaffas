@@ -215,6 +215,8 @@ public class mod_jaffas {
         } finally {
             config.save();
         }
+
+        proxy.registerSounds();
     }
 
     private void finilizeItemSetup(JaffaItemInfo info, Item item) {
