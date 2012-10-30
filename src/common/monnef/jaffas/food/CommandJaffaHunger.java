@@ -27,7 +27,7 @@ public class CommandJaffaHunger extends CommandBase {
         }
 
         player.setEntityHealth(2);
-        player.addPotionEffect(new PotionEffect(Potion.hunger.getId(), 5 * 20, 50));
+        player.addPotionEffect(new PotionEffect(Potion.hunger.getId(), 7 * 20, 50));
 
     }
 

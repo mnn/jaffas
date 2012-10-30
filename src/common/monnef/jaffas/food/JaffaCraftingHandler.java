@@ -7,6 +7,7 @@ import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class JaffaCraftingHandler implements ICraftingHandler {
 
@@ -15,23 +16,90 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     private static HashMap<Integer, PersistentItemInfo> persistentItems = new HashMap<Integer, PersistentItemInfo>();
 
     public static void AddPersistentItem(int ID) {
-        persistentItems.put(ID, new PersistentItemInfo(ID));
+        AddPersistentItem(ID, false, -1);
     }
 
     public static void AddPersistentItem(mod_jaffas.JaffaItem item) {
         AddPersistentItem(mod_jaffas.getJaffaItem(item).shiftedIndex);
     }
 
+    public static void AddPersistentItem(mod_jaffas.JaffaItem item, boolean takesDamage, int substituteItem) {
+        AddPersistentItem(mod_jaffas.getJaffaItem(item).shiftedIndex, takesDamage, substituteItem);
+    }
+
+    public static void AddPersistentItem(int ID, boolean takesDamage, int substituteItem) {
+        PersistentItemInfo info = new PersistentItemInfo(ID);
+        if (takesDamage) info.SetDamageCopies();
+        if (substituteItem > -1) info.SetSubstituteItem(substituteItem);
+
+        persistentItems.put(ID, info);
+    }
+
+    public static void AddPersistentItem(mod_jaffas.JaffaItem item, boolean takesDamage, mod_jaffas.JaffaItem substitude) {
+        AddPersistentItem(item, takesDamage, mod_jaffas.getJaffaItem(substitude).shiftedIndex);
+    }
+
     @Override
     public void onCrafting(EntityPlayer player, ItemStack item,
                            IInventory craftMatrix) {
-        /*
-        if (!Thread.currentThread().getName().equals("Server thread")) {
-            if (debug) System.out.println("not server thread, skipping");
-            return;
-        }
-        */
+        //HandleMallets(craftMatrix);
 
+        HandleTin(craftMatrix);
+        HandleRolls(craftMatrix);
+
+        HandlePersistentItems(craftMatrix);
+    }
+
+    private void HandlePersistentItems(IInventory matrix) {
+        int ingredientsCount = 0;
+        HashSet<Integer> processedSlots = new HashSet<Integer>(); // to not process newly added items (because they're result of some recipe)
+
+        for (int i = 0; i < matrix.getSizeInventory(); i++) {
+            if (matrix.getStackInSlot(i) != null && !processedSlots.contains(i)) {
+                ingredientsCount++;
+                ItemStack item = matrix.getStackInSlot(i);
+                PersistentItemInfo info = persistentItems.get(item.itemID);
+                if (info != null) {
+                    if (info.Damage) {
+                        ItemStack newItem = item.copy();
+                        newItem.stackSize++;
+                        int newDamage = item.getItemDamage() + 1;
+
+                        if (newDamage < item.getMaxDamage()) {
+                            newItem.setItemDamage(newDamage);
+                            matrix.setInventorySlotContents(i, newItem);
+                        } else if (info.SubstituteItemID > -1) {
+                            doSubstitution(matrix, processedSlots, info);
+                        }
+                    } else if (info.SubstituteItemID > -1) {
+                        doSubstitution(matrix, processedSlots, info);
+                    } else {
+                        item.stackSize++;
+                    }
+                }
+            }
+        }
+    }
+
+    private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info) {
+        int slot = getFreeSlot(matrix);
+        if (slot < 0 || slot >= matrix.getSizeInventory()) {
+            throw new RuntimeException("No space for recipe output - corrupt recipe?");
+        }
+
+        matrix.setInventorySlotContents(slot, new ItemStack(info.SubstituteItemID, 2, 0)); // 2 because one will be consumed (hmm)
+        processedSlots.add(slot);
+    }
+
+    public static int getFreeSlot(IInventory matrix) {
+        for (int i = 0; i < matrix.getSizeInventory(); i++)
+            if (matrix.getStackInSlot(i) == null)
+                return i;
+
+        return -1;
+    }
+
+    private void HandleMallets(IInventory craftMatrix) {
         MalletHelper recipeTestMallet = MalletHelper.findMallet(craftMatrix);
 
         if (debug) System.out.println("craft from " + Thread.currentThread().getName());
@@ -62,25 +130,6 @@ public class JaffaCraftingHandler implements ICraftingHandler {
             if (newDamage < newTool.getMaxDamage()) {
                 if (debug) System.out.println("adding new mallets");
                 craftMatrix.setInventorySlotContents(position, newTool);
-            }
-        }
-
-        HandleTin(craftMatrix);
-        HandleRolls(craftMatrix);
-
-        HandlePersistentItems(craftMatrix);
-    }
-
-    private void HandlePersistentItems(IInventory matrix) {
-        int ingredientsCount = 0;
-
-        for (int i = 0; i < matrix.getSizeInventory(); i++) {
-            if (matrix.getStackInSlot(i) != null) {
-                ingredientsCount++;
-                ItemStack item = matrix.getStackInSlot(i);
-                if (persistentItems.containsKey(item.itemID)) {
-                    item.stackSize++;
-                }
             }
         }
     }

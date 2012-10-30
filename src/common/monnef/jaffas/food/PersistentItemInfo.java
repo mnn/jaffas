@@ -1,16 +1,21 @@
 package monnef.jaffas.food;
 
-/**
- * Created with IntelliJ IDEA.
- * User: moen
- * Date: 30/10/12
- * Time: 12:21
- * To change this template use File | Settings | File Templates.
- */
 public class PersistentItemInfo {
-    int ItemID;
+    public int ItemID;
+    public boolean Damage = false;
+    public int SubstituteItemID = -1;
 
     public PersistentItemInfo(int ID) {
         this.ItemID = ID;
+    }
+
+    public PersistentItemInfo SetDamageCopies() {
+        this.Damage = true;
+        return this;
+    }
+
+    public PersistentItemInfo SetSubstituteItem(int ID) {
+        this.SubstituteItemID = ID;
+        return this;
     }
 }

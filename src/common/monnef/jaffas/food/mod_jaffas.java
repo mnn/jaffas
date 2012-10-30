@@ -63,10 +63,10 @@ public class mod_jaffas {
         vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen,
         donutRaw, donut, donutChocolate, donutPink, donutSugar, donutSprinkled, jaffaV, jaffaL,
         jamP, jamL, jamV, lemons, oranges, plums, jaffaP, sprinkles, bagOfSeeds, bagOfSeedsIdentified, magnifier, jamMix,
-        kettle, cup, cupCoffee, cupRaw, omeletteRaw, omelette, tomatoChopped, paprikaChopped,
+        kettle, kettleWaterCold, kettleWaterHot, cup, cupCoffee, cupRaw, omeletteRaw, omelette, tomatoChopped, paprikaChopped,
         grinderMeat, wienerCocktail, jaffaStrawberry, jaffaRaspberry, raspberries, strawberries,
         jamRaspberry, jamStrawberry,
-        rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen
+        rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen, coffee, coffeeRoasted
     }
 
     public static final int startID = 3600;
@@ -172,10 +172,12 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.jaffaP, "Jaffa Plum", 86, "Plum Jaffa Cake");
         AddItemInfo(JaffaItem.jamMix, "Jam Mix", 110, "Mix of Jams");
 
-        AddItemInfo(JaffaItem.kettle, "Kettle", 92, "Kettle");
+        AddItemInfo(JaffaItem.kettle, "Kettle", 92, "Empty Kettle");
         AddItemInfo(JaffaItem.cup, "Cup", 93, "Cup");
         AddItemInfo(JaffaItem.cupCoffee, "Coffee Cup", 94, "Cup of Coffee");
         AddItemInfo(JaffaItem.cupRaw, "Raw Cup", 109, "Raw Cup");
+        AddItemInfo(JaffaItem.kettleWaterCold, "Kettle Cold", 92, "Kettle With Cold Water");
+        AddItemInfo(JaffaItem.kettleWaterHot, "Kettle Hot", 92, "Kettle With Hot Water");
 
         AddItemInfo(JaffaItem.omeletteRaw, "Omelette Raw", 97, "Raw Omelette");
         AddItemInfo(JaffaItem.omelette, "Omelette", 98, "Omelette");
@@ -198,6 +200,9 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.skewer, "Skewer", 68, "Skewer");
         AddItemInfo(JaffaItem.ironSkewer, "Iron Skewer", 69, "Iron Skewer");
         AddItemInfo(JaffaItem.knifeKitchen, "Kitchen Knife", 70, "Kitchen Knife");
+
+        AddItemInfo(JaffaItem.coffee, "Coffee", 8, "Coffee");
+        AddItemInfo(JaffaItem.coffeeRoasted, "Roasted Coffee", 8, "Roasted Coffee");
     }
 
     public mod_jaffas() {
@@ -310,6 +315,19 @@ public class mod_jaffas {
         GameRegistry.registerBlock(blockJaffaBomb);
         LanguageRegistry.addName(blockJaffaBomb, "Jaffa Cakes BOMB");
 
+        createItems();
+
+        installRecipes();
+
+        itemsReady = true;
+
+        // texture stuff
+        proxy.registerRenderThings();
+
+        GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+    }
+
+    private void createItems() {
         createJaffaItem(JaffaItem.pastry);
         createJaffaItem(JaffaItem.jamO);
         createJaffaItem(JaffaItem.jamR);
@@ -420,9 +438,11 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.jamMix);
 
         createJaffaItem(JaffaItem.kettle);
-        JaffaCraftingHandler.AddPersistentItem(JaffaItem.kettle);
+        createJaffaItem(JaffaItem.kettleWaterCold);
+        createJaffaItem(JaffaItem.kettleWaterHot).setMaxDamage(5).setMaxStackSize(1);
         createJaffaItem(JaffaItem.cup);
-        createJaffaItem(JaffaItem.cupCoffee);
+        createJaffaFood(JaffaItem.cupCoffee, 1, 0.2F).setReturnItem(new ItemStack(getJaffaItem(JaffaItem.cup))).
+                setPotionEffect(Potion.digSpeed.id, 35, 1, 1F).setAlwaysEdible().setMaxStackSize(16);
         createJaffaItem(JaffaItem.cupRaw);
         createJaffaItem(JaffaItem.omeletteRaw);
         createJaffaItem(JaffaItem.omelette);
@@ -446,14 +466,8 @@ public class mod_jaffas {
         createJaffaFood(JaffaItem.jaffaStrawberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
         createJaffaFood(JaffaItem.jaffaRaspberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
 
-        installRecipes();
-
-        itemsReady = true;
-
-        // texture stuff
-        proxy.registerRenderThings();
-
-        GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+        createJaffaItem(JaffaItem.coffee);
+        createJaffaItem(JaffaItem.coffeeRoasted);
     }
 
     @Mod.ServerStarting
@@ -512,7 +526,7 @@ public class mod_jaffas {
 
 
         GameRegistry.addSmelting(getItem(JaffaItem.pastry).shiftedIndex, new ItemStack(
-                getItem(JaffaItem.cake)), 0.1F);
+                getItem(JaffaItem.cake)), 5F);
 
         AddMalletRecipes();
 
@@ -531,6 +545,11 @@ public class mod_jaffas {
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.malletHeadIron)), "SOS", "OBO", "SOS",
                 'S', new ItemStack(Item.silk), 'B', new ItemStack(Block.blockSteel),
                 'O', new ItemStack(Block.stone));
+
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.mallet, true, -1);
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.malletStone, true, -1);
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.malletIron, true, -1);
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.malletDiamond, true, -1);
 
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.beans)), new ItemStack(Item.dyePowder, 1, 3));
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.bucketMilk));
@@ -553,7 +572,7 @@ public class mod_jaffas {
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.sweetRollRaw), 10), new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(Item.stick));
 
-        GameRegistry.addSmelting(getItem(JaffaItem.sweetRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.sweetRoll)), 0.1F);
+        GameRegistry.addSmelting(getItem(JaffaItem.sweetRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.sweetRoll)), 0.2F);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), new ItemStack(Item.bucketMilk));
 
@@ -566,8 +585,8 @@ public class mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bunRaw), 10), "PP", 'P', new ItemStack(getItem(JaffaItem.pastry)));
 
-        GameRegistry.addSmelting(getItem(JaffaItem.bunRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.bun)), 0.1F);
-        GameRegistry.addSmelting(getItem(JaffaItem.sausageRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.sausage)), 0.1F);
+        GameRegistry.addSmelting(getItem(JaffaItem.bunRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.bun)), 0.2F);
+        GameRegistry.addSmelting(getItem(JaffaItem.sausageRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.sausage)), 0.2F);
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.hotdog)), "S", "B", 'S', new ItemStack(getItem(JaffaItem.sausage)), 'B', new ItemStack(getItem(JaffaItem.bun)));
 
@@ -650,7 +669,7 @@ public class mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(JaffaItem.jaffa)));
 
-        GameRegistry.addSmelting(getItem(JaffaItem.vanillaPowder).shiftedIndex, new ItemStack(getItem(JaffaItem.jamV)), 0.1F);
+        GameRegistry.addSmelting(getItem(JaffaItem.vanillaPowder).shiftedIndex, new ItemStack(getItem(JaffaItem.jamV)), 0.6F);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.jamMix), 3),
                 new ItemStack(getItem(JaffaItem.jamV)), new ItemStack(getItem(JaffaItem.jamR)),
@@ -658,6 +677,25 @@ public class mod_jaffas {
                 new ItemStack(getItem(JaffaItem.jamP))
         );
 
+        GameRegistry.addSmelting(getItem(JaffaItem.raspberries).shiftedIndex, new ItemStack(
+                getItem(JaffaItem.jamRaspberry)), 0.5F);
+        GameRegistry.addSmelting(getItem(JaffaItem.strawberries).shiftedIndex, new ItemStack(
+                getItem(JaffaItem.jamStrawberry)), 0.5F);
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jaffaRaspberry), 12), "X", "Y", "Z", 'X', new ItemStack(getItem(JaffaItem.chocolate)), 'Y',
+                new ItemStack(getItem(JaffaItem.jamRaspberry)), 'Z', new ItemStack(getItem(JaffaItem.cake)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.jaffaStrawberry), 12), "X", "Y", "Z", 'X', new ItemStack(getItem(JaffaItem.chocolate)), 'Y',
+                new ItemStack(getItem(JaffaItem.jamStrawberry)), 'Z', new ItemStack(getItem(JaffaItem.cake)));
+
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.kettle)), "XS ", " XX", " XX", 'X', new ItemStack(Item.ingotIron), 'S', new ItemStack(Item.stick));
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.cupRaw)), "XXX", "XX ", 'X', new ItemStack(Item.clay));
+        GameRegistry.addSmelting(getJaffaItem(JaffaItem.cupRaw).shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.cup)), 3);
+        AddMalletShapedRecipe(new ItemStack(getJaffaItem(JaffaItem.coffee)), new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)));
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.kettleWaterCold)), "W", "K", 'W', new ItemStack(Item.bucketWater), 'K', new ItemStack(getJaffaItem(JaffaItem.kettle)));
+        GameRegistry.addSmelting(getJaffaItem(JaffaItem.kettleWaterCold).shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.kettleWaterHot)), 0);
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.cupCoffee)), "K", "C", "U",
+                'K', new ItemStack(getJaffaItem(JaffaItem.kettleWaterHot), 1, -1), 'C', new ItemStack(getJaffaItem(JaffaItem.coffee)), 'U', new ItemStack(getJaffaItem(JaffaItem.cup)));
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.kettleWaterHot, true, JaffaItem.kettle);
     }
 
     private void AddMalletRecipes() {

@@ -320,5 +320,18 @@ public class mod_jaffas_trees {
                 new ItemStack(mod_jaffas_trees.itemPlum),
                 new ItemStack(mod_jaffas_trees.itemPlum),
                 new ItemStack(mod_jaffas_trees.itemPlum));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.strawberries)),
+                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
+                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
+                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
+                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.raspberries)),
+                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
+                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
+                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
+                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit));
+
+        GameRegistry.addSmelting(BushesList.get(bushType.Coffee).itemFruit.shiftedIndex, new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.coffeeRoasted)), 0.5F);
     }
 }
