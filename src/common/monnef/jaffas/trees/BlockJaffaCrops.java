@@ -166,7 +166,7 @@ public class BlockJaffaCrops extends BlockFlower {
             ret.add(new ItemStack(product));
         }
 
-        for (int n = 0; n < 3 + fortune; n++) {
+        for (int n = 0; n < 4 + fortune; n++) {
 
             if (world.rand.nextInt(8 + phasesMax) <= metadata) {
                 ret.add(new ItemStack(seeds));

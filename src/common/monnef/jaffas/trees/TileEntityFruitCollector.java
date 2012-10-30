@@ -1,7 +1,5 @@
 package monnef.jaffas.trees;
 
-import buildcraft.api.core.Orientations;
-import buildcraft.api.inventory.ISpecialInventory;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
@@ -13,12 +11,12 @@ import net.minecraft.src.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-public class TileEntityFruitCollector extends TileEntityJaffaMachine implements IInventory, ISpecialInventory {
+public class TileEntityFruitCollector extends TileEntityJaffaMachine implements IInventory {
 
     public static final int suckCost = 30;
     public static Random rand = new Random();
@@ -30,13 +28,14 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
     public static int tickDivider = 20;
     private AxisAlignedBB box;
-    private static ArrayList<Integer> fruitList;
+    private static HashMap<Integer, Integer> fruitList;
 
     private static int collectorSyncDistance = 32;
 
     private double ix, iy, iz;
 
     private String soundToRun = null;
+    private float soundVolume = 1f;
 
     public double getIX() {
         return ix;
@@ -59,13 +58,23 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
     private CollectorStates state = CollectorStates.idle;
     private EntityItem targetedItem = null;
 
+    private static void addToFruitList(Item item) {
+        addToFruitList(item, 0);
+    }
+
+    private static void addToFruitList(Item item, int dmg) {
+        fruitList.put(item.shiftedIndex, dmg);
+    }
+
     static {
-        fruitList = new ArrayList<Integer>();
-        fruitList.add(mod_jaffas_trees.itemLemon.shiftedIndex);
-        fruitList.add(mod_jaffas_trees.itemOrange.shiftedIndex);
-        fruitList.add(mod_jaffas_trees.itemPlum.shiftedIndex);
-        fruitList.add(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans).shiftedIndex);
-        fruitList.add(Item.appleRed.shiftedIndex);
+        fruitList = new HashMap<Integer, Integer>();
+        addToFruitList(mod_jaffas_trees.itemLemon);
+        addToFruitList(mod_jaffas_trees.itemOrange);
+        addToFruitList(mod_jaffas_trees.itemPlum);
+        addToFruitList(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans));
+        addToFruitList(Item.appleRed);
+        addToFruitList(mod_jaffas_trees.itemLemon);
+        addToFruitList(Item.dyePowder, 3); // cocoa beans
 
         OrdinalToState = new CollectorStates[CollectorStates.values().length];
         for (CollectorStates state : CollectorStates.values()) {
@@ -110,11 +119,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
     public void updateEntity() {
         tickCounter++;
-
-        if (this.soundToRun != null) {
-            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, 1, 1);
-            this.soundToRun = null;
-        }
+        playQueuedSound();
 
         if (tickCounter % tickDivider == 0) {
             // only every second do stuff
@@ -136,7 +141,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                 case idle:
                     if (eventTime > 5 && burnTime > suckCost) {
                         if (aquireTarget()) {
-                            this.soundToRun = "sharpener";
+                            this.queueSound("sharpener", 0.7F);
                             burnTime -= suckCost;
                         } else {
                             burnTime -= 1;
@@ -155,7 +160,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                             if (mod_jaffas_trees.debug) System.out.println("target destroyed");
                             int itemsLeft = stack.stackSize - itemsAdded;
 
-                            this.soundToRun = "suck";
+                            this.queueSound("suck");
 
                             // spit out stuff we can't add
                             if (itemsLeft != 0) {
@@ -178,6 +183,22 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         }
     }
 
+    private void playQueuedSound() {
+        if (this.soundToRun != null) {
+            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, this.soundVolume, this.rand.nextFloat() * 0.1F + 0.9F);
+            this.soundToRun = null;
+        }
+    }
+
+    private void queueSound(String name) {
+        this.queueSound(name, 1F);
+    }
+
+    private void queueSound(String name, float volume) {
+        this.soundToRun = name;
+        this.soundVolume = volume;
+    }
+
     private boolean aquireTarget() {
         if (!worldObj.isRemote) {
             box = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
@@ -189,7 +210,8 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
             EntityItem item = null;
             while (notFound && it.hasNext()) {
                 item = it.next();
-                if (fruitList.contains(item.item.itemID) && canAddToInventory(item)) {
+                Integer itemDmg = fruitList.get(item.item.itemID);
+                if (itemDmg != null && itemDmg == item.item.getItemDamage() && canAddToInventory(item)) {
                     notFound = false;
                 }
             }
@@ -348,7 +370,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         tagCompound.setInteger("eventTime", eventTime);
     }
 
-
+    /*
     @Override
     public int addItem(ItemStack stack, boolean doAdd, Orientations from) {
         if (from == Orientations.YNeg) {
@@ -404,4 +426,5 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         output.stackSize = outputStackCount;
         return new ItemStack[]{output};
     }
+    */
 }

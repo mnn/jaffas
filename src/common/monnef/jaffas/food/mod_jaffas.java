@@ -57,12 +57,16 @@ public class mod_jaffas {
     public enum JaffaItem {
         pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
         butter, mallet, malletStone, malletIron, malletDiamond, malletHead, malletHeadStone, malletHeadIron, malletHeadDiamond,
-        brownPastry, puffPastry, peanut, cream, roll, creamRoll, cakeTin, browniesInTin, brownie, rollRaw, browniesInTinRaw,
+        brownPastry, puffPastry, peanut, cream, sweetRoll, creamRoll, cakeTin, browniesInTin, brownie, sweetRollRaw, browniesInTinRaw,
         bunRaw, bun, sausageRaw, sausage, hotdog, flour, chocolateWrapper, chocolateBar, wrapperJaffas, jaffasPack, jaffasPackO,
         jaffasPackR, vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
         vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen,
         donutRaw, donut, donutChocolate, donutPink, donutSugar, donutSprinkled, jaffaV, jaffaL,
-        jamP, jamL, jamV, lemons, oranges, plums, jaffaP, sprinkles, bagOfSeeds, bagOfSeedsIdentified, magnifier, jamMix
+        jamP, jamL, jamV, lemons, oranges, plums, jaffaP, sprinkles, bagOfSeeds, bagOfSeedsIdentified, magnifier, jamMix,
+        kettle, cup, cupCoffee, cupRaw, omeletteRaw, omelette, tomatoChopped, paprikaChopped,
+        grinderMeat, wienerCocktail, jaffaStrawberry, jaffaRaspberry, raspberries, strawberries,
+        jamRaspberry, jamStrawberry,
+        rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen
     }
 
     public static final int startID = 3600;
@@ -115,12 +119,12 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.puffPastry, "Puff Pastry", 15, "Puff Pastry");
         AddItemInfo(JaffaItem.peanut, "Peanut", 16, "Peanut");
         AddItemInfo(JaffaItem.cream, "Cream", 17, "Cream");
-        AddItemInfo(JaffaItem.roll, "Roll", 18, "Roll");
+        AddItemInfo(JaffaItem.sweetRoll, "Roll", 18, "Roll");
         AddItemInfo(JaffaItem.creamRoll, "Cream Roll", 19, "Cream Roll");
         AddItemInfo(JaffaItem.cakeTin, "Cake Tin", 20, "Cake Tin");
         AddItemInfo(JaffaItem.browniesInTin, "Brownies", 21, "Brownies");
         AddItemInfo(JaffaItem.brownie, "Brownie", 22, "Brownie");
-        AddItemInfo(JaffaItem.rollRaw, "Roll Raw", 31, "Raw Roll");
+        AddItemInfo(JaffaItem.sweetRollRaw, "Roll Raw", 31, "Raw Roll");
         AddItemInfo(JaffaItem.browniesInTinRaw, "Raw Brownies", 32, "Raw Brownies");
         AddItemInfo(JaffaItem.bunRaw, "Raw Bun", 44, "Raw Bun");
         AddItemInfo(JaffaItem.bun, "Bun", 45, "Bun");
@@ -166,7 +170,34 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.bagOfSeedsIdentified, "Bag Of Seeds", 89, "Bag Of Seeds");
         AddItemInfo(JaffaItem.magnifier, "Magnifier", 91, "Magnifier");
         AddItemInfo(JaffaItem.jaffaP, "Jaffa Plum", 86, "Plum Jaffa Cake");
-        AddItemInfo(JaffaItem.jamMix, "Jam Mix", 79, "Mix of Jams");
+        AddItemInfo(JaffaItem.jamMix, "Jam Mix", 110, "Mix of Jams");
+
+        AddItemInfo(JaffaItem.kettle, "Kettle", 92, "Kettle");
+        AddItemInfo(JaffaItem.cup, "Cup", 93, "Cup");
+        AddItemInfo(JaffaItem.cupCoffee, "Coffee Cup", 94, "Cup of Coffee");
+        AddItemInfo(JaffaItem.cupRaw, "Raw Cup", 109, "Raw Cup");
+
+        AddItemInfo(JaffaItem.omeletteRaw, "Omelette Raw", 97, "Raw Omelette");
+        AddItemInfo(JaffaItem.omelette, "Omelette", 98, "Omelette");
+        AddItemInfo(JaffaItem.tomatoChopped, "Tomato Chopped", 99, "Chopped Tomatos");
+        AddItemInfo(JaffaItem.paprikaChopped, "Pepper Chopped", 100, "Chopped Peppers");
+
+        AddItemInfo(JaffaItem.grinderMeat, "Meat Grinder", 101, "Meat Grinder");
+        AddItemInfo(JaffaItem.wienerCocktail, "Cocktail Wiener", 102, "Cocktail Wiener");
+        AddItemInfo(JaffaItem.jaffaStrawberry, "Jaffa Strawberry", 103, "Strawberry Jaffa Cake");
+        AddItemInfo(JaffaItem.jaffaRaspberry, "Jaffa Raspberry", 104, "Raspberry Jaffa Cake");
+        AddItemInfo(JaffaItem.raspberries, "Raspberries", 105, "Raspberries");
+        AddItemInfo(JaffaItem.strawberries, "Strawberries", 106, "Strawberries");
+        AddItemInfo(JaffaItem.jamRaspberry, "Jam Raspberry", 107, "Raspberry Jam");
+        AddItemInfo(JaffaItem.jamStrawberry, "Jam Strawberry", 108, "Strawberry Jam");
+
+        AddItemInfo(JaffaItem.rollRaw, "Not-Sweet Raw Roll", 111, "Raw Roll");
+        AddItemInfo(JaffaItem.roll, "Not-Sweet Roll", 65, "Roll");
+        AddItemInfo(JaffaItem.rollChopped, "Chopped Not-Sweet Roll", 66, "Chopped Roll");
+        AddItemInfo(JaffaItem.meatChopped, "Chopped Meat", 67, "Chopped Meat");
+        AddItemInfo(JaffaItem.skewer, "Skewer", 68, "Skewer");
+        AddItemInfo(JaffaItem.ironSkewer, "Iron Skewer", 69, "Iron Skewer");
+        AddItemInfo(JaffaItem.knifeKitchen, "Kitchen Knife", 70, "Kitchen Knife");
     }
 
     public mod_jaffas() {
@@ -312,11 +343,11 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.puffPastry);
         createJaffaItem(JaffaItem.peanut);
         createJaffaItem(JaffaItem.cream);
-        createJaffaItem(JaffaItem.roll);
+        createJaffaItem(JaffaItem.sweetRoll);
         createJaffaItem(JaffaItem.cakeTin);
         createJaffaItem(JaffaItem.browniesInTin);
 
-        createJaffaItem(JaffaItem.rollRaw);
+        createJaffaItem(JaffaItem.sweetRollRaw);
         createJaffaItem(JaffaItem.browniesInTinRaw);
 
         createJaffaFood(JaffaItem.creamRoll, 4, 1F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
@@ -387,6 +418,33 @@ public class mod_jaffas {
         createBagOfSeed(JaffaItem.bagOfSeedsIdentified);
 
         createJaffaItem(JaffaItem.jamMix);
+
+        createJaffaItem(JaffaItem.kettle);
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.kettle);
+        createJaffaItem(JaffaItem.cup);
+        createJaffaItem(JaffaItem.cupCoffee);
+        createJaffaItem(JaffaItem.cupRaw);
+        createJaffaItem(JaffaItem.omeletteRaw);
+        createJaffaItem(JaffaItem.omelette);
+        createJaffaItem(JaffaItem.tomatoChopped);
+        createJaffaItem(JaffaItem.paprikaChopped);
+        createJaffaItem(JaffaItem.grinderMeat);
+        createJaffaItem(JaffaItem.wienerCocktail);
+        createJaffaItem(JaffaItem.jamRaspberry);
+        createJaffaItem(JaffaItem.jamStrawberry);
+        createJaffaItem(JaffaItem.raspberries);
+        createJaffaItem(JaffaItem.strawberries);
+        createJaffaItem(JaffaItem.rollRaw);
+        createJaffaItem(JaffaItem.roll);
+        createJaffaItem(JaffaItem.rollChopped);
+        createJaffaItem(JaffaItem.meatChopped);
+        createJaffaItem(JaffaItem.skewer);
+        createJaffaItem(JaffaItem.ironSkewer);
+        createJaffaItem(JaffaItem.knifeKitchen);
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.knifeKitchen);
+
+        createJaffaFood(JaffaItem.jaffaStrawberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
+        createJaffaFood(JaffaItem.jaffaRaspberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
 
         installRecipes();
 
@@ -493,13 +551,13 @@ public class mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.brownie), 15), "S", "T", 'S', new ItemStack(Item.swordSteel), 'T', new ItemStack(getItem(JaffaItem.browniesInTin)));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.rollRaw), 10), new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(Item.stick));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.sweetRollRaw), 10), new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(Item.stick));
 
-        GameRegistry.addSmelting(getItem(JaffaItem.rollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.roll)), 0.1F);
+        GameRegistry.addSmelting(getItem(JaffaItem.sweetRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.sweetRoll)), 0.1F);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), new ItemStack(Item.bucketMilk));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.creamRoll)), "RC", 'R', new ItemStack(getItem(JaffaItem.roll)), 'C', new ItemStack(getItem(JaffaItem.cream)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.creamRoll)), "RC", 'R', new ItemStack(getItem(JaffaItem.sweetRoll)), 'C', new ItemStack(getItem(JaffaItem.cream)));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.flour), 3), new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.wheat),
                 new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.paper));

@@ -16,7 +16,7 @@ public class BlockFruitCollector extends BlockContainer {
     }
 
     public String getTextureFile() {
-        return "/jaffas_02.png";
+        return "/jaffas_01.png";
     }
 
     @Override
@@ -118,11 +118,11 @@ public class BlockFruitCollector extends BlockContainer {
 
     private int getTextureFromSide(int side) {
         if (side == 0) {
-            return 1; // bottom
+            return 96; // bottom
         } else if (side == 1) {
-            return 2; // top
+            return 96; // top
         } else {
-            return 3;
+            return 95;
         }
     }
 }

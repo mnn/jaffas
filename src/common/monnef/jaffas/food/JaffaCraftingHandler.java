@@ -6,9 +6,21 @@ import net.minecraft.src.IInventory;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 
+import java.util.HashMap;
+
 public class JaffaCraftingHandler implements ICraftingHandler {
 
     private boolean debug = false;
+
+    private static HashMap<Integer, PersistentItemInfo> persistentItems = new HashMap<Integer, PersistentItemInfo>();
+
+    public static void AddPersistentItem(int ID) {
+        persistentItems.put(ID, new PersistentItemInfo(ID));
+    }
+
+    public static void AddPersistentItem(mod_jaffas.JaffaItem item) {
+        AddPersistentItem(mod_jaffas.getJaffaItem(item).shiftedIndex);
+    }
 
     @Override
     public void onCrafting(EntityPlayer player, ItemStack item,
@@ -55,6 +67,22 @@ public class JaffaCraftingHandler implements ICraftingHandler {
 
         HandleTin(craftMatrix);
         HandleRolls(craftMatrix);
+
+        HandlePersistentItems(craftMatrix);
+    }
+
+    private void HandlePersistentItems(IInventory matrix) {
+        int ingredientsCount = 0;
+
+        for (int i = 0; i < matrix.getSizeInventory(); i++) {
+            if (matrix.getStackInSlot(i) != null) {
+                ingredientsCount++;
+                ItemStack item = matrix.getStackInSlot(i);
+                if (persistentItems.containsKey(item.itemID)) {
+                    item.stackSize++;
+                }
+            }
+        }
     }
 
     private void HandleRolls(IInventory matrix) {
@@ -112,5 +140,4 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     @Override
     public void onSmelting(EntityPlayer player, ItemStack item) {
     }
-
 }

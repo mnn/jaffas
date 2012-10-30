@@ -23,10 +23,10 @@ public class ContainerFruitCollector extends Container {
         for (int i = 0; i < inventorySize; i++) {
             col = i % colsPerRow;
             row = i / colsPerRow;
-            addSlotToContainer(new Slot(tileEntity, i, 15 + col * 18, 18 + row * 18));
+            addSlotToContainer(new Slot(tileEntity, i, 45 + col * 18, 22 + row * 18));
         }
 
-        addSlotToContainer(new Slot(tileEntity, te.getFuelSlot(), 102, 35));
+        addSlotToContainer(new Slot(tileEntity, te.getFuelSlot(), 105, 40));
 
         //commonly used vanilla code that adds the player's inventory
         bindPlayerInventory(inventoryPlayer);

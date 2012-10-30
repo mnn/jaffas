@@ -23,7 +23,7 @@ public class GuiFruitCollector extends GuiContainer {
     protected void drawGuiContainerForegroundLayer() {
         //draw text and stuff here
         //the parameters for drawString are: string, x, y, color
-        fontRenderer.drawString("Fruit Collector", 8, 3, 4210752);
+        fontRenderer.drawString("Fruit Collector", 8, 5, 4210752);
         //draws "Inventory" or your regional equivalent
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 
@@ -35,7 +35,7 @@ public class GuiFruitCollector extends GuiContainer {
     protected void drawGuiContainerBackgroundLayer(float par1, int par2,
                                                    int par3) {
         //draw your Gui here, only thing you need to change is the path
-        int texture = mc.renderEngine.getTexture("/guifridge.png");
+        int texture = mc.renderEngine.getTexture("/guicollector.png");
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.renderEngine.bindTexture(texture);
         int x = (width - xSize) / 2;
@@ -44,7 +44,7 @@ public class GuiFruitCollector extends GuiContainer {
 
         if (tileEntity.isBurning()) {
             int burn = tileEntity.getBurnTimeRemainingScaled(14);
-            this.drawTexturedModalRect(x + 103, y + 54 + (13 - burn), 176, 14 - burn, 14, burn);
+            this.drawTexturedModalRect(x + 105, y + 24 + (13 - burn), 176, 14 - burn, 14, burn);
         }
 
         /*

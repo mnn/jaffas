@@ -1,12 +1,10 @@
 package monnef.jaffas.food;
 
-import buildcraft.api.core.Orientations;
-import buildcraft.api.inventory.ISpecialInventory;
 import net.minecraft.src.*;
 
 import java.util.Random;
 
-public class TileEntityFridge extends TileEntityJaffaMachine implements IInventory, ISpecialInventory {
+public class TileEntityFridge extends TileEntityJaffaMachine implements IInventory {
     public static Random rand = new Random();
 
     private int front;
@@ -253,6 +251,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
         return temperature;
     }
 
+    /*
     @Override
     public int addItem(ItemStack stack, boolean doAdd, Orientations from) {
         if (from == Orientations.YNeg) {
@@ -308,6 +307,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
         output.stackSize = outputStackCount;
         return new ItemStack[]{output};
     }
+    */
 
     protected void addEnergy(float i) {
         if (temperature > -10) {

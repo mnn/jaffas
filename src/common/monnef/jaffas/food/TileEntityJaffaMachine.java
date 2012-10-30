@@ -4,8 +4,10 @@ import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerFramework;
 import net.minecraft.src.*;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.ISidedInventory;
 
-public abstract class TileEntityJaffaMachine extends TileEntity implements IPowerReceptor {
+public abstract class TileEntityJaffaMachine extends TileEntity implements IPowerReceptor, ISidedInventory {
     protected int fuelSlot;
     public int burnTime;
     public int burnItemTime;
@@ -178,5 +180,27 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
 
     public boolean canAddToInventory(EntityItem item) {
         return this.addItemToInventory(item.item, false) > 0;
+    }
+
+    @Override
+    public int getStartInventorySide(ForgeDirection side) {
+        switch (side) {
+            case UP:
+            case DOWN:
+                return fuelSlot;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public int getSizeInventorySide(ForgeDirection side) {
+        switch (side) {
+            case UP:
+            case DOWN:
+                return 1;
+            default:
+                return fuelSlot;
+        }
     }
 }
