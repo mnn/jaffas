@@ -5,6 +5,7 @@ import net.minecraft.src.*;
 public class ItemJaffaFood extends ItemFood {
 
     private ItemStack returnItem;
+    private boolean isDrink;
 
     public ItemJaffaFood(int id, int healAmount, float saturation) {
         super(id, healAmount, saturation, false);
@@ -30,6 +31,18 @@ public class ItemJaffaFood extends ItemFood {
 
     public ItemJaffaFood setReturnItem(ItemStack returnItem) {
         this.returnItem = returnItem;
+        return this;
+    }
+
+    /**
+     * returns the action that specifies what animation to play when the items is being used
+     */
+    public EnumAction getItemUseAction(ItemStack par1ItemStack) {
+        return this.isDrink ? EnumAction.drink : EnumAction.eat;
+    }
+
+    public ItemJaffaFood setIsDrink() {
+        this.isDrink = true;
         return this;
     }
 }

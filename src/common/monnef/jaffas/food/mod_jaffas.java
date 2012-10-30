@@ -66,7 +66,7 @@ public class mod_jaffas {
         kettle, kettleWaterCold, kettleWaterHot, cup, cupCoffee, cupRaw, omeletteRaw, omelette, tomatoChopped, paprikaChopped,
         grinderMeat, wienerCocktail, jaffaStrawberry, jaffaRaspberry, raspberries, strawberries,
         jamRaspberry, jamStrawberry,
-        rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen, coffee, coffeeRoasted
+        rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen, coffee, coffeeRoasted, skewerRaw
     }
 
     public static final int startID = 3600;
@@ -203,6 +203,8 @@ public class mod_jaffas {
 
         AddItemInfo(JaffaItem.coffee, "Coffee", 8, "Coffee");
         AddItemInfo(JaffaItem.coffeeRoasted, "Roasted Coffee", 8, "Roasted Coffee");
+
+        AddItemInfo(JaffaItem.skewerRaw, "Skewer Raw", 85, "Raw Skewer");
     }
 
     public mod_jaffas() {
@@ -441,7 +443,8 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.kettleWaterCold);
         createJaffaItem(JaffaItem.kettleWaterHot).setMaxDamage(5).setMaxStackSize(1);
         createJaffaItem(JaffaItem.cup);
-        createJaffaFood(JaffaItem.cupCoffee, 1, 0.2F).setReturnItem(new ItemStack(getJaffaItem(JaffaItem.cup))).
+        createJaffaFood(JaffaItem.cupCoffee, 1, 0.2F).
+                setReturnItem(new ItemStack(getJaffaItem(JaffaItem.cup))).setIsDrink().
                 setPotionEffect(Potion.digSpeed.id, 35, 1, 1F).setAlwaysEdible().setMaxStackSize(16);
         createJaffaItem(JaffaItem.cupRaw);
         createJaffaItem(JaffaItem.omeletteRaw);
@@ -458,10 +461,10 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.roll);
         createJaffaItem(JaffaItem.rollChopped);
         createJaffaItem(JaffaItem.meatChopped);
-        createJaffaItem(JaffaItem.skewer);
         createJaffaItem(JaffaItem.ironSkewer);
-        createJaffaItem(JaffaItem.knifeKitchen);
-        JaffaCraftingHandler.AddPersistentItem(JaffaItem.knifeKitchen);
+        createJaffaFood(JaffaItem.skewer, 4, 0.5F).setReturnItem(new ItemStack(getJaffaItem(JaffaItem.ironSkewer)));
+        createJaffaItem(JaffaItem.skewerRaw);
+        createJaffaItem(JaffaItem.knifeKitchen).setMaxDamage(4096);
 
         createJaffaFood(JaffaItem.jaffaStrawberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
         createJaffaFood(JaffaItem.jaffaRaspberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
@@ -583,7 +586,7 @@ public class mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sausageRaw), 5), " F ", "PPP", 'F', new ItemStack(getItem(JaffaItem.flour)), 'P', new ItemStack(Item.porkRaw));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bunRaw), 10), "PP", 'P', new ItemStack(getItem(JaffaItem.pastry)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bunRaw), 8), "PP", 'P', new ItemStack(getItem(JaffaItem.pastry)));
 
         GameRegistry.addSmelting(getItem(JaffaItem.bunRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.bun)), 0.2F);
         GameRegistry.addSmelting(getItem(JaffaItem.sausageRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.sausage)), 0.2F);
@@ -696,6 +699,23 @@ public class mod_jaffas {
         GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.cupCoffee)), "K", "C", "U",
                 'K', new ItemStack(getJaffaItem(JaffaItem.kettleWaterHot), 1, -1), 'C', new ItemStack(getJaffaItem(JaffaItem.coffee)), 'U', new ItemStack(getJaffaItem(JaffaItem.cup)));
         JaffaCraftingHandler.AddPersistentItem(JaffaItem.kettleWaterHot, true, JaffaItem.kettle);
+
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.knifeKitchen)), "I  ", " I ", "  S", 'I', new ItemStack(Item.ingotIron), 'S', new ItemStack(Item.stick));
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.knifeKitchen, true, -1);
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.meatChopped), 4), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(Item.porkRaw));
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.rollChopped), 1), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(getJaffaItem(JaffaItem.roll)));
+
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.ironSkewer)), "  I", " I ", "I  ", 'I', new ItemStack(Item.ingotIron));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.skewerRaw)), new ItemStack(getJaffaItem(JaffaItem.ironSkewer)), new ItemStack(getJaffaItem(JaffaItem.rollChopped)), new ItemStack(getJaffaItem(JaffaItem.meatChopped)));
+        GameRegistry.addSmelting(getJaffaItem(JaffaItem.skewerRaw).shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.skewer)), 2F);
+
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.rollRaw), 8), " P", "P ", 'P', new ItemStack(getJaffaItem(JaffaItem.pastry)));
+        GameRegistry.addSmelting(getJaffaItem(JaffaItem.rollRaw).shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.roll)), 0.5F);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.omelette)), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
+                new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.omelette)), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
+                new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
     }
 
     private void AddMalletRecipes() {

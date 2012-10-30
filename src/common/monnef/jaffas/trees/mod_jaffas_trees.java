@@ -333,5 +333,8 @@ public class mod_jaffas_trees {
                 new ItemStack(BushesList.get(bushType.Raspberry).itemFruit));
 
         GameRegistry.addSmelting(BushesList.get(bushType.Coffee).itemFruit.shiftedIndex, new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.coffeeRoasted)), 0.5F);
+
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.paprikaChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Paprika).itemFruit));
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.tomatoChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Tomato).itemFruit));
     }
 }
