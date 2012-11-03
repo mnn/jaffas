@@ -180,11 +180,11 @@ public class mod_jaffas_trees {
     }
 
     private void PopulateBushInfo() {
-        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 34, "Coffee Plant", 96, "Coffee", 128, null, 2, 1);
+        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 34, "Coffee Plant", 96, "Coffee Beans", 128, null, 2, 1);
         AddBushInfo(bushType.Strawberry, "strawberry", "Strawberry Seeds", 34, "Strawberry Plant", 99, "Strawberry", 129, null, 2, 1);
 
         AddBushInfo(bushType.Onion, "onion", "Onion Seeds", 34, "Onion Plant", 102, "Onion", 130, null, 2, 1);
-        AddBushInfo(bushType.Paprika, "paprika", "Paprika Seeds", 34, "Paprika Plant", 105, "Paprika", 131, null, 2, 1);
+        AddBushInfo(bushType.Paprika, "paprika", "Pepper Seeds", 34, "Pepper Plant", 105, "Pepper", 131, null, 2, 1);
         AddBushInfo(bushType.Raspberry, "raspberry", "Raspberry Seeds", 34, "Raspberry Plant", 108, "Raspberry", 132, null, 2, 1);
         AddBushInfo(bushType.Tomato, "tomato", "Tomato Seeds", 34, "Tomato Plant", 111, "Tomato", 133, null, 2, 1);
     }
@@ -265,6 +265,8 @@ public class mod_jaffas_trees {
         proxy.registerRenderThings();
 
         //GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+
+        System.out.println("trees module from 'Jaffas and more!' initialized");
     }
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
@@ -336,5 +338,9 @@ public class mod_jaffas_trees {
 
         GameRegistry.addRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.paprikaChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Paprika).itemFruit));
         GameRegistry.addRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.tomatoChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Tomato).itemFruit));
+
+        GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",
+                'I', new ItemStack(Block.blockSteel), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
+
     }
 }

@@ -1,8 +1,17 @@
 # Changelog
 
+## 0.4.3
+- finished bushes
+- fruit collector
+- rewritten BC pipes support, now it should work with all mods (like RP2)
+- machines accept build craft energy
+- changed fridge consumption - on stack of coal now lasts aprox. 4 hours
+- rewritten damaging items handling in craft
+- added kettle, cup, knife (+ recipes using new "tools")
+
+## 0.4.2
 - fridge now don't consume buckets
 - fridge supports buildcraft 3's pipes (fuel input is at bottom)
-- bushes ()
 
 ## 0.4.1
 - fixed fridge's inventory to support shift-clicking

@@ -6,4 +6,6 @@ public class CommonProxyTutorial {
     public int addArmor(String name) {        return 0;    }
 
     public void registerSounds() {    }
+
+    public void registerTickHandler() {    }
 }

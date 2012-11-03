@@ -1,5 +1,7 @@
 package monnef.jaffas.food;
 
+import cpw.mods.fml.common.Side;
+import cpw.mods.fml.common.registry.TickRegistry;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
@@ -17,5 +19,10 @@ public class ClientProxyTutorial extends CommonProxyTutorial {
     @Override
     public void registerSounds() {
         MinecraftForge.EVENT_BUS.register(new jaffas_EventSounds());
+    }
+
+    @Override
+    public void registerTickHandler() {
+        TickRegistry.registerScheduledTickHandler(new ClientTickHandler(), Side.CLIENT);
     }
 }

@@ -24,7 +24,7 @@ import net.minecraftforge.common.EnumHelper;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version)
+@Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version, dependencies = "after:Forestry;after:BuildCraft|Energy")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
@@ -202,7 +202,7 @@ public class mod_jaffas {
         AddItemInfo(JaffaItem.knifeKitchen, "Kitchen Knife", 70, "Kitchen Knife");
 
         AddItemInfo(JaffaItem.coffee, "Coffee", 8, "Coffee");
-        AddItemInfo(JaffaItem.coffeeRoasted, "Roasted Coffee", 8, "Roasted Coffee");
+        AddItemInfo(JaffaItem.coffeeRoasted, "Roasted Coffee", 112, "Roasted Coffee");
 
         AddItemInfo(JaffaItem.skewerRaw, "Skewer Raw", 85, "Raw Skewer");
     }
@@ -302,7 +302,7 @@ public class mod_jaffas {
 
     @Init
     public void load(FMLInitializationEvent event) {
-        TickRegistry.registerScheduledTickHandler(new ClientTickHandler(), Side.CLIENT);
+        proxy.registerTickHandler();
         TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 
         blockFridge = new BlockFridge(blockFridgeID);
@@ -327,6 +327,10 @@ public class mod_jaffas {
         proxy.registerRenderThings();
 
         GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+
+        System.out.println("Mod 'Jaffas and more!' successfully initialized");
+        System.out.println("created by monnef and Tiatyos");
+        System.out.println("version: " + Version.Version + " ; http://jaffas.maweb.eu");
     }
 
     private void createItems() {
@@ -448,7 +452,7 @@ public class mod_jaffas {
                 setPotionEffect(Potion.digSpeed.id, 35, 1, 1F).setAlwaysEdible().setMaxStackSize(16);
         createJaffaItem(JaffaItem.cupRaw);
         createJaffaItem(JaffaItem.omeletteRaw);
-        createJaffaItem(JaffaItem.omelette);
+        createJaffaFood(JaffaItem.omelette, 3, 0.5F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.2F).setMaxStackSize(16);
         createJaffaItem(JaffaItem.tomatoChopped);
         createJaffaItem(JaffaItem.paprikaChopped);
         createJaffaItem(JaffaItem.grinderMeat);
@@ -462,9 +466,9 @@ public class mod_jaffas {
         createJaffaItem(JaffaItem.rollChopped);
         createJaffaItem(JaffaItem.meatChopped);
         createJaffaItem(JaffaItem.ironSkewer);
-        createJaffaFood(JaffaItem.skewer, 4, 0.5F).setReturnItem(new ItemStack(getJaffaItem(JaffaItem.ironSkewer)));
+        createJaffaFood(JaffaItem.skewer, 4, 0.5F).setReturnItem(new ItemStack(getJaffaItem(JaffaItem.ironSkewer))).setPotionEffect(Potion.jump.id, 60, 1, 0.15F);
         createJaffaItem(JaffaItem.skewerRaw);
-        createJaffaItem(JaffaItem.knifeKitchen).setMaxDamage(4096);
+        createJaffaItem(JaffaItem.knifeKitchen).setMaxDamage(4096).setMaxStackSize(1);
 
         createJaffaFood(JaffaItem.jaffaStrawberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
         createJaffaFood(JaffaItem.jaffaRaspberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
@@ -712,10 +716,11 @@ public class mod_jaffas {
         GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.rollRaw), 8), " P", "P ", 'P', new ItemStack(getJaffaItem(JaffaItem.pastry)));
         GameRegistry.addSmelting(getJaffaItem(JaffaItem.rollRaw).shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.roll)), 0.5F);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.omelette)), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.omeletteRaw), 3), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
                 new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.omelette)), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.omeletteRaw), 3), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
                 new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
+        GameRegistry.addSmelting(getJaffaItem(JaffaItem.omeletteRaw).shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.omelette)), 1.5F);
     }
 
     private void AddMalletRecipes() {

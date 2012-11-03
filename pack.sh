@@ -37,8 +37,8 @@ echo "Version detected: [$version]"
 
 echo -n Copying mod files...
 
-cp eclipse/Minecraft/bin/jaffas_01.png eclipse/Minecraft/bin/jaffas_02.png eclipse/Minecraft/bin/jaffas_logo.png eclipse/Minecraft/bin/guifridge.png eclipse/Minecraft/bin/jaffabrn1.png eclipse/Minecraft/bin/mcmod.info eclipse/Minecraft/bin/guicollector.png "$outtmp"
-cp -r reobf/minecraft/* "$outtmp"
+cp eclipse/Minecraft/bin/jaffas_01.png eclipse/Minecraft/bin/jaffas_02.png eclipse/Minecraft/bin/jaffas_logo.png eclipse/Minecraft/bin/guifridge.png eclipse/Minecraft/bin/jaffabrn1.png eclipse/Minecraft/bin/mcmod.info eclipse/Minecraft/bin/guicollector.png eclipse/Minecraft/bin/sharpener.wav eclipse/Minecraft/bin/suck.wav "$outtmp"
+cp -r reobf/minecraft/{buildcraft,monnef} "$outtmp"
 
 outName="mod_jaffas_$version"
 
@@ -53,10 +53,10 @@ echo Done
 #prepare libs - jsoup
 echo -n Copying libraries...
 mkdir $dist/mods &>/dev/null
-mkdir $dist/lib &>/dev/null
+#mkdir $dist/lib &>/dev/null
 cp "$output/$outName.jar" "$dist/mods"
-cp "lib/jsoup-1.7.1.jar" "$dist/lib"
-cp "lib/Jsoup_license.txt" "$dist/lib"
+cp "lib/jsoup-1.7.1.jar" "$dist/mods"
+cp "lib/Jsoup_license.txt" "$dist/mods"
 echo Done
 echo -n Packing...
 
