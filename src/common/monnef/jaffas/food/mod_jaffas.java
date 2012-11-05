@@ -12,6 +12,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -53,6 +54,8 @@ public class mod_jaffas {
     public static int topDefaultID = -1;
     public boolean itemsReady = false;
     public boolean checkUpdates;
+    public static ItemJaffaPainting itemPainting;
+    private int itemPaintingID;
 
     public enum JaffaItem {
         pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
@@ -242,6 +245,8 @@ public class mod_jaffas {
             itemJaffaPlateID = config.getOrCreateIntProperty("jaffaPlate", Configuration.CATEGORY_ITEM, getID()).getInt();
             itemJaffaSwordID = config.getOrCreateIntProperty("jaffaSword", Configuration.CATEGORY_ITEM, getID()).getInt();
 
+            itemPaintingID = config.getOrCreateIntProperty("painting", Configuration.CATEGORY_ITEM, getID()).getInt();
+
             checkUpdates = config.getOrCreateBooleanProperty("checkUpdates", Configuration.CATEGORY_GENERAL, true).getBoolean(true);
 
             if (mod_jaffas.topDefaultID == -1) {
@@ -328,9 +333,20 @@ public class mod_jaffas {
 
         GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
 
+        itemPainting = new ItemJaffaPainting(this.itemPaintingID);
+        LanguageRegistry.addName(itemPainting, "Painting");
+        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 256, 20, false);
+
         System.out.println("Mod 'Jaffas and more!' successfully initialized");
-        System.out.println("created by monnef and Tiatyos");
+        System.out.println("created by monnef and Tiartyos");
         System.out.println("version: " + Version.Version + " ; http://jaffas.maweb.eu");
+    }
+
+    private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
+        int id = ModLoader.getUniqueEntityId();
+        if (mod_jaffas.debug) System.out.println("Registered: " + entityClass + " id: " + id);
+        EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
+        EntityRegistry.registerModEntity(entityClass, entityName, id, this, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 
     private void createItems() {
