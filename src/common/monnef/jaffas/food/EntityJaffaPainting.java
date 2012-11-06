@@ -1,7 +1,5 @@
 package monnef.jaffas.food;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import net.minecraft.src.*;
 
 import java.util.ArrayList;
@@ -10,6 +8,10 @@ import java.util.List;
 
 public class EntityJaffaPainting extends Entity {
     public static final int watcherByteNumber = 10;
+    public static final int watcherNumberPosX = 11;
+    public static final int watcherNumberPosY = 12;
+    public static final int watcherNumberPosZ = 13;
+    public static final int watcherNumberDirection = 14;
     private int tickCounter1;
 
     /**
@@ -20,6 +22,7 @@ public class EntityJaffaPainting extends Entity {
     public int yPosition;
     public int zPosition;
     public EnumJaffaArt art;
+    private boolean notSynced = true;
 
     public EntityJaffaPainting(World par1World) {
         super(par1World);
@@ -52,10 +55,11 @@ public class EntityJaffaPainting extends Entity {
             this.art = (EnumJaffaArt) var6.get(this.rand.nextInt(var6.size()));
         }
 
-        this.setDirection(par5);
         this.updateWatcher();
+        this.setDirection(par5);
     }
 
+    /*
     @SideOnly(Side.CLIENT)
     public EntityJaffaPainting(World par1World, int par2, int par3, int par4, int par5, String par6Str) {
         this(par1World);
@@ -76,13 +80,14 @@ public class EntityJaffaPainting extends Entity {
 
         this.setDirection(par5);
     }
+    */
 
     protected void entityInit() {
-/*        Integer val = !this.worldObj.isRemote ? Integer.valueOf(this.art.ordinal()) : 0;
-        this.dataWatcher.addObject(watcherByteNumber, val);
-        this.dataWatcher.addObject(watcherByteNumber, Integer.valueOf(this.art.ordinal()));
-        */
         this.dataWatcher.addObject(watcherByteNumber, Integer.valueOf(0));
+        this.dataWatcher.addObject(watcherNumberPosX, Integer.valueOf(this.xPosition));
+        this.dataWatcher.addObject(watcherNumberPosY, Integer.valueOf(this.yPosition));
+        this.dataWatcher.addObject(watcherNumberPosZ, Integer.valueOf(this.zPosition));
+        this.dataWatcher.addObject(watcherNumberDirection, Integer.valueOf(this.direction));
     }
 
     /**
@@ -163,16 +168,34 @@ public class EntityJaffaPainting extends Entity {
                     this.setDead();
                     this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(mod_jaffas.itemPainting)));
                 }
-
-                updateWatcher();
-            } else {
-                this.art = EnumJaffaArt.values()[this.dataWatcher.getWatchableObjectInt(watcherByteNumber)];
             }
+
+            updateWatcher();
         }
     }
 
     private void updateWatcher() {
-        this.dataWatcher.updateObject(watcherByteNumber, Integer.valueOf(this.art.ordinal()));
+        if (this.worldObj.isRemote) {
+            EnumJaffaArt newArt = EnumJaffaArt.values()[this.dataWatcher.getWatchableObjectInt(watcherByteNumber)];
+
+            if (newArt != this.art) this.art = newArt;
+            if (this.notSynced) {
+                this.xPosition = this.dataWatcher.getWatchableObjectInt(watcherNumberPosX);
+                this.yPosition = this.dataWatcher.getWatchableObjectInt(watcherNumberPosY);
+                this.zPosition = this.dataWatcher.getWatchableObjectInt(watcherNumberPosZ);
+                this.direction = this.dataWatcher.getWatchableObjectInt(watcherNumberDirection);
+
+                this.setDirection(this.direction);
+                this.notSynced = false;
+            }
+        } else {
+            this.dataWatcher.updateObject(watcherByteNumber, Integer.valueOf(this.art.ordinal()));
+
+            this.dataWatcher.updateObject(watcherNumberPosX, Integer.valueOf(this.xPosition));
+            this.dataWatcher.updateObject(watcherNumberPosY, Integer.valueOf(this.yPosition));
+            this.dataWatcher.updateObject(watcherNumberPosZ, Integer.valueOf(this.zPosition));
+            this.dataWatcher.updateObject(watcherNumberDirection, Integer.valueOf(this.direction));
+        }
     }
 
     /**
