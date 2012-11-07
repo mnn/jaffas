@@ -342,5 +342,40 @@ public class mod_jaffas_trees {
         GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",
                 'I', new ItemStack(Block.blockSteel), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
 
+        installFruitSeedsRecipes();
+    }
+
+    private void installFruitSeedsRecipes() {
+        for (int i = 1; i <= leavesTypesCount; i++) {
+            int type = i;
+            ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / 4).seedsItem;
+            int meta = type % 4;
+
+            ItemStack seed = new ItemStack(item, 1, meta);
+
+            ItemFromFruitResult info = TileEntityFruitLeaves.getItemFromFruit(fruitType.indexToFruitType(i));
+
+            if (info.exception != null) {
+                throw (RuntimeException) info.exception;
+            }
+
+            if (info.getMessage() != null) {
+                System.err.println(info.getMessage());
+                throw new RuntimeException("unknown error during fruits->seeds recipe contruction");
+            }
+
+            ItemStack fruit = info.getStack();
+
+            if (fruit == null) {
+                throw new RuntimeException("null in fruit!");
+            }
+
+            seed.stackSize = 2;
+            GameRegistry.addShapelessRecipe(seed,
+                    fruit.copy(), fruit.copy(), fruit.copy(),
+                    fruit.copy(), fruit.copy(), fruit.copy(),
+                    fruit.copy(), fruit.copy(), fruit.copy()
+            );
+        }
     }
 }

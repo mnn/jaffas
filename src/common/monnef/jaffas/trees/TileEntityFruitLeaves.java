@@ -139,6 +139,57 @@ public class TileEntityFruitLeaves extends TileEntity {
         }
     }
 
+    public static ItemFromFruitResult getItemFromFruit(fruitType fruit) {
+        ItemFromFruitResult res = new ItemFromFruitResult();
+
+        switch (fruit) {
+            case Normal:
+                if (debug) {
+                    //System.err.println("normal tree! - " + metadata + ", t:" + leavesMetadataType);
+                    //debugPrintPos();
+                    res.setMessage("normal tree!");
+                    res.setStack(new ItemStack(Item.porkRaw));
+                } else
+                    res.exception = new RuntimeException("normal tree leaves cannot drop stuff!");
+                break;
+
+            case Apple:
+                res.setStack(new ItemStack(Item.appleRed));
+                break;
+
+            case Cocoa:
+                res.setStack(new ItemStack(Item.dyePowder, 1, 3));
+                break;
+
+            case Vanilla:
+                res.setStack(new ItemStack(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans)));
+                break;
+
+            case Lemon:
+                res.setStack(new ItemStack(itemLemon));
+                break;
+
+            case Orange:
+                res.setStack(new ItemStack(itemOrange));
+                break;
+
+            case Plum:
+                res.setStack(new ItemStack(itemPlum));
+                break;
+
+            default:
+                if (debug) {
+                    //System.err.println("unknown type of tree - " + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);
+                    // debugPrintPos();
+                    res.setMessage("unknown type of tree");
+                    res.setStack(new ItemStack(Item.stick));
+                } else
+                    res.exception = new RuntimeException("unknown type of tree, don't have information about fruits: " + fruit);
+        }
+
+        return res;
+    }
+
     public ItemStack getItemFromMetadataAndBlockID(fruitType fruit) {
         int metadata = -1, leavesMetadataType = -1;
         if (debug) {
@@ -146,35 +197,17 @@ public class TileEntityFruitLeaves extends TileEntity {
             leavesMetadataType = BlockFruitLeaves.getLeavesType(metadata);
         }
 
-        switch (fruit) {
-            case Normal:
-                if (debug) {
-                    System.err.println("normal tree! - " + metadata + ", t:" + leavesMetadataType);
-                    debugPrintPos();
-                    return new ItemStack(Item.porkRaw);
-                } else
-                    throw new RuntimeException("normal tree leaves cannot drop stuff!");
-            case Apple:
-                return new ItemStack(Item.appleRed);
-            case Cocoa:
-                return new ItemStack(Item.dyePowder, 1, 3);
-            case Vanilla:
-                return new ItemStack(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans));
-            case Lemon:
-                return new ItemStack(itemLemon);
-            case Orange:
-                return new ItemStack(itemOrange);
-            case Plum:
-                return new ItemStack(itemPlum);
-            default:
-                if (debug) {
-                    System.err.println("unknown type of tree - " + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);
-                    debugPrintPos();
-                    return new ItemStack(Item.stick);
-                } else
-                    throw new RuntimeException("unknown type of tree, don't have information about fruits: " + metadata);
+        ItemFromFruitResult info = getItemFromFruit(fruit);
+        if (info.exception != null) {
+            throw (RuntimeException) info.exception;
         }
 
+        if (info.getMessage() != null) {
+            System.err.println(info.getMessage() + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);
+            debugPrintPos();
+        }
+
+        return info.getStack();
     }
 
     private void debugPrintPos() {
