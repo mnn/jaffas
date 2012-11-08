@@ -42,7 +42,11 @@ public class mod_jaffas_trees {
 
     public static fruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
-        int index = b.serialNumber * 4 + blockMetadata;
+        return getActualLeavesType(b.serialNumber, blockMetadata);
+    }
+
+    public static fruitType getActualLeavesType(int serialNumber, int blockMetadata) {
+        int index = serialNumber * 4 + blockMetadata;
         fruitType fruitType = mod_jaffas_trees.fruitType.indexToFruitType(index);
         if (fruitType == null) {
             throw new RuntimeException("fruit not found!");
@@ -106,6 +110,9 @@ public class mod_jaffas_trees {
     public static ItemJaffaFruit itemOrange;
     public static ItemJaffaFruit itemPlum;
 
+    private int itemDebugID;
+    public static ItemJaffaTreeDebugTool itemDebug;
+
     public static enum bushType {
         Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato;
     }
@@ -168,6 +175,7 @@ public class mod_jaffas_trees {
             }
 
             blockFruitCollectorID = config.getOrCreateIntProperty("fruit collector", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            itemDebugID = config.getOrCreateIntProperty("debug tool", Configuration.CATEGORY_ITEM, getID()).getInt();
 
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
             bonemealingAllowed = config.getOrCreateBooleanProperty("bonemeal", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
@@ -258,6 +266,10 @@ public class mod_jaffas_trees {
         GameRegistry.registerBlock(blockFruitCollector);
         LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
         GameRegistry.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
+
+        itemDebug = new ItemJaffaTreeDebugTool(itemDebugID);
+        itemDebug.setMaxStackSize(1).setItemName("jaffaTreeDebug").setIconCoord(13, 0);
+        LanguageRegistry.addName(itemDebug,"Jaffa Tree's Debug Tool");
 
         installRecipes();
 

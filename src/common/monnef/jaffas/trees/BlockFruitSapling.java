@@ -16,8 +16,10 @@ public class BlockFruitSapling extends BlockFlower {
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
         if (itemstack != null && itemstack.itemID == Item.dyePowder.shiftedIndex && mod_jaffas_trees.bonemealingAllowed) {
             if (itemstack.getItemDamage() == 15) {
-                growTree(par1World, par2, par3, par4, rand);
-                itemstack.stackSize--;
+                if (!par1World.isRemote) {
+                    growTree(par1World, par2, par3, par4, rand);
+                    itemstack.stackSize--;
+                }
             }
         }
         super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);

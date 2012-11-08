@@ -43,10 +43,40 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         return this;
     }
 
+    /**
+     * Called upon block activation (right click on the block.)
+     */
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
+        TileEntity e = world.getBlockTileEntity(x, y, z);
+
+        ItemStack handItem = player.getCurrentEquippedItem();
+        if (handItem != null && handItem.getItem().shiftedIndex == mod_jaffas_trees.itemDebug.shiftedIndex) {
+            int bid = world.getBlockId(x, y, z);
+            int bmeta = world.getBlockMetadata(x, y, z);
+
+            player.addChatMessage(x + "," + y + "," + z + "~" + bid + ":" + bmeta);
+            String msg = "E~";
+            msg += e == null ? "NULL" : e.getClass();
+            player.addChatMessage(msg);
+
+            return false;
+        }
+
+        if (world.isRemote) return true;
+        if (e == null || !(e instanceof TileEntityFruitLeaves)) {
+            if (mod_jaffas_trees.debug) System.err.println("null in TE, where are my leaves?");
+            return false;
+        }
+
+        TileEntityFruitLeaves te = (TileEntityFruitLeaves) e;
+        return te.generateFruitAndDecay();
+    }
+
 
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         if (hasTileEntity(par1World.getBlockMetadata(par2, par3, par4))) {
-            par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
+            //par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
         }
     }
 
@@ -319,5 +349,9 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     @Override
     public boolean isLeaves(World world, int x, int y, int z) {
         return true;
+    }
+
+    public static int getChangedTypeInMeta(int leavesMeta, int oldMeta) {
+        return (oldMeta & 12) | (getLeavesType(leavesMeta));
     }
 }

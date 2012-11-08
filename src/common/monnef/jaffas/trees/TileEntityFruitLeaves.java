@@ -15,8 +15,9 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     public static final int maxAge = 240;
     public static int timerMax = 20 * 60;
-    public static final double dropChance = 0.017;
-    public static int dropChanceMultiplier = 1;
+
+    public static final double turnChance = 0.022;
+    public static int turnChanceMultiplier = 1;
 
     private int myMaxAge;
     private int age;
@@ -24,10 +25,23 @@ public class TileEntityFruitLeaves extends TileEntity {
     private static Random rand = new Random();
     private boolean checked = false;
     private fruitType fruit;
+    private int leavesID;
+    private int leavesMeta;
 
     public TileEntityFruitLeaves() {
         myMaxAge = (int) (maxAge + Math.round((maxAge / 4) * rand.nextGaussian()));
         timer = Math.abs(rand.nextInt()) % timerMax;
+    }
+
+    public TileEntityFruitLeaves(int leavesID, int leavesMeta) {
+        this();
+        this.leavesID = leavesID;
+        this.leavesMeta = leavesMeta;
+    }
+
+    public TileEntityFruitLeaves(TileEntityFruitLeaves tileEntityFruitLeaves) {
+        this(tileEntityFruitLeaves.leavesID, tileEntityFruitLeaves.leavesMeta);
+        this.timer = 0;
     }
 
     /**
@@ -43,7 +57,7 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     public void updateEntity() {
         if (!checked) {
-            fruit = getActualLeavesType(this.getBlockType(), BlockFruitLeaves.getLeavesType(this.getBlockMetadata()));
+            fruit = getActualLeavesType(Block.blocksList[this.leavesID], this.leavesMeta);
             checked = true;
             if (fruit == fruitType.Normal) {
                 this.invalidate();
@@ -59,13 +73,27 @@ public class TileEntityFruitLeaves extends TileEntity {
         if (timer >= timerMax) {
 
             timer = 0;
-            generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand, this.getBlockMetadata());
-            age++;
-            if (age > myMaxAge) {
-                worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, mod_jaffas_trees.leavesList.get(0).leavesID, 0);
-                this.invalidate();
+            if (this.rand.nextDouble() < this.turnChance * this.turnChanceMultiplier) {
+
+                if (this.getBlockType().blockID == mod_jaffas_trees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
+                    ChangeBlockAndRespawnMe(this.leavesID, this.leavesMeta);
+                } else {
+                    // no leaves block on my position => something went wrong, kill myself
+                    this.invalidate();
+                    if (mod_jaffas_trees.debug)
+                        System.err.println(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
+                    return;
+                }
             }
         }
+
+    }
+
+    private void ChangeBlockAndRespawnMe(int newBlock, int newMeta) {
+        worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, newBlock, BlockFruitLeaves.getChangedTypeInMeta(newMeta, this.getBlockMetadata()));
+        this.invalidate();
+        TileEntityFruitLeaves te = new TileEntityFruitLeaves(this);
+        worldObj.setBlockTileEntity(this.xCoord, this.yCoord, this.zCoord, te);
     }
 
     /**
@@ -77,6 +105,8 @@ public class TileEntityFruitLeaves extends TileEntity {
         par1NBTTagCompound.setInteger("age", this.age);
         par1NBTTagCompound.setInteger("myMaxAge", this.myMaxAge);
         par1NBTTagCompound.setInteger("timer", this.timer);
+        par1NBTTagCompound.setInteger("leavesID", this.leavesID);
+        par1NBTTagCompound.setInteger("leavesMeta", this.leavesMeta);
     }
 
     /**
@@ -88,55 +118,72 @@ public class TileEntityFruitLeaves extends TileEntity {
         this.age = par1NBTTagCompound.getInteger("age");
         this.timer = par1NBTTagCompound.getInteger("timer");
         this.myMaxAge = par1NBTTagCompound.getInteger("myMaxAge");
+        this.leavesID = par1NBTTagCompound.getInteger("leavesID");
+        this.leavesMeta = par1NBTTagCompound.getInteger("leavesMeta");
+    }
+
+    public boolean generateFruitAndDecay() {
+        if (this.getBlockType().blockID != this.leavesID || BlockFruitLeaves.getLeavesType(this.getBlockMetadata()) != this.leavesMeta) {
+            if (mod_jaffas_trees.debug) System.err.println("not fruit block, no fruit generated");
+            return false;
+        }
+
+        this.age = 0; // obsolete
+        this.generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand, this.leavesMeta);
+        //worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, mod_jaffas_trees.leavesList.get(0).leavesID, 0);
+        //worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, mod_jaffas_trees.leavesList.get(0).leavesID, BlockFruitLeaves.getChangedTypeInMeta(0, this.getBlockMetadata()));
+        ChangeBlockAndRespawnMe(mod_jaffas_trees.leavesList.get(0).leavesID, 0);
+
+        return true;
     }
 
     private void generateFruit(World world, int x, int y, int z, Random rand, int metadata) {
-        if (rand.nextDouble() < dropChance * dropChanceMultiplier) {
-            if (this.fruit == fruitType.Vanilla && rand.nextInt(3) != 0) {
-                return;
+//        if (rand.nextDouble() < dropChance * dropChanceMultiplier) {
+        if (this.fruit == fruitType.Vanilla && rand.nextInt(3) != 0) {
+            return;
+        }
+
+        boolean found = false;
+        int tries = 0;
+        int newY = y;
+
+        int thisBlockID = world.getBlockId(x, y, z);
+
+        //TODO optimize
+        while (tries <= 5 && !found && (world.getBlockId(x, newY, z) == thisBlockID || world.getBlockId(x, newY, z) == mod_jaffas_trees.leavesList.get(0).leavesID)) {
+            tries++;
+            newY--;
+            if (world.getBlockId(x, newY, z) == 0) {
+                found = true;
             }
+        }
 
-            boolean found = false;
-            int tries = 0;
-            int newY = y;
-
-            int thisBlockID = world.getBlockId(x, y, z);
-
-            //TODO optimize
-            while (tries <= 5 && !found && (world.getBlockId(x, newY, z) == thisBlockID || world.getBlockId(x, newY, z) == mod_jaffas_trees.leavesList.get(0).leavesID)) {
-                tries++;
-                newY--;
-                if (world.getBlockId(x, newY, z) == 0) {
-                    found = true;
-                }
-            }
-
-            if (found) {
-                if (fruit != null) {
-                    ItemStack stack = getItemFromMetadataAndBlockID(this.fruit);
-                    if (stack != null) {
-                        EntityItem ent = new EntityItem(world, x, newY, z, stack);
-                        ent.setPosition(x + 0.5, newY + 0.9, z + 0.5);
-                        ent.motionX = (rand.nextDouble() - 0.5) / 3;
-                        ent.motionY = 0;
-                        ent.motionZ = (rand.nextDouble() - 0.5) / 3;
-                        world.spawnEntityInWorld(ent);
-                    } else {
-                        if (debug) {
-                            System.err.println("got null in stack: m~" + metadata + " b~" + this.getBlockType().blockID);
-                            debugPrintPos();
-                        }
-                    }
+        if (found) {
+            if (fruit != null) {
+                ItemStack stack = getItemFromMetadataAndBlockID(this.fruit);
+                if (stack != null) {
+                    EntityItem ent = new EntityItem(world, x, newY, z, stack);
+                    ent.setPosition(x + 0.5, newY + 0.9, z + 0.5);
+                    ent.motionX = (rand.nextDouble() - 0.5) / 3;
+                    ent.motionY = 0;
+                    ent.motionZ = (rand.nextDouble() - 0.5) / 3;
+                    world.spawnEntityInWorld(ent);
                 } else {
                     if (debug) {
-                        System.err.println("got null in fruit: m~" + metadata + " b~" + this.getBlockType().blockID);
+                        System.err.println("got null in stack: m~" + metadata + " b~" + this.getBlockType().blockID);
                         debugPrintPos();
                     }
                 }
             } else {
-                if (debug) System.out.println("tree: not found - tries~" + tries);
+                if (debug) {
+                    System.err.println("got null in fruit: m~" + metadata + " b~" + this.getBlockType().blockID);
+                    debugPrintPos();
+                }
             }
+        } else {
+            if (debug) System.out.println("tree: not found - tries~" + tries);
         }
+        //  }
     }
 
     public static ItemFromFruitResult getItemFromFruit(fruitType fruit) {

@@ -124,7 +124,9 @@ public class WorldGenFruitTrees extends WorldGenerator {
                                         chosenLeavesMeta = 0;
                                     }
 
-                                    this.setBlockAndMetadata(par1World, var14, var11, var16, chosenLeavesID, chosenLeavesMeta);
+                                    this.setBlockAndMetadata(par1World, var14, var11, var16, mod_jaffas_trees.leavesList.get(0).leavesID, 0);
+                                    TileEntityFruitLeaves te = new TileEntityFruitLeaves(chosenLeavesID, chosenLeavesMeta);
+                                    par1World.setBlockTileEntity(var14, var11, var16, te);
                                 }
                             }
                         }
