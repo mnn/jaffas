@@ -68,12 +68,16 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
         if (world.isRemote) return true;
         if (e == null || !(e instanceof TileEntityFruitLeaves)) {
-            if (mod_jaffas_trees.debug) System.err.println("null in TE, where are my leaves?");
+            //if (mod_jaffas_trees.debug) System.err.println("null in TE, where are my leaves?");
             return false;
         }
 
-        TileEntityFruitLeaves te = (TileEntityFruitLeaves) e;
-        return te.generateFruitAndDecay();
+        if (handItem == null) {
+            TileEntityFruitLeaves te = (TileEntityFruitLeaves) e;
+            return te.generateFruitAndDecay();
+        } else {
+            return false;
+        }
     }
 
     public boolean haveFruit(World world, int x, int y, int z) {

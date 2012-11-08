@@ -158,7 +158,6 @@ public class TileEntityFruitLeaves extends TileEntity {
         boolean found = false;
         int newX = x, newY = y, newZ = z;
 
-        //TODO optimize
         for (int passNum = 0; passNum < 2 && !found; passNum++) {
             int tries = 0;
             newX = x;

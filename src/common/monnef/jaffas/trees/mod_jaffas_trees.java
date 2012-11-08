@@ -113,6 +113,15 @@ public class mod_jaffas_trees {
     private int itemDebugID;
     public static ItemJaffaTreeDebugTool itemDebug;
 
+    private int itemStickID;
+    public static ItemJaffaT itemStick;
+    private int itemRodID;
+    public static ItemJaffaT itemRod;
+    private int itemFruitPickerID;
+    public static ItemJaffaT itemFruitPicker;
+    private int itemFruitPickerHeadID;
+    public static ItemJaffaT itemFruitPickerHead;
+
     public static enum bushType {
         Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato;
     }
@@ -176,6 +185,11 @@ public class mod_jaffas_trees {
 
             blockFruitCollectorID = config.getOrCreateIntProperty("fruit collector", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
             itemDebugID = config.getOrCreateIntProperty("debug tool", Configuration.CATEGORY_ITEM, getID()).getInt();
+
+            itemStickID = config.getOrCreateIntProperty("stick", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemRodID = config.getOrCreateIntProperty("rod", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemFruitPickerID = config.getOrCreateIntProperty("fruit picker", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemFruitPickerHeadID = config.getOrCreateIntProperty("fruit picker head", Configuration.CATEGORY_ITEM, getID()).getInt();
 
             debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
             bonemealingAllowed = config.getOrCreateBooleanProperty("bonemeal", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
@@ -269,7 +283,23 @@ public class mod_jaffas_trees {
 
         itemDebug = new ItemJaffaTreeDebugTool(itemDebugID);
         itemDebug.setMaxStackSize(1).setItemName("jaffaTreeDebug").setIconCoord(13, 0);
-        LanguageRegistry.addName(itemDebug,"Jaffa Tree's Debug Tool");
+        LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
+
+        itemStick = new ItemJaffaT(itemStickID);
+        itemStick.setItemName("stickImpregnated").setIconIndex(4);
+        LanguageRegistry.addName(itemStick, "Impregnated Stick");
+
+        itemRod = new ItemJaffaT(itemRodID);
+        itemRod.setItemName("rod").setIconIndex(5).setMaxStackSize(1).setMaxDamage(128);
+        LanguageRegistry.addName(itemRod, "Reinforced Rod");
+
+        itemFruitPickerHead = new ItemJaffaT(itemFruitPickerHeadID);
+        itemFruitPickerHead.setItemName("fruitPickerHead").setIconIndex(3);
+        LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
+
+        itemFruitPicker = new ItemJaffaT(itemFruitPickerID);
+        itemFruitPicker.setItemName("fruitPicker").setIconIndex(6).setMaxStackSize(1).setMaxDamage(256);
+        LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
 
         installRecipes();
 
