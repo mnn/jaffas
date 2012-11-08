@@ -51,16 +51,19 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         TileEntity e = world.getBlockTileEntity(x, y, z);
 
         ItemStack handItem = player.getCurrentEquippedItem();
-        if (handItem != null && handItem.getItem().shiftedIndex == mod_jaffas_trees.itemDebug.shiftedIndex) {
-            int bid = world.getBlockId(x, y, z);
-            int bmeta = world.getBlockMetadata(x, y, z);
+        if (handItem != null) {
+            int itemId = handItem.getItem().shiftedIndex;
+            if (itemId == mod_jaffas_trees.itemDebug.shiftedIndex) {
+                int bid = world.getBlockId(x, y, z);
+                int bmeta = world.getBlockMetadata(x, y, z);
 
-            player.addChatMessage(x + "," + y + "," + z + "~" + bid + ":" + bmeta);
-            String msg = "E~";
-            msg += e == null ? "NULL" : e.getClass();
-            player.addChatMessage(msg);
+                player.addChatMessage(x + "," + y + "," + z + "~" + bid + ":" + bmeta);
+                String msg = "E~";
+                msg += e == null ? "NULL" : e.getClass();
+                player.addChatMessage(msg);
 
-            return false;
+                return false;
+            }
         }
 
         if (world.isRemote) return true;
@@ -73,6 +76,16 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         return te.generateFruitAndDecay();
     }
 
+    public boolean haveFruit(World world, int x, int y, int z) {
+        int blockId = world.getBlockId(x, y, z);
+        int meta = world.getBlockMetadata(x, y, z);
+        Block b = Block.blocksList[blockId];
+        if (!(b instanceof BlockFruitLeaves)) return false;
+
+        BlockFruitLeaves leaves = (BlockFruitLeaves) b;
+        mod_jaffas_trees.fruitType fruit = mod_jaffas_trees.getActualLeavesType(leaves, meta);
+        return fruit != mod_jaffas_trees.fruitType.Normal;
+    }
 
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         if (hasTileEntity(par1World.getBlockMetadata(par2, par3, par4))) {
