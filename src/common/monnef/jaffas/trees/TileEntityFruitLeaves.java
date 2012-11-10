@@ -85,15 +85,16 @@ public class TileEntityFruitLeaves extends TileEntity {
 
             timer = 0;
             if (this.rand.nextDouble() < this.turnChance * this.turnChanceMultiplier) {
-
-                if (this.getBlockType().blockID == mod_jaffas_trees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
-                    ChangeBlockAndRespawnMe(this.leavesID, this.leavesMeta);
-                } else {
-                    // no leaves block on my position => something went wrong, kill myself
-                    this.invalidate();
-                    if (mod_jaffas_trees.debug)
-                        System.err.println(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
-                    return;
+                if (this.fruit != fruitType.Vanilla || rand.nextInt(3) == 0) {
+                    if (this.getBlockType().blockID == mod_jaffas_trees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
+                        ChangeBlockAndRespawnMe(this.leavesID, this.leavesMeta);
+                    } else {
+                        // no leaves block on my position => something went wrong, kill myself
+                        this.invalidate();
+                        if (mod_jaffas_trees.debug)
+                            System.err.println(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
+                        return;
+                    }
                 }
             }
         }
@@ -133,16 +134,19 @@ public class TileEntityFruitLeaves extends TileEntity {
         this.leavesMeta = par1NBTTagCompound.getInteger("leavesMeta");
     }
 
-    public boolean generateFruitAndDecay() {
+    public boolean generateFruitAndDecay(double chanceForSecondFruit, EntityPlayer player) {
         if (this.getBlockType().blockID != this.leavesID || BlockFruitLeaves.getLeavesType(this.getBlockMetadata()) != this.leavesMeta) {
             if (mod_jaffas_trees.debug) System.err.println("not fruit block, no fruit generated");
             return false;
         }
 
         this.age = 0; // obsolete
-        this.generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand, this.leavesMeta);
-        //worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, mod_jaffas_trees.leavesList.get(0).leavesID, 0);
-        //worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, mod_jaffas_trees.leavesList.get(0).leavesID, BlockFruitLeaves.getChangedTypeInMeta(0, this.getBlockMetadata()));
+        int fruits = 1;
+        if (rand.nextDouble() < chanceForSecondFruit) fruits++;
+
+        for (int i = 0; i < fruits; i++)
+            this.generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand, this.leavesMeta, player);
+
         ChangeBlockAndRespawnMe(mod_jaffas_trees.leavesList.get(0).leavesID, 0);
 
         return true;
@@ -150,40 +154,43 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     private static final int[][] fruitNeighbourTable = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
-    private void generateFruit(World world, int x, int y, int z, Random rand, int metadata) {
-        if (this.fruit == fruitType.Vanilla && rand.nextInt(3) != 0) {
-            return;
-        }
-
+    private void generateFruit(World world, int x, int y, int z, Random rand, int metadata, EntityPlayer player) {
         boolean found = false;
         int newX = x, newY = y, newZ = z;
 
-        for (int passNum = 0; passNum < 2 && !found; passNum++) {
-            int tries = 0;
-            newX = x;
-            newY = y;
-            newZ = z;
+        if (player == null) {
+            for (int passNum = 0; passNum < 2 && !found; passNum++) {
+                int tries = 0;
+                newX = x;
+                newY = y;
+                newZ = z;
 
-            // looking for a way through leaves
-            int currentBlockID;
-            do {
-                tries++;
-                newY--;
-                currentBlockID = world.getBlockId(newX, newY, newZ);
+                // looking for a way through leaves
+                int currentBlockID;
+                do {
+                    tries++;
+                    newY--;
+                    currentBlockID = world.getBlockId(newX, newY, newZ);
 
-                if (currentBlockID == 0) {
-                    found = true;
-                } else if (passNum == 1) {
-                    // on a second pass we try harder
-                    for (int i = 0; i < fruitNeighbourTable.length && !found; i++) {
-                        if (world.getBlockId(newX + fruitNeighbourTable[i][0], newY, newZ + fruitNeighbourTable[i][1]) == 0) {
-                            newX += fruitNeighbourTable[i][0];
-                            newZ += fruitNeighbourTable[i][1];
-                            found = true;
+                    if (currentBlockID == 0) {
+                        found = true;
+                    } else if (passNum == 1) {
+                        // on a second pass we try harder
+                        for (int i = 0; i < fruitNeighbourTable.length && !found; i++) {
+                            if (world.getBlockId(newX + fruitNeighbourTable[i][0], newY, newZ + fruitNeighbourTable[i][1]) == 0) {
+                                newX += fruitNeighbourTable[i][0];
+                                newZ += fruitNeighbourTable[i][1];
+                                found = true;
+                            }
                         }
                     }
-                }
-            } while (tries <= 5 && !found && fruitFallThroughBlocks.contains(currentBlockID));
+                } while (tries <= 5 && !found && fruitFallThroughBlocks.contains(currentBlockID));
+            }
+        } else {
+            newX = (int) Math.round(player.posX);
+            newY = (int) Math.round(player.posY + .5);
+            newZ = (int) Math.round(player.posZ);
+            found = true;
         }
 
         if (found) {

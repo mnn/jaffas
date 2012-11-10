@@ -48,7 +48,6 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        TileEntity e = world.getBlockTileEntity(x, y, z);
 
         ItemStack handItem = player.getCurrentEquippedItem();
         if (handItem != null) {
@@ -57,6 +56,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
                 int bid = world.getBlockId(x, y, z);
                 int bmeta = world.getBlockMetadata(x, y, z);
 
+                TileEntity e = world.getBlockTileEntity(x, y, z);
                 player.addChatMessage(x + "," + y + "," + z + "~" + bid + ":" + bmeta);
                 String msg = "E~";
                 msg += e == null ? "NULL" : e.getClass();
@@ -67,17 +67,47 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         }
 
         if (world.isRemote) return true;
+
+        if (handItem == null && this.haveFruit(world, x, y, z)) {
+            return harvest(world, x, y, z, 0, null);
+        } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemRod.shiftedIndex) {
+            boolean harvested;
+            harvested = harvestArea(world, x, y, z, 0.10, null, 1, 2);
+            if (harvested) damageCurrentItem(player);
+            return harvested;
+        } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemFruitPicker.shiftedIndex) {
+            boolean harvested;
+            harvested = harvestArea(world, x, y, z, 0.50, player, 1, 3);
+            if (harvested) damageCurrentItem(player);
+            return harvested;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean harvestArea(World world, int x, int y, int z, double critChance, EntityPlayer player, int radius, int height) {
+        //TODO: search!
+        return harvest(world, x, y, z, critChance, player);
+    }
+
+    private void damageCurrentItem(EntityPlayer player) {
+        ItemStack handItem = player.getCurrentEquippedItem();
+        int newDamage = handItem.getItemDamage() + 1;
+        handItem.setItemDamage(newDamage);
+        if (newDamage >= handItem.getMaxDamage()) {
+            player.destroyCurrentEquippedItem();
+        }
+    }
+
+    private boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
+        TileEntity e = world.getBlockTileEntity(x, y, z);
         if (e == null || !(e instanceof TileEntityFruitLeaves)) {
             //if (mod_jaffas_trees.debug) System.err.println("null in TE, where are my leaves?");
             return false;
         }
 
-        if (handItem == null) {
-            TileEntityFruitLeaves te = (TileEntityFruitLeaves) e;
-            return te.generateFruitAndDecay();
-        } else {
-            return false;
-        }
+        TileEntityFruitLeaves te = (TileEntityFruitLeaves) e;
+        return te.generateFruitAndDecay(critChance, player);
     }
 
     public boolean haveFruit(World world, int x, int y, int z) {
@@ -87,7 +117,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         if (!(b instanceof BlockFruitLeaves)) return false;
 
         BlockFruitLeaves leaves = (BlockFruitLeaves) b;
-        mod_jaffas_trees.fruitType fruit = mod_jaffas_trees.getActualLeavesType(leaves, meta);
+        mod_jaffas_trees.fruitType fruit = mod_jaffas_trees.getActualLeavesType(leaves, BlockFruitLeaves.getLeavesType(meta));
         return fruit != mod_jaffas_trees.fruitType.Normal;
     }
 
