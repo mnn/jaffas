@@ -134,6 +134,10 @@ public class TileEntityFruitLeaves extends TileEntity {
         this.leavesMeta = par1NBTTagCompound.getInteger("leavesMeta");
     }
 
+    public static boolean isThisBlockTransparentForFruit(int blockID) {
+        return fruitFallThroughBlocks.contains(blockID);
+    }
+
     public boolean generateFruitAndDecay(double chanceForSecondFruit, EntityPlayer player) {
         if (this.getBlockType().blockID != this.leavesID || BlockFruitLeaves.getLeavesType(this.getBlockMetadata()) != this.leavesMeta) {
             if (mod_jaffas_trees.debug) System.err.println("not fruit block, no fruit generated");
@@ -152,7 +156,7 @@ public class TileEntityFruitLeaves extends TileEntity {
         return true;
     }
 
-    private static final int[][] fruitNeighbourTable = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
+    private static final int[][] fourNeighbourTable = {{0, 1}, {1, 0}, {-1, 0}, {0, -1}};
 
     private void generateFruit(World world, int x, int y, int z, Random rand, int metadata, EntityPlayer player) {
         boolean found = false;
@@ -176,15 +180,15 @@ public class TileEntityFruitLeaves extends TileEntity {
                         found = true;
                     } else if (passNum == 1) {
                         // on a second pass we try harder
-                        for (int i = 0; i < fruitNeighbourTable.length && !found; i++) {
-                            if (world.getBlockId(newX + fruitNeighbourTable[i][0], newY, newZ + fruitNeighbourTable[i][1]) == 0) {
-                                newX += fruitNeighbourTable[i][0];
-                                newZ += fruitNeighbourTable[i][1];
+                        for (int i = 0; i < fourNeighbourTable.length && !found; i++) {
+                            if (world.getBlockId(newX + fourNeighbourTable[i][0], newY, newZ + fourNeighbourTable[i][1]) == 0) {
+                                newX += fourNeighbourTable[i][0];
+                                newZ += fourNeighbourTable[i][1];
                                 found = true;
                             }
                         }
                     }
-                } while (tries <= 5 && !found && fruitFallThroughBlocks.contains(currentBlockID));
+                } while (tries <= 5 && !found && isThisBlockTransparentForFruit(currentBlockID));
             }
         } else {
             newX = (int) Math.round(player.posX);

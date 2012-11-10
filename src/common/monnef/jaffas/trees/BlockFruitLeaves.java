@@ -4,6 +4,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import net.minecraft.src.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -28,6 +29,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      */
     int[] adjacentTreeBlocks;
     private int subCount;
+    private static Random rand = new Random();
 
     public BlockFruitLeaves(int par1, int par2, int subCount) {
         super(par1, par2, Material.leaves, false);
@@ -68,35 +70,83 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
         if (world.isRemote) return true;
 
-        if (handItem == null && this.haveFruit(world, x, y, z)) {
-            return harvest(world, x, y, z, 0, null);
+        if (handItem == null) {
+            if (this.haveFruit(world, x, y, z)) {
+                return harvest(world, x, y, z, 0, null);
+            }
         } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemRod.shiftedIndex) {
             boolean harvested;
-            harvested = harvestArea(world, x, y, z, 0.10, null, 1, 2);
-            if (harvested) damageCurrentItem(player);
+            harvested = harvestArea(world, x, y, z, 0.10, null, 3);
+            if (harvested || rand.nextInt(3) == 0) damageCurrentItem(player);
             return harvested;
         } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemFruitPicker.shiftedIndex) {
             boolean harvested;
-            harvested = harvestArea(world, x, y, z, 0.50, player, 1, 3);
-            if (harvested) damageCurrentItem(player);
+            harvested = harvestArea(world, x, y, z, 0.50, player, 5);
+            if (harvested || rand.nextInt(3) == 0) damageCurrentItem(player);
             return harvested;
         } else {
             return false;
         }
+
+        return false;
     }
 
-    private boolean harvestArea(World world, int x, int y, int z, double critChance, EntityPlayer player, int radius, int height) {
-        //TODO: search!
-        return harvest(world, x, y, z, critChance, player);
+    private static final int[][] eightNeighbourWithMeTable = {{0, 0}, {0, 1}, {1, 0}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
+
+    private boolean harvestArea(World world, int x, int y, int z, double critChance, EntityPlayer player, int height) {
+        ArrayList<Boolean> allowedPillar = new ArrayList<>();
+        for (int i = 0; i < eightNeighbourWithMeTable.length; i++)
+            allowedPillar.add(true);
+
+        int myLevel = 0;
+        ArrayList<Integer> blocksToInspect = new ArrayList<>();
+        boolean found = false;
+        int bx = -1000, by = -1000, bz = -1000;
+        while (height > myLevel) {
+            // prepare current level
+            blocksToInspect.clear();
+            for (int i = 0; i < allowedPillar.size(); i++)
+                if (allowedPillar.get(i)) blocksToInspect.add(i);
+
+            while (!blocksToInspect.isEmpty()) {
+                int toPop = rand.nextInt(blocksToInspect.size());
+                int blockNum = blocksToInspect.get(toPop); // get block's number in neighbour list
+                blocksToInspect.remove(toPop);
+                // compute block's coordinates
+                by = y + myLevel;
+                bx = x + eightNeighbourWithMeTable[blockNum][0];
+                bz = z + eightNeighbourWithMeTable[blockNum][1];
+
+                int currentBlockID = world.getBlockId(bx, by, bz);
+                if (haveFruit(world, bx, by, bz))
+                    found = true;
+
+                // on a solid block we make a mark to not test blocks above current block
+                if (!TileEntityFruitLeaves.isThisBlockTransparentForFruit(currentBlockID) && currentBlockID != 0)
+                    allowedPillar.set(blockNum, false);
+
+                if (found) break;
+            }
+
+            if (found) break;
+            myLevel++;
+        }
+
+        if (!found) return false;
+
+        return harvest(world, bx, by, bz, critChance, player);
+
+        //return harvest(world, x, y, z, critChance, player);
     }
 
     private void damageCurrentItem(EntityPlayer player) {
         ItemStack handItem = player.getCurrentEquippedItem();
-        int newDamage = handItem.getItemDamage() + 1;
+    /*    int newDamage = handItem.getItemDamage() + 1;
         handItem.setItemDamage(newDamage);
         if (newDamage >= handItem.getMaxDamage()) {
             player.destroyCurrentEquippedItem();
-        }
+        }*/
+        handItem.damageItem(1, player);
     }
 
     private boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
