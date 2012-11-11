@@ -191,11 +191,28 @@ public class BlockJaffaCrops extends BlockFlower {
     }
 
     @SideOnly(Side.CLIENT)
-
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
     public int idPicked(World par1World, int par2, int par3, int par4) {
         return seeds.shiftedIndex;
+    }
+
+    public int getPhasesMax() {
+        return phasesMax;
+    }
+
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+        super.onBlockAdded(par1World, par2, par3, par4);
+        par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
+    }
+
+    public TileEntity createNewTileEntity(World world) {
+        return new TileEntityJaffaCrops();
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
     }
 }

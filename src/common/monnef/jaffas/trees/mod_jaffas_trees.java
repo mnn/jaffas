@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import forestry.api.cultivation.CropProviders;
 import monnef.core.Version;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.server.MinecraftServer;
@@ -261,6 +262,7 @@ public class mod_jaffas_trees {
         AddFruitTreesSequence(1, 4, 32 + 4, 3);
 
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
+        GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
 
         itemLemon = new ItemJaffaFruit(itemLemonID);
         itemLemon.setItemName("lemon").setIconCoord(4, 4);
@@ -307,6 +309,9 @@ public class mod_jaffas_trees {
         proxy.registerRenderThings();
 
         //GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+
+        //forestry stuff
+        CropProviders.cerealCrops.add(new JaffaCropProvider());
 
         System.out.println("trees module from 'Jaffas and more!' initialized");
     }

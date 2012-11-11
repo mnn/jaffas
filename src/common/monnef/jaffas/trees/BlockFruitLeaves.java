@@ -94,12 +94,12 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     private static final int[][] eightNeighbourWithMeTable = {{0, 0}, {0, 1}, {1, 0}, {-1, 0}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};
 
     private boolean harvestArea(World world, int x, int y, int z, double critChance, EntityPlayer player, int height) {
-        ArrayList<Boolean> allowedPillar = new ArrayList<>();
+        ArrayList<Boolean> allowedPillar = new ArrayList<Boolean>();
         for (int i = 0; i < eightNeighbourWithMeTable.length; i++)
             allowedPillar.add(true);
 
         int myLevel = 0;
-        ArrayList<Integer> blocksToInspect = new ArrayList<>();
+        ArrayList<Integer> blocksToInspect = new ArrayList<Integer>();
         boolean found = false;
         int bx = -1000, by = -1000, bz = -1000;
         while (height > myLevel) {
@@ -149,7 +149,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         handItem.damageItem(1, player);
     }
 
-    private boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
+    public static boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
         TileEntity e = world.getBlockTileEntity(x, y, z);
         if (e == null || !(e instanceof TileEntityFruitLeaves)) {
             //if (mod_jaffas_trees.debug) System.err.println("null in TE, where are my leaves?");
@@ -160,7 +160,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         return te.generateFruitAndDecay(critChance, player);
     }
 
-    public boolean haveFruit(World world, int x, int y, int z) {
+    public static boolean haveFruit(World world, int x, int y, int z) {
         int blockId = world.getBlockId(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
         Block b = Block.blocksList[blockId];

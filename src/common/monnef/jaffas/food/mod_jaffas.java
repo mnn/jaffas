@@ -307,6 +307,8 @@ public class mod_jaffas {
 
     @Init
     public void load(FMLInitializationEvent event) {
+        checkJsoup();
+
         proxy.registerTickHandler();
         TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 
@@ -341,6 +343,15 @@ public class mod_jaffas {
         System.out.println("Mod 'Jaffas and more!' successfully initialized");
         System.out.println("created by monnef and Tiartyos");
         System.out.println("version: " + Version.Version + " ; http://jaffas.maweb.eu");
+    }
+
+    private void checkJsoup() {
+        try {
+            Class c = Class.forName("org.jsoup.Jsoup");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Jsoup library not found, cannot continue.");
+        }
     }
 
     private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {

@@ -27,7 +27,7 @@ public class ItemJaffaSeeds extends Item {
     public boolean tryPlaceIntoWorld(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
         if (par7 != 1) {
             return false;
-        } else if (player.canPlayerEdit(x, y, z) && player.canPlayerEdit(x, y + 1, z)) {
+        } else if (player == null || (player.canPlayerEdit(x, y, z) && player.canPlayerEdit(x, y + 1, z))) {
             int var11 = world.getBlockId(x, y, z);
 
             if (var11 == this.soilBlockID && world.isAirBlock(x, y + 1, z)) {

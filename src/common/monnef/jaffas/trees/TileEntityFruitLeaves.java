@@ -68,7 +68,14 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     public void updateEntity() {
         if (!checked) {
-            fruit = getActualLeavesType(Block.blocksList[this.leavesID], this.leavesMeta);
+            try {
+                fruit = getActualLeavesType(Block.blocksList[this.leavesID], this.leavesMeta);
+            }catch (RuntimeException ex){
+                ex.printStackTrace();
+                this.invalidate();
+                return;
+            }
+
             checked = true;
             if (fruit == fruitType.Normal) {
                 this.invalidate();

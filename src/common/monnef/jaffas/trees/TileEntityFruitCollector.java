@@ -36,6 +36,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
     private String soundToRun = null;
     private float soundVolume = 1f;
+    private boolean findFruitToKnockHarder = false;
 
     public double getIX() {
         return ix;
@@ -121,6 +122,13 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         tickCounter++;
         playQueuedSound();
 
+        if (isBurning()) {
+            int limit = this.findFruitToKnockHarder ? 15 : 3;
+            this.findFruitToKnockHarder = false;
+            for (int i = 0; i < limit; i++)
+                if (tryKnockingFruitDown()) break;
+        }
+
         if (tickCounter % tickDivider == 0) {
             // only every second do stuff
 
@@ -143,6 +151,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                         if (aquireTarget()) {
                             this.queueSound("sharpener", 0.7F);
                             burnTime -= suckCost;
+                            this.findFruitToKnockHarder = true;
                         } else {
                             burnTime -= 1;
                         }
@@ -183,6 +192,25 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         }
     }
 
+    private boolean tryKnockingFruitDown() {
+        // 7 x 7 x 7
+        int cx = this.xCoord + computeRandomCoordinate(7);
+        int cy = this.yCoord + rand.nextInt(7);
+        int cz = this.zCoord + computeRandomCoordinate(7);
+
+        if (worldObj.getChunkFromBlockCoords(cx, cz).isChunkLoaded) {
+            if (BlockFruitLeaves.haveFruit(worldObj, cx, cy, cz)) {
+                return BlockFruitLeaves.harvest(worldObj, cx, cy, cz, 0, null);
+            }
+        }
+
+        return false;
+    }
+
+    public static int computeRandomCoordinate(int radius) {
+        return rand.nextInt(radius * 2 + 1) - radius;
+    }
+
     private void playQueuedSound() {
         if (this.soundToRun != null) {
             worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, this.soundVolume, this.rand.nextFloat() * 0.1F + 0.9F);
@@ -202,7 +230,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
     private boolean aquireTarget() {
         if (!worldObj.isRemote) {
             box = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
-            box = box.expand(7, 2, 7);
+            box = box.expand(8, 2, 8);
 
             List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class, box);
             Iterator<EntityItem> it = list.iterator();
