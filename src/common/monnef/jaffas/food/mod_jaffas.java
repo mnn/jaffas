@@ -338,7 +338,8 @@ public class mod_jaffas {
         itemPainting = new ItemJaffaPainting(this.itemPaintingID);
         LanguageRegistry.addName(itemPainting, "Painting");
 
-        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false);
+        // TODO: id from config
+		registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false);
 
         System.out.println("Mod 'Jaffas and more!' successfully initialized");
         System.out.println("created by monnef and Tiartyos");
