@@ -278,7 +278,7 @@ public class mod_jaffas_trees {
         LanguageRegistry.addName(itemStick, "Impregnated Stick");
 
         itemRod = new ItemJaffaT(itemRodID);
-        itemRod.setItemName("rod").setIconIndex(5).setMaxStackSize(1).setMaxDamage(128);
+        itemRod.setItemName("rod").setIconIndex(5).setMaxStackSize(1).setMaxDamage(64);
         LanguageRegistry.addName(itemRod, "Reinforced Rod");
 
         itemFruitPickerHead = new ItemJaffaT(itemFruitPickerHeadID);
@@ -376,6 +376,11 @@ public class mod_jaffas_trees {
                 'I', new ItemStack(Block.blockSteel), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
 
         installFruitSeedsRecipes();
+
+        GameRegistry.addShapelessRecipe(new ItemStack(itemStick, 4), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.slimeBall));
+        GameRegistry.addRecipe(new ItemStack(itemRod), " S ", "ISI", " S ", 'S', new ItemStack(itemStick), 'I', new ItemStack(Item.ingotIron));
+        GameRegistry.addRecipe(new ItemStack(itemFruitPickerHead), "III", "WWW", " W ", 'I', new ItemStack(Item.ingotIron), 'W', new ItemStack(Block.cloth, 1, -1));
+        GameRegistry.addRecipe(new ItemStack(itemFruitPicker), "H", "R", 'H', new ItemStack(itemFruitPickerHead), 'R', new ItemStack(itemRod));
     }
 
     private void installFruitSeedsRecipes() {
