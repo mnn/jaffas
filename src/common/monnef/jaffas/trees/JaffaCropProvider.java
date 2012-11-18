@@ -40,7 +40,8 @@ public class JaffaCropProvider implements ICropProvider {
     public boolean doPlant(ItemStack germling, World world, int x, int y, int z) {
         if (germling == null) return false;
         ItemJaffaSeeds seeds = (ItemJaffaSeeds) germling.getItem();
-        boolean placed = seeds.tryPlaceIntoWorld(germling, null, world, x, y - 1, z, topSide, 0, 0, 0);
+        //boolean placed = seeds.tryPlaceIntoWorld(germling, null, world, x, y - 1, z, topSide, 0, 0, 0);
+        boolean placed = seeds.onItemUse(germling, null, world, x, y - 1, z, topSide, 0, 0, 0);
         if (placed) germling.stackSize++;
         return placed;
     }

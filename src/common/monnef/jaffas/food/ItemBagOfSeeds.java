@@ -13,7 +13,7 @@ public class ItemBagOfSeeds extends Item {
         super(par1);
 
         setMaxStackSize(1);
-        this.setTabToDisplayOn(CreativeTabs.tabMaterials);
+        this.setCreativeTab(CreativeTabs.tabMaterials);
     }
 
     public String getTextureFile() {

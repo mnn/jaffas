@@ -20,7 +20,7 @@ public class GuiFridge extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer() {
+    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         //draw text and stuff here
         //the parameters for drawString are: string, x, y, color
         fontRenderer.drawString("Fridge", 8, 3, 4210752);

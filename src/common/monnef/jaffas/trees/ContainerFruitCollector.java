@@ -86,7 +86,7 @@ public class ContainerFruitCollector extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(int slot) {
+    public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
         ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
 

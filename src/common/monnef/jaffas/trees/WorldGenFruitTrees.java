@@ -1,7 +1,6 @@
 package monnef.jaffas.trees;
 
 import net.minecraft.src.Block;
-import net.minecraft.src.Direction;
 import net.minecraft.src.World;
 import net.minecraft.src.WorldGenerator;
 
@@ -155,47 +154,6 @@ public class WorldGenFruitTrees extends WorldGenerator {
 
                                 if (par2Random.nextInt(3) > 0 && par1World.isAirBlock(par3, par4 + var11, par5 + 1)) {
                                     this.setBlockAndMetadata(par1World, par3, par4 + var11, par5 + 1, Block.vine.blockID, 4);
-                                }
-                            }
-                        }
-                    }
-
-                    if (this.vinesGrow) {
-                        for (var11 = par4 - 3 + var6; var11 <= par4 + var6; ++var11) {
-                            var12 = var11 - (par4 + var6);
-                            var13 = 2 - var12 / 2;
-
-                            for (var14 = par3 - var13; var14 <= par3 + var13; ++var14) {
-                                for (var15 = par5 - var13; var15 <= par5 + var13; ++var15) {
-                                    Block block = Block.blocksList[par1World.getBlockId(var14, var11, var15)];
-                                    if (block != null && block.isLeaves(par1World, var14, var11, var15)) {
-                                        if (par2Random.nextInt(4) == 0 && par1World.getBlockId(var14 - 1, var11, var15) == 0) {
-                                            this.growVines(par1World, var14 - 1, var11, var15, 8);
-                                        }
-
-                                        if (par2Random.nextInt(4) == 0 && par1World.getBlockId(var14 + 1, var11, var15) == 0) {
-                                            this.growVines(par1World, var14 + 1, var11, var15, 2);
-                                        }
-
-                                        if (par2Random.nextInt(4) == 0 && par1World.getBlockId(var14, var11, var15 - 1) == 0) {
-                                            this.growVines(par1World, var14, var11, var15 - 1, 1);
-                                        }
-
-                                        if (par2Random.nextInt(4) == 0 && par1World.getBlockId(var14, var11, var15 + 1) == 0) {
-                                            this.growVines(par1World, var14, var11, var15 + 1, 4);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        if (par2Random.nextInt(5) == 0 && var6 > 5) {
-                            for (var11 = 0; var11 < 2; ++var11) {
-                                for (var12 = 0; var12 < 4; ++var12) {
-                                    if (par2Random.nextInt(4 - var11) == 0) {
-                                        var13 = par2Random.nextInt(3);
-                                        this.setBlockAndMetadata(par1World, par3 + Direction.offsetX[Direction.footInvisibleFaceRemap[var12]], par4 + var6 - 5 + var11, par5 + Direction.offsetZ[Direction.footInvisibleFaceRemap[var12]], Block.cocoa.blockID, var13 << 2 | var12);
-                                    }
                                 }
                             }
                         }

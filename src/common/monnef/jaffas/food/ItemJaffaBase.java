@@ -7,7 +7,7 @@ public class ItemJaffaBase extends Item {
 	public ItemJaffaBase(int v) {
 		super(v);
 		maxStackSize = 64;
-		this.setTabToDisplayOn(CreativeTabs.tabMaterials);
+		this.setCreativeTab(CreativeTabs.tabMaterials);
 	}
 	
 	public String getTextureFile(){
