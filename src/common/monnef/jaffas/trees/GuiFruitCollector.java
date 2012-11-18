@@ -20,10 +20,12 @@ public class GuiFruitCollector extends GuiContainer {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer() {
+    protected void drawGuiContainerForegroundLayer(int par1, int par2)
+    {
         //draw text and stuff here
         //the parameters for drawString are: string, x, y, color
-        fontRenderer.drawString("Fruit Collector", 8, 5, 4210752);
+        this.fontRenderer.drawString("Fruit Collector", 8, 5, 4210752);
+
         //draws "Inventory" or your regional equivalent
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 

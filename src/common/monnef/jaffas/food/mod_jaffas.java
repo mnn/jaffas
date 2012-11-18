@@ -16,6 +16,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
+import monnef.core.IDProvider;
 import monnef.core.Version;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
@@ -51,7 +52,6 @@ public class mod_jaffas {
 
     @Mod.Instance("moen-jaffas")
     public static mod_jaffas instance;
-    public static int topDefaultID = -1;
     public boolean itemsReady = false;
     public boolean checkUpdates;
     public static ItemJaffaPainting itemPainting;
@@ -72,22 +72,10 @@ public class mod_jaffas {
         rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen, coffee, coffeeRoasted, skewerRaw
     }
 
-    public static final int startID = 3600;
-    private int actualID = startID;
+    private static IDProvider idProvider = new IDProvider(3600, 24744);
 
     public static boolean debug;
 
-    public int getActualID() {
-        return actualID;
-    }
-
-    private int getID() {
-        return this.actualID++;
-    }
-
-    private int getBlockID() {
-        return getID() /*+ 256*/;
-    }
 
     private void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
         JaffaItemInfo newItem = new JaffaItemInfo(name);
@@ -225,7 +213,7 @@ public class mod_jaffas {
 
         try {
             config.load();
-
+            idProvider.setConfig(config);
 
             for (JaffaItem item : JaffaItem.values()) {
                 JaffaItemInfo info = ItemsInfo.get(item);
@@ -233,26 +221,23 @@ public class mod_jaffas {
                     throw new RuntimeException("got null in item list - " + item);
                 }
                 String configName = info.getConfigName();
-                int id = config.getOrCreateIntProperty(configName, Configuration.CATEGORY_ITEM, getID()).getInt();
+
+                int id = idProvider.getItemIDFromConfig(configName);
+
                 info.setId(id);
             }
 
-            blockJaffaBombID = config.getOrCreateIntProperty("jaffa bomb", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
-            blockFridgeID = config.getOrCreateIntProperty("fridge", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
+            blockJaffaBombID = idProvider.getBlockIDFromConfig("jaffa bomb");
+            blockFridgeID = idProvider.getBlockIDFromConfig("fridge");
 
-            debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
+            debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
-            itemJaffaPlateID = config.getOrCreateIntProperty("jaffaPlate", Configuration.CATEGORY_ITEM, getID()).getInt();
-            itemJaffaSwordID = config.getOrCreateIntProperty("jaffaSword", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemJaffaPlateID = idProvider.getItemIDFromConfig("jaffaPlate");
+            itemJaffaSwordID = idProvider.getItemIDFromConfig("jaffaSword");
 
-            itemPaintingID = config.getOrCreateIntProperty("painting", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemPaintingID = idProvider.getItemIDFromConfig("painting");
 
-            checkUpdates = config.getOrCreateBooleanProperty("checkUpdates", Configuration.CATEGORY_GENERAL, true).getBoolean(true);
-
-            if (mod_jaffas.topDefaultID == -1) {
-                mod_jaffas.topDefaultID = this.actualID;
-            }
-
+            checkUpdates = config.get(Configuration.CATEGORY_GENERAL, "checkUpdates", true).getBoolean(true);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -339,7 +324,7 @@ public class mod_jaffas {
         LanguageRegistry.addName(itemPainting, "Painting");
 
         // TODO: id from config
-		registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false);
+        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false);
 
         System.out.println("Mod 'Jaffas and more!' successfully initialized");
         System.out.println("created by monnef and Tiartyos");
@@ -440,7 +425,7 @@ public class mod_jaffas {
 
         int armorRender = proxy.addArmor("Jaffa");
         itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, 1);
-        itemJaffaPlate.setItemName("JaffaPlate").setIconIndex(90).setTabToDisplayOn(CreativeTabs.tabCombat);
+        itemJaffaPlate.setItemName("JaffaPlate").setIconIndex(90).setCreativeTab(CreativeTabs.tabCombat);
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 
         itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, EnumToolMaterialJaffas);

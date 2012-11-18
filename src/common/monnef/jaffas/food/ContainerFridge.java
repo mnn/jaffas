@@ -96,7 +96,8 @@ public class ContainerFridge extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(int slot) {
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slot)
+    {
         ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
 

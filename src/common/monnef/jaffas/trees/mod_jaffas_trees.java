@@ -12,6 +12,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
+import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.server.MinecraftServer;
@@ -99,9 +100,6 @@ public class mod_jaffas_trees {
     public static final int leavesBlocksAllocated = 3;
     public static final int leavesTypesCount = 6;
 
-    public static int startID;
-    private int actualID;
-
     public static boolean debug;
 
     private int itemLemonID;
@@ -131,27 +129,17 @@ public class mod_jaffas_trees {
 
     public final static String textureFile = "/jaffas_02.png";
 
-    private int getID() {
-        return this.actualID++;
-    }
-
-    private int getBlockID() {
-        return getID()/* + 256*/;
-    }
-
     public mod_jaffas_trees() {
         instance = this;
     }
+
+    private static IDProvider idProvider = new IDProvider(3500, 25244);
 
     @SidedProxy(clientSide = "monnef.jaffas.trees.ClientProxyTutorial", serverSide = "monnef.jaffas.trees.CommonProxyTutorial")
     public static CommonProxyTutorial proxy;
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
-        //this.startID = mod_jaffas.topDefaultID;
-        this.startID = 3500;
-        this.actualID = this.startID;
-
         PopulateBushInfo();
 
         Configuration config = new Configuration(
@@ -159,19 +147,16 @@ public class mod_jaffas_trees {
 
         try {
             config.load();
+            idProvider.setConfig(config);
 
-            if (this.actualID <= 0) {
-                throw new RuntimeException("unable to get ID from parent");
-            }
-
-            itemLemonID = config.getOrCreateIntProperty("lemon", Configuration.CATEGORY_ITEM, getID()).getInt();
-            itemOrangeID = config.getOrCreateIntProperty("orange", Configuration.CATEGORY_ITEM, getID()).getInt();
-            itemPlumID = config.getOrCreateIntProperty("plum", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemLemonID = idProvider.getItemIDFromConfig("lemon");
+            itemOrangeID = idProvider.getItemIDFromConfig("orange");
+            itemPlumID = idProvider.getItemIDFromConfig("plum");
 
             for (int i = 0; i < leavesBlocksAllocated; i++) {
-                int leavesID = config.getOrCreateIntProperty("fruit leaves " + i, Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
-                int saplingID = config.getOrCreateIntProperty("fruit tree sapling " + i, Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
-                int seedsID = config.getOrCreateIntProperty("fruit seeds " + i, Configuration.CATEGORY_ITEM, getID()).getInt();
+                int leavesID = idProvider.getBlockIDFromConfig("fruit leaves " + i);
+                int saplingID = idProvider.getBlockIDFromConfig("fruit tree sapling " + i);
+                int seedsID = idProvider.getItemIDFromConfig("fruit seeds " + i);
 
                 leavesList.add(new LeavesInfo(leavesID, saplingID, seedsID, i));
             }
@@ -179,21 +164,22 @@ public class mod_jaffas_trees {
             for (EnumMap.Entry<bushType, BushInfo> entry : BushesList.entrySet()) {
                 BushInfo info = entry.getValue();
 
-                info.itemSeedsID = config.getOrCreateIntProperty(info.getSeedsConfigName(), Configuration.CATEGORY_ITEM, getID()).getInt();
-                info.blockID = config.getOrCreateIntProperty(info.getBlockConfigName(), Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
-                info.itemFruitID = config.getOrCreateIntProperty(info.getFruitConfigName(), Configuration.CATEGORY_ITEM, getID()).getInt();
+                info.itemSeedsID = idProvider.getItemIDFromConfig(info.getSeedsConfigName());
+                info.blockID = idProvider.getBlockIDFromConfig(info.getBlockConfigName());
+                info.itemFruitID = idProvider.getItemIDFromConfig(info.getFruitConfigName());
             }
 
-            blockFruitCollectorID = config.getOrCreateIntProperty("fruit collector", Configuration.CATEGORY_BLOCK, getBlockID()).getInt();
-            itemDebugID = config.getOrCreateIntProperty("debug tool", Configuration.CATEGORY_ITEM, getID()).getInt();
+            blockFruitCollectorID = idProvider.getBlockIDFromConfig("fruit collector");
 
-            itemStickID = config.getOrCreateIntProperty("stick", Configuration.CATEGORY_ITEM, getID()).getInt();
-            itemRodID = config.getOrCreateIntProperty("rod", Configuration.CATEGORY_ITEM, getID()).getInt();
-            itemFruitPickerID = config.getOrCreateIntProperty("fruit picker", Configuration.CATEGORY_ITEM, getID()).getInt();
-            itemFruitPickerHeadID = config.getOrCreateIntProperty("fruit picker head", Configuration.CATEGORY_ITEM, getID()).getInt();
+            itemDebugID = idProvider.getItemIDFromConfig("debug tool");
 
-            debug = config.getOrCreateBooleanProperty("debug", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
-            bonemealingAllowed = config.getOrCreateBooleanProperty("bonemeal", Configuration.CATEGORY_GENERAL, false).getBoolean(false);
+            itemStickID = idProvider.getItemIDFromConfig("stick");
+            itemRodID = idProvider.getItemIDFromConfig("rod");
+            itemFruitPickerID = idProvider.getItemIDFromConfig("fruit picker");
+            itemFruitPickerHeadID = idProvider.getItemIDFromConfig("fruit picker head");
+
+            debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
+            bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", false).getBoolean(false);
 
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
@@ -222,7 +208,7 @@ public class mod_jaffas_trees {
             info.itemSeeds = seeds;
 
             ItemJaffaBerry fruit = new ItemJaffaBerry(info.itemFruitID);
-            fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setTabToDisplayOn(CreativeTabs.tabMaterials);
+            fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setCreativeTab(CreativeTabs.tabMaterials);
             LanguageRegistry.addName(fruit, info.fruitTitle);
             info.itemFruit = fruit;
 
@@ -320,7 +306,7 @@ public class mod_jaffas_trees {
         LeavesInfo leaves = leavesList.get(i);
         leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;
-        leaves.leavesBlock.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves" + i).setCreativeTab(CreativeTabs.tabDeco).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
+        leaves.leavesBlock.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves" + i).setCreativeTab(CreativeTabs.tabDecorations).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
         GameRegistry.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 

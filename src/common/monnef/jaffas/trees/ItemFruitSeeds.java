@@ -17,7 +17,7 @@ public class ItemFruitSeeds extends ItemBlockEx {
         super(itemID, blockID);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
-        this.setTabToDisplayOn(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setIconIndex(textureOffset);
         this.isDefaultTexture = true;
         this.texture = textureOffset;

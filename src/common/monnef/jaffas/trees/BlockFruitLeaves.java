@@ -34,7 +34,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     public BlockFruitLeaves(int par1, int par2, int subCount) {
         super(par1, par2, Material.leaves, false);
         this.setTickRandomly(true);
-        this.setCreativeTab(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
         mod_jaffas_trees.proxy.setFancyGraphicsLevel(this, true);
         this.subCount = subCount;
         //this.setGraphicsLevel(true);
@@ -363,7 +363,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
-    protected int damageDropped(int par1) {
+    public int damageDropped(int par1) {
         return getLeavesType(par1);
     }
 

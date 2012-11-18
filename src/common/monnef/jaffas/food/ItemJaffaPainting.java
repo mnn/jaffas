@@ -5,7 +5,7 @@ import net.minecraft.src.*;
 public class ItemJaffaPainting extends Item {
     public ItemJaffaPainting(int par1) {
         super(par1);
-        this.setTabToDisplayOn(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setItemName("jaffaPainting");
         this.setIconIndex(1);
     }
@@ -14,7 +14,7 @@ public class ItemJaffaPainting extends Item {
         return "/jaffas_01.png";
     }
 
-    public boolean tryPlaceIntoWorld(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
         if (par7 == 0) {
             return false;
         } else if (par7 == 1) {
@@ -34,7 +34,7 @@ public class ItemJaffaPainting extends Item {
                 var11 = 3;
             }
 
-            if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6)) {
+            if (!par2EntityPlayer.func_82247_a(par4, par5, par6, par7, par1ItemStack)) {
                 return false;
             } else {
                 EntityJaffaPainting var12 = new EntityJaffaPainting(par3World, par4, par5, par6, var11);
@@ -52,4 +52,5 @@ public class ItemJaffaPainting extends Item {
             }
         }
     }
+
 }

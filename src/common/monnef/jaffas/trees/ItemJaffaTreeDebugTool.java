@@ -7,6 +7,6 @@ import net.minecraft.src.Item;
 public class ItemJaffaTreeDebugTool extends Item {
     protected ItemJaffaTreeDebugTool(int par1) {
         super(par1);
-        this.setTabToDisplayOn(CreativeTabs.tabTools);
+        this.setCreativeTab(CreativeTabs.tabTools);
     }
 }

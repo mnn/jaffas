@@ -42,7 +42,7 @@ public class JaffaBombBlock extends Block {
     }
 
     private void detonate(World w, int par2, int par3, int par4) {
-        w.createExplosion((Entity) null, par2, par3, par4, blastStrengh);
+        w.createExplosion((Entity) null, par2, par3, par4, blastStrengh, true);
 
         for (int i = 0; i < itemCount; i++) {
             int counter = 0;

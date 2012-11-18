@@ -30,7 +30,7 @@ public class BlockFruitSapling extends BlockFlower {
         super(blockId, blockIndexInTexture);
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
-        this.setCreativeTab(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
     /**
@@ -107,7 +107,7 @@ public class BlockFruitSapling extends BlockFlower {
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
-    protected int damageDropped(int par1) {
+    public int damageDropped(int par1) {
         return BlockFruitLeaves.getLeavesType(par1);
     }
 

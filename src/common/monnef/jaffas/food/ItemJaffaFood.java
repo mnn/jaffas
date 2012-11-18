@@ -10,7 +10,7 @@ public class ItemJaffaFood extends ItemFood {
     public ItemJaffaFood(int id, int healAmount, float saturation) {
         super(id, healAmount, saturation, false);
         maxStackSize = 64;
-        this.setTabToDisplayOn(CreativeTabs.tabFood);
+        this.setCreativeTab(CreativeTabs.tabFood);
     }
 
     public String getTextureFile() {
