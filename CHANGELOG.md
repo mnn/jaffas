@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.4
+- updated to MC 1.4.2
+- rework of fruit trees (fruit is not picked by hand or special tools)
+- plants support for forestry
+
 ## 0.4.3
 - finished bushes
 - fruit collector
