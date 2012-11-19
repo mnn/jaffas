@@ -274,19 +274,19 @@ public class mod_jaffas_trees {
         LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
 
         itemStick = new ItemJaffaT(itemStickID);
-        itemStick.setItemName("stickImpregnated").setIconIndex(4);
+        itemStick.setItemName("stickImpregnated").setIconCoord(0, 10);
         LanguageRegistry.addName(itemStick, "Impregnated Stick");
 
         itemRod = new ItemJaffaT(itemRodID);
-        itemRod.setItemName("rod").setIconIndex(5).setMaxStackSize(1).setMaxDamage(64);
+        itemRod.setItemName("rod").setIconCoord(1, 10).setMaxStackSize(1).setMaxDamage(64);
         LanguageRegistry.addName(itemRod, "Reinforced Rod");
 
         itemFruitPickerHead = new ItemJaffaT(itemFruitPickerHeadID);
-        itemFruitPickerHead.setItemName("fruitPickerHead").setIconIndex(3);
+        itemFruitPickerHead.setItemName("fruitPickerHead").setIconCoord(2, 10);
         LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
 
         itemFruitPicker = new ItemJaffaT(itemFruitPickerID);
-        itemFruitPicker.setItemName("fruitPicker").setIconIndex(6).setMaxStackSize(1).setMaxDamage(256);
+        itemFruitPicker.setItemName("fruitPicker").setIconCoord(3, 10).setMaxStackSize(1).setMaxDamage(256);
         LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
 
         installRecipes();
@@ -380,7 +380,7 @@ public class mod_jaffas_trees {
         GameRegistry.addShapelessRecipe(new ItemStack(itemStick, 4), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.slimeBall));
         GameRegistry.addRecipe(new ItemStack(itemRod), " S ", "ISI", " S ", 'S', new ItemStack(itemStick), 'I', new ItemStack(Item.ingotIron));
         GameRegistry.addRecipe(new ItemStack(itemFruitPickerHead), "III", "WWW", " W ", 'I', new ItemStack(Item.ingotIron), 'W', new ItemStack(Block.cloth, 1, -1));
-        GameRegistry.addRecipe(new ItemStack(itemFruitPicker), "H", "R", 'H', new ItemStack(itemFruitPickerHead), 'R', new ItemStack(itemRod));
+        GameRegistry.addRecipe(new ItemStack(itemFruitPicker), "H ", " R", 'H', new ItemStack(itemFruitPickerHead), 'R', new ItemStack(itemRod));
     }
 
     private void installFruitSeedsRecipes() {
@@ -399,7 +399,7 @@ public class mod_jaffas_trees {
 
             if (info.getMessage() != null) {
                 System.err.println(info.getMessage());
-                throw new RuntimeException("unknown error during fruits->seeds recipe contruction");
+                throw new RuntimeException("unknown error during fruits->seeds recipe construction");
             }
 
             ItemStack fruit = info.getStack();
