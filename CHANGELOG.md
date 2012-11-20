@@ -1,5 +1,3 @@
-# Changelog
-
 ## 0.4.4
 - updated to MC 1.4.2
 - rework of fruit trees (fruit is now picked by hand or special tools)
