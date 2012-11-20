@@ -2,8 +2,8 @@
 
 ## 0.4.4
 - updated to MC 1.4.2
-- rework of fruit trees (fruit is not picked by hand or special tools)
-- plants support for forestry
+- rework of fruit trees (fruit is now picked by hand or special tools)
+- plants are compatible with forestry (combine and farm machines)
 
 ## 0.4.3
 - finished bushes
