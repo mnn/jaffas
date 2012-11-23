@@ -17,7 +17,7 @@ public class ItemJaffaSeeds extends ItemSeeds {
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
         if (par7 != 1) {
             return false;
-        } else if (par2EntityPlayer == null || (par2EntityPlayer.func_82247_a(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.func_82247_a(par4, par5 + 1, par6, par7, par1ItemStack))) {
+        } else if (par2EntityPlayer == null || (par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6, par7, par1ItemStack))) {
             int var11 = par3World.getBlockId(par4, par5, par6);
             Block soil = Block.blocksList[var11];
 

@@ -259,10 +259,10 @@ public class BlockFridge extends BlockContainer {
         ((TileEntityFridge) blockEntity).setFront(front);
         w.setBlockMetadata(x, y, z, front);
 
-        w.markBlockAsNeedsUpdate(x, y, z);
+        //w.markBlockAsNeedsUpdate(x, y, z);
         w.notifyBlockChange(x, y, z, blockID);
-        w.markBlocksDirty(x - 1, y - 1, z - 1, x + 1, y + 1, z + 1);
+        //w.markBlocksDirty(x - 1, y - 1, z - 1, x + 1, y + 1, z + 1);
         w.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
-        w.markBlockNeedsUpdate(x, y, z);
+        //w.markBlockNeedsUpdate(x, y, z);
     }
 }

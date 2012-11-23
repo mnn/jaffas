@@ -34,7 +34,7 @@ public class ItemJaffaPainting extends Item {
                 var11 = 3;
             }
 
-            if (!par2EntityPlayer.func_82247_a(par4, par5, par6, par7, par1ItemStack)) {
+            if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack)) {
                 return false;
             } else {
                 EntityJaffaPainting var12 = new EntityJaffaPainting(par3World, par4, par5, par6, var11);

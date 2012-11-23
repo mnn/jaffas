@@ -40,11 +40,11 @@ public class ContainerFruitCollector extends Container {
             ICrafting var2 = (ICrafting) var1.next();
 
             if (this.lastBurnTime != this.tileEntity.burnTime) {
-                var2.updateCraftingInventoryInfo(this, 1, this.tileEntity.burnTime);
+                var2.sendProgressBarUpdate(this, 1, this.tileEntity.burnTime);
             }
 
             if (this.lastItemBurnTime != this.tileEntity.burnItemTime) {
-                var2.updateCraftingInventoryInfo(this, 2, this.tileEntity.burnItemTime);
+                var2.sendProgressBarUpdate(this, 2, this.tileEntity.burnItemTime);
             }
         }
 

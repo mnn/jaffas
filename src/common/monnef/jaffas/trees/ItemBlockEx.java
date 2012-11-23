@@ -150,7 +150,7 @@ public class ItemBlockEx extends Item
         {
             return false;
         }
-        else if (!par2EntityPlayer.func_82247_a(par4, par5, par6, par7, par1ItemStack))
+        else if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
         {
             return false;
         }
@@ -161,8 +161,11 @@ public class ItemBlockEx extends Item
         else if (par3World.canPlaceEntityOnSide(this.blockID, par4, par5, par6, false, par7, par2EntityPlayer))
         {
             Block var12 = Block.blocksList[this.blockID];
+            int var13 = this.getMetadata(par1ItemStack.getItemDamage());
+            int var14 = Block.blocksList[this.blockID].func_85104_a(par3World, par4, par5, par6, par7, par8, par9, par10, var13);
 
-            if (placeBlockAt(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10))
+            //if (placeBlockAt(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10))
+            if (placeBlockAt(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10, var14))
             {
                 par3World.playSoundEffect((double)((float)par4 + 0.5F), (double)((float)par5 + 0.5F), (double)((float)par6 + 0.5F), var12.stepSound.getPlaceSound(), (var12.stepSound.getVolume() + 1.0F) / 2.0F, var12.stepSound.getPitch() * 0.8F);
                 --par1ItemStack.stackSize;
@@ -266,9 +269,9 @@ public class ItemBlockEx extends Item
      * @param player The player who is placing the block. Can be null if the block is not being placed by a player.
      * @param side The side the player (or machine) right-clicked on.
      */
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
     {
-        if (!world.setBlockAndMetadataWithNotify(x, y, z, this.blockID, this.getMetadata(stack.getItemDamage())))
+/*        if (!world.setBlockAndMetadataWithNotify(x, y, z, this.blockID, this.getMetadata(stack.getItemDamage())))
         {
             return false;
         }
@@ -277,6 +280,19 @@ public class ItemBlockEx extends Item
         {
             Block.blocksList[this.blockID].updateBlockMetadata(world, x, y, z, side, hitX, hitY, hitZ);
             Block.blocksList[this.blockID].onBlockPlacedBy(world, x, y, z, player);
+        }
+
+        return true;    */
+
+        if (!world.setBlockAndMetadataWithNotify(x, y, z, this.blockID, metadata))
+        {
+            return false;
+        }
+
+        if (world.getBlockId(x, y, z) == this.blockID)
+        {
+            Block.blocksList[this.blockID].onBlockPlacedBy(world, x, y, z, player);
+            Block.blocksList[this.blockID].func_85105_g(world, x, y, z, metadata);
         }
 
         return true;

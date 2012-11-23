@@ -42,15 +42,15 @@ public class ContainerFridge extends Container {
             ICrafting var2 = (ICrafting) var1.next();
 
             if (this.lastTemperature != this.tileEntity.temperature) {
-                var2.updateCraftingInventoryInfo(this, 0, Math.round(this.tileEntity.temperature * 10));
+                var2.sendProgressBarUpdate(this, 0, Math.round(this.tileEntity.temperature * 10));
             }
 
             if (this.lastBurnTime != this.tileEntity.burnTime) {
-                var2.updateCraftingInventoryInfo(this, 1, this.tileEntity.burnTime);
+                var2.sendProgressBarUpdate(this, 1, this.tileEntity.burnTime);
             }
 
             if (this.lastItemBurnTime != this.tileEntity.burnItemTime) {
-                var2.updateCraftingInventoryInfo(this, 2, this.tileEntity.burnItemTime);
+                var2.sendProgressBarUpdate(this, 2, this.tileEntity.burnItemTime);
             }
         }
 
