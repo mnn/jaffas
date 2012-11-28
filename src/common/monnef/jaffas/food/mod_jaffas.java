@@ -40,6 +40,9 @@ public class mod_jaffas {
     public static BlockFridge blockFridge;
     public static int blockFridgeID;
 
+    public static BlockCross blockCross;
+    public static int blockCrossID;
+
     public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
     public static ItemJaffaPlate itemJaffaPlate;
     public static int itemJaffaPlateID;
@@ -47,6 +50,7 @@ public class mod_jaffas {
     public static ItemJaffaSword itemJaffaSword;
     public static int itemJaffaSwordID;
 
+    public static int renderID;
 
     private static IGuiHandler guiHandler;
 
@@ -238,6 +242,8 @@ public class mod_jaffas {
             itemPaintingID = idProvider.getItemIDFromConfig("painting");
 
             checkUpdates = config.get(Configuration.CATEGORY_GENERAL, "checkUpdates", true).getBoolean(true);
+
+            blockCrossID = idProvider.getBlockIDFromConfig("cross");
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -294,6 +300,8 @@ public class mod_jaffas {
     public void load(FMLInitializationEvent event) {
         checkJsoup();
 
+        GameRegistry.registerTileEntity(TileEntityCross.class, "cross");
+
         proxy.registerTickHandler();
         TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
 
@@ -308,6 +316,11 @@ public class mod_jaffas {
         blockJaffaBomb = new JaffaBombBlock(blockJaffaBombID, 35, Material.rock);
         GameRegistry.registerBlock(blockJaffaBomb);
         LanguageRegistry.addName(blockJaffaBomb, "Jaffa Cakes BOMB");
+
+        blockCross = new BlockCross(blockCrossID, 5, Material.rock);
+        blockCross.setCreativeTab(CreativeTabs.tabBlock);
+        GameRegistry.registerBlock(blockCross);
+        LanguageRegistry.addName(blockCross, "Cross");
 
         createItems();
 
