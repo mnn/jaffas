@@ -1,5 +1,6 @@
 package monnef.jaffas.food;
 
+import com.google.common.base.Joiner;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -23,12 +24,29 @@ import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.logging.Level;
 
 @Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version, dependencies = "after:Forestry;after:BuildCraft|Energy")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
+    public enum ModulesEnum {
+        ores(true), xmas(true);
+
+        private final boolean enabledByDefault;
+
+        ModulesEnum(boolean enabledByDefault) {
+            this.enabledByDefault = enabledByDefault;
+        }
+
+        public boolean getEnabledByDefault() {
+            return enabledByDefault;
+        }
+    }
+
+    public static HashSet<ModulesEnum> ModulesEnabled;
+
     public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
     private static MinecraftServer server;
     public static JaffaItem[] mallets;
@@ -80,6 +98,9 @@ public class mod_jaffas {
 
     public static boolean debug;
 
+    public static boolean IsModuleEnable(ModulesEnum module) {
+        return ModulesEnabled.contains(module);
+    }
 
     private void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
         JaffaItemInfo newItem = new JaffaItemInfo(name);
@@ -244,6 +265,15 @@ public class mod_jaffas {
             checkUpdates = config.get(Configuration.CATEGORY_GENERAL, "checkUpdates", true).getBoolean(true);
 
             blockCrossID = idProvider.getBlockIDFromConfig("cross");
+
+            ModulesEnabled = new HashSet<ModulesEnum>();
+            for (ModulesEnum module : ModulesEnum.values()) {
+                boolean defaultState = module.getEnabledByDefault();
+                boolean enabled = config.get("modules", module.toString(), defaultState).getBoolean(defaultState);
+                if (enabled) {
+                    ModulesEnabled.add(module);
+                }
+            }
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -342,6 +372,8 @@ public class mod_jaffas {
         System.out.println("Mod 'Jaffas and more!' successfully initialized");
         System.out.println("created by monnef and Tiartyos");
         System.out.println("version: " + Version.Version + " ; http://jaffas.maweb.eu");
+
+        System.out.println("enabled modules: " + Joiner.on(", ").join(ModulesEnabled));
     }
 
     private void checkJsoup() {

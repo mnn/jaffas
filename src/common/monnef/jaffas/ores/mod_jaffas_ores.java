@@ -10,6 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
+import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -78,6 +79,9 @@ public class mod_jaffas_ores {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
+        if (!mod_jaffas.IsModuleEnable(mod_jaffas.ModulesEnum.ores))
+            return;
+
         createItems();
         installRecipes();
 
