@@ -6,9 +6,12 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.mod_jaffas;
+import net.minecraft.src.Material;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
@@ -29,6 +32,7 @@ public class mod_jaffas_xmas {
     public BlockXmas BlockCandy;
 
     public static String textureFile = "/jaffas_04.png";
+    public static int renderID;
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -39,6 +43,8 @@ public class mod_jaffas_xmas {
         try {
             config.load();
             idProvider.setConfig(config);
+
+            BlockCandyID = idProvider.getBlockIDFromConfig("candy");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -54,16 +60,21 @@ public class mod_jaffas_xmas {
         if (!mod_jaffas.IsModuleEnable(mod_jaffas.ModulesEnum.xmas))
             return;
 
+        GameRegistry.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
+
         createItems();
         installRecipes();
 
         // texture stuff
         proxy.registerRenderThings();
 
-        System.out.println("xmas module from 'Jaffas and more!' initialized");
+        mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.xmas);
     }
 
     private void createItems() {
+        BlockCandy = new BlockCandy(BlockCandyID, 0, Material.wood);
+        GameRegistry.registerBlock(BlockCandy);
+        LanguageRegistry.addName(BlockCandy, "Candy Cane");
     }
 
     private void installRecipes() {

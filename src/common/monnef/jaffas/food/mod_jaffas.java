@@ -32,7 +32,7 @@ import java.util.logging.Level;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public enum ModulesEnum {
-        ores(true), xmas(true);
+        ores(true), xmas(true), trees(true);
 
         private final boolean enabledByDefault;
 
@@ -800,5 +800,9 @@ public class mod_jaffas {
 
     public static Item getJaffaItem(JaffaItem item) {
         return instance.getItem(item);
+    }
+
+    public static void PrintInitialized(ModulesEnum module) {
+        System.out.println("Module " + module + " from 'Jaffas and more!' initialized.");
     }
 }

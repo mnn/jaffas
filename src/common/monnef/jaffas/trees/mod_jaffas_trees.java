@@ -241,6 +241,9 @@ public class mod_jaffas_trees {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
+        if (!mod_jaffas.IsModuleEnable(mod_jaffas.ModulesEnum.trees))
+            return;
+
         guiHandler = new GuiHandlerTrees();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
@@ -299,7 +302,7 @@ public class mod_jaffas_trees {
         //forestry stuff
         CropProviders.cerealCrops.add(new JaffaCropProvider());
 
-        System.out.println("trees module from 'Jaffas and more!' initialized");
+        mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.trees);
     }
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {

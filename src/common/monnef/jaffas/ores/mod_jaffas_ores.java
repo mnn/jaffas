@@ -88,7 +88,7 @@ public class mod_jaffas_ores {
         // texture stuff
         proxy.registerRenderThings();
 
-        System.out.println("ores module from 'Jaffas and more!' initialized");
+        mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.ores);
     }
 
     private void createItems() {
