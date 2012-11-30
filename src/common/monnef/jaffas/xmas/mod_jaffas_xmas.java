@@ -34,6 +34,9 @@ public class mod_jaffas_xmas {
     private int ItemGiantCandyID;
     public static ItemGiantCandy ItemGiantCandy;
 
+    private int BlockPresentID;
+    public static BlockPresent BlockPresent;
+
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
 
@@ -50,6 +53,8 @@ public class mod_jaffas_xmas {
             BlockCandyID = idProvider.getBlockIDFromConfig("candy");
             ItemGiantCandyID = idProvider.getItemIDFromConfig("giant candy");
 
+            BlockPresentID = idProvider.getBlockIDFromConfig("present");
+
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
         } catch (Exception e) {
@@ -65,6 +70,7 @@ public class mod_jaffas_xmas {
             return;
 
         GameRegistry.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
+        GameRegistry.registerTileEntity(TileEntityPresent.class, "jaffas.present");
 
         createItems();
         installRecipes();
@@ -84,6 +90,11 @@ public class mod_jaffas_xmas {
         ItemGiantCandy = new ItemGiantCandy(ItemGiantCandyID, 0);
         ItemGiantCandy.setItemName("jaffas.giantCandy");
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
+
+        BlockPresent = new BlockPresent(BlockPresentID, 1, Material.cloth);
+        BlockPresent.setBlockName("jaffas.present");
+        GameRegistry.registerBlock(BlockPresent);
+        LanguageRegistry.addName(BlockPresent, "Present");
     }
 
     private void installRecipes() {

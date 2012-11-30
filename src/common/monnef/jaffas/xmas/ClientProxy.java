@@ -10,6 +10,7 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.preloadTexture(mod_jaffas_xmas.textureFile);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCandy.class, new TileEntityCandyRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPresent.class, new TileEntityPresentRenderer());
 
         mod_jaffas_xmas.renderID = RenderingRegistry.getNextAvailableRenderId();
 
