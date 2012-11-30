@@ -29,7 +29,10 @@ public class mod_jaffas_xmas {
     private boolean debug;
 
     private int BlockCandyID;
-    public BlockXmas BlockCandy;
+    public static BlockCandy BlockCandy;
+
+    private int ItemGiantCandyID;
+    public static ItemGiantCandy ItemGiantCandy;
 
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
@@ -45,6 +48,7 @@ public class mod_jaffas_xmas {
             idProvider.setConfig(config);
 
             BlockCandyID = idProvider.getBlockIDFromConfig("candy");
+            ItemGiantCandyID = idProvider.getItemIDFromConfig("giant candy");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -73,8 +77,13 @@ public class mod_jaffas_xmas {
 
     private void createItems() {
         BlockCandy = new BlockCandy(BlockCandyID, 0, Material.wood);
+        BlockCandy.setBlockName("jaffas.candy");
         GameRegistry.registerBlock(BlockCandy);
         LanguageRegistry.addName(BlockCandy, "Candy Cane");
+
+        ItemGiantCandy = new ItemGiantCandy(ItemGiantCandyID, 0);
+        ItemGiantCandy.setItemName("jaffas.giantCandy");
+        LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
     }
 
     private void installRecipes() {
