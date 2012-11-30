@@ -7,6 +7,7 @@ public class ItemJaffaSeeds extends ItemSeeds {
     public ItemJaffaSeeds(int id, int blockId, int soilBlockId) {
         super(id, blockId, soilBlockId);
         this.setCreativeTab(CreativeTabs.tabMaterials);
+        setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 
     public String getTextureFile() {

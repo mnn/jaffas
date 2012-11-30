@@ -11,6 +11,7 @@ public class ItemJaffaFood extends ItemFood {
         super(id, healAmount, saturation, false);
         maxStackSize = 64;
         this.setCreativeTab(CreativeTabs.tabFood);
+        this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
     public String getTextureFile() {

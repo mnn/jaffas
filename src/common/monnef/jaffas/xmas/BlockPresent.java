@@ -58,12 +58,48 @@ public class BlockPresent extends BlockXmas {
                 player.destroyCurrentEquippedItem();
             }
         } else {
-            ItemStack item = te.getContent();
-            te.setContent(null);
-            EntityItem ei = new EntityItem(par1World, player.posX, player.posY + 1, player.posZ, item);
-            par1World.spawnEntityInWorld(ei);
+            dropItems(par1World, par2, par3, par4);
         }
 
         return true;
     }
+
+    @Override
+    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
+        return super.canPlaceBlockAt(par1World, par2, par3, par4) && par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4);
+    }
+
+    @Override
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+        boolean destroy = false;
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
+
+        if (!par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4)) {
+            destroy = true;
+        }
+
+        if (destroy) {
+            if (!par1World.isRemote) {
+                this.dropBlockAsItem(par1World, par2, par3, par4, meta, 0);
+                this.dropItems(par1World, par2, par3, par4);
+            }
+            par1World.setBlockWithNotify(par2, par3, par4, 0);
+        }
+    }
+
+    private void dropItems(World world, int x, int y, int z) {
+        TileEntityPresent te = (TileEntityPresent) world.getBlockTileEntity(x, y, z);
+        ItemStack item = te.getContent();
+        if (item != null) {
+            te.setContent(null);
+            EntityItem ei = new EntityItem(world, te.xCoord + 0.5, te.yCoord + 1, te.zCoord + 0.5, item);
+            world.spawnEntityInWorld(ei);
+        }
+    }
+
+    @Override
+    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
+        dropItems(par1World, par2, par3, par4);
+    }
+
 }

@@ -8,6 +8,7 @@ public class ItemOres extends Item {
         super(id);
         setIconIndex(textureIndex);
         setCreativeTab(CreativeTabs.tabMaterials);
+        setCreativeTab(mod_jaffas_ores.CreativeTab);
     }
 
     public String getTextureFile() {

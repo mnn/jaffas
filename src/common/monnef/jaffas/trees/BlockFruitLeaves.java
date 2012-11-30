@@ -38,6 +38,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         mod_jaffas_trees.proxy.setFancyGraphicsLevel(this, true);
         this.subCount = subCount;
         //this.setGraphicsLevel(true);
+        setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 
     public BlockFruitLeaves setLeavesRequiresSelfNotify() {

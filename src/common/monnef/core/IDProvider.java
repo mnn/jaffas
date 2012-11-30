@@ -1,5 +1,6 @@
 package monnef.core;
 
+import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 
 public class IDProvider {
@@ -32,6 +33,10 @@ public class IDProvider {
 
     public int getItemIDFromConfig(String name) {
         return this.config.getItem(name, this.getItemID()).getInt();
+    }
+
+    public int getEntityIDFromConfig(String name) {
+        return this.config.get("entity", name, ModLoader.getUniqueEntityId()).getInt();
     }
 
     public void setConfig(Configuration config) {

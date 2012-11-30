@@ -8,6 +8,7 @@ public class ItemJaffaPainting extends Item {
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setItemName("jaffaPainting");
         this.setIconIndex(1);
+        this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
     public String getTextureFile() {

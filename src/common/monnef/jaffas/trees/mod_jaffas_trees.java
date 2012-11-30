@@ -32,6 +32,8 @@ public class mod_jaffas_trees {
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;
 
+    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.trees");
+
     public static final String channel = "jaffas-02";
 
     public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
@@ -302,6 +304,8 @@ public class mod_jaffas_trees {
         //forestry stuff
         CropProviders.cerealCrops.add(new JaffaCropProvider());
 
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
+
         mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.trees);
     }
 
@@ -309,13 +313,13 @@ public class mod_jaffas_trees {
         LeavesInfo leaves = leavesList.get(i);
         leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;
-        leaves.leavesBlock.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves" + i).setCreativeTab(CreativeTabs.tabDecorations).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
+        leaves.leavesBlock.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves" + i).setCreativeTab(CreativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
         GameRegistry.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
         leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15);
         leaves.saplingBlock.serialNumber = i;
-        leaves.saplingBlock.setBlockName("fruitSapling" + i).setCreativeTab(CreativeTabs.tabMisc);
+        leaves.saplingBlock.setBlockName("fruitSapling" + i).setCreativeTab(CreativeTab);
         GameRegistry.registerBlock(leaves.saplingBlock);
         LanguageRegistry.addName(leaves.saplingBlock, "Fruit Sapling");
 
@@ -323,6 +327,7 @@ public class mod_jaffas_trees {
             LanguageRegistry.instance().addStringLocalization("item.fruitSeeds" + i + "." + j + ".name", seedsNames[j + i * 4]);
         }
         leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
+        leaves.seedsItem.setFirstInSequence();
         leaves.seedsItem.setItemName("fruitSeeds" + i);
         leaves.seedsItem.serialNumber = i;
         LanguageRegistry.addName(leaves.seedsItem, "Fruit Seeds");

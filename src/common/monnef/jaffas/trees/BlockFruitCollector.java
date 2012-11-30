@@ -13,6 +13,7 @@ public class BlockFruitCollector extends BlockContainer {
         setBlockName("blockFruitCollector");
         setCreativeTab(CreativeTabs.tabMisc);
         setRequiresSelfNotify();
+        setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 
     public String getTextureFile() {

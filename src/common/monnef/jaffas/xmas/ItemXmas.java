@@ -8,6 +8,7 @@ public class ItemXmas extends Item {
         super(id);
         setIconIndex(textureIndex);
         setCreativeTab(CreativeTabs.tabMaterials);
+        setCreativeTab(mod_jaffas_xmas.CreativeTab);
     }
 
     public String getTextureFile() {

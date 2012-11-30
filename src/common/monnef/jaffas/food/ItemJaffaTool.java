@@ -9,6 +9,7 @@ public class ItemJaffaTool extends Item {
         setMaxStackSize(1);
         setMaxDamage(usageCount);
         this.setCreativeTab(CreativeTabs.tabTools);
+        this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
     public String getTextureFile(){

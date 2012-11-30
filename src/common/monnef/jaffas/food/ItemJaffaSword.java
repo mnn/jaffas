@@ -7,6 +7,7 @@ public class ItemJaffaSword extends ItemSword {
 
     public ItemJaffaSword(int ItemID, EnumToolMaterial material) {
         super(ItemID, material);
+        this.setCreativeTab(null);
     }
 
     public String getTextureFile() {

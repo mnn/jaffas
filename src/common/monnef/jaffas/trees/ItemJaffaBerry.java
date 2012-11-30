@@ -5,6 +5,7 @@ import net.minecraft.src.Item;
 public class ItemJaffaBerry extends Item {
     public ItemJaffaBerry(int id) {
         super(id);
+        setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 
     public String getTextureFile() {

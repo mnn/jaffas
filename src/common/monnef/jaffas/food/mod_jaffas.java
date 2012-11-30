@@ -31,6 +31,8 @@ import java.util.logging.Level;
 @Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version, dependencies = "after:Forestry;after:BuildCraft|Energy")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
+    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas");
+
     public enum ModulesEnum {
         ores(true), xmas(true), trees(true);
 
@@ -97,6 +99,8 @@ public class mod_jaffas {
     private static IDProvider idProvider = new IDProvider(3600, 24744);
 
     public static boolean debug;
+
+    private static int JaffaPaintingEntityID;
 
     public static boolean IsModuleEnable(ModulesEnum module) {
         return ModulesEnabled.contains(module);
@@ -266,6 +270,8 @@ public class mod_jaffas {
 
             blockCrossID = idProvider.getBlockIDFromConfig("cross");
 
+            JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
+
             ModulesEnabled = new HashSet<ModulesEnum>();
             for (ModulesEnum module : ModulesEnum.values()) {
                 boolean defaultState = module.getEnabledByDefault();
@@ -366,8 +372,10 @@ public class mod_jaffas {
         itemPainting = new ItemJaffaPainting(this.itemPaintingID);
         LanguageRegistry.addName(itemPainting, "Painting");
 
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
+
         // TODO: id from config
-        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false);
+        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, JaffaPaintingEntityID);
 
         System.out.println("Mod 'Jaffas and more!' successfully initialized");
         System.out.println("created by monnef and Tiartyos");
@@ -385,8 +393,7 @@ public class mod_jaffas {
         }
     }
 
-    private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates) {
-        int id = ModLoader.getUniqueEntityId();
+    private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int id) {
         if (mod_jaffas.debug) System.out.println("Registered: " + entityClass + " id: " + id);
         EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
         EntityRegistry.registerModEntity(entityClass, entityName, id, this, trackingRange, updateFrequency, sendsVelocityUpdates);
@@ -470,7 +477,7 @@ public class mod_jaffas {
 
         int armorRender = proxy.addArmor("Jaffa");
         itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, 1);
-        itemJaffaPlate.setItemName("JaffaPlate").setIconIndex(90).setCreativeTab(CreativeTabs.tabCombat);
+        itemJaffaPlate.setItemName("JaffaPlate").setIconIndex(90).setCreativeTab(CreativeTab);
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 
         itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, EnumToolMaterialJaffas);

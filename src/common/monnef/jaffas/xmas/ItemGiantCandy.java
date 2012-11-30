@@ -7,7 +7,7 @@ import java.util.List;
 public class ItemGiantCandy extends ItemXmas {
     public ItemGiantCandy(int id, int textureIndex) {
         super(id, textureIndex);
-        setCreativeTab(CreativeTabs.tabDecorations);
+        //setCreativeTab(CreativeTabs.tabDecorations);
     }
 
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {

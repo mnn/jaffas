@@ -11,6 +11,9 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.mod_jaffas;
+import net.minecraft.src.Block;
+import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraftforge.common.Configuration;
 
@@ -39,6 +42,8 @@ public class mod_jaffas_xmas {
 
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
+
+    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.xmas");
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -78,6 +83,8 @@ public class mod_jaffas_xmas {
         // texture stuff
         proxy.registerRenderThings();
 
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
+
         mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.xmas);
     }
 
@@ -98,5 +105,12 @@ public class mod_jaffas_xmas {
     }
 
     private void installRecipes() {
+        GameRegistry.addRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", "WB ", 'W',
+                new ItemStack(Block.planks, 1, -1), 'R', new ItemStack(Item.dyePowder, 1, 1), 'B', new ItemStack(Item.dyePowder, 1, 15));
+/*        GameRegistry.addRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", " BW", 'W',
+                new ItemStack(Block.planks, 1, -1), 'R', new ItemStack(Item.dyePowder, 1, 1), 'B', new ItemStack(Item.dyePowder, 1, 15));*/
+
+        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Item.dyePowder, 1, 1),
+                'S', Item.silk, 'P', Item.paper);
     }
 }

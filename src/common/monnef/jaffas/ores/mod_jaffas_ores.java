@@ -31,24 +31,26 @@ public class mod_jaffas_ores {
     private boolean debug;
 
     private int JaffarrolID;
-    public ItemOres Jaffarrol;
+    public static ItemOres Jaffarrol;
 
     private int JaffarrolRawID;
-    public ItemOres JaffarrolRaw;
+    public static ItemOres JaffarrolRaw;
 
     private int JaffarrolRefinedID;
-    public ItemOres JaffarrolRefined;
+    public static ItemOres JaffarrolRefined;
 
     private int LimsewID;
-    public ItemOres Limsew;
+    public static ItemOres Limsew;
 
     private int BlockJaffarrolID;
-    public BlockOres BlockJaffarrol;
+    public static BlockOres BlockJaffarrol;
 
     private int BlockLimsewID;
-    public BlockOres BlockLimsew;
+    public static BlockOres BlockLimsew;
 
     public static String textureFile = "/jaffas_03.png";
+
+    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.ores");
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -87,6 +89,8 @@ public class mod_jaffas_ores {
 
         // texture stuff
         proxy.registerRenderThings();
+
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.ores", "en_US", "Jaffas and more! Ores");
 
         mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.ores);
     }

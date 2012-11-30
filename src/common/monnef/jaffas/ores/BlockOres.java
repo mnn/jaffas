@@ -9,6 +9,7 @@ public class BlockOres extends Block {
     public BlockOres(int id, int textureID, Material material) {
         super(id, textureID, material);
         setCreativeTab(CreativeTabs.tabBlock);
+        setCreativeTab(mod_jaffas_ores.CreativeTab);
     }
 
     public String getTextureFile() {

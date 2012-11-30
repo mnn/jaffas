@@ -16,6 +16,7 @@ public class JaffaBombBlock extends Block {
         setBlockName("Jaffa Cakes BOMB");
         setHardness(0.1F);
         setResistance(0.1F);
+        this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
     /**

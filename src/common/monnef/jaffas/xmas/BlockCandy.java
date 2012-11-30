@@ -1,6 +1,9 @@
 package monnef.jaffas.xmas;
 
-import net.minecraft.src.*;
+import net.minecraft.src.IBlockAccess;
+import net.minecraft.src.Material;
+import net.minecraft.src.TileEntity;
+import net.minecraft.src.World;
 
 import java.util.Random;
 
@@ -10,6 +13,7 @@ public class BlockCandy extends BlockXmas {
         super(id, texture, material);
         setRequiresSelfNotify();
         setHardness(0.5f);
+        setCreativeTab(null);
     }
 
     @Override
@@ -167,6 +171,7 @@ public class BlockCandy extends BlockXmas {
         this.setBlockBounds(x1, 0f, y1, x2, top, y2);
     }
 
+    /*
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         if (par1World.isRemote) {
@@ -179,4 +184,5 @@ public class BlockCandy extends BlockXmas {
 
         return true;
     }
+    */
 }

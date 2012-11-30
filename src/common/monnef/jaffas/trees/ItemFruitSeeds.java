@@ -11,13 +11,14 @@ public class ItemFruitSeeds extends ItemBlockEx {
     public int serialNumber = -1;
     private int texture;
     private int subCount;
-
+    private boolean firstInSequence = false;
 
     public ItemFruitSeeds(int itemID, int blockID, int textureOffset, int subCount) {
         super(itemID, blockID);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
+        setCreativeTab(mod_jaffas_trees.CreativeTab);
         this.setIconIndex(textureOffset);
         this.isDefaultTexture = true;
         this.texture = textureOffset;
@@ -68,8 +69,12 @@ public class ItemFruitSeeds extends ItemBlockEx {
      */
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < subCount; i++) {
+            if (firstInSequence && i == 0) continue;
             par3List.add(new ItemStack(par1, 1, i));
         }
     }
 
+    public void setFirstInSequence() {
+        this.firstInSequence = true;
+    }
 }

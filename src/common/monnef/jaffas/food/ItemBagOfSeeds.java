@@ -14,6 +14,7 @@ public class ItemBagOfSeeds extends Item {
 
         setMaxStackSize(1);
         this.setCreativeTab(CreativeTabs.tabMaterials);
+        this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
     public String getTextureFile() {

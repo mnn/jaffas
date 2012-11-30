@@ -17,6 +17,7 @@ public class ItemBlockEx extends Item
         this.setIconIndex(Block.blocksList[blockID].getBlockTextureFromSide(2));
         isDefaultTexture = Block.blocksList[blockID].isDefaultTexture;
          */
+        setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 
     /**

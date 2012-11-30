@@ -21,6 +21,7 @@ public class BlockFridge extends BlockContainer {
         setBlockName("blockFridge");
         setCreativeTab(CreativeTabs.tabMisc);
         setRequiresSelfNotify();
+        this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
     public String getTextureFile() {

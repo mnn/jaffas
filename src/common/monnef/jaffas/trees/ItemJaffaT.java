@@ -8,6 +8,7 @@ public class ItemJaffaT extends Item {
         super(v);
         maxStackSize = 64;
         this.setCreativeTab(CreativeTabs.tabMaterials);
+        setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 
     public String getTextureFile(){
