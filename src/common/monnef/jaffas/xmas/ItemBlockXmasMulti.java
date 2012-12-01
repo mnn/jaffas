@@ -7,14 +7,16 @@ import net.minecraft.src.ItemBlock;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.MathHelper;
 
-public class ItemBlockXmasMulti extends ItemBlock {
-    protected String[] subNames;
-    protected String[] subTitles;
+public abstract class ItemBlockXmasMulti extends ItemBlock {
+    private String[] subNames;
+    private String[] subTitles;
 
     public ItemBlockXmasMulti(int id) {
         super(id);
         setHasSubtypes(true);
-        //setTextureFile(mod_jaffas_xmas.textureFile);
+        this.subNames = this.getSubNames();
+        this.subTitles = this.getSubTitles();
+        this.registerNames(getParentBlock());
     }
 
     @Override
@@ -46,4 +48,10 @@ public class ItemBlockXmasMulti extends ItemBlock {
         int var2 = MathHelper.clamp_int(par1, 0, subNames.length);
         return this.iconIndex + var2;
     }
+
+    protected abstract String[] getSubNames();
+
+    protected abstract String[] getSubTitles();
+
+    protected abstract BlockXmasMulti getParentBlock();
 }

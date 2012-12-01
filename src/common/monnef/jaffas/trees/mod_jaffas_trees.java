@@ -210,7 +210,7 @@ public class mod_jaffas_trees {
             info.itemSeeds = seeds;
 
             ItemJaffaBerry fruit = new ItemJaffaBerry(info.itemFruitID);
-            fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setCreativeTab(CreativeTabs.tabMaterials);
+            fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setCreativeTab(CreativeTab);
             LanguageRegistry.addName(fruit, info.fruitTitle);
             info.itemFruit = fruit;
 
