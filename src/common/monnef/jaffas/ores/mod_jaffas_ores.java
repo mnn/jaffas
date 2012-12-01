@@ -10,6 +10,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
+import monnef.jaffas.food.ModuleManager;
+import monnef.jaffas.food.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
@@ -90,7 +92,7 @@ public class mod_jaffas_ores {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
-        if (!mod_jaffas.IsModuleEnable(mod_jaffas.ModulesEnum.ores))
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores))
             return;
 
         createItems();
@@ -104,7 +106,7 @@ public class mod_jaffas_ores {
         ItemCentralUnit.registerNames();
         ItemCasing.registerNames();
 
-        mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.ores);
+        mod_jaffas.PrintInitialized(ModulesEnum.ores);
     }
 
     private void createItems() {

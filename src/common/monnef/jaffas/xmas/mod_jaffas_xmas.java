@@ -10,6 +10,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
+import monnef.jaffas.food.ModuleManager;
+import monnef.jaffas.food.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
@@ -71,7 +73,7 @@ public class mod_jaffas_xmas {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
-        if (!mod_jaffas.IsModuleEnable(mod_jaffas.ModulesEnum.xmas))
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.xmas))
             return;
 
         GameRegistry.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
@@ -85,7 +87,7 @@ public class mod_jaffas_xmas {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
 
-        mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.xmas);
+        mod_jaffas.PrintInitialized(ModulesEnum.xmas);
     }
 
     private void createItems() {

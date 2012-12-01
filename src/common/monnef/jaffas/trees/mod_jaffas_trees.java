@@ -15,6 +15,8 @@ import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.JaffaItem;
+import monnef.jaffas.food.ModuleManager;
+import monnef.jaffas.food.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
@@ -24,8 +26,6 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.logging.Level;
-
-import static monnef.jaffas.food.mod_jaffas.getJaffaItem;
 
 @Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = mod_jaffas_trees.channel, packetHandler = PacketHandler.class)
@@ -244,7 +244,7 @@ public class mod_jaffas_trees {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
-        if (!mod_jaffas.IsModuleEnable(mod_jaffas.ModulesEnum.trees))
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.trees))
             return;
 
         guiHandler = new GuiHandlerTrees();
@@ -307,7 +307,7 @@ public class mod_jaffas_trees {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
 
-        mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.trees);
+        mod_jaffas.PrintInitialized(ModulesEnum.trees);
     }
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
@@ -346,6 +346,10 @@ public class mod_jaffas_trees {
         if (debug) {
             manager.registerCommand(new CommandFruitDebug());
         }
+    }
+
+    private Item getJaffaItem(JaffaItem item) {
+        return mod_jaffas.getItem(item);
     }
 
     private void installRecipes() {

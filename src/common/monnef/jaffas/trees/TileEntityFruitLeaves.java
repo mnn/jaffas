@@ -1,7 +1,7 @@
 package monnef.jaffas.trees;
 
+import monnef.jaffas.food.ItemManager;
 import monnef.jaffas.food.JaffaItem;
-import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.*;
 
 import java.util.HashSet;
@@ -71,7 +71,7 @@ public class TileEntityFruitLeaves extends TileEntity {
         if (!checked) {
             try {
                 fruit = getActualLeavesType(Block.blocksList[this.leavesID], this.leavesMeta);
-            }catch (RuntimeException ex){
+            } catch (RuntimeException ex) {
                 ex.printStackTrace();
                 this.invalidate();
                 return;
@@ -255,7 +255,7 @@ public class TileEntityFruitLeaves extends TileEntity {
                 break;
 
             case Vanilla:
-                res.setStack(new ItemStack(mod_jaffas.getJaffaItem(JaffaItem.vanillaBeans)));
+                res.setStack(new ItemStack(ItemManager.getItem(JaffaItem.vanillaBeans)));
                 break;
 
             case Lemon:

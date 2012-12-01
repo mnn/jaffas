@@ -28,13 +28,14 @@ public class MalletHelper {
             }
         }
 
-        if(result!=null) result.setIngredientsCount(ingredientsCount);
+        if (result != null) result.setIngredientsCount(ingredientsCount);
         return result;
     }
 
     public static boolean isMallet(int itemID) {
-        for(int i=0; i<mod_jaffas.mallets.length; i++){
-            if (mod_jaffas.ItemsInfo.get(mod_jaffas.mallets[i]).getItem().shiftedIndex == itemID){
+        for (int i = 0; i < ItemManager.mallets.length; i++) {
+            //if (mod_jaffas.ItemsInfo.get(mod_jaffas.mallets[i]).getItem().shiftedIndex == itemID){
+            if (ItemManager.getItem(ItemManager.mallets[i]).shiftedIndex == itemID) {
                 return true;
             }
         }
