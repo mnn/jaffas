@@ -61,14 +61,14 @@ public class JaffaBombBlock extends Block {
 
             ItemStack item;
 
-            mod_jaffas.JaffaItem jaffaItem;
+            JaffaItem jaffaItem;
             if (rand.nextDouble() > 0.5) {
-                jaffaItem = mod_jaffas.JaffaItem.jaffa;
+                jaffaItem = JaffaItem.jaffa;
             } else {
                 if (rand.nextDouble() > 0.5) {
-                    jaffaItem = mod_jaffas.JaffaItem.jaffaO;
+                    jaffaItem = JaffaItem.jaffaO;
                 } else {
-                    jaffaItem = mod_jaffas.JaffaItem.jaffaR;
+                    jaffaItem = JaffaItem.jaffaR;
                 }
             }
 

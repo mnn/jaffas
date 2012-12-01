@@ -1,5 +1,6 @@
 package monnef.jaffas.trees;
 
+import monnef.jaffas.food.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.*;
 
@@ -254,7 +255,7 @@ public class TileEntityFruitLeaves extends TileEntity {
                 break;
 
             case Vanilla:
-                res.setStack(new ItemStack(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans)));
+                res.setStack(new ItemStack(mod_jaffas.getJaffaItem(JaffaItem.vanillaBeans)));
                 break;
 
             case Lemon:

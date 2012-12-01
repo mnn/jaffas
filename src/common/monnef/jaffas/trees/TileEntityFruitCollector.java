@@ -5,6 +5,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import monnef.jaffas.food.JaffaItem;
 import monnef.jaffas.food.TileEntityJaffaMachine;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.src.*;
@@ -72,7 +73,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         addToFruitList(mod_jaffas_trees.itemLemon);
         addToFruitList(mod_jaffas_trees.itemOrange);
         addToFruitList(mod_jaffas_trees.itemPlum);
-        addToFruitList(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.vanillaBeans));
+        addToFruitList(mod_jaffas.getJaffaItem(JaffaItem.vanillaBeans));
         addToFruitList(Item.appleRed);
         addToFruitList(mod_jaffas_trees.itemLemon);
         addToFruitList(Item.dyePowder, 3); // cocoa beans

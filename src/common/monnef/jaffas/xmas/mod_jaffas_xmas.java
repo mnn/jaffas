@@ -98,7 +98,7 @@ public class mod_jaffas_xmas {
         ItemGiantCandy.setItemName("jaffas.giantCandy");
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
 
-        BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, 5);
+        BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, ItemBlockPresent.count);
         GameRegistry.registerBlock(BlockPresent, ItemBlockPresent.class);
     }
 

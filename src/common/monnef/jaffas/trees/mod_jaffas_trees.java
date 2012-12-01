@@ -14,6 +14,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
 import monnef.core.Version;
+import monnef.jaffas.food.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
@@ -348,37 +349,37 @@ public class mod_jaffas_trees {
     }
 
     private void installRecipes() {
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.lemons)),
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.lemons)),
                 new ItemStack(mod_jaffas_trees.itemLemon),
                 new ItemStack(mod_jaffas_trees.itemLemon),
                 new ItemStack(mod_jaffas_trees.itemLemon),
                 new ItemStack(mod_jaffas_trees.itemLemon));
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.oranges)),
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.oranges)),
                 new ItemStack(mod_jaffas_trees.itemOrange),
                 new ItemStack(mod_jaffas_trees.itemOrange),
                 new ItemStack(mod_jaffas_trees.itemOrange),
                 new ItemStack(mod_jaffas_trees.itemOrange));
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.plums)),
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.plums)),
                 new ItemStack(mod_jaffas_trees.itemPlum),
                 new ItemStack(mod_jaffas_trees.itemPlum),
                 new ItemStack(mod_jaffas_trees.itemPlum),
                 new ItemStack(mod_jaffas_trees.itemPlum));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.strawberries)),
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.strawberries)),
                 new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
                 new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
                 new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
                 new ItemStack(BushesList.get(bushType.Strawberry).itemFruit));
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.raspberries)),
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.raspberries)),
                 new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
                 new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
                 new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
                 new ItemStack(BushesList.get(bushType.Raspberry).itemFruit));
 
-        GameRegistry.addSmelting(BushesList.get(bushType.Coffee).itemFruit.shiftedIndex, new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.coffeeRoasted)), 0.5F);
+        GameRegistry.addSmelting(BushesList.get(bushType.Coffee).itemFruit.shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
 
-        GameRegistry.addRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.paprikaChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Paprika).itemFruit));
-        GameRegistry.addRecipe(new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.tomatoChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(mod_jaffas.JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Tomato).itemFruit));
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Paprika).itemFruit));
+        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Tomato).itemFruit));
 
         GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",
                 'I', new ItemStack(Block.blockSteel), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));

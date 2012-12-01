@@ -10,6 +10,6 @@ public class JaffaCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(mod_jaffas.getJaffaItem(mod_jaffas.JaffaItem.jaffaP));
+        return new ItemStack(mod_jaffas.getJaffaItem(JaffaItem.jaffaP));
     }
 }

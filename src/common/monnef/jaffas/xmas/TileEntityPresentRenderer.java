@@ -7,9 +7,11 @@ import org.lwjgl.opengl.GL12;
 
 public class TileEntityPresentRenderer extends TileEntitySpecialRenderer {
     private ModelPresent present;
+    private ModelPresentSmall presentSmall;
 
     public TileEntityPresentRenderer() {
         present = new ModelPresent();
+        presentSmall = new ModelPresentSmall();
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -28,7 +30,7 @@ public class TileEntityPresentRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
         //        GL11.glRotatef(angle, 0, 1.0f, 0);
 
-        switch (meta) {
+        switch (meta % 6) {
             case 0:
                 bindTextureByName("/jaffas_present_0.png");
                 break;
@@ -49,12 +51,21 @@ public class TileEntityPresentRenderer extends TileEntitySpecialRenderer {
                 bindTextureByName("/jaffas_present_4.png");
                 break;
 
+            case 5:
+                bindTextureByName("/jaffas_present_5.png");
+                break;
+
             default:
                 bindTextureByName(mod_jaffas_xmas.textureFile);
                 break;
         }
 
-        present.render(0.0625F);
+        if (meta < 6) {
+            present.render(0.0625F);
+        } else {
+            GL11.glScalef(.7f, .7f, .7f);
+            presentSmall.render(0.0625F);
+        }
 
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();

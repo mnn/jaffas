@@ -19,11 +19,11 @@ public class JaffaCraftingHandler implements ICraftingHandler {
         AddPersistentItem(ID, false, -1);
     }
 
-    public static void AddPersistentItem(mod_jaffas.JaffaItem item) {
+    public static void AddPersistentItem(JaffaItem item) {
         AddPersistentItem(mod_jaffas.getJaffaItem(item).shiftedIndex);
     }
 
-    public static void AddPersistentItem(mod_jaffas.JaffaItem item, boolean takesDamage, int substituteItem) {
+    public static void AddPersistentItem(JaffaItem item, boolean takesDamage, int substituteItem) {
         AddPersistentItem(mod_jaffas.getJaffaItem(item).shiftedIndex, takesDamage, substituteItem);
     }
 
@@ -35,7 +35,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
         persistentItems.put(ID, info);
     }
 
-    public static void AddPersistentItem(mod_jaffas.JaffaItem item, boolean takesDamage, mod_jaffas.JaffaItem substitude) {
+    public static void AddPersistentItem(JaffaItem item, boolean takesDamage, JaffaItem substitude) {
         AddPersistentItem(item, takesDamage, mod_jaffas.getJaffaItem(substitude).shiftedIndex);
     }
 
@@ -142,7 +142,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
             if (matrix.getStackInSlot(i) != null) {
                 ingredientsCount++;
                 ItemStack item = matrix.getStackInSlot(i);
-                if (item.itemID == mod_jaffas.ItemsInfo.get(mod_jaffas.JaffaItem.puffPastry).getItem().shiftedIndex) {
+                if (item.itemID == mod_jaffas.ItemsInfo.get(JaffaItem.puffPastry).getItem().shiftedIndex) {
                     foundPuff = true;
                 } else if (item.itemID == Item.stick.shiftedIndex) {
                     stickSlot = i;
@@ -166,7 +166,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
                 ItemStack item = matrix.getStackInSlot(i);
                 if (item.itemID == Item.swordSteel.shiftedIndex || item.itemID == Item.swordDiamond.shiftedIndex) {
                     swordSlot = i;
-                } else if (item.itemID == mod_jaffas.ItemsInfo.get(mod_jaffas.JaffaItem.browniesInTin).getItem().shiftedIndex) {
+                } else if (item.itemID == mod_jaffas.ItemsInfo.get(JaffaItem.browniesInTin).getItem().shiftedIndex) {
                     tinFound = true;
                 }
             } else {
@@ -181,7 +181,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
             sword.stackSize = 2; // 1 sword will be consume, other returned
 
             // return empty cake tin
-            ItemStack tin = new ItemStack(mod_jaffas.ItemsInfo.get(mod_jaffas.JaffaItem.cakeTin).getItem(), 2);
+            ItemStack tin = new ItemStack(mod_jaffas.ItemsInfo.get(JaffaItem.cakeTin).getItem(), 2);
             matrix.setInventorySlotContents(freeSlot, tin);
         }
     }

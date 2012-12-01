@@ -4,13 +4,29 @@ import net.minecraft.src.*;
 
 public class BlockPresent extends BlockXmasMulti {
     public final static float unit = 1f / 16f;
-    public final static float f2 = unit * 2;
+    public final static float f2 = unit * 2f;
     public final static float f2d = 1f - unit * 2f;
+    public final static float f4 = unit * 4f;
+    public final static float f4d = 1f - unit * 4f;
+    public final static float f5 = unit * 5f;
+    public final static float f5d = 1f - unit * 5f;
+    public final static float f7 = unit * 7f;
+    public final static float f7d = 1f - unit * 7f;
+    public final static float f9d = 1f - unit * 9f;
 
     public BlockPresent(int id, int textureID, Material material, int subBlocksCount) {
         super(id, textureID, material, subBlocksCount);
-        this.setBlockBounds(f2, 0f, f2, f2d, 1 - 1f / 16 * 7, f2d);
         setBlockName("present");
+    }
+
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
+        int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+
+        if (meta < 6) {
+            this.setBlockBounds(f2, 0f, f2, f2d, f7d, f2d);
+        } else {
+            this.setBlockBounds(f4, 0f, f4, f4d, f9d, f4d);
+        }
     }
 
     @Override
