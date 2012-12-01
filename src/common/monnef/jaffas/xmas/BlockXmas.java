@@ -9,9 +9,14 @@ public class BlockXmas extends Block {
         super(id, textureID, material);
         setCreativeTab(CreativeTabs.tabBlock);
         setCreativeTab(mod_jaffas_xmas.CreativeTab);
+
     }
 
     public String getTextureFile() {
         return mod_jaffas_xmas.textureFile;
+    }
+
+    public Block setBlockName(String par1Str) {
+        return super.setBlockName("jaffas.xmas." + par1Str);
     }
 }

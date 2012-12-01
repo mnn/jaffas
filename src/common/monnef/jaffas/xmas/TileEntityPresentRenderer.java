@@ -33,6 +33,22 @@ public class TileEntityPresentRenderer extends TileEntitySpecialRenderer {
                 bindTextureByName("/jaffas_present_0.png");
                 break;
 
+            case 1:
+                bindTextureByName("/jaffas_present_1.png");
+                break;
+
+            case 2:
+                bindTextureByName("/jaffas_present_2.png");
+                break;
+
+            case 3:
+                bindTextureByName("/jaffas_present_3.png");
+                break;
+
+            case 4:
+                bindTextureByName("/jaffas_present_4.png");
+                break;
+
             default:
                 bindTextureByName(mod_jaffas_xmas.textureFile);
                 break;

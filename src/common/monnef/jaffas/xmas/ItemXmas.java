@@ -14,4 +14,9 @@ public class ItemXmas extends Item {
     public String getTextureFile() {
         return mod_jaffas_xmas.textureFile;
     }
+
+    @Override
+    public Item setItemName(String par1Str) {
+        return super.setItemName("jaffas.ores." + par1Str);
+    }
 }

@@ -2,14 +2,15 @@ package monnef.jaffas.xmas;
 
 import net.minecraft.src.*;
 
-public class BlockPresent extends BlockXmas {
+public class BlockPresent extends BlockXmasMulti {
     public final static float unit = 1f / 16f;
     public final static float f2 = unit * 2;
     public final static float f2d = 1f - unit * 2f;
 
-    public BlockPresent(int id, int textureID, Material material) {
-        super(id, textureID, material);
+    public BlockPresent(int id, int textureID, Material material, int subBlocksCount) {
+        super(id, textureID, material, subBlocksCount);
         this.setBlockBounds(f2, 0f, f2, f2d, 1 - 1f / 16 * 7, f2d);
+        setBlockName("present");
     }
 
     @Override

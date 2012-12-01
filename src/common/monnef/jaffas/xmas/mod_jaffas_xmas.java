@@ -89,26 +89,22 @@ public class mod_jaffas_xmas {
     }
 
     private void createItems() {
-        BlockCandy = new BlockCandy(BlockCandyID, 0, Material.wood);
+        BlockCandy = new BlockCandy(BlockCandyID, 16, Material.wood);
         BlockCandy.setBlockName("jaffas.candy");
         GameRegistry.registerBlock(BlockCandy);
         LanguageRegistry.addName(BlockCandy, "Candy Cane");
 
-        ItemGiantCandy = new ItemGiantCandy(ItemGiantCandyID, 0);
+        ItemGiantCandy = new ItemGiantCandy(ItemGiantCandyID, 16);
         ItemGiantCandy.setItemName("jaffas.giantCandy");
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
 
-        BlockPresent = new BlockPresent(BlockPresentID, 1, Material.cloth);
-        BlockPresent.setBlockName("jaffas.present");
-        GameRegistry.registerBlock(BlockPresent);
-        LanguageRegistry.addName(BlockPresent, "Present");
+        BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, 5);
+        GameRegistry.registerBlock(BlockPresent, ItemBlockPresent.class);
     }
 
     private void installRecipes() {
         GameRegistry.addRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", "WB ", 'W',
                 new ItemStack(Block.planks, 1, -1), 'R', new ItemStack(Item.dyePowder, 1, 1), 'B', new ItemStack(Item.dyePowder, 1, 15));
-/*        GameRegistry.addRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", " BW", 'W',
-                new ItemStack(Block.planks, 1, -1), 'R', new ItemStack(Item.dyePowder, 1, 1), 'B', new ItemStack(Item.dyePowder, 1, 15));*/
 
         GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Item.dyePowder, 1, 1),
                 'S', Item.silk, 'P', Item.paper);

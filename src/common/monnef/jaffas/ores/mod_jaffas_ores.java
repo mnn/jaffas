@@ -48,9 +48,15 @@ public class mod_jaffas_ores {
     private int BlockLimsewID;
     public static BlockOres BlockLimsew;
 
+    private int ItemCentralUnitID;
+    public static monnef.jaffas.ores.ItemCentralUnit ItemCentralUnit;
+
     public static String textureFile = "/jaffas_03.png";
 
     public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.ores");
+
+    private int ItemCasingID;
+    public static ItemCasing ItemCasing;
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -69,6 +75,9 @@ public class mod_jaffas_ores {
 
             BlockJaffarrolID = idProvider.getBlockIDFromConfig("jaffarrolBlock");
             BlockLimsewID = idProvider.getBlockIDFromConfig("limsewBlock");
+
+            ItemCentralUnitID = idProvider.getItemIDFromConfig("central unit");
+            ItemCasingID = idProvider.getItemIDFromConfig("casing");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -91,6 +100,9 @@ public class mod_jaffas_ores {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.ores", "en_US", "Jaffas and more! Ores");
+
+        ItemCentralUnit.registerNames();
+        ItemCasing.registerNames();
 
         mod_jaffas.PrintInitialized(mod_jaffas.ModulesEnum.ores);
     }
@@ -121,6 +133,9 @@ public class mod_jaffas_ores {
         BlockLimsew.setBlockName("blockOfLimsew").setHardness(4f).setResistance(7f);
         GameRegistry.registerBlock(BlockLimsew);
         LanguageRegistry.addName(BlockLimsew, "Block of Limsew");
+
+        ItemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);
+        ItemCasing = new ItemCasing(ItemCasingID, 13);
     }
 
     private void installRecipes() {
