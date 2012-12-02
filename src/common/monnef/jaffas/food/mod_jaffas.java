@@ -97,18 +97,7 @@ public class mod_jaffas {
             config.load();
             idProvider.setConfig(config);
 
-            //TODO generalize, move to ItemManager
-            for (JaffaItem item : JaffaItem.values()) {
-                JaffaItemInfo info = itemManager.ItemsInfo.get(item);
-                if (info == null) {
-                    throw new RuntimeException("got null in item list - " + item);
-                }
-                String configName = info.getConfigName();
-
-                int id = idProvider.getItemIDFromConfig(configName);
-
-                info.setId(id);
-            }
+            ItemManager.LoadItemsFromConfig(ModulesEnum.food, idProvider);
 
             blockJaffaBombID = idProvider.getBlockIDFromConfig("jaffa bomb");
             blockFridgeID = idProvider.getBlockIDFromConfig("fridge");
@@ -492,7 +481,7 @@ public class mod_jaffas {
     }
 
     public static Item getItem(JaffaItem item) {
-        return mod_jaffas.instance.itemManager.getItem(item);
+        return ItemManager.getItem(item);
     }
 
     public static void PrintInitialized(ModulesEnum module) {

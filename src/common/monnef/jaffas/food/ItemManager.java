@@ -1,6 +1,7 @@
 package monnef.jaffas.food;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.core.IDProvider;
 import net.minecraft.src.Item;
 
 import java.lang.reflect.Constructor;
@@ -16,6 +17,21 @@ public class ItemManager {
     static {
         ItemsInfo = new Hashtable<JaffaItem, JaffaItemInfo>();
         ClassMapping = new Hashtable<ModulesEnum, Hashtable<JaffaItemType, Class<? extends Item>>>();
+    }
+
+    public static void LoadItemsFromConfig(ModulesEnum module, IDProvider idProvider) {
+        for (JaffaItem item : JaffaItem.values()) {
+            JaffaItemInfo info = ItemManager.ItemsInfo.get(item);
+            if (info == null) {
+                throw new RuntimeException("got null in item list - " + item);
+            }
+
+            if (info.getModule() == module) {
+                String configName = info.getConfigName();
+                int id = idProvider.getItemIDFromConfig(configName);
+                info.setId(id);
+            }
+        }
     }
 
     public static void RegisterItemTypeForModule(ModulesEnum module, JaffaItemType type, Class<? extends Item> clazz) {
