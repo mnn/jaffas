@@ -12,5 +12,7 @@ public enum JaffaItem {
     kettle, kettleWaterCold, kettleWaterHot, cup, cupCoffee, cupRaw, omeletteRaw, omelette, tomatoChopped, paprikaChopped,
     grinderMeat, wienerCocktail, jaffaStrawberry, jaffaRaspberry, raspberries, strawberries,
     jamRaspberry, jamStrawberry,
-    rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen, coffee, coffeeRoasted, skewerRaw
+    rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen, coffee, coffeeRoasted, skewerRaw,
+    xcandyStar, xcandyStarJam, xcandyStarChoco, xcandyStarRaw, xcandySmallRollRaw, xcandySmallRoll, xcandySmallRollChoco,
+    xcandyChocoCircle, xcandyChocoCircleRaw, xcandyChocoCircleCoated, xcandyChocoCircleSprinkled, xcandyChocoBall, xcandyChocoBallSprinkled, xcandyCane
 }

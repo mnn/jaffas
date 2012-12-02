@@ -13,6 +13,8 @@ import monnef.core.Version;
 import monnef.jaffas.food.ModuleManager;
 import monnef.jaffas.food.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.trees.mod_jaffas_trees;
+import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -20,7 +22,7 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core;after:moen-jaffas-trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_ores {
     @Mod.Instance("moen-jaffas-ores")
@@ -53,6 +55,9 @@ public class mod_jaffas_ores {
     private int ItemCentralUnitID;
     public static monnef.jaffas.ores.ItemCentralUnit ItemCentralUnit;
 
+    private int FunnelID;
+    public static ItemOres Funnel;
+
     public static String textureFile = "/jaffas_03.png";
 
     public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.ores");
@@ -80,6 +85,8 @@ public class mod_jaffas_ores {
 
             ItemCentralUnitID = idProvider.getItemIDFromConfig("central unit");
             ItemCasingID = idProvider.getItemIDFromConfig("casing");
+
+            FunnelID = idProvider.getItemIDFromConfig("funnel");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -138,6 +145,10 @@ public class mod_jaffas_ores {
 
         ItemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);
         ItemCasing = new ItemCasing(ItemCasingID, 13);
+
+        Funnel = new ItemOres(FunnelID, 16);
+        Funnel.setItemName("funnel");
+        LanguageRegistry.addName(Funnel, "Funnel");
     }
 
     private void installRecipes() {
@@ -160,5 +171,21 @@ public class mod_jaffas_ores {
         GameRegistry.addShapelessRecipe(new ItemStack(Limsew, 2), new ItemStack(Item.diamond), new ItemStack(Item.lightStoneDust),
                 new ItemStack(Item.lightStoneDust), new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone),
                 new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(Limsew, 9), new ItemStack(BlockLimsew));
+        GameRegistry.addShapelessRecipe(new ItemStack(Jaffarrol, 9), new ItemStack(BlockJaffarrol));
+
+        GameRegistry.addRecipe(new ItemStack(ItemCentralUnit, 1, 0), "JRJ", "RLR", "JRJ", 'J', Jaffarrol, 'R', Item.redstone, 'L', Limsew);
+        GameRegistry.addRecipe(new ItemStack(ItemCentralUnit, 1, 1), "JRJ", "CLC", "JRJ", 'J', JaffarrolRefined, 'R', Item.redstone, 'L', Limsew, 'C', new ItemStack(ItemCentralUnit, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(ItemCentralUnit, 1, 2), "LJL", "CLC", "LJL", 'J', JaffarrolRefined, 'R', Item.redstone, 'L', Limsew, 'C', new ItemStack(ItemCentralUnit, 1, 1));
+
+        GameRegistry.addRecipe(new ItemStack(Funnel), "I I", "J J", " J ", 'I', Item.ingotIron, 'J', Jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(ItemCasing, 1, 0), "JJJ", "J J", "JJJ", 'J', Jaffarrol);
+        GameRegistry.addSmelting(ItemCasing.shiftedIndex, new ItemStack(ItemCasing, 1, 1), 1f);
+
+        GameRegistry.addRecipe(new ItemStack(mod_jaffas.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
+                '&', new ItemStack(ItemCasing, 1, 0), 'J', Jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(ItemCentralUnit, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(mod_jaffas_trees.blockFruitCollector), "JFJ", "J@J", "JCJ",
+                'J', JaffarrolRefined, 'F', Funnel, '@', new ItemStack(ItemCasing, 1, 0), 'C', new ItemStack(ItemCentralUnit, 1, 2));
     }
 }

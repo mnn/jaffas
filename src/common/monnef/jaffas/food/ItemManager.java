@@ -6,16 +6,17 @@ import net.minecraft.src.Item;
 
 import java.lang.reflect.Constructor;
 import java.util.Hashtable;
+import java.util.LinkedHashMap;
 
 public class ItemManager {
-    public static Hashtable<JaffaItem, JaffaItemInfo> ItemsInfo;
+    public static LinkedHashMap<JaffaItem, JaffaItemInfo> ItemsInfo;
     public static JaffaItem[] mallets;
     public static JaffaItem[] malletHeads;
 
     private static Hashtable<ModulesEnum, Hashtable<JaffaItemType, Class<? extends Item>>> ClassMapping;
 
     static {
-        ItemsInfo = new Hashtable<JaffaItem, JaffaItemInfo>();
+        ItemsInfo = new LinkedHashMap<JaffaItem, JaffaItemInfo>();
         ClassMapping = new Hashtable<ModulesEnum, Hashtable<JaffaItemType, Class<? extends Item>>>();
     }
 

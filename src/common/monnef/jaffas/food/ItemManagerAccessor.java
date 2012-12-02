@@ -1,5 +1,6 @@
 package monnef.jaffas.food;
 
+import monnef.core.IDProvider;
 import net.minecraft.src.Item;
 
 public abstract class ItemManagerAccessor {
@@ -31,5 +32,13 @@ public abstract class ItemManagerAccessor {
 
     protected Item createJaffaItemManual(JaffaItem ji, Class<? extends Item> item) {
         return ItemManager.createJaffaItemManual(ji, item);
+    }
+
+    public void LoadItemsFromConfig(IDProvider idProvider) {
+        ItemManager.LoadItemsFromConfig(this.getMyModule(), idProvider);
+    }
+
+    public void RegisterItemType(JaffaItemType type, Class<? extends Item> clazz) {
+        ItemManager.RegisterItemTypeForModule(this.getMyModule(), type, clazz);
     }
 }

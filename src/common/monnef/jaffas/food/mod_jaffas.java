@@ -75,11 +75,11 @@ public class mod_jaffas {
 
     public mod_jaffas() {
         this.itemManager = new ItemManager();
-        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.basic, ItemJaffaBase.class);
-        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.food, ItemJaffaFood.class);
-        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.tool, ItemJaffaTool.class);
-        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.pack, ItemJaffaPack.class);
         items = new Items();
+        items.RegisterItemType(JaffaItemType.basic, ItemJaffaBase.class);
+        items.RegisterItemType(JaffaItemType.food, ItemJaffaFood.class);
+        items.RegisterItemType(JaffaItemType.tool, ItemJaffaTool.class);
+        items.RegisterItemType(JaffaItemType.pack, ItemJaffaPack.class);
         items.InitializeItemInfos();
         ItemManager.mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
         ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
@@ -97,7 +97,7 @@ public class mod_jaffas {
             config.load();
             idProvider.setConfig(config);
 
-            ItemManager.LoadItemsFromConfig(ModulesEnum.food, idProvider);
+            items.LoadItemsFromConfig(idProvider);
 
             blockJaffaBombID = idProvider.getBlockIDFromConfig("jaffa bomb");
             blockFridgeID = idProvider.getBlockIDFromConfig("fridge");
@@ -388,7 +388,9 @@ public class mod_jaffas {
         RecipesFridge.AddRecipe(getItem(JaffaItem.vanillaIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.vanillaIcecreamFrozen)));
         RecipesFridge.AddRecipe(getItem(JaffaItem.chocolateIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.chocolateIcecreamFrozen)));
 
-        GameRegistry.addRecipe(new ItemStack(blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
+            GameRegistry.addRecipe(new ItemStack(blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
+        }
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.donutRaw)), " P ", "P P", " P ", 'P', new ItemStack(getItem(JaffaItem.pastry)));
         GameRegistry.addSmelting(getItem(JaffaItem.donutRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.donut)), 0.25F);

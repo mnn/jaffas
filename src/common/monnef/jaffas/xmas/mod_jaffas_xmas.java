@@ -10,6 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
+import monnef.jaffas.food.JaffaItemType;
 import monnef.jaffas.food.ModuleManager;
 import monnef.jaffas.food.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
@@ -46,6 +47,14 @@ public class mod_jaffas_xmas {
     public static int renderID;
 
     public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.xmas");
+    private Items items;
+
+    public mod_jaffas_xmas() {
+        this.items = new Items();
+        items.RegisterItemType(JaffaItemType.basic, ItemXmas.class);
+        items.RegisterItemType(JaffaItemType.food, ItemXmasFood.class);
+        items.InitializeItemInfos();
+    }
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -61,6 +70,8 @@ public class mod_jaffas_xmas {
             ItemGiantCandyID = idProvider.getItemIDFromConfig("giant candy");
 
             BlockPresentID = idProvider.getBlockIDFromConfig("present");
+
+            items.LoadItemsFromConfig(idProvider);
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -80,6 +91,7 @@ public class mod_jaffas_xmas {
         GameRegistry.registerTileEntity(TileEntityPresent.class, "jaffas.present");
 
         createItems();
+        items.CreateItems();
         installRecipes();
 
         // texture stuff

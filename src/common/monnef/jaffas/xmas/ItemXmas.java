@@ -1,13 +1,20 @@
 package monnef.jaffas.xmas;
 
-import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 
 public class ItemXmas extends Item {
+    public ItemXmas(int id) {
+        super(id);
+        init();
+    }
+
     public ItemXmas(int id, int textureIndex) {
         super(id);
         setIconIndex(textureIndex);
-        setCreativeTab(CreativeTabs.tabMaterials);
+        init();
+    }
+
+    private void init() {
         setCreativeTab(mod_jaffas_xmas.CreativeTab);
     }
 
