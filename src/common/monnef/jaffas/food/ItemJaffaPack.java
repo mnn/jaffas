@@ -1,16 +1,20 @@
 package monnef.jaffas.food;
 
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 
-public class ItemJaffaPack extends ItemJaffaBase {
+public class ItemJaffaPack extends ItemJaffaBase implements IItemPack {
     private ItemStack content;
+
+    public ItemJaffaPack(int id) {
+        super(id);
+    }
 
     public ItemJaffaPack(int v, ItemStack content) {
         super(v);
-
-        this.content = content;
+        this.setContent(content);
     }
 
     /**
@@ -21,5 +25,15 @@ public class ItemJaffaPack extends ItemJaffaBase {
 
         par1ItemStack.stackSize--;
         return par1ItemStack;
+    }
+
+    protected void setContent(ItemStack content) {
+        this.content = content;
+    }
+
+    @Override
+    public Item Setup(ItemStack contents) {
+        this.setContent(contents);
+        return this;
     }
 }

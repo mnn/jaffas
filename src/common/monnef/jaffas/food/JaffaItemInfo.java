@@ -8,6 +8,7 @@ public class JaffaItemInfo {
     private Item item;
     private String title;
     private int iconIndex;
+    private ModulesEnum module;
 
     public JaffaItemInfo(String configName) {
         this.setConfigName(configName);
@@ -51,5 +52,13 @@ public class JaffaItemInfo {
 
     public int getIconIndex() {
         return iconIndex;
+    }
+
+    public ModulesEnum getModule() {
+        return module;
+    }
+
+    public void setModule(ModulesEnum module) {
+        this.module = module;
     }
 }

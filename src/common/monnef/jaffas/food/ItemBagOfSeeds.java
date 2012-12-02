@@ -9,7 +9,7 @@ import java.util.Random;
 public class ItemBagOfSeeds extends Item {
     private static Random rand = new Random();
 
-    protected ItemBagOfSeeds(int par1) {
+    public ItemBagOfSeeds(int par1) {
         super(par1);
 
         setMaxStackSize(1);

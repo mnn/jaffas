@@ -14,10 +14,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
 import monnef.core.Version;
-import monnef.jaffas.food.JaffaItem;
-import monnef.jaffas.food.ModuleManager;
-import monnef.jaffas.food.ModulesEnum;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.*;
 import net.minecraftforge.common.Configuration;
@@ -349,7 +346,7 @@ public class mod_jaffas_trees {
     }
 
     private Item getJaffaItem(JaffaItem item) {
-        return mod_jaffas.getItem(item);
+        return ItemManager.getItem(item);
     }
 
     private void installRecipes() {

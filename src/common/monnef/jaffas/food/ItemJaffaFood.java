@@ -2,13 +2,25 @@ package monnef.jaffas.food;
 
 import net.minecraft.src.*;
 
-public class ItemJaffaFood extends ItemFood {
+public class ItemJaffaFood extends ItemFood implements IItemFood {
 
     private ItemStack returnItem;
     private boolean isDrink;
+    private int healAmount;
+    private float saturation;
+
+    public ItemJaffaFood(int id) {
+        super(id, 0, 0, false);
+        initialize();
+    }
 
     public ItemJaffaFood(int id, int healAmount, float saturation) {
-        super(id, healAmount, saturation, false);
+        //super(id, healAmount, saturation, false);
+        super(id, 0, 0, false);
+        initialize();
+    }
+
+    private void initialize() {
         maxStackSize = 64;
         this.setCreativeTab(CreativeTabs.tabFood);
         this.setCreativeTab(mod_jaffas.CreativeTab);
@@ -45,5 +57,23 @@ public class ItemJaffaFood extends ItemFood {
     public ItemJaffaFood setIsDrink() {
         this.isDrink = true;
         return this;
+    }
+
+    @Override
+    public Item Setup(int healAmount, float saturation) {
+        this.healAmount = healAmount;
+        this.saturation = saturation;
+
+        return this;
+    }
+
+    @Override
+    public int getHealAmount() {
+        return this.healAmount;
+    }
+
+    @Override
+    public float getSaturationModifier() {
+        return this.saturation;
     }
 }

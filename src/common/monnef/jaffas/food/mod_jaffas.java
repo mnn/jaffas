@@ -71,10 +71,18 @@ public class mod_jaffas {
 
     public ItemManager itemManager;
     public ModuleManager moduleManager;
+    private Items items;
 
     public mod_jaffas() {
         this.itemManager = new ItemManager();
-        itemManager.InitializeItemInfos();
+        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.basic, ItemJaffaBase.class);
+        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.food, ItemJaffaFood.class);
+        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.tool, ItemJaffaTool.class);
+        ItemManager.RegisterItemTypeForModule(ModulesEnum.food, JaffaItemType.pack, ItemJaffaPack.class);
+        items = new Items();
+        items.InitializeItemInfos();
+        ItemManager.mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
+        ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
     }
 
     @SidedProxy(clientSide = "monnef.jaffas.food.ClientProxyTutorial", serverSide = "monnef.jaffas.food.CommonProxyTutorial")
@@ -89,6 +97,7 @@ public class mod_jaffas {
             config.load();
             idProvider.setConfig(config);
 
+            //TODO generalize, move to ItemManager
             for (JaffaItem item : JaffaItem.values()) {
                 JaffaItemInfo info = itemManager.ItemsInfo.get(item);
                 if (info == null) {
@@ -118,6 +127,7 @@ public class mod_jaffas {
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
 
             this.moduleManager = new ModuleManager();
+            ModuleManager.Add(ModulesEnum.food);
             for (ModulesEnum module : ModulesEnum.values()) {
                 boolean defaultState = module.getEnabledByDefault();
                 boolean enabled = config.get("modules", module.toString(), defaultState).getBoolean(defaultState);
@@ -141,14 +151,13 @@ public class mod_jaffas {
         registerHandlers();
 
         createBlocks();
-        itemManager.createItems();
+        items.CreateItems();
         createJaffaArmorAndSword();
         createPainting();
 
         installRecipes();
 
         itemsReady = true; // needed?
-
 
         //creative tab title
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
