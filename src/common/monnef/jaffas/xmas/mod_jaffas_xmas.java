@@ -110,5 +110,36 @@ public class mod_jaffas_xmas {
 
         GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Item.dyePowder, 1, 1),
                 'S', Item.silk, 'P', Item.paper);
+
+        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 6), "RS ", "PPP", 'R', new ItemStack(Item.dyePowder, 1, 1),
+                'S', Item.silk, 'P', Item.paper);
+
+        installPresentRecipe(2, 4, true, 1);
+        installPresentRecipe(4, 11, true, 2);
+        installPresentRecipe(11, 0, true, 3);
+
+        installPresentRecipe(1, 13, true, 4);
+        installPresentRecipe(1, 5, true, 4);
+
+        installPresentRecipe(2, 0, true, 5);
+
+        installPresentRecipe(2, 4, false, 7);
+        installPresentRecipe(4, 11, false, 8);
+        installPresentRecipe(11, 0, false, 9);
+
+        installPresentRecipe(1, 13, false, 10);
+        installPresentRecipe(1, 5, false, 10);
+
+        installPresentRecipe(2, 0, false, 11);
+    }
+
+    private void installPresentRecipe(int ribbonColor, int color, boolean big, int presentMeta) {
+        if (big) {
+            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", "PPP", 'A', new ItemStack(Item.dyePowder, 1, ribbonColor),
+                    'S', Item.silk, 'P', Item.paper, 'B', new ItemStack(Item.dyePowder, 1, color));
+        } else {
+            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", 'A', new ItemStack(Item.dyePowder, 1, ribbonColor),
+                    'S', Item.silk, 'P', Item.paper, 'B', new ItemStack(Item.dyePowder, 1, color));
+        }
     }
 }
