@@ -10,10 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
-import monnef.jaffas.food.JaffaItemType;
-import monnef.jaffas.food.ModuleManager;
-import monnef.jaffas.food.ModulesEnum;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.*;
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
@@ -143,6 +140,35 @@ public class mod_jaffas_xmas {
         installPresentRecipe(1, 5, false, 10);
 
         installPresentRecipe(2, 0, false, 11);
+
+        // star
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.pastry));
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyStarRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandyStar)), 0.2f);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarChoco), 16), "C", "S", 'C', getItem(JaffaItem.chocolate), 'S', getItem(JaffaItem.xcandyStar));
+        Item[] starJams = new Item[]{getItem(JaffaItem.jamR), getItem(JaffaItem.jamStrawberry), getItem(JaffaItem.jamRaspberry)};
+        for (Item i : starJams) {
+            GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarJam), 16), "S", "J", "S", 'S', getItem(JaffaItem.xcandyStar), 'J', i);
+        }
+
+        // small roll
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X  ", " X ", "X  ", 'X', getItem(JaffaItem.pastry));
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollChoco)), "C", "R", "C", 'C', getItem(JaffaItem.chocolate), 'R', getItem(JaffaItem.xcandySmallRoll));
+
+        // circle
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.brownPastry));
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyChocoCircleRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandyChocoCircle)), 0.2f);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleCoated), 12), "C", "P", 'C', getItem(JaffaItem.chocolate), 'P', getItem(JaffaItem.xcandyChocoCircle));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleSprinkled), 12), "S", "C", "P", 'C', getItem(JaffaItem.chocolate), 'P', getItem(JaffaItem.xcandyChocoCircle), 'S', getItem(JaffaItem.sprinkles));
+
+        // choco - ball
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoBall)), " C ", "CBC", " C ", 'C', getItem(JaffaItem.chocolate), 'B', getItem(JaffaItem.butter));
+        //TODO - coco powder instead of sprinkles!
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoBallSprinkled), 6), "C", "B", 'C', getItem(JaffaItem.sprinkles), 'B', getItem(JaffaItem.xcandyChocoBall));
+    }
+
+    private Item getItem(JaffaItem type) {
+        return mod_jaffas.getItem(type);
     }
 
     private void installPresentRecipe(int ribbonColor, int color, boolean big, int presentMeta) {

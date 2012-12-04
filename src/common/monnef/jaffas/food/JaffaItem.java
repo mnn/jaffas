@@ -3,7 +3,7 @@ package monnef.jaffas.food;
 public enum JaffaItem {
     pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
     butter, mallet, malletStone, malletIron, malletDiamond, malletHead, malletHeadStone, malletHeadIron, malletHeadDiamond,
-    brownPastry, puffPastry, peanut, cream, sweetRoll, creamRoll, cakeTin, browniesInTin, brownie, sweetRollRaw, browniesInTinRaw,
+    browniesPastry, puffPastry, peanut, cream, sweetRoll, creamRoll, cakeTin, browniesInTin, brownie, sweetRollRaw, browniesInTinRaw,
     bunRaw, bun, sausageRaw, sausage, hotdog, flour, chocolateWrapper, chocolateBar, wrapperJaffas, jaffasPack, jaffasPackO,
     jaffasPackR, vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
     vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen,
@@ -14,5 +14,6 @@ public enum JaffaItem {
     jamRaspberry, jamStrawberry,
     rollRaw, roll, rollChopped, meatChopped, skewer, ironSkewer, knifeKitchen, coffee, coffeeRoasted, skewerRaw,
     xcandyStar, xcandyStarJam, xcandyStarChoco, xcandyStarRaw, xcandySmallRollRaw, xcandySmallRoll, xcandySmallRollChoco,
-    xcandyChocoCircle, xcandyChocoCircleRaw, xcandyChocoCircleCoated, xcandyChocoCircleSprinkled, xcandyChocoBall, xcandyChocoBallSprinkled, xcandyCane
+    xcandyChocoCircle, xcandyChocoCircleRaw, xcandyChocoCircleCoated, xcandyChocoCircleSprinkled, xcandyChocoBall, xcandyChocoBallSprinkled, xcandyCane,
+    brownPastry
 }

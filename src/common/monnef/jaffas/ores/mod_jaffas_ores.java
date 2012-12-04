@@ -53,7 +53,7 @@ public class mod_jaffas_ores {
     public static BlockOres BlockLimsew;
 
     private int ItemCentralUnitID;
-    public static monnef.jaffas.ores.ItemCentralUnit ItemCentralUnit;
+    public static ItemCentralUnit ItemCentralUnit;
 
     private int FunnelID;
     public static ItemOres Funnel;
@@ -63,7 +63,10 @@ public class mod_jaffas_ores {
     public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.ores");
 
     private int ItemCasingID;
-    public static ItemCasing ItemCasing;
+    public static ItemOres ItemCasing;
+
+    private int ItemCasingRefinedID;
+    public static ItemOres ItemCasingRefined;
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -84,7 +87,9 @@ public class mod_jaffas_ores {
             BlockLimsewID = idProvider.getBlockIDFromConfig("limsewBlock");
 
             ItemCentralUnitID = idProvider.getItemIDFromConfig("central unit");
+
             ItemCasingID = idProvider.getItemIDFromConfig("casing");
+            ItemCasingRefinedID = idProvider.getItemIDFromConfig("casingRefined");
 
             FunnelID = idProvider.getItemIDFromConfig("funnel");
 
@@ -111,7 +116,6 @@ public class mod_jaffas_ores {
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.ores", "en_US", "Jaffas and more! Ores");
 
         ItemCentralUnit.registerNames();
-        ItemCasing.registerNames();
 
         mod_jaffas.PrintInitialized(ModulesEnum.ores);
     }
@@ -144,11 +148,18 @@ public class mod_jaffas_ores {
         LanguageRegistry.addName(BlockLimsew, "Block of Limsew");
 
         ItemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);
-        ItemCasing = new ItemCasing(ItemCasingID, 13);
 
         Funnel = new ItemOres(FunnelID, 16);
         Funnel.setItemName("funnel");
         LanguageRegistry.addName(Funnel, "Funnel");
+
+        ItemCasing = new ItemOres(ItemCasingID, 13);
+        ItemCasing.setItemName("casing");
+        LanguageRegistry.addName(ItemCasing, "Casing");
+
+        ItemCasingRefined = new ItemOres(ItemCasingRefinedID, 14);
+        ItemCasingRefined.setItemName("casingRefined");
+        LanguageRegistry.addName(ItemCasingRefined, "Refined Casing");
     }
 
     private void installRecipes() {
@@ -181,11 +192,11 @@ public class mod_jaffas_ores {
 
         GameRegistry.addRecipe(new ItemStack(Funnel), "I I", "J J", " J ", 'I', Item.ingotIron, 'J', Jaffarrol);
         GameRegistry.addRecipe(new ItemStack(ItemCasing, 1, 0), "JJJ", "J J", "JJJ", 'J', Jaffarrol);
-        GameRegistry.addSmelting(ItemCasing.shiftedIndex, new ItemStack(ItemCasing, 1, 1), 1f);
+        GameRegistry.addSmelting(ItemCasing.shiftedIndex, new ItemStack(ItemCasingRefined), 1f);
 
         GameRegistry.addRecipe(new ItemStack(mod_jaffas.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
-                '&', new ItemStack(ItemCasing, 1, 0), 'J', Jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(ItemCentralUnit, 1, 0));
+                '&', ItemCasing, 'J', Jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(ItemCentralUnit, 1, 0));
         GameRegistry.addRecipe(new ItemStack(mod_jaffas_trees.blockFruitCollector), "JFJ", "J@J", "JCJ",
-                'J', JaffarrolRefined, 'F', Funnel, '@', new ItemStack(ItemCasing, 1, 0), 'C', new ItemStack(ItemCentralUnit, 1, 2));
+                'J', JaffarrolRefined, 'F', Funnel, '@', ItemCasing, 'C', new ItemStack(ItemCentralUnit, 1, 2));
     }
 }

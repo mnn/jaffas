@@ -307,7 +307,7 @@ public class mod_jaffas {
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.bucketMilk));
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.cakeTin)), new ItemStack(Item.ingotIron));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.brownPastry)), new ItemStack(getItem(JaffaItem.peanut)),
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), new ItemStack(getItem(JaffaItem.peanut)),
                 new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(getItem(JaffaItem.butter)),
@@ -316,7 +316,7 @@ public class mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.peanut)), "SSS", 'S', new ItemStack(Item.seeds));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.browniesInTinRaw)), "P", "T", 'P', new ItemStack(getItem(JaffaItem.brownPastry)), 'T', new ItemStack(getItem(JaffaItem.cakeTin)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.browniesInTinRaw)), "P", "T", 'P', new ItemStack(getItem(JaffaItem.browniesPastry)), 'T', new ItemStack(getItem(JaffaItem.cakeTin)));
 
         GameRegistry.addSmelting(getItem(JaffaItem.browniesInTinRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.browniesInTin)), 1F);
 
@@ -468,6 +468,8 @@ public class mod_jaffas {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.omeletteRaw), 3), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
                 new ItemStack(getItem(JaffaItem.paprikaChopped)));
         GameRegistry.addSmelting(getItem(JaffaItem.omeletteRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.omelette)), 1.5F);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.brownPastry)), new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
     }
 
     private void AddMalletRecipes() {

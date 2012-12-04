@@ -48,7 +48,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.malletHeadStone, "Mallet Head Stone", 28, "Stone Mallet Head");
         AddItemInfo(JaffaItem.malletHeadIron, "Mallet Head Iron", 29, "Iron Mallet Head");
         AddItemInfo(JaffaItem.malletHeadDiamond, "Mallet Head Diamond", 30, "Diamond Mallet Head");
-        AddItemInfo(JaffaItem.brownPastry, "Brown Pastry", 14, "Brown Pastry");
+        AddItemInfo(JaffaItem.browniesPastry, "Brown Pastry", 14, "Brownies Pastry");
         AddItemInfo(JaffaItem.puffPastry, "Puff Pastry", 15, "Puff Pastry");
         AddItemInfo(JaffaItem.peanut, "Peanut", 16, "Peanut");
         AddItemInfo(JaffaItem.cream, "Cream", 17, "Cream");
@@ -138,6 +138,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.coffeeRoasted, "Roasted Coffee", 112, "Roasted Coffee");
 
         AddItemInfo(JaffaItem.skewerRaw, "Skewer Raw", 85, "Raw Skewer");
+
+        AddItemInfo(JaffaItem.brownPastry, "Brown Pastry 2", 14, "Brown Pastry");
     }
 
     @Override
@@ -167,7 +169,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.malletHeadIron);
         createJaffaItem(JaffaItem.malletHeadDiamond);
 
-        createJaffaItem(JaffaItem.brownPastry);
+        createJaffaItem(JaffaItem.browniesPastry);
         createJaffaItem(JaffaItem.puffPastry);
         createJaffaItem(JaffaItem.peanut);
         createJaffaItem(JaffaItem.cream);
@@ -272,5 +274,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(JaffaItem.coffee);
         createJaffaItem(JaffaItem.coffeeRoasted);
+
+        createJaffaItem(JaffaItem.brownPastry);
     }
 }
