@@ -68,14 +68,25 @@ public class BlockPresent extends BlockXmasMulti {
 
         TileEntityPresent te = (TileEntityPresent) par1World.getBlockTileEntity(par2, par3, par4);
 
-        if (te.getContent() == null) {
-            ItemStack equippedItem = player.getCurrentEquippedItem();
-            if (equippedItem != null) {
-                te.setContent(equippedItem.copy());
-                player.destroyCurrentEquippedItem();
+        if (player.isSneaking()) {
+            ItemStack i = te.getContent();
+            if (i != null) {
+                String q = i.stackSize > 1 ? " x" + i.stackSize : "";
+                player.addChatMessage("Inside present is " + i.getDisplayName() + q + ".");
+            } else {
+                player.addChatMessage("Present is empty.");
             }
         } else {
-            dropItems(par1World, par2, par3, par4);
+
+            if (te.getContent() == null) {
+                ItemStack equippedItem = player.getCurrentEquippedItem();
+                if (equippedItem != null) {
+                    te.setContent(equippedItem.copy());
+                    player.destroyCurrentEquippedItem();
+                }
+            } else {
+                dropItems(par1World, par2, par3, par4);
+            }
         }
 
         return true;
