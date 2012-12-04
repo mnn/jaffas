@@ -72,6 +72,7 @@ public class mod_jaffas {
     public ItemManager itemManager;
     public ModuleManager moduleManager;
     private Items items;
+    private boolean forestryDetected;
 
     public mod_jaffas() {
         this.itemManager = new ItemManager();
@@ -136,6 +137,7 @@ public class mod_jaffas {
     @Init
     public void load(FMLInitializationEvent event) {
         checkJsoup();
+        checkForestry();
 
         registerHandlers();
 
@@ -152,6 +154,19 @@ public class mod_jaffas {
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
 
         printInitializedMessage();
+    }
+
+    private void checkForestry() {
+        try {
+            Class c = Class.forName("forestry.Forestry");
+            this.forestryDetected = true;
+        } catch (ClassNotFoundException e) {
+            this.forestryDetected = false;
+        }
+
+        if (debug) {
+            System.out.println("Forestry detected: " + this.forestryDetected);
+        }
     }
 
     private void registerHandlers() {
@@ -470,6 +485,15 @@ public class mod_jaffas {
         GameRegistry.addSmelting(getItem(JaffaItem.omeletteRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.omelette)), 1.5F);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.brownPastry)), new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.gingerbread)), new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.honey)));
+
+        //honey recipe
+        if (this.forestryDetected) {
+            ItemStack i = forestry.api.core.ItemInterface.getItem("honeyDrop");
+            GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.honey)), "H", "H", "B", 'H', i, 'B', Item.glassBottle);
+        } else {
+            GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.honey)), "SSS", "SYS", " B ", 'B', Item.glassBottle, 'S', Item.sugar, 'Y', new ItemStack(Item.dyePowder, 1, 11));
+        }
     }
 
     private void AddMalletRecipes() {

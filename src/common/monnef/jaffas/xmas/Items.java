@@ -12,7 +12,7 @@ public class Items extends ItemManagerAccessor {
 
     @Override
     protected void InitializeItemInfos() {
-        AddItemInfo(JaffaItem.xcandyStarRaw, "xcandy.starRaw", 6, "Raw Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyStarRaw, "xcandy.starRaw", 18, "Raw Christmas Candy");
         AddItemInfo(JaffaItem.xcandyStar, "xcandy.star", 6, "Unfinished Christmas Candy");
         AddItemInfo(JaffaItem.xcandyStarJam, "xcandy.starJam", 7, "Christmas Candy");
         AddItemInfo(JaffaItem.xcandyStarChoco, "xcandy.starChoco", 8, "Choco Christmas Candy");
@@ -21,7 +21,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.xcandySmallRoll, "xcandy.smallRoll", 9, "Christmas Candy");
         AddItemInfo(JaffaItem.xcandySmallRollChoco, "xcandy.smallRollChoco", 10, "Christmas Candy");
 
-        AddItemInfo(JaffaItem.xcandyChocoCircleRaw, "xcandy.chocoCircleRaw", 11, "Raw Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyChocoCircleRaw, "xcandy.chocoCircleRaw", 17, "Raw Christmas Candy");
         AddItemInfo(JaffaItem.xcandyChocoCircle, "xcandy.chocoCircle", 11, "Unfinished Christmas Candy");
         AddItemInfo(JaffaItem.xcandyChocoCircleCoated, "xcandy.chocoCircleCoated", 12, "Christmas Candy");
         AddItemInfo(JaffaItem.xcandyChocoCircleSprinkled, "xcandy.chocoCircleSprinkled", 13, "Christmas Candy");
@@ -30,6 +30,10 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.xcandyChocoBallSprinkled, "xcandy.chocoBallSprinkled", 15, "Christmas Candy");
 
         AddItemInfo(JaffaItem.xcandyCane, "xcandy.cane", 16, "Candy Cane");
+
+        AddItemInfo(JaffaItem.xcandyGingerFigureRaw, "xcandy.gingerFigureRaw", 19, "Raw Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyGingerFigure, "xcandy.gingerFigure", 20, "Unfinished Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyGingerCreamed, "xcandy.gingerFigureCreamed", 21, "Christmas Candy");
     }
 
     @Override
@@ -52,5 +56,9 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(JaffaItem.xcandyChocoBallSprinkled).Setup(3, .2f);
 
         createJaffaFood(JaffaItem.xcandyCane).Setup(2, 1f);
+
+        createJaffaItem(JaffaItem.xcandyGingerFigureRaw);
+        createJaffaItem(JaffaItem.xcandyGingerFigure);
+        createJaffaFood(JaffaItem.xcandyGingerCreamed).Setup(3, 1f);
     }
 }

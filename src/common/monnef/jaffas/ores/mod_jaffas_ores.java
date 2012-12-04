@@ -31,7 +31,7 @@ public class mod_jaffas_ores {
     @SidedProxy(clientSide = "monnef.jaffas.ores.ClientProxy", serverSide = "monnef.jaffas.ores.CommonProxy")
     public static CommonProxy proxy;
 
-    private static IDProvider idProvider = new IDProvider(3600, 26244);
+    private static IDProvider idProvider = new IDProvider(3450, 26244);
     private boolean debug;
 
     private int JaffarrolID;

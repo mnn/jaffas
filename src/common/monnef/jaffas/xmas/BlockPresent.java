@@ -19,6 +19,19 @@ public class BlockPresent extends BlockXmasMulti {
         setBlockName("present");
     }
 
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
+
+        if (meta < 6) {
+            //this.setBlockBounds(f2, 0f, f2, f2d, f7d, f2d);
+            return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2 + f2), (double) par3, (double) ((float) par4 + f2), (double) ((float) par2 + f2d), (double) ((float) par3 + f7d), (double) ((float) par4 + f2d));
+        } else {
+            //this.setBlockBounds(f4, 0f, f4, f4d, f9d, f4d);
+            return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2 + f4), (double) par3, (double) ((float) par4 + f4), (double) ((float) par2 + f4d), (double) ((float) par3 + f9d), (double) ((float) par4 + f4d));
+        }
+//        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2 + var9), (double) par3, (double) ((float) par4 + var11), (double) ((float) par2 + var10), (double) ((float) par3 + 1.5F), (double) ((float) par4 + var12));
+    }
+
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
 

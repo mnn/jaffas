@@ -148,12 +148,15 @@ public class mod_jaffas_xmas {
         Item[] starJams = new Item[]{getItem(JaffaItem.jamR), getItem(JaffaItem.jamStrawberry), getItem(JaffaItem.jamRaspberry)};
         for (Item i : starJams) {
             GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarJam), 16), "S", "J", "S", 'S', getItem(JaffaItem.xcandyStar), 'J', i);
+
+            // candy cane
+            GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyCane)), " W ", "WRW", "W  ", 'W', Item.sugar, 'R', i);
         }
 
         // small roll
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X  ", " X ", "X  ", 'X', getItem(JaffaItem.pastry));
         GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollChoco)), "C", "R", "C", 'C', getItem(JaffaItem.chocolate), 'R', getItem(JaffaItem.xcandySmallRoll));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollChoco), 6), "C", "R", "C", 'C', getItem(JaffaItem.chocolate), 'R', getItem(JaffaItem.xcandySmallRoll));
 
         // circle
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.brownPastry));
@@ -163,8 +166,12 @@ public class mod_jaffas_xmas {
 
         // choco - ball
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoBall)), " C ", "CBC", " C ", 'C', getItem(JaffaItem.chocolate), 'B', getItem(JaffaItem.butter));
-        //TODO - coco powder instead of sprinkles!
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoBallSprinkled), 6), "C", "B", 'C', getItem(JaffaItem.sprinkles), 'B', getItem(JaffaItem.xcandyChocoBall));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoBallSprinkled), 6), "C", "B", 'C', getItem(JaffaItem.cocoaPowder), 'B', getItem(JaffaItem.xcandyChocoBall));
+
+        // gingerbread figure
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerFigureRaw)), "XXX", " X ", "X X", 'X', getItem(JaffaItem.gingerbread));
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyGingerFigureRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandyGingerFigure)), 0.2f);
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerCreamed), 26), getItem(JaffaItem.xcandyGingerFigure), getItem(JaffaItem.cream));
     }
 
     private Item getItem(JaffaItem type) {

@@ -22,6 +22,8 @@ public class ItemManager {
 
     public static void LoadItemsFromConfig(ModulesEnum module, IDProvider idProvider) {
         for (JaffaItem item : JaffaItem.values()) {
+            if (item == JaffaItem._last) continue;
+
             JaffaItemInfo info = ItemManager.ItemsInfo.get(item);
             if (info == null) {
                 throw new RuntimeException("got null in item list - " + item);
