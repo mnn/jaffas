@@ -197,6 +197,6 @@ public class mod_jaffas_ores {
         GameRegistry.addRecipe(new ItemStack(mod_jaffas.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
                 '&', ItemCasing, 'J', Jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(ItemCentralUnit, 1, 0));
         GameRegistry.addRecipe(new ItemStack(mod_jaffas_trees.blockFruitCollector), "JFJ", "J@J", "JCJ",
-                'J', JaffarrolRefined, 'F', Funnel, '@', ItemCasing, 'C', new ItemStack(ItemCentralUnit, 1, 2));
+                'J', Jaffarrol, 'F', Funnel, '@', ItemCasing, 'C', new ItemStack(ItemCentralUnit, 1, 2));
     }
 }
