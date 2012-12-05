@@ -270,6 +270,10 @@ public class TileEntityFruitLeaves extends TileEntity {
                 res.setStack(new ItemStack(itemPlum));
                 break;
 
+            case Coconut:
+                res.setStack(new ItemStack(itemCoconut));
+                break;
+
             default:
                 if (debug) {
                     //System.err.println("unknown type of tree - " + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);

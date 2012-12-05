@@ -502,7 +502,7 @@ public class mod_jaffas {
         }
     }
 
-    private void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
+    public void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
         for (int i = 0; i < itemManager.mallets.length; i++) {
             GameRegistry.addRecipe(output, "M", "O", 'M', new ItemStack(getItem(itemManager.mallets[i]), 1, -1), 'O', input);
         }

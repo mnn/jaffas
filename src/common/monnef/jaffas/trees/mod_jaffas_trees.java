@@ -34,8 +34,8 @@ public class mod_jaffas_trees {
 
     public static final String channel = "jaffas-02";
 
-    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum"};
-    public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds"};
+    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum", "coconut"};
+    public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds", "Coconut Seeds"};
 
     private static IGuiHandler guiHandler;
 
@@ -58,7 +58,7 @@ public class mod_jaffas_trees {
     }
 
     public static enum fruitType {
-        Normal(0), Apple(1), Cocoa(2), Vanilla(3), Lemon(4), Orange(5), Plum(6);
+        Normal(0), Apple(1), Cocoa(2), Vanilla(3), Lemon(4), Orange(5), Plum(6), Coconut(7);
         private int value;
         private int blockNumber;
         private int metaNumber;
@@ -98,16 +98,18 @@ public class mod_jaffas_trees {
     public static ArrayList<LeavesInfo> leavesList = new ArrayList<LeavesInfo>();
 
     public static final int leavesBlocksAllocated = 3;
-    public static final int leavesTypesCount = 6;
+    public static final int leavesTypesCount = 7;
 
     public static boolean debug;
 
     private int itemLemonID;
     private int itemOrangeID;
     private int itemPlumID;
+    private int itemCoconutID;
     public static ItemJaffaFruit itemLemon;
     public static ItemJaffaFruit itemOrange;
     public static ItemJaffaFruit itemPlum;
+    public static ItemJaffaFruit itemCoconut;
 
     private int itemDebugID;
     public static ItemJaffaTreeDebugTool itemDebug;
@@ -152,6 +154,7 @@ public class mod_jaffas_trees {
             itemLemonID = idProvider.getItemIDFromConfig("lemon");
             itemOrangeID = idProvider.getItemIDFromConfig("orange");
             itemPlumID = idProvider.getItemIDFromConfig("plum");
+            itemCoconutID = idProvider.getItemIDFromConfig("coconut");
 
             for (int i = 0; i < leavesBlocksAllocated; i++) {
                 int leavesID = idProvider.getBlockIDFromConfig("fruit leaves " + i);
@@ -248,7 +251,7 @@ public class mod_jaffas_trees {
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
         AddFruitTreesSequence(0, 0, 32, 4);
-        AddFruitTreesSequence(1, 4, 32 + 4, 3);
+        AddFruitTreesSequence(1, 4, 32 + 4, 4);
 
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
         GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
@@ -264,6 +267,10 @@ public class mod_jaffas_trees {
         itemPlum = new ItemJaffaFruit(itemPlumID);
         itemPlum.setItemName("plum").setIconCoord(6, 4);
         LanguageRegistry.addName(itemPlum, "Plum");
+
+        itemCoconut = new ItemJaffaFruit(itemCoconutID);
+        itemCoconut.setItemName("coconut").setIconCoord(7, 4);
+        LanguageRegistry.addName(itemCoconut, "Coconut");
 
         constructItemsInBushInfo();
 
@@ -393,6 +400,8 @@ public class mod_jaffas_trees {
         GameRegistry.addRecipe(new ItemStack(itemRod), " S ", "ISI", " S ", 'S', new ItemStack(itemStick), 'I', new ItemStack(Item.ingotIron));
         GameRegistry.addRecipe(new ItemStack(itemFruitPickerHead), "III", "WWW", " W ", 'I', new ItemStack(Item.ingotIron), 'W', new ItemStack(Block.cloth, 1, -1));
         GameRegistry.addRecipe(new ItemStack(itemFruitPicker), "H ", " R", 'H', new ItemStack(itemFruitPickerHead), 'R', new ItemStack(itemRod));
+
+        mod_jaffas.instance.AddMalletShapedRecipe(new ItemStack(getJaffaItem(JaffaItem.coconutPowder)), new ItemStack(itemCoconut));
     }
 
     private void installFruitSeedsRecipes() {

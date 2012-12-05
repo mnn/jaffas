@@ -141,7 +141,7 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.brownPastry, "Brown Pastry 2", 14, "Brown Pastry");
 
-        AddItemInfo(JaffaItem.cocoaPowder, "Cocoa Powder", 139, "Cocoa Powder");
+        AddItemInfo(JaffaItem.coconutPowder, "Cocoa Powder", 139, "Cocoa Powder");
         AddItemInfo(JaffaItem.honey, "Honey", 140, "Honey");
 
         AddItemInfo(JaffaItem.gingerbread, "Gingerbread", 14, "Gingerbread");
@@ -282,7 +282,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(JaffaItem.brownPastry);
 
-        createJaffaItem(JaffaItem.cocoaPowder);
+        createJaffaItem(JaffaItem.coconutPowder);
         createJaffaItem(JaffaItem.honey);
         createJaffaItem(JaffaItem.gingerbread);
     }
