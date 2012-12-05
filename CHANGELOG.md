@@ -4,6 +4,9 @@
 - ores - better way of crafting machines, adds two storage/decorative blocks
 
 ## 0.4.4
+- updated to MC 1.4.5
+
+## 0.4.4
 - updated to MC 1.4.2
 - rework of fruit trees (fruit is now picked by hand or special tools)
 - plants are compatible with forestry (combine and farm machines)
