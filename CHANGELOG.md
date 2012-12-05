@@ -1,3 +1,8 @@
+## 0.4.5
+- new stuff divided into modules (each can be disabled in config)
+- xmas module - christmas candies and presents
+- ores - better way of crafting machines, adds two storage/decorative blocks
+
 ## 0.4.4
 - updated to MC 1.4.2
 - rework of fruit trees (fruit is now picked by hand or special tools)
