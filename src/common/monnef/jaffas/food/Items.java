@@ -145,6 +145,36 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.honey, "Honey", 140, "Honey");
 
         AddItemInfo(JaffaItem.gingerbread, "Gingerbread", 14, "Gingerbread");
+
+        AddItemInfo(JaffaItem.hamburgerBunRaw, "Hamburger Bun Raw", 113, "Raw Hamburger Bun");
+        AddItemInfo(JaffaItem.hamburgerBun, "Hamburger Bun", 114, "Hamburger Bun");
+        AddItemInfo(JaffaItem.cheese, "Cheese", 115, "Cheese");
+        AddItemInfo(JaffaItem.cheeseSlice, "Cheese Slice", 116, "Slice of Cheese");
+        AddItemInfo(JaffaItem.rawBurger, "Raw Burger", 117, "Raw Burger");
+        AddItemInfo(JaffaItem.burger, "Burger", 118, "Burger");
+        AddItemInfo(JaffaItem.onionSliced, "Sliced Onion", 119, "Sliced Onion");
+        AddItemInfo(JaffaItem.hamburger, "Hamburger", 120, "Hamburger");
+        AddItemInfo(JaffaItem.cheeseburger, "Cheeseburger", 121, "Cheeseburger");
+        AddItemInfo(JaffaItem.fryingPan, "Frying Pan", 122, "Frying Pan");
+        AddItemInfo(JaffaItem.fryingPanBurgerRaw, "Frying Pan Burger Raw", 123, "Raw Burger in Frying Pan");
+        AddItemInfo(JaffaItem.fryingPanEggRaw, "Frying Pan Egg Raw", 124, "Raw Egg in Frying Pan");
+        AddItemInfo(JaffaItem.fryingPanBurger, "Frying Pan Burger", 123, "Burger in Frying Pan");
+        AddItemInfo(JaffaItem.fryingPanEgg, "Frying Pan Egg", 124, "Egg in Frying Pan");
+        AddItemInfo(JaffaItem.eggFried, "Fried Egg", 125, "Fried Egg");
+        AddItemInfo(JaffaItem.breadRaw, "Raw Bread", 126, "Raw Bread");
+        AddItemInfo(JaffaItem.breadSlice, "Bread Slice", 127, "Bread Slice");
+        AddItemInfo(JaffaItem.breadSliceToasted, "Bread Slice Toasted", 128, "Bread Slice Toasted");
+        AddItemInfo(JaffaItem.breadSliceJam, "Bread Slice with Jam", 129, "Bread Slice with Jam");
+        AddItemInfo(JaffaItem.breadSliceButter, "Bread Slice with Butter", 130, "Bread Slice with Butter");
+        AddItemInfo(JaffaItem.breadSliceEgg, "Bread Slice with Egg", 131, "Bread Slice with Egg");
+
+        AddItemInfo(JaffaItem.bottleEmpty, "Bottle", 132, "Empty Bottle");
+        AddItemInfo(JaffaItem.bottleKetchup, "Bottle of Ketchup", 133, "Bottle of Catchup");
+        AddItemInfo(JaffaItem.bottleMustard, "Bottle of Mustard", 134, "Bottle of Mustard");
+        AddItemInfo(JaffaItem.bottleBrownMustard, "Bottle of Brown Mustard", 135, "Bottle of Brown Mustard");
+
+        AddItemInfo(JaffaItem.meatCleaver, "Meat Cleaver", 136, "Meat Cleaver");
+        AddItemInfo(JaffaItem.mincedMeat, "Minced Meat", 137, "Minced Meat");
     }
 
     @Override
@@ -285,5 +315,38 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.coconutPowder);
         createJaffaItem(JaffaItem.honey);
         createJaffaItem(JaffaItem.gingerbread);
+
+        // TODO: food stuff
+        createJaffaItem(JaffaItem.hamburgerBunRaw);
+        createJaffaItem(JaffaItem.hamburgerBun);
+        createJaffaItem(JaffaItem.cheese);
+        createJaffaItem(JaffaItem.cheeseSlice);
+        createJaffaItem(JaffaItem.rawBurger);
+        createJaffaItem(JaffaItem.burger);
+        createJaffaItem(JaffaItem.onionSliced);
+
+        createJaffaItem(JaffaItem.hamburger);
+        createJaffaItem(JaffaItem.cheeseburger);
+
+        createJaffaItem(JaffaItem.fryingPan);
+        createJaffaItem(JaffaItem.fryingPanBurgerRaw);
+        createJaffaItem(JaffaItem.fryingPanEggRaw);
+        createJaffaItem(JaffaItem.fryingPanBurger);
+        createJaffaItem(JaffaItem.fryingPanEgg);
+        createJaffaItem(JaffaItem.eggFried);
+        createJaffaItem(JaffaItem.breadRaw);
+        createJaffaItem(JaffaItem.breadSlice);
+
+        createJaffaItem(JaffaItem.breadSliceToasted);
+        createJaffaItem(JaffaItem.breadSliceJam);
+        createJaffaItem(JaffaItem.breadSliceButter);
+        createJaffaItem(JaffaItem.breadSliceEgg);
+
+        createJaffaItem(JaffaItem.bottleEmpty);
+        createJaffaItem(JaffaItem.bottleKetchup);
+        createJaffaItem(JaffaItem.bottleMustard);
+        createJaffaItem(JaffaItem.bottleBrownMustard);
+        createJaffaItem(JaffaItem.meatCleaver);
+        createJaffaItem(JaffaItem.mincedMeat);
     }
 }
