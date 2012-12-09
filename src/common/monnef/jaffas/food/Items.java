@@ -141,7 +141,7 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.brownPastry, "Brown Pastry 2", 14, "Brown Pastry");
 
-        AddItemInfo(JaffaItem.coconutPowder, "Cocoa Powder", 139, "Cocoa Powder");
+        AddItemInfo(JaffaItem.coconutPowder, "Coconut Powder", 139, "Coconut Powder");
         AddItemInfo(JaffaItem.honey, "Honey", 140, "Honey");
 
         AddItemInfo(JaffaItem.gingerbread, "Gingerbread", 14, "Gingerbread");
@@ -162,19 +162,20 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.fryingPanEgg, "Frying Pan Egg", 124, "Egg in Frying Pan");
         AddItemInfo(JaffaItem.eggFried, "Fried Egg", 125, "Fried Egg");
         AddItemInfo(JaffaItem.breadRaw, "Raw Bread", 126, "Raw Bread");
-        AddItemInfo(JaffaItem.breadSlice, "Bread Slice", 127, "Bread Slice");
-        AddItemInfo(JaffaItem.breadSliceToasted, "Bread Slice Toasted", 128, "Bread Slice Toasted");
-        AddItemInfo(JaffaItem.breadSliceJam, "Bread Slice with Jam", 129, "Bread Slice with Jam");
-        AddItemInfo(JaffaItem.breadSliceButter, "Bread Slice with Butter", 130, "Bread Slice with Butter");
-        AddItemInfo(JaffaItem.breadSliceEgg, "Bread Slice with Egg", 131, "Bread Slice with Egg");
+        AddItemInfo(JaffaItem.bread, "Bread", 127, "Bread");
+        AddItemInfo(JaffaItem.breadSlice, "Bread Slice", 128, "Bread Slice");
+        AddItemInfo(JaffaItem.breadSliceToasted, "Bread Slice Toasted", 129, "Bread Slice Toasted");
+        AddItemInfo(JaffaItem.breadSliceJam, "Bread Slice with Jam", 130, "Bread Slice with Jam");
+        AddItemInfo(JaffaItem.breadSliceButter, "Bread Slice with Butter", 131, "Bread Slice with Butter");
+        AddItemInfo(JaffaItem.breadSliceEgg, "Bread Slice with Egg", 132, "Bread Slice with Egg");
 
-        AddItemInfo(JaffaItem.bottleEmpty, "Bottle", 132, "Empty Bottle");
-        AddItemInfo(JaffaItem.bottleKetchup, "Bottle of Ketchup", 133, "Bottle of Catchup");
-        AddItemInfo(JaffaItem.bottleMustard, "Bottle of Mustard", 134, "Bottle of Mustard");
-        AddItemInfo(JaffaItem.bottleBrownMustard, "Bottle of Brown Mustard", 135, "Bottle of Brown Mustard");
+        AddItemInfo(JaffaItem.bottleEmpty, "Bottle", 133, "Empty Bottle");
+        AddItemInfo(JaffaItem.bottleKetchup, "Bottle of Ketchup", 134, "Bottle of Catchup");
+        AddItemInfo(JaffaItem.bottleMustard, "Bottle of Mustard", 135, "Bottle of Mustard");
+        AddItemInfo(JaffaItem.bottleBrownMustard, "Bottle of Brown Mustard", 136, "Bottle of Brown Mustard");
 
-        AddItemInfo(JaffaItem.meatCleaver, "Meat Cleaver", 136, "Meat Cleaver");
-        AddItemInfo(JaffaItem.mincedMeat, "Minced Meat", 137, "Minced Meat");
+        AddItemInfo(JaffaItem.meatCleaver, "Meat Cleaver", 137, "Meat Cleaver");
+        AddItemInfo(JaffaItem.mincedMeat, "Minced Meat", 138, "Minced Meat");
     }
 
     @Override
@@ -316,7 +317,6 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.honey);
         createJaffaItem(JaffaItem.gingerbread);
 
-        // TODO: food stuff
         createJaffaItem(JaffaItem.hamburgerBunRaw);
         createJaffaItem(JaffaItem.hamburgerBun);
         createJaffaItem(JaffaItem.cheese);
@@ -325,8 +325,8 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.burger);
         createJaffaItem(JaffaItem.onionSliced);
 
-        createJaffaItem(JaffaItem.hamburger);
-        createJaffaItem(JaffaItem.cheeseburger);
+        createJaffaFood(JaffaItem.hamburger).Setup(6, 0.9f);
+        createJaffaFood(JaffaItem.cheeseburger).Setup(6, 0.9f);
 
         createJaffaItem(JaffaItem.fryingPan);
         createJaffaItem(JaffaItem.fryingPanBurgerRaw);
@@ -337,16 +337,18 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.breadRaw);
         createJaffaItem(JaffaItem.breadSlice);
 
-        createJaffaItem(JaffaItem.breadSliceToasted);
-        createJaffaItem(JaffaItem.breadSliceJam);
-        createJaffaItem(JaffaItem.breadSliceButter);
-        createJaffaItem(JaffaItem.breadSliceEgg);
+        createJaffaFood(JaffaItem.breadSliceToasted).Setup(3, 0.33f);
+        createJaffaFood(JaffaItem.breadSliceJam).Setup(3, 0.33f);
+        createJaffaFood(JaffaItem.breadSliceButter).Setup(3, 0.33f);
+        createJaffaFood(JaffaItem.breadSliceEgg).Setup(3, 0.33f);
 
         createJaffaItem(JaffaItem.bottleEmpty);
         createJaffaItem(JaffaItem.bottleKetchup);
         createJaffaItem(JaffaItem.bottleMustard);
         createJaffaItem(JaffaItem.bottleBrownMustard);
-        createJaffaItem(JaffaItem.meatCleaver);
         createJaffaItem(JaffaItem.mincedMeat);
+
+        createJaffaItemManual(JaffaItem.meatCleaver,
+                new ItemCleaver(ItemManager.getItemInfo(JaffaItem.meatCleaver).getId(), mod_jaffas.EnumToolMaterialCleaver));
     }
 }

@@ -68,8 +68,11 @@ public class ItemManager {
     }
 
     public static Item getItem(JaffaItem item) {
-        JaffaItemInfo info = ItemsInfo.get(item);
-        return info.getItem();
+        return getItemInfo(item).getItem();
+    }
+
+    public static JaffaItemInfo getItemInfo(JaffaItem item) {
+        return ItemsInfo.get(item);
     }
 
     public static void AddItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module) {
@@ -128,6 +131,12 @@ public class ItemManager {
 
         finilizeItemSetup(info, newJaffaItem);
         return newJaffaItem;
+    }
+
+    public static Item createJaffaItemManual(JaffaItem ji, Item item) {
+        JaffaItemInfo info = ItemsInfo.get(ji);
+        finilizeItemSetup(info, item);
+        return item;
     }
 
     /*

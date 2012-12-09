@@ -19,6 +19,6 @@ public enum JaffaItem {
     xcandyGingerFigureRaw, xcandyGingerFigure, xcandyGingerCreamed, gingerbread,
     hamburgerBunRaw, hamburgerBun, cheese, cheeseSlice, rawBurger, burger, onionSliced, hamburger, cheeseburger,
     fryingPan, fryingPanBurgerRaw, fryingPanEggRaw, fryingPanBurger, fryingPanEgg, eggFried, breadRaw, breadSlice, breadSliceToasted, breadSliceJam, breadSliceButter, breadSliceEgg,
-    bottleEmpty, bottleKetchup, bottleMustard, bottleBrownMustard, meatCleaver, mincedMeat,
+    bottleEmpty, bottleKetchup, bottleMustard, bottleBrownMustard, meatCleaver, mincedMeat, bread,
     _last
 }

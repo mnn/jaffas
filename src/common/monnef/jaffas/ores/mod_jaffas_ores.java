@@ -10,6 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
+import monnef.jaffas.food.JaffaItem;
 import monnef.jaffas.food.ModuleManager;
 import monnef.jaffas.food.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
@@ -198,5 +199,13 @@ public class mod_jaffas_ores {
                 '&', ItemCasing, 'J', Jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(ItemCentralUnit, 1, 0));
         GameRegistry.addRecipe(new ItemStack(mod_jaffas_trees.blockFruitCollector), "JFJ", "J@J", "JCJ",
                 'J', Jaffarrol, 'F', Funnel, '@', ItemCasing, 'C', new ItemStack(ItemCentralUnit, 1, 2));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', mod_jaffas_ores.Jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', mod_jaffas_ores.Jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grinderMeat)), " FS", "III", "III", 'I', Item.ingotIron, 'F', mod_jaffas_ores.Funnel, 'S', Item.stick);
+    }
+
+    private Item getItem(JaffaItem item) {
+        return mod_jaffas.getItem(item);
     }
 }

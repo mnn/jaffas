@@ -154,7 +154,7 @@ public class mod_jaffas_xmas {
         }
 
         // small roll
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X  ", " X ", "X  ", 'X', getItem(JaffaItem.pastry));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X ", " X", "X ", 'X', getItem(JaffaItem.pastry));
         GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollChoco), 6), "C", "R", "C", 'C', getItem(JaffaItem.chocolate), 'R', getItem(JaffaItem.xcandySmallRoll));
 

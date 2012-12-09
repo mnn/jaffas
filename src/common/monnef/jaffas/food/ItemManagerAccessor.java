@@ -34,6 +34,10 @@ public abstract class ItemManagerAccessor {
         return ItemManager.createJaffaItemManual(ji, item);
     }
 
+    protected Item createJaffaItemManual(JaffaItem ji, Item item) {
+        return ItemManager.createJaffaItemManual(ji, item);
+    }
+
     public void LoadItemsFromConfig(IDProvider idProvider) {
         ItemManager.LoadItemsFromConfig(this.getMyModule(), idProvider);
     }
