@@ -1,8 +1,7 @@
 package monnef.jaffas.trees;
 
-
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.Item;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 
 public class ItemJaffaTreeDebugTool extends Item {
     protected ItemJaffaTreeDebugTool(int par1) {

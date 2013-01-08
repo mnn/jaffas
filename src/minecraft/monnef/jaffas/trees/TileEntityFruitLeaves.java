@@ -2,7 +2,14 @@ package monnef.jaffas.trees;
 
 import monnef.jaffas.food.ItemManager;
 import monnef.jaffas.food.JaffaItem;
-import net.minecraft.src.*;
+import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 import java.util.HashSet;
 import java.util.Random;

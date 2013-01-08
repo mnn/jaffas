@@ -1,8 +1,8 @@
 package monnef.jaffas.food;
 
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Potion;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 
 public class Items extends ItemManagerAccessor {
     @Override

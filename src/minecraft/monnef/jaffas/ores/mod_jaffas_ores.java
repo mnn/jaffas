@@ -15,10 +15,10 @@ import monnef.jaffas.food.ModuleManager;
 import monnef.jaffas.food.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.trees.mod_jaffas_trees;
-import net.minecraft.src.Block;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;

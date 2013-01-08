@@ -1,8 +1,8 @@
 package monnef.jaffas.trees;
 
 
-import net.minecraft.src.CommandBase;
-import net.minecraft.src.ICommandSender;
+import net.minecraft.command.CommandBase;
+import net.minecraft.command.ICommandSender;
 
 public class CommandFruitDebug extends CommandBase {
     @Override

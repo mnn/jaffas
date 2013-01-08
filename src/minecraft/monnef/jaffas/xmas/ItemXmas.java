@@ -1,6 +1,6 @@
 package monnef.jaffas.xmas;
 
-import net.minecraft.src.Item;
+import net.minecraft.item.Item;
 
 public class ItemXmas extends Item {
     public ItemXmas(int id) {

@@ -1,8 +1,8 @@
 package monnef.jaffas.xmas;
 
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.NBTTagCompound;
-import net.minecraft.src.TileEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityPresent extends TileEntity {
     private ItemStack content = null;

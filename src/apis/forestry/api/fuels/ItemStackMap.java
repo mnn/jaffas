@@ -1,12 +1,12 @@
 package forestry.api.fuels;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.liquids.LiquidStack;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class ItemStackMap<T> extends HashMap<ItemStack, T>{
 
@@ -49,7 +49,7 @@ public class ItemStackMap<T> extends HashMap<ItemStack, T>{
 		else if(b instanceof Integer)
 			return ((Integer)b).equals(a.itemID);
 		else if(b instanceof Item)
-			return ((Item)b).itemID == a.itemID;
+			return ((Item)b).shiftedIndex == a.itemID;
 		return false;
 	}
 

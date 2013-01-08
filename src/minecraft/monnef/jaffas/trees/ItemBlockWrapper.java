@@ -1,8 +1,7 @@
 package monnef.jaffas.trees;
 
-
-import net.minecraft.src.Block;
-import net.minecraft.src.ItemBlock;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 
 import java.lang.reflect.Field;
 

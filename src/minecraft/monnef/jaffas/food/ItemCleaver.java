@@ -1,7 +1,7 @@
 package monnef.jaffas.food;
 
-import net.minecraft.src.EnumToolMaterial;
-import net.minecraft.src.ItemSword;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemSword;
 
 public class ItemCleaver extends ItemSword {
     public ItemCleaver(int ItemID, EnumToolMaterial material) {

@@ -11,10 +11,10 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.*;
-import net.minecraft.src.Block;
-import net.minecraft.src.Item;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.Material;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
@@ -102,7 +102,7 @@ public class mod_jaffas_xmas {
     private void createItems() {
         BlockCandy = new BlockCandy(BlockCandyID, 16, Material.wood);
         BlockCandy.setBlockName("jaffas.candy");
-        GameRegistry.registerBlock(BlockCandy);
+        GameRegistry.registerBlock(BlockCandy, "blockCandy");
         LanguageRegistry.addName(BlockCandy, "Candy Cane");
 
         ItemGiantCandy = new ItemGiantCandy(ItemGiantCandyID, 16);
@@ -110,7 +110,7 @@ public class mod_jaffas_xmas {
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
 
         BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, ItemBlockPresent.count);
-        GameRegistry.registerBlock(BlockPresent, ItemBlockPresent.class);
+        GameRegistry.registerBlock(BlockPresent, ItemBlockPresent.class,"blockPresent");
     }
 
     private void installRecipes() {

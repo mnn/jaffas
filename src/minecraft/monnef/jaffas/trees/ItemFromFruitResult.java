@@ -1,6 +1,6 @@
 package monnef.jaffas.trees;
 
-import net.minecraft.src.ItemStack;
+import net.minecraft.item.ItemStack;
 
 public class ItemFromFruitResult {
     private ItemStack stack;

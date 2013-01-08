@@ -1,8 +1,8 @@
 package monnef.jaffas.xmas;
 
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
-import net.minecraft.src.MathHelper;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.MathHelper;
 
 public class ItemBlockPresent extends ItemBlockXmasMulti {
     public static final int count = 12;

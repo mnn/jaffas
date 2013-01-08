@@ -1,8 +1,8 @@
 package monnef.jaffas.trees;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.EntityFX;
-import net.minecraft.src.World;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxyTutorial extends CommonProxyTutorial {

@@ -1,9 +1,9 @@
 package monnef.jaffas.food;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import net.minecraft.src.Block;
-import net.minecraft.src.IBlockAccess;
-import net.minecraft.src.RenderBlocks;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.world.IBlockAccess;
 
 public class RenderingHandler implements ISimpleBlockRenderingHandler {
     static ModelGrave grave = new ModelGrave();

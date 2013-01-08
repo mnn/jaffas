@@ -15,8 +15,13 @@ import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.*;
+import net.minecraft.block.Block;
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.*;
+import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 
 import java.util.ArrayList;
@@ -217,7 +222,7 @@ public class mod_jaffas_trees {
 
             BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, info.product == null ? info.itemFruit : info.product, info.itemSeeds, info.renderer);
             crops.setBlockName(info.getPlantLanguageName());
-            GameRegistry.registerBlock(crops);
+            GameRegistry.registerBlock(crops, info.name);
             LanguageRegistry.addName(crops, info.plantTitle);
             info.block = crops;
 
@@ -275,7 +280,7 @@ public class mod_jaffas_trees {
         constructItemsInBushInfo();
 
         blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
-        GameRegistry.registerBlock(blockFruitCollector);
+        GameRegistry.registerBlock(blockFruitCollector,"blockFruitCollector");
         LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
         GameRegistry.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
 
@@ -324,8 +329,9 @@ public class mod_jaffas_trees {
 
         leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15);
         leaves.saplingBlock.serialNumber = i;
-        leaves.saplingBlock.setBlockName("fruitSapling" + i).setCreativeTab(CreativeTab);
-        GameRegistry.registerBlock(leaves.saplingBlock);
+        String saplingBlockName = "fruitSapling" + i;
+        leaves.saplingBlock.setBlockName(saplingBlockName).setCreativeTab(CreativeTab);
+        GameRegistry.registerBlock(leaves.saplingBlock, saplingBlockName);
         LanguageRegistry.addName(leaves.saplingBlock, "Fruit Sapling");
 
         for (int j = 0; j < subCount; j++) {

@@ -1,6 +1,11 @@
 package monnef.jaffas.trees;
 
-import net.minecraft.src.*;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemSeeds;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public class ItemJaffaSeeds extends ItemSeeds {

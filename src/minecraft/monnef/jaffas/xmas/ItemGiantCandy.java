@@ -1,6 +1,9 @@
 package monnef.jaffas.xmas;
 
-import net.minecraft.src.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
+import net.minecraft.world.World;
 
 import java.util.List;
 

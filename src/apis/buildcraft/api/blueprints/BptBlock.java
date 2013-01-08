@@ -9,15 +9,15 @@
 
 package buildcraft.api.blueprints;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
+import buildcraft.api.core.BuildCraftAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import buildcraft.api.core.BuildCraftAPI;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * This class allow to specify specific behavior for blocks stored in blueprints:
@@ -102,7 +102,7 @@ public class BptBlock {
 		if (stack.stackSize == 0 && stack.getItem().getContainerItem() != null) {
 			Item container = stack.getItem().getContainerItem();
 
-			stack.itemID = container.itemID;
+			stack.itemID = container.shiftedIndex;
 			stack.stackSize = 1;
 			stack.setItemDamage(0);
 		}

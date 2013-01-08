@@ -1,14 +1,22 @@
 package monnef.jaffas.trees;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.ItemManager;
 import monnef.jaffas.food.JaffaItem;
 import monnef.jaffas.food.TileEntityJaffaMachine;
-import net.minecraft.src.*;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.packet.Packet250CustomPayload;
+import net.minecraft.util.AxisAlignedBB;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
@@ -164,8 +172,8 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                     cooldown -= 1;
                     if (cooldown <= 0) {
                         if (targetedItem != null && this.targetedItem.isEntityAlive()) {
-                            ItemStack stack = this.targetedItem.item.copy();
-                            int itemsAdded = addItemToInventory(this.targetedItem.item.copy(), true);
+                            ItemStack stack = this.targetedItem.func_92014_d().copy();
+                            int itemsAdded = addItemToInventory(this.targetedItem.func_92014_d().copy(), true);
                             this.targetedItem.setDead();
                             if (mod_jaffas_trees.debug) System.out.println("target destroyed");
                             int itemsLeft = stack.stackSize - itemsAdded;
@@ -239,8 +247,8 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
             EntityItem item = null;
             while (notFound && it.hasNext()) {
                 item = it.next();
-                Integer itemDmg = fruitList.get(item.item.itemID);
-                if (itemDmg != null && itemDmg == item.item.getItemDamage() && canAddToInventory(item)) {
+                Integer itemDmg = fruitList.get(item.func_92014_d().itemID);
+                if (itemDmg != null && itemDmg == item.func_92014_d().getItemDamage() && canAddToInventory(item)) {
                     notFound = false;
                 }
             }

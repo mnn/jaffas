@@ -1,8 +1,8 @@
 package monnef.jaffas.xmas;
 
 
-import net.minecraft.src.CreativeTabs;
-import net.minecraft.src.ItemStack;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 
 public class JaffaCreativeTab extends CreativeTabs {
     public JaffaCreativeTab(String label) {

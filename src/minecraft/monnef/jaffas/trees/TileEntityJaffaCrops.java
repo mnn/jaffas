@@ -1,8 +1,8 @@
 package monnef.jaffas.trees;
 
 import forestry.api.cultivation.ICropEntity;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.TileEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
 

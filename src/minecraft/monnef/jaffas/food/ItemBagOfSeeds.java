@@ -2,7 +2,13 @@ package monnef.jaffas.food;
 
 import monnef.jaffas.trees.ItemFruitSeeds;
 import monnef.jaffas.trees.mod_jaffas_trees;
-import net.minecraft.src.*;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.Random;
 

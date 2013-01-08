@@ -1,6 +1,6 @@
 package monnef.jaffas.trees;
 
-import net.minecraft.src.Item;
+import net.minecraft.item.Item;
 
 public class ItemJaffaBerry extends Item {
     public ItemJaffaBerry(int id) {
