@@ -1,6 +1,6 @@
 package monnef.jaffas.food;
 
-import net.minecraft.entity.Entity;
+import monnef.core.PlayerHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EntityDamageSource;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -42,10 +41,12 @@ public class ItemCleaverHookContainer {
         EntityLiving mob = event.entityLiving;
 
         if (SourceIsPlayer(source)) {
-            if (PlayerHasEquipped(source, getMeatCleaverID())) {
+            EntityPlayer player = (EntityPlayer) source.getEntity();
+            if (PlayerHasEquipped(player, getMeatCleaverID())) {
                 if (mob instanceof EntityCow || mob instanceof EntityPig) {
                     event.ammount += 10;
                 }
+                PlayerHelper.damageCurrentItem(player);
             }
         }
     }
@@ -56,7 +57,8 @@ public class ItemCleaverHookContainer {
         EntityLiving mob = event.entityLiving;
 
         if (SourceIsPlayer(source)) {
-            if (PlayerHasEquipped(source, getMeatCleaverID())) {
+            EntityPlayer player = (EntityPlayer) source.getEntity();
+            if (PlayerHasEquipped(player, getMeatCleaverID())) {
                 if (mob instanceof EntityCow || mob instanceof EntityPig) {
                     EntityAnimal animal = (EntityAnimal) mob;
                     if (AnimalIsAdult(animal)) {
@@ -76,10 +78,7 @@ public class ItemCleaverHookContainer {
         return animal.getGrowingAge() >= 0;
     }
 
-    private boolean PlayerHasEquipped(DamageSource source, int itemId) {
-        EntityDamageSource eSource = (EntityDamageSource) source;
-        Entity entity = eSource.getEntity();
-        EntityPlayer player = (EntityPlayer) entity;
+    private boolean PlayerHasEquipped(EntityPlayer player, int itemId) {
         ItemStack equippedItem = player.getCurrentEquippedItem();
         return equippedItem.itemID == itemId;
     }

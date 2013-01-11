@@ -2,6 +2,7 @@ package monnef.jaffas.trees;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
@@ -22,12 +23,6 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     public static final int bitMarkedForDecay = 8;
     public static final int bitNeverDecay = 4;
     public static final int bitMaskLeavesType = 3;
-
-    // New: D N T T T T T
-    // warning: old denotes masks, this denotes bit number!
-    public static final int bitMarkedForDecayN = 7;
-    public static final int bitNeverDecayN = 6;
-    public static final int bitMaskLeavesTypeN = 31;
 
     public int serialNumber = -1;
 
@@ -86,12 +81,12 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemRod.shiftedIndex) {
             boolean harvested;
             harvested = harvestArea(world, x, y, z, 0.10, null, 3);
-            if (harvested || rand.nextInt(3) == 0) damageCurrentItem(player);
+            if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
             return harvested;
         } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemFruitPicker.shiftedIndex) {
             boolean harvested;
             harvested = harvestArea(world, x, y, z, 0.50, player, 5);
-            if (harvested || rand.nextInt(3) == 0) damageCurrentItem(player);
+            if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
             return harvested;
         } else {
             return false;
@@ -146,16 +141,6 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         return harvest(world, bx, by, bz, critChance, player);
 
         //return harvest(world, x, y, z, critChance, player);
-    }
-
-    private void damageCurrentItem(EntityPlayer player) {
-        ItemStack handItem = player.getCurrentEquippedItem();
-    /*    int newDamage = handItem.getItemDamage() + 1;
-        handItem.setItemDamage(newDamage);
-        if (newDamage >= handItem.getMaxDamage()) {
-            player.destroyCurrentEquippedItem();
-        }*/
-        handItem.damageItem(1, player);
     }
 
     public static boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
