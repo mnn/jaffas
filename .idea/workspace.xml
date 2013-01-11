@@ -2,33 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/core/PlayerHelper.java" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\jaffas_01.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\jaffas_02.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\jaffas_03.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\jaffas_04.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\CU_1.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\CU_2.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\CU_3.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\casing.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\casing_2.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\dust.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\funnel.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\jaffarrol_block.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\ores\jafferrol.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\pickers\head.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\pickers\picker.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\pickers\rod.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\pickers\stick.xcf" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\other\present\present.xcf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/BlockFruitLeaves.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/BlockFruitLeaves.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaverHookContainer.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaverHookContainer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357917352217" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357915515583" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357917948894" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357673238503" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357673633593" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357674195022" ignored="false" />
@@ -738,7 +717,11 @@
       <created>1357915540194</created>
       <updated>1357915540194</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed cleaver icon.&#10;&#10;Renamed directory &quot;other&quot; -&gt; &quot;textures&quot;.">
+      <created>1357917954115</created>
+      <updated>1357917954115</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -762,7 +745,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -825,7 +808,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented meat cleaver." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed cleaver icon.&#10;&#10;Renamed directory &quot;other&quot; -&gt; &quot;textures&quot;." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -841,6 +824,7 @@
     <MESSAGE value="Started porting to 1.4.6.&#10;&#10;Added APIs, IDEA project.&#10;Added after build hook to handle forge and FML configs and textures." />
     <MESSAGE value="Fixed namespace and API issues." />
     <MESSAGE value="Implemented meat cleaver." />
+    <MESSAGE value="Fixed cleaver icon.&#10;&#10;Renamed directory &quot;other&quot; -&gt; &quot;textures&quot;." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
