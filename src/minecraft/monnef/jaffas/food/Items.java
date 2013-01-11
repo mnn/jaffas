@@ -176,6 +176,8 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.meatCleaver, "Meat Cleaver", 137, "Meat Cleaver");
         AddItemInfo(JaffaItem.mincedMeat, "Minced Meat", 138, "Minced Meat");
+
+        AddItemInfo(JaffaItem.sink, "Faucet", 141, "Faucet");
     }
 
     @Override
@@ -350,5 +352,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItemManual(JaffaItem.meatCleaver,
                 new ItemCleaver(ItemManager.getItemInfo(JaffaItem.meatCleaver).getId(), mod_jaffas.EnumToolMaterialCleaver));
+
+        createJaffaItemManual(JaffaItem.sink, ItemSink.class);
     }
 }

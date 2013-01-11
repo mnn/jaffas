@@ -38,7 +38,7 @@ echo "Version detected: [$version]"
 echo -n Copying mod files...
 
 cp eclipse/Minecraft/bin/jaffas_0{1,2,3,4}.png eclipse/Minecraft/bin/jaffas_logo.png eclipse/Minecraft/bin/guifridge.png eclipse/Minecraft/bin/jaffabrn1.png eclipse/Minecraft/bin/mcmod.info eclipse/Minecraft/bin/guicollector.png eclipse/Minecraft/bin/sharpener.wav eclipse/Minecraft/bin/suck.wav "$outtmp"
-cp eclipse/Minecraft/bin/jaffas_present_{0,1,2,3,4,5}.png eclipse/Minecraft/bin/jaffas_paintings_01.png eclipse/Minecraft/bin/jaffas_candy.png "$outtmp"
+cp eclipse/Minecraft/bin/jaffas_present_{0,1,2,3,4,5}.png eclipse/Minecraft/bin/jaffas_paintings_01.png eclipse/Minecraft/bin/jaffas_candy.png eclipse/Minecraft/bin/jaffas_faucet.png "$outtmp"
 cp -r reobf/minecraft/{buildcraft,monnef,forestry} "$outtmp"
 
 outName="mod_jaffas_$version"

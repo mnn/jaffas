@@ -250,7 +250,6 @@ public class Recipes {
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.hamburgerBunRaw)), " O ", "OOO", 'O', getItem(JaffaItem.pastry));
-
     }
 
     private static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {

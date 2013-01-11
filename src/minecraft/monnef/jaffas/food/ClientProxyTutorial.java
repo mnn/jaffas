@@ -15,6 +15,7 @@ public class ClientProxyTutorial extends CommonProxyTutorial {
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCross.class, new TileEntityCrossRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySink.class, new TileEntitySinkRenderer());
 
         mod_jaffas.renderID = RenderingRegistry.getNextAvailableRenderId();
         //RenderingRegistry.registerBlockHandler(new RenderingHandler());

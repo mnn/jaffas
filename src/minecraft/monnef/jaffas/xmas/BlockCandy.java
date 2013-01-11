@@ -110,7 +110,6 @@ public class BlockCandy extends BlockXmas {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
         BoundsHelper b = new BoundsHelper(meta);
 
-        //TODO: implement getCollisionBoundingBoxFromPool for server
         this.setBlockBounds(b.x1, 0f, b.y1, b.x2, b.top, b.y2);
     }
 

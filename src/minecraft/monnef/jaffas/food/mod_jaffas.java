@@ -53,6 +53,9 @@ public class mod_jaffas {
     public static BlockCross blockCross;
     public static int blockCrossID;
 
+    public static BlockSink blockSink;
+    public static int blockSinkID;
+
     public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
     public static ItemJaffaPlate itemJaffaPlate;
     public static int itemJaffaPlateID;
@@ -124,6 +127,7 @@ public class mod_jaffas {
             checkUpdates = config.get(Configuration.CATEGORY_GENERAL, "checkUpdates", true).getBoolean(true);
 
             blockCrossID = idProvider.getBlockIDFromConfig("cross");
+            blockSinkID = idProvider.getBlockIDFromConfig("sink");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
 
@@ -215,6 +219,12 @@ public class mod_jaffas {
         GameRegistry.registerBlock(blockCross, "blockCross");
         LanguageRegistry.addName(blockCross, "Cross");
         GameRegistry.registerTileEntity(TileEntityCross.class, "cross");
+
+        blockSink = new BlockSink(blockSinkID, 141);
+        blockSink.setCreativeTab(CreativeTabs.tabBlock);
+        GameRegistry.registerBlock(blockSink, "blockSink");
+        LanguageRegistry.addName(blockSink, "Faucet");
+        GameRegistry.registerTileEntity(TileEntitySink.class, "sink");
     }
 
     private void createJaffaArmorAndSword() {
