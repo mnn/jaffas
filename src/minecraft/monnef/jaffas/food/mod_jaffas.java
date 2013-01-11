@@ -32,6 +32,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.logging.Level;
 
@@ -56,7 +57,7 @@ public class mod_jaffas {
     public static ItemJaffaPlate itemJaffaPlate;
     public static int itemJaffaPlateID;
     static EnumToolMaterial EnumToolMaterialJaffas = EnumHelper.addToolMaterial("Jaffa", 2, 400, 6.0F, 6, 15);
-    static EnumToolMaterial EnumToolMaterialCleaver = EnumHelper.addToolMaterial("JaffaCleaver", 2, 400, 6.0F, 6, 15);
+    static EnumToolMaterial EnumToolMaterialCleaver = EnumHelper.addToolMaterial("JaffaCleaver", 2, 75, 2.0F, 0, 15);
     public static ItemJaffaSword itemJaffaSword;
     public static int itemJaffaSwordID;
 
@@ -148,6 +149,8 @@ public class mod_jaffas {
     public void load(FMLInitializationEvent event) {
         checkJsoup();
         checkForestry();
+
+        MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
         registerHandlers();
 

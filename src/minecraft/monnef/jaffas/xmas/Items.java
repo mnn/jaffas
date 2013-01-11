@@ -11,29 +11,34 @@ public class Items extends ItemManagerAccessor {
     }
 
     @Override
+    protected void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
+        super.AddItemInfo(item, "xcandy." + name, iconIndex, title);
+    }
+
+    @Override
     protected void InitializeItemInfos() {
-        AddItemInfo(JaffaItem.xcandyStarRaw, "xcandy.starRaw", 18, "Raw Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyStar, "xcandy.star", 6, "Unfinished Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyStarJam, "xcandy.starJam", 7, "Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyStarChoco, "xcandy.starChoco", 8, "Choco Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyStarRaw, "starRaw", 18, "Raw Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyStar, "star", 6, "Unfinished Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyStarJam, "starJam", 7, "Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyStarChoco, "starChoco", 8, "Choco Christmas Candy");
 
-        AddItemInfo(JaffaItem.xcandySmallRollRaw, "xcandy.smallRollRaw", 9, "Raw Christmas Candy");
-        AddItemInfo(JaffaItem.xcandySmallRoll, "xcandy.smallRoll", 9, "Christmas Candy");
-        AddItemInfo(JaffaItem.xcandySmallRollChoco, "xcandy.smallRollChoco", 10, "Christmas Candy");
+        AddItemInfo(JaffaItem.xcandySmallRollRaw, "smallRollRaw", 9, "Raw Christmas Candy");
+        AddItemInfo(JaffaItem.xcandySmallRoll, "smallRoll", 9, "Christmas Candy");
+        AddItemInfo(JaffaItem.xcandySmallRollChoco, "smallRollChoco", 10, "Christmas Candy");
 
-        AddItemInfo(JaffaItem.xcandyChocoCircleRaw, "xcandy.chocoCircleRaw", 17, "Raw Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyChocoCircle, "xcandy.chocoCircle", 11, "Unfinished Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyChocoCircleCoated, "xcandy.chocoCircleCoated", 12, "Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyChocoCircleSprinkled, "xcandy.chocoCircleSprinkled", 13, "Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyChocoCircleRaw, "chocoCircleRaw", 17, "Raw Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyChocoCircle, "chocoCircle", 11, "Unfinished Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyChocoCircleCoated, "chocoCircleCoated", 12, "Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyChocoCircleSprinkled, "chocoCircleSprinkled", 13, "Christmas Candy");
 
-        AddItemInfo(JaffaItem.xcandyChocoBall, "xcandy.chocoBall", 14, "Unfinished Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyChocoBallSprinkled, "xcandy.chocoBallSprinkled", 15, "Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyChocoBall, "chocoBall", 14, "Unfinished Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyChocoBallSprinkled, "chocoBallSprinkled", 15, "Christmas Candy");
 
-        AddItemInfo(JaffaItem.xcandyCane, "xcandy.cane", 16, "Candy Cane");
+        AddItemInfo(JaffaItem.xcandyCane, "cane", 16, "Candy Cane");
 
-        AddItemInfo(JaffaItem.xcandyGingerFigureRaw, "xcandy.gingerFigureRaw", 19, "Raw Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyGingerFigure, "xcandy.gingerFigure", 20, "Unfinished Christmas Candy");
-        AddItemInfo(JaffaItem.xcandyGingerCreamed, "xcandy.gingerFigureCreamed", 21, "Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyGingerFigureRaw, "gingerFigureRaw", 19, "Raw Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyGingerFigure, "gingerFigure", 20, "Unfinished Christmas Candy");
+        AddItemInfo(JaffaItem.xcandyGingerCreamed, "gingerFigureCreamed", 21, "Christmas Candy");
     }
 
     @Override

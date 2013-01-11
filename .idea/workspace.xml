@@ -2,204 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/Action.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/Action.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ActionManager.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ActionManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/AlleleManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/AlleleManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/recipes/AssemblyRecipe.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/recipes/AssemblyRecipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/storage/BackpackManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/storage/BackpackManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/BeeManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/BeeManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/food/BeverageManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/food/BeverageManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/BlockInterface.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/BlockInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BlockSignature.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BlockSignature.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BlueprintManager.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BlueprintManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptBlock.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptBlock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockBed.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockBed.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockCustomStack.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockCustomStack.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockDelegate.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockDelegate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockDirt.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockDirt.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockDoor.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockDoor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockIgnore.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockIgnore.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockIgnoreMeta.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockIgnoreMeta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockInventory.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockInventory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockLever.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockLever.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockLiquid.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockLiquid.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockPiston.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockPiston.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockPumpkin.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockPumpkin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockRedstoneRepeater.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockRedstoneRepeater.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockRotateInventory.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockRotateInventory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockRotateMeta.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockRotateMeta.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockSign.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockSign.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockStairs.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockStairs.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptBlockUtils.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptBlockUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockWallSide.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/bptblocks/BptBlockWallSide.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptSlotInfo.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptSlotInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/core/BuildCraftAPI.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/core/BuildCraftAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ChipsetManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ChipsetManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/cultivation/CropProviders.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/cultivation/CropProviders.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/EngineBronzeFuel.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/EngineBronzeFuel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/EngineCopperFuel.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/EngineCopperFuel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/storage/EnumBackpackType.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/storage/EnumBackpackType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/EnumBeeChromosome.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/EnumBeeChromosome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/EnumBeeType.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/EnumBeeType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/EnumGermlingType.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/EnumGermlingType.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/EnumGrowthConditions.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/EnumGrowthConditions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/EnumHumidity.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/EnumHumidity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/EnumTemperature.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/EnumTemperature.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/EnumTolerance.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/EnumTolerance.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/EnumTreeChromosome.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/EnumTreeChromosome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/FacadeManager.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/FacadeManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/FermenterFuel.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/FermenterFuel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/filler/FillerManager.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/filler/FillerManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/FlowerManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/FlowerManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/ForestryAPI.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/ForestryAPI.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/FuelManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/FuelManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/GeneratorFuel.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/GeneratorFuel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/GlobalManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/GlobalManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IAction.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IActionProvider.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IActionProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IActionReceptor.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IActionReceptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAllele.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAllele.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlleleBeeEffect.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlleleBeeEffect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlleleBeeSpecies.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlleleBeeSpecies.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleEffect.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleEffect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleFloat.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleFloat.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlleleFlowers.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlleleFlowers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleFruit.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleFruit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleGrowth.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleGrowth.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleHandler.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleInteger.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleInteger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleLeafEffect.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleLeafEffect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleRegistry.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleSpecies.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IAlleleSpecies.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleTreeSpecies.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IAlleleTreeSpecies.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlvearyComponent.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IAlvearyComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IApiaristTracker.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IApiaristTracker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IArboristTracker.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IArboristTracker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/core/IAreaProvider.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/core/IAreaProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IArmorApiarist.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IArmorApiarist.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/storage/IBackpackDefinition.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/storage/IBackpackDefinition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/storage/IBackpackInterface.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/storage/IBackpackInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBee.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBee.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeGenome.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeGenome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeHousing.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeHousing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeInterface.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeModifier.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeModifier.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeMutation.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeeMutation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeekeepingLogic.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeekeepingLogic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeekeepingMode.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBeekeepingMode.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/food/IBeverageEffect.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/food/IBeverageEffect.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IBottlerManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IBottlerManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/core/IBox.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/core/IBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/IBptContext.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/IBptContext.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBreedingManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IBreedingManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ICarpenterManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ICarpenterManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ICentrifugeManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ICentrifugeManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IChromosome.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IChromosome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuit.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuitBoard.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuitBoard.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuitLibrary.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuitLibrary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuitRegistry.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ICircuitRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IClassification.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IClassification.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ICraftingProvider.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ICraftingProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/cultivation/ICropEntity.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/cultivation/ICropEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/cultivation/ICropProvider.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/cultivation/ICropProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IEffectData.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IEffectData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IExtractionHandler.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IExtractionHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IFabricatorManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IFabricatorManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/farming/IFarmComponent.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/farming/IFarmComponent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IFermenterManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IFermenterManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/filler/IFillerPattern.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/filler/IFillerPattern.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/filler/IFillerRegistry.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/filler/IFillerRegistry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IFlowerProvider.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IFlowerProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IFruitFamily.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IFruitFamily.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IFruitProvider.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IFruitProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IGenericCrate.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IGenericCrate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IGenome.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IGenome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IGrowthProvider.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/IGrowthProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IHiveDrop.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IHiveDrop.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IHiveFrame.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/apiculture/IHiveFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IIndividual.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IIndividual.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/food/IInfuserManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/food/IInfuserManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/food/IIngredientManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/food/IIngredientManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/ILegacyHandler.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/ILegacyHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IMoistenerManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IMoistenerManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IMutation.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IMutation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/INBTTagable.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/INBTTagable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/IOreDictionaryHandler.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/IOreDictionaryHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IOverrideDefaultTriggers.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/IOverrideDefaultTriggers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/IPacketHandler.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/IPacketHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPassiveItemContribution.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPassiveItemContribution.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/IPickupHandler.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/IPickupHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipe.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipeConnection.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipeConnection.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipeEntry.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipeEntry.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipeTile.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipeTile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipedItem.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/IPipedItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/IPlugin.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/IPlugin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IPollinatable.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/genetics/IPollinatable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/power/IPowerProvider.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/power/IPowerProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/power/IPowerReceptor.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/power/IPowerReceptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/IResupplyHandler.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/IResupplyHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/ISaveEventHandler.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/ISaveEventHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/inventory/ISecuredInventory.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/inventory/ISecuredInventory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/inventory/ISelectiveInventory.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/inventory/ISelectiveInventory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ISolderManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/circuits/ISolderManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/inventory/ISpecialInventory.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/inventory/ISpecialInventory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ISqueezerManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/ISqueezerManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IStillManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/IStillManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/IStructureLogic.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/IStructureLogic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/ITileStructure.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/ITileStructure.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/tools/IToolPipette.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/tools/IToolPipette.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/tools/IToolWrench.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/tools/IToolWrench.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITree.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeBreedingManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeBreedingManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/world/ITreeGenData.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/world/ITreeGenData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeGenome.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeGenome.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeInterface.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeMutation.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/ITreeMutation.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITrigger.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITrigger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITriggerDirectional.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITriggerDirectional.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITriggerParameter.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITriggerParameter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITriggerProvider.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/ITriggerProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/world/IWorldGenInterface.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/world/IWorldGenInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/fuels/IronEngineCoolant.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/fuels/IronEngineCoolant.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/fuels/IronEngineFuel.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/fuels/IronEngineFuel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/ItemInterface.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/ItemInterface.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/ItemSignature.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/ItemSignature.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/ItemStackMap.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/ItemStackMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/core/LaserKind.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/core/LaserKind.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/MoistenerFuel.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/MoistenerFuel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/PipeManager.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/transport/PipeManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/core/PluginInfo.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/core/PluginInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/core/Position.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/core/Position.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/power/PowerFramework.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/power/PowerFramework.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/power/PowerProvider.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/power/PowerProvider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/fuels/RainSubstrate.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/fuels/RainSubstrate.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/recipes/RecipeManagers.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/recipes/RecipeManagers.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/recipes/RefineryRecipe.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/recipes/RefineryRecipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/core/SafeTimeTracker.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/core/SafeTimeTracker.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/TreeManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/arboriculture/TreeManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/Trigger.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/Trigger.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/TriggerParameter.java" afterPath="$PROJECT_DIR$/src/apis/buildcraft/api/gates/TriggerParameter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/apis/forestry/api/world/WorldGenManager.java" afterPath="$PROJECT_DIR$/src/apis/forestry/api/world/WorldGenManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mc_libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mc_libs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/runtime.xml" afterPath="$PROJECT_DIR$/.idea/libraries/runtime.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaverHookContainer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaver.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/Items.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/Items.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357678279324" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357680198375" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357840003330" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357911607634" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357673238503" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357673633593" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357674195022" ignored="false" />
@@ -209,6 +21,10 @@
     <file path="/BlueprintManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357677769035" ignored="false" />
     <file path="/ItemStackMap.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357677774665" ignored="false" />
     <file path="/BptBlock.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357677780528" ignored="false" />
+    <file path="/Items.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357840238030" ignored="false" />
+    <file path="/ItemCleaver.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357844694411" ignored="false" />
+    <file path="/mod_jaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357845062007" ignored="false" />
+    <file path="/ItemCleaverHookContainer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357915403849" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,8 +39,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -259,15 +73,75 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_rules default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="mcp725" />
+    <favorites_list name="mcp725_jaffas" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="ItemCleaver.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaver.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="6" column="41" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EnumToolMaterial.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/EnumToolMaterial.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="25" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemSword.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemSword.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="36" selection-start="692" selection-end="754" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Items.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/Items.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="354" column="64" selection-start="20491" selection-end="20491" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemCleaverHookContainer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaverHookContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="49" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.41196582">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mod_jaffas.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="44" selection-start="2555" selection-end="2555" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -285,10 +159,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemBagOfSeeds.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ModelGrave.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/RenderingHandler.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/ItemBlockWrapper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffaCropProvider.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/TileEntityFruitCollector.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ClientTickHandler.java" />
@@ -301,6 +171,10 @@
         <option value="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BlueprintManager.java" />
         <option value="$PROJECT_DIR$/src/apis/forestry/api/fuels/ItemStackMap.java" />
         <option value="$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptBlock.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/Items.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaver.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaverHookContainer.java" />
       </list>
     </option>
   </component>
@@ -337,7 +211,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -399,30 +272,8 @@
               <option name="myItemId" value="net" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
+              <option name="myItemId" value="minecraftforge" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -448,11 +299,105 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="minecraftforge" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="minecraft" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="block" />
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraftforge" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraftforge" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="event" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="living" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -618,6 +563,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -717,7 +663,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="mcp725_jaffas" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method>
         <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_afterHookJaffas" />
@@ -771,26 +723,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31808037" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1670224" sideWeight="0.21875" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1670224" sideWeight="0.23883928" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1670224" sideWeight="0.44419643" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1670224" sideWeight="0.43526787" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -857,128 +809,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffaCropProvider.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/event/entity/living/LivingDropsEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+        <state line="21" column="53" selection-start="733" selection-end="733" vertical-scroll-proportion="0.3119266">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ClientTickHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/IAnimals.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="39" selection-start="1859" selection-end="1859" vertical-scroll-proportion="0.5275862">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/TileEntityFruitCollector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="90" selection-start="5362" selection-end="5362" vertical-scroll-proportion="0.43103448">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/item/EntityItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="415" column="33" selection-start="13113" selection-end="13125" vertical-scroll-proportion="0.47241378">
+        <state line="2" column="17" selection-start="56" selection-end="56" vertical-scroll-proportion="0.038990825">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/Recipes.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/EntityCreature.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="56" column="15" selection-start="2777" selection-end="2777" vertical-scroll-proportion="0.099183194">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/PacketHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="19" selection-start="1988" selection-end="1988" vertical-scroll-proportion="0.8827586">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/WorldGenFruitTrees.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="17" selection-start="171" selection-end="171" vertical-scroll-proportion="0.11724138">
+        <state line="7" column="48" selection-start="229" selection-end="229" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/TileEntityCandy.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/EntityLiving.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="87" selection-end="87" vertical-scroll-proportion="0.07816092">
+        <state line="143" column="18" selection-start="5406" selection-end="5406" vertical-scroll-proportion="0.80244756">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/TileEntityCandyRenderer.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityAnimal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="7" selection-start="155" selection-end="155" vertical-scroll-proportion="0.07816092">
+        <state line="14" column="49" selection-start="496" selection-end="496" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/ClientProxy.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/EntityAgeable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="83" selection-start="452" selection-end="452" vertical-scroll-proportion="0.21494253">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/ItemXmas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="75" selection-end="75" vertical-scroll-proportion="0.07816092">
+        <state line="65" column="28" selection-start="2218" selection-end="2231" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/ItemXmasMulti.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityPig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="37" selection-start="345" selection-end="345" vertical-scroll-proportion="0.17931035">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BlueprintManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="29" selection-start="423" selection-end="423" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/apis/forestry/api/fuels/ItemStackMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="41" selection-start="1588" selection-end="1588" vertical-scroll-proportion="0.0">
+        <state line="21" column="13" selection-start="889" selection-end="889" vertical-scroll-proportion="0.11623932">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/apis/buildcraft/api/blueprints/BptBlock.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/event/entity/living/LivingHurtEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="42" selection-start="4547" selection-end="4547" vertical-scroll-proportion="0.5113043">
+        <state line="7" column="28" selection-start="201" selection-end="216" vertical-scroll-proportion="0.14782609">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/ClientProxyTutorial.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityCow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="28" selection-start="393" selection-end="393" vertical-scroll-proportion="0.3547826">
+        <state line="118" column="42" selection-start="3269" selection-end="3276" vertical-scroll-proportion="0.7704348">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/EnumToolMaterial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="25" selection-start="561" selection-end="561" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemSword.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="36" selection-start="692" selection-end="754" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="41" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="44" selection-start="2555" selection-end="2555" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/Items.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="354" column="64" selection-start="20491" selection-end="20491" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemStack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="368" column="21" selection-start="10113" selection-end="10113" vertical-scroll-proportion="0.33216783">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ItemCleaverHookContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="49" selection-start="1243" selection-end="1243" vertical-scroll-proportion="0.41196582">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1030,6 +968,7 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
