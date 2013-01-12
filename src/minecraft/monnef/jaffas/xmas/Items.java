@@ -1,8 +1,8 @@
 package monnef.jaffas.xmas;
 
-import monnef.jaffas.food.ItemManagerAccessor;
-import monnef.jaffas.food.JaffaItem;
-import monnef.jaffas.food.ModulesEnum;
+import monnef.jaffas.food.items.ItemManagerAccessor;
+import monnef.jaffas.food.items.JaffaItem;
+import monnef.jaffas.food.common.ModulesEnum;
 
 public class Items extends ItemManagerAccessor {
     @Override

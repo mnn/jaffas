@@ -19,6 +19,19 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.IDProvider;
 import monnef.core.Version;
+import monnef.jaffas.food.blocks.*;
+import monnef.jaffas.food.client.GuiHandler;
+import monnef.jaffas.food.commands.CommandFridgeDebug;
+import monnef.jaffas.food.commands.CommandJaffaHunger;
+import monnef.jaffas.food.common.CommonProxy;
+import monnef.jaffas.food.common.ModuleManager;
+import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.common.PacketHandler;
+import monnef.jaffas.food.crafting.JaffaCraftingHandler;
+import monnef.jaffas.food.crafting.Recipes;
+import monnef.jaffas.food.entities.EntityJaffaPainting;
+import monnef.jaffas.food.items.*;
+import monnef.jaffas.food.server.ServerTickHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -59,8 +72,8 @@ public class mod_jaffas {
     public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
     public static ItemJaffaPlate itemJaffaPlate;
     public static int itemJaffaPlateID;
-    static EnumToolMaterial EnumToolMaterialJaffas = EnumHelper.addToolMaterial("Jaffa", 2, 400, 6.0F, 6, 15);
-    static EnumToolMaterial EnumToolMaterialCleaver = EnumHelper.addToolMaterial("JaffaCleaver", 2, 75, 2.0F, 0, 15);
+    public static EnumToolMaterial EnumToolMaterialJaffas = EnumHelper.addToolMaterial("Jaffa", 2, 400, 6.0F, 6, 15);
+    public static EnumToolMaterial EnumToolMaterialCleaver = EnumHelper.addToolMaterial("JaffaCleaver", 2, 75, 2.0F, 0, 15);
     public static ItemJaffaSword itemJaffaSword;
     public static int itemJaffaSwordID;
 
@@ -88,6 +101,10 @@ public class mod_jaffas {
     private Items items;
     boolean forestryDetected;
 
+    public boolean IsForestryDetected() {
+        return this.forestryDetected;
+    }
+
     public mod_jaffas() {
         this.itemManager = new ItemManager();
         items = new Items();
@@ -100,8 +117,8 @@ public class mod_jaffas {
         ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
     }
 
-    @SidedProxy(clientSide = "monnef.jaffas.food.ClientProxyTutorial", serverSide = "monnef.jaffas.food.CommonProxyTutorial")
-    public static CommonProxyTutorial proxy;
+    @SidedProxy(clientSide = "monnef.jaffas.food.ClientProxy", serverSide = "monnef.jaffas.food.common.CommonProxy")
+    public static CommonProxy proxy;
 
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {

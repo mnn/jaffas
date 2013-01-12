@@ -1,7 +1,5 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.food.items;
 
-import monnef.jaffas.food.items.ItemManager;
-import monnef.jaffas.food.items.JaffaItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -12,6 +10,6 @@ public class JaffaCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(ItemManager.getItem(JaffaItem.oranges));
+        return new ItemStack(ItemManager.getItem(JaffaItem.jaffaP));
     }
 }

@@ -1,6 +1,6 @@
 package monnef.jaffas.xmas;
 
-import monnef.jaffas.food.ItemJaffaFood;
+import monnef.jaffas.food.items.ItemJaffaFood;
 
 public class ItemXmasFood extends ItemJaffaFood {
     public ItemXmasFood(int id) {
