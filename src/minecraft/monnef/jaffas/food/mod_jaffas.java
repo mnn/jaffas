@@ -117,7 +117,7 @@ public class mod_jaffas {
         ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
     }
 
-    @SidedProxy(clientSide = "monnef.jaffas.food.ClientProxy", serverSide = "monnef.jaffas.food.common.CommonProxy")
+    @SidedProxy(clientSide = "monnef.jaffas.food.client.ClientProxy", serverSide = "monnef.jaffas.food.common.CommonProxy")
     public static CommonProxy proxy;
 
     @PreInit
