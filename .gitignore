@@ -4,15 +4,16 @@
 /eclipse/Minecraft/bin/*
 
 *.log
-temp/*
-bin/*
-eclipse\Minecraft\bin\*.class
+/temp/*
+/bin/*
+/eclipse\Minecraft\bin\*.class
 
-src/*
-!src/minecraft/monnef/*
-!src/minecraft/buildcraft/*
-!src/minecraft/forestry/*
-jars/*
-forge/*
-runtime
+/src/minecraft/*
+!/src/minecraft/monnef
+!/src/minecraft/buildcraft
+!/src/minecraft/forestry
+
+/jars/*
+/forge/*
+/runtime/*
 
