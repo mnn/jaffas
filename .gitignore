@@ -1,8 +1,18 @@
 /eclipse/Minecraft/nbproject/private/
 /eclipse/Minecraft/build/
 /eclipse/Minecraft/dist/
+/eclipse/Minecraft/bin/*
 
 *.log
 temp/*
 bin/*
 eclipse\Minecraft\bin\*.class
+
+src/*
+!src/minecraft/monnef/*
+!src/minecraft/buildcraft/*
+!src/minecraft/forestry/*
+jars/*
+forge/*
+runtime
+

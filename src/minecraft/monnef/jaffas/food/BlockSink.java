@@ -2,7 +2,6 @@ package monnef.jaffas.food;
 
 import monnef.core.BitHelper;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,15 +13,14 @@ import java.util.Random;
 
 public class BlockSink extends Block {
     public static final int waterBit = 2;
-    public static final Material sinkMaterial = (new Material(MapColor.ironColor));
     private static final boolean debug = false;
 
     public BlockSink(int id, int texture) {
-        super(id, texture, sinkMaterial);
+        super(id, texture, Material.iron);
         setRequiresSelfNotify();
         setCreativeTab(null);
         setBlockName("blockSink");
-        setHardness(1.5f);
+        setHardness(2f);
         setResistance(20f);
         //setTickRandomly(true);
     }

@@ -177,7 +177,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.meatCleaver, "Meat Cleaver", 137, "Meat Cleaver");
         AddItemInfo(JaffaItem.mincedMeat, "Minced Meat", 138, "Minced Meat");
 
-        AddItemInfo(JaffaItem.sink, "Faucet", 141, "Faucet");
+        AddItemInfo(JaffaItem.sink, "Faucet", 141, "Basin");
     }
 
     @Override

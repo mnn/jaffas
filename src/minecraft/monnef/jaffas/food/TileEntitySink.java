@@ -10,7 +10,12 @@ public class TileEntitySink extends TileEntity {
     private int delay = maxDelay;
     private static final Random rand = new Random();
 
+    private String soundToRun = null;
+    private float soundVolume = 1f;
+
     public void updateEntity() {
+        playQueuedSound();
+
         if (getBlockType().blockID != mod_jaffas.blockSink.blockID) {
             if (mod_jaffas.debug) {
                 System.out.println("sink block not detected, ending - " + xCoord + "x" + yCoord + "x" + zCoord);
@@ -23,8 +28,12 @@ public class TileEntitySink extends TileEntity {
             int meta = getBlockMetadata();
             if (!BlockSink.WaterIsReady(meta)) {
                 delay--;
+                if (delay == 20) {
+                    queueSound("water", 0.7f);
+                }
+
                 if (delay <= 0) {
-                    delay = maxDelay * (1 + rand.nextInt(3));
+                    delay = maxDelay * (2 + rand.nextInt(3));
 
                     int newMeta = BitHelper.setBit(meta, BlockSink.waterBit);
                     worldObj.setBlockMetadata(xCoord, yCoord, zCoord, newMeta);
@@ -35,4 +44,19 @@ public class TileEntitySink extends TileEntity {
         super.updateEntity();
     }
 
+    private void playQueuedSound() {
+        if (this.soundToRun != null) {
+            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, this.soundVolume, this.rand.nextFloat() * 0.1F + 0.9F);
+            this.soundToRun = null;
+        }
+    }
+
+    private void queueSound(String name) {
+        this.queueSound(name, 1F);
+    }
+
+    private void queueSound(String name, float volume) {
+        this.soundToRun = name;
+        this.soundVolume = volume;
+    }
 }

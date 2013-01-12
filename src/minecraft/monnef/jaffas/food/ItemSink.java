@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemSink extends ItemJaffaBase {
     public ItemSink(int id){
         super(id);
@@ -42,6 +44,10 @@ public class ItemSink extends ItemJaffaBase {
                 return false;
             }
         }
+    }
+
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        par3List.add("Construction kit");
     }
 }
 

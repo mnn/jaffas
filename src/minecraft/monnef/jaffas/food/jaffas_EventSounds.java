@@ -11,6 +11,7 @@ public class jaffas_EventSounds {
         {
             event.manager.soundPoolSounds.addSound("sharpener.wav", mod_jaffas.class.getResource("/sharpener.wav"));
             event.manager.soundPoolSounds.addSound("suck.wav", mod_jaffas.class.getResource("/suck.wav"));
+            event.manager.soundPoolSounds.addSound("water.ogg", mod_jaffas.class.getResource("/water.ogg"));
         }
         catch (Exception e)
         {
