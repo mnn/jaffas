@@ -20,7 +20,7 @@ touch "$outtmp/.placeholder"
 echo Done
 echo -n Parsing version...
 
-ver_line=`grep -Ei 'String +Version' src/common/monnef/core/Version.java`
+ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/core/Version.java`
 if [ $? -ne 0 ]; then
 	echo "Cannot determine version"
 	exit

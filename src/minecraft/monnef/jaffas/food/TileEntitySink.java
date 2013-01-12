@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class TileEntitySink extends TileEntity {
     private final static int maxDelay = 20;
-    private int delay = maxDelay;
+    private int delay = maxDelay * 5;
     private static final Random rand = new Random();
 
     private String soundToRun = null;

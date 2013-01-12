@@ -80,6 +80,7 @@ public class ItemCleaverHookContainer {
 
     private boolean PlayerHasEquipped(EntityPlayer player, int itemId) {
         ItemStack equippedItem = player.getCurrentEquippedItem();
+        if (equippedItem == null) return false;
         return equippedItem.itemID == itemId;
     }
 
