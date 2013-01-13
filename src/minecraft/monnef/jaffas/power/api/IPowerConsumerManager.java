@@ -11,7 +11,7 @@ public interface IPowerConsumerManager {
 
     int getCurrentMaximalPacketSize();
 
-    boolean haveBuffered(int energy);
+    boolean hasBuffered(int energy);
 
     /**
      * Consumes energy from a buffer.
@@ -28,4 +28,23 @@ public interface IPowerConsumerManager {
      * @return Energy successfully stored.
      */
     int store(int energy);
+
+    void connect(IPowerProvider provider);
+
+    void disconnect();
+
+    boolean isConnected();
+
+    /**
+     * Is buffer not full?
+     *
+     * @return Power consumer wants juice.
+     */
+    boolean energyNeeded();
+
+    /**
+     * Only in this method will manager request power (maximal one packet).
+     * Do NOT call more often than once per tick.
+     */
+    void tick();
 }

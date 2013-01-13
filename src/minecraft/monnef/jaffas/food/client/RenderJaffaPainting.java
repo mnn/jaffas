@@ -2,8 +2,8 @@ package monnef.jaffas.food.client;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.entities.EntityJaffaPainting;
-import monnef.jaffas.food.entities.EnumJaffaArt;
+import monnef.jaffas.food.entity.EntityJaffaPainting;
+import monnef.jaffas.food.entity.EnumJaffaArt;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;

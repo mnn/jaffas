@@ -1,6 +1,6 @@
 package monnef.jaffas.food.client;
 
-import monnef.jaffas.food.blocks.TileEntityCross;
+import monnef.jaffas.food.block.TileEntityCross;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;

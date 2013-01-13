@@ -1,8 +1,8 @@
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
-import monnef.jaffas.food.items.JaffaItem;
-import monnef.jaffas.food.items.ItemManager;
+import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.ItemManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;

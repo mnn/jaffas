@@ -1,8 +1,8 @@
 package monnef.jaffas.food.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import monnef.jaffas.food.blocks.ContainerFridge;
-import monnef.jaffas.food.blocks.TileEntityFridge;
+import monnef.jaffas.food.block.ContainerFridge;
+import monnef.jaffas.food.block.TileEntityFridge;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
