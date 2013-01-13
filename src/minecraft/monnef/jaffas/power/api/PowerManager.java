@@ -3,6 +3,8 @@ package monnef.jaffas.power.api;
 public class PowerManager {
     private static IPowerConsumerManagerFactory factory;
 
+    public boolean debug = true;
+
     private PowerManager() {
     }
 

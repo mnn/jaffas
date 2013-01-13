@@ -1,13 +1,13 @@
 package monnef.jaffas.power.api;
 
+import net.minecraft.tileentity.TileEntity;
+
 public interface IPowerConsumerManager {
+    void initialize(int maximalPacketSize, int bufferSize, TileEntity tile);
+
     int getMaximalPacketSize();
 
-    void setMaximalPacketSize(int size);
-
     int getBufferSize();
-
-    void setBufferSize(int size);
 
     int getCurrentMaximalPacketSize();
 
@@ -47,4 +47,10 @@ public interface IPowerConsumerManager {
      * Do NOT call more often than once per tick.
      */
     void tick();
+
+    int getFreeSpaceInBuffer();
+
+    TileEntity getTile();
+
+    int getCurrentBufferedEnergy();
 }
