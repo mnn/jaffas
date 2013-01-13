@@ -17,3 +17,10 @@
 /forge/*
 /runtime/*
 
+/jar_output/*
+/jar_output/tmp/*
+!/jar_output/tmp/.placeholder
+/jar_output/dist/*
+/reobf
+/conf
+/docs

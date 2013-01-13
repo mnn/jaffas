@@ -1,3 +1,8 @@
+## 0.4.6
+- updated to MC 1.4.6 (MCForge 471)
+- added basin (sink)
+- implemented meat cleaver
+
 ## 0.4.5
 - new stuff divided into modules (each can be disabled in config)
 - xmas module - christmas candies and presents
