@@ -25,6 +25,7 @@ public class ModelSink extends ModelBase {
     ModelRenderer Shape10;
     ModelRenderer Shape11;
     ModelRenderer Shape12;
+    ModelRenderer Shape13;
 
     public ModelSink() {
         textureWidth = 128;
@@ -108,6 +109,12 @@ public class ModelSink extends ModelBase {
         Shape12.setTextureSize(128, 64);
         Shape12.mirror = true;
         setRotation(Shape12, 0F, 0F, 0F);
+        Shape13 = new ModelRenderer(this, 34, 2);
+        Shape13.addBox(0F, 0F, 0F, 14, 1, 14);
+        Shape13.setRotationPoint(-7F, 23F, -7F);
+        Shape13.setTextureSize(128, 64);
+        Shape13.mirror = true;
+        setRotation(Shape13, 0F, 0F, 0F);
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
@@ -130,6 +137,7 @@ public class ModelSink extends ModelBase {
         Shape10.render(f5);
         Shape11.render(f5);
         if (renderWater) Shape12.render(f5);
+        Shape13.render(f5);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
