@@ -1,4 +1,4 @@
-package monnef.jaffas.food.entity;
+package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -14,6 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
 
+import static monnef.jaffas.food.mod_jaffas.blockBoard;
 import static monnef.jaffas.food.mod_jaffas.getItem;
 
 public class TileEntityBoard extends TileEntity implements IInventory {
@@ -29,12 +30,20 @@ public class TileEntityBoard extends TileEntity implements IInventory {
 
     private static Random rand = new Random();
 
+    private boolean knifeInitialized = false;
+    private boolean knifePresent = false;
+
     public TileEntityBoard() {
         inv = new ItemStack[3];
     }
 
     @Override
     public void updateEntity() {
+        if (!knifeInitialized) {
+            knifePresent = blockBoard.hasKnife(getBlockMetadata());
+            knifeInitialized = true;
+        }
+
         if (!worldObj.isRemote) {
 
             boolean updateInventory = false;
@@ -45,6 +54,7 @@ public class TileEntityBoard extends TileEntity implements IInventory {
                     chopTime = 0;
                     chopItem();
                     breakKnife();
+                    checkKnife();
                     updateInventory = true;
                     if (chopSpeed <= maximalChopSpeed) chopSpeed = chopSpeed + chopSpeed / 5;
                 }
@@ -224,5 +234,18 @@ public class TileEntityBoard extends TileEntity implements IInventory {
     @SideOnly(Side.CLIENT)
     public int getChopTimeScaled(int par1) {
         return this.chopTime * par1 / 200;
+    }
+
+    public void checkKnife() {
+        boolean isKnifePresent = false;
+        ItemStack slotItem = getStackInSlot(slotKnife);
+        if (slotItem != null && slotItem.itemID == getItem(JaffaItem.knifeKitchen).shiftedIndex) {
+            isKnifePresent = true;
+        }
+
+        if (isKnifePresent != this.knifePresent) {
+            this.knifePresent = isKnifePresent;
+            blockBoard.setKnife(knifePresent, worldObj, xCoord, yCoord, zCoord);
+        }
     }
 }

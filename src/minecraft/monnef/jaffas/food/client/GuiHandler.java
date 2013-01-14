@@ -4,7 +4,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import monnef.jaffas.food.block.ContainerBoard;
 import monnef.jaffas.food.block.ContainerFridge;
 import monnef.jaffas.food.block.TileEntityFridge;
-import monnef.jaffas.food.entity.TileEntityBoard;
+import monnef.jaffas.food.block.TileEntityBoard;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

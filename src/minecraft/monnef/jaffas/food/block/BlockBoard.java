@@ -1,7 +1,7 @@
 package monnef.jaffas.food.block;
 
+import monnef.core.BitHelper;
 import monnef.jaffas.food.client.GuiHandler;
-import monnef.jaffas.food.entity.TileEntityBoard;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,7 +17,10 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+// TODO: bounding boxes
 public class BlockBoard extends BlockContainer {
+    private static int knifeBit = 2;
+
     public BlockBoard(int par1, int par2, Material par3Material) {
         super(par1, par2, par3Material);
         setRequiresSelfNotify();
@@ -95,5 +98,40 @@ public class BlockBoard extends BlockContainer {
     public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity) {
         int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         w.setBlockMetadata(x, y, z, var);
+    }
+
+    public boolean hasKnife(int meta) {
+        return BitHelper.isBitSet(meta, knifeBit);
+    }
+
+    public void setKnife(boolean present, World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        world.setBlockMetadata(x, y, z, BitHelper.setBitToValue(meta, knifeBit, present));
+    }
+
+    @Override
+    public int getRenderType() {
+        return mod_jaffas.renderID;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
+    }
+
+    @Override
+    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
+        super.onBlockAdded(par1World, par2, par3, par4);
+        par1World.setBlockTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public boolean hasTileEntity(int metadata) {
+        return true;
     }
 }

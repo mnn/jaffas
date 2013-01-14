@@ -30,7 +30,7 @@ import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
-import monnef.jaffas.food.entity.TileEntityBoard;
+import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.power.PowerConsumerManagerFactory;

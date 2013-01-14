@@ -2,7 +2,6 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.entity.TileEntityBoard;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +39,6 @@ public class ContainerBoard extends Container {
     public boolean canInteractWith(EntityPlayer player) {
         return board.isUseableByPlayer(player);
     }
-
 
     protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
         for (int i = 0; i < 3; i++) {
@@ -131,5 +129,10 @@ public class ContainerBoard extends Container {
         if (par1 == 0) {
             this.board.chopTime = par2;
         }
+    }
+
+    @Override
+    public void onCraftGuiClosed(EntityPlayer par1EntityPlayer) {
+        board.checkKnife();
     }
 }

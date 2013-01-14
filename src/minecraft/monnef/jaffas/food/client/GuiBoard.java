@@ -1,7 +1,7 @@
 package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.ContainerBoard;
-import monnef.jaffas.food.entity.TileEntityBoard;
+import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
