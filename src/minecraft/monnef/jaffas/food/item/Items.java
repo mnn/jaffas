@@ -307,7 +307,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.ironSkewer);
         createJaffaFood(JaffaItem.skewer, 4, 0.5F).setReturnItem(new ItemStack(getItem(JaffaItem.ironSkewer))).setPotionEffect(Potion.jump.id, 60, 1, 0.15F);
         createJaffaItem(JaffaItem.skewerRaw);
-        createJaffaItem(JaffaItem.knifeKitchen).setMaxDamage(4096).setMaxStackSize(1);
+        createJaffaItem(JaffaItem.knifeKitchen).setMaxDamage(256).setMaxStackSize(1);
 
         createJaffaFood(JaffaItem.jaffaStrawberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
         createJaffaFood(JaffaItem.jaffaRaspberry, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);

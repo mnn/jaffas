@@ -14,11 +14,12 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
 import monnef.core.Version;
-import monnef.jaffas.food.*;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -284,7 +285,7 @@ public class mod_jaffas_trees {
         constructItemsInBushInfo();
 
         blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
-        GameRegistry.registerBlock(blockFruitCollector,"blockFruitCollector");
+        GameRegistry.registerBlock(blockFruitCollector, "blockFruitCollector");
         LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
         GameRegistry.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
 
@@ -396,8 +397,11 @@ public class mod_jaffas_trees {
 
         GameRegistry.addSmelting(BushesList.get(bushType.Coffee).itemFruit.shiftedIndex, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
 
-        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Paprika).itemFruit));
-        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Tomato).itemFruit));
+//        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Paprika).itemFruit));
+//        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Tomato).itemFruit));
+        RecipesBoard.addRecipe(new ItemStack(BushesList.get(bushType.Paprika).itemFruit), new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
+        RecipesBoard.addRecipe(new ItemStack(BushesList.get(bushType.Tomato).itemFruit), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
+
 
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
             GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",

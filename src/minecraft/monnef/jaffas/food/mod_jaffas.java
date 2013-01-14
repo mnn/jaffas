@@ -30,6 +30,7 @@ import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
+import monnef.jaffas.food.entity.TileEntityBoard;
 import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.power.PowerConsumerManagerFactory;
@@ -69,6 +70,9 @@ public class mod_jaffas {
 
     public static BlockSink blockSink;
     public static int blockSinkID;
+
+    public static BlockBoard blockBoard;
+    public static int blockBoardID;
 
     public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
     public static ItemJaffaPlate itemJaffaPlate;
@@ -146,6 +150,7 @@ public class mod_jaffas {
 
             blockCrossID = idProvider.getBlockIDFromConfig("cross");
             blockSinkID = idProvider.getBlockIDFromConfig("sink");
+            blockBoardID = idProvider.getBlockIDFromConfig("board");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
 
@@ -242,6 +247,11 @@ public class mod_jaffas {
         GameRegistry.registerBlock(blockSink, "blockSink");
         LanguageRegistry.addName(blockSink, "Faucet");
         GameRegistry.registerTileEntity(TileEntitySink.class, "sink");
+
+        blockBoard = new BlockBoard(blockBoardID, 6, Material.wood);
+        GameRegistry.registerBlock(blockBoard, blockBoard.getBlockName());
+        LanguageRegistry.addName(blockBoard, "Kitchen Board");
+        GameRegistry.registerTileEntity(TileEntityBoard.class, "kitchenBoard");
     }
 
     private void createJaffaArmorAndSword() {

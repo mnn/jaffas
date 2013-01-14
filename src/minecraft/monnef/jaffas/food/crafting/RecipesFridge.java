@@ -14,10 +14,11 @@ public class RecipesFridge {
     }
 
     public static void AddRecipe(int id, ItemStack result) {
-        recipes.put(id, result);
+        AddRecipe(id, result, -1);
     }
 
     public static void AddRecipe(int id, ItemStack result, int maxTemperature) {
-        AddRecipe(id, result, -1);
+        recipes.put(id, result);
+        // TODO: temperature?
     }
 }

@@ -227,8 +227,13 @@ public class Recipes {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.knifeKitchen)), "I  ", " I ", "  S", 'I', new ItemStack(Item.ingotIron), 'S', new ItemStack(Item.stick));
         JaffaCraftingHandler.AddPersistentItem(JaffaItem.knifeKitchen, true, -1);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatChopped), 4), "K", "M", 'K', new ItemStack(getItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(Item.porkRaw));
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.rollChopped), 1), "K", "M", 'K', new ItemStack(getItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(getItem(JaffaItem.roll)));
+
+        //GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatChopped), 4), "K", "M", 'K', new ItemStack(getItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(Item.porkRaw));
+        //GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.rollChopped), 1), "K", "M", 'K', new ItemStack(getItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(getItem(JaffaItem.roll)));
+        RecipesBoard.addRecipeSimple(JaffaItem.roll, JaffaItem.rollChopped);
+        RecipesBoard.addRecipe(new ItemStack(Item.porkRaw), new ItemStack(getItem(JaffaItem.meatChopped)));
+        RecipesBoard.addRecipe(new ItemStack(Item.beefRaw), new ItemStack(getItem(JaffaItem.meatChopped)));
+        RecipesBoard.addRecipe(new ItemStack(Item.chickenRaw), new ItemStack(getItem(JaffaItem.meatChopped)));
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.ironSkewer)), "  I", " I ", "I  ", 'I', new ItemStack(Item.ingotIron));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.skewerRaw)), new ItemStack(getItem(JaffaItem.ironSkewer)), new ItemStack(getItem(JaffaItem.rollChopped)), new ItemStack(getItem(JaffaItem.meatChopped)));

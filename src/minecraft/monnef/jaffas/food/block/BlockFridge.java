@@ -1,6 +1,7 @@
 package monnef.jaffas.food.block;
 
 
+import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -51,7 +52,7 @@ public class BlockFridge extends BlockContainer {
             return false;
         }
 
-        player.openGui(mod_jaffas.instance, 0, world, x, y, z);
+        player.openGui(mod_jaffas.instance, GuiHandler.GuiTypes.FRIDGE.ordinal(), world, x, y, z);
         return true;
     }
 
