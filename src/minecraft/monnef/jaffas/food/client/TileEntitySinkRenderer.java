@@ -1,7 +1,7 @@
 package monnef.jaffas.food.client;
 
-import monnef.jaffas.food.block.TileEntitySink;
 import monnef.jaffas.food.block.BlockSink;
+import monnef.jaffas.food.block.TileEntitySink;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;

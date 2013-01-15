@@ -52,7 +52,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.malletHeadDiamond, "Mallet Head Diamond", 30, "Diamond Mallet Head");
         AddItemInfo(JaffaItem.browniesPastry, "Brown Pastry", 14, "Brownies Pastry");
         AddItemInfo(JaffaItem.puffPastry, "Puff Pastry", 15, "Puff Pastry");
-        AddItemInfo(JaffaItem.peanut, "Peanut", 16, "Peanut");
+        //AddItemInfo(JaffaItem.peanut, "Peanut", 16, "Peanut");
         AddItemInfo(JaffaItem.cream, "Cream", 17, "Cream");
         AddItemInfo(JaffaItem.sweetRoll, "Roll", 18, "Roll");
         AddItemInfo(JaffaItem.creamRoll, "Cream Roll", 19, "Cream Roll");
@@ -211,7 +211,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(JaffaItem.browniesPastry);
         createJaffaItem(JaffaItem.puffPastry);
-        createJaffaItem(JaffaItem.peanut);
+        //createJaffaItem(JaffaItem.peanut);
         createJaffaItem(JaffaItem.cream);
         createJaffaItem(JaffaItem.sweetRoll);
         createJaffaItem(JaffaItem.cakeTin);

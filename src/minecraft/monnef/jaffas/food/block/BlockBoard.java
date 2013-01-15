@@ -12,13 +12,28 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-// TODO: bounding boxes
 public class BlockBoard extends BlockContainer {
+    public final static float unit = 1f / 16f;
+    public final static float f1 = unit * 1f;
+    public final static float f1d = 1f - unit * 1f;
+    public final static float f2 = unit * 2f;
+    public final static float f2d = 1f - unit * 2f;
+    public final static float f4 = unit * 4f;
+    public final static float f4d = 1f - unit * 4f;
+    public final static float f5 = unit * 5f;
+    public final static float f5d = 1f - unit * 5f;
+    public final static float f7 = unit * 7f;
+    public final static float f7d = 1f - unit * 7f;
+    public final static float f9d = 1f - unit * 9f;
+    public final static float f10d = 1f - unit * 10f;
+
     private static int knifeBit = 2;
 
     public BlockBoard(int par1, int par2, Material par3Material) {
@@ -97,6 +112,7 @@ public class BlockBoard extends BlockContainer {
     @Override
     public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity) {
         int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        var = (var + 2) % 4; // rotation fix
         w.setBlockMetadata(x, y, z, var);
     }
 
@@ -134,4 +150,40 @@ public class BlockBoard extends BlockContainer {
     public boolean hasTileEntity(int metadata) {
         return true;
     }
+
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
+        int side = meta & 3;
+        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2 + 0), (double) ((float) par3 + 0), (double) ((float) par4 + 0), (double) ((float) par2 + 1), (double) ((float) par3 + 0.5), (double) ((float) par4 + 1));
+    }
+
+    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
+        int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+        int side = meta & 3;
+
+        this.setBlockBounds(0, 0, 0, 1, 0.5f, 1);
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
+        return super.canPlaceBlockAt(par1World, par2, par3, par4) && par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4);
+    }
+
+    @Override
+    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+        boolean destroy = false;
+
+        if (!par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4)) {
+            destroy = true;
+        }
+
+        if (destroy) {
+            par1World.setBlockWithNotify(par2, par3, par4, 0);
+            if (!par1World.isRemote) {
+                this.dropBlockAsItem(par1World, par2, par3, par4, 0, 0);
+            }
+        }
+    }
+
+
 }

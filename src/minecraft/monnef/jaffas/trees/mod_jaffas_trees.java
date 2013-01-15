@@ -34,6 +34,8 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import static monnef.jaffas.food.mod_jaffas.getItem;
+
 @Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = mod_jaffas_trees.channel, packetHandler = PacketHandler.class)
 public class mod_jaffas_trees {
@@ -134,7 +136,7 @@ public class mod_jaffas_trees {
     public static ItemJaffaT itemFruitPickerHead;
 
     public static enum bushType {
-        Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato;
+        Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato, Mustard, Peanuts;
     }
 
     public static EnumMap<bushType, BushInfo> BushesList = new EnumMap<bushType, BushInfo>(bushType.class);
@@ -209,6 +211,9 @@ public class mod_jaffas_trees {
         AddBushInfo(bushType.Paprika, "paprika", "Pepper Seeds", 34, "Pepper Plant", 105, "Pepper", 131, null, 2, 1);
         AddBushInfo(bushType.Raspberry, "raspberry", "Raspberry Seeds", 34, "Raspberry Plant", 108, "Raspberry", 132, null, 2, 1);
         AddBushInfo(bushType.Tomato, "tomato", "Tomato Seeds", 34, "Tomato Plant", 111, "Tomato", 133, null, 2, 1);
+
+        AddBushInfo(bushType.Mustard, "mustard", "Little Mustard Seeds", 34, "Mustard Plant", 114, "Mustard", 134, null, 2, 1);
+        AddBushInfo(bushType.Peanuts, "peanuts", "Little Peanuts", 34, "Peanuts Plant", 117, "Peanuts", 135, null, 2, 1);
     }
 
     private void constructItemsInBushInfo() {
@@ -416,6 +421,9 @@ public class mod_jaffas_trees {
         GameRegistry.addRecipe(new ItemStack(itemFruitPicker), "H ", " R", 'H', new ItemStack(itemFruitPickerHead), 'R', new ItemStack(itemRod));
 
         mod_jaffas.instance.AddMalletShapedRecipe(new ItemStack(getJaffaItem(JaffaItem.coconutPowder)), new ItemStack(itemCoconut));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), new ItemStack(BushesList.get(bushType.Peanuts).itemFruit),
+                new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
     }
 
     private void installFruitSeedsRecipes() {

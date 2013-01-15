@@ -1,7 +1,6 @@
 package monnef.jaffas.food.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import monnef.jaffas.food.client.ModelGrave;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;

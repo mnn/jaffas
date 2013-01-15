@@ -27,10 +27,10 @@ import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.PacketHandler;
+import monnef.jaffas.food.crafting.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
-import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.power.PowerConsumerManagerFactory;
@@ -186,6 +186,7 @@ public class mod_jaffas {
         items.CreateItems();
         createJaffaArmorAndSword();
         createPainting();
+        AchievementsCraftingHandler.init();
 
         Recipes.install();
 
@@ -218,6 +219,7 @@ public class mod_jaffas {
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
         GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+        GameRegistry.registerCraftingHandler(new AchievementsCraftingHandler());
 
         proxy.registerRenderThings();
     }

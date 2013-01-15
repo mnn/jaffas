@@ -81,14 +81,15 @@ public class Recipes {
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.bucketMilk));
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.cakeTin)), new ItemStack(Item.ingotIron));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), new ItemStack(getItem(JaffaItem.peanut)),
-                new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
+        // moved to the trees module because of the peanut
+//        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), new ItemStack(getItem(JaffaItem.peanut)),
+//                new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.puffPastry)), new ItemStack(getItem(JaffaItem.butter)),
                 new ItemStack(getItem(JaffaItem.butter)), new ItemStack(getItem(JaffaItem.butter)), new ItemStack(Item.egg),
                 new ItemStack(getItem(JaffaItem.flour)), new ItemStack(getItem(JaffaItem.flour)));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.peanut)), "SSS", 'S', new ItemStack(Item.seeds));
+        //GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.peanut)), "SSS", 'S', new ItemStack(Item.seeds));
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.browniesInTinRaw)), "P", "T", 'P', new ItemStack(getItem(JaffaItem.browniesPastry)), 'T', new ItemStack(getItem(JaffaItem.cakeTin)));
 
@@ -260,6 +261,10 @@ public class Recipes {
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.hamburgerBunRaw)), " O ", "OOO", 'O', getItem(JaffaItem.pastry));
+        GameRegistry.addSmelting(getItem(JaffaItem.hamburgerBunRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.hamburgerBun)), 0.5f);
+        AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.cheese)), new ItemStack(getItem(JaffaItem.butter)));
+
+        RecipesBoard.addRecipe(JaffaItem.cheese, 1, JaffaItem.cheeseSlice, 4);
     }
 
     private static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {

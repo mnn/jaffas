@@ -3,7 +3,7 @@ package monnef.jaffas.food.item;
 public enum JaffaItem {
     pastry, cake, jamO, jamR, jaffaO, jaffaR, jaffa, chocolate, apples, beans, sweetBeans,
     butter, mallet, malletStone, malletIron, malletDiamond, malletHead, malletHeadStone, malletHeadIron, malletHeadDiamond,
-    browniesPastry, puffPastry, peanut, cream, sweetRoll, creamRoll, cakeTin, browniesInTin, brownie, sweetRollRaw, browniesInTinRaw,
+    browniesPastry, puffPastry, /*peanut,*/ cream, sweetRoll, creamRoll, cakeTin, browniesInTin, brownie, sweetRollRaw, browniesInTinRaw,
     bunRaw, bun, sausageRaw, sausage, hotdog, flour, chocolateWrapper, chocolateBar, wrapperJaffas, jaffasPack, jaffasPackO,
     jaffasPackR, vanillaBeans, waferIcecream, cone, vanillaPowder, vanillaIcecreamRaw, chocolateIcecreamRaw, icecreamRaw,
     vanillaIcecream, chocolateIcecream, russianIcecream, vanillaIcecreamFrozen, chocolateIcecreamFrozen, icecreamFrozen,

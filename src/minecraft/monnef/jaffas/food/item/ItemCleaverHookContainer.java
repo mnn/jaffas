@@ -2,11 +2,10 @@ package monnef.jaffas.food.item;
 
 import monnef.core.PlayerHelper;
 import monnef.jaffas.food.mod_jaffas;
+import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -24,15 +23,23 @@ public class ItemCleaverHookContainer {
     private static int meatCleaverID = 0;
     private static Random rand = new Random();
 
-    private static HashMap<Class<? extends EntityAnimal>, ItemStack> AnimalToMeat;
+    private static HashMap<Class<? extends EntityLiving>, ItemStack> AnimalToMeat;
 
     static {
-        AnimalToMeat = new HashMap<Class<? extends EntityAnimal>, ItemStack>();
+        AnimalToMeat = new HashMap<Class<? extends EntityLiving>, ItemStack>();
         AnimalToMeat.put(EntityCow.class, new ItemStack(Item.beefRaw));
         AnimalToMeat.put(EntityPig.class, new ItemStack(Item.porkRaw));
+        AnimalToMeat.put(EntityChicken.class, new ItemStack(Item.chickenRaw));
+        AnimalToMeat.put(EntityMooshroom.class, new ItemStack(Item.beefRaw));
+
+        //TODO: meats
+        AnimalToMeat.put(EntitySheep.class, new ItemStack(Item.bone));
+        AnimalToMeat.put(EntityWolf.class, new ItemStack(Item.bone));
+        AnimalToMeat.put(EntityOcelot.class, new ItemStack(Item.bone));
+        AnimalToMeat.put(EntitySquid.class, new ItemStack(Item.bone));
     }
 
-    private ItemStack getMeatFromAnimal(EntityAnimal animal) {
+    private ItemStack getMeatFromAnimal(EntityCreature animal) {
         return AnimalToMeat.get(animal.getClass()).copy();
     }
 
@@ -44,7 +51,7 @@ public class ItemCleaverHookContainer {
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
             if (PlayerHasEquipped(player, getMeatCleaverID())) {
-                if (mob instanceof EntityCow || mob instanceof EntityPig) {
+                if (AnimalToMeat.containsKey(mob.getClass())) {
                     event.ammount += 10;
                 }
                 PlayerHelper.damageCurrentItem(player);
@@ -60,8 +67,9 @@ public class ItemCleaverHookContainer {
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
             if (PlayerHasEquipped(player, getMeatCleaverID())) {
-                if (mob instanceof EntityCow || mob instanceof EntityPig) {
-                    EntityAnimal animal = (EntityAnimal) mob;
+                if (AnimalToMeat.containsKey(mob.getClass())) {
+                    //if (mob instanceof EntityCow || mob instanceof EntityPig) {
+                    EntityCreature animal = (EntityCreature) mob;
                     if (AnimalIsAdult(animal)) {
                         for (int i = 0; i < 2; i++) {
                             if (rand.nextFloat() < .5) {
@@ -75,8 +83,8 @@ public class ItemCleaverHookContainer {
         }
     }
 
-    private boolean AnimalIsAdult(EntityAnimal animal) {
-        return animal.getGrowingAge() >= 0;
+    private boolean AnimalIsAdult(EntityCreature animal) {
+        return animal instanceof EntityAnimal ? ((EntityAnimal) animal).getGrowingAge() >= 0 : true;
     }
 
     private boolean PlayerHasEquipped(EntityPlayer player, int itemId) {
