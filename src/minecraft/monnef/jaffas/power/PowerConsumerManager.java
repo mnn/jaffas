@@ -3,15 +3,20 @@ package monnef.jaffas.power;
 import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.JaffasPowerException;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
 public class PowerConsumerManager implements IPowerConsumerManager {
+    private static final String energyBufferTagName = "energyBuffer";
+
     private int maximalPacketSize = 20;
     private int bufferSize = 40;
     private int energyBuffer = 0;
     private IPowerProvider provider;
     private TileEntity myTile;
     private boolean initialized = false;
+    private ForgeDirection sideOfProvider;
 
     @Override
     public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile) {
@@ -93,13 +98,25 @@ public class PowerConsumerManager implements IPowerConsumerManager {
             throw new JaffasPowerException("Connecting already connected consumer.");
         }
 
+        setProvider(provider, ForgeDirection.UNKNOWN);
+    }
+
+    @Override
+    public void connectDirect(IPowerProvider provider, ForgeDirection side) {
+        if (this.provider != null) {
+            throw new JaffasPowerException("Connecting already connected consumer.");
+        }
+
+        setProvider(provider, side);
+    }
+
+    private void setProvider(IPowerProvider provider, ForgeDirection side) {
         this.provider = provider;
+        this.sideOfProvider = side;
     }
 
     @Override
     public void disconnect() {
-        if (provider == null) return;
-        provider.disconnect();
         provider = null;
     }
 
@@ -116,7 +133,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     @Override
     public void tick() {
         if (energyNeeded()) {
-            int energy = provider.requestEnergy(getCurrentMaximalPacketSize());
+            int energy = provider.getPowerManager().requestEnergy(getCurrentMaximalPacketSize());
             store(energy);
         }
     }
@@ -138,6 +155,17 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     @Override
     public int getCurrentBufferedEnergy() {
         return this.energyBuffer;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tagCompound) {
+        tagCompound.setInteger(energyBufferTagName, energyBuffer);
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+        int storedEnergy = tagCompound.getInteger(energyBufferTagName);
+        setEnergyBuffer(storedEnergy);
     }
 
     private void setEnergyBuffer(int energyBuffer) {

@@ -1,6 +1,8 @@
 package monnef.jaffas.power.api;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
 public interface IPowerConsumerManager {
     void initialize(int maximalPacketSize, int bufferSize, TileEntity tile);
@@ -31,6 +33,8 @@ public interface IPowerConsumerManager {
 
     void connect(IPowerProvider provider);
 
+    void connectDirect(IPowerProvider provider, ForgeDirection side);
+
     void disconnect();
 
     boolean isConnected();
@@ -53,4 +57,13 @@ public interface IPowerConsumerManager {
     TileEntity getTile();
 
     int getCurrentBufferedEnergy();
+
+    /**
+     * Saves inner energy state.
+     *
+     * @param tagCompound
+     */
+    void writeToNBT(NBTTagCompound tagCompound);
+
+    void readFromNBT(NBTTagCompound tagCompound);
 }

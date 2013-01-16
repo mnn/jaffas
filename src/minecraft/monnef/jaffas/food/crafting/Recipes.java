@@ -235,6 +235,7 @@ public class Recipes {
         RecipesBoard.addRecipe(new ItemStack(Item.porkRaw), new ItemStack(getItem(JaffaItem.meatChopped)));
         RecipesBoard.addRecipe(new ItemStack(Item.beefRaw), new ItemStack(getItem(JaffaItem.meatChopped)));
         RecipesBoard.addRecipe(new ItemStack(Item.chickenRaw), new ItemStack(getItem(JaffaItem.meatChopped)));
+        RecipesBoard.addRecipe(new ItemStack(Item.fishRaw), new ItemStack(getItem(JaffaItem.meatChopped)));
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.ironSkewer)), "  I", " I ", "I  ", 'I', new ItemStack(Item.ingotIron));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.skewerRaw)), new ItemStack(getItem(JaffaItem.ironSkewer)), new ItemStack(getItem(JaffaItem.rollChopped)), new ItemStack(getItem(JaffaItem.meatChopped)));
