@@ -50,7 +50,7 @@ public class ItemCleaverHookContainer {
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
-            if (PlayerHasEquipped(player, getMeatCleaverID())) {
+            if (PlayerHelper.PlayerHasEquipped(player, getMeatCleaverID())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
                     event.ammount += 10;
                 }
@@ -66,7 +66,7 @@ public class ItemCleaverHookContainer {
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
-            if (PlayerHasEquipped(player, getMeatCleaverID())) {
+            if (PlayerHelper.PlayerHasEquipped(player, getMeatCleaverID())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
                     //if (mob instanceof EntityCow || mob instanceof EntityPig) {
                     EntityCreature animal = (EntityCreature) mob;
@@ -87,11 +87,6 @@ public class ItemCleaverHookContainer {
         return animal instanceof EntityAnimal ? ((EntityAnimal) animal).getGrowingAge() >= 0 : true;
     }
 
-    private boolean PlayerHasEquipped(EntityPlayer player, int itemId) {
-        ItemStack equippedItem = player.getCurrentEquippedItem();
-        if (equippedItem == null) return false;
-        return equippedItem.itemID == itemId;
-    }
 
     private boolean SourceIsPlayer(DamageSource source) {
         return source.damageType.equals(DamageSourcePlayer);

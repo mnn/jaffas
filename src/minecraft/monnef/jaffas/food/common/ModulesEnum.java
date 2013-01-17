@@ -1,7 +1,7 @@
 package monnef.jaffas.food.common;
 
 public enum ModulesEnum {
-    food(true), ores(true), xmas(true), trees(true);
+    food(true), ores(true), xmas(true), trees(true), power(true);
 
     private final boolean enabledByDefault;
 

@@ -19,4 +19,12 @@ public class PlayerHelper {
         Entity entity = new EntityItem(world, player.posX, player.posY + 0.5, player.posZ, item.copy());
         world.spawnEntityInWorld(entity);
     }
+
+    public static boolean PlayerHasEquipped(EntityPlayer player, int itemId) {
+        if (player == null) return false;
+        ItemStack equippedItem = player.getCurrentEquippedItem();
+        if (equippedItem == null) return false;
+        return equippedItem.itemID == itemId;
+    }
+
 }
