@@ -112,7 +112,7 @@ public class BlockBoard extends BlockContainer {
     @Override
     public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity) {
         int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        var = (var + 2) % 4; // rotation fix
+        var = (var + 0) % 4; // rotation fix
         w.setBlockMetadata(x, y, z, var);
     }
 
