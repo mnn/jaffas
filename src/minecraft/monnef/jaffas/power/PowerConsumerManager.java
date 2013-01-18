@@ -1,5 +1,6 @@
 package monnef.jaffas.power;
 
+import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.JaffasPowerException;
@@ -133,7 +134,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     @Override
     public void tick() {
         if (energyNeeded()) {
-            int energy = provider.getPowerManager().requestEnergy(getCurrentMaximalPacketSize());
+            int energy = provider.getPowerManager().requestEnergy(getCurrentMaximalPacketSize(), (IPowerConsumer) getTile());
             store(energy);
         }
     }

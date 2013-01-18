@@ -5,7 +5,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 public interface IPowerProviderManager {
-    void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, byte directSidesMask);
+    void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, boolean[] directSidesMask);
+
+    void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection);
 
     int getFreeSpaceInBuffer();
 
@@ -19,10 +21,12 @@ public interface IPowerProviderManager {
      * Requests energy from provider.
      * Energy returned might be less, than requested.
      *
+     *
      * @param amount An amount.
+     * @param consumer
      * @return How much energy is sent (always less than maximalPowerPerPacket()).
      */
-    int requestEnergy(int amount);
+    int requestEnergy(int amount, IPowerConsumer consumer);
 
     int maximalPowerPerPacket();
 
@@ -66,5 +70,7 @@ public interface IPowerProviderManager {
     boolean isConnectedToSide(ForgeDirection side);
 
     int getCurrentBufferedEnergy();
+
+    boolean[] constructConnectedSides();
 }
 

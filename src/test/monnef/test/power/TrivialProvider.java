@@ -12,7 +12,7 @@ public class TrivialProvider extends TileEntity implements IPowerProvider {
         super();
 
         manager = new PowerProviderManager();
-        manager.initialize(20, 100, this, true, (byte) 0);
+        manager.initialize(20, 100, this, true);
     }
 
     @Override

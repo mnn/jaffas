@@ -72,7 +72,9 @@ public abstract class BlockMachine extends Block {
         if (stack != null) {
             Item item = stack.getItem();
             if (item instanceof IMachineTool) {
-                return ((IMachineTool) item).onMachineClick((TileEntityMachine) par1World.getBlockTileEntity(par2, par3, par4), par5EntityPlayer);
+                IMachineTool tool = (IMachineTool) item;
+                TileEntityMachine machineTile = (TileEntityMachine) par1World.getBlockTileEntity(par2, par3, par4);
+                return tool.onMachineClick(machineTile, par5EntityPlayer,par6);
             }
         }
 

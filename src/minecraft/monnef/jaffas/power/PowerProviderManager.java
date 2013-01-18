@@ -1,33 +1,38 @@
 package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
-import monnef.core.BitHelper;
 import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.api.JaffasPowerException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.ForgeDirection;
 
 import java.util.HashMap;
 
+import static monnef.core.MathHelper.Square;
+
 public class PowerProviderManager implements IPowerProviderManager {
+    private static final int MINIMAL_ENERGY_TO_TRANSFER = 5;
     private int maximalPacketSize;
     private int bufferSize;
     private TileEntity tile;
     private boolean remoteConnection;
-    private byte directSidesMask;
+    private boolean[] directSidesMask;
 
     private HashBiMap<ForgeDirection, IPowerConsumerManager> consumers;
+    private HashMap<IPowerConsumerManager, Integer> distance;
     private int energyBuffer;
 
     private boolean firstTick = true;
 
     private boolean initialized = false;
+    private boolean supportDirectConn;
 
     @Override
-    public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, byte directSidesMask) {
+    public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, boolean[] directSidesMask) {
         if (initialized) {
             throw new JaffasPowerException("already initialized");
         }
@@ -41,6 +46,20 @@ public class PowerProviderManager implements IPowerProviderManager {
         this.consumers = HashBiMap.create(new HashMap<ForgeDirection, IPowerConsumerManager>());
 
         this.energyBuffer = 0;
+
+        fillDirectConnectionSupport();
+    }
+
+    @Override
+    public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection) {
+        initialize(maximalPacketSize, bufferSize, tile, remoteConnection, new boolean[7]);
+    }
+
+    private void fillDirectConnectionSupport() {
+        supportDirectConn = false;
+        for (int i = 0; i < ForgeDirection.VALID_DIRECTIONS.length; i++) {
+            if (directSidesMask[i]) supportDirectConn = true;
+        }
     }
 
     @Override
@@ -64,9 +83,39 @@ public class PowerProviderManager implements IPowerProviderManager {
     }
 
     @Override
-    public int requestEnergy(int amount) {
-        //TODO
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    public int requestEnergy(int amount, IPowerConsumer consumer) {
+        if (energyBuffer < MINIMAL_ENERGY_TO_TRANSFER) return 0;
+
+        int toTransfer = amount;
+        if (toTransfer > getMaximalPacketSize()) {
+            toTransfer = getMaximalPacketSize();
+        }
+
+        if (toTransfer > getCurrentBufferedEnergy()) {
+            toTransfer = getCurrentBufferedEnergy();
+        }
+
+        setEnergyBuffer(getCurrentBufferedEnergy() - toTransfer);
+
+        int energyAfterLoss = PowerUtils.loseEnergy(toTransfer, getDistance(consumer));
+
+        return energyAfterLoss;
+    }
+
+
+    private int getDistance(IPowerConsumer consumer) {
+        if (distance.containsKey(consumer)) {
+            return distance.get(consumer);
+        }
+
+        distance.put(consumer.getPowerManager(), computeDistance(consumer));
+        return getDistance(consumer);
+    }
+
+    private Integer computeDistance(IPowerConsumer consumer) {
+        TileEntity consumerTile = consumer.getPowerManager().getTile();
+        float f = MathHelper.sqrt_float(Square(getTile().xCoord - consumerTile.xCoord) + Square(getTile().yCoord - consumerTile.yCoord) + Square(getTile().zCoord - consumerTile.zCoord));
+        return MathHelper.ceiling_float_int(f);
     }
 
     @Override
@@ -92,12 +141,12 @@ public class PowerProviderManager implements IPowerProviderManager {
 
     @Override
     public boolean supportDirectConnection() {
-        return directSidesMask != 0;
+        return supportDirectConn;
     }
 
     @Override
     public boolean sideProvidesPower(ForgeDirection side) {
-        return BitHelper.isBitSet(directSidesMask, side.ordinal());
+        return directSidesMask[side.ordinal()];
     }
 
     @Override
@@ -197,5 +246,15 @@ public class PowerProviderManager implements IPowerProviderManager {
     @Override
     public int getCurrentBufferedEnergy() {
         return energyBuffer;
+    }
+
+    @Override
+    public boolean[] constructConnectedSides() {
+        boolean[] res = new boolean[7];
+        for (ForgeDirection dir : consumers.keySet()) {
+            res[dir.ordinal()] = true;
+        }
+
+        return res;
     }
 }

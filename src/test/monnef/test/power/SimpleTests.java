@@ -3,6 +3,7 @@ package monnef.test.power;
 import monnef.jaffas.power.PowerConsumerManager;
 import monnef.jaffas.power.PowerConsumerManagerFactory;
 import monnef.jaffas.power.PowerProviderManager;
+import monnef.jaffas.power.PowerUtils;
 import monnef.jaffas.power.api.PowerManager;
 import net.minecraftforge.common.ForgeDirection;
 import org.junit.Assert;
@@ -62,7 +63,7 @@ public class SimpleTests {
     public void powerProviderManager() {
         PowerProviderManager m = new PowerProviderManager();
         int space = 45;
-        m.initialize(20, space, null, true, (byte) 0);
+        m.initialize(20, space, null, true);
 
         assertTrue(m.hasFreeSlotForRemotePower());
         for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
@@ -76,6 +77,23 @@ public class SimpleTests {
         assertEquals(space, m.storeEnergy(space + 5));
         assertEquals(0, m.getFreeSpaceInBuffer());
         assertEquals(space, m.getCurrentBufferedEnergy());
+    }
+
+    @Test
+    public void powerLoss() {
+        assertEquals(100, PowerUtils.getLoseCoefficient(3));
+        assertEquals(100, PowerUtils.getLoseCoefficient(10));
+        assertEquals(80, PowerUtils.getLoseCoefficient(20));
+        assertEquals(40, PowerUtils.getLoseCoefficient(30));
+        assertEquals(0, PowerUtils.getLoseCoefficient(31));
+        assertEquals(0, PowerUtils.getLoseCoefficient(50));
+
+        assertEquals(20, PowerUtils.loseEnergy(20, 1));
+        assertEquals(20, PowerUtils.loseEnergy(20, 10));
+        assertEquals(16, PowerUtils.loseEnergy(20, 20));
+        assertEquals(8, PowerUtils.loseEnergy(20, 30));
+        assertEquals(0, PowerUtils.loseEnergy(20, 31));
+        assertEquals(0, PowerUtils.loseEnergy(20, 50));
     }
 }
 
