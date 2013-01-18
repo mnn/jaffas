@@ -66,4 +66,6 @@ public interface IPowerConsumerManager {
     void writeToNBT(NBTTagCompound tagCompound);
 
     void readFromNBT(NBTTagCompound tagCompound);
+
+    IPowerProvider getProvider();
 }

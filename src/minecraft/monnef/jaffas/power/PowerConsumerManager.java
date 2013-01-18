@@ -169,6 +169,11 @@ public class PowerConsumerManager implements IPowerConsumerManager {
         setEnergyBuffer(storedEnergy);
     }
 
+    @Override
+    public IPowerProvider getProvider() {
+        return provider;
+    }
+
     private void setEnergyBuffer(int energyBuffer) {
         this.energyBuffer = energyBuffer;
     }

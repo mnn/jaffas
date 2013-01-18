@@ -1,10 +1,14 @@
 package monnef.jaffas.power.item;
 
-import monnef.jaffas.power.api.IMachineTool;
-import monnef.jaffas.power.api.IPowerProvider;
-import monnef.jaffas.power.api.IPowerProviderManager;
+import com.google.common.base.Joiner;
+import monnef.jaffas.power.api.*;
 import monnef.jaffas.power.block.machine.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemDebug extends ItemPower implements IMachineTool {
     private EntityPlayer player;
@@ -14,32 +18,72 @@ public class ItemDebug extends ItemPower implements IMachineTool {
     }
 
     public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side) {
+        this.player = player;
+
         if (machine instanceof IPowerProvider) {
             IPowerProviderManager provider = ((IPowerProvider) machine).getPowerManager();
-            this.player = player;
-            print(getTECoors(machine));
-            print(getEnergyInfo(true, provider.getCurrentBufferedEnergy(), provider.getBufferSize(), provider.getMaximalPacketSize()));
-            print(getConnectionInfo(provider.constructConnectedSides()));
+            print(getTECoors(machine) + ": " + getEnergyInfo(true, provider.getCurrentBufferedEnergy(), provider.getBufferSize(), provider.getMaximalPacketSize()));
+            print(getConnectionInfo(provider));
+        }
+
+        if (machine instanceof IPowerConsumer) {
+            IPowerConsumerManager consumer = ((IPowerConsumer) machine).getPowerManager();
+            print(getTECoors(machine) + ": " + getEnergyInfo(true, consumer.getCurrentBufferedEnergy(), consumer.getBufferSize(), consumer.getMaximalPacketSize()));
+            print(getConnectionInfo(consumer));
         }
 
         return true;
     }
 
-    private String getConnectionInfo(boolean[] sides) {
-        StringBuilder s = new StringBuilder();
-        for (boolean side : sides) {
-
+    private String getConnectionInfo(IPowerConsumerManager consumer) {
+        StringBuilder s = new StringBuilder("Cs: ");
+        IPowerProvider provider = consumer.getProvider();
+        if (provider != null) {
+            s.append(getTECoors(provider.getPowerManager().getTile()));
+        } else {
+            s.append("-");
         }
 
         return s.toString();
     }
 
-    private String getTECoors(TileEntityMachine machine) {
-        throw new RuntimeException("Not implemented yet.");
+    private String getConnectionInfo(IPowerProviderManager provider) {
+        List<String> list = new ArrayList<String>();
+        boolean[] sides = provider.constructConnectedSides();
+        for (int i = 0; i < sides.length; i++) {
+            StringBuilder s = new StringBuilder();
+            if (sides[i]) {
+                s.append(getTECoors((TileEntity) provider.getConsumer(ForgeDirection.getOrientation(i))));
+            } else {
+                s.append("-");
+            }
+            list.add(s.toString());
+        }
+
+        return "Cs: " + Joiner.on("|").join(list);
+    }
+
+    private String getTECoors(TileEntity machine) {
+        StringBuilder s = new StringBuilder();
+        s.append(machine.xCoord);
+        s.append("x");
+        s.append(machine.yCoord);
+        s.append("x");
+        s.append(machine.zCoord);
+        return s.toString();
     }
 
     private String getEnergyInfo(boolean provider, int buffer, int maxBuff, int packetSize) {
-        throw new RuntimeException("Not implemented yet.");
+        StringBuilder s = new StringBuilder();
+        s.append(provider ? "P>" : ">C");
+        s.append(":");
+        s.append(buffer);
+        s.append("/");
+        s.append(maxBuff);
+        s.append("(");
+        s.append(packetSize);
+        s.append(")");
+        return s.toString();
     }
 
     private void print(String message) {

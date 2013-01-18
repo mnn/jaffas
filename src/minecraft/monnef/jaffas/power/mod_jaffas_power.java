@@ -7,12 +7,16 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.power.entity.EntityLocomotive;
+import monnef.jaffas.power.item.ItemDebug;
+import monnef.jaffas.power.item.ItemLocomotive;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
@@ -36,6 +40,14 @@ public class mod_jaffas_power {
 
     public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.power");
 
+    private int ItemDebugID;
+    public static ItemDebug ItemDebug;
+
+    private int LocomotiveEntityID;
+
+    private int ItemLocomotiveID;
+    public static ItemLocomotive itemLocomotive;
+
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
 
@@ -47,6 +59,10 @@ public class mod_jaffas_power {
             idProvider.setConfig(config);
 
             //JaffarrolID = idProvider.getItemIDFromConfig("jaffarrol");
+            ItemDebugID = idProvider.getItemIDFromConfig("debug");
+            ItemLocomotiveID = idProvider.getBlockIDFromConfig("locomotive");
+
+            LocomotiveEntityID = idProvider.getEntityIDFromConfig("locomotive");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -65,6 +81,8 @@ public class mod_jaffas_power {
         createItems();
         installRecipes();
 
+        EntityRegistry.registerModEntity(EntityLocomotive.class, "locomotive", LocomotiveEntityID, this, 100, 5, false);
+
         // texture stuff
         proxy.registerRenderThings();
 
@@ -74,6 +92,8 @@ public class mod_jaffas_power {
     }
 
     private void createItems() {
+        itemLocomotive = new ItemLocomotive(ItemLocomotiveID, 0);
+
     }
 
     private void installRecipes() {

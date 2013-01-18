@@ -102,7 +102,6 @@ public class PowerProviderManager implements IPowerProviderManager {
         return energyAfterLoss;
     }
 
-
     private int getDistance(IPowerConsumer consumer) {
         if (distance.containsKey(consumer)) {
             return distance.get(consumer);
@@ -256,5 +255,11 @@ public class PowerProviderManager implements IPowerProviderManager {
         }
 
         return res;
+    }
+
+    @Override
+    public IPowerConsumer getConsumer(ForgeDirection side) {
+        IPowerConsumerManager consumer = consumers.get(side);
+        return consumer == null ? null : (IPowerConsumer) consumer.getTile();
     }
 }

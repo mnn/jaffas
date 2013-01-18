@@ -21,8 +21,7 @@ public interface IPowerProviderManager {
      * Requests energy from provider.
      * Energy returned might be less, than requested.
      *
-     *
-     * @param amount An amount.
+     * @param amount   An amount.
      * @param consumer
      * @return How much energy is sent (always less than maximalPowerPerPacket()).
      */
@@ -72,5 +71,7 @@ public interface IPowerProviderManager {
     int getCurrentBufferedEnergy();
 
     boolean[] constructConnectedSides();
+
+    IPowerConsumer getConsumer(ForgeDirection side);
 }
 
