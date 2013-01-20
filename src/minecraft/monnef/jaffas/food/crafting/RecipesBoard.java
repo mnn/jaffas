@@ -16,7 +16,7 @@ public class RecipesBoard {
     }
 
     public static void addRecipe(JaffaItem input, int inputCount, JaffaItem output, int outputCount) {
-        addRecipe(new ItemStack(getItem(input), inputCount), new ItemStack(getItem(output), 1));
+        addRecipe(new ItemStack(getItem(input), inputCount), new ItemStack(getItem(output), outputCount));
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {

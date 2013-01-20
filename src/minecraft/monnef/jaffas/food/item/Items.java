@@ -5,8 +5,11 @@ import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class Items extends ItemManagerAccessor {
+    public static final String MINCEABLEMEAT = "jaffasMinceAbleMeat";
+
     @Override
     public ModulesEnum getMyModule() {
         return ModulesEnum.food;
@@ -180,6 +183,16 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.mincedMeat, "Minced Meat", 138, "Minced Meat");
 
         AddItemInfo(JaffaItem.sink, "Faucet", 141, "Basin");
+        AddItemInfo(JaffaItem.coneRaw, "Cone Raw", 143, "Raw Cone");
+        AddItemInfo(JaffaItem.waferIcecreamRaw, "Wafer Ice-cream Raw", 144, "Raw Wafer");
+
+        AddItemInfo(JaffaItem.grater, "Grater", 145, "Grater");
+        AddItemInfo(JaffaItem.cheeseGrated, "Grated Cheese", 146, "Grated Cheese");
+        AddItemInfo(JaffaItem.salami, "Salami", 147, "Salami");
+        AddItemInfo(JaffaItem.salamiSliced, "Sliced Salami", 148, "Sliced Salami");
+
+        AddItemInfo(JaffaItem.pizza, "Pizza In Tin", 149, "Pizza");
+        AddItemInfo(JaffaItem.pizzaRaw, "Pizza In Tin Raw", 150, "Raw Pizza");
     }
 
     @Override
@@ -356,5 +369,24 @@ public class Items extends ItemManagerAccessor {
                 new ItemCleaver(ItemManager.getItemInfo(JaffaItem.meatCleaver).getId(), mod_jaffas.EnumToolMaterialCleaver));
 
         createJaffaItemManual(JaffaItem.sink, ItemSink.class);
+
+        createJaffaItem(JaffaItem.coneRaw);
+        createJaffaItem(JaffaItem.waferIcecreamRaw);
+
+        createJaffaItem(JaffaItem.grater);
+        createJaffaItem(JaffaItem.cheeseGrated);
+        createJaffaItem(JaffaItem.salami);
+        createJaffaItem(JaffaItem.salamiSliced);
+        createJaffaItem(JaffaItem.pizza);
+        createJaffaItem(JaffaItem.pizzaRaw);
+
+        createItemsRegistration();
+    }
+
+    private void createItemsRegistration() {
+        OreDictionary.registerOre(MINCEABLEMEAT, Item.porkRaw);
+        OreDictionary.registerOre(MINCEABLEMEAT, Item.fishRaw);
+        OreDictionary.registerOre(MINCEABLEMEAT, Item.beefRaw);
+        OreDictionary.registerOre(MINCEABLEMEAT, Item.chickenRaw);
     }
 }

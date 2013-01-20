@@ -21,5 +21,5 @@ public enum JaffaItem {
     fryingPan, fryingPanBurgerRaw, fryingPanEggRaw, fryingPanBurger, fryingPanEgg, eggFried, breadRaw, breadSlice, breadSliceToasted, breadSliceJam, breadSliceButter, breadSliceEgg,
     bottleEmpty, bottleKetchup, bottleMustard, bottleBrownMustard, meatCleaver, mincedMeat, bread,
     sink, waferIcecreamRaw, coneRaw,
-    _last
+    grater, cheeseGrated, salami, salamiSliced, pizza, pizzaRaw, _last
 }

@@ -134,6 +134,16 @@ public class mod_jaffas {
             config.load();
             idProvider.setConfig(config);
 
+            this.moduleManager = new ModuleManager();
+            ModuleManager.Add(ModulesEnum.food);
+            for (ModulesEnum module : ModulesEnum.values()) {
+                boolean defaultState = module.getEnabledByDefault();
+                boolean enabled = config.get("modules", module.toString(), defaultState).getBoolean(defaultState);
+                if (enabled) {
+                    moduleManager.Add(module);
+                }
+            }
+
             items.LoadItemsFromConfig(idProvider);
 
             blockJaffaBombID = idProvider.getBlockIDFromConfig("jaffa bomb");
@@ -153,16 +163,6 @@ public class mod_jaffas {
             blockBoardID = idProvider.getBlockIDFromConfig("board");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
-
-            this.moduleManager = new ModuleManager();
-            ModuleManager.Add(ModulesEnum.food);
-            for (ModulesEnum module : ModulesEnum.values()) {
-                boolean defaultState = module.getEnabledByDefault();
-                boolean enabled = config.get("modules", module.toString(), defaultState).getBoolean(defaultState);
-                if (enabled) {
-                    moduleManager.Add(module);
-                }
-            }
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {

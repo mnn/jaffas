@@ -4,11 +4,15 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemManager;
+import monnef.jaffas.food.item.Items;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class Recipes {
     public static void install() {
@@ -269,6 +273,27 @@ public class Recipes {
 
         GameRegistry.addSmelting(getItem(JaffaItem.coneRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.cone)), 1f);
         GameRegistry.addSmelting(getItem(JaffaItem.waferIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.waferIcecream)), 1f);
+
+        //GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.mincedMeat),2),);
+        //addOreRecipe(new ShapedOreRecipe(new ItemStack(getItem(JaffaItem.mincedMeat), 2), true, new Object[]{""}));
+        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(JaffaItem.mincedMeat), 2), Items.MINCEABLEMEAT, getItem(JaffaItem.grinderMeat)));
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.grinderMeat);
+
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.grater);
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.cheeseGrated)), getItem(JaffaItem.grater), getItem(JaffaItem.cheese));
+        RecipesBoard.addRecipe(JaffaItem.salami, 1, JaffaItem.salamiSliced, 1);
+
+        GameRegistry.addSmelting(getItem(JaffaItem.pizzaRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.pizza)), 5f);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.salami)), "M  ", "SM ", "  M", 'M', getItem(JaffaItem.mincedMeat), 'S', Item.silk);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.pizzaRaw)), "SCK", "PPP", " T ", 'S', getItem(JaffaItem.salamiSliced), 'C', getItem(JaffaItem.cheeseGrated), 'K', getItem(JaffaItem.bottleKetchup), 'P', getItem(JaffaItem.pastry), 'T', getItem(JaffaItem.cakeTin));
+
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.bottleKetchup, false, JaffaItem.bottleEmpty);
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.bottleBrownMustard, false, JaffaItem.bottleEmpty);
+        JaffaCraftingHandler.AddPersistentItem(JaffaItem.bottleMustard, false, JaffaItem.bottleEmpty);
+    }
+
+    private static void addRecipe(IRecipe recipe) {
+        CraftingManager.getInstance().getRecipeList().add(recipe);
     }
 
     private static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {

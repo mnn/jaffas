@@ -404,8 +404,8 @@ public class mod_jaffas_trees {
 
 //        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Paprika).itemFruit));
 //        GameRegistry.addRecipe(new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)), "K", "M", 'K', new ItemStack(getJaffaItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(BushesList.get(bushType.Tomato).itemFruit));
-        RecipesBoard.addRecipe(new ItemStack(BushesList.get(bushType.Paprika).itemFruit), new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
-        RecipesBoard.addRecipe(new ItemStack(BushesList.get(bushType.Tomato).itemFruit), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
+        RecipesBoard.addRecipe(getFruitStack(bushType.Paprika), new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
+        RecipesBoard.addRecipe(getFruitStack(bushType.Tomato), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
 
 
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
@@ -422,8 +422,23 @@ public class mod_jaffas_trees {
 
         mod_jaffas.instance.AddMalletShapedRecipe(new ItemStack(getJaffaItem(JaffaItem.coconutPowder)), new ItemStack(itemCoconut));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), new ItemStack(BushesList.get(bushType.Peanuts).itemFruit),
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), getFruitStack(bushType.Peanuts),
                 new ItemStack(getItem(JaffaItem.pastry)), new ItemStack(getItem(JaffaItem.chocolate)));
+
+        RecipesBoard.addRecipe(mod_jaffas_trees.getFruitStack(mod_jaffas_trees.bushType.Onion), new ItemStack(getItem(JaffaItem.onionSliced)));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Item.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(bushType.Tomato), getFruitStack(bushType.Tomato));
+    }
+
+    public static Item getFruit(bushType type) {
+        return BushesList.get(type).itemFruit;
+    }
+
+    public static ItemStack getFruitStack(bushType type) {
+        return getFruitStack(type, 1);
+    }
+
+    public static ItemStack getFruitStack(bushType type, int count) {
+        return new ItemStack(getFruit(type), count);
     }
 
     private void installFruitSeedsRecipes() {

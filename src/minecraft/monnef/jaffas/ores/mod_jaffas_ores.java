@@ -205,6 +205,11 @@ public class mod_jaffas_ores {
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grinderMeat)), " FS", "III", "III", 'I', Item.ingotIron, 'F', mod_jaffas_ores.Funnel, 'S', Item.stick);
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', mod_jaffas_ores.Jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockSteel);
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', mod_jaffas_ores.Jaffarrol, 'I', Item.ingotIron);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', mod_jaffas_ores.Jaffarrol, 'G', Block.glass);
+
+        GameRegistry.addRecipe(new ItemStack(mod_jaffas.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, mod_jaffas_ores.Jaffarrol);
     }
 
     private Item getItem(JaffaItem item) {
