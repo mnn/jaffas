@@ -1,4 +1,4 @@
-package monnef.jaffas.power.entity;
+package monnef.jaffas.carts.entity;
 
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.world.World;

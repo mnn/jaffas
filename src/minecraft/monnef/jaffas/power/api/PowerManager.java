@@ -20,7 +20,7 @@ public class PowerManager {
         factory = newFactory;
     }
 
-    public static IPowerConsumerManager CreatePowerConsumerManager() {
+    public static IPowerNode CreatePowerConsumerManager() {
         if (factory == null) {
             throw new JaffasPowerException("Factory is not initialized, is mod \"Jaffas and more!\" present?");
         }

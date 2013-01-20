@@ -1,4 +1,4 @@
-package monnef.jaffas.power.block.machine;
+package monnef.jaffas.power.block.common;
 
 import net.minecraft.tileentity.TileEntity;
 

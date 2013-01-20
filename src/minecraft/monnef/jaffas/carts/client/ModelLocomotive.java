@@ -1,4 +1,4 @@
-package monnef.jaffas.power;
+package monnef.jaffas.carts.client;
 
 // Date: 18.1.2013 23:03:43
 // Template version 1.1

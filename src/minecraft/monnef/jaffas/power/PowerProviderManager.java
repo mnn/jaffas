@@ -1,10 +1,7 @@
 package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
-import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerConsumerManager;
-import monnef.jaffas.power.api.IPowerProviderManager;
-import monnef.jaffas.power.api.JaffasPowerException;
+import monnef.jaffas.power.api.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
@@ -23,7 +20,7 @@ public class PowerProviderManager implements IPowerProviderManager {
     private boolean[] directSidesMask;
 
     private HashBiMap<ForgeDirection, IPowerConsumerManager> consumers;
-    private HashMap<IPowerConsumerManager, Integer> distance;
+    private HashMap<IPowerNode, Integer> distance;
     private int energyBuffer;
 
     private boolean firstTick = true;
@@ -70,6 +67,11 @@ public class PowerProviderManager implements IPowerProviderManager {
     @Override
     public int getBufferSize() {
         return bufferSize;
+    }
+
+    @Override
+    public boolean hasBuffered(int energy) {
+        return getCurrentBufferedEnergy() >= energy;
     }
 
     @Override
@@ -200,18 +202,6 @@ public class PowerProviderManager implements IPowerProviderManager {
     }
 
     @Override
-    public void saveConsumersToNBT(NBTTagCompound tagCompound) {
-        // TODO
-        return;
-    }
-
-    @Override
-    public void loadConsumersFromNBT(NBTTagCompound tagCompound) {
-        // TODO
-        return;
-    }
-
-    @Override
     public void tick() {
         if (firstTick) {
             firstTick = false;
@@ -247,6 +237,20 @@ public class PowerProviderManager implements IPowerProviderManager {
         return energyBuffer;
     }
 
+    // save consumers
+    @Override
+    public void writeToNBT(NBTTagCompound tagCompound) {
+        throw new RuntimeException("Not implemented yet.");
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    // load consumers
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound) {
+        throw new RuntimeException("Not implemented yet.");
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
     @Override
     public boolean[] constructConnectedSides() {
         boolean[] res = new boolean[7];
@@ -259,7 +263,7 @@ public class PowerProviderManager implements IPowerProviderManager {
 
     @Override
     public IPowerConsumer getConsumer(ForgeDirection side) {
-        IPowerConsumerManager consumer = consumers.get(side);
+        IPowerNode consumer = consumers.get(side);
         return consumer == null ? null : (IPowerConsumer) consumer.getTile();
     }
 }

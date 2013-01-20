@@ -1,11 +1,11 @@
 package monnef.jaffas.power;
 
-import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerConsumerManagerFactory;
+import monnef.jaffas.power.api.IPowerNode;
 
 public class PowerConsumerManagerFactory implements IPowerConsumerManagerFactory {
     @Override
-    public IPowerConsumerManager CreateManager() {
+    public IPowerNode CreateManager() {
         return new PowerConsumerManager();
     }
 }

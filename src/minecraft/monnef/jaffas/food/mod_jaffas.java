@@ -250,7 +250,7 @@ public class mod_jaffas {
         LanguageRegistry.addName(blockSink, "Faucet");
         GameRegistry.registerTileEntity(TileEntitySink.class, "sink");
 
-        blockBoard = new BlockBoard(blockBoardID, 6, Material.wood);
+        blockBoard = new BlockBoard(blockBoardID, 142, Material.wood);
         GameRegistry.registerBlock(blockBoard, blockBoard.getBlockName());
         LanguageRegistry.addName(blockBoard, "Kitchen Board");
         GameRegistry.registerTileEntity(TileEntityBoard.class, "kitchenBoard");

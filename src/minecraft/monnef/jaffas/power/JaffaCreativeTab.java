@@ -1,5 +1,8 @@
 package monnef.jaffas.power;
 
+import monnef.jaffas.food.common.ModuleManager;
+import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.ores.mod_jaffas_ores;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,6 +14,7 @@ public class JaffaCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(Item.redstone);
+        Item item = ModuleManager.IsModuleEnabled(ModulesEnum.ores) ? mod_jaffas_ores.Limsew : Item.redstone;
+        return new ItemStack(item);
     }
 }

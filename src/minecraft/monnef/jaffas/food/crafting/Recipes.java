@@ -146,8 +146,8 @@ public class Recipes {
         //RecipesFridge.AddRecipe(Block.dirt.blockID, new ItemStack(Block.gravel));
 
         //GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.vanillaBeans)), new ItemStack(Item.dyePowder, 1, 3), new ItemStack(Item.dyePowder, 1, 11));
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.waferIcecream), 40), "PP", "PP", 'P', new ItemStack(getItem(JaffaItem.pastry)));
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.cone), 30), "P P", " P ", 'P', new ItemStack(getItem(JaffaItem.pastry)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.waferIcecreamRaw), 2), "PP", "PP", 'P', new ItemStack(getItem(JaffaItem.pastry)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.coneRaw), 1), "P P", " P ", 'P', new ItemStack(getItem(JaffaItem.pastry)));
 
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.vanillaPowder)), new ItemStack(getItem(JaffaItem.vanillaBeans)));
 
@@ -155,9 +155,9 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.chocolateIcecreamRaw), 4), new ItemStack(getItem(JaffaItem.cream)), new ItemStack(getItem(JaffaItem.beans)), new ItemStack(Item.snowball));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.icecreamRaw), 4), new ItemStack(getItem(JaffaItem.cream)), new ItemStack(getItem(JaffaItem.cream)), new ItemStack(Item.snowball));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.vanillaIcecream)), "S", "C", 'S', new ItemStack(getItem(JaffaItem.vanillaIcecreamFrozen)), 'C', new ItemStack(getItem(JaffaItem.cone)));
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.chocolateIcecream)), "S", "C", 'S', new ItemStack(getItem(JaffaItem.chocolateIcecreamFrozen)), 'C', new ItemStack(getItem(JaffaItem.cone)));
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.russianIcecream)), "W", "I", "W", 'W', new ItemStack(getItem(JaffaItem.waferIcecream)), 'I', new ItemStack(getItem(JaffaItem.icecreamFrozen)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.vanillaIcecream), 4), "S", "C", 'S', new ItemStack(getItem(JaffaItem.vanillaIcecreamFrozen)), 'C', new ItemStack(getItem(JaffaItem.cone)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.chocolateIcecream), 4), "S", "C", 'S', new ItemStack(getItem(JaffaItem.chocolateIcecreamFrozen)), 'C', new ItemStack(getItem(JaffaItem.cone)));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.russianIcecream), 4), "W", "I", "W", 'W', new ItemStack(getItem(JaffaItem.waferIcecream)), 'I', new ItemStack(getItem(JaffaItem.icecreamFrozen)));
 
         RecipesFridge.AddRecipe(getItem(JaffaItem.icecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.icecreamFrozen)));
         RecipesFridge.AddRecipe(getItem(JaffaItem.vanillaIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.vanillaIcecreamFrozen)));
@@ -266,6 +266,9 @@ public class Recipes {
         AddMalletShapedRecipe(new ItemStack(getItem(JaffaItem.cheese)), new ItemStack(getItem(JaffaItem.butter)));
 
         RecipesBoard.addRecipe(JaffaItem.cheese, 1, JaffaItem.cheeseSlice, 4);
+
+        GameRegistry.addSmelting(getItem(JaffaItem.coneRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.cone)), 1f);
+        GameRegistry.addSmelting(getItem(JaffaItem.waferIcecreamRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.waferIcecream)), 1f);
     }
 
     private static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {

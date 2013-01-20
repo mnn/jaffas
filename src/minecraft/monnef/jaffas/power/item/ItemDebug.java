@@ -2,7 +2,7 @@ package monnef.jaffas.power.item;
 
 import com.google.common.base.Joiner;
 import monnef.jaffas.power.api.*;
-import monnef.jaffas.power.block.machine.TileEntityMachine;
+import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -15,10 +15,15 @@ public class ItemDebug extends ItemPower implements IMachineTool {
 
     public ItemDebug(int id, int textureIndex) {
         super(id, textureIndex);
+        setItemName("debugPower");
     }
 
     public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side) {
         this.player = player;
+
+        if (machine == null) {
+            print("TE is null");
+        }
 
         if (machine instanceof IPowerProvider) {
             IPowerProviderManager provider = ((IPowerProvider) machine).getPowerManager();

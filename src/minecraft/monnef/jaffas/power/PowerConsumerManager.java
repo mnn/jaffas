@@ -83,7 +83,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     }
 
     @Override
-    public int store(int energy) {
+    public int storeEnergy(int energy) {
         int toStore = energy;
         if (bufferSize < energyBuffer + toStore) {
             toStore = bufferSize - energyBuffer;
@@ -122,7 +122,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     }
 
     @Override
-    public boolean isConnected() {
+    public boolean isRemotelyConnected() {
         return provider != null;
     }
 
@@ -135,7 +135,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     public void tick() {
         if (energyNeeded()) {
             int energy = provider.getPowerManager().requestEnergy(getCurrentMaximalPacketSize(), (IPowerConsumer) getTile());
-            store(energy);
+            storeEnergy(energy);
         }
     }
 

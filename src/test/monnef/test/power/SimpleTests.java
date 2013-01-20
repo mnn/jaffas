@@ -27,22 +27,22 @@ public class SimpleTests {
     public void powerConsumerManager() {
         PowerConsumerManager p = new PowerConsumerManager();
         p.initialize(25, 55, null);
-        assertFalse(p.isConnected());
+        assertFalse(p.isRemotelyConnected());
         assertEquals(55, p.getBufferSize());
         assertEquals(25, p.getMaximalPacketSize());
         assertTrue(p.energyNeeded());
         assertFalse(p.hasBuffered(10));
         assertFalse(p.hasBuffered(1));
 
-        assertEquals(25, p.store(25));
+        assertEquals(25, p.storeEnergy(25));
         assertEquals(25, p.getCurrentMaximalPacketSize());
-        assertEquals(25, p.store(25));
+        assertEquals(25, p.storeEnergy(25));
         assertEquals(5, p.getFreeSpaceInBuffer());
         assertEquals(50, p.getCurrentBufferedEnergy());
 
-        assertEquals(5, p.store(25));
+        assertEquals(5, p.storeEnergy(25));
         assertEquals(0, p.getCurrentMaximalPacketSize());
-        assertEquals(0, p.store(25));
+        assertEquals(0, p.storeEnergy(25));
         assertEquals(0, p.getFreeSpaceInBuffer());
         assertEquals(55, p.getCurrentBufferedEnergy());
         assertFalse(p.energyNeeded());

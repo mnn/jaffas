@@ -1,6 +1,6 @@
-package monnef.jaffas.power;
+package monnef.jaffas.carts.client;
 
-import monnef.jaffas.power.entity.EntityLocomotive;
+import monnef.jaffas.carts.entity.EntityLocomotive;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.RenderBlocks;

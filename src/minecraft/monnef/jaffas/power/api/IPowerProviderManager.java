@@ -1,21 +1,12 @@
 package monnef.jaffas.power.api;
 
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public interface IPowerProviderManager {
+public interface IPowerProviderManager extends IPowerNode {
     void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, boolean[] directSidesMask);
 
     void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection);
-
-    int getFreeSpaceInBuffer();
-
-    int getBufferSize();
-
-    int getMaximalPacketSize();
-
-    TileEntity getTile();
 
     /**
      * Requests energy from provider.
@@ -28,8 +19,6 @@ public interface IPowerProviderManager {
     int requestEnergy(int amount, IPowerConsumer consumer);
 
     int maximalPowerPerPacket();
-
-    int storeEnergy(int amount);
 
     /**
      * @return Can it be DIRECTLY connected (by player) to a consumer?
@@ -48,27 +37,7 @@ public interface IPowerProviderManager {
 
     boolean disconnect(IPowerConsumer consumer);
 
-    /**
-     * Saves all consumers.
-     *
-     * @param tagCompound
-     */
-    void saveConsumersToNBT(NBTTagCompound tagCompound);
-
-    /**
-     * Loads all consumers, in first possible tick constructs all connections.
-     *
-     * @param tagCompound
-     */
-    void loadConsumersFromNBT(NBTTagCompound tagCompound);
-
-    void tick();
-
-    boolean isRemotelyConnected();
-
     boolean isConnectedToSide(ForgeDirection side);
-
-    int getCurrentBufferedEnergy();
 
     boolean[] constructConnectedSides();
 

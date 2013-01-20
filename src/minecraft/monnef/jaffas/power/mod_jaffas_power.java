@@ -7,16 +7,18 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
 import monnef.core.Version;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
-import monnef.jaffas.power.entity.EntityLocomotive;
+import monnef.jaffas.power.block.BlockAntenna;
+import monnef.jaffas.power.block.BlockGenerator;
+import monnef.jaffas.power.block.TileEntityAntenna;
+import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.item.ItemDebug;
-import monnef.jaffas.power.item.ItemLocomotive;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
@@ -30,7 +32,7 @@ public class mod_jaffas_power {
     @Instance("moen-jaffas-power")
     public static mod_jaffas_power instance;
 
-    @SidedProxy(clientSide = "monnef.jaffas.power.ClientProxy", serverSide = "monnef.jaffas.power.CommonProxy")
+    @SidedProxy(clientSide = "monnef.jaffas.power.client.ClientProxy", serverSide = "monnef.jaffas.power.CommonProxy")
     public static CommonProxy proxy;
 
     private static IDProvider idProvider = new IDProvider(3750, 26644);
@@ -43,10 +45,16 @@ public class mod_jaffas_power {
     private int ItemDebugID;
     public static ItemDebug ItemDebug;
 
-    private int LocomotiveEntityID;
+    public static int renderID;
 
-    private int ItemLocomotiveID;
-    public static ItemLocomotive itemLocomotive;
+    public static BlockGenerator generator;
+    private int blockGeneratorID;
+
+    public static BlockAntenna antenna;
+    private int blockAntennaID;
+
+    private int ItemWrenchID;
+    public static ItemWrench wrench;
 
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -60,9 +68,10 @@ public class mod_jaffas_power {
 
             //JaffarrolID = idProvider.getItemIDFromConfig("jaffarrol");
             ItemDebugID = idProvider.getItemIDFromConfig("debug");
-            ItemLocomotiveID = idProvider.getBlockIDFromConfig("locomotive");
+            ItemWrenchID = idProvider.getItemIDFromConfig("pipeWrench");
 
-            LocomotiveEntityID = idProvider.getEntityIDFromConfig("locomotive");
+            blockGeneratorID = idProvider.getBlockIDFromConfig("generator");
+            blockAntennaID = idProvider.getBlockIDFromConfig("antenna");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -75,13 +84,14 @@ public class mod_jaffas_power {
 
     @Init
     public void load(FMLInitializationEvent event) {
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores))
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.power))
             return;
+
+        GameRegistry.registerTileEntity(TileEntityGenerator.class, "jp.generator");
+        GameRegistry.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
 
         createItems();
         installRecipes();
-
-        EntityRegistry.registerModEntity(EntityLocomotive.class, "locomotive", LocomotiveEntityID, this, 100, 5, false);
 
         // texture stuff
         proxy.registerRenderThings();
@@ -92,8 +102,19 @@ public class mod_jaffas_power {
     }
 
     private void createItems() {
-        itemLocomotive = new ItemLocomotive(ItemLocomotiveID, 0);
+        generator = new BlockGenerator(blockGeneratorID, 0);
+        GameRegistry.registerBlock(generator, generator.getBlockName());
+        LanguageRegistry.addName(generator, "Generator");
 
+        ItemDebug = new ItemDebug(ItemDebugID, 1);
+        LanguageRegistry.addName(ItemDebug, "Power Debug Tool");
+
+        antenna = new BlockAntenna(blockAntennaID, 2);
+        GameRegistry.registerBlock(antenna, antenna.getBlockName());
+        LanguageRegistry.addName(antenna, "Small Antenna");
+
+        wrench = new ItemWrench(ItemWrenchID, 1);
+        LanguageRegistry.addName(wrench, "Pipe Wrench");
     }
 
     private void installRecipes() {

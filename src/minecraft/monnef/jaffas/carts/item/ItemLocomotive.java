@@ -1,7 +1,7 @@
-package monnef.jaffas.power.item;
+package monnef.jaffas.carts.item;
 
-import monnef.jaffas.power.entity.EntityLocomotive;
-import monnef.jaffas.power.mod_jaffas_power;
+import monnef.jaffas.carts.entity.EntityLocomotive;
+import monnef.jaffas.carts.mod_jaffas_carts;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,8 +15,13 @@ public class ItemLocomotive extends Item {
         super(par1);
         this.maxStackSize = 1;
         this.minecartType = par2;
-        this.setCreativeTab(mod_jaffas_power.CreativeTab);
+        this.setCreativeTab(mod_jaffas_carts.CreativeTab);
         this.setItemName("locomotive");
+    }
+
+    @Override
+    public String getTextureFile() {
+        return "/jaffas_06.png";
     }
 
     /**
