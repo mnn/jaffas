@@ -8,18 +8,28 @@ import net.minecraftforge.common.IArmorTextureProvider;
 
 public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
 
-    public ItemJaffaPlate(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3, int par4) {
-        super(par1, par2EnumArmorMaterial, par3, par4);
-        this.setCreativeTab(mod_jaffas.CreativeTab);
+    private String armorTexture;
+
+    // helm 0, chest 1, legg 2, boots 3
+
+    public enum ArmorType {
+        helm, chest, leggings, boots
     }
 
-    public String getTextureFile(){
+    public ItemJaffaPlate(int par1, EnumArmorMaterial par2EnumArmorMaterial, int renderIndex, ArmorType type, String armorTexture) {
+        super(par1, par2EnumArmorMaterial, renderIndex, type.ordinal());
+        this.armorTexture = armorTexture;
+        this.setCreativeTab(mod_jaffas.CreativeTab);
+        setItemName("armor." + par2EnumArmorMaterial.name());
+    }
+
+    public String getTextureFile() {
         return "/jaffas_01.png";
 
     }
 
-    public String getArmorTextureFile(ItemStack par1){
-            return "/jaffabrn1.png";
+    public String getArmorTextureFile(ItemStack par1) {
+        return armorTexture;
     }
 
 }

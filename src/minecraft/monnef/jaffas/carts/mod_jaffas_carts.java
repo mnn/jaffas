@@ -38,7 +38,7 @@ public class mod_jaffas_carts {
 
     public static String textureFile = "/jaffas_06.png";
 
-    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.carts");
+    public static JaffaCreativeTab CreativeTab;
 
     private int LocomotiveEntityID;
 
@@ -72,6 +72,8 @@ public class mod_jaffas_carts {
     public void load(FMLInitializationEvent event) {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.carts))
             return;
+
+        CreativeTab = new JaffaCreativeTab("jaffas.carts");
 
         createItems();
         installRecipes();

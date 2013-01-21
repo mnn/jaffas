@@ -6,6 +6,7 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityCross;
+import monnef.jaffas.food.block.TileEntityPizza;
 import monnef.jaffas.food.block.TileEntitySink;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
@@ -23,6 +24,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCross.class, new TileEntityCrossRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySink.class, new TileEntitySinkRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoard.class, new TileEntityBoardRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPizza.class, new TileEntityPizzaRenderer());
 
         mod_jaffas.renderID = RenderingRegistry.getNextAvailableRenderId();
         //RenderingRegistry.registerBlockHandler(new RenderingHandler());

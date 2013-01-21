@@ -47,7 +47,7 @@ public class mod_jaffas_xmas {
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
 
-    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.xmas");
+    public static JaffaCreativeTab CreativeTab;
     private Items items;
 
     public mod_jaffas_xmas() {
@@ -88,6 +88,8 @@ public class mod_jaffas_xmas {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.xmas))
             return;
 
+        CreativeTab = new JaffaCreativeTab("jaffas.xmas");
+
         GameRegistry.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
         GameRegistry.registerTileEntity(TileEntityPresent.class, "jaffas.present");
 
@@ -114,7 +116,7 @@ public class mod_jaffas_xmas {
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
 
         BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, ItemBlockPresent.count);
-        GameRegistry.registerBlock(BlockPresent, ItemBlockPresent.class,"blockPresent");
+        GameRegistry.registerBlock(BlockPresent, ItemBlockPresent.class, "blockPresent");
     }
 
     private void installRecipes() {

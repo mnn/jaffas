@@ -42,7 +42,7 @@ public class mod_jaffas_trees {
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;
 
-    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.trees");
+    public static JaffaCreativeTab CreativeTab;
 
     public static final String channel = "jaffas-02";
 
@@ -262,6 +262,7 @@ public class mod_jaffas_trees {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.trees))
             return;
 
+        CreativeTab = new JaffaCreativeTab("jaffas.trees");
         guiHandler = new GuiHandlerTrees();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 

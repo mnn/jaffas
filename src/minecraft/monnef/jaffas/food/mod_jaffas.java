@@ -54,7 +54,7 @@ import java.util.logging.Level;
 @Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version, dependencies = "after:Forestry;after:BuildCraft|Energy")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
-    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas");
+    public static JaffaCreativeTab CreativeTab;
 
     private static MinecraftServer server;
 
@@ -74,7 +74,21 @@ public class mod_jaffas {
     public static BlockBoard blockBoard;
     public static int blockBoardID;
 
+    public static BlockPizza blockPizza;
+    public static int blockPizzaID;
+
+    /*
+    CLOTH(5, new int[]{1, 3, 2, 1}, 15),
+    CHAIN(15, new int[]{2, 5, 4, 1}, 12),
+    IRON(15, new int[]{2, 6, 5, 2}, 9),
+    GOLD(7, new int[]{2, 5, 3, 1}, 25),
+    DIAMOND(33, new int[]{3, 8, 6, 3}, 10);
+    */
+
     public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
+    public static EnumArmorMaterial EnumArmorMaterialWooden = EnumHelper.addArmorMaterial("Wooden", 10, new int[]{1, 4, 2, 3}, 23);
+    public static EnumArmorMaterial EnumArmorMaterialWolf = EnumHelper.addArmorMaterial("Wolf", 8, new int[]{1, 3, 2, 1}, 15);
+    public static EnumArmorMaterial EnumArmorMaterialJaffarrol = EnumHelper.addArmorMaterial("Jaffarrol", 10, new int[]{1, 4, 2, 3}, 23);
     public static ItemJaffaPlate itemJaffaPlate;
     public static int itemJaffaPlateID;
     public static EnumToolMaterial EnumToolMaterialJaffas = EnumHelper.addToolMaterial("Jaffa", 2, 400, 6.0F, 6, 15);
@@ -144,6 +158,11 @@ public class mod_jaffas {
                 }
             }
 
+            itemJaffaPlateID = idProvider.getItemIDFromConfig("jaffaPlate");
+            itemJaffaSwordID = idProvider.getItemIDFromConfig("jaffaSword");
+
+            itemPaintingID = idProvider.getItemIDFromConfig("painting");
+
             items.LoadItemsFromConfig(idProvider);
 
             blockJaffaBombID = idProvider.getBlockIDFromConfig("jaffa bomb");
@@ -151,16 +170,12 @@ public class mod_jaffas {
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
-            itemJaffaPlateID = idProvider.getItemIDFromConfig("jaffaPlate");
-            itemJaffaSwordID = idProvider.getItemIDFromConfig("jaffaSword");
-
-            itemPaintingID = idProvider.getItemIDFromConfig("painting");
-
             checkUpdates = config.get(Configuration.CATEGORY_GENERAL, "checkUpdates", true).getBoolean(true);
 
             blockCrossID = idProvider.getBlockIDFromConfig("cross");
             blockSinkID = idProvider.getBlockIDFromConfig("sink");
             blockBoardID = idProvider.getBlockIDFromConfig("board");
+            blockPizzaID = idProvider.getBlockIDFromConfig("pizza");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
         } catch (Exception e) {
@@ -178,6 +193,8 @@ public class mod_jaffas {
         checkJsoup();
         checkForestry();
 
+        CreativeTab = new JaffaCreativeTab("jaffas");
+
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
         registerHandlers();
@@ -189,6 +206,7 @@ public class mod_jaffas {
         AchievementsCraftingHandler.init();
 
         Recipes.install();
+        MinecraftForge.EVENT_BUS.register(new CustomDrop());
 
         itemsReady = true; // needed?
 
@@ -254,12 +272,17 @@ public class mod_jaffas {
         GameRegistry.registerBlock(blockBoard, blockBoard.getBlockName());
         LanguageRegistry.addName(blockBoard, "Kitchen Board");
         GameRegistry.registerTileEntity(TileEntityBoard.class, "kitchenBoard");
+
+        blockPizza = new BlockPizza(blockPizzaID, 149, Material.cake);
+        GameRegistry.registerBlock(blockPizza, blockPizza.getBlockName());
+        LanguageRegistry.addName(blockPizza, "Block of Pizza");
+        GameRegistry.registerTileEntity(TileEntityPizza.class, "pizza");
     }
 
     private void createJaffaArmorAndSword() {
         int armorRender = proxy.addArmor("Jaffa");
-        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, 1);
-        itemJaffaPlate.setItemName("JaffaPlate").setIconIndex(90).setCreativeTab(CreativeTab);
+        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png");
+        itemJaffaPlate.setIconIndex(90);
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 
         itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, EnumToolMaterialJaffas);

@@ -2,6 +2,7 @@ package monnef.jaffas.food.item;
 
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
+import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -193,6 +194,13 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.pizza, "Pizza In Tin", 149, "Pizza");
         AddItemInfo(JaffaItem.pizzaRaw, "Pizza In Tin Raw", 150, "Raw Pizza");
+
+        AddItemInfo(JaffaItem.wolfHelmet, "Wolf Helmet", 153, "Wolf Helmet");
+        AddItemInfo(JaffaItem.wolfBoots, "Wolf Boots", 154, "Wolf Boots");
+        AddItemInfo(JaffaItem.wolfChest, "Wolf Chest", 152, "Wolf Chest");
+        AddItemInfo(JaffaItem.wolfLeggins, "Wolf Leggings", 155, "Wolf Leggings");
+
+        AddItemInfo(JaffaItem.wolfSkin, "Wolf Skin", 151, "Wolf Skin");
     }
 
     @Override
@@ -377,10 +385,25 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.cheeseGrated);
         createJaffaItem(JaffaItem.salami);
         createJaffaItem(JaffaItem.salamiSliced);
-        createJaffaItem(JaffaItem.pizza);
         createJaffaItem(JaffaItem.pizzaRaw);
 
+        createJaffaItemManual(JaffaItem.pizza, ItemPizza.class);
+
+        int renderIndex = mod_jaffas.proxy.addArmor("wolf");
+//        createJaffaItemManual(JaffaItem.wolfHelmet,
+//                new ItemJaffaPlate(ItemManager.getItemInfo(JaffaItem.wolfHelmet).getId(), mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.helm, "/jaffas_wolf.png"));
+        createJaffaArmor(JaffaItem.wolfHelmet, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.helm, "/jaffas_wolf1.png");
+        createJaffaArmor(JaffaItem.wolfChest, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.chest, "/jaffas_wolf1.png");
+        createJaffaArmor(JaffaItem.wolfLeggins, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.leggings, "/jaffas_wolf2.png");
+        createJaffaArmor(JaffaItem.wolfBoots, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.boots, "/jaffas_wolf1.png");
+
+        createJaffaItem(JaffaItem.wolfSkin);
+
         createItemsRegistration();
+    }
+
+    private void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture) {
+        createJaffaItemManual(item, new ItemJaffaPlate(ItemManager.getItemInfo(item).getId(), material, renderIndex, type, texture));
     }
 
     private void createItemsRegistration() {

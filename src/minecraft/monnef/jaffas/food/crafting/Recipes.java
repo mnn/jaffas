@@ -290,6 +290,15 @@ public class Recipes {
         JaffaCraftingHandler.AddPersistentItem(JaffaItem.bottleKetchup, false, JaffaItem.bottleEmpty);
         JaffaCraftingHandler.AddPersistentItem(JaffaItem.bottleBrownMustard, false, JaffaItem.bottleEmpty);
         JaffaCraftingHandler.AddPersistentItem(JaffaItem.bottleMustard, false, JaffaItem.bottleEmpty);
+
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.wolfHelmet)), " S ", "S S", 'S', getItem(JaffaItem.wolfSkin));
+        GameRegistry.addRecipe(getItemStack(JaffaItem.wolfChest), "S S", "SCS", "CCC", 'S', getItem(JaffaItem.wolfSkin), 'C', new ItemStack(Block.cloth, 1, 14));
+        GameRegistry.addRecipe(getItemStack(JaffaItem.wolfLeggins), "SCS", "S S", "C C", 'S', getItem(JaffaItem.wolfSkin), 'C', Item.leather);
+        GameRegistry.addRecipe(getItemStack(JaffaItem.wolfBoots), "S S", "S S", 'S', getItem(JaffaItem.wolfSkin));
+    }
+
+    private static ItemStack getItemStack(JaffaItem item) {
+        return new ItemStack(getItem(item));
     }
 
     private static void addRecipe(IRecipe recipe) {

@@ -61,7 +61,7 @@ public class mod_jaffas_ores {
 
     public static String textureFile = "/jaffas_03.png";
 
-    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.ores");
+    public static JaffaCreativeTab CreativeTab;
 
     private int ItemCasingID;
     public static ItemOres ItemCasing;
@@ -107,6 +107,8 @@ public class mod_jaffas_ores {
     public void load(FMLInitializationEvent event) {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores))
             return;
+
+        CreativeTab = new JaffaCreativeTab("jaffas.ores");
 
         createItems();
         installRecipes();
@@ -209,7 +211,7 @@ public class mod_jaffas_ores {
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', mod_jaffas_ores.Jaffarrol, 'I', Item.ingotIron);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', mod_jaffas_ores.Jaffarrol, 'G', Block.glass);
 
-        GameRegistry.addRecipe(new ItemStack(mod_jaffas.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, mod_jaffas_ores.Jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(mod_jaffas.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', mod_jaffas_ores.Jaffarrol);
     }
 
     private Item getItem(JaffaItem item) {

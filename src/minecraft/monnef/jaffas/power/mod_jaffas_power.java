@@ -40,7 +40,7 @@ public class mod_jaffas_power {
 
     public static String textureFile = "/jaffas_05.png";
 
-    public static JaffaCreativeTab CreativeTab = new JaffaCreativeTab("jaffas.power");
+    public static JaffaCreativeTab CreativeTab;
 
     private int ItemDebugID;
     public static ItemDebug ItemDebug;
@@ -89,6 +89,8 @@ public class mod_jaffas_power {
 
         GameRegistry.registerTileEntity(TileEntityGenerator.class, "jp.generator");
         GameRegistry.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
+
+        CreativeTab = new JaffaCreativeTab("jaffas.power");
 
         createItems();
         installRecipes();
