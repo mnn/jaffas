@@ -1,0 +1,2 @@
+bash do.sh
+pause
