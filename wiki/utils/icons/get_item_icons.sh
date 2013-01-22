@@ -1,4 +1,5 @@
 #!/bin/bash
+# uses image magick to crop and resize icon images from sprite sheets
 
 output=out
 
@@ -8,7 +9,7 @@ if [ ${#output} -lt 2 ]; then
 fi
 
 mkdir "$output" &> /dev/null
-rm -fr "$output/*.png"
+rm -fr $output/*.png
 
 items_num=255
 n=0
@@ -34,13 +35,16 @@ while [ $n -le $items_num ]; do
 		if [ $ii -lt 10 ]; then
 			ii="0$ii"
 		fi
-		#echo "$t ~ $n - |$spritePath/$t|  /${ii}_$f.png/"
-		convert "$spritePath/$t" -crop 16x16+$[$n % 16 * 16]+$[$n / 16 * 16] +repage -scale 32x32 "out/${ii}_$f.png"
+		fname="$output/${ii}_$f.png"
+		convert "$spritePath/$t" -crop 16x16+$[$n % 16 * 16]+$[$n / 16 * 16] +repage -scale 32x32 "$fname"
+
+		# remove blank images
+		colors=`identify -format "%k" "$fname"`
+		if [ $colors == "1" ]; then
+			rm -f $fname
+		fi
 	done
 		
-#	convert jaffas_01.png -crop 16x16+$[$n % 16 * 16]+$[$n / 16 * 16] +repage -sample 32x32 "out/01_$f.png"
-#	convert jaffas_02.png -crop 16x16+$[$n % 16 * 16]+$[$n / 16 * 16] +repage -sample 32x32 "out/02_$f.png"
-
 	n=$[$n + 1]
 done
 
