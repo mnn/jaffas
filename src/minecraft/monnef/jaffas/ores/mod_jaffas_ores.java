@@ -9,14 +9,19 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
+import monnef.core.RegistryUtils;
 import monnef.core.Version;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.monster.EntityEnderman;
+import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
@@ -112,6 +117,7 @@ public class mod_jaffas_ores {
 
         createItems();
         installRecipes();
+        addDrops();
 
         // texture stuff
         proxy.registerRenderThings();
@@ -121,6 +127,12 @@ public class mod_jaffas_ores {
         ItemCentralUnit.registerNames();
 
         mod_jaffas.PrintInitialized(ModulesEnum.ores);
+    }
+
+    private void addDrops() {
+        CustomDrop.addDrop(EntitySkeleton.class, Limsew, 0.05f);
+        CustomDrop.addDrop(EntityZombie.class, JaffarrolRaw, 0.15f);
+        CustomDrop.addDrop(EntityEnderman.class, Limsew, 0.25f);
     }
 
     private void createItems() {
@@ -142,12 +154,12 @@ public class mod_jaffas_ores {
 
         BlockJaffarrol = new BlockOres(BlockJaffarrolID, 4, Material.iron);
         BlockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
-        GameRegistry.registerBlock(BlockJaffarrol);
+        RegistryUtils.RegisterBlock(BlockJaffarrol);
         LanguageRegistry.addName(BlockJaffarrol, "Block of Jaffarrol");
 
         BlockLimsew = new BlockOres(BlockLimsewID, 5, Material.iron);
         BlockLimsew.setBlockName("blockOfLimsew").setHardness(4f).setResistance(7f);
-        GameRegistry.registerBlock(BlockLimsew);
+        RegistryUtils.RegisterBlock(BlockLimsew);
         LanguageRegistry.addName(BlockLimsew, "Block of Limsew");
 
         ItemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);

@@ -1,11 +1,15 @@
 package monnef.jaffas.food.item;
 
+import monnef.core.EntityHelper;
 import monnef.core.PlayerHelper;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.*;
+import net.minecraft.entity.passive.EntityChicken;
+import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -32,11 +36,12 @@ public class ItemCleaverHookContainer {
         AnimalToMeat.put(EntityChicken.class, new ItemStack(Item.chickenRaw));
         AnimalToMeat.put(EntityMooshroom.class, new ItemStack(Item.beefRaw));
 
-        //TODO: meats
+        /*
         AnimalToMeat.put(EntitySheep.class, new ItemStack(Item.bone));
         AnimalToMeat.put(EntityWolf.class, new ItemStack(Item.bone));
         AnimalToMeat.put(EntityOcelot.class, new ItemStack(Item.bone));
         AnimalToMeat.put(EntitySquid.class, new ItemStack(Item.bone));
+        */
     }
 
     private ItemStack getMeatFromAnimal(EntityCreature animal) {
@@ -68,9 +73,8 @@ public class ItemCleaverHookContainer {
             EntityPlayer player = (EntityPlayer) source.getEntity();
             if (PlayerHelper.PlayerHasEquipped(player, getMeatCleaverID())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
-                    //if (mob instanceof EntityCow || mob instanceof EntityPig) {
                     EntityCreature animal = (EntityCreature) mob;
-                    if (AnimalIsAdult(animal)) {
+                    if (EntityHelper.AnimalIsAdult(animal)) {
                         for (int i = 0; i < 2; i++) {
                             if (rand.nextFloat() < .5) {
                                 ItemStack loot = getMeatFromAnimal(animal);
@@ -82,11 +86,6 @@ public class ItemCleaverHookContainer {
             }
         }
     }
-
-    private boolean AnimalIsAdult(EntityCreature animal) {
-        return animal instanceof EntityAnimal ? ((EntityAnimal) animal).getGrowingAge() >= 0 : true;
-    }
-
 
     private boolean SourceIsPlayer(DamageSource source) {
         return source.damageType.equals(DamageSourcePlayer);

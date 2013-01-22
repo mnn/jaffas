@@ -13,8 +13,14 @@ mkdir $dist &>/dev/null
 
 od=`pwd`
 
-rm -fr "$outtmp/*"
-rm -fr "$dist/*"
+if [ ${#output} -lt 5 ]; then
+	echo "weird string in output directory variable. halting for safety reasons."
+	exit 1
+fi
+
+rm -fr "./$outtmp/*"
+rm -fr "./$dist/*"
+rm -fr "./$output/*"
 touch "$outtmp/.placeholder"
 
 echo Done
