@@ -1,3 +1,9 @@
+## 0.4.7
+- added kitchen board
+- added pizza
+- added wolf armour set
+- fixed cones and wafers (raw variants)
+
 ## 0.4.6
 - updated to MC 1.4.6 (MCForge 471)
 - added basin (sink)
