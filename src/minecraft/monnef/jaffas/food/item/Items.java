@@ -32,15 +32,27 @@ public class Items extends ItemManagerAccessor {
         return ItemManager.getItem(jaffaItem);
     }
 
+    private String getJaffaTitle(String type) {
+        String title = mod_jaffas.jaffasTitle;
+
+        if (type == null || type.isEmpty()) {
+            return title;
+        }
+        StringBuilder s = new StringBuilder(type);
+        s.append(" ");
+        s.append(title);
+        return s.toString();
+    }
+
     @Override
     public void InitializeItemInfos() {
         AddItemInfo(JaffaItem.pastry, "Pastry", 13, "Pastry");
         AddItemInfo(JaffaItem.cake, "Cake", 1, "Sponge Cake");
         AddItemInfo(JaffaItem.jamO, "Jam Orange", 2, "Orange Jam");
         AddItemInfo(JaffaItem.jamR, "Jam Red", 3, "Apple Jam");
-        AddItemInfo(JaffaItem.jaffaO, "Jaffa Orange", 4, "Orange Jaffa Cake");
-        AddItemInfo(JaffaItem.jaffaR, "Jaffa Red", 5, "Apple Jaffa Cake");
-        AddItemInfo(JaffaItem.jaffa, "Jaffa", 6, "Jaffa Cake");
+        AddItemInfo(JaffaItem.jaffaO, "Jaffa Orange", 4, getJaffaTitle("Orange"));
+        AddItemInfo(JaffaItem.jaffaR, "Jaffa Red", 5, getJaffaTitle("Apple"));
+        AddItemInfo(JaffaItem.jaffa, "Jaffa", 6, getJaffaTitle(""));
         AddItemInfo(JaffaItem.chocolate, "Chocolate", 7, "Chocolate");
         AddItemInfo(JaffaItem.apples, "Apples", 10, "Apples");
         AddItemInfo(JaffaItem.beans, "Beans", 8, "Cocoa Powder");
@@ -73,10 +85,10 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.flour, "Flour", 49, "Flour");
         AddItemInfo(JaffaItem.chocolateWrapper, "Chocolate Wrapper", 33, "Chocolate Wrapper");
         AddItemInfo(JaffaItem.chocolateBar, "Chocolate Bar", 34, "Chocolate Bar");
-        AddItemInfo(JaffaItem.wrapperJaffas, "Wrapper Jaffas", 50, "Jaffa Cakes Wrapper");
-        AddItemInfo(JaffaItem.jaffasPack, "Jaffa Cakes Pack", 51, "Jaffa Cakes Pack");
-        AddItemInfo(JaffaItem.jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange Jaffa Cakes Pack");
-        AddItemInfo(JaffaItem.jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple Jaffa Cakes Pack");
+        AddItemInfo(JaffaItem.wrapperJaffas, "Wrapper Jaffas", 50, mod_jaffas.jaffasTitle + " Wrapper");
+        AddItemInfo(JaffaItem.jaffasPack, "Jaffa Cakes Pack", 51, mod_jaffas.jaffasTitle + " Pack");
+        AddItemInfo(JaffaItem.jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange " + mod_jaffas.jaffasTitle + " Pack");
+        AddItemInfo(JaffaItem.jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple " + mod_jaffas.jaffasTitle + " Pack");
         AddItemInfo(JaffaItem.vanillaBeans, "Vanilla Beans", 52, "Vanilla Beans");
         AddItemInfo(JaffaItem.waferIcecream, "Wafer Ice-cream", 53, "Wafer");
         AddItemInfo(JaffaItem.cone, "Icecream Cone", 54, "Cone");
@@ -96,8 +108,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.donutPink, "Donut Apple", 74, "Apple Donut");
         AddItemInfo(JaffaItem.donutSugar, "Donut Sugar", 75, "Powdered Donut");
         AddItemInfo(JaffaItem.donutSprinkled, "Donut Sprinkled", 76, "Sprinkled Donut");
-        AddItemInfo(JaffaItem.jaffaV, "Jaffa Vanilla", 77, "Vanilla Jaffa Cake");
-        AddItemInfo(JaffaItem.jaffaL, "Jaffa Lemon", 78, "Lemon Jaffa Cake");
+        AddItemInfo(JaffaItem.jaffaV, "Jaffa Vanilla", 77, getJaffaTitle("Vanilla"));
+        AddItemInfo(JaffaItem.jaffaL, "Jaffa Lemon", 78, getJaffaTitle("Lemon"));
         AddItemInfo(JaffaItem.jamP, "Jam Plum", 79, "Plum Jam");
         AddItemInfo(JaffaItem.jamL, "Jam Lemon", 80, "Lemon Jam");
         AddItemInfo(JaffaItem.jamV, "Vanilla Jam", 81, "Vanilla Jam");
@@ -108,7 +120,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.bagOfSeeds, "Bag Of Seeds Unidentified", 89, "Bag Of Seeds [Unidentified]");
         AddItemInfo(JaffaItem.bagOfSeedsIdentified, "Bag Of Seeds", 89, "Bag Of Seeds");
         AddItemInfo(JaffaItem.magnifier, "Magnifier", 91, "Magnifier");
-        AddItemInfo(JaffaItem.jaffaP, "Jaffa Plum", 86, "Plum Jaffa Cake");
+        AddItemInfo(JaffaItem.jaffaP, "Jaffa Plum", 86, getJaffaTitle("Plum"));
         AddItemInfo(JaffaItem.jamMix, "Jam Mix", 110, "Mix of Jams");
 
         AddItemInfo(JaffaItem.kettle, "Kettle", 92, "Empty Kettle");
@@ -125,8 +137,8 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.grinderMeat, "Meat Grinder", 101, "Meat Grinder");
         AddItemInfo(JaffaItem.wienerCocktail, "Cocktail Wiener", 102, "Cocktail Wiener");
-        AddItemInfo(JaffaItem.jaffaStrawberry, "Jaffa Strawberry", 103, "Strawberry Jaffa Cake");
-        AddItemInfo(JaffaItem.jaffaRaspberry, "Jaffa Raspberry", 104, "Raspberry Jaffa Cake");
+        AddItemInfo(JaffaItem.jaffaStrawberry, "Jaffa Strawberry", 103, getJaffaTitle("Strawberry"));
+        AddItemInfo(JaffaItem.jaffaRaspberry, "Jaffa Raspberry", 104, getJaffaTitle("Raspberry"));
         AddItemInfo(JaffaItem.raspberries, "Raspberries", 105, "Raspberries");
         AddItemInfo(JaffaItem.strawberries, "Strawberries", 106, "Strawberries");
         AddItemInfo(JaffaItem.jamRaspberry, "Jam Raspberry", 107, "Raspberry Jam");
@@ -197,7 +209,7 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.wolfHelmet, "Wolf Helmet", 153, "Wolf Helmet");
         AddItemInfo(JaffaItem.wolfBoots, "Wolf Boots", 154, "Wolf Boots");
-        AddItemInfo(JaffaItem.wolfChest, "Wolf Chest", 152, "Wolf Chest");
+        AddItemInfo(JaffaItem.wolfChest, "Wolf Chest", 152, "Wolf Chestplate");
         AddItemInfo(JaffaItem.wolfLeggins, "Wolf Leggings", 155, "Wolf Leggings");
 
         AddItemInfo(JaffaItem.wolfSkin, "Wolf Skin", 151, "Wolf Skin");

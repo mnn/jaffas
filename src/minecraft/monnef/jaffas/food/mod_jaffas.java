@@ -103,15 +103,15 @@ public class mod_jaffas {
     @Mod.Instance("moen-jaffas")
     public static mod_jaffas instance;
 
-    public boolean itemsReady = false;
-    public boolean checkUpdates;
-
     public static ItemJaffaPainting itemPainting;
     private int itemPaintingID;
 
     private static IDProvider idProvider = new IDProvider(3600, 24744);
 
     public static boolean debug;
+    public static String jaffasTitle;
+    public boolean itemsReady = false;
+    public boolean checkUpdates;
 
     private static int JaffaPaintingEntityID;
 
@@ -131,7 +131,6 @@ public class mod_jaffas {
         items.RegisterItemType(JaffaItemType.food, ItemJaffaFood.class);
         items.RegisterItemType(JaffaItemType.tool, ItemJaffaTool.class);
         items.RegisterItemType(JaffaItemType.pack, ItemJaffaPack.class);
-        items.InitializeItemInfos();
         ItemManager.mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
         ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
     }
@@ -163,6 +162,9 @@ public class mod_jaffas {
 
             itemPaintingID = idProvider.getItemIDFromConfig("painting");
 
+            // careful - order is important!
+            jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").value;
+            items.InitializeItemInfos();
             items.LoadItemsFromConfig(idProvider);
 
             blockJaffaBombID = idProvider.getBlockIDFromConfig("jaffa bomb");
