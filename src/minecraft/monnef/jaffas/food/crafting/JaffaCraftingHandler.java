@@ -46,7 +46,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
                            IInventory craftMatrix) {
         //HandleMallets(craftMatrix);
 
-        HandleTin(craftMatrix);
+        //HandleTin(craftMatrix);
         HandleRolls(craftMatrix);
 
         HandlePersistentItems(craftMatrix);
