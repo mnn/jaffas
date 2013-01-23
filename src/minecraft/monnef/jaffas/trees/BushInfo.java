@@ -10,7 +10,7 @@ public class BushInfo {
     public BlockJaffaCrops block;
 
     public int itemFruitID;
-    public ItemJaffaBerry itemFruit;
+    public Item itemFruit;
 
     public String name;
     public String seedsTitle;
@@ -23,6 +23,8 @@ public class BushInfo {
     public int phases;
     public int renderer;
     public mod_jaffas_trees.bushType type;
+    public EatableType eatable;
+    public DropType drop;
 
     public String getSeedsConfigName() {
         return this.name + " seeds";

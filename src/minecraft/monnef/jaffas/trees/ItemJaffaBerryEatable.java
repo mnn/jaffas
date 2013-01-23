@@ -1,10 +1,10 @@
 package monnef.jaffas.trees;
 
-import net.minecraft.item.Item;
+import monnef.jaffas.food.item.ItemJaffaFood;
 
-public class ItemJaffaFruit extends Item {
-    public ItemJaffaFruit(int v) {
-        super(v);
+public class ItemJaffaBerryEatable extends ItemJaffaFood {
+    public ItemJaffaBerryEatable(int id) {
+        super(id);
         setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 

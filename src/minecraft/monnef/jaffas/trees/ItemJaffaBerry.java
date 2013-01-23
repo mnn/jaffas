@@ -9,6 +9,6 @@ public class ItemJaffaBerry extends Item {
     }
 
     public String getTextureFile() {
-        return "/jaffas_02.png";
+        return mod_jaffas_trees.textureFile;
     }
 }

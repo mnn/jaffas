@@ -13,6 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
+import monnef.core.RegistryUtils;
 import monnef.core.Version;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -28,6 +29,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -35,6 +37,9 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.mod_jaffas.getItem;
+import static monnef.jaffas.trees.DropType.DropsFromGrass;
+import static monnef.jaffas.trees.EatableType.EatableNormal;
+import static monnef.jaffas.trees.EatableType.NotEatable;
 
 @Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = mod_jaffas_trees.channel, packetHandler = PacketHandler.class)
@@ -53,6 +58,7 @@ public class mod_jaffas_trees {
 
     public static BlockFruitCollector blockFruitCollector;
     public static int blockFruitCollectorID;
+    private static final int SEEDS_WEIGHT = 1;
 
     public static fruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
@@ -118,10 +124,10 @@ public class mod_jaffas_trees {
     private int itemOrangeID;
     private int itemPlumID;
     private int itemCoconutID;
-    public static ItemJaffaFruit itemLemon;
-    public static ItemJaffaFruit itemOrange;
-    public static ItemJaffaFruit itemPlum;
-    public static ItemJaffaFruit itemCoconut;
+    public static Item itemLemon;
+    public static Item itemOrange;
+    public static Item itemPlum;
+    public static Item itemCoconut;
 
     private int itemDebugID;
     public static ItemJaffaTreeDebugTool itemDebug;
@@ -204,16 +210,26 @@ public class mod_jaffas_trees {
     }
 
     private void PopulateBushInfo() {
-        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 34, "Coffee Plant", 96, "Coffee Beans", 128, null, 2, 1);
-        AddBushInfo(bushType.Strawberry, "strawberry", "Strawberry Seeds", 34, "Strawberry Plant", 99, "Strawberry", 129, null, 2, 1);
+        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 34, "Coffee Plant", 96, "Coffee Beans", 128, null, 2, 1, NotEatable, DropsFromGrass);
+        AddBushInfo(bushType.Strawberry, "strawberry", "Strawberry Seeds", 34, "Strawberry Plant", 99, "Strawberry", 129, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Onion, "onion", "Onion Seeds", 34, "Onion Plant", 102, "Onion", 130, null, 2, 1);
-        AddBushInfo(bushType.Paprika, "paprika", "Pepper Seeds", 34, "Pepper Plant", 105, "Pepper", 131, null, 2, 1);
-        AddBushInfo(bushType.Raspberry, "raspberry", "Raspberry Seeds", 34, "Raspberry Plant", 108, "Raspberry", 132, null, 2, 1);
-        AddBushInfo(bushType.Tomato, "tomato", "Tomato Seeds", 34, "Tomato Plant", 111, "Tomato", 133, null, 2, 1);
+        AddBushInfo(bushType.Onion, "onion", "Onion Seeds", 34, "Onion Plant", 102, "Onion", 130, null, 2, 1, NotEatable, DropsFromGrass);
+        AddBushInfo(bushType.Paprika, "paprika", "Pepper Seeds", 34, "Pepper Plant", 105, "Pepper", 131, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Raspberry, "raspberry", "Raspberry Seeds", 34, "Raspberry Plant", 108, "Raspberry", 132, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Tomato, "tomato", "Tomato Seeds", 34, "Tomato Plant", 111, "Tomato", 133, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Mustard, "mustard", "Little Mustard Seeds", 34, "Mustard Plant", 114, "Mustard", 134, null, 2, 1);
-        AddBushInfo(bushType.Peanuts, "peanuts", "Little Peanuts", 34, "Peanuts Plant", 117, "Peanuts", 135, null, 2, 1);
+        AddBushInfo(bushType.Mustard, "mustard", "Little Mustard Seeds", 34, "Mustard Plant", 114, "Mustard", 134, null, 2, 1, NotEatable, DropsFromGrass);
+        AddBushInfo(bushType.Peanuts, "peanuts", "Little Peanuts", 34, "Peanuts Plant", 117, "Peanuts", 135, null, 2, 1, EatableNormal, DropsFromGrass);
+    }
+
+    private Item constructFruit(int id, EatableType type) {
+        if (type == NotEatable) {
+            return new ItemJaffaBerry(id);
+        } else if (type == EatableNormal) {
+            return (new ItemJaffaBerryEatable(id)).Setup(2, 0.2f);
+        }
+
+        throw new RuntimeException("unknown eatable type");
     }
 
     private void constructItemsInBushInfo() {
@@ -224,8 +240,9 @@ public class mod_jaffas_trees {
             seeds.setItemName(info.getSeedsLanguageName()).setIconIndex(info.seedsTexture);
             LanguageRegistry.addName(seeds, info.seedsTitle);
             info.itemSeeds = seeds;
+            if (info.drop == DropsFromGrass) MinecraftForge.addGrassSeed(new ItemStack(seeds), SEEDS_WEIGHT);
 
-            ItemJaffaBerry fruit = new ItemJaffaBerry(info.itemFruitID);
+            Item fruit = constructFruit(info.itemFruitID, info.eatable);
             fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setCreativeTab(CreativeTab);
             LanguageRegistry.addName(fruit, info.fruitTitle);
             info.itemFruit = fruit;
@@ -239,7 +256,7 @@ public class mod_jaffas_trees {
         }
     }
 
-    private void AddBushInfo(bushType type, String name, String seedsTitle, int seedsTexture, String plantTitle, int plantTexture, String fruitTitle, int fruitTexture, Item product, int phases, int renderer) {
+    private void AddBushInfo(bushType type, String name, String seedsTitle, int seedsTexture, String plantTitle, int plantTexture, String fruitTitle, int fruitTexture, Item product, int phases, int renderer, EatableType eatable, DropType drop) {
         BushInfo info = new BushInfo();
 
         info.name = name;
@@ -253,6 +270,8 @@ public class mod_jaffas_trees {
         info.phases = phases;
         info.renderer = renderer;
         info.type = type;
+        info.eatable = eatable;
+        info.drop = drop;
 
         BushesList.put(type, info);
     }
@@ -269,22 +288,26 @@ public class mod_jaffas_trees {
         AddFruitTreesSequence(0, 0, 32, 4);
         AddFruitTreesSequence(1, 4, 32 + 4, 4);
 
+        for (int i = 1; i < mod_jaffas_trees.leavesTypesCount + 1; i++) {
+            MinecraftForge.addGrassSeed(getTreeSeeds(i), SEEDS_WEIGHT);
+        }
+
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
         GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
 
-        itemLemon = new ItemJaffaFruit(itemLemonID);
+        itemLemon = constructFruit(itemLemonID, NotEatable);
         itemLemon.setItemName("lemon").setIconCoord(4, 4);
         LanguageRegistry.addName(itemLemon, "Lemon");
 
-        itemOrange = new ItemJaffaFruit(itemOrangeID);
+        itemOrange = constructFruit(itemOrangeID, EatableNormal);
         itemOrange.setItemName("orange").setIconCoord(5, 4);
         LanguageRegistry.addName(itemOrange, "Orange");
 
-        itemPlum = new ItemJaffaFruit(itemPlumID);
+        itemPlum = constructFruit(itemPlumID, EatableNormal);
         itemPlum.setItemName("plum").setIconCoord(6, 4);
         LanguageRegistry.addName(itemPlum, "Plum");
 
-        itemCoconut = new ItemJaffaFruit(itemCoconutID);
+        itemCoconut = constructFruit(itemCoconutID, NotEatable);
         itemCoconut.setItemName("coconut").setIconCoord(7, 4);
         LanguageRegistry.addName(itemCoconut, "Coconut");
 
@@ -335,7 +358,7 @@ public class mod_jaffas_trees {
         leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;
         leaves.leavesBlock.setLeavesRequiresSelfNotify().setBlockName("fruitLeaves" + i).setCreativeTab(CreativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
-        GameRegistry.registerBlock(leaves.leavesBlock);
+        RegistryUtils.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
         leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15);
@@ -353,6 +376,15 @@ public class mod_jaffas_trees {
         leaves.seedsItem.setItemName("fruitSeeds" + i);
         leaves.seedsItem.serialNumber = i;
         LanguageRegistry.addName(leaves.seedsItem, "Fruit Seeds");
+    }
+
+    public static ItemStack getTreeSeeds(int type) {
+        ItemStack seed;
+        ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / 4).seedsItem;
+        int meta = type % 4;
+
+        seed = new ItemStack(item, 1, meta);
+        return seed;
     }
 
     @Mod.ServerStarting

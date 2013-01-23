@@ -2,7 +2,6 @@ package monnef.jaffas.food.item;
 
 import monnef.core.PlayerHelper;
 import monnef.jaffas.food.mod_jaffas;
-import monnef.jaffas.trees.ItemFruitSeeds;
 import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,10 +43,7 @@ public class ItemBagOfSeeds extends Item {
                         // choosing from our seeds (tree, bush)
                         if (rand.nextBoolean()) {
                             int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
-                            ItemFruitSeeds item = mod_jaffas_trees.leavesList.get(type / 4).seedsItem;
-                            int meta = type % 4;
-
-                            seed = new ItemStack(item, 1, meta);
+                            seed = mod_jaffas_trees.getTreeSeeds(type);
                         } else {
                             int type = rand.nextInt(mod_jaffas_trees.BushesList.size());
                             seed = new ItemStack(mod_jaffas_trees.BushesList.get(mod_jaffas_trees.bushType.values()[type]).itemSeeds);
@@ -62,4 +58,6 @@ public class ItemBagOfSeeds extends Item {
         par1ItemStack.stackSize--;
         return par1ItemStack;
     }
+
+
 }

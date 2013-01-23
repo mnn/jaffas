@@ -154,12 +154,12 @@ public class mod_jaffas_ores {
 
         BlockJaffarrol = new BlockOres(BlockJaffarrolID, 4, Material.iron);
         BlockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
-        RegistryUtils.RegisterBlock(BlockJaffarrol);
+        RegistryUtils.registerBlock(BlockJaffarrol);
         LanguageRegistry.addName(BlockJaffarrol, "Block of Jaffarrol");
 
         BlockLimsew = new BlockOres(BlockLimsewID, 5, Material.iron);
         BlockLimsew.setBlockName("blockOfLimsew").setHardness(4f).setResistance(7f);
-        RegistryUtils.RegisterBlock(BlockLimsew);
+        RegistryUtils.registerBlock(BlockLimsew);
         LanguageRegistry.addName(BlockLimsew, "Block of Limsew");
 
         ItemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);
