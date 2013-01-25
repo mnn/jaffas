@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.BitHelper;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -17,7 +16,7 @@ import java.util.Random;
 import static monnef.jaffas.food.mod_jaffas.blockPizza;
 import static monnef.jaffas.food.mod_jaffas.getItem;
 
-public class BlockPizza extends Block {
+public class BlockPizza extends BlockJaffas {
     public static final int BIT_ROTATION = 3;
     public static final float f2 = 2F / 16F;
 
@@ -75,11 +74,6 @@ public class BlockPizza extends Block {
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
         par1World.setBlockTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
-    }
-
-    @Override
-    public String getTextureFile() {
-        return "/jaffas_01.png";
     }
 
     @Override

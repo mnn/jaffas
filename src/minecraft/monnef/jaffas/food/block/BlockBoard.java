@@ -3,7 +3,6 @@ package monnef.jaffas.food.block;
 import monnef.core.BitHelper;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.mod_jaffas;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -19,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockBoard extends BlockContainer {
+public class BlockBoard extends BlockContainerJaffas {
     public final static float unit = 1f / 16f;
     public final static float f1 = unit * 1f;
     public final static float f1d = 1f - unit * 1f;
@@ -42,10 +41,6 @@ public class BlockBoard extends BlockContainer {
         setCreativeTab(mod_jaffas.CreativeTab);
         setHardness(0.2f);
         setBlockName("blockBoard");
-    }
-
-    public String getTextureFile() {
-        return "/jaffas_01.png";
     }
 
     @Override

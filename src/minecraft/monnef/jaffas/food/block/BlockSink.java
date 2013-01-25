@@ -4,7 +4,6 @@ import monnef.core.BitHelper;
 import monnef.core.PlayerHelper;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,7 +13,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockSink extends Block {
+public class BlockSink extends BlockJaffas {
     public static final int waterBit = 2;
     private static final boolean debug = false;
 
@@ -46,11 +45,6 @@ public class BlockSink extends Block {
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
         par1World.setBlockTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
-    }
-
-    @Override
-    public String getTextureFile() {
-        return "/jaffas_01.png";
     }
 
     @Override

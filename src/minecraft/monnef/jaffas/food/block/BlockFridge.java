@@ -4,9 +4,7 @@ package monnef.jaffas.food.block;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +18,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockFridge extends BlockContainer {
+public class BlockFridge extends BlockContainerJaffas {
 
     private static int FridgeBottom = 43;
     private static int FridgeTopTop = 40;
@@ -35,13 +33,7 @@ public class BlockFridge extends BlockContainer {
         setHardness(2.0F);
         setResistance(5.0F);
         setBlockName("blockFridge");
-        setCreativeTab(CreativeTabs.tabMisc);
         setRequiresSelfNotify();
-        this.setCreativeTab(mod_jaffas.CreativeTab);
-    }
-
-    public String getTextureFile() {
-        return "/jaffas_01.png";
     }
 
     @Override

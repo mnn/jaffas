@@ -18,6 +18,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.IDProvider;
+import monnef.core.RegistryUtils;
 import monnef.core.Version;
 import monnef.jaffas.food.block.*;
 import monnef.jaffas.food.client.GuiHandler;
@@ -77,6 +78,12 @@ public class mod_jaffas {
     public static BlockPizza blockPizza;
     public static int blockPizzaID;
 
+    public static int blockColumnID;
+    public static BlockColumn blockColumn;
+
+    public static int blockJaffaStatueID;
+    public static BlockJaffaStatue blockJaffaStatue;
+
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
     CHAIN(15, new int[]{2, 5, 4, 1}, 12),
@@ -119,6 +126,7 @@ public class mod_jaffas {
     public ModuleManager moduleManager;
     private Items items;
     boolean forestryDetected;
+    public static String textureFile = "/jaffas_01.png";
 
     public boolean IsForestryDetected() {
         return this.forestryDetected;
@@ -178,6 +186,8 @@ public class mod_jaffas {
             blockSinkID = idProvider.getBlockIDFromConfig("sink");
             blockBoardID = idProvider.getBlockIDFromConfig("board");
             blockPizzaID = idProvider.getBlockIDFromConfig("pizza");
+            blockColumnID = idProvider.getBlockIDFromConfig("column");
+            blockJaffaStatueID = idProvider.getBlockIDFromConfig("statue");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
         } catch (Exception e) {
@@ -279,6 +289,16 @@ public class mod_jaffas {
         GameRegistry.registerBlock(blockPizza, blockPizza.getBlockName());
         LanguageRegistry.addName(blockPizza, "Block of Pizza");
         GameRegistry.registerTileEntity(TileEntityPizza.class, "pizza");
+
+        blockColumn = new BlockColumn(blockColumnID, 149, Material.rock);
+        RegistryUtils.registerBlock(blockColumn);
+        LanguageRegistry.addName(blockColumn, "Column");
+        GameRegistry.registerTileEntity(TileEntityColumn.class, "column");
+
+        blockJaffaStatue = new BlockJaffaStatue(blockJaffaStatueID, 149, Material.iron);
+        RegistryUtils.registerBlock(blockJaffaStatue);
+        LanguageRegistry.addName(blockJaffaStatue, "Jaffa Statue");
+        GameRegistry.registerTileEntity(TileEntityJaffaStatue.class, "jaffaStatue");
     }
 
     private void createJaffaArmorAndSword() {
