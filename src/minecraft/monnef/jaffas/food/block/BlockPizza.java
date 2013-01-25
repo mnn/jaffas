@@ -110,19 +110,6 @@ public class BlockPizza extends BlockJaffas {
             } else {
                 world.setBlockWithNotify(x, y, z, 0);
             }
-
-            /*
-            int var6 = world.getBlockMetadata(x, y, z) + 1;
-
-            if (var6 >= 6)
-            {
-                world.setBlockWithNotify(x, y, z, 0);
-            }
-            else
-            {
-                world.setBlockMetadataWithNotify(x, y, z, var6);
-                world.markBlockForRenderUpdate2(x, y, z);
-            } */
         }
     }
 

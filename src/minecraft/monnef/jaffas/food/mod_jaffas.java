@@ -84,6 +84,9 @@ public class mod_jaffas {
     public static int blockJaffaStatueID;
     public static BlockJaffaStatue blockJaffaStatue;
 
+    public static int blockPieID;
+    public static BlockPie blockPie;
+
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
     CHAIN(15, new int[]{2, 5, 4, 1}, 12),
@@ -188,6 +191,7 @@ public class mod_jaffas {
             blockPizzaID = idProvider.getBlockIDFromConfig("pizza");
             blockColumnID = idProvider.getBlockIDFromConfig("column");
             blockJaffaStatueID = idProvider.getBlockIDFromConfig("statue");
+            blockPieID = idProvider.getBlockIDFromConfig("pie");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
         } catch (Exception e) {
@@ -299,6 +303,10 @@ public class mod_jaffas {
         RegistryUtils.registerBlock(blockJaffaStatue);
         LanguageRegistry.addName(blockJaffaStatue, "Jaffa Statue");
         GameRegistry.registerTileEntity(TileEntityJaffaStatue.class, "jaffaStatue");
+
+        blockPie = new BlockPie(blockPieID, 149);
+        RegistryUtils.registerMultiBlock(blockPie, ItemBlockPie.class, BlockPie.multiBlockNames);
+        GameRegistry.registerTileEntity(TileEntityPie.class, "jaffaPie");
     }
 
     private void createJaffaArmorAndSword() {

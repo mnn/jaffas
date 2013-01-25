@@ -22,9 +22,9 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySink.class, new TileEntitySinkRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoard.class, new TileEntityBoardRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPizza.class, new TileEntityPizzaRenderer());
-
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityColumn.class, new TileEntityColumnRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJaffaStatue.class, new TileEntityJaffaStatueRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPie.class, new TileEntityPieRenderer());
 
         mod_jaffas.renderID = RenderingRegistry.getNextAvailableRenderId();
         //RenderingRegistry.registerBlockHandler(new RenderingHandler());
