@@ -17,28 +17,29 @@ public class JaffaCraftingHandler implements ICraftingHandler {
 
     private static HashMap<Integer, PersistentItemInfo> persistentItems = new HashMap<Integer, PersistentItemInfo>();
 
-    public static void AddPersistentItem(int ID) {
-        AddPersistentItem(ID, false, -1);
+    public static PersistentItemInfo AddPersistentItem(int ID) {
+        return AddPersistentItem(ID, false, -1);
     }
 
-    public static void AddPersistentItem(JaffaItem item) {
-        AddPersistentItem(ItemManager.getItem(item).shiftedIndex);
+    public static PersistentItemInfo AddPersistentItem(JaffaItem item) {
+        return AddPersistentItem(ItemManager.getItem(item).shiftedIndex);
     }
 
-    public static void AddPersistentItem(JaffaItem item, boolean takesDamage, int substituteItem) {
-        AddPersistentItem(ItemManager.getItem(item).shiftedIndex, takesDamage, substituteItem);
+    public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, int substituteItem) {
+        return AddPersistentItem(ItemManager.getItem(item).shiftedIndex, takesDamage, substituteItem);
     }
 
-    public static void AddPersistentItem(int ID, boolean takesDamage, int substituteItem) {
+    public static PersistentItemInfo AddPersistentItem(int ID, boolean takesDamage, int substituteItem) {
         PersistentItemInfo info = new PersistentItemInfo(ID);
         if (takesDamage) info.SetDamageCopies();
         if (substituteItem > -1) info.SetSubstituteItem(substituteItem);
 
         persistentItems.put(ID, info);
+        return info;
     }
 
-    public static void AddPersistentItem(JaffaItem item, boolean takesDamage, JaffaItem substitude) {
-        AddPersistentItem(item, takesDamage, ItemManager.getItem(substitude).shiftedIndex);
+    public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, JaffaItem substitude) {
+        return AddPersistentItem(item, takesDamage, ItemManager.getItem(substitude).shiftedIndex);
     }
 
     @Override
@@ -62,7 +63,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
                 ItemStack item = matrix.getStackInSlot(i);
                 PersistentItemInfo info = persistentItems.get(item.itemID);
                 if (info != null) {
-                    if (info.Damage) {
+                    if (info.damage) {
                         ItemStack newItem = item.copy();
                         newItem.stackSize++;
                         int newDamage = item.getItemDamage() + 1;
@@ -70,10 +71,10 @@ public class JaffaCraftingHandler implements ICraftingHandler {
                         if (newDamage < item.getMaxDamage()) {
                             newItem.setItemDamage(newDamage);
                             matrix.setInventorySlotContents(i, newItem);
-                        } else if (info.SubstituteItemID > -1) {
+                        } else if (info.substituteItemID > -1) {
                             doSubstitution(matrix, processedSlots, info);
                         }
-                    } else if (info.SubstituteItemID > -1) {
+                    } else if (info.substituteItemID > -1) {
                         doSubstitution(matrix, processedSlots, info);
                     } else {
                         item.stackSize++;
@@ -89,7 +90,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
             throw new RuntimeException("No space for recipe output - corrupt recipe?");
         }
 
-        matrix.setInventorySlotContents(slot, new ItemStack(info.SubstituteItemID, 2, 0)); // 2 because one will be consumed (hmm)
+        matrix.setInventorySlotContents(slot, new ItemStack(info.substituteItemID, 1 + info.substituteItemsCount, 0)); // +1 because one will be consumed (hmm)
         processedSlots.add(slot);
     }
 

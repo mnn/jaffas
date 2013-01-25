@@ -9,7 +9,7 @@ import org.lwjgl.opengl.GL12;
 public class TileEntityPieRenderer extends TileEntitySpecialRenderer {
     private ModelPie pie;
 
-    private String[] textures = new String[]{"/jaffas_pie01.png", "/jaffas_pie02.png", "/jaffas_pie03.png", "/jaffas_pie04.png"};
+    private String[] textures = new String[]{"/jaffas_pie01.png", "/jaffas_pie02.png", "/jaffas_pie04.png", "/jaffas_pie03.png"};
 
     public TileEntityPieRenderer() {
         pie = new ModelPie();

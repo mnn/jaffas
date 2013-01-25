@@ -20,13 +20,17 @@ public class BlockPie extends BlockJaffas {
     public static final float f2 = 2F / 16F;
     public static final float f3 = 3F / 16F;
     public static final float f3d = 1F - f3;
-    public static final String[] multiBlockNames = new String[]{"X", "Y", "Z", "ZZ"};
+    public static final String[] multiBlockNames = new String[]{"Strawberry Pie", "Raspberry Pie", "Vanilla Pie", "Plum Pie"};
 
     public BlockPie(int par1, int par2) {
         super(par1, par2, Material.cake);
         setBlockName("blockJPie");
         setBlockBounds(f3, 0, f3, f3d, f3, f3d);
         setHardness(0.5f);
+
+        if (TileEntityPie.PieType.values().length != multiBlockNames.length) {
+            throw new RuntimeException("pie types number != pie types title number");
+        }
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {

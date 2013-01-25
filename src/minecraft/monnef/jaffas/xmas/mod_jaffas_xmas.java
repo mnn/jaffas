@@ -148,7 +148,7 @@ public class mod_jaffas_xmas {
         installPresentRecipe(2, 0, false, 11);
 
         // star
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.pastry));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.pastrySweet));
         GameRegistry.addSmelting(getItem(JaffaItem.xcandyStarRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandyStar)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarChoco), 16), "C", "S", 'C', getItem(JaffaItem.chocolate), 'S', getItem(JaffaItem.xcandyStar));
         Item[] starJams = new Item[]{getItem(JaffaItem.jamR), getItem(JaffaItem.jamStrawberry), getItem(JaffaItem.jamRaspberry)};
@@ -160,7 +160,7 @@ public class mod_jaffas_xmas {
         }
 
         // small roll
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X ", " X", "X ", 'X', getItem(JaffaItem.pastry));
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X ", " X", "X ", 'X', getItem(JaffaItem.pastrySweet));
         GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollChoco), 6), "C", "R", "C", 'C', getItem(JaffaItem.chocolate), 'R', getItem(JaffaItem.xcandySmallRoll));
 

@@ -1,21 +1,27 @@
 package monnef.jaffas.food.crafting;
 
 public class PersistentItemInfo {
-    public int ItemID;
-    public boolean Damage = false;
-    public int SubstituteItemID = -1;
+    public int itemID;
+    public boolean damage = false;
+    public int substituteItemID = -1;
+    public int substituteItemsCount = 1;
 
     public PersistentItemInfo(int ID) {
-        this.ItemID = ID;
+        this.itemID = ID;
     }
 
     public PersistentItemInfo SetDamageCopies() {
-        this.Damage = true;
+        this.damage = true;
         return this;
     }
 
     public PersistentItemInfo SetSubstituteItem(int ID) {
-        this.SubstituteItemID = ID;
+        this.substituteItemID = ID;
+        return this;
+    }
+
+    public PersistentItemInfo SetSubstituteItemsCount(int count) {
+        this.substituteItemsCount = count;
         return this;
     }
 }

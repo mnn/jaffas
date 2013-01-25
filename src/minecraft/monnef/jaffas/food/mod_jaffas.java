@@ -294,17 +294,17 @@ public class mod_jaffas {
         LanguageRegistry.addName(blockPizza, "Block of Pizza");
         GameRegistry.registerTileEntity(TileEntityPizza.class, "pizza");
 
-        blockColumn = new BlockColumn(blockColumnID, 149, Material.rock);
+        blockColumn = new BlockColumn(blockColumnID, 160, Material.rock);
         RegistryUtils.registerBlock(blockColumn);
         LanguageRegistry.addName(blockColumn, "Column");
         GameRegistry.registerTileEntity(TileEntityColumn.class, "column");
 
-        blockJaffaStatue = new BlockJaffaStatue(blockJaffaStatueID, 149, Material.iron);
+        blockJaffaStatue = new BlockJaffaStatue(blockJaffaStatueID, 6, Material.iron);
         RegistryUtils.registerBlock(blockJaffaStatue);
         LanguageRegistry.addName(blockJaffaStatue, "Jaffa Statue");
         GameRegistry.registerTileEntity(TileEntityJaffaStatue.class, "jaffaStatue");
 
-        blockPie = new BlockPie(blockPieID, 149);
+        blockPie = new BlockPie(blockPieID, 156);
         RegistryUtils.registerMultiBlock(blockPie, ItemBlockPie.class, BlockPie.multiBlockNames);
         GameRegistry.registerTileEntity(TileEntityPie.class, "jaffaPie");
     }
