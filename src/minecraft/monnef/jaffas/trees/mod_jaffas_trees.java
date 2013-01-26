@@ -15,6 +15,7 @@ import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
 import monnef.core.RegistryUtils;
 import monnef.core.Version;
+import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.RecipesBoard;
@@ -36,6 +37,8 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import static monnef.jaffas.food.crafting.Recipes.AddPieRecipe;
+import static monnef.jaffas.food.item.JaffaItem.*;
 import static monnef.jaffas.food.mod_jaffas.getItem;
 import static monnef.jaffas.trees.DropType.DropsFromGrass;
 import static monnef.jaffas.trees.EatableType.EatableNormal;
@@ -461,6 +464,11 @@ public class mod_jaffas_trees {
         RecipesBoard.addRecipe(mod_jaffas_trees.getFruitStack(mod_jaffas_trees.bushType.Onion), new ItemStack(getItem(JaffaItem.onionSliced)));
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Item.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(bushType.Tomato), getFruitStack(bushType.Tomato));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bottleMustard)), getItem(JaffaItem.bottleEmpty), getFruit(bushType.Mustard), getFruit(bushType.Mustard));
+
+        AddPieRecipe(getFruit(bushType.Strawberry), pieStrawberryRaw, TileEntityPie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
+        AddPieRecipe(getFruit(bushType.Raspberry), pieRaspberryRaw, TileEntityPie.PieType.RASPBERRY, true, getItem(jamRaspberry));
+        AddPieRecipe(null, pieVanillaRaw, TileEntityPie.PieType.VANILLA, true, getItem(jamV));
+        AddPieRecipe(itemPlum, piePlumRaw, TileEntityPie.PieType.PLUM, true, getItem(jamP));
     }
 
     public static Item getFruit(bushType type) {

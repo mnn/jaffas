@@ -14,7 +14,10 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
+import static monnef.jaffas.food.mod_jaffas.blockPie;
+import static monnef.jaffas.food.mod_jaffas.instance;
 
 public class Recipes {
     public static void install() {
@@ -86,7 +89,7 @@ public class Recipes {
         JaffaCraftingHandler.AddPersistentItem(malletDiamond, true, -1);
 
         AddMalletShapedRecipe(new ItemStack(getItem(beans)), new ItemStack(Item.dyePowder, 1, 3));
-        AddMalletShapedRecipe(new ItemStack(getItem(butter)), new ItemStack(Item.bucketMilk));
+        AddMalletShapedRecipe(new ItemStack(getItem(butter)), getItemStack(milkBoxFull));
         AddMalletShapedRecipe(new ItemStack(getItem(cakeTin)), new ItemStack(Item.ingotIron));
 
         // moved to the trees module because of the peanut
@@ -108,7 +111,7 @@ public class Recipes {
 
         GameRegistry.addSmelting(getItem(sweetRollRaw).shiftedIndex, new ItemStack(getItem(sweetRoll)), 0.2F);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), new ItemStack(Item.bucketMilk));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), getItem(milkBoxFull));
 
         GameRegistry.addRecipe(new ItemStack(getItem(creamRoll)), "RC", 'R', new ItemStack(getItem(sweetRoll)), 'C', new ItemStack(getItem(cream)));
 
@@ -145,9 +148,9 @@ public class Recipes {
                 new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)),
                 new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)));
 
-        GameRegistry.addRecipe(new ItemStack(mod_jaffas.instance.blockJaffaBomb), "J", "R", "T", 'J', new ItemStack(getItem(jaffasPack)),
+        GameRegistry.addRecipe(new ItemStack(instance.blockJaffaBomb), "J", "R", "T", 'J', new ItemStack(getItem(jaffasPack)),
                 'R', new ItemStack(getItem(jaffasPackR)), 'T', new ItemStack(Block.tnt));
-        GameRegistry.addRecipe(new ItemStack(mod_jaffas.instance.blockJaffaBomb), "J", "O", "T", 'J', new ItemStack(getItem(jaffasPack)),
+        GameRegistry.addRecipe(new ItemStack(instance.blockJaffaBomb), "J", "O", "T", 'J', new ItemStack(getItem(jaffasPack)),
                 'O', new ItemStack(getItem(jaffasPackO)), 'T', new ItemStack(Block.tnt));
 
         //RecipesFridge.AddRecipe(Block.dirt.blockID, new ItemStack(Block.gravel));
@@ -171,7 +174,7 @@ public class Recipes {
         RecipesFridge.AddRecipe(getItem(chocolateIcecreamRaw).shiftedIndex, new ItemStack(getItem(chocolateIcecreamFrozen)));
 
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
-            GameRegistry.addRecipe(new ItemStack(mod_jaffas.instance.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
+            GameRegistry.addRecipe(new ItemStack(instance.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(donutRaw)), " P ", "P P", " P ", 'P', new ItemStack(getItem(pastrySweet)));
@@ -203,7 +206,7 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(magnifier)), "GG ", "GG ", "  I", 'G', new ItemStack(Block.glass), 'I', new ItemStack(Item.ingotIron));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(bagOfSeedsIdentified)), new ItemStack(getItem(magnifier)), new ItemStack(getItem(bagOfSeeds)));
 
-        GameRegistry.addRecipe(new ItemStack(mod_jaffas.instance.itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(jaffa)));
+        GameRegistry.addRecipe(new ItemStack(instance.itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(jaffa)));
 
         GameRegistry.addSmelting(getItem(vanillaPowder).shiftedIndex, new ItemStack(getItem(jamV)), 0.6F);
 
@@ -248,7 +251,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(skewerRaw)), new ItemStack(getItem(ironSkewer)), new ItemStack(getItem(rollChopped)), new ItemStack(getItem(meatChopped)));
         GameRegistry.addSmelting(getItem(skewerRaw).shiftedIndex, new ItemStack(getItem(skewer)), 2F);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(rollRaw), 8), " P", "P ", 'P', new ItemStack(getItem(pastrySweet)));
+        GameRegistry.addRecipe(new ItemStack(getItem(rollRaw), 8), " P", "P ", 'P', new ItemStack(getItem(pastry)));
         GameRegistry.addSmelting(getItem(rollRaw).shiftedIndex, new ItemStack(getItem(roll)), 0.5F);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(omeletteRaw), 3), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
@@ -261,7 +264,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(gingerbread)), new ItemStack(getItem(pastrySweet)), new ItemStack(getItem(honey)));
 
         //honey recipe
-        if (mod_jaffas.instance.IsForestryDetected()) {
+        if (instance.IsForestryDetected()) {
             ItemStack i = forestry.api.core.ItemInterface.getItem("honeyDrop");
             GameRegistry.addRecipe(new ItemStack(getItem(honey)), "H", "H", "B", 'H', i, 'B', Item.glassBottle);
         } else {
@@ -307,6 +310,7 @@ public class Recipes {
 
         GameRegistry.addRecipe(getItemStack(breadRaw), "PPP", "PPP", 'P', getItem(pastry));
         GameRegistry.addSmelting(getItem(breadRaw).shiftedIndex, getItemStack(bread), 0.5f);
+
         GameRegistry.addRecipe(getItemStack(rawBurger), "PPP", "PPP", 'P', getItem(mincedMeat));
         //GameRegistry.addSmelting(getItem(JaffaItem.rawBurger).shiftedIndex, getItemStack(JaffaItem.burger), 2f);
         addFryingPanRecipe(rawBurger, fryingPanBurgerRaw, fryingPanBurger, burger);
@@ -316,8 +320,44 @@ public class Recipes {
         addFryingPanRecipe(Item.egg, fryingPanEggRaw, fryingPanEgg, eggFried);
         addFryingPanRecipe(chipsRaw, fryingPanChipsRaw, fryingPanChips, chips);
         RecipesBoard.addRecipe(new ItemStack(Item.potato), getItemStack(chipsRaw));
+
+        addJamBreadSliceRecipe(jamStrawberry);
+        addJamBreadSliceRecipe(jamRaspberry);
+        addJamBreadSliceRecipe(jamR);
+        GameRegistry.addShapelessRecipe(getItemStack(breadSliceButter, 6), getItemStackAnyDamage(knifeKitchen), getItem(butter),
+                getItem(breadSliceToasted), getItem(breadSliceToasted), getItem(breadSliceToasted),
+                getItem(breadSliceToasted), getItem(breadSliceToasted), getItem(breadSliceToasted));
+        GameRegistry.addRecipe(getItemStack(breadSliceEgg), "E", "T", 'E', getItem(eggFried), 'T', getItem(breadSliceToasted));
+        GameRegistry.addSmelting(getItem(breadSlice).shiftedIndex, getItemStack(breadSliceToasted), 0.1f);
+
+
     }
 
+    public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {
+        String ingredientsShape = " I ";
+
+        // vanilla
+        if (highCostIngredient.shiftedIndex == getItem(jamV).shiftedIndex) {
+            ingredientsShape = "I I";
+        }
+
+        Item pastry = getItem(isSweet ? pastrySweet : JaffaItem.pastry);
+        if (lowCostIngredient != null) {
+            GameRegistry.addRecipe(getItemStack(rawPie), " I ", "III", "PPP", 'I', lowCostIngredient, 'P', pastry);
+        }
+
+        if (highCostIngredient != null) {
+            GameRegistry.addRecipe(getItemStack(rawPie), ingredientsShape, "PPP", 'I', highCostIngredient, 'P', pastry);
+        }
+
+        GameRegistry.addSmelting(getItem(rawPie).shiftedIndex, new ItemStack(blockPie, 1, type.ordinal()), 5f);
+    }
+
+    private static void addJamBreadSliceRecipe(JaffaItem jam) {
+        GameRegistry.addShapelessRecipe(getItemStack(breadSliceJam, 6), getItemStackAnyDamage(knifeKitchen), getItem(jam),
+                getItem(breadSliceToasted), getItem(breadSliceToasted), getItem(breadSliceToasted),
+                getItem(breadSliceToasted), getItem(breadSliceToasted), getItem(breadSliceToasted));
+    }
 
     private static void addFryingPanRecipe(Item input, JaffaItem coupledRaw, JaffaItem coupled, JaffaItem output) {
         GameRegistry.addRecipe(getItemStack(coupledRaw), "I", "F", 'I', input, 'F', getItem(fryingPan));
@@ -328,6 +368,10 @@ public class Recipes {
 
     private static void addFryingPanRecipe(JaffaItem input, JaffaItem coupledRaw, JaffaItem coupled, JaffaItem output) {
         addFryingPanRecipe(getItem(input), coupledRaw, coupled, output);
+    }
+
+    private static ItemStack getItemStackAnyDamage(JaffaItem item) {
+        return new ItemStack(getItem(item), 1, -1);
     }
 
     private static ItemStack getItemStack(JaffaItem item, int size) {
@@ -345,7 +389,7 @@ public class Recipes {
     }
 
     private static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
-        mod_jaffas.instance.AddMalletShapedRecipe(output, input);
+        instance.AddMalletShapedRecipe(output, input);
     }
 
     private static Item getItem(JaffaItem item) {

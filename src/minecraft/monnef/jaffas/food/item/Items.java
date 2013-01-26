@@ -1,5 +1,6 @@
 package monnef.jaffas.food.item;
 
+import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.item.EnumArmorMaterial;
@@ -12,6 +13,8 @@ import static monnef.jaffas.food.item.JaffaItem.*;
 
 public class Items extends ItemManagerAccessor {
     public static final String MINCEABLEMEAT = "jaffasMinceAbleMeat";
+    public static final String JAFFA = "jaffasAny";
+    public static final String JAFFA_FILLED = "jaffasFilled";
 
     @Override
     public ModulesEnum getMyModule() {
@@ -227,6 +230,11 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.chips, "Chips", 167, "Chips");
         AddItemInfo(JaffaItem.fryingPanChipsRaw, "Frying Pan Chips Raw", 168, "Raw Chips in Frying Pan");
         AddItemInfo(JaffaItem.fryingPanChips, "Frying Pan Chips", 168, "Chips in Frying Pan");
+
+        AddItemInfo(JaffaItem.pieStrawberryRaw, "Raw Strawberry Pie", BlockPie.textureIndexFromMeta[0] + 13, "");
+        AddItemInfo(JaffaItem.pieRaspberryRaw, "Raw Raspberry Pie", BlockPie.textureIndexFromMeta[1] + 13, "");
+        AddItemInfo(JaffaItem.pieVanillaRaw, "Raw Vanilla Pie", BlockPie.textureIndexFromMeta[2] + 13, "");
+        AddItemInfo(JaffaItem.piePlumRaw, "Raw Plum Pie", BlockPie.textureIndexFromMeta[3] + 13, "");
     }
 
     @Override
@@ -391,7 +399,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaFood(breadSliceToasted).Setup(3, 0.33f);
         createJaffaFood(breadSliceJam).Setup(3, 0.33f);
-        createJaffaFood(breadSliceButter).Setup(3, 0.33f);
+        createJaffaFood(breadSliceButter).Setup(2, 0.33f);
         createJaffaFood(breadSliceEgg).Setup(3, 0.33f);
 
         createJaffaItem(bottleEmpty);
@@ -429,10 +437,15 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(crumpledPaper);
         createJaffaItem(scrap);
 
-        createJaffaFood(chips, 3, 0.7f);
+        createJaffaFood(chips).Setup(3, 0.7f);
         createJaffaItem(chipsRaw);
         createJaffaItem(fryingPanChips);
         createJaffaItem(fryingPanChipsRaw);
+
+        createJaffaItem(pieStrawberryRaw);
+        createJaffaItem(pieRaspberryRaw);
+        createJaffaItem(pieVanillaRaw);
+        createJaffaItem(piePlumRaw);
 
         createItemsRegistration();
     }
@@ -446,5 +459,14 @@ public class Items extends ItemManagerAccessor {
         OreDictionary.registerOre(MINCEABLEMEAT, Item.fishRaw);
         OreDictionary.registerOre(MINCEABLEMEAT, Item.beefRaw);
         OreDictionary.registerOre(MINCEABLEMEAT, Item.chickenRaw);
+
+        JaffaItem jaffas[] = new JaffaItem[]{jaffa, jaffaR, jaffaO, jaffaP, jaffaL, jaffaV, jaffaStrawberry, jaffaRaspberry};
+        for (int i = 0; i < jaffas.length; i++) {
+            Item item = getItem(jaffas[i]);
+            if (i != 0) {
+                OreDictionary.registerOre(JAFFA_FILLED, item);
+            }
+            OreDictionary.registerOre(JAFFA, item);
+        }
     }
 }

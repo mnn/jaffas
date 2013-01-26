@@ -21,6 +21,7 @@ public class BlockPie extends BlockJaffas {
     public static final float f3 = 3F / 16F;
     public static final float f3d = 1F - f3;
     public static final String[] multiBlockNames = new String[]{"Strawberry Pie", "Raspberry Pie", "Vanilla Pie", "Plum Pie"};
+    public static final int[] textureIndexFromMeta = new int[]{156, 157, 159, 158};
 
     public BlockPie(int par1, int par2) {
         super(par1, par2, Material.cake);
@@ -30,6 +31,10 @@ public class BlockPie extends BlockJaffas {
 
         if (TileEntityPie.PieType.values().length != multiBlockNames.length) {
             throw new RuntimeException("pie types number != pie types title number");
+        }
+
+        if (TileEntityPie.PieType.values().length != textureIndexFromMeta.length) {
+            throw new RuntimeException("pie types number != texture types title number");
         }
     }
 
@@ -121,5 +126,10 @@ public class BlockPie extends BlockJaffas {
         for (int ix = 0; ix < TileEntityPie.PieType.values().length; ix++) {
             subItems.add(new ItemStack(this, 1, ix));
         }
+    }
+
+    @Override
+    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
+        return textureIndexFromMeta[metadata];
     }
 }
