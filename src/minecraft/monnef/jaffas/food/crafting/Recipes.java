@@ -12,12 +12,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
-import static monnef.jaffas.food.mod_jaffas.blockPie;
-import static monnef.jaffas.food.mod_jaffas.instance;
+import static monnef.jaffas.food.mod_jaffas.*;
 
 public class Recipes {
     public static void install() {
@@ -330,7 +330,9 @@ public class Recipes {
         GameRegistry.addRecipe(getItemStack(breadSliceEgg), "E", "T", 'E', getItem(eggFried), 'T', getItem(breadSliceToasted));
         GameRegistry.addSmelting(getItem(breadSlice).shiftedIndex, getItemStack(breadSliceToasted), 0.1f);
 
-
+        // 15 ~ white
+        GameRegistry.addRecipe(new ItemStack(blockColumn), "SSS", "DSD", "SSS", 'S', Block.stone, 'D', new ItemStack(Item.dyePowder, 1, 15));
+        addRecipe(new ShapedOreRecipe(blockJaffaStatue, "JIJ", "III", "JIJ", 'J', Items.JAFFA, 'I', Item.ingotIron));
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {

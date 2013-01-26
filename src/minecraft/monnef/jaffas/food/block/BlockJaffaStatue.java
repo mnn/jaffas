@@ -12,6 +12,8 @@ public class BlockJaffaStatue extends BlockJaffas {
         super(par1, par2, par3Material);
         setRequiresSelfNotify();
         setBlockName("blockJaffaStatue");
+        setHardness(1f);
+        setResistance(10f);
     }
 
     @Override

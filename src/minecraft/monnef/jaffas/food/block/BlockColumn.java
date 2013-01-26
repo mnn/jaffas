@@ -10,6 +10,8 @@ public class BlockColumn extends BlockJaffas {
         super(par1, par2, par3Material);
         setRequiresSelfNotify();
         setBlockName("blockColumn");
+        setHardness(1f);
+        setResistance(10f);
     }
 
     @Override
