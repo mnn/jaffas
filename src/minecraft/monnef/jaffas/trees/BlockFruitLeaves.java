@@ -54,6 +54,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
+        if (player.isSneaking()) return false;
 
         ItemStack handItem = player.getCurrentEquippedItem();
         if (handItem != null) {
@@ -74,22 +75,22 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
         if (world.isRemote) return true;
 
-        if (handItem == null) {
-            if (this.haveFruit(world, x, y, z)) {
-                return harvest(world, x, y, z, 0, null);
+        if (handItem != null) {
+            if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemRod.shiftedIndex) {
+                boolean harvested;
+                harvested = harvestArea(world, x, y, z, 0.10, null, 3);
+                if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
+                return harvested;
+            } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemFruitPicker.shiftedIndex) {
+                boolean harvested;
+                harvested = harvestArea(world, x, y, z, 0.50, player, 5);
+                if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
+                return harvested;
             }
-        } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemRod.shiftedIndex) {
-            boolean harvested;
-            harvested = harvestArea(world, x, y, z, 0.10, null, 3);
-            if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
-            return harvested;
-        } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemFruitPicker.shiftedIndex) {
-            boolean harvested;
-            harvested = harvestArea(world, x, y, z, 0.50, player, 5);
-            if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
-            return harvested;
-        } else {
-            return false;
+        }
+
+        if (this.haveFruit(world, x, y, z)) {
+            return harvest(world, x, y, z, 0, null);
         }
 
         return false;

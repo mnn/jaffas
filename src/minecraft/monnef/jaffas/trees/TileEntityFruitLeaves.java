@@ -25,7 +25,7 @@ public class TileEntityFruitLeaves extends TileEntity {
     public static final int maxAge = 240;
     public static int timerMax = 20 * 60;
 
-    public static final double turnChance = 0.022;
+    public static final double turnChance = 0.0165; // 0.022
     public static int turnChanceMultiplier = 1;
 
     private int myMaxAge;

@@ -1,3 +1,15 @@
+## 0.4.8
+- added pies
+- some fruits are eatable (e.g. orange, pepper)
+- removed "Jaffa Cakes" trademark, title of cakes can be changed in config file
+- added milk
+- hamburger, cheeseburge, toasts, chips
+- changed brownies recipe to use kitchen knife instead of iron sword
+- pastry without sugar (for rolls, buns etc.)
+- added decoration blocks: column, jaffa statue
+- fruits from trees are now harvastable by any item (not only bare hand)
+- nerfed fruit spawn of trees, boosted a bit amount of seeds from plants
+
 ## 0.4.7
 - added kitchen board
 - added pizza

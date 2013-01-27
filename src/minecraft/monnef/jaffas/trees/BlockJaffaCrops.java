@@ -78,7 +78,7 @@ public class BlockJaffaCrops extends BlockFlower {
 
                 if (par5Random.nextInt((int) (25.0F / var7) + 1) == 0) {
                     // slow grow a bit
-                    if (par5Random.nextBoolean()) {
+                    if (par5Random.nextInt(4) == 0) {
                         ++var6;
                         par1World.setBlockMetadataWithNotify(par2, par3, par4, var6);
                     }
@@ -173,9 +173,8 @@ public class BlockJaffaCrops extends BlockFlower {
             ret.add(new ItemStack(product));
         }
 
-        for (int n = 0; n < 4 + fortune; n++) {
-
-            if (world.rand.nextInt(8 + phasesMax) <= metadata) {
+        for (int n = 0; n < 5 + fortune; n++) {
+            if (world.rand.nextInt(10 + phasesMax) <= metadata) {
                 ret.add(new ItemStack(seeds));
             }
         }
