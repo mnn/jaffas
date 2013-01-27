@@ -311,7 +311,7 @@ public class mod_jaffas {
 
     private void createJaffaArmorAndSword() {
         int armorRender = proxy.addArmor("Jaffa");
-        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png");
+        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png", null);
         itemJaffaPlate.setIconIndex(90);
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 

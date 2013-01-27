@@ -422,12 +422,12 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(pizzaRaw);
         createJaffaItemManual(pizza, ItemPizza.class);
 
-        int renderIndex = mod_jaffas.proxy.addArmor("wolf");
-        createJaffaArmor(wolfHelmet, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.helm, "/jaffas_wolf1.png");
-        createJaffaArmor(wolfChest, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.chest, "/jaffas_wolf1.png");
-        createJaffaArmor(wolfLeggins, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.leggings, "/jaffas_wolf2.png");
-        createJaffaArmor(wolfBoots, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.boots, "/jaffas_wolf1.png");
         createJaffaItem(wolfSkin);
+        int renderIndex = mod_jaffas.proxy.addArmor("wolf");
+        createJaffaArmor(wolfHelmet, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.helm, "/jaffas_wolf1.png", wolfSkin);
+        createJaffaArmor(wolfChest, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.chest, "/jaffas_wolf1.png", wolfSkin);
+        createJaffaArmor(wolfLeggins, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.leggings, "/jaffas_wolf2.png", wolfSkin);
+        createJaffaArmor(wolfBoots, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.boots, "/jaffas_wolf1.png", wolfSkin);
 
         createJaffaItem(pastry);
 
@@ -450,8 +450,8 @@ public class Items extends ItemManagerAccessor {
         createItemsRegistration();
     }
 
-    private void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture) {
-        createJaffaItemManual(item, new ItemJaffaPlate(ItemManager.getItemInfo(item).getId(), material, renderIndex, type, texture));
+    private void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, JaffaItem repairItem) {
+        createJaffaItemManual(item, new ItemJaffaPlate(ItemManager.getItemInfo(item).getId(), material, renderIndex, type, texture, repairItem == null ? null : getItem(repairItem)));
     }
 
     private void createItemsRegistration() {
