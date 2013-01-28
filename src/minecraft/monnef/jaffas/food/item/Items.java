@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static monnef.jaffas.food.item.ItemManager.getItemInfo;
 import static monnef.jaffas.food.item.JaffaItem.*;
 
 public class Items extends ItemManagerAccessor {
@@ -235,6 +236,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.pieRaspberryRaw, "Raw Raspberry Pie", BlockPie.textureIndexFromMeta[1] + 13, "");
         AddItemInfo(JaffaItem.pieVanillaRaw, "Raw Vanilla Pie", BlockPie.textureIndexFromMeta[2] + 13, "");
         AddItemInfo(JaffaItem.piePlumRaw, "Raw Plum Pie", BlockPie.textureIndexFromMeta[3] + 13, "");
+
+        AddItemInfo(JaffaItem.spawnStoneLittle, "Little Spawn Stone", 162, "");
     }
 
     @Override
@@ -408,7 +411,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(bottleBrownMustard);
         createJaffaItem(mincedMeat);
         createJaffaItemManual(meatCleaver,
-                new ItemCleaver(ItemManager.getItemInfo(meatCleaver).getId(), mod_jaffas.EnumToolMaterialCleaver));
+                new ItemCleaver(getItemInfo(meatCleaver).getId(), mod_jaffas.EnumToolMaterialCleaver));
 
         createJaffaItemManual(sink, ItemSink.class);
 
@@ -447,11 +450,15 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(pieVanillaRaw);
         createJaffaItem(piePlumRaw);
 
+        if (mod_jaffas.spawnStonesEnabled) {
+            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(getItemInfo(spawnStoneLittle), mod_jaffas.spawnStoneLittleCD));
+        }
+
         createItemsRegistration();
     }
 
     private void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, JaffaItem repairItem) {
-        createJaffaItemManual(item, new ItemJaffaPlate(ItemManager.getItemInfo(item).getId(), material, renderIndex, type, texture, repairItem == null ? null : getItem(repairItem)));
+        createJaffaItemManual(item, new ItemJaffaPlate(getItemInfo(item).getId(), material, renderIndex, type, texture, repairItem == null ? null : getItem(repairItem)));
     }
 
     private void createItemsRegistration() {

@@ -131,6 +131,10 @@ public class mod_jaffas {
     boolean forestryDetected;
     public static String textureFile = "/jaffas_01.png";
 
+    public static boolean spawnStonesEnabled = true;
+    public static int spawnStoneLittleCD = 30;
+
+
     public boolean IsForestryDetected() {
         return this.forestryDetected;
     }
