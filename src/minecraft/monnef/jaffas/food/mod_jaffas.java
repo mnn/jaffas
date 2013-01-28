@@ -53,7 +53,7 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.logging.Level;
 
 @Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version, dependencies = "after:Forestry;after:BuildCraft|Energy")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static JaffaCreativeTab CreativeTab;
 
@@ -98,7 +98,7 @@ public class mod_jaffas {
     public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
     public static EnumArmorMaterial EnumArmorMaterialWooden = EnumHelper.addArmorMaterial("Wooden", 10, new int[]{1, 4, 2, 3}, 23);
     public static EnumArmorMaterial EnumArmorMaterialWolf = EnumHelper.addArmorMaterial("Wolf", 8, new int[]{1, 3, 2, 1}, 15);
-    public static EnumArmorMaterial EnumArmorMaterialJaffarrol = EnumHelper.addArmorMaterial("Jaffarrol", 10, new int[]{1, 4, 2, 3}, 23);
+    public static EnumArmorMaterial EnumArmorMaterialJaffarrol = EnumHelper.addArmorMaterial("Jaffarrol", 29, new int[]{4, 7, 5, 3}, 17);
     public static ItemJaffaPlate itemJaffaPlate;
     public static int itemJaffaPlateID;
     public static EnumToolMaterial EnumToolMaterialJaffas = EnumHelper.addToolMaterial("Jaffa", 2, 400, 6.0F, 6, 15);
@@ -127,12 +127,14 @@ public class mod_jaffas {
 
     public ItemManager itemManager;
     public ModuleManager moduleManager;
-    private Items items;
+    public Items items;
     boolean forestryDetected;
     public static String textureFile = "/jaffas_01.png";
 
     public static boolean spawnStonesEnabled = true;
-    public static int spawnStoneLittleCD = 30;
+    public static int spawnStoneLittleCD;
+    public static int spawnStoneMediumCD;
+    public static int spawnStoneBigCD;
 
 
     public boolean IsForestryDetected() {
@@ -198,6 +200,11 @@ public class mod_jaffas {
             blockPieID = idProvider.getBlockIDFromConfig("pie");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
+
+            spawnStonesEnabled = config.get(Configuration.CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
+            spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
+            spawnStoneMediumCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMediumCD", 17).getInt();
+            spawnStoneBigCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {

@@ -14,6 +14,7 @@ import monnef.core.Version;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.CustomDrop;
+import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.trees.mod_jaffas_trees;
@@ -27,6 +28,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
+
+import static monnef.jaffas.food.item.JaffaItem.*;
 
 @Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core;after:moen-jaffas-trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -175,6 +178,13 @@ public class mod_jaffas_ores {
         ItemCasingRefined = new ItemOres(ItemCasingRefinedID, 14);
         ItemCasingRefined.setItemName("casingRefined");
         LanguageRegistry.addName(ItemCasingRefined, "Refined Casing");
+
+        // jarmor
+        int renderIndexJaffarrol = mod_jaffas.proxy.addArmor("jarmor");
+        mod_jaffas.instance.items.createJaffaArmor(jaffarrolHelmet, mod_jaffas.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.helm, "/jaffas_jarmor1.png", Jaffarrol);
+        mod_jaffas.instance.items.createJaffaArmor(jaffarrolChest, mod_jaffas.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "/jaffas_jarmor1.png", Jaffarrol);
+        mod_jaffas.instance.items.createJaffaArmor(jaffarrolLeggins, mod_jaffas.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "/jaffas_jarmor2.png", Jaffarrol);
+        mod_jaffas.instance.items.createJaffaArmor(jaffarrolBoots, mod_jaffas.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "/jaffas_jarmor1.png", Jaffarrol);
     }
 
     private void installRecipes() {
@@ -224,6 +234,20 @@ public class mod_jaffas_ores {
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', mod_jaffas_ores.Jaffarrol, 'G', Block.glass);
 
         GameRegistry.addRecipe(new ItemStack(mod_jaffas.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', mod_jaffas_ores.Jaffarrol);
+
+        // jarmor
+        GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolHelmet)), "JJJ", "J J", 'J', Jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolChest)), "J J", "JJJ", "JJJ", 'J', Jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolBoots)), "J J", "J J", 'J', Jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolLeggins)), "JJJ", "J J", "J J", 'J', Jaffarrol);
+
+        // spawn stones
+        if (mod_jaffas.spawnStonesEnabled) {
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Item.ingotIron, 'J', Jaffarrol);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "GRG", "LJL", "GRG", 'G', Item.ingotGold, 'J', JaffarrolRefined, 'R', Item.redstone, 'L', Limsew);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "GLG", "LJR", "GRG", 'G', Item.ingotGold, 'J', JaffarrolRefined, 'R', Item.redstone, 'L', Limsew);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "LJB", "JDJ", "BJL", 'L', Limsew, 'J', JaffarrolRefined, 'B', Item.blazeRod, 'D', Item.diamond);
+        }
     }
 
     private Item getItem(JaffaItem item) {

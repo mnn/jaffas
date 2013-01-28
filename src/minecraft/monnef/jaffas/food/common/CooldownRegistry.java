@@ -16,13 +16,13 @@ public class CoolDownRegistry {
         if (mod_jaffas.debug) debug = true;
     }
 
-    public int getRemainingCoolDownInSeconds(String name, CoolDownType type) {
+    public static int getRemainingCoolDownInSeconds(String name, CoolDownType type) {
         CoolDownEntry entry = table.get(type).get(name);
         if (entry == null) return 0;
         return entry.getRemainingCoolDown();
     }
 
-    public void setCoolDown(String name, CoolDownType type, int coolDownInSeconds) {
+    public static void setCoolDown(String name, CoolDownType type, int coolDownInSeconds) {
         HashMap<String, CoolDownEntry> db = table.get(type);
         createEntry(name, type);
 
@@ -30,15 +30,15 @@ public class CoolDownRegistry {
         entry.setCoolDown(coolDownInSeconds);
     }
 
-    private void createEntry(String name, CoolDownType type) {
+    private static void createEntry(String name, CoolDownType type) {
         if (!table.get(type).containsKey(name)) table.get(type).put(name, new CoolDownEntry());
     }
 
-    public boolean isCoolDownActive(String name, CoolDownType type) {
+    public static boolean isCoolDownActive(String name, CoolDownType type) {
         return getRemainingCoolDownInSeconds(name, type) > 0;
     }
 
-    public void synchronizeCoolDown(String name, CoolDownType type, int coolDownEnd) {
+    public static void synchronizeCoolDown(String name, CoolDownType type, int coolDownEnd) {
         createEntry(name, type);
 
         CoolDownEntry entry = table.get(type).get(name);
