@@ -237,14 +237,14 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.pieVanillaRaw, "Raw Vanilla Pie", BlockPie.textureIndexFromMeta[2] + 13, "");
         AddItemInfo(JaffaItem.piePlumRaw, "Raw Plum Pie", BlockPie.textureIndexFromMeta[3] + 13, "");
 
-        AddItemInfo(JaffaItem.spawnStoneLittle, "Little Spawn Stone", 173, "");
-        AddItemInfo(JaffaItem.spawnStoneMedium, "Crude Spawn Stone", 174, "");
-        AddItemInfo(JaffaItem.spawnStoneBig, "Fine Spawn Stone", 175, "");
+        AddItemInfo(JaffaItem.spawnStoneLittle, "Little Spawn Stone", 173, "Iron Home Stone");
+        AddItemInfo(JaffaItem.spawnStoneMedium, "Crude Spawn Stone", 174, "Golden Home Stone");
+        AddItemInfo(JaffaItem.spawnStoneBig, "Fine Spawn Stone", 175, "Diamond Home Stone");
 
-        AddItemInfo(JaffaItem.jaffarrolHelmet, "Jarmor Helmet", 153, "");
-        AddItemInfo(JaffaItem.jaffarrolBoots, "Jarmor Boots", 154, "");
-        AddItemInfo(JaffaItem.jaffarrolChest, "Jarmor Chestplate", 152, "");
-        AddItemInfo(JaffaItem.jaffarrolLeggins, "Jarmor Leggings", 155, "");
+        AddItemInfo(JaffaItem.jaffarrolHelmet, "Jarmor Helmet", 177, "");
+        AddItemInfo(JaffaItem.jaffarrolBoots, "Jarmor Boots", 178, "");
+        AddItemInfo(JaffaItem.jaffarrolChest, "Jarmor Chestplate", 176, "");
+        AddItemInfo(JaffaItem.jaffarrolLeggins, "Jarmor Leggings", 179, "");
     }
 
     @Override

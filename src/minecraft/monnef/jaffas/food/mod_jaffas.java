@@ -33,6 +33,7 @@ import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.*;
+import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.power.PowerConsumerManagerFactory;
 import monnef.jaffas.power.api.PowerManager;
@@ -239,6 +240,8 @@ public class mod_jaffas {
 
         //creative tab title
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
+
+        GameRegistry.registerPlayerTracker(new PlayerTracker());
 
         printInitializedMessage();
     }
