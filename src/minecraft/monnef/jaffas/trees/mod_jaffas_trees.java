@@ -469,6 +469,11 @@ public class mod_jaffas_trees {
         AddPieRecipe(getFruit(bushType.Raspberry), pieRaspberryRaw, TileEntityPie.PieType.RASPBERRY, true, getItem(jamRaspberry));
         AddPieRecipe(null, pieVanillaRaw, TileEntityPie.PieType.VANILLA, true, getItem(jamV));
         AddPieRecipe(itemPlum, piePlumRaw, TileEntityPie.PieType.PLUM, true, getItem(jamP));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceOrange)), getItem(juiceBottle), itemOrange, itemOrange, itemOrange, itemOrange);
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), itemLemon, itemLemon, itemLemon, Item.sugar);
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceApple)), getItem(juiceBottle), Item.appleRed, Item.appleRed, Item.appleRed, Item.appleRed);
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceRaspberry)), getItem(juiceBottle), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry));
     }
 
     public static Item getFruit(bushType type) {

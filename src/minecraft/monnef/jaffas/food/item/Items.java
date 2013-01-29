@@ -17,6 +17,34 @@ public class Items extends ItemManagerAccessor {
     public static final String JAFFA = "jaffasAny";
     public static final String JAFFA_FILLED = "jaffasFilled";
 
+    public enum Juice {
+        LEMON(JaffaItem.juiceLemon, 181, "Lemon Juice", JaffaItem.glassLemon, 186, ""),
+        ORANGE(juiceOrange, 182, "Orange Juice", glassOrange, 187, ""),
+        APPLE(juiceApple, 183, "Apple Juice", glassApple, 188, ""),
+        RASPBERRY(juiceRaspberry, 184, "Raspberry Juice", glassRaspberry, 189, "");
+
+        public final JaffaItem juiceBottle;
+        public final int textureIndex;
+        public final String title;
+        public final JaffaItem glass;
+        public final int textureIndexGlass;
+        public final String glassTitle;
+
+        Juice(JaffaItem juiceBottle, int textureIndex, String title, JaffaItem glass, int textureIndexGlass, String glassTitle) {
+            this.juiceBottle = juiceBottle;
+            this.textureIndex = textureIndex;
+            this.title = title;
+            this.textureIndexGlass = textureIndexGlass;
+            this.glass = glass;
+
+            if (glassTitle.equals("")) {
+                this.glassTitle = "Glass of " + this.title;
+            } else {
+                this.glassTitle = glassTitle;
+            }
+        }
+    }
+
     @Override
     public ModulesEnum getMyModule() {
         return ModulesEnum.food;
@@ -245,6 +273,13 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.jaffarrolBoots, "Jarmor Boots", 178, "");
         AddItemInfo(JaffaItem.jaffarrolChest, "Jarmor Chestplate", 176, "");
         AddItemInfo(JaffaItem.jaffarrolLeggins, "Jarmor Leggings", 179, "");
+
+        AddItemInfo(JaffaItem.juiceBottle, "Juice Bottle", 180, "");
+        for (Juice juice : Juice.values()) {
+            AddItemInfo(juice.juiceBottle, juice.juiceBottle.toString().toLowerCase(), juice.textureIndex, juice.title);
+            AddItemInfo(juice.glass, juice.glass.toString().toLowerCase(), juice.textureIndexGlass, juice.glassTitle);
+        }
+        AddItemInfo(JaffaItem.glassEmpty, "Glass", 185, "");
     }
 
     @Override
@@ -461,6 +496,13 @@ public class Items extends ItemManagerAccessor {
             createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(getItemInfo(spawnStoneLittle), mod_jaffas.spawnStoneLittleCD));
             createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(getItemInfo(spawnStoneMedium), mod_jaffas.spawnStoneMediumCD));
             createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(getItemInfo(spawnStoneBig), mod_jaffas.spawnStoneBigCD));
+        }
+
+        createJaffaItem(juiceBottle);
+        createJaffaItem(glassEmpty);
+        for (Juice juice : Juice.values()) {
+            ((ItemJaffaFood) (createJaffaFood(juice.juiceBottle).Setup(12, 1f))).setIsDrink().setReturnItem(new ItemStack(getItem(juiceBottle)));
+            ((ItemJaffaFood) createJaffaFood(juice.glass).Setup(5, 0.25f)).setIsDrink().setReturnItem(new ItemStack(getItem(glassEmpty)));
         }
 
         createItemsRegistration();

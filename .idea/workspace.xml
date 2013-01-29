@@ -2,35 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/server/PlayerTracker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/SpawnStonePacketType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/SpawnStonePacketUtils.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/server/SpawnStoneServerPacketSender.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CommonProxy.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CommonProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/PacketHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/PacketHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359379660723" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359374667677" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359457614350" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359111019513" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357673633593" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358021728860" ignored="false" />
     <file path="/BlockFruitLeaves.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359235509578" ignored="false" />
-    <file path="/mod_jaffas_trees.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359214421785" ignored="false" />
+    <file path="/mod_jaffas_trees.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359461239331" ignored="false" />
     <file path="/TileEntityFruitCollector.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357677540544" ignored="false" />
     <file path="/BlueprintManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357677769035" ignored="false" />
     <file path="/ItemStackMap.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357677774665" ignored="false" />
     <file path="/BptBlock.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357677780528" ignored="false" />
-    <file path="/Items.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359393167086" ignored="false" />
+    <file path="/Items.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359460851925" ignored="false" />
     <file path="/ItemCleaver.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357844694411" ignored="false" />
-    <file path="/mod_jaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359400587062" ignored="false" />
+    <file path="/mod_jaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359417941834" ignored="false" />
     <file path="/ItemCleaverHookContainer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358852959879" ignored="false" />
     <file path="/PlayerHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358461575039" ignored="false" />
     <file path="/BlockSink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359111162503" ignored="false" />
@@ -38,10 +32,10 @@
     <file path="/TileEntitySinkRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357940055402" ignored="false" />
     <file path="/ModelSink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357944387767" ignored="false" />
     <file path="/ItemSink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357983780680" ignored="false" />
-    <file path="/JaffaItem.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358798624924" ignored="false" />
+    <file path="/JaffaItem.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359458986000" ignored="false" />
     <file path="/TileEntitySink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357987731017" ignored="false" />
-    <file path="/Recipes.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359215662678" ignored="false" />
-    <file path="/mod_jaffas_ores.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359392952172" ignored="false" />
+    <file path="/Recipes.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359461697839" ignored="false" />
+    <file path="/mod_jaffas_ores.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359461751496" ignored="false" />
     <file path="/VersionHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358021488406" ignored="false" />
     <file path="/IPowerConsumer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358083162637" ignored="false" />
     <file path="/IPowerManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358030087840" ignored="false" />
@@ -146,7 +140,7 @@
     <file path="/JaffaCraftingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359147498270" ignored="false" />
     <file path="/BlockJaffaCrops.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359233656195" ignored="false" />
     <file path="$PROJECT_DIR$/logs/client_ro.log" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359325230028" ignored="false" />
-    <file path="/ItemSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359411900847" ignored="false" />
+    <file path="/ItemSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359417961584" ignored="false" />
     <file path="/GuiSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359407939157" ignored="false" />
     <file path="/CooldownRegistry.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359379636217" ignored="false" />
     <file path="/CoolDownType.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359379655239" ignored="false" />
@@ -177,6 +171,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -211,7 +206,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -225,83 +219,7 @@
       <file leaf-file-name="mod_jaffas.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="242" column="62" selection-start="9976" selection-end="9976" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuiSpawnStone.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="8" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderItem.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/entity/RenderItem.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="373" column="52" selection-start="15540" selection-end="15573" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientProxy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="62" selection-start="2920" selection-end="2920" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemSpawnStone.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="58" selection-start="2801" selection-end="2801" vertical-scroll-proportion="0.9724138">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Block.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1793" column="0" selection-start="80502" selection-end="80502" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockBed.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockBed.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="290" column="0" selection-start="9721" selection-end="9721" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="World.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="2899" column="0" selection-start="95941" selection-end="95941" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ServerConfigurationManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/server/management/ServerConfigurationManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="491" column="30" selection-start="21279" selection-end="21279" vertical-scroll-proportion="0.0">
+            <state line="209" column="0" selection-start="9051" selection-end="9051" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -310,7 +228,43 @@
       <file leaf-file-name="Items.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="89" selection-start="13706" selection-end="13706" vertical-scroll-proportion="0.0">
+            <state line="19" column="11" selection-start="720" selection-end="720" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Recipes.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="339" column="22" selection-start="25166" selection-end="25166" vertical-scroll-proportion="0.6453782">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mod_jaffas_ores.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="251" column="0" selection-start="12844" selection-end="12844" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mod_jaffas_trees.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="475" column="0" selection-start="23163" selection-end="23163" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JaffaItem.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="122" selection-start="2723" selection-end="2723" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -335,22 +289,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CoolDownEntry.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CoolDownRegistry.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/core/MathHelper.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/PacketHandler.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/SpawnStonePacketType.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/server/SpawnStoneServerPacketSender.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/server/PlayerTracker.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/SpawnStonePacketUtils.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CommonProxy.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java" />
       </list>
     </option>
   </component>
@@ -402,8 +356,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -639,6 +593,36 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trees" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -919,9 +903,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1157,7 +1141,11 @@
       <created>1359330374360</created>
       <updated>1359330374360</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added option in config to enable multidimensional behaviour of home stones (still occasionally buggy, disabled by default).">
+      <created>1359418600422</created>
+      <updated>1359418600422</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1187,22 +1175,22 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31919643" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3236607" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2924107" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31808037" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17769477" sideWeight="0.21428572" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36754966" sideWeight="0.2240991" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17769477" sideWeight="0.45424107" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.178762" sideWeight="0.70758927" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32589287" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31919643" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1245,7 +1233,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Anvil now supports wolf armour." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added option in config to enable multidimensional behaviour of home stones (still occasionally buggy, disabled by default)." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1269,6 +1257,7 @@
     <MESSAGE value="Added mustard recipe." />
     <MESSAGE value="Added column and statue." />
     <MESSAGE value="Anvil now supports wolf armour." />
+    <MESSAGE value="Added option in config to enable multidimensional behaviour of home stones (still occasionally buggy, disabled by default)." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1278,85 +1267,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="242" column="62" selection-start="9976" selection-end="9976" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/entity/RenderItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="373" column="52" selection-start="15540" selection-end="15573" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="8" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/network/packet/Packet70GameEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="11" selection-start="556" selection-end="556" vertical-scroll-proportion="0.33275864">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="241" column="89" selection-start="13706" selection-end="13706" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="388" column="16" selection-start="11467" selection-end="11467" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/player/EntityPlayerMP.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="431" column="62" selection-start="15889" selection-end="15889" vertical-scroll-proportion="0.81305116">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/cpw/mods/fml/common/registry/GameRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="350" column="23" selection-start="11575" selection-end="11575" vertical-scroll-proportion="0.4303351">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/Teleporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="16" selection-start="871" selection-end="871" vertical-scroll-proportion="0.15689655">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/WorldServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="630" column="16" selection-start="22369" selection-end="22369" vertical-scroll-proportion="0.15343915">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/server/MinecraftServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="759" column="0" selection-start="25881" selection-end="25881" vertical-scroll-proportion="0.33275864">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/server/management/ServerConfigurationManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="491" column="30" selection-start="21279" selection-end="21279" vertical-scroll-proportion="0.0">
@@ -1385,12 +1295,89 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="8" selection-start="2504" selection-end="2504" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/entity/RenderItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="373" column="52" selection-start="15540" selection-end="15573" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="58" selection-start="2801" selection-end="2801" vertical-scroll-proportion="0.9724138">
+        <state line="76" column="74" selection-start="2642" selection-end="2642" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="62" selection-start="2920" selection-end="2920" vertical-scroll-proportion="0.76605505">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="209" column="0" selection-start="9051" selection-end="9051" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="122" selection-start="2723" selection-end="2723" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/IItemFood.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="9" selection-start="105" selection-end="105" vertical-scroll-proportion="0.09747706">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemManagerAccessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="24" selection-start="815" selection-end="815" vertical-scroll-proportion="0.41513762">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="475" column="0" selection-start="23163" selection-end="23163" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="11" selection-start="720" selection-end="720" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="251" column="0" selection-start="12844" selection-end="12844" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="339" column="22" selection-start="25166" selection-end="25166" vertical-scroll-proportion="0.6453782">
+          <folding />
         </state>
       </provider>
     </entry>

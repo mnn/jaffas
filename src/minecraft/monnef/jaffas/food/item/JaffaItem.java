@@ -23,5 +23,7 @@ public enum JaffaItem {
     sink, waferIcecreamRaw, coneRaw,
     grater, cheeseGrated, salami, salamiSliced, pizza, pizzaRaw, wolfHelmet, wolfChest, wolfLeggins, wolfBoots, wolfSkin,
     pastry, milkBoxEmpty, milkBoxFull, crumpledPaper, scrap, chipsRaw, chips, fryingPanChipsRaw, fryingPanChips, pieStrawberryRaw, pieRaspberryRaw, pieVanillaRaw, piePlumRaw,
-    spawnStoneLittle, jaffarrolHelmet, jaffarrolBoots, jaffarrolChest, jaffarrolLeggins, spawnStoneMedium, spawnStoneBig, _last
+    spawnStoneLittle, jaffarrolHelmet, jaffarrolBoots, jaffarrolChest, jaffarrolLeggins, spawnStoneMedium, spawnStoneBig,
+    juiceBottle, juiceLemon, juiceOrange, juiceApple, juiceRaspberry, glassLemon, glassOrange, glassApple, glassRaspberry,
+    glassEmpty, _last
 }

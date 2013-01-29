@@ -333,6 +333,12 @@ public class Recipes {
         // 15 ~ white
         GameRegistry.addRecipe(new ItemStack(blockColumn), "SSS", "DSD", "SSS", 'S', Block.stone, 'D', new ItemStack(Item.dyePowder, 1, 15));
         addRecipe(new ShapedOreRecipe(blockJaffaStatue, "JIJ", "III", "JIJ", 'J', Items.JAFFA, 'I', Item.ingotIron));
+
+        for (Items.Juice juice : Items.Juice.values()) {
+            JaffaCraftingHandler.AddPersistentItem(juice.juiceBottle, false, juiceBottle);
+            GameRegistry.addShapelessRecipe(getItemStack(juice.glass, 3), getItem(juice.juiceBottle), getItem(glassEmpty), getItem(glassEmpty), getItem(glassEmpty));
+        }
+        GameRegistry.addRecipe(getItemStack(glassEmpty, 4), "G G", "GGG", 'G', Block.glass);
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {

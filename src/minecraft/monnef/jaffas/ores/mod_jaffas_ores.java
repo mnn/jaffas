@@ -248,6 +248,8 @@ public class mod_jaffas_ores {
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "GLG", "LJR", "GRG", 'G', Item.ingotGold, 'J', JaffarrolRefined, 'R', Item.redstone, 'L', Limsew);
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "LJB", "JDJ", "BJL", 'L', Limsew, 'J', JaffarrolRefined, 'B', Item.blazeRod, 'D', Item.diamond);
         }
+
+        GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', Jaffarrol);
     }
 
     private Item getItem(JaffaItem item) {
