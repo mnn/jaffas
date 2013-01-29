@@ -280,6 +280,7 @@ public class Items extends ItemManagerAccessor {
             AddItemInfo(juice.glass, juice.glass.toString().toLowerCase(), juice.textureIndexGlass, juice.glassTitle);
         }
         AddItemInfo(JaffaItem.glassEmpty, "Glass", 185, "");
+        AddItemInfo(JaffaItem.glassMilk, "glassMilk", 190, "Glass of Milk");
     }
 
     @Override
@@ -504,6 +505,8 @@ public class Items extends ItemManagerAccessor {
             ((ItemJaffaFood) (createJaffaFood(juice.juiceBottle).Setup(12, 1f))).setIsDrink().setReturnItem(new ItemStack(getItem(juiceBottle)));
             ((ItemJaffaFood) createJaffaFood(juice.glass).Setup(5, 0.25f)).setIsDrink().setReturnItem(new ItemStack(getItem(glassEmpty)));
         }
+
+        ((ItemJaffaFood) createJaffaFood(glassMilk).Setup(1, 0.1f)).setIsDrink().setReturnItem(new ItemStack(getItem(glassEmpty)));
 
         createItemsRegistration();
     }

@@ -25,5 +25,5 @@ public enum JaffaItem {
     pastry, milkBoxEmpty, milkBoxFull, crumpledPaper, scrap, chipsRaw, chips, fryingPanChipsRaw, fryingPanChips, pieStrawberryRaw, pieRaspberryRaw, pieVanillaRaw, piePlumRaw,
     spawnStoneLittle, jaffarrolHelmet, jaffarrolBoots, jaffarrolChest, jaffarrolLeggins, spawnStoneMedium, spawnStoneBig,
     juiceBottle, juiceLemon, juiceOrange, juiceApple, juiceRaspberry, glassLemon, glassOrange, glassApple, glassRaspberry,
-    glassEmpty, _last
+    glassEmpty, glassMilk, _last
 }

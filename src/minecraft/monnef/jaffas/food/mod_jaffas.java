@@ -138,6 +138,7 @@ public class mod_jaffas {
     public static int spawnStoneBigCD;
     public static boolean spawnStoneMultidimensional;
 
+    public static boolean transferItemsFromCraftingMatrix;
 
     public boolean IsForestryDetected() {
         return this.forestryDetected;
@@ -208,6 +209,7 @@ public class mod_jaffas {
             spawnStoneMediumCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMediumCD", 17).getInt();
             spawnStoneBigCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
             spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", false, "Experimental!").getBoolean(false);
+            transferItemsFromCraftingMatrix = config.get(Configuration.CATEGORY_GENERAL, "transferItemsFromCraftingMatrix", false, "Experimental, try to transfer items created after craft directly to player (e.g. crumpled paper)?").getBoolean(false);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {

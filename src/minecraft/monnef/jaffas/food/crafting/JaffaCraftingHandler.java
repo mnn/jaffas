@@ -1,8 +1,10 @@
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
+import monnef.core.PlayerHelper;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -50,10 +52,10 @@ public class JaffaCraftingHandler implements ICraftingHandler {
         //HandleTin(craftMatrix);
         HandleRolls(craftMatrix);
 
-        HandlePersistentItems(craftMatrix);
+        HandlePersistentItems(craftMatrix, player);
     }
 
-    private void HandlePersistentItems(IInventory matrix) {
+    private void HandlePersistentItems(IInventory matrix, EntityPlayer player) {
         int ingredientsCount = 0;
         HashSet<Integer> processedSlots = new HashSet<Integer>(); // to not process newly added items (because they're result of some recipe)
 
@@ -72,10 +74,10 @@ public class JaffaCraftingHandler implements ICraftingHandler {
                             newItem.setItemDamage(newDamage);
                             matrix.setInventorySlotContents(i, newItem);
                         } else if (info.substituteItemID > -1) {
-                            doSubstitution(matrix, processedSlots, info);
+                            doSubstitution(matrix, processedSlots, info, player);
                         }
                     } else if (info.substituteItemID > -1) {
-                        doSubstitution(matrix, processedSlots, info);
+                        doSubstitution(matrix, processedSlots, info, player);
                     } else {
                         item.stackSize++;
                     }
@@ -84,14 +86,22 @@ public class JaffaCraftingHandler implements ICraftingHandler {
         }
     }
 
-    private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info) {
-        int slot = getFreeSlot(matrix);
-        if (slot < 0 || slot >= matrix.getSizeInventory()) {
-            throw new RuntimeException("No space for recipe output - corrupt recipe?");
-        }
+    private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info, EntityPlayer player) {
+        if (player == null || !mod_jaffas.transferItemsFromCraftingMatrix) {
 
-        matrix.setInventorySlotContents(slot, new ItemStack(info.substituteItemID, 1 + info.substituteItemsCount, 0)); // +1 because one will be consumed (hmm)
-        processedSlots.add(slot);
+            int slot = getFreeSlot(matrix);
+            if (slot < 0 || slot >= matrix.getSizeInventory()) {
+                throw new RuntimeException("No space for recipe output - corrupt recipe?");
+            }
+
+            matrix.setInventorySlotContents(slot, new ItemStack(info.substituteItemID, 1 + info.substituteItemsCount, 0)); // +1 because one will be consumed (hmm)
+            processedSlots.add(slot);
+        } else {
+            ItemStack stack = new ItemStack(info.substituteItemID, info.substituteItemsCount, 0);
+            if (!player.worldObj.isRemote) {
+                PlayerHelper.giveItemToPlayer(player, stack);
+            }
+        }
     }
 
     public static int getFreeSlot(IInventory matrix) {
