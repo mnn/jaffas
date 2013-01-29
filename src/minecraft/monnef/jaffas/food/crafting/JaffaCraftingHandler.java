@@ -19,6 +19,10 @@ public class JaffaCraftingHandler implements ICraftingHandler {
 
     private static HashMap<Integer, PersistentItemInfo> persistentItems = new HashMap<Integer, PersistentItemInfo>();
 
+    public JaffaCraftingHandler() {
+        debug = mod_jaffas.debug;
+    }
+
     public static PersistentItemInfo AddPersistentItem(int ID) {
         return AddPersistentItem(ID, false, -1);
     }
@@ -88,10 +92,22 @@ public class JaffaCraftingHandler implements ICraftingHandler {
 
     private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info, EntityPlayer player) {
         if (player == null || !mod_jaffas.transferItemsFromCraftingMatrix) {
+            // "fix" to not crash/return more on BuildCraft's tables...
+            String inventoryClassName = matrix.getClass().getName();
+            if (mod_jaffas.ignoreBuildCraftsTables) {
+                if (inventoryClassName.contains("TileAssemblyAdvancedWorkbench")
+                        || inventoryClassName.contains("TileAutoWorkbench")) {
+                    return;
+                }
+            }
 
             int slot = getFreeSlot(matrix);
             if (slot < 0 || slot >= matrix.getSizeInventory()) {
                 throw new RuntimeException("No space for recipe output - corrupt recipe?");
+            }
+
+            if (debug) {
+                System.out.println("name of inventory of matrix is: " + inventoryClassName);
             }
 
             matrix.setInventorySlotContents(slot, new ItemStack(info.substituteItemID, 1 + info.substituteItemsCount, 0)); // +1 because one will be consumed (hmm)
@@ -102,6 +118,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
                 PlayerHelper.giveItemToPlayer(player, stack);
             }
         }
+
     }
 
     public static int getFreeSlot(IInventory matrix) {

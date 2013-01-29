@@ -118,7 +118,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(flour), 3), new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.wheat),
                 new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.paper));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(sausageRaw), 5), " F ", "PPP", 'F', new ItemStack(getItem(flour)), 'P', new ItemStack(Item.porkRaw));
+        GameRegistry.addRecipe(new ItemStack(getItem(sausageRaw), 3), " F ", "PPP", 'F', new ItemStack(getItem(flour)), 'P', getItem(mincedMeat));
 
         GameRegistry.addRecipe(new ItemStack(getItem(bunRaw), 8), "PP", 'P', new ItemStack(getItem(pastry)));
 

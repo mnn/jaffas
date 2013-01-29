@@ -73,6 +73,8 @@ public class ItemSpawnStone extends ItemJaffaBase {
             }
         }
 
+        world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
+
         ChunkCoordinates spawn = player.getBedLocation();
         if (spawn == null) {
             spawn = world.getSpawnPoint();
@@ -89,6 +91,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
         }
 
         player.setPositionAndUpdate(spawn.posX, spawn.posY, spawn.posZ);
+        world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
 
         CoolDownRegistry.setCoolDown(player.getEntityName(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
         SpawnStoneServerPacketSender.sendSyncPacket(player, false);
