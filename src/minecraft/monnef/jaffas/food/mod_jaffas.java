@@ -136,6 +136,7 @@ public class mod_jaffas {
     public static int spawnStoneLittleCD;
     public static int spawnStoneMediumCD;
     public static int spawnStoneBigCD;
+    public static boolean spawnStoneMultidimensional;
 
 
     public boolean IsForestryDetected() {
@@ -206,6 +207,7 @@ public class mod_jaffas {
             spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
             spawnStoneMediumCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMediumCD", 17).getInt();
             spawnStoneBigCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
+            spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", false, "Experimental!").getBoolean(false);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {

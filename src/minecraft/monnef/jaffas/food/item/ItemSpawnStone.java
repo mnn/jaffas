@@ -2,11 +2,13 @@ package monnef.jaffas.food.item;
 
 import monnef.core.MathHelper;
 import monnef.jaffas.food.common.CoolDownRegistry;
+import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
@@ -63,9 +65,12 @@ public class ItemSpawnStone extends ItemJaffaBase {
 
         boolean homeWorld = player.dimension == 0;
         if (!homeWorld) {
-            //MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension(player, 0);
-            player.addChatMessage("Home stone works only in overworld.");
-            return;
+            if (mod_jaffas.spawnStoneMultidimensional) {
+                MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension(player, 0);
+            } else {
+                player.addChatMessage("Home stone works only in overworld.");
+                return;
+            }
         }
 
         ChunkCoordinates spawn = player.getBedLocation();
@@ -75,7 +80,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
             if (homeWorld) { // bed spawn position method malfunctions after transfer from nether, ignore it
                 spawn = Block.bed.getBedSpawnPosition(world, spawn.posX, spawn.posY, spawn.posZ, player);
             } else {
-                spawn.posY += 1;
+                spawn.posY += 1.801;
             }
 
             if (spawn == null) {
