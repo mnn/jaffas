@@ -340,6 +340,13 @@ public class Recipes {
         }
         GameRegistry.addRecipe(getItemStack(glassEmpty, 4), "G G", "GGG", 'G', Block.glass);
         GameRegistry.addShapelessRecipe(getItemStack(glassMilk, 2), getItem(milkBoxFull), getItem(glassEmpty), getItem(glassEmpty));
+
+        GameRegistry.addRecipe(getItemStack(woodenBowl, 2), "W W", " S ", 'W', new ItemStack(Block.planks, 1, -1), 'S', new ItemStack(Block.woodSingleSlab, 1, -1));
+        addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), Items.MUSHROOM, Items.MUSHROOM));
+        GameRegistry.addSmelting(getItem(cookedMushroomsRaw).shiftedIndex, getItemStack(cookedMushrooms), 0.3f);
+
+        GameRegistry.addSmelting(getItem(pepperStuffedRaw).shiftedIndex, getItemStack(pepperStuffed), 0.2f);
+        GameRegistry.addSmelting(getItem(peanutsSugar).shiftedIndex, getItemStack(peanutsCaramelized), 0.2f);
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {

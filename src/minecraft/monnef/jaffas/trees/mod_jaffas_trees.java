@@ -474,6 +474,9 @@ public class mod_jaffas_trees {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), itemLemon, itemLemon, itemLemon, Item.sugar);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceApple)), getItem(juiceBottle), Item.appleRed, Item.appleRed, Item.appleRed, Item.appleRed);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceRaspberry)), getItem(juiceBottle), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(peanutsSugar)), Item.sugar, getFruit(bushType.Peanuts));
+        GameRegistry.addRecipe(new ItemStack(getItem(pepperStuffedRaw)), "M", "P", 'M', getItem(mincedMeat), 'P', getFruit(bushType.Paprika));
     }
 
     public static Item getFruit(bushType type) {

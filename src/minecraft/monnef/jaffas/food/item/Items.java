@@ -3,6 +3,7 @@ package monnef.jaffas.food.item;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
+import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,6 +17,7 @@ public class Items extends ItemManagerAccessor {
     public static final String MINCEABLEMEAT = "jaffasMinceAbleMeat";
     public static final String JAFFA = "jaffasAny";
     public static final String JAFFA_FILLED = "jaffasFilled";
+    public static final String MUSHROOM = "jaffasMushroom";
 
     public enum Juice {
         LEMON(JaffaItem.juiceLemon, 181, "Lemon Juice", JaffaItem.glassLemon, 186, ""),
@@ -281,6 +283,16 @@ public class Items extends ItemManagerAccessor {
         }
         AddItemInfo(JaffaItem.glassEmpty, "Glass", 185, "");
         AddItemInfo(JaffaItem.glassMilk, "glassMilk", 190, "Glass of Milk");
+
+        AddItemInfo(JaffaItem.woodenBowl, "Wooden Bowl", 195, "");
+        AddItemInfo(JaffaItem.cookedMushroomsRaw, "Raw Mushrooms", 196, "");
+        AddItemInfo(JaffaItem.cookedMushrooms, "Cooked Mushrooms", 197, "");
+
+        AddItemInfo(JaffaItem.peanutsSugar, "Sugarcoated Peanuts", 191, "");
+        AddItemInfo(JaffaItem.peanutsCaramelized, "Caramelized Peanuts", 192, "");
+
+        AddItemInfo(JaffaItem.pepperStuffedRaw, "Raw Stuffed Pepper", 193, "");
+        AddItemInfo(JaffaItem.pepperStuffed, "Stuffed Pepper", 194, "");
     }
 
     @Override
@@ -508,6 +520,16 @@ public class Items extends ItemManagerAccessor {
 
         ((ItemJaffaFood) createJaffaFood(glassMilk).Setup(1, 0.1f)).setIsDrink().setReturnItem(new ItemStack(getItem(glassEmpty)));
 
+        createJaffaItem(woodenBowl);
+        createJaffaItem(cookedMushroomsRaw);
+        ((ItemJaffaFood) createJaffaFood(cookedMushrooms).Setup(6, 0.5f)).setReturnItem(new ItemStack(getItem(woodenBowl))).setMaxStackSize(32);
+
+        createJaffaItem(pepperStuffedRaw);
+        createJaffaFood(pepperStuffed, 5, 1.0f).setPotionEffect(Potion.resistance.id, 35, 1, 0.2F).setMaxStackSize(16);
+
+        createJaffaItem(peanutsSugar);
+        createJaffaFood(peanutsCaramelized, 4, 0.2f).setPotionEffect(Potion.jump.id, 15, 1, 0.2F);
+
         createItemsRegistration();
     }
 
@@ -533,5 +555,8 @@ public class Items extends ItemManagerAccessor {
             }
             OreDictionary.registerOre(JAFFA, item);
         }
+
+        OreDictionary.registerOre(MUSHROOM, Block.mushroomBrown);
+        OreDictionary.registerOre(MUSHROOM, Block.mushroomRed);
     }
 }
