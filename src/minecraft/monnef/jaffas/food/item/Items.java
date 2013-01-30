@@ -293,6 +293,15 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.pepperStuffedRaw, "Raw Stuffed Pepper", 193, "");
         AddItemInfo(JaffaItem.pepperStuffed, "Stuffed Pepper", 194, "");
+
+        AddItemInfo(JaffaItem.wolfMeatRaw, "Raw Wolf Meat", 198, "");
+        AddItemInfo(JaffaItem.wolfMeat, "Wolf Meat", 199, "");
+
+        AddItemInfo(JaffaItem.muttonRaw, "Raw Mutton", 200, "");
+        AddItemInfo(JaffaItem.mutton, "Mutton", 201, "");
+
+        AddItemInfo(JaffaItem.spiderLegRaw, "Raw Spider Leg", 202, "");
+        AddItemInfo(JaffaItem.spiderLeg, "Spider Leg", 203, "");
     }
 
     @Override
@@ -529,6 +538,14 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(peanutsSugar);
         createJaffaFood(peanutsCaramelized, 4, 0.2f).setPotionEffect(Potion.jump.id, 15, 1, 0.2F);
+
+        createJaffaFood(wolfMeatRaw, 1, 0.1f).setPotionEffect(Potion.poison.id, 15, 1, 0.2F);
+        createJaffaFood(muttonRaw, 1, 0.1f).setPotionEffect(Potion.poison.id, 15, 1, 0.2F);
+        createJaffaFood(spiderLegRaw, 1, 0.2f).setPotionEffect(Potion.poison.id, 15, 1, 0.25F);
+
+        createJaffaFood(wolfMeat, 4, 0.7f);
+        createJaffaFood(mutton, 4, 0.7f);
+        createJaffaFood(spiderLeg, 4, 0.7f);
 
         createItemsRegistration();
     }

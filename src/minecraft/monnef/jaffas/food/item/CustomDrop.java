@@ -4,6 +4,8 @@ import monnef.core.EntityHelper;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -26,6 +28,15 @@ public class CustomDrop {
     private void createDropTable() {
         addDrop(EntityWolf.class, JaffaItem.wolfSkin, 0.7f).setBabyFlagCheck(true);
         addDrop(EntityWolf.class, JaffaItem.wolfSkin, 0.5f).setBabyFlagCheck(true);
+
+        addDrop(EntityWolf.class, JaffaItem.wolfMeatRaw, 1f).setBabyFlagCheck(true);
+        addDrop(EntityWolf.class, JaffaItem.wolfMeatRaw, 0.5f).setBabyFlagCheck(true);
+
+        addDrop(EntitySheep.class, JaffaItem.muttonRaw, 1f).setBabyFlagCheck(true);
+        addDrop(EntitySheep.class, JaffaItem.muttonRaw, 0.5f).setBabyFlagCheck(true);
+
+        addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 1f).setBabyFlagCheck(true);
+        addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 0.5f).setBabyFlagCheck(true);
     }
 
     public static CustomDropEntry addDrop(Class<? extends EntityLiving> clazz, JaffaItem item, float chance) {

@@ -347,6 +347,10 @@ public class Recipes {
 
         GameRegistry.addSmelting(getItem(pepperStuffedRaw).shiftedIndex, getItemStack(pepperStuffed), 0.2f);
         GameRegistry.addSmelting(getItem(peanutsSugar).shiftedIndex, getItemStack(peanutsCaramelized), 0.2f);
+
+        GameRegistry.addSmelting(getItem(wolfMeatRaw).shiftedIndex, getItemStack(wolfMeat), 0.3f);
+        GameRegistry.addSmelting(getItem(muttonRaw).shiftedIndex, getItemStack(mutton), 0.3f);
+        GameRegistry.addSmelting(getItem(spiderLegRaw).shiftedIndex, getItemStack(spiderLeg), 0.3f);
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {
