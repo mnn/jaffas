@@ -1,3 +1,11 @@
+## 0.4.9
+- added home stones (beta, sometimes teleports player under bed)
+- wolf armor is repairable in anvil
+- added more food from animals/monsters - mutton, wolf meat, spider leg
+- added jarmor
+- added juices
+- added caramelized peanuts, stuffed pepper, cooked mushrooms
+
 ## 0.4.8
 - added pies
 - some fruits are eatable (e.g. orange, pepper)
