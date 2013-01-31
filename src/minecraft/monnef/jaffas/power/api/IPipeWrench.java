@@ -1,5 +1,4 @@
 package monnef.jaffas.power.api;
 
-public interface IPipeWrench {
-
+public interface IPipeWrench extends IMachineTool {
 }

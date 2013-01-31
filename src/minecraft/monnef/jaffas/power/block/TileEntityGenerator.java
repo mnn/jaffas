@@ -13,13 +13,18 @@ public class TileEntityGenerator extends TileEntityMachine implements IPowerProv
         super();
 
         manager = new PowerProviderManager();
-        boolean[] sidesMask = new boolean[7];
+        boolean[] sidesMask = new boolean[6];
         sidesMask[ForgeDirection.UP.ordinal()] = true;
         manager.initialize(20, 500, this, false, sidesMask);
     }
 
     @Override
-    public IPowerProviderManager getPowerManager() {
+    public IPowerProviderManager getPowerProviderManager() {
         return manager;
+    }
+
+    @Override
+    public String getMachineTitle() {
+        return "Generator";
     }
 }

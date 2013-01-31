@@ -7,6 +7,5 @@ package monnef.jaffas.power.api;
 // ([ provider -> ]) {[ -> consumer ] [ provider -> ]} ... /[ -> consumer ]\
 
 public interface IPowerProvider {
-    IPowerProviderManager getPowerManager();
+    IPowerProviderManager getPowerProviderManager();
 }
-

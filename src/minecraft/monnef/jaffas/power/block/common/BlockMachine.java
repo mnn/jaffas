@@ -101,4 +101,14 @@ public abstract class BlockMachine extends Block {
     protected boolean onPipeWrenchClick(World world, int x, int y, int z, EntityPlayer player, int side) {
         return false;
     }
+
+    @Override
+    public void onBlockEventReceived(World par1World, int par2, int par3, int par4, int par5, int par6) {
+        super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
+        TileEntity var7 = par1World.getBlockTileEntity(par2, par3, par4);
+
+        if (var7 != null) {
+            var7.receiveClientEvent(par5, par6);
+        }
+    }
 }

@@ -9,11 +9,9 @@ import org.lwjgl.opengl.GL12;
 
 public class TileEntityGeneratorRenderer extends TileEntitySpecialRenderer {
     private ModelGenerator generator;
-    private RenderLabel label;
 
     public TileEntityGeneratorRenderer() {
         generator = new ModelGenerator();
-        label = new RenderLabel();
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -62,7 +60,7 @@ public class TileEntityGeneratorRenderer extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        label.renderLivingLabel(tile, "Generator\nEnergy: 10/20\nConnected: No", 128, x, y, z, 40, 3);
+        PowerLabels.render(tile, x, y, z, false);
     }
 
 }

@@ -2,13 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OP.txt" afterPath="$PROJECT_DIR$/OP.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemPipeWrench.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/PowerLabels.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/utils/StringPowerFormatter.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/core/TileEntityHelper.java" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\src\minecraft\monnef\jaffas\power\ItemWrench.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/BlockMachine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/BlockMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IMachineTool.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IMachineTool.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPipeWrench.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPipeWrench.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerConsumer.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerConsumer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerProvider.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerConsumerManager.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerConsumerManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/PowerManager.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/PowerManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerProviderManager.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerProviderManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerUtils.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerUtils.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/monnef/test/power/SimpleTests.java" afterPath="$PROJECT_DIR$/src/test/monnef/test/power/SimpleTests.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityAntenna.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityAntenna.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityAntennaRenderer.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityAntennaRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityGeneratorRenderer.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityGeneratorRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/monnef/test/power/TrivialConsumer.java" afterPath="$PROJECT_DIR$/src/test/monnef/test/power/TrivialConsumer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/monnef/test/power/TrivialProvider.java" afterPath="$PROJECT_DIR$/src/test/monnef/test/power/TrivialProvider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/mod_jaffas_power.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/mod_jaffas_power.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\src\minecraft\monnef\jaffas\power\PowerConsumerManagerFactory.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerManagersFactory.java" />
+      <change type="MOVED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\src\minecraft\monnef\jaffas\power\api\IPowerConsumerManagerFactory.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerManagersFactory.java" />
+      <change type="MOVED" beforePath="D:\workspace\mc\env\1.4.6\mcp725_jaffas\src\minecraft\monnef\jaffas\power\client\RenderLabel.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/LabelRenderer.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359379660723" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359591679838" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649193583" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359634288500" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359111019513" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357673633593" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358021728860" ignored="false" />
@@ -33,13 +60,13 @@
     <file path="/Recipes.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359566809268" ignored="false" />
     <file path="/mod_jaffas_ores.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359461751496" ignored="false" />
     <file path="/VersionHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358021488406" ignored="false" />
-    <file path="/IPowerConsumer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358083162637" ignored="false" />
+    <file path="/IPowerConsumer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649430440" ignored="false" />
     <file path="/IPowerManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358030087840" ignored="false" />
-    <file path="/PowerManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358105171345" ignored="false" />
-    <file path="/IPowerConsumerManagerFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358086203243" ignored="false" />
+    <file path="/PowerManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649939748" ignored="false" />
+    <file path="/IPowerConsumerManagerFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649710341" ignored="false" />
     <file path="/JaffasPowerAPIException.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358027466161" ignored="false" />
     <file path="/IPowerConsumerManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358539301556" ignored="false" />
-    <file path="/IPowerProvider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358335360327" ignored="false" />
+    <file path="/IPowerProvider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649423848" ignored="false" />
     <file path="/BlockCross.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359111011605" ignored="false" />
     <file path="/ItemBagOfSeeds.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358983144182" ignored="false" />
     <file path="/PowerConsumerManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358620819660" ignored="false" />
@@ -65,17 +92,17 @@
     <file path="/ServerTickHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358259430829" ignored="false" />
     <file path="/IPowerProviderManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358620508917" ignored="false" />
     <file path="/PowerUtils.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358526396255" ignored="false" />
-    <file path="/PowerProviderManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358621011357" ignored="false" />
+    <file path="/PowerProviderManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359650456338" ignored="false" />
     <file path="/Simple.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358344603261" ignored="false" />
     <file path="/TrivialProvider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358520167738" ignored="false" />
     <file path="/SimpleTests.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358621063811" ignored="false" />
     <file path="/TrivialConsumer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358346156760" ignored="false" />
-    <file path="/BlockMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358693484439" ignored="false" />
+    <file path="/BlockMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359643546653" ignored="false" />
     <file path="/mod_jaffas_power.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358799794559" ignored="false" />
     <file path="/JaffaCreativeTab.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358606401116" ignored="false" />
-    <file path="/TileEntityMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358452047338" ignored="false" />
+    <file path="/TileEntityMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359646966497" ignored="false" />
     <file path="/ItemPower.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358460370307" ignored="false" />
-    <file path="/ItemDebug.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358632025323" ignored="false" />
+    <file path="/ItemDebug.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649020895" ignored="false" />
     <file path="/a.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358518373233" ignored="false" />
     <file path="/sample.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358518327752" ignored="false" />
     <file path="/a.xml" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358518376747" ignored="false" />
@@ -93,14 +120,14 @@
     <file path="/BlockGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358685104426" ignored="false" />
     <file path="/ModelGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358622633246" ignored="false" />
     <file path="/BlockRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358685979727" ignored="false" />
-    <file path="/TileEntityGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358627956649" ignored="false" />
-    <file path="/TileEntityGeneratorRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358944101566" ignored="false" />
+    <file path="/TileEntityGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649784610" ignored="false" />
+    <file path="/TileEntityGeneratorRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649026456" ignored="false" />
     <file path="/BlockAntenna.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358686207202" ignored="false" />
     <file path="/TileEntityAntennaRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358685787615" ignored="false" />
     <file path="/ModelAntenna.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358685285590" ignored="false" />
-    <file path="/ItemWrench.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358691198075" ignored="false" />
-    <file path="/IPipeWrench.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358691025315" ignored="false" />
-    <file path="/TileEntityAntenna.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358692010361" ignored="false" />
+    <file path="/ItemWrench.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359646810461" ignored="false" />
+    <file path="/IPipeWrench.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359646648063" ignored="false" />
+    <file path="/TileEntityAntenna.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359650584505" ignored="false" />
     <file path="/ItemJaffaPlate.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359325484286" ignored="false" />
     <file path="/BlockPizza.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359111143426" ignored="false" />
     <file path="/ItemPizza.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358797543585" ignored="false" />
@@ -148,6 +175,12 @@
     <file path="/SpawnStoneServerPacketSender.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359401154101" ignored="false" />
     <file path="/CommonProxy.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359401571286" ignored="false" />
     <file path="$PROJECT_DIR$/logs/client_ro.log" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359567441679" ignored="false" />
+    <file path="/PowerLabels.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359648991014" ignored="false" />
+    <file path="/IMachineTool.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359646737381" ignored="false" />
+    <file path="/TileEntityHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359647267220" ignored="false" />
+    <file path="/StringPowerFormatter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359648965656" ignored="false" />
+    <file path="/IPowerBridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649211247" ignored="false" />
+    <file path="/PowerManagersFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649754605" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +200,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -201,7 +235,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -212,19 +245,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Items.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java">
+      <file leaf-file-name="PowerLabels.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/PowerLabels.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="303" column="58" selection-start="16652" selection-end="16652" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Recipes.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="349" column="91" selection-start="26009" selection-end="26009" vertical-scroll-proportion="0.019790454">
+            <state line="27" column="0" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.7319079">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -232,19 +256,48 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CustomDrop.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/CustomDrop.java">
+      <file leaf-file-name="PowerProviderManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerProviderManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="34" selection-start="1652" selection-end="1652" vertical-scroll-proportion="0.0">
+            <state line="38" column="0" selection-start="1256" selection-end="1256" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mod_jaffas_trees.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java">
+      <file leaf-file-name="TileEntityGenerator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="478" column="0" selection-start="23476" selection-end="23476" vertical-scroll-proportion="0.0">
+            <state line="21" column="61" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LabelRenderer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/LabelRenderer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="29" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TileEntityAntenna.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityAntenna.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="60" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IPowerConsumer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerConsumer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2" column="30" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -269,22 +322,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/server/PlayerTracker.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/SpawnStonePacketUtils.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CommonProxy.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/core/Version.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/JaffaCraftingHandler.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/jaffas_EventSounds.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/CustomDrop.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityGeneratorRenderer.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityAntennaRenderer.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerBridge.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerProvider.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerConsumerManagerFactory.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerManagersFactory.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerManagersFactory.java" />
+        <option value="$PROJECT_DIR$/src/test/monnef/test/power/TrivialProvider.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/PowerManager.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerProviderManager.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerConsumer.java" />
+        <option value="$PROJECT_DIR$/src/test/monnef/test/power/TrivialConsumer.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityAntenna.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/LabelRenderer.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/PowerLabels.java" />
       </list>
     </option>
   </component>
@@ -336,7 +389,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -440,11 +492,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
+              <option name="myItemId" value="monnef" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
+              <option name="myItemId" value="jaffas" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -466,11 +518,45 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="power" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="power" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -496,104 +582,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="renderer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="renderer" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="entity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="monnef" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -602,237 +590,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="trees" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="power" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ores" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="server" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="item" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafting" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
+              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -864,6 +626,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -883,9 +646,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -904,11 +667,11 @@
       <recent name="monnef.jaffas.power.item" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="monnef.jaffas.power.api" />
+      <recent name="monnef.jaffas.power.client" />
       <recent name="monnef.jaffas.food.common" />
       <recent name="monnef.jaffas.food.client" />
       <recent name="monnef.jaffas.food.item" />
-      <recent name="monnef.jaffas.food.block" />
-      <recent name="monnef.jaffas.trees" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="monnef.test.power" />
@@ -1153,28 +916,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
-    <editor active="false" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31808037" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2924107" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2924107" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3169643" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36754966" sideWeight="0.2240991" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.178762" sideWeight="0.70758927" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.178762" sideWeight="0.70758927" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32589287" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31848553" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3169643" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1252,110 +1015,116 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/core/Version.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerManagersFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="47" selection-start="92" selection-end="92" vertical-scroll-proportion="0.05862069">
+        <state line="4" column="40" selection-start="126" selection-end="126" vertical-scroll-proportion="0.1118421">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerManagersFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="251" column="0" selection-start="12844" selection-end="12844" vertical-scroll-proportion="0.745977">
+        <state line="6" column="4" selection-start="235" selection-end="235" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java">
+    <entry file="file://$PROJECT_DIR$/src/test/monnef/test/power/TrivialProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="52" selection-start="2759" selection-end="2759" vertical-scroll-proportion="0.56666666">
+        <state line="25" column="33" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/PowerManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="42" selection-start="3064" selection-end="3064" vertical-scroll-proportion="0.6169725">
+        <state line="27" column="12" selection-start="721" selection-end="721" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="18" selection-start="1562" selection-end="1562" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityGeneratorRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="21" selection-start="1908" selection-end="1958" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityAntennaRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="34" selection-start="729" selection-end="729" vertical-scroll-proportion="-0.4819079">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerProviderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="9" selection-start="197" selection-end="197" vertical-scroll-proportion="0.13980263">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/ForgeDirection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="12" selection-start="48" selection-end="48" vertical-scroll-proportion="0.05592105">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/monnef/test/power/TrivialConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="37" selection-start="307" selection-end="307" vertical-scroll-proportion="0.2034188">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/api/IPowerConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="30" selection-start="64" selection-end="64" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityAntenna.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="60" selection-start="1000" selection-end="1000" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/jaffas_EventSounds.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/PowerProviderManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="106" selection-start="739" selection-end="739" vertical-scroll-proportion="0.25344038">
+        <state line="38" column="0" selection-start="1256" selection-end="1256" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityMooshroom.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="86" selection-start="1310" selection-end="1310" vertical-scroll-proportion="0.3327645" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/crafting/RecipesFood.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="66" selection-start="374" selection-end="374" vertical-scroll-proportion="0.30756578" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/TileEntityFruitCollector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="131" selection-start="7402" selection-end="7438" vertical-scroll-proportion="0.027960526">
+        <state line="21" column="61" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/LabelRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="227" column="38" selection-start="26090" selection-end="26090" vertical-scroll-proportion="0.019790454">
+        <state line="31" column="29" selection-start="1242" selection-end="1242" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/PowerLabels.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="27" selection-start="4593" selection-end="4593" vertical-scroll-proportion="0.019495413">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/mod_jaffas_trees.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="478" column="0" selection-start="23476" selection-end="23476" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemFood.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="20" selection-start="3806" selection-end="3806" vertical-scroll-proportion="0.53103447" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemCleaverHookContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="866" selection-end="866" vertical-scroll-proportion="-0.03908046">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/CustomDrop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="34" selection-start="1652" selection-end="1652" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="303" column="58" selection-start="16652" selection-end="16652" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="349" column="91" selection-start="26009" selection-end="26009" vertical-scroll-proportion="0.019790454">
+        <state line="27" column="0" selection-start="1084" selection-end="1084" vertical-scroll-proportion="0.7319079">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

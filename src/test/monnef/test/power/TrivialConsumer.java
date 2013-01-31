@@ -8,13 +8,7 @@ public class TrivialConsumer extends TileEntity implements IPowerConsumer {
     private IPowerConsumerManager manager;
 
     @Override
-    public void setPowerManager(IPowerConsumerManager manager) {
-
-        this.manager = manager;
-    }
-
-    @Override
-    public IPowerConsumerManager getPowerManager() {
+    public IPowerConsumerManager getPowerConsumerManager() {
         return manager;
     }
 

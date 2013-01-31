@@ -35,6 +35,10 @@ public class PowerProviderManager implements IPowerProviderManager {
         }
         initialized = true;
 
+        if (directSidesMask.length != 6) {
+            throw new JaffasPowerException("wrong size of direct side connection mask");
+        }
+
         this.maximalPacketSize = maximalPacketSize;
         this.bufferSize = bufferSize;
         this.tile = tile;
@@ -49,7 +53,7 @@ public class PowerProviderManager implements IPowerProviderManager {
 
     @Override
     public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection) {
-        initialize(maximalPacketSize, bufferSize, tile, remoteConnection, new boolean[7]);
+        initialize(maximalPacketSize, bufferSize, tile, remoteConnection, new boolean[6]);
     }
 
     private void fillDirectConnectionSupport() {
@@ -109,12 +113,12 @@ public class PowerProviderManager implements IPowerProviderManager {
             return distance.get(consumer);
         }
 
-        distance.put(consumer.getPowerManager(), computeDistance(consumer));
+        distance.put(consumer.getPowerConsumerManager(), computeDistance(consumer));
         return getDistance(consumer);
     }
 
     private Integer computeDistance(IPowerConsumer consumer) {
-        TileEntity consumerTile = consumer.getPowerManager().getTile();
+        TileEntity consumerTile = consumer.getPowerConsumerManager().getTile();
         float f = MathHelper.sqrt_float(Square(getTile().xCoord - consumerTile.xCoord) + Square(getTile().yCoord - consumerTile.yCoord) + Square(getTile().zCoord - consumerTile.zCoord));
         return MathHelper.ceiling_float_int(f);
     }
@@ -174,7 +178,7 @@ public class PowerProviderManager implements IPowerProviderManager {
     }
 
     private void SetConsumer(ForgeDirection side, IPowerConsumer consumer) {
-        consumers.put(side, consumer.getPowerManager());
+        consumers.put(side, consumer.getPowerConsumerManager());
     }
 
     @Override

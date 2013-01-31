@@ -23,7 +23,7 @@ public class TrivialProvider extends TileEntity implements IPowerProvider {
     }
 
     @Override
-    public IPowerProviderManager getPowerManager() {
+    public IPowerProviderManager getPowerProviderManager() {
         return manager;
     }
 

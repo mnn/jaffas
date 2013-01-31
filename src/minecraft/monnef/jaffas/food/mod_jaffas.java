@@ -35,7 +35,7 @@ import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
-import monnef.jaffas.power.PowerConsumerManagerFactory;
+import monnef.jaffas.power.PowerManagersFactory;
 import monnef.jaffas.power.api.PowerManager;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
@@ -219,7 +219,7 @@ public class mod_jaffas {
         }
 
         proxy.registerSounds();
-        PowerManager.InitializeFactory(new PowerConsumerManagerFactory());
+        PowerManager.InitializeFactory(new PowerManagersFactory());
     }
 
     @Init

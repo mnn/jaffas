@@ -1,7 +1,7 @@
 package monnef.test.power;
 
 import monnef.jaffas.power.PowerConsumerManager;
-import monnef.jaffas.power.PowerConsumerManagerFactory;
+import monnef.jaffas.power.PowerManagersFactory;
 import monnef.jaffas.power.PowerProviderManager;
 import monnef.jaffas.power.PowerUtils;
 import monnef.jaffas.power.api.PowerManager;
@@ -18,7 +18,7 @@ public class SimpleTests {
     @Test
     public void powerManagerInit() {
         assertFalse(PowerManager.IsInitialized());
-        PowerManager.InitializeFactory(new PowerConsumerManagerFactory());
+        PowerManager.InitializeFactory(new PowerManagersFactory());
         assertTrue(PowerManager.IsInitialized());
         Assert.assertNotNull(PowerManager.CreatePowerConsumerManager());
     }

@@ -19,6 +19,7 @@ import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.item.ItemDebug;
+import monnef.jaffas.power.item.ItemPipeWrench;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
@@ -54,7 +55,7 @@ public class mod_jaffas_power {
     private int blockAntennaID;
 
     private int ItemWrenchID;
-    public static ItemWrench wrench;
+    public static ItemPipeWrench wrench;
 
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -115,7 +116,7 @@ public class mod_jaffas_power {
         GameRegistry.registerBlock(antenna, antenna.getBlockName());
         LanguageRegistry.addName(antenna, "Small Antenna");
 
-        wrench = new ItemWrench(ItemWrenchID, 1);
+        wrench = new ItemPipeWrench(ItemWrenchID, 1);
         LanguageRegistry.addName(wrench, "Pipe Wrench");
     }
 

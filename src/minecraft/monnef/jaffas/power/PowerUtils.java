@@ -10,19 +10,19 @@ public class PowerUtils {
     public static boolean Connect(IPowerProvider provider, IPowerConsumer consumer, ForgeDirection side) {
         boolean success = true;
         if (side == ForgeDirection.UNKNOWN) {
-            success &= provider.getPowerManager().connect(consumer);
-            consumer.getPowerManager().connect(provider);
+            success &= provider.getPowerProviderManager().connect(consumer);
+            consumer.getPowerConsumerManager().connect(provider);
         } else {
-            success &= provider.getPowerManager().connectDirect(consumer, side);
-            consumer.getPowerManager().connectDirect(provider, side);
+            success &= provider.getPowerProviderManager().connectDirect(consumer, side);
+            consumer.getPowerConsumerManager().connectDirect(provider, side);
         }
 
         return success;
     }
 
     public static void Disconnect(IPowerProvider provider, IPowerConsumer consumer) {
-        provider.getPowerManager().disconnect(consumer);
-        consumer.getPowerManager().disconnect();
+        provider.getPowerProviderManager().disconnect(consumer);
+        consumer.getPowerConsumerManager().disconnect();
     }
 
     public static int loseEnergy(int energy, int distance) {

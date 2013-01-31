@@ -134,7 +134,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     @Override
     public void tick() {
         if (energyNeeded()) {
-            int energy = provider.getPowerManager().requestEnergy(getCurrentMaximalPacketSize(), (IPowerConsumer) getTile());
+            int energy = provider.getPowerProviderManager().requestEnergy(getCurrentMaximalPacketSize(), (IPowerConsumer) getTile());
             storeEnergy(energy);
         }
     }

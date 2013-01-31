@@ -7,11 +7,11 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
-public class RenderLabel {
+public class LabelRenderer {
 
     private RenderManager renderManager;
 
-    public RenderLabel() {
+    public LabelRenderer() {
         renderManager = RenderManager.instance;
     }
 
@@ -29,7 +29,7 @@ public class RenderLabel {
 
         if (distanceToEntity <= visibleDistance) {
             FontRenderer fontRenderer = this.getFontRendererFromRenderManager();
-            float var13 = 1.6F;
+            float var13 = 1f; // 1.6F;
             float size = 0.016666668F * var13;
             GL11.glPushMatrix();
             GL11.glTranslatef((float) x + 0.5F, (float) y + 1.0F, (float) z + 0.5F);
@@ -68,7 +68,7 @@ public class RenderLabel {
             fontRenderer.drawSplitString(text, leftCoord, topCoord, mysteryNumber, -1);
             GL11.glEnable(GL11.GL_DEPTH_TEST);
             GL11.glDepthMask(true);
-            //fontRenderer.drawSplitString(text, leftCoord, topCoord, mysteryNumber, -1);
+            fontRenderer.drawSplitString(text, leftCoord, topCoord, mysteryNumber, -1);
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_BLEND);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
