@@ -60,7 +60,7 @@ public class TileEntityGeneratorRenderer extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
-        PowerLabels.render(tile, x, y, z, false);
+        PowerLabels.renderLabel(tile, x, y, z, false);
     }
 
 }

@@ -22,7 +22,7 @@ public class LabelRenderer {
     /**
      * Draws the debug or playername text above a living
      */
-    protected void renderLivingLabel(TileEntity tileEntity, String text, int visibleDistance, double x, double y, double z, int textWidth, int lines) {
+    protected void renderLabel(TileEntity tileEntity, String text, int visibleDistance, double x, double y, double z, int textWidth, int lines) {
         //double sqDistanceToEntity = tileEntity.getDistanceSqToEntity(this.renderManager.livingPlayer);
         EntityLiving player = this.renderManager.livingPlayer;
         double distanceToEntity = tileEntity.getDistanceFrom(player.posX, player.posY, player.posZ);

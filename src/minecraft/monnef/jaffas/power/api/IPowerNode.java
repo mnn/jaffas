@@ -2,6 +2,7 @@ package monnef.jaffas.power.api;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
 public interface IPowerNode {
     int getMaximalPacketSize();
@@ -40,4 +41,6 @@ public interface IPowerNode {
     void tick();
 
     boolean isRemotelyConnected();
+
+    boolean isConnectedToSide(ForgeDirection side);
 }

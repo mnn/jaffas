@@ -37,8 +37,6 @@ public interface IPowerProviderManager extends IPowerNode {
 
     boolean disconnect(IPowerConsumer consumer);
 
-    boolean isConnectedToSide(ForgeDirection side);
-
     boolean[] constructConnectedSides();
 
     IPowerConsumer getConsumer(ForgeDirection side);

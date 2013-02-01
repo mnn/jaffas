@@ -29,6 +29,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
         setMaximalPacketSize(maximalPacketSize);
         setBufferSize(bufferSize);
         setTile(tile);
+        sideOfProvider = null;
     }
 
     @Override
@@ -124,6 +125,13 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     @Override
     public boolean isRemotelyConnected() {
         return provider != null;
+    }
+
+    @Override
+    public boolean isConnectedToSide(ForgeDirection side) {
+        if (provider == null) return false;
+        if (sideOfProvider == ForgeDirection.UNKNOWN) return false;
+        return side == sideOfProvider;
     }
 
     @Override

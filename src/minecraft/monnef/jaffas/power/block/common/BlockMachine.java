@@ -111,4 +111,6 @@ public abstract class BlockMachine extends Block {
             var7.receiveClientEvent(par5, par6);
         }
     }
+
+    public abstract boolean supportRotation();
 }

@@ -21,6 +21,11 @@ public class BlockGenerator extends BlockMachine {
         return new TileEntityGenerator();
     }
 
+    @Override
+    public boolean supportRotation() {
+        return false;
+    }
+
     public static boolean isBurning(int meta) {
         return BitHelper.isBitSet(meta, BURN_BIT);
     }

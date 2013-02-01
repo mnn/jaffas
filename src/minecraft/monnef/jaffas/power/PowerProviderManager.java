@@ -1,6 +1,7 @@
 package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
+import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.power.api.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -184,11 +185,13 @@ public class PowerProviderManager implements IPowerProviderManager {
     @Override
     public boolean connectDirect(IPowerConsumer output, ForgeDirection side) {
         if (!supportDirectConnection()) {
-            throw new JaffasPowerException("provider doesn't support direct connections");
+            if (mod_jaffas.debug) System.err.println("[PPM] provider doesn't support direct connections");
+            //throw new JaffasPowerException("provider doesn't support direct connections");
         }
 
         if (isConnectedToSide(side)) {
-            throw new JaffasPowerException("provider already connected");
+            if (mod_jaffas.debug) System.err.println("[PPM] provider already connected");
+            //throw new JaffasPowerException("provider already connected");
         }
 
         SetConsumer(side, output);
@@ -198,7 +201,8 @@ public class PowerProviderManager implements IPowerProviderManager {
     @Override
     public boolean disconnect(IPowerConsumer consumer) {
         if (!consumers.containsValue(consumer)) {
-            throw new JaffasPowerException("consumer is not connected, cannot disconnect");
+            if (mod_jaffas.debug) System.err.println("[PPM] consumer is not connected, cannot disconnect");
+//            throw new JaffasPowerException("consumer is not connected, cannot disconnect");
         }
 
         consumers.remove(consumers.inverse().get(consumer));

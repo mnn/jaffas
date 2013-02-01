@@ -9,9 +9,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,14 +47,14 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
         addAchievement(JaffaItem.malletDiamond, "MalletDiaAch", 3, -3, getItem(JaffaItem.malletDiamond), craftAchievement.get(getItemID(JaffaItem.malletHeadDiamond)), false, "Diamond Mallet", "Use sticks and a mallet head to make a mallet.");
     }
 
-    private static void addAchievement(JaffaItem item, String name, int xCoord, int yCoord, Object icon, Achievement required, boolean special, String title, String desc) {
+    private static void addAchievement(JaffaItem item, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
         Achievement ach = null;
         int newId = idCounter++;
 
         if (icon instanceof Item) {
-            ach = new Achievement(newId, name, xCoord, yCoord, (Item) icon, required);
+            ach = new Achievement(newId, name, xCoord, yCoord, (Item) icon, requiredInTree);
         } else if (icon instanceof Block) {
-            ach = new Achievement(newId, name, xCoord, yCoord, (Block) icon, required);
+            ach = new Achievement(newId, name, xCoord, yCoord, (Block) icon, requiredInTree);
         }
         if (ach == null) throw new JaffasException("wrong icon object");
 
@@ -63,6 +65,10 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
         addAchievementDesc(name, desc);
 
         craftAchievement.put(getItemID(item), ach);
+    }
+
+    private static void addCombinedAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc, Integer[] achievementsNeeded) {
+
     }
 
     private static void addAchievementName(String ach, String name) {
@@ -98,5 +104,44 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
     @Override
     public void onSmelting(EntityPlayer player, ItemStack item) {
         //To change body of implemented methods use File | Settings | File Templates.
+    }
+}
+
+
+class CombinedAchievement {
+    public ArrayList<Integer> required;
+
+    CombinedAchievement(Integer[] achievementsNeeded) {
+        required = new ArrayList<Integer>();
+
+        for (Integer a : achievementsNeeded) {
+            required.add(a);
+        }
+    }
+
+    // TODO
+    public boolean checkPlayer(EntityPlayer player) {
+        NBTTagCompound tag = player.getEntityData();
+        NBTTagCompound myTag = tag.getCompoundTag("jaffasAchievements");
+
+        if (myTag != null) {
+            int[] array = myTag.getIntArray("achievements");
+            boolean[] found = new boolean[required.size()];
+            for (int playersAchievements : array) {
+                int index = required.indexOf(playersAchievements);
+                if (index != -1) {
+                    found[index] = true;
+                }
+            }
+
+            for (int i = 0; i < found.length; i++) {
+                if (!found[i]) return false;
+            }
+
+            // all required items are here, we're ok
+            return true;
+        }
+
+        return false;
     }
 }

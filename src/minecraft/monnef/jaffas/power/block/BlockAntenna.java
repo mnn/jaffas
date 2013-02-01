@@ -24,7 +24,18 @@ public class BlockAntenna extends BlockMachine {
         return meta & 7;
     }
 
+    @Override
+    public boolean supportRotation() {
+        return true;
+    }
+
     public boolean isLit(int meta) {
         return BitHelper.isBitSet(meta, LIT_BIT);
+    }
+
+    public void setRotation(World world, int x, int y, int z, int rotation) {
+        int meta = world.getBlockMetadata(x, y, z);
+        int newMeta = (meta & 8) | (rotation & 7);
+        world.setBlockMetadataWithNotify(x, y, z, newMeta);
     }
 }

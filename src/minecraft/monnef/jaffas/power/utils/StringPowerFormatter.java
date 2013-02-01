@@ -12,28 +12,39 @@ import net.minecraftforge.common.ForgeDirection;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO optimize!
 public class StringPowerFormatter {
     public static String getConnectionInfo(IPowerNode node, boolean debug) {
-        if (node instanceof IPowerProviderManager)
-            return getConnectionInfo((IPowerProviderManager) node, debug);
-        else if (node instanceof IPowerConsumerManager)
-            return getConnectionInfo((IPowerConsumerManager) node, debug);
+        StringBuilder ret = new StringBuilder();
 
-        throw new RuntimeException("invalid power node");
+        if (node instanceof IPowerProviderManager) {
+            ret.append(getConnectionInfo((IPowerProviderManager) node, debug));
+        }
+
+        if (node instanceof IPowerConsumerManager) {
+            if (ret.length() > 0) ret.append(" ");
+            ret.append(getConnectionInfo((IPowerConsumerManager) node, debug));
+        }
+
+        return ret.toString();
     }
 
     public static String getConnectionInfo(IPowerConsumerManager consumer, boolean debug) {
         StringBuilder s = new StringBuilder();
         IPowerProvider provider = consumer.getProvider();
         if (provider != null) {
-            s.append(TileEntityHelper.getFormattedCoordinates(provider.getPowerProviderManager().getTile()));
+            if (debug) {
+                s.append(TileEntityHelper.getFormattedCoordinates(provider.getPowerProviderManager().getTile()));
+            } else {
+                s.append("wC");
+            }
         } else {
-            s.append("-");
+            s.append("--");
         }
 
         return s.toString();
     }
+
+    public final static String[] directionStrings = new String[]{"B", "U", "N", "S", "W", "E", "?"};
 
     public static String getConnectionInfo(IPowerProviderManager provider, boolean debug) {
         List<String> list = new ArrayList<String>();
@@ -44,20 +55,26 @@ public class StringPowerFormatter {
                 if (debug) {
                     s.append(TileEntityHelper.getFormattedCoordinates((TileEntity) provider.getConsumer(ForgeDirection.getOrientation(i))));
                 } else {
-                    s.append(ForgeDirection.values()[i]);
+                    s.append(directionStrings[i]);
                 }
             } else {
-                s.append("-");
+                if (debug) {
+                    s.append("-");
+                }
             }
-            list.add(s.toString());
+
+            String s1 = s.toString();
+            if (!s1.isEmpty()) {
+                list.add(s1);
+            }
         }
 
         return Joiner.on("|").join(list);
     }
 
-    public static String getEnergyInfo(boolean provider, int buffer, int maxBuff, int packetSize) {
+    public static String getEnergyInfo(boolean provider, boolean consumer, int buffer, int maxBuff, int packetSize) {
         StringBuilder s = new StringBuilder();
-        s.append(provider ? "P>" : ">C");
+        s.append(provider && consumer ? ">B>" : (provider ? " P>" : ">C "));
         s.append(":");
         s.append(buffer);
         s.append("/");
