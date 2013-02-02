@@ -342,8 +342,8 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(sweetRollRaw);
         createJaffaItem(browniesInTinRaw);
 
-        createJaffaFood(creamRoll, 4, 1F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
-        createJaffaFood(brownie, 2, 0.6F).setPotionEffect(Potion.jump.id, 60, 1, 0.15F);
+        createJaffaFood(creamRoll, 4, 1F).setPotionEffect(Potion.digSpeed.id, 60, 0, 0.15F);
+        createJaffaFood(brownie, 2, 0.6F).setPotionEffect(Potion.jump.id, 60, 0, 0.15F);
 
         createJaffaItem(bunRaw);
         createJaffaItem(bun);
@@ -351,11 +351,11 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(sausage);
         createJaffaItem(flour);
 
-        createJaffaFood(hotdog, 3, 0.7F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.15F);
+        createJaffaFood(hotdog, 3, 0.7F).setPotionEffect(Potion.damageBoost.id, 60, 0, 0.15F);
 
         createJaffaItem(chocolateWrapper);
 
-        createJaffaFood(chocolateBar, 1, 0.5F).setPotionEffect(Potion.moveSpeed.id, 60, 1, 0.15F);
+        createJaffaFood(chocolateBar, 1, 0.5F).setPotionEffect(Potion.moveSpeed.id, 60, 0, 0.15F);
 
         createJaffaItem(wrapperJaffas);
 
@@ -373,9 +373,9 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(vanillaIcecreamFrozen);
         createJaffaItem(chocolateIcecreamFrozen);
         createJaffaItem(icecreamFrozen);
-        createJaffaFood(vanillaIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
-        createJaffaFood(chocolateIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
-        createJaffaFood(russianIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 1, 0.25F);
+        createJaffaFood(vanillaIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 0, 0.25F);
+        createJaffaFood(chocolateIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 0, 0.25F);
+        createJaffaFood(russianIcecream, 2, 0.3F).setPotionEffect(Potion.moveSpeed.id, 70, 0, 0.25F);
 
         createJaffaItem(donutRaw);
         createJaffaItem(donut);
@@ -394,10 +394,10 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(jaffaV, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
         createJaffaFood(jaffaL, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
 
-        createJaffaFood(donutChocolate, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
-        createJaffaFood(donutPink, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 1, 0.15F);
-        createJaffaFood(donutSugar, 2, 0.3F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.15F);
-        createJaffaFood(donutSprinkled, 2, 0.9F).setPotionEffect(Potion.damageBoost.id, 60, 1, 0.20F);
+        createJaffaFood(donutChocolate, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 0, 0.15F);
+        createJaffaFood(donutPink, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 0, 0.15F);
+        createJaffaFood(donutSugar, 2, 0.3F).setPotionEffect(Potion.damageBoost.id, 60, 0, 0.15F);
+        createJaffaFood(donutSprinkled, 2, 0.9F).setPotionEffect(Potion.damageBoost.id, 45, 1, 0.20F);
 
         //createBagOfSeed(JaffaItem.bagOfSeedsIdentified);
         this.createJaffaItemManual(bagOfSeedsIdentified, ItemBagOfSeeds.class);
@@ -408,12 +408,12 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(kettleWaterCold);
         createJaffaItem(kettleWaterHot).setMaxDamage(5).setMaxStackSize(1);
         createJaffaItem(cup);
-        createJaffaFood(cupCoffee, 1, 0.2F).
+        createJaffaFood(cupCoffee, 2, 0.2F).
                 setReturnItem(new ItemStack(getItem(cup))).setIsDrink().
-                setPotionEffect(Potion.digSpeed.id, 35, 1, 1F).setAlwaysEdible().setMaxStackSize(16);
+                setPotionEffect(Potion.digSpeed.id, 90, 0, 1F).setAlwaysEdible().setMaxStackSize(16);
         createJaffaItem(cupRaw);
         createJaffaItem(omeletteRaw);
-        createJaffaFood(omelette, 3, 0.5F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.2F).setMaxStackSize(16);
+        createJaffaFood(omelette, 3, 0.5F).setPotionEffect(Potion.regeneration.id, 4, 0, 0.2F).setMaxStackSize(16);
         createJaffaItem(tomatoChopped);
         createJaffaItem(paprikaChopped);
         createJaffaItem(grinderMeat);
@@ -427,7 +427,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(rollChopped);
         createJaffaItem(meatChopped);
         createJaffaItem(ironSkewer);
-        createJaffaFood(skewer, 4, 0.5F).setReturnItem(new ItemStack(getItem(ironSkewer))).setPotionEffect(Potion.jump.id, 60, 1, 0.15F);
+        createJaffaFood(skewer, 4, 0.5F).setReturnItem(new ItemStack(getItem(ironSkewer))).setPotionEffect(Potion.jump.id, 80, 0, 0.15F);
         createJaffaItem(skewerRaw);
         createJaffaItem(knifeKitchen).setMaxDamage(256).setMaxStackSize(1);
 
@@ -451,8 +451,8 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(burger);
         createJaffaItem(onionSliced);
 
-        createJaffaFood(hamburger).Setup(6, 0.9f);
-        createJaffaFood(cheeseburger).Setup(6, 0.9f);
+        createJaffaFood(hamburger, 6, 0.9f).setPotionEffect(Potion.nightVision.id, 60, 0, 0.3f);
+        createJaffaFood(cheeseburger, 6, 0.7f).setPotionEffect(Potion.nightVision.id, 80, 0, 0.3f);
 
         createJaffaItem(fryingPan);
         createJaffaItem(fryingPanBurgerRaw);
@@ -464,10 +464,10 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(breadRaw);
         createJaffaItem(breadSlice);
 
-        createJaffaFood(breadSliceToasted).Setup(3, 0.33f);
-        createJaffaFood(breadSliceJam).Setup(3, 0.33f);
-        createJaffaFood(breadSliceButter).Setup(2, 0.33f);
-        createJaffaFood(breadSliceEgg).Setup(3, 0.33f);
+        createJaffaFood(breadSliceToasted, 3, 0.33f);
+        createJaffaFood(breadSliceJam, 3, 0.33f).setPotionEffect(Potion.waterBreathing.id, 60, 0, 0.15F);
+        createJaffaFood(breadSliceButter, 2, 0.33f).setPotionEffect(Potion.waterBreathing.id, 30, 0, 0.1F);
+        createJaffaFood(breadSliceEgg, 3, 0.33f).setPotionEffect(Potion.waterBreathing.id, 60, 0, 0.15F);
 
         createJaffaItem(bottleEmpty);
         createJaffaItem(bottleKetchup);
@@ -504,7 +504,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(crumpledPaper);
         createJaffaItem(scrap);
 
-        createJaffaFood(chips).Setup(3, 0.7f);
+        createJaffaFood(chips, 2, 1.5f).setPotionEffect(Potion.moveSlowdown.id, 5, 0, 0.2f);
         createJaffaItem(chipsRaw);
         createJaffaItem(fryingPanChips);
         createJaffaItem(fryingPanChipsRaw);
@@ -523,25 +523,25 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(juiceBottle);
         createJaffaItem(glassEmpty);
         for (Juice juice : Juice.values()) {
-            ((ItemJaffaFood) (createJaffaFood(juice.juiceBottle).Setup(12, 1f))).setIsDrink().setReturnItem(new ItemStack(getItem(juiceBottle)));
-            ((ItemJaffaFood) createJaffaFood(juice.glass).Setup(5, 0.25f)).setIsDrink().setReturnItem(new ItemStack(getItem(glassEmpty)));
+            createJaffaFood(juice.juiceBottle, 12, 1f).setIsDrink().setReturnItem(new ItemStack(getItem(juiceBottle)));
+            createJaffaFood(juice.glass, 5, 0.25f).setIsDrink().setReturnItem(new ItemStack(getItem(glassEmpty)));
         }
 
         ((ItemJaffaFood) createJaffaFood(glassMilk).Setup(1, 0.1f)).setIsDrink().setReturnItem(new ItemStack(getItem(glassEmpty)));
 
         createJaffaItem(woodenBowl);
         createJaffaItem(cookedMushroomsRaw);
-        ((ItemJaffaFood) createJaffaFood(cookedMushrooms).Setup(6, 0.5f)).setReturnItem(new ItemStack(getItem(woodenBowl))).setMaxStackSize(32);
+        createJaffaFood(cookedMushrooms, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).setPotionEffect(Potion.fireResistance.id, 30, 0, 0.1f).setMaxStackSize(32);
 
         createJaffaItem(pepperStuffedRaw);
-        createJaffaFood(pepperStuffed, 5, 1.0f).setPotionEffect(Potion.resistance.id, 35, 1, 0.2F).setMaxStackSize(16);
+        createJaffaFood(pepperStuffed, 5, 1.0f).setPotionEffect(Potion.resistance.id, 60, 0, 0.2F).setMaxStackSize(16);
 
         createJaffaItem(peanutsSugar);
-        createJaffaFood(peanutsCaramelized, 4, 0.2f).setPotionEffect(Potion.jump.id, 15, 1, 0.2F);
+        createJaffaFood(peanutsCaramelized, 4, 0.2f).setPotionEffect(Potion.jump.id, 30, 0, 0.2F);
 
-        createJaffaFood(wolfMeatRaw, 1, 0.1f).setPotionEffect(Potion.poison.id, 15, 1, 0.2F);
-        createJaffaFood(muttonRaw, 1, 0.1f).setPotionEffect(Potion.poison.id, 15, 1, 0.2F);
-        createJaffaFood(spiderLegRaw, 1, 0.2f).setPotionEffect(Potion.poison.id, 15, 1, 0.25F);
+        createJaffaFood(wolfMeatRaw, 1, 0.05f).setPotionEffect(Potion.hunger.id, 15, 1, 0.2F);
+        createJaffaFood(muttonRaw, 1, 0.05f).setPotionEffect(Potion.hunger.id, 15, 1, 0.2F);
+        createJaffaFood(spiderLegRaw, 1, 0.07f).setPotionEffect(Potion.poison.id, 4, 0, 0.2F);
 
         createJaffaFood(wolfMeat, 4, 0.7f);
         createJaffaFood(mutton, 4, 0.7f);
