@@ -7,6 +7,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
@@ -18,6 +19,7 @@ import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemPipeWrench;
 import net.minecraftforge.common.Configuration;
@@ -100,6 +102,8 @@ public class mod_jaffas_power {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.power", "en_US", "Jaffas and more! Power");
+
+        NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
 
         mod_jaffas.PrintInitialized(ModulesEnum.power);
     }

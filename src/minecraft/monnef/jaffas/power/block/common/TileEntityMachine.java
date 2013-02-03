@@ -24,3 +24,4 @@ public abstract class TileEntityMachine extends TileEntity {
     protected void onTick(int number) {
     }
 }
+

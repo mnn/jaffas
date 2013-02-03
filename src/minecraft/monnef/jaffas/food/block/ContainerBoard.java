@@ -65,7 +65,7 @@ public class ContainerBoard extends Container {
 
             //merges the item into player inventory since its in the tileEntity
             if (slot < slots) {
-                if (!this.mergeItemStack(stackInSlot, slots, 39, true)) {
+                if (!this.mergeItemStack(stackInSlot, slots, 36 + slots, true)) {
                     return null;
                 }
             }

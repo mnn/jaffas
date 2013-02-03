@@ -3,10 +3,10 @@ package monnef.jaffas.power.block;
 import monnef.jaffas.power.PowerProviderManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
-import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityGenerator extends TileEntityMachine implements IPowerProvider {
+public class TileEntityGenerator extends TileEntityMachineWithInventory implements IPowerProvider {
     private final PowerProviderManager manager;
 
     public TileEntityGenerator() {
@@ -33,5 +33,14 @@ public class TileEntityGenerator extends TileEntityMachine implements IPowerProv
             sidesMask[ForgeDirection.UP.ordinal()] = true;
             manager.initialize(20, 500, this, false, sidesMask);
         }
+    }
+
+    public int getSizeInventory() {
+        return 1;
+    }
+
+    @Override
+    public String getInvName() {
+        return "jaffas.power.generator";
     }
 }
