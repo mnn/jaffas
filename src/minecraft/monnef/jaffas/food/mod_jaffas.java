@@ -17,6 +17,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import monnef.core.ColorHelper;
 import monnef.core.IDProvider;
 import monnef.core.RegistryUtils;
 import monnef.core.Version;
@@ -31,6 +32,7 @@ import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.crafting.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
+import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.server.PlayerTracker;
@@ -41,6 +43,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -237,6 +240,7 @@ public class mod_jaffas {
         items.CreateItems();
         createJaffaArmorAndSword();
         createPainting();
+        registerDuck();
         AchievementsCraftingHandler.init();
 
         Recipes.install();
@@ -282,6 +286,12 @@ public class mod_jaffas {
         itemPainting = new ItemJaffaPainting(this.itemPaintingID);
         LanguageRegistry.addName(itemPainting, "Painting");
         registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, JaffaPaintingEntityID);
+    }
+
+    private void registerDuck() {
+        EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", ModLoader.getUniqueEntityId(), ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
+        LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
+        EntityRegistry.addSpawn(EntityDuck.class, 100, 2, 5, EnumCreatureType.creature);
     }
 
     private void createBlocks() {

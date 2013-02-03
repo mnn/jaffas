@@ -75,21 +75,29 @@ public class ItemSpawnStone extends ItemJaffaBase {
 
         world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
 
-        ChunkCoordinates spawn = player.getBedLocation();
+
+        ChunkCoordinates bed = player.getBedLocation();
+        ChunkCoordinates spawn = bed;
+        String type = "b";
         if (spawn == null) {
             spawn = world.getSpawnPoint();
+            type += "S";
         } else {
             if (homeWorld) { // bed spawn position method malfunctions after transfer from nether, ignore it
                 spawn = Block.bed.getBedSpawnPosition(world, spawn.posX, spawn.posY, spawn.posZ, player);
+                type += "B";
+                if (spawn == null) {
+                    spawn = bed;
+                    type += "b";
+                } else {
+                    spawn.posY += .5f;
+                }
             } else {
-                spawn.posY += 1.801;
-            }
-
-            if (spawn == null) {
-                spawn = world.getSpawnPoint();
+                spawn.posY += 2f;
             }
         }
 
+        System.out.println(player.getEntityName() + " used home stone, porting to: " + spawn.posX + ", " + spawn.posY + ", " + spawn.posZ + "  [" + type + "]");
         player.setPositionAndUpdate(spawn.posX, spawn.posY, spawn.posZ);
         world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
 
