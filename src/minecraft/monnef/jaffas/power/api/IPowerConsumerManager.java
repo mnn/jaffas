@@ -16,9 +16,9 @@ public interface IPowerConsumerManager extends IPowerNode {
      */
     int consume(int energy);
 
-    void connect(IPowerProvider provider);
+    void connect(IPowerNodeCoordinates provider);
 
-    void connectDirect(IPowerProvider provider, ForgeDirection side);
+    void connectDirect(IPowerNodeCoordinates provider, ForgeDirection side);
 
     void disconnect();
 

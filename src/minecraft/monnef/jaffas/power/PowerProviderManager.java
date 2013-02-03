@@ -2,15 +2,16 @@ package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
 import monnef.jaffas.food.mod_jaffas;
-import monnef.jaffas.power.api.*;
+import monnef.jaffas.power.api.IPowerConsumer;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerProviderManager;
+import monnef.jaffas.power.api.JaffasPowerException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.ForgeDirection;
 
 import java.util.HashMap;
-
-import static monnef.core.MathHelper.Square;
+import java.util.Set;
 
 public class PowerProviderManager implements IPowerProviderManager {
     private static final int MINIMAL_ENERGY_TO_TRANSFER = 5;
@@ -20,14 +21,15 @@ public class PowerProviderManager implements IPowerProviderManager {
     private boolean remoteConnection;
     private boolean[] directSidesMask;
 
-    private HashBiMap<ForgeDirection, IPowerConsumerManager> consumers;
-    private HashMap<IPowerNode, Integer> distance;
+    private HashBiMap<ForgeDirection, IPowerNodeCoordinates> consumers;
+    private HashMap<IPowerNodeCoordinates, Integer> distance;
     private int energyBuffer;
 
     private boolean firstTick = true;
 
     private boolean initialized = false;
     private boolean supportDirectConn;
+    private IPowerNodeCoordinates myCoordinates;
 
     @Override
     public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, boolean[] directSidesMask) {
@@ -45,9 +47,10 @@ public class PowerProviderManager implements IPowerProviderManager {
         this.tile = tile;
         this.remoteConnection = remoteConnection;
         this.directSidesMask = directSidesMask;
-        this.consumers = HashBiMap.create(new HashMap<ForgeDirection, IPowerConsumerManager>());
+        this.consumers = HashBiMap.create(new HashMap<ForgeDirection, IPowerNodeCoordinates>());
 
         this.energyBuffer = 0;
+        this.myCoordinates = new PowerNodeCoordinates(tile);
 
         fillDirectConnectionSupport();
     }
@@ -90,7 +93,12 @@ public class PowerProviderManager implements IPowerProviderManager {
     }
 
     @Override
-    public int requestEnergy(int amount, IPowerConsumer consumer) {
+    public IPowerNodeCoordinates getCoordinates() {
+        return this.myCoordinates;
+    }
+
+    @Override
+    public int requestEnergy(int amount, IPowerNodeCoordinates consumer) {
         if (energyBuffer < MINIMAL_ENERGY_TO_TRANSFER) return 0;
 
         int toTransfer = amount;
@@ -109,19 +117,20 @@ public class PowerProviderManager implements IPowerProviderManager {
         return energyAfterLoss;
     }
 
-    private int getDistance(IPowerConsumer consumer) {
+    private int getDistance(IPowerNodeCoordinates consumer) {
         if (distance.containsKey(consumer)) {
             return distance.get(consumer);
         }
 
-        distance.put(consumer.getPowerConsumerManager(), computeDistance(consumer));
+        distance.put(consumer, computeDistance(consumer));
         return getDistance(consumer);
     }
 
-    private Integer computeDistance(IPowerConsumer consumer) {
-        TileEntity consumerTile = consumer.getPowerConsumerManager().getTile();
-        float f = MathHelper.sqrt_float(Square(getTile().xCoord - consumerTile.xCoord) + Square(getTile().yCoord - consumerTile.yCoord) + Square(getTile().zCoord - consumerTile.zCoord));
-        return MathHelper.ceiling_float_int(f);
+    private Integer computeDistance(IPowerNodeCoordinates consumer) {
+        //TileEntity consumerTile = consumer.getPowerConsumerManager().getTile();
+        //float f = MathHelper.sqrt_float(Square(getTile().xCoord - consumerTile.xCoord) + Square(getTile().yCoord - consumerTile.yCoord) + Square(getTile().zCoord - consumerTile.zCoord));
+
+        return monnef.core.MathHelper.exactDistanceInt(consumer, myCoordinates);
     }
 
     @Override
@@ -165,7 +174,7 @@ public class PowerProviderManager implements IPowerProviderManager {
     }
 
     @Override
-    public boolean connect(IPowerConsumer output) {
+    public boolean connect(IPowerNodeCoordinates consumer) {
         if (!supportRemoteConnection()) {
             throw new JaffasPowerException("provider doesn't support remote connections");
         }
@@ -174,16 +183,16 @@ public class PowerProviderManager implements IPowerProviderManager {
             throw new JaffasPowerException("provider already connected");
         }
 
-        SetConsumer(ForgeDirection.UNKNOWN, output);
+        SetConsumer(ForgeDirection.UNKNOWN, consumer);
         return true;
     }
 
-    private void SetConsumer(ForgeDirection side, IPowerConsumer consumer) {
-        consumers.put(side, consumer.getPowerConsumerManager());
+    private void SetConsumer(ForgeDirection side, IPowerNodeCoordinates consumer) {
+        consumers.put(side, consumer);
     }
 
     @Override
-    public boolean connectDirect(IPowerConsumer output, ForgeDirection side) {
+    public boolean connectDirect(IPowerNodeCoordinates consumer, ForgeDirection side) {
         if (!supportDirectConnection()) {
             if (mod_jaffas.debug) System.err.println("[PPM] provider doesn't support direct connections");
             //throw new JaffasPowerException("provider doesn't support direct connections");
@@ -194,12 +203,12 @@ public class PowerProviderManager implements IPowerProviderManager {
             //throw new JaffasPowerException("provider already connected");
         }
 
-        SetConsumer(side, output);
+        SetConsumer(side, consumer);
         return true;
     }
 
     @Override
-    public boolean disconnect(IPowerConsumer consumer) {
+    public boolean disconnect(IPowerNodeCoordinates consumer) {
         if (!consumers.containsValue(consumer)) {
             if (mod_jaffas.debug) System.err.println("[PPM] consumer is not connected, cannot disconnect");
 //            throw new JaffasPowerException("consumer is not connected, cannot disconnect");
@@ -262,7 +271,11 @@ public class PowerProviderManager implements IPowerProviderManager {
     @Override
     public boolean[] constructConnectedSides() {
         boolean[] res = new boolean[7];
-        for (ForgeDirection dir : consumers.keySet()) {
+        if (consumers == null) {
+            throw new RuntimeException("consumers map is null");
+        }
+        Set<ForgeDirection> consumersSides = consumers.keySet();
+        for (ForgeDirection dir : consumersSides) {
             res[dir.ordinal()] = true;
         }
 
@@ -271,7 +284,7 @@ public class PowerProviderManager implements IPowerProviderManager {
 
     @Override
     public IPowerConsumer getConsumer(ForgeDirection side) {
-        IPowerNode consumer = consumers.get(side);
+        IPowerNodeCoordinates consumer = consumers.get(side);
         return consumer == null ? null : (IPowerConsumer) consumer.getTile();
     }
 }

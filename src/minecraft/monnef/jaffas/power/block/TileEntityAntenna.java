@@ -16,14 +16,10 @@ import static monnef.jaffas.power.mod_jaffas_power.antenna;
 public class TileEntityAntenna extends TileEntityMachine implements IPowerConsumer, IPowerProvider {
     private IPowerConsumerManager consumerManager;
     private IPowerProviderManager providerManager;
-    private boolean firstTick = true;
 
     public TileEntityAntenna() {
         this.providerManager = new PowerProviderManager();
-        providerManager.initialize(20, 40, this, true, new boolean[]{true, false, true, true, true, true});
-
         this.consumerManager = new PowerConsumerManager();
-        consumerManager.initialize(20, 40, this);
     }
 
     @Override
@@ -44,7 +40,7 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
     public ForgeDirection changeRotation() {
         if (worldObj.isRemote) return ForgeDirection.UNKNOWN;
 
-        PowerUtils.Disconnect(this.consumerManager.getProvider(), this);
+        PowerUtils.Disconnect(this.consumerManager.getCoordinates(), providerManager.getCoordinates());
 
         int rotation = antenna.getRotation(getBlockMetadata());
         rotation++;
@@ -74,7 +70,7 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
         if (te instanceof IPowerProvider) {
             IPowerProvider provider = (IPowerProvider) te;
             if (provider.getPowerProviderManager().supportDirectConnection()) {
-                PowerUtils.Connect(provider, this, rot);
+                PowerUtils.Connect(provider.getPowerProviderManager().getCoordinates(), this.consumerManager.getCoordinates(), rot);
             }
         }
     }
@@ -82,10 +78,22 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
     @Override
     public void updateEntity() {
         super.updateEntity();
+    }
 
-        if (firstTick) {
-            firstTick = false;
-            tryDirectConnect();
+    @Override
+    protected void onTick(int number) {
+        super.onTick(number);
+
+        switch (number) {
+            case 1:
+                consumerManager.initialize(20, 40, this);
+                providerManager.initialize(20, 40, this, true, new boolean[]{true, false, true, true, true, true});
+                break;
+
+            case 2:
+                tryDirectConnect();
+                break;
         }
     }
+
 }

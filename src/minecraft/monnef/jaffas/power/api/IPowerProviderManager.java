@@ -16,7 +16,7 @@ public interface IPowerProviderManager extends IPowerNode {
      * @param consumer
      * @return How much energy is sent (always less than maximalPowerPerPacket()).
      */
-    int requestEnergy(int amount, IPowerConsumer consumer);
+    int requestEnergy(int amount, IPowerNodeCoordinates consumer);
 
     int maximalPowerPerPacket();
 
@@ -31,11 +31,11 @@ public interface IPowerProviderManager extends IPowerNode {
 
     boolean hasFreeSlotForRemotePower();
 
-    boolean connect(IPowerConsumer output);
+    boolean connect(IPowerNodeCoordinates output);
 
-    boolean connectDirect(IPowerConsumer output, ForgeDirection side);
+    boolean connectDirect(IPowerNodeCoordinates consumer, ForgeDirection side);
 
-    boolean disconnect(IPowerConsumer consumer);
+    boolean disconnect(IPowerNodeCoordinates consumer);
 
     boolean[] constructConnectedSides();
 

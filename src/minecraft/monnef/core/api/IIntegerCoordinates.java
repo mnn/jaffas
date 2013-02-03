@@ -17,5 +17,9 @@ public interface IIntegerCoordinates {
 
     void saveTo(NBTTagCompound tag);
 
-    void LoadFrom(NBTTagCompound tag);
+    void loadFrom(NBTTagCompound tag);
+
+    String getCompoundTagName();
+
+    void setCompoundTagName(String name);
 }

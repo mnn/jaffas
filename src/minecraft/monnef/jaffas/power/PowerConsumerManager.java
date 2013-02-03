@@ -1,7 +1,7 @@
 package monnef.jaffas.power;
 
-import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerConsumerManager;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.JaffasPowerException;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,10 +14,11 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     private int maximalPacketSize = 20;
     private int bufferSize = 40;
     private int energyBuffer = 0;
-    private IPowerProvider provider;
+    private IPowerNodeCoordinates provider;
     private TileEntity myTile;
     private boolean initialized = false;
     private ForgeDirection sideOfProvider;
+    private IPowerNodeCoordinates myCoordinates;
 
     @Override
     public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile) {
@@ -30,6 +31,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
         setBufferSize(bufferSize);
         setTile(tile);
         sideOfProvider = null;
+        myCoordinates = new PowerNodeCoordinates(tile);
     }
 
     @Override
@@ -95,7 +97,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     }
 
     @Override
-    public void connect(IPowerProvider provider) {
+    public void connect(IPowerNodeCoordinates provider) {
         if (this.provider != null) {
             throw new JaffasPowerException("Connecting already connected consumer.");
         }
@@ -104,7 +106,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     }
 
     @Override
-    public void connectDirect(IPowerProvider provider, ForgeDirection side) {
+    public void connectDirect(IPowerNodeCoordinates provider, ForgeDirection side) {
         if (this.provider != null) {
             throw new JaffasPowerException("Connecting already connected consumer.");
         }
@@ -112,7 +114,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
         setProvider(provider, side);
     }
 
-    private void setProvider(IPowerProvider provider, ForgeDirection side) {
+    private void setProvider(IPowerNodeCoordinates provider, ForgeDirection side) {
         this.provider = provider;
         this.sideOfProvider = side;
     }
@@ -142,7 +144,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     @Override
     public void tick() {
         if (energyNeeded()) {
-            int energy = provider.getPowerProviderManager().requestEnergy(getCurrentMaximalPacketSize(), (IPowerConsumer) getTile());
+            int energy = provider.asProvider().getPowerProviderManager().requestEnergy(getCurrentMaximalPacketSize(), getCoordinates());
             storeEnergy(energy);
         }
     }
@@ -159,6 +161,11 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     @Override
     public TileEntity getTile() {
         return myTile;
+    }
+
+    @Override
+    public IPowerNodeCoordinates getCoordinates() {
+        return this.myCoordinates;
     }
 
     @Override
@@ -179,7 +186,7 @@ public class PowerConsumerManager implements IPowerConsumerManager {
 
     @Override
     public IPowerProvider getProvider() {
-        return provider;
+        return provider == null ? null : provider.asProvider();
     }
 
     private void setEnergyBuffer(int energyBuffer) {

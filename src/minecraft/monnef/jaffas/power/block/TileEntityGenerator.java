@@ -13,9 +13,6 @@ public class TileEntityGenerator extends TileEntityMachine implements IPowerProv
         super();
 
         manager = new PowerProviderManager();
-        boolean[] sidesMask = new boolean[6];
-        sidesMask[ForgeDirection.UP.ordinal()] = true;
-        manager.initialize(20, 500, this, false, sidesMask);
     }
 
     @Override
@@ -26,5 +23,15 @@ public class TileEntityGenerator extends TileEntityMachine implements IPowerProv
     @Override
     public String getMachineTitle() {
         return "Generator";
+    }
+
+    @Override
+    protected void onTick(int number) {
+        super.onTick(number);
+        if (number == 1) {
+            boolean[] sidesMask = new boolean[6];
+            sidesMask[ForgeDirection.UP.ordinal()] = true;
+            manager.initialize(20, 500, this, false, sidesMask);
+        }
     }
 }

@@ -1,29 +1,28 @@
 package monnef.jaffas.power;
 
-import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerProvider;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
 import net.minecraftforge.common.ForgeDirection;
 
 public class PowerUtils {
     public static final int LOSE_COEFFICIENT_MULTIPLIER = 100;
 
-    public static boolean Connect(IPowerProvider provider, IPowerConsumer consumer, ForgeDirection providersSide) {
+    public static boolean Connect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer, ForgeDirection providersSide) {
         boolean success = true;
         if (providersSide == ForgeDirection.UNKNOWN) {
-            success &= provider.getPowerProviderManager().connect(consumer);
-            consumer.getPowerConsumerManager().connect(provider);
+            success &= provider.asProvider().getPowerProviderManager().connect(consumer);
+            consumer.asConsumer().getPowerConsumerManager().connect(provider);
         } else {
-            success &= provider.getPowerProviderManager().connectDirect(consumer, providersSide);
-            consumer.getPowerConsumerManager().connectDirect(provider, providersSide.getOpposite());
+            success &= provider.asProvider().getPowerProviderManager().connectDirect(consumer, providersSide);
+            consumer.asConsumer().getPowerConsumerManager().connectDirect(provider, providersSide.getOpposite());
         }
 
         return success;
     }
 
-    public static void Disconnect(IPowerProvider provider, IPowerConsumer consumer) {
+    public static void Disconnect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer) {
         if (provider == null || consumer == null) return;
-        provider.getPowerProviderManager().disconnect(consumer);
-        consumer.getPowerConsumerManager().disconnect();
+        provider.asProvider().getPowerProviderManager().disconnect(consumer);
+        consumer.asConsumer().getPowerConsumerManager().disconnect();
     }
 
     public static int loseEnergy(int energy, int distance) {

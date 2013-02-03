@@ -15,6 +15,8 @@ public interface IPowerNode {
 
     TileEntity getTile();
 
+    IPowerNodeCoordinates getCoordinates();
+
     int getCurrentBufferedEnergy();
 
     /**
