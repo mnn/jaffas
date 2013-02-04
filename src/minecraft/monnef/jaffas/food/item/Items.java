@@ -302,6 +302,19 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.spiderLegRaw, "Raw Spider Leg", 202, "");
         AddItemInfo(JaffaItem.spiderLeg, "Spider Leg", 203, "");
+
+        AddItemInfo(JaffaItem.featherDuck, "Duck Feather", 207);
+        AddItemInfo(JaffaItem.duckRaw, "Raw Duck", 208);
+        AddItemInfo(JaffaItem.duck, "Duck", 209);
+        AddItemInfo(JaffaItem.plateRaw, "Raw Plate", 210);
+        AddItemInfo(JaffaItem.plate, "Plate", 210);
+        AddItemInfo(JaffaItem.plateDuckOrange, "Plate Duck à l'Orange", 211,"Duck à l'Orange");
+        AddItemInfo(JaffaItem.tinDuckOrangeRaw, "Duck à l'Orange Raw", 212);
+        AddItemInfo(JaffaItem.tinDuckOrange, "Duck à l'Orange", 213,"Duck à l'Orange");
+    }
+
+    private void AddItemInfo(JaffaItem item, String name, int id) {
+        AddItemInfo(item, name, id, "");
     }
 
     @Override
@@ -546,6 +559,15 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(wolfMeat, 4, 0.7f);
         createJaffaFood(mutton, 4, 0.7f);
         createJaffaFood(spiderLeg, 4, 0.7f);
+
+        createJaffaItem(JaffaItem.featherDuck);
+        createJaffaItem(JaffaItem.duckRaw);
+        createJaffaItem(JaffaItem.duck);
+        createJaffaItem(JaffaItem.plateRaw);
+        createJaffaItem(JaffaItem.plate);
+        createJaffaItem(JaffaItem.plateDuckOrange);
+        createJaffaItem(JaffaItem.tinDuckOrangeRaw);
+        createJaffaItem(JaffaItem.tinDuckOrange);
 
         createItemsRegistration();
     }

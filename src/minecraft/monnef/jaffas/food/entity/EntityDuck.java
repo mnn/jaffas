@@ -21,7 +21,7 @@ public class EntityDuck extends EntityAnimal {
     public float field_70888_h;
     public float field_70889_i = 1.0F;
 
-    protected int itemToDrop = getItem(JaffaItem.muttonRaw).shiftedIndex;
+    protected int itemToDrop = getItem(JaffaItem.featherDuck).shiftedIndex;
 
     /**
      * The time until the next egg is spawned.
@@ -130,7 +130,7 @@ public class EntityDuck extends EntityAnimal {
      * Returns the item ID for the item the mob drops on death.
      */
     protected int getDropItemId() {
-        return itemToDrop; // TODO replace feather
+        return itemToDrop;
     }
 
     /**
@@ -143,11 +143,10 @@ public class EntityDuck extends EntityAnimal {
             this.dropItem(itemToDrop, 1);
         }
 
-        // TODO duck meat
         if (this.isBurning()) {
-            this.dropItem(getItem(JaffaItem.mutton).shiftedIndex, 1);
+            this.dropItem(getItem(JaffaItem.duck).shiftedIndex, 1);
         } else {
-            this.dropItem(getItem(JaffaItem.muttonRaw).shiftedIndex, 1);
+            this.dropItem(getItem(JaffaItem.duckRaw).shiftedIndex, 1);
         }
     }
 

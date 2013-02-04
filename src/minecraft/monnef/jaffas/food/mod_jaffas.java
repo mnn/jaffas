@@ -289,6 +289,7 @@ public class mod_jaffas {
     }
 
     private void registerDuck() {
+        // TODO duck ID
         EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", ModLoader.getUniqueEntityId(), ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         EntityRegistry.addSpawn(EntityDuck.class, 100, 2, 5, EnumCreatureType.creature);
