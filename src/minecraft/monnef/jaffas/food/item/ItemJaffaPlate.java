@@ -27,7 +27,7 @@ public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
     }
 
     public String getTextureFile() {
-        return mod_jaffas.textureFile;
+        return mod_jaffas.textureFile[0];
     }
 
     public String getArmorTextureFile(ItemStack par1) {

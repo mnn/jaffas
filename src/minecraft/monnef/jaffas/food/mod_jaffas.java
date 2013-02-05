@@ -133,7 +133,7 @@ public class mod_jaffas {
     public ModuleManager moduleManager;
     public Items items;
     boolean forestryDetected;
-    public static String textureFile = "/jaffas_01.png";
+    public static String[] textureFile = new String[]{"/jaffas_01_a.png", "/jaffas_01_b.png"};
 
     public static boolean spawnStonesEnabled = true;
     public static int spawnStoneLittleCD;

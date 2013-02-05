@@ -12,6 +12,10 @@ public abstract class BlockJaffas extends Block {
 
     @Override
     public String getTextureFile() {
-        return mod_jaffas.textureFile;
+        return mod_jaffas.textureFile[getTextureFileIndex()];
+    }
+
+    public int getTextureFileIndex() {
+        return 0;
     }
 }

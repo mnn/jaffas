@@ -20,6 +20,10 @@ public abstract class BlockContainerJaffas extends BlockContainer {
     }
 
     public String getTextureFile() {
-        return mod_jaffas.textureFile;
+        return mod_jaffas.textureFile[getTextureFileIndex()];
+    }
+
+    public int getTextureFileIndex() {
+        return 0;
     }
 }
