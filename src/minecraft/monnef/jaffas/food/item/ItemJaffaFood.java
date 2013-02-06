@@ -16,6 +16,7 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
     private boolean isDrink;
     private int healAmount;
     private float saturation;
+    protected int textureFileIndex;
 
     public ItemJaffaFood(int id) {
         super(id, 0, 0, false);
@@ -34,8 +35,17 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
         this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
+    @Override
     public String getTextureFile() {
-        return "/jaffas_01.png";
+        return mod_jaffas.textureFile[getTextureFileIndex()];
+    }
+
+    public int getTextureFileIndex() {
+        return textureFileIndex;
+    }
+
+    public void setTextureFileIndex(int value) {
+        textureFileIndex = value;
     }
 
     @Override

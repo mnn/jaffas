@@ -351,6 +351,18 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(wolfMeatRaw).shiftedIndex, getItemStack(wolfMeat), 0.3f);
         GameRegistry.addSmelting(getItem(muttonRaw).shiftedIndex, getItemStack(mutton), 0.3f);
         GameRegistry.addSmelting(getItem(spiderLegRaw).shiftedIndex, getItemStack(spiderLeg), 0.3f);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(strawberryIcecreamRaw), 4), new ItemStack(getItem(cream)), new ItemStack(getItem(jamStrawberry)), new ItemStack(Item.snowball));
+        RecipesFridge.AddRecipe(getItem(strawberryIcecreamRaw).shiftedIndex, getItemStack(strawberryIcecreamFrozen));
+        GameRegistry.addRecipe(new ItemStack(getItem(strawberryIcecream), 4), "S", "C", 'S', new ItemStack(getItem(strawberryIcecreamFrozen)), 'C', new ItemStack(getItem(cone)));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(duckHelmet)), " S ", "S S", 'S', getItem(featherDuck));
+        GameRegistry.addRecipe(getItemStack(duckChest), "S S", "SCS", "CCC", 'S', getItem(featherDuck), 'C', new ItemStack(Block.cloth, 1, -1));
+        GameRegistry.addRecipe(getItemStack(duckLeggins), "SCS", "S S", "C C", 'S', getItem(featherDuck), 'C', Item.leather);
+        GameRegistry.addRecipe(getItemStack(duckBoots), "S S", "S S", 'S', getItem(featherDuck));
+
+        GameRegistry.addRecipe(new ItemStack(getItem(chocIceStick), 4), "S ", " S", 'S', Item.stick);
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(chocIce), 2), getItem(chocIceStick), getItem(chocIceStick), getItem(icecreamFrozen), getItem(chocolate));
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {

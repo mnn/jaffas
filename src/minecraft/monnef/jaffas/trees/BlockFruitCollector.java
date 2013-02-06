@@ -1,5 +1,6 @@
 package monnef.jaffas.trees;
 
+import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -27,7 +28,7 @@ public class BlockFruitCollector extends BlockContainer {
     }
 
     public String getTextureFile() {
-        return "/jaffas_01.png";
+        return mod_jaffas.textureFile[0];
     }
 
     @Override

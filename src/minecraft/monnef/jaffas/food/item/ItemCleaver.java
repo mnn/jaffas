@@ -10,8 +10,8 @@ public class ItemCleaver extends ItemSword {
         this.setCreativeTab(mod_jaffas.CreativeTab);
     }
 
-     public String getTextureFile() {
-        return "/jaffas_01.png";
+    public String getTextureFile() {
+        return mod_jaffas.textureFile[0];
     }
 }
 
