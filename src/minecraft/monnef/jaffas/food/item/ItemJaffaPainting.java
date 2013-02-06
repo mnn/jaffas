@@ -18,7 +18,7 @@ public class ItemJaffaPainting extends Item {
     }
 
     public String getTextureFile() {
-        return "/jaffas_01.png";
+        return mod_jaffas.textureFile[0];
     }
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {

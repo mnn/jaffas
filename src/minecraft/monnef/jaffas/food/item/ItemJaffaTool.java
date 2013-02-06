@@ -4,7 +4,7 @@ import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-public class ItemJaffaTool extends Item implements IItemTool {
+public class ItemJaffaTool extends ItemJaffaBase implements IItemTool {
     public ItemJaffaTool(int id) {
         super(id);
         initialize();
@@ -24,10 +24,6 @@ public class ItemJaffaTool extends Item implements IItemTool {
         setMaxStackSize(1);
         this.setCreativeTab(CreativeTabs.tabTools);
         this.setCreativeTab(mod_jaffas.CreativeTab);
-    }
-
-    public String getTextureFile() {
-        return "/jaffas_01.png";
     }
 
     @Override

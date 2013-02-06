@@ -37,7 +37,7 @@ public class JaffaBombBlock extends Block {
     }
 
     public String getTextureFile() {
-        return "/jaffas_01.png";
+        return mod_jaffas.textureFile[0];
     }
 
     /**

@@ -25,5 +25,10 @@ public enum JaffaItem {
     pastry, milkBoxEmpty, milkBoxFull, crumpledPaper, scrap, chipsRaw, chips, fryingPanChipsRaw, fryingPanChips, pieStrawberryRaw, pieRaspberryRaw, pieVanillaRaw, piePlumRaw,
     spawnStoneLittle, jaffarrolHelmet, jaffarrolBoots, jaffarrolChest, jaffarrolLeggins, spawnStoneMedium, spawnStoneBig,
     juiceBottle, juiceLemon, juiceOrange, juiceApple, juiceRaspberry, glassLemon, glassOrange, glassApple, glassRaspberry,
-    glassEmpty, glassMilk, woodenBowl, cookedMushroomsRaw, cookedMushrooms, peanutsSugar, peanutsCaramelized, pepperStuffed, pepperStuffedRaw, wolfMeatRaw, wolfMeat, muttonRaw, mutton, spiderLegRaw, spiderLeg, featherDuck, duckRaw, duck, plateRaw, plate, plateDuckOrange, tinDuckOrangeRaw, tinDuckOrange, _last
+    glassEmpty, glassMilk, woodenBowl, cookedMushroomsRaw, cookedMushrooms, peanutsSugar, peanutsCaramelized, pepperStuffed, pepperStuffedRaw,
+    wolfMeatRaw, wolfMeat, muttonRaw, mutton, spiderLegRaw, spiderLeg,
+    featherDuck, duckRaw, duck, plateRaw, plate, plateDuckOrange, tinDuckOrangeRaw, tinDuckOrange,
+    duckHelmet, duckBoots, duckChest, duckLeggins,
+    strawberryIcecreamRaw, strawberryIcecreamFrozen, strawberryIcecream,
+    chocIce, chocIceStick, _last
 }

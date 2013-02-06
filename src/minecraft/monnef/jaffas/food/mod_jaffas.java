@@ -100,8 +100,8 @@ public class mod_jaffas {
     */
 
     public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
-    public static EnumArmorMaterial EnumArmorMaterialWooden = EnumHelper.addArmorMaterial("Wooden", 10, new int[]{1, 4, 2, 3}, 23);
-    public static EnumArmorMaterial EnumArmorMaterialWolf = EnumHelper.addArmorMaterial("Wolf", 8, new int[]{1, 3, 2, 1}, 15);
+    public static EnumArmorMaterial EnumArmorMaterialDuck = EnumHelper.addArmorMaterial("Duck", 10, new int[]{1, 3, 2, 1}, 23);
+    public static EnumArmorMaterial EnumArmorMaterialWolf = EnumHelper.addArmorMaterial("Wolf", 13, new int[]{3, 3, 2, 2}, 15);
     public static EnumArmorMaterial EnumArmorMaterialJaffarrol = EnumHelper.addArmorMaterial("Jaffarrol", 29, new int[]{4, 7, 5, 3}, 17);
     public static ItemJaffaPlate itemJaffaPlate;
     public static int itemJaffaPlateID;
