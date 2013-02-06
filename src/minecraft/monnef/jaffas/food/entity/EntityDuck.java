@@ -1,9 +1,7 @@
 package monnef.jaffas.food.entity;
 
-import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.*;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,6 +9,7 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import static monnef.jaffas.food.item.JaffaItem.*;
 import static monnef.jaffas.food.mod_jaffas.getItem;
 
 public class EntityDuck extends EntityAnimal {
@@ -21,7 +20,7 @@ public class EntityDuck extends EntityAnimal {
     public float field_70888_h;
     public float field_70889_i = 1.0F;
 
-    protected int itemToDrop = getItem(JaffaItem.featherDuck).shiftedIndex;
+    protected int itemToDrop = getItem(featherDuck).shiftedIndex;
 
     /**
      * The time until the next egg is spawned.
@@ -86,8 +85,13 @@ public class EntityDuck extends EntityAnimal {
         this.field_70886_e += this.field_70889_i * 2.0F;
 
         if (!this.isChild() && !this.worldObj.isRemote && --this.timeUntilNextEgg <= 0) {
-            this.func_85030_a("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            EntityItem entityItem = this.dropItem(getItem(JaffaItem.jaffa).shiftedIndex, 1);// TODO egg
+            boolean isFeather = rand.nextInt(5) == 0;
+
+            if (!isFeather)
+                this.func_85030_a("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+
+            this.dropItem(getItem(isFeather ? featherDuck : duckEgg).shiftedIndex, 1);
+
             this.timeUntilNextEgg = this.rand.nextInt(8000) + 4000;
         }
     }
@@ -144,9 +148,9 @@ public class EntityDuck extends EntityAnimal {
         }
 
         if (this.isBurning()) {
-            this.dropItem(getItem(JaffaItem.duck).shiftedIndex, 1);
+            this.dropItem(getItem(duck).shiftedIndex, 1);
         } else {
-            this.dropItem(getItem(JaffaItem.duckRaw).shiftedIndex, 1);
+            this.dropItem(getItem(duckRaw).shiftedIndex, 1);
         }
     }
 

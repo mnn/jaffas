@@ -363,6 +363,22 @@ public class Recipes {
 
         GameRegistry.addRecipe(new ItemStack(getItem(chocIceStick), 4), "S ", " S", 'S', Item.stick);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(chocIce), 2), getItem(chocIceStick), getItem(chocIceStick), getItem(icecreamFrozen), getItem(chocolate));
+
+        // 4x paper + sweet pastry -> 4x raw muffin
+        // raw muffin => unfinished muffin
+        // 4x unfinished muffin + chocolate -> 4x muffin
+
+        // beans
+        // chopped tomatoes   ->  raw beans with tomato sauce => baked beans with tomato sauce
+        // dish
+
+        // bread slice (not toasted)
+        // slice of cheese + sliced salami -> sandwich
+        // bread slice
+
+        // raw mutton
+        // pea         -> raw lamb with peas => lamb with peas (in tin) | + plate -> lamb with peas (plate) + tin
+        // tin
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {

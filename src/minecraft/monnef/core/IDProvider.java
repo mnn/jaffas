@@ -1,6 +1,6 @@
 package monnef.core;
 
-import net.minecraft.src.ModLoader;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraftforge.common.Configuration;
 
 public class IDProvider {
@@ -36,7 +36,7 @@ public class IDProvider {
     }
 
     public int getEntityIDFromConfig(String name) {
-        return this.config.get("entity", name, ModLoader.getUniqueEntityId()).getInt();
+        return this.config.get("entity", name, EntityRegistry.findGlobalUniqueEntityId()).getInt();
     }
 
     public void setConfig(Configuration config) {

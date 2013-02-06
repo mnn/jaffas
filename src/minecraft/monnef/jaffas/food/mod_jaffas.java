@@ -56,6 +56,8 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.logging.Level;
 
+import static net.minecraft.world.biome.BiomeGenBase.*;
+
 @Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version, dependencies = "after:Forestry;after:BuildCraft|Energy")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
@@ -128,6 +130,7 @@ public class mod_jaffas {
     public boolean checkUpdates;
 
     private static int JaffaPaintingEntityID;
+    private static int DuckEntityID;
 
     public ItemManager itemManager;
     public ModuleManager moduleManager;
@@ -207,6 +210,9 @@ public class mod_jaffas {
             blockPieID = idProvider.getBlockIDFromConfig("pie");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
+            createPainting();
+            DuckEntityID = idProvider.getEntityIDFromConfig("duck");
+            registerDuck();
 
             spawnStonesEnabled = config.get(Configuration.CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
             spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
@@ -239,8 +245,7 @@ public class mod_jaffas {
         createBlocks();
         items.CreateItems();
         createJaffaArmorAndSword();
-        createPainting();
-        registerDuck();
+        registerDuckSpawns();
         AchievementsCraftingHandler.init();
 
         Recipes.install();
@@ -289,10 +294,15 @@ public class mod_jaffas {
     }
 
     private void registerDuck() {
-        // TODO duck ID
-        EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", ModLoader.getUniqueEntityId(), ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
+        EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", DuckEntityID, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
+        EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", DuckEntityID, this, 160, 1, true);
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
-        EntityRegistry.addSpawn(EntityDuck.class, 100, 2, 5, EnumCreatureType.creature);
+    }
+
+    private void registerDuckSpawns() {
+        EntityRegistry.addSpawn(EntityDuck.class, 7, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills);
+        EntityRegistry.addSpawn(EntityDuck.class, 9, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);
+        EntityRegistry.addSpawn(EntityDuck.class, 13, 2, 4, EnumCreatureType.creature, swampland, river, beach, forest);
     }
 
     private void createBlocks() {

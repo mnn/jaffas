@@ -323,6 +323,8 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.chocIce, "Choc-ice", 219);
         AddItemInfo(JaffaItem.chocIceStick, "Choc-ice Stick", 218);
+
+        AddItemInfo(duckEgg, "Duck Egg", 226);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -599,6 +601,8 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(chocIceStick);
         createJaffaFood(chocIce, 4, 1f).setReturnItem(new ItemStack(getItem(chocIceStick))).setPotionEffect(Potion.moveSpeed.id, 70, 0, 0.25F);
+
+        createJaffaItem(duckEgg).setMaxStackSize(16);
 
         createItemsRegistration();
     }

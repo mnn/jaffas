@@ -30,5 +30,5 @@ public enum JaffaItem {
     featherDuck, duckRaw, duck, plateRaw, plate, plateDuckOrange, tinDuckOrangeRaw, tinDuckOrange,
     duckHelmet, duckBoots, duckChest, duckLeggins,
     strawberryIcecreamRaw, strawberryIcecreamFrozen, strawberryIcecream,
-    chocIce, chocIceStick, _last
+    chocIce, chocIceStick, duckEgg, _last
 }
