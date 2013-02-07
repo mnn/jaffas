@@ -11,13 +11,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.ISidedInventory;
 
 import java.util.Random;
 
 import static monnef.jaffas.food.mod_jaffas.blockBoard;
 import static monnef.jaffas.food.mod_jaffas.getItem;
 
-public class TileEntityBoard extends TileEntity implements IInventory {
+public class TileEntityBoard extends TileEntity implements IInventory, ISidedInventory {
     private ItemStack[] inv;
     public int chopTime;
     private int chopSpeed = startingChopSpeed;
@@ -247,5 +249,24 @@ public class TileEntityBoard extends TileEntity implements IInventory {
             this.knifePresent = isKnifePresent;
             blockBoard.setKnife(knifePresent, worldObj, xCoord, yCoord, zCoord);
         }
+    }
+
+    @Override
+    public int getStartInventorySide(ForgeDirection side) {
+        switch (side) {
+            case UP:
+                return slotInput;
+
+            case DOWN:
+                return slotKnife;
+
+            default:
+                return slotOutput;
+        }
+    }
+
+    @Override
+    public int getSizeInventorySide(ForgeDirection side) {
+        return 1;
     }
 }

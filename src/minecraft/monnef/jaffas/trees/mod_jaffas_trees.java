@@ -18,6 +18,7 @@ import monnef.core.Version;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
@@ -38,6 +39,7 @@ import java.util.HashMap;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.crafting.Recipes.AddPieRecipe;
+import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.*;
 import static monnef.jaffas.food.mod_jaffas.getItem;
 import static monnef.jaffas.trees.DropType.DropsFromGrass;
@@ -480,6 +482,25 @@ public class mod_jaffas_trees {
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(peanutsSugar)), Item.sugar, getFruit(bushType.Peanuts));
         GameRegistry.addRecipe(new ItemStack(getItem(pepperStuffedRaw)), "M", "P", 'M', getItem(mincedMeat), 'P', getFruit(bushType.Paprika));
+
+        // raw mutton
+        // pea         -> raw lamb with peas => lamb with peas (in tin) | + plate -> lamb with peas (plate) + tin
+        // tin
+        GameRegistry.addRecipe(getItemStack(lambWithPeasInTinRaw), " M ", "PPP", " T ", 'M', getItem(muttonRaw), 'P', getFruit(bushType.Pea), 'T', getItem(cakeTin));
+        GameRegistry.addSmelting(getItem(lambWithPeasInTinRaw).shiftedIndex, getItemStack(lambWithPeasInTin), 5f);
+        GameRegistry.addShapelessRecipe(getItemStack(lambWithPeas, 3), getItemStack(lambWithPeasInTin), getItem(plate), getItem(plate), getItem(plate));
+        JaffaCraftingHandler.AddPersistentItem(lambWithPeasInTin, false, getItem(cakeTin).shiftedIndex);
+
+        // beans
+        // chopped tomatoes   ->  raw beans with tomato sauce => baked beans with tomato sauce
+        // dish
+        GameRegistry.addRecipe(getItemStack(beansWithTomatoRaw), "B", "T", "D", 'B', getFruit(bushType.Bean), 'T', getItem(tomatoChopped), 'D', getItem(woodenBowl));
+        GameRegistry.addSmelting(getItem(beansWithTomatoRaw).shiftedIndex, getItemStack(beansWithTomato), 3f);
+
+        GameRegistry.addRecipe(getItemStack(tinDuckOrangeRaw), "OSO", "ODO", " T ", 'D', getItem(duckRaw), 'O', itemOrange, 'S', Item.sugar, 'T', getItem(cakeTin));
+        GameRegistry.addSmelting(getItem(tinDuckOrangeRaw).shiftedIndex, getItemStack(tinDuckOrange), 5f);
+        GameRegistry.addShapelessRecipe(getItemStack(plateDuckOrange, 3), getItemStack(tinDuckOrange), getItem(plate), getItem(plate), getItem(plate));
+        JaffaCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin).shiftedIndex);
     }
 
     public static Item getFruit(bushType type) {

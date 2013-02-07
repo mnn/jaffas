@@ -367,18 +367,18 @@ public class Recipes {
         // 4x paper + sweet pastry -> 4x raw muffin
         // raw muffin => unfinished muffin
         // 4x unfinished muffin + chocolate -> 4x muffin
-
-        // beans
-        // chopped tomatoes   ->  raw beans with tomato sauce => baked beans with tomato sauce
-        // dish
+        GameRegistry.addShapelessRecipe(getItemStack(muffinRaw, 4), Item.paper, Item.paper, Item.paper, Item.paper, getItem(pastrySweet));
+        GameRegistry.addSmelting(getItem(muffinRaw).shiftedIndex, getItemStack(muffinUnfinished), 0.3f);
+        GameRegistry.addShapelessRecipe(getItemStack(muffin, 4), getItem(muffinUnfinished), getItem(muffinUnfinished), getItem(muffinUnfinished), getItem(muffinUnfinished), getItem(chocolate));
 
         // bread slice (not toasted)
         // slice of cheese + sliced salami -> sandwich
         // bread slice
+        GameRegistry.addRecipe(getItemStack(sandwich1), " B", "CS", " B", 'B', getItem(breadSlice), 'C', getItem(cheeseSlice), 'S', getItem(salamiSliced));
+        GameRegistry.addRecipe(getItemStack(sandwich1), " B", "SC", " B", 'B', getItem(breadSlice), 'C', getItem(cheeseSlice), 'S', getItem(salamiSliced));
 
-        // raw mutton
-        // pea         -> raw lamb with peas => lamb with peas (in tin) | + plate -> lamb with peas (plate) + tin
-        // tin
+        GameRegistry.addRecipe(getItemStack(plateRaw, 2), " C ", "CCC", " C ", 'C', Item.clay);
+        GameRegistry.addSmelting(getItem(plateRaw).shiftedIndex, getItemStack(plate), 1f);
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {
@@ -422,13 +422,13 @@ public class Recipes {
         return new ItemStack(getItem(item), 1, -1);
     }
 
-    private static ItemStack getItemStack(JaffaItem item, int size) {
+    public static ItemStack getItemStack(JaffaItem item, int size) {
         ItemStack stack = getItemStack(item);
         stack.stackSize = size;
         return stack;
     }
 
-    private static ItemStack getItemStack(JaffaItem item) {
+    public static ItemStack getItemStack(JaffaItem item) {
         return new ItemStack(getItem(item));
     }
 

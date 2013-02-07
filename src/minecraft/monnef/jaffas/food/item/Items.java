@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.ItemManager.getItemInfo;
 import static monnef.jaffas.food.item.JaffaItem.*;
 
@@ -306,7 +307,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.featherDuck, "Duck Feather", 207);
         AddItemInfo(JaffaItem.duckRaw, "Raw Duck", 208);
         AddItemInfo(JaffaItem.duck, "Duck", 209);
-        AddItemInfo(JaffaItem.plateRaw, "Raw Plate", 210);
+        AddItemInfo(JaffaItem.plateRaw, "Raw Plate", 230);
         AddItemInfo(JaffaItem.plate, "Plate", 210);
         AddItemInfo(JaffaItem.plateDuckOrange, "Plate Duck à l'Orange", 211, "Duck à l'Orange");
         AddItemInfo(JaffaItem.tinDuckOrangeRaw, "Duck à l'Orange Raw", 212);
@@ -325,6 +326,19 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.chocIceStick, "Choc-ice Stick", 218);
 
         AddItemInfo(duckEgg, "Duck Egg", 226);
+
+        AddItemInfo(JaffaItem.muffinRaw, "Raw Muffin", 220);
+        AddItemInfo(JaffaItem.muffinUnfinished, "Unfinished Muffin", 221);
+        AddItemInfo(JaffaItem.muffin, "Muffin", 222);
+
+        AddItemInfo(JaffaItem.beansWithTomatoRaw, "Raw Beans With Tomato Sauce", 223);
+        AddItemInfo(JaffaItem.beansWithTomato, "Beans With Tomato Sauce", 224);
+
+        AddItemInfo(JaffaItem.sandwich1, "Sandwich 1", 225, "Sandwich");
+
+        AddItemInfo(JaffaItem.lambWithPeasInTinRaw, "Raw Lamb With Peas In Tin", 227);
+        AddItemInfo(JaffaItem.lambWithPeasInTin, "Lamb With Peas In Tin", 228);
+        AddItemInfo(JaffaItem.lambWithPeas, "Lamb With Peas", 229);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -579,22 +593,16 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.featherDuck);
         createJaffaItem(JaffaItem.duckRaw);
         createJaffaItem(JaffaItem.duck);
+
         createJaffaItem(JaffaItem.plateRaw);
         createJaffaItem(JaffaItem.plate);
-        createJaffaItem(JaffaItem.plateDuckOrange);
+
+        createJaffaFood(JaffaItem.plateDuckOrange, 8, 0.8f).setReturnItem(getItemStack(plate, 1)).setPotionEffect(Potion.regeneration.id, 10, 0, 1f).setMaxStackSize(24);
         createJaffaItem(JaffaItem.tinDuckOrangeRaw);
         createJaffaItem(JaffaItem.tinDuckOrange);
 
         createJaffaArmorSet("duck", mod_jaffas.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
 
-        /*
-        AddItemInfo(JaffaItem.strawberryIcecreamRaw, "Strawberry Ice-cream", 204);
-        AddItemInfo(JaffaItem.strawberryIcecreamFrozen, "Strawberry Ice-cream *", 205);
-        AddItemInfo(JaffaItem.strawberryIcecream, "Scooped Strawberry Ice-cream", 206);
-
-        AddItemInfo(JaffaItem.chocIce, "Choc-ice", 219);
-        AddItemInfo(JaffaItem.chocIceStick, "Choc-ice Stick", 218);
-         */
         createJaffaItem(strawberryIcecreamRaw);
         createJaffaItem(strawberryIcecreamFrozen);
         createJaffaFood(strawberryIcecream, 2, 0.3f).setPotionEffect(Potion.moveSpeed.id, 70, 0, 0.25F);
@@ -603,6 +611,19 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(chocIce, 4, 1f).setReturnItem(new ItemStack(getItem(chocIceStick))).setPotionEffect(Potion.moveSpeed.id, 70, 0, 0.25F);
 
         createJaffaItem(duckEgg).setMaxStackSize(16);
+
+        createJaffaItem(muffinRaw);
+        createJaffaItem(muffinUnfinished);
+        createJaffaFood(muffin, 3, 0.5f).setReturnItem(getItemStack(crumpledPaper, 1)).setPotionEffect(Potion.regeneration.id, 4, 0, 0.1f);
+
+        createJaffaItem(beansWithTomatoRaw);
+        createJaffaFood(beansWithTomato, 6, 0.7f).setReturnItem(getItemStack(woodenBowl, 1)).setPotionEffect(Potion.fireResistance.id, 30, 0, 0.1f).setMaxStackSize(16);
+
+        createJaffaFood(sandwich1, 6, 0.5f).setPotionEffect(Potion.waterBreathing.id, 90, 0, 0.25f);
+
+        createJaffaItem(lambWithPeasInTinRaw);
+        createJaffaItem(lambWithPeasInTin);
+        createJaffaFood(lambWithPeas, 8, 1f).setReturnItem(getItemStack(plate, 1)).setPotionEffect(Potion.regeneration.id, 6, 0, 1f).setMaxStackSize(24);
 
         createItemsRegistration();
     }

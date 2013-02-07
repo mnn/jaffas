@@ -302,7 +302,7 @@ public class mod_jaffas {
     private void registerDuckSpawns() {
         EntityRegistry.addSpawn(EntityDuck.class, 7, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills);
         EntityRegistry.addSpawn(EntityDuck.class, 9, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);
-        EntityRegistry.addSpawn(EntityDuck.class, 13, 2, 4, EnumCreatureType.creature, swampland, river, beach, forest);
+        EntityRegistry.addSpawn(EntityDuck.class, 13, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);
     }
 
     private void createBlocks() {
