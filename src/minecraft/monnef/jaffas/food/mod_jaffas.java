@@ -172,7 +172,7 @@ public class mod_jaffas {
 
         try {
             config.load();
-            idProvider.setConfig(config);
+            idProvider.linkWithConfig(config);
 
             this.moduleManager = new ModuleManager();
             ModuleManager.Add(ModulesEnum.food);

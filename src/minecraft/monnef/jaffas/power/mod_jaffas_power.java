@@ -67,7 +67,7 @@ public class mod_jaffas_power {
 
         try {
             config.load();
-            idProvider.setConfig(config);
+            idProvider.linkWithConfig(config);
 
             //JaffarrolID = idProvider.getItemIDFromConfig("jaffarrol");
             ItemDebugID = idProvider.getItemIDFromConfig("debug");

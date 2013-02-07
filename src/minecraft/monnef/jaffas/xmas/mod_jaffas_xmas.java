@@ -65,7 +65,7 @@ public class mod_jaffas_xmas {
 
         try {
             config.load();
-            idProvider.setConfig(config);
+            idProvider.linkWithConfig(config);
 
             BlockCandyID = idProvider.getBlockIDFromConfig("candy");
             ItemGiantCandyID = idProvider.getItemIDFromConfig("giant candy");

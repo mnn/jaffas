@@ -53,7 +53,7 @@ public class mod_jaffas_carts {
 
         try {
             config.load();
-            idProvider.setConfig(config);
+            idProvider.linkWithConfig(config);
 
             ItemLocomotiveID = idProvider.getBlockIDFromConfig("locomotive");
 

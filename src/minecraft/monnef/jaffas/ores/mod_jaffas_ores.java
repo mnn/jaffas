@@ -85,7 +85,7 @@ public class mod_jaffas_ores {
 
         try {
             config.load();
-            idProvider.setConfig(config);
+            idProvider.linkWithConfig(config);
 
             JaffarrolID = idProvider.getItemIDFromConfig("jaffarrol");
             JaffarrolRawID = idProvider.getItemIDFromConfig("jaffarrolRaw");

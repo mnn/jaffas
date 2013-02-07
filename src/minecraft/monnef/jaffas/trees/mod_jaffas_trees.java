@@ -172,12 +172,14 @@ public class mod_jaffas_trees {
 
         try {
             config.load();
-            idProvider.setConfig(config);
+            idProvider.linkWithConfig(config);
 
             itemLemonID = idProvider.getItemIDFromConfig("lemon");
             itemOrangeID = idProvider.getItemIDFromConfig("orange");
             itemPlumID = idProvider.getItemIDFromConfig("plum");
             itemCoconutID = idProvider.getItemIDFromConfig("coconut");
+
+            blockFruitCollectorID = idProvider.getBlockIDFromConfig("fruit collector");
 
             for (int i = 0; i < leavesBlocksAllocated; i++) {
                 int leavesID = idProvider.getBlockIDFromConfig("fruit leaves " + i);
@@ -194,8 +196,6 @@ public class mod_jaffas_trees {
                 info.blockID = idProvider.getBlockIDFromConfig(info.getBlockConfigName());
                 info.itemFruitID = idProvider.getItemIDFromConfig(info.getFruitConfigName());
             }
-
-            blockFruitCollectorID = idProvider.getBlockIDFromConfig("fruit collector");
 
             itemDebugID = idProvider.getItemIDFromConfig("debug tool");
 
