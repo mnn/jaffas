@@ -12,6 +12,6 @@ public class ContainerGenerator extends ContainerMachine {
 
     @Override
     public void constructSlots() {
-        addSlotToContainer(new Slot(tileEntity, 0, 50, 50)); // 0 is ID
+        addSlotToContainer(new Slot(tileEntity, 0, 80, 25)); // 0 is ID
     }
 }

@@ -16,5 +16,8 @@ public class ClientProxy extends CommonProxy {
         //RenderingRegistry.registerBlockHandler(new BlockRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGenerator.class, new TileEntityGeneratorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new TileEntityAntennaRenderer());
+
+        RenderingRegistry.registerBlockHandler(new BlockRenderingHandler());
+        RenderingRegistry.registerBlockHandler(mod_jaffas_power.antenna.getRenderType(), new BlockRenderingHandler());
     }
 }

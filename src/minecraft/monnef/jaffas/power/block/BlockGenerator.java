@@ -38,4 +38,9 @@ public class BlockGenerator extends BlockMachineWithInventory {
     public int getGuiId() {
         return 0;
     }
+
+    @Override
+    public boolean useOwnRenderId() {
+        return true;
+    }
 }

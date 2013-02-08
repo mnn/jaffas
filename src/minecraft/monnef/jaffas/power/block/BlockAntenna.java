@@ -38,4 +38,9 @@ public class BlockAntenna extends BlockMachine {
         int newMeta = (meta & 8) | (rotation & 7);
         world.setBlockMetadataWithNotify(x, y, z, newMeta);
     }
+
+    @Override
+    public boolean useOwnRenderId() {
+        return true;
+    }
 }

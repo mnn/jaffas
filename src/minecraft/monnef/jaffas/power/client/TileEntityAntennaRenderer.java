@@ -21,7 +21,7 @@ public class TileEntityAntennaRenderer extends TileEntitySpecialRenderer {
 
     public void renderModelAt(TileEntityAntenna tile, double x, double y, double z, float par8) {
 
-        int meta = tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+        int meta = tile.worldObj == null ? 1 : tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
 
         float angle[] = new float[3];
         angle[0] = angle[1] = angle[2] = 0;

@@ -18,7 +18,6 @@ public class GuiContainerGenerator extends GuiContainerMachine {
 
     @Override
     protected String getBackgroundTexture() {
-        //TODO
-        return "/gui/trap.png";
+        return "/guigenerator.png";
     }
 }

@@ -29,6 +29,9 @@ public class PowerLabels {
     }
 
     public static void renderLabel(TileEntityMachine tile, double x, double y, double z, boolean debug) {
+        // skip label rendering when rendering in inventory/hand
+        if (tile.worldObj == null) return;
+
         instance.render(tile, x, y, z, debug);
     }
 

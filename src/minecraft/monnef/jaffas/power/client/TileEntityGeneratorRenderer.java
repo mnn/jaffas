@@ -20,7 +20,7 @@ public class TileEntityGeneratorRenderer extends TileEntitySpecialRenderer {
 
     public void renderModelAt(TileEntityGenerator tile, double x, double y, double z, float par8) {
 
-        int meta = tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+        int meta = tile.worldObj == null ? 0 : tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
 
         float angle;
         switch (meta & 3) {

@@ -1,6 +1,6 @@
 package monnef.jaffas.power.block.common;
 
-import monnef.jaffas.food.mod_jaffas;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.api.IPipeWrench;
 import monnef.jaffas.power.mod_jaffas_power;
@@ -17,11 +17,15 @@ import net.minecraft.world.World;
 public abstract class BlockMachine extends Block {
     private boolean customRenderer;
     protected boolean alwaysDropOnWrench = true;
+    protected int renderID;
 
     public BlockMachine(int par1, int par2, Material par3Material, boolean customRenderer) {
         super(par1, par2, par3Material);
         this.customRenderer = customRenderer;
         setCreativeTab(mod_jaffas_power.CreativeTab);
+        if (useOwnRenderId()) {
+            renderID = RenderingRegistry.getNextAvailableRenderId();
+        }
     }
 
     @Override
@@ -38,9 +42,17 @@ public abstract class BlockMachine extends Block {
         w.setBlockMetadata(x, y, z, var);
     }
 
+    public boolean useOwnRenderId() {
+        return false;
+    }
+
     @Override
     public int getRenderType() {
-        return customRenderer ? mod_jaffas.renderID : super.getRenderType();
+        if (customRenderer) {
+            return useOwnRenderId() ? this.renderID : mod_jaffas_power.renderID;
+        } else {
+            return super.getRenderType();
+        }
     }
 
     @Override
