@@ -33,7 +33,7 @@ public class BlockBoard extends BlockContainerJaffas {
     public final static float f9d = 1f - unit * 9f;
     public final static float f10d = 1f - unit * 10f;
 
-    private static int knifeBit = 2;
+    protected static final int knifeBit = 2;
 
     public BlockBoard(int par1, int par2, Material par3Material) {
         super(par1, par2, par3Material);

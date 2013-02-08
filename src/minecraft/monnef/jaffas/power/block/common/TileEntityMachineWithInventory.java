@@ -106,4 +106,16 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
 
     @Override
     public abstract String getInvName();
+
+    public int getIntegersToSyncCount() {
+        return 0;
+    }
+
+    public int getCurrentValueOfIntegerToSync(int index) {
+        throw new RuntimeException("not implemented getting of sync ints");
+    }
+
+    public void setCurrentValueOfIntegerToSync(int index, int value) {
+        throw new RuntimeException("not implemented setting of sync ints");
+    }
 }

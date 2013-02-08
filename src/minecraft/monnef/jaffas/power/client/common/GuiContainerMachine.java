@@ -8,7 +8,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public abstract class GuiContainerMachine extends GuiContainer {
-    private final TileEntityMachineWithInventory tile;
+    protected final TileEntityMachineWithInventory tile;
 
     public GuiContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory tileEntity, ContainerMachine container) {
         super(container);
@@ -27,16 +27,17 @@ public abstract class GuiContainerMachine extends GuiContainer {
 
     protected abstract String getTitle();
 
+    protected int x, y;
+
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         int texture = mc.renderEngine.getTexture(getBackgroundTexture());
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.renderEngine.bindTexture(texture);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
+        x = (width - xSize) / 2;
+        y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
     }
 
     protected abstract String getBackgroundTexture();
-    // "/gui/trap.png"
 }

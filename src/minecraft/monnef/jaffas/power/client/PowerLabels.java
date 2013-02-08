@@ -54,10 +54,28 @@ public class PowerLabels {
         boolean isProvider = tile instanceof IPowerProvider;
         boolean isConsumer = tile instanceof IPowerConsumer;
         IPowerNode powerNode = isProvider ? ((IPowerProvider) tile).getPowerProviderManager() : ((IPowerConsumer) tile).getPowerConsumerManager();
-        text.append(StringPowerFormatter.getEnergyInfo(isProvider, isConsumer, powerNode.getCurrentBufferedEnergy(), powerNode.getBufferSize(), powerNode.getMaximalPacketSize()));
-        text.append("\n");
-        text.append(StringPowerFormatter.getConnectionInfo(powerNode, debug));
+
+        if (isFullyInitialized(tile, isProvider, isConsumer)) {
+            text.append(StringPowerFormatter.getEnergyInfo(isProvider, isConsumer, powerNode.getCurrentBufferedEnergy(), powerNode.getBufferSize(), powerNode.getMaximalPacketSize()));
+            text.append("\n");
+            text.append(StringPowerFormatter.getConnectionInfo(powerNode, debug));
+        } else {
+            text.append("** not initialized! **\n** not initialized! **");
+        }
+
         return text.toString();
+    }
+
+    private boolean isFullyInitialized(TileEntityMachine tile, boolean provider, boolean consumer) {
+        if (provider && !((IPowerProvider) tile).getPowerProviderManager().isInitialized()) {
+            return false;
+        }
+
+        if (consumer && !((IPowerConsumer) tile).getPowerConsumerManager().isInitialized()) {
+            return false;
+        }
+
+        return true;
     }
 
     private boolean holdingTool() {

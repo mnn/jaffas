@@ -1,13 +1,29 @@
 package monnef.jaffas.power.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.power.PowerProviderManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityGenerator extends TileEntityMachineWithInventory implements IPowerProvider {
     private final PowerProviderManager manager;
+    public int burnTime = 0;
+    public int burnItemTime = 1;
+    private int SLOT_FUEL = 0;
+
+    private static final int tickEach = 20;
+    private int tickCounter = 0;
+
+    private GeneratorState lastState = GeneratorState.IDLE;
+
+    private enum GeneratorState {
+        IDLE, BURNING
+    }
 
     public TileEntityGenerator() {
         super();
@@ -42,5 +58,99 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
     @Override
     public String getInvName() {
         return "jaffas.power.generator";
+    }
+
+    @Override
+    public int getIntegersToSyncCount() {
+        return 2;
+    }
+
+    @Override
+    public int getCurrentValueOfIntegerToSync(int index) {
+        switch (index) {
+            case 0:
+                return burnTime;
+
+            case 1:
+                return burnItemTime;
+        }
+
+        return -1;
+    }
+
+    @Override
+    public void setCurrentValueOfIntegerToSync(int index, int value) {
+        switch (index) {
+            case 0:
+                burnTime = value;
+                break;
+
+            case 1:
+                burnItemTime = value;
+                break;
+
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+        tickCounter++;
+
+        if (tickCounter % tickEach == 0) {
+            if (!worldObj.isRemote) {
+                GeneratorState newState;
+
+                if (burnTime > 0) {
+                    burnTime -= tickEach;
+                    manager.storeEnergy(tickEach);
+                }
+
+                if (burnTime <= 0 && manager.getFreeSpaceInBuffer() > 0) {
+                    burnTime = 0;
+                    tryGetFuel();
+                }
+
+                newState = isBurning() ? GeneratorState.BURNING : GeneratorState.IDLE;
+                if (newState != lastState) {
+                    int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+                    meta = BlockGenerator.setBurning(meta, isBurning());
+                    worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, meta);
+                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                }
+                lastState = newState;
+            }
+        }
+    }
+
+    private void tryGetFuel() {
+        ItemStack fuelStack = inventory[SLOT_FUEL];
+        if (fuelStack != null) {
+            int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
+            if (fuelBurnTime > 0) {
+                fuelStack.stackSize--;
+                if (fuelStack.stackSize <= 0) {
+                    setInventorySlotContents(SLOT_FUEL, null);
+                }
+
+                burnTime = fuelBurnTime;
+                burnItemTime = fuelBurnTime;
+            }
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getBurnTimeScaled(int par1) {
+        if (burnTime == 0) {
+            burnTime = 200;
+        }
+
+        return (burnTime * par1) / burnItemTime;
+    }
+
+    public boolean isBurning() {
+        return burnTime > 0;
     }
 }

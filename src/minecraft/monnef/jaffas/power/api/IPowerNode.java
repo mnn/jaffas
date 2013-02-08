@@ -45,4 +45,6 @@ public interface IPowerNode {
     boolean isRemotelyConnected();
 
     boolean isConnectedToSide(ForgeDirection side);
+
+    boolean isInitialized();
 }

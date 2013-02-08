@@ -1,14 +1,21 @@
 package monnef.jaffas.power.block.common;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public abstract class ContainerMachine extends Container {
+import java.util.ArrayList;
 
+public abstract class ContainerMachine extends Container {
     protected TileEntityMachineWithInventory tileEntity;
+
+    protected ArrayList<Integer> lastValue;
 
     public ContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory te) {
         tileEntity = te;
@@ -17,6 +24,11 @@ public abstract class ContainerMachine extends Container {
 
         //commonly used vanilla code that adds the player's inventory
         bindPlayerInventory(inventoryPlayer);
+
+        lastValue = new ArrayList<Integer>();
+        for (int i = 0; i < tileEntity.getIntegersToSyncCount(); i++) {
+            lastValue.add(0);
+        }
     }
 
     public abstract void constructSlots();
@@ -73,5 +85,54 @@ public abstract class ContainerMachine extends Container {
             slotObject.onPickupFromSlot(player, stackInSlot);
         }
         return stack;
+    }
+
+    public void addCraftingToCrafters(ICrafting par1ICrafting) {
+        super.addCraftingToCrafters(par1ICrafting);
+        for (int i = 0; i < lastValue.size(); i++) {
+            par1ICrafting.sendProgressBarUpdate(this, i, this.tileEntity.getCurrentValueOfIntegerToSync(i));
+        }
+    }
+
+    /**
+     * Updates crafting matrix; called from onCraftMatrixChanged. Args: none
+     */
+    public void updateCraftingResults() {
+        super.updateCraftingResults();
+
+        for (int var1 = 0; var1 < this.crafters.size(); ++var1) {
+            ICrafting var2 = (ICrafting) this.crafters.get(var1);
+
+            /*
+            if (this.lastChopTime != this.tileEntity.chopTime) {
+                var2.sendProgressBarUpdate(this, 0, this.tileEntity.chopTime);
+            }
+            */
+            for (int i = 0; i < lastValue.size(); i++) {
+                if (lastValue.get(i) != tileEntity.getCurrentValueOfIntegerToSync(i)) {
+                    var2.sendProgressBarUpdate(this, i, tileEntity.getCurrentValueOfIntegerToSync(i));
+                }
+            }
+        }
+
+        for (int i = 0; i < lastValue.size(); i++) {
+            //this.lastChopTime = this.tileEntity.chopTime;
+            lastValue.set(i, tileEntity.getCurrentValueOfIntegerToSync(i));
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void updateProgressBar(int index, int value) {
+        /*if (index == 0) {
+            this.tileEntity.chopTime = value;
+        } */
+        if (index < 0 || index > lastValue.size()) {
+            if (mod_jaffas.debug) {
+                System.err.println("skipping invalid index [" + index + "] of int to sync in container [" + this.getClass().getName() + "]");
+            }
+            return;
+        }
+
+        tileEntity.setCurrentValueOfIntegerToSync(index, value);
     }
 }

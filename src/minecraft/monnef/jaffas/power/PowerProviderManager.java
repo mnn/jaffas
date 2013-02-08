@@ -60,6 +60,11 @@ public class PowerProviderManager implements IPowerProviderManager {
         initialize(maximalPacketSize, bufferSize, tile, remoteConnection, new boolean[6]);
     }
 
+    @Override
+    public boolean isInitialized() {
+        return initialized;
+    }
+
     private void fillDirectConnectionSupport() {
         supportDirectConn = false;
         for (int i = 0; i < ForgeDirection.VALID_DIRECTIONS.length; i++) {

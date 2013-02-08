@@ -137,6 +137,11 @@ public class PowerConsumerManager implements IPowerConsumerManager {
     }
 
     @Override
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    @Override
     public boolean energyNeeded() {
         return getCurrentMaximalPacketSize() > 0;
     }
