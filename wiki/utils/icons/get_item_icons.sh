@@ -13,7 +13,7 @@ rm -fr $output/*.png
 
 items_num=255
 n=0
-declare -a sprites=('jaffas_01.png' 'jaffas_02.png' 'jaffas_03.png' 'jaffas_04.png' 'jaffas_05.png' 'jaffas_06.png')
+declare -a sprites=('jaffas_01_a.png' 'jaffas_02.png' 'jaffas_03.png' 'jaffas_04.png' 'jaffas_05.png' 'jaffas_06.png' 'jaffas_01_b.png')
 
 spritePath='../../../bin_data'
 
