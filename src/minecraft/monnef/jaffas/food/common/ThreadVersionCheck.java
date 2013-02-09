@@ -1,15 +1,16 @@
 package monnef.jaffas.food.common;
 
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.client.ClientTickHandler;
 import monnef.jaffas.food.mod_jaffas;
 
 public class ThreadVersionCheck implements Runnable {
     @Override
     public void run() {
-        if (mod_jaffas.debug) System.out.println("data filling started");
+        if (mod_jaffas.debug) Log.printInfo("data filling started");
         synchronized (ClientTickHandler.lock) {
             ClientTickHandler.data = VersionHelper.GetVersionText(ClientTickHandler.name, ClientTickHandler.clientVersionString);
         }
-        if (mod_jaffas.debug) System.out.println("data filled");
+        if (mod_jaffas.debug) Log.printInfo("data filled");
     }
 }

@@ -3,6 +3,7 @@ package monnef.jaffas.food.client;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.TickType;
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.common.ThreadVersionCheck;
 import monnef.jaffas.food.common.VersionHelper;
 import monnef.jaffas.food.mod_jaffas;
@@ -70,13 +71,13 @@ public class ClientTickHandler implements IScheduledTickHandler {
     public void onTickInGame() {
         if (!checked && tries < 2) {
             if (mod_jaffas.debug) {
-                System.out.println("Doing version check");
+                Log.printInfo("Doing version check");
             }
 
             EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
             if (player == null) {
                 if (mod_jaffas.debug) {
-                    System.out.println("got null player O_0");
+                    Log.printInfo("got null player O_0");
                 }
                 return;
             }
@@ -86,11 +87,11 @@ public class ClientTickHandler implements IScheduledTickHandler {
                 clientVersionString = mod_jaffas.class.getAnnotation(Mod.class).version();
                 if (data == null) {
                     if ((versionThread != null && !versionThread.isAlive()) || versionThread == null) {
-                        if (mod_jaffas.debug) System.out.println("starting version thread");
+                        if (mod_jaffas.debug) Log.printInfo("starting version thread");
                         versionThread = new Thread(new ThreadVersionCheck(), "versionCheck");
                         versionThread.start();
                     } else {
-                        if (mod_jaffas.debug) System.out.println("version thread alive but data field is empty");
+                        if (mod_jaffas.debug) Log.printInfo("version thread alive but data field is empty");
                     }
                 }
 
@@ -102,13 +103,15 @@ public class ClientTickHandler implements IScheduledTickHandler {
                         Integer[] thisVersion = VersionHelper.GetVersionNumbers(clientVersionString);
                         int cmp = VersionHelper.CompareVersions(thisVersion, remoteVersion);
                         if (cmp == -1) {
+                            // TODO check if it hasn't been already shown
                             player.addChatMessage("New version (" + VersionHelper.VersionToString(remoteVersion) + ") of \"Jaffas and more!\" is available.");
                         } else if (cmp == 1) {
-                            player.addChatMessage("Local version is newer than remote, did you forget to update version file?");
-                        } else {
-                            if (mod_jaffas.debug) {
-                                player.addChatMessage("[DEBUG] Version check is OK.");
+                            if (name.toLowerCase().equals("monnef")) {
+                                player.addChatMessage("Local version is newer than remote, did you forget to update version file?");
                             }
+                            Log.printInfo("Remote version is older than yours, ignoring.");
+                        } else {
+                            Log.printInfo("[DEBUG] Version check is OK.");
                         }
 
                         checked = true;

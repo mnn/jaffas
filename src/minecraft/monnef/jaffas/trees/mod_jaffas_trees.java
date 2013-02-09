@@ -13,8 +13,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
+import monnef.jaffas.food.Reference;
 import monnef.core.RegistryUtils;
-import monnef.core.Version;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -46,7 +46,7 @@ import static monnef.jaffas.trees.DropType.DropsFromGrass;
 import static monnef.jaffas.trees.EatableType.EatableNormal;
 import static monnef.jaffas.trees.EatableType.NotEatable;
 
-@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = mod_jaffas_trees.channel, packetHandler = PacketHandler.class)
 public class mod_jaffas_trees {
     private static MinecraftServer server;

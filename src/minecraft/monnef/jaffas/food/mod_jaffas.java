@@ -17,10 +17,11 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import extrabiomes.api.Api;
 import monnef.core.ColorHelper;
+import monnef.core.ExtrabiomesHelper;
 import monnef.core.IDProvider;
 import monnef.core.RegistryUtils;
-import monnef.core.Version;
 import monnef.jaffas.food.block.*;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
@@ -54,11 +55,12 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import static net.minecraft.world.biome.BiomeGenBase.*;
 
-@Mod(modid = "moen-jaffas", name = "Jaffas", version = Version.Version, dependencies = "after:Forestry;after:BuildCraft|Energy")
+@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static JaffaCreativeTab CreativeTab;
@@ -137,6 +139,7 @@ public class mod_jaffas {
     public Items items;
     boolean forestryDetected;
     public static String[] textureFile = new String[]{"/jaffas_01_a.png", "/jaffas_01_b.png"};
+    boolean extraBiomes;
 
     public static boolean spawnStonesEnabled = true;
     public static int spawnStoneLittleCD;
@@ -149,6 +152,10 @@ public class mod_jaffas {
 
     public boolean IsForestryDetected() {
         return this.forestryDetected;
+    }
+
+    public boolean IsExtraBiomesDetected() {
+        return this.extraBiomes;
     }
 
     public mod_jaffas() {
@@ -235,6 +242,7 @@ public class mod_jaffas {
     public void load(FMLInitializationEvent event) {
         checkJsoup();
         checkForestry();
+        checkExtrabiomes();
 
         CreativeTab = new JaffaCreativeTab("jaffas");
 
@@ -268,10 +276,6 @@ public class mod_jaffas {
         } catch (ClassNotFoundException e) {
             this.forestryDetected = false;
         }
-
-        if (debug) {
-            System.out.println("Forestry detected: " + this.forestryDetected);
-        }
     }
 
     private void registerHandlers() {
@@ -299,10 +303,26 @@ public class mod_jaffas {
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
     }
 
+    private void checkExtrabiomes() {
+        extraBiomes = false;
+        try {
+            if (Api.isExtrabiomesXLActive())
+                extraBiomes = true;
+        } catch (Exception e) {
+        }
+    }
+
     private void registerDuckSpawns() {
-        EntityRegistry.addSpawn(EntityDuck.class, 7, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills);
-        EntityRegistry.addSpawn(EntityDuck.class, 9, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);
-        EntityRegistry.addSpawn(EntityDuck.class, 13, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);
+        EntityRegistry.addSpawn(EntityDuck.class, 7, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills); // low
+        EntityRegistry.addSpawn(EntityDuck.class, 9, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);      // med
+        EntityRegistry.addSpawn(EntityDuck.class, 13, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high
+
+        if (extraBiomes) {
+            // low - med
+            ExtrabiomesHelper.addSpawn(EntityDuck.class, 7, 1, 3, EnumCreatureType.creature, "ALPINE", "FORESTEDHILLS", "MEADOW", "MINIJUNGLE", "PINEFOREST", "SAVANNA");
+            // high
+            ExtrabiomesHelper.addSpawn(EntityDuck.class, 14, 2, 6, EnumCreatureType.creature, "AUTUMNWOODS", "BIRCHFOREST", "FORESTEDISLAND", "GREENHILLS", "GREENSWAMP", "MARSH", "SHRUBLAND", "TEMPORATERAINFOREST", "WOODLANDS");
+        }
     }
 
     private void createBlocks() {
@@ -361,11 +381,20 @@ public class mod_jaffas {
     }
 
     private void printInitializedMessage() {
-        System.out.println("Mod 'Jaffas and more!' successfully initialized");
-        System.out.println("created by monnef and Tiartyos");
-        System.out.println("version: " + Version.Version + " ; http://jaffas.maweb.eu");
+        Log.printInfo("Mod 'Jaffas and more!' successfully initialized");
+        Log.printInfo("created by monnef and Tiartyos");
+        Log.printInfo("version: " + Reference.Version + " ; http://jaffas.maweb.eu");
 
-        System.out.println("enabled modules: " + Joiner.on(", ").join(moduleManager.CompileEnabledModules()));
+        Log.printInfo("enabled modules: " + Joiner.on(", ").join(moduleManager.CompileEnabledModules()));
+        Log.printInfo("detected mods: " + Joiner.on(", ").join(compileDetectedMods()));
+    }
+
+    private Iterable<String> compileDetectedMods() {
+        ArrayList<String> list = new ArrayList<String>();
+        if (IsForestryDetected()) list.add("forestry");
+        if (IsExtraBiomesDetected()) list.add("extrabiomesxl");
+        if (list.size() == 0) list.add("none");
+        return list;
     }
 
     private void checkJsoup() {
@@ -378,7 +407,7 @@ public class mod_jaffas {
     }
 
     private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int id) {
-        if (mod_jaffas.debug) System.out.println("Registered: " + entityClass + " id: " + id);
+        if (mod_jaffas.debug) Log.printInfo("Registered: " + entityClass + " id: " + id);
         EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
         EntityRegistry.registerModEntity(entityClass, entityName, id, this, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
@@ -409,6 +438,6 @@ public class mod_jaffas {
     }
 
     public static void PrintInitialized(ModulesEnum module) {
-        System.out.println("Module " + module + " from 'Jaffas and more!' initialized.");
+        Log.printInfo("Module " + module + " initialized.");
     }
 }

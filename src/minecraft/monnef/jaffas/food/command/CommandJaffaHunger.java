@@ -1,5 +1,6 @@
 package monnef.jaffas.food.command;
 
+import monnef.jaffas.food.Log;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,14 +20,14 @@ public class CommandJaffaHunger extends CommandBase {
 
         if (var2.length > 0 && var2[0].length() >= 1) {
             player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(var2[0]);
-            if (player == null){
+            if (player == null) {
                 var1.sendChatToPlayer("Player not found.");
                 return;
             }
-        }else if (var1 instanceof EntityPlayer) {
+        } else if (var1 instanceof EntityPlayer) {
             player = (EntityPlayer) var1;
-        }else{
-            System.out.println("jaffahunger cannot get valid target");
+        } else {
+            Log.printInfo("jaffahunger cannot get valid target");
             return;
         }
 

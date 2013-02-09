@@ -5,6 +5,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.block.TileEntityJaffaMachine;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
@@ -175,7 +176,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                             ItemStack stack = this.targetedItem.func_92014_d().copy();
                             int itemsAdded = addItemToInventory(this.targetedItem.func_92014_d().copy(), true);
                             this.targetedItem.setDead();
-                            if (mod_jaffas_trees.debug) System.out.println("target destroyed");
+                            if (mod_jaffas_trees.debug) Log.printInfo("target destroyed");
                             int itemsLeft = stack.stackSize - itemsAdded;
 
                             this.queueSound("suck");
@@ -258,12 +259,10 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                 this.targetedItem = item;
                 this.state = CollectorStates.targeted;
                 this.cooldown = 3;
-//                if (mod_jaffas_trees.debug) System.out.println("target aquired!");
 
                 this.sendStateUpdatePacket();
                 return true;
             } else {
-//                if (mod_jaffas_trees.debug) System.out.println("no fruit found");
                 return false;
             }
         }

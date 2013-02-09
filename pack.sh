@@ -26,7 +26,7 @@ touch "$outtmp/.placeholder"
 echo Done
 echo -n Parsing version...
 
-ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/core/Version.java`
+ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/jaffas/food/Reference.java`
 if [ $? -ne 0 ]; then
 	echo "Cannot determine version"
 	exit
@@ -47,7 +47,7 @@ echo -n Copying mod files...
 #cp $binPath/jaffas_0{1,2,3,4}.png $binPath/jaffas_logo.png $binPath/guifridge.png $binPath/jaffabrn1.png $binPath/mcmod.info $binPath/guicollector.png $binPath/sharpener.wav $binPath/suck.wav "$outtmp"
 #cp $binPath/jaffas_present_{0,1,2,3,4,5}.png $binPath/jaffas_paintings_01.png $binPath/jaffas_candy.png $binPath/jaffas_faucet.png "$outtmp"
 cp $binPath/* "$outtmp"
-cp -r reobf/minecraft/{buildcraft,monnef,forestry} "$outtmp"
+cp -r reobf/minecraft/{buildcraft,monnef,forestry,extrabiomes} "$outtmp"
 
 outName="mod_jaffas_$version"
 

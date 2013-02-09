@@ -11,7 +11,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
-import monnef.core.Version;
+import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
@@ -29,7 +29,7 @@ import java.util.logging.Level;
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PreInit;
 
-@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_power {
     @Instance("moen-jaffas-power")

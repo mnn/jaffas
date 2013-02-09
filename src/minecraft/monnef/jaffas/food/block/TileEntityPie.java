@@ -1,5 +1,6 @@
 package monnef.jaffas.food.block;
 
+import monnef.jaffas.food.Log;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -41,7 +42,7 @@ public class TileEntityPie extends TileEntity {
             for (int i = 0; i < PIECES_COUNT; i++) {
                 p += pieces[i] ? "1" : "0";
             }
-            System.out.println("R:" + rotation + " T:" + type + " P:" + p);
+            Log.printInfo("R:" + rotation + " T:" + type + " P:" + p);
         }
 
         if (worldObj.isRemote) {

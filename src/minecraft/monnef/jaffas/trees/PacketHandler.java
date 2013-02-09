@@ -47,11 +47,6 @@ public class PacketHandler implements IPacketHandler {
             return;
         }
 
-        /*
-        if (mod_jaffas_trees.debug)
-            System.out.println("te: " + x + "," + y + "," + z + " - s: " + newState + " - i: " + ix + "," + iy + "," + iz);
-        */
-
         TileEntityFruitCollector c = (TileEntityFruitCollector) p.worldObj.getBlockTileEntity(x, y, z);
         c.updateInnerState(newState, ix, iy, iz);
     }

@@ -9,7 +9,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
-import monnef.core.Version;
+import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
@@ -23,7 +23,7 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas-xmas", name = "Jaffas - xmas", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-xmas", name = "Jaffas - xmas", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_xmas {
     @Mod.Instance("moen-jaffas-xmas")

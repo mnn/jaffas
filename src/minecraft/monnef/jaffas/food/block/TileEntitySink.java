@@ -1,6 +1,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.BitHelper;
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.tileentity.TileEntity;
 
@@ -19,7 +20,7 @@ public class TileEntitySink extends TileEntity {
 
         if (getBlockType().blockID != mod_jaffas.blockSink.blockID) {
             if (mod_jaffas.debug) {
-                System.out.println("sink block not detected, ending - " + xCoord + "x" + yCoord + "x" + zCoord);
+                Log.printInfo("sink block not detected, ending - " + xCoord + "x" + yCoord + "x" + zCoord);
             }
             invalidate();
             return;

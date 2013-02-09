@@ -3,6 +3,7 @@ package monnef.jaffas.food.block;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerFramework;
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
@@ -106,7 +107,7 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
 
 
     public void setPowerProvider(IPowerProvider provider) {
-        if (mod_jaffas.debug) System.out.println("power provider set");
+        if (mod_jaffas.debug) Log.printInfo("power provider set");
         this.powerProvider = provider;
     }
 
@@ -136,10 +137,6 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
                 free = i;
                 i = fuelSlot;
             }
-        }
-
-        if (mod_jaffas.debug) {
-//            System.out.println("free~" + free + ", stack:" + stack.itemID + " - x" + stack.stackSize);
         }
 
         if (free != -1) {

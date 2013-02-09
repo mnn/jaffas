@@ -4,6 +4,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,7 +52,7 @@ public class SpawnStonePacketUtils {
         } else if (side == SERVER && packetType == PORT) {
             EntityPlayerMP p = (EntityPlayerMP) player;
             if (CoolDownRegistry.isCoolDownActive(p.getEntityName(), SPAWN_STONE)) {
-                System.out.println("Possible hacker&|cheater (uses stone on CD): " + p.getEntityName());
+                Log.printWarning("Possible hacker&|cheater (uses stone on CD): " + p.getEntityName());
                 return;
             }
 
@@ -68,13 +69,13 @@ public class SpawnStonePacketUtils {
     public static ItemSpawnStone getSpawnStone(EntityPlayer player) {
         ItemStack stack = player.getCurrentEquippedItem();
         if (stack == null) {
-            System.out.println("Possible hacker&|cheater (uses stone without stone): " + player.getEntityName());
+            Log.printWarning("Possible hacker&|cheater (uses stone without stone): " + player.getEntityName());
             return null;
         }
 
         Item itemInHand = stack.getItem();
         if (!(itemInHand instanceof ItemSpawnStone)) {
-            System.out.println("Possible hacker&|cheater (uses stone without stone [di]): " + player.getEntityName());
+            Log.printWarning("Possible hacker&|cheater (uses stone without stone [di]): " + player.getEntityName());
             return null;
         }
 

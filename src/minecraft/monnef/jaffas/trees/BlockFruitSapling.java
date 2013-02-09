@@ -2,6 +2,7 @@ package monnef.jaffas.trees;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.food.Log;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -51,7 +52,7 @@ public class BlockFruitSapling extends BlockFlower {
                 int metadata = par1World.getBlockMetadata(par2, par3, par4);
 
                 if (mod_jaffas_trees.debug) {
-                    System.out.println("meta(" + metadata + ") markForDecay("
+                    Log.printInfo("meta(" + metadata + ") markForDecay("
                             + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
                             + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
                             + BlockFruitLeaves.areLeavesMarkedForDecay(BlockFruitLeaves.setLeavesDecay(metadata)) + ")");
@@ -62,7 +63,7 @@ public class BlockFruitSapling extends BlockFlower {
                     //par1World.setBlockMetadataWithNotify(par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
                     par1World.setBlockMetadata(par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
                     if (mod_jaffas_trees.debug) {
-                        System.out.println("after set: " + par1World.getBlockMetadata(par2, par3, par4));
+                        Log.printInfo("after set: " + par1World.getBlockMetadata(par2, par3, par4));
                     }
                 } else {
                     this.growTree(par1World, par2, par3, par4, par5Random);

@@ -9,8 +9,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
+import monnef.jaffas.food.Reference;
 import monnef.core.RegistryUtils;
-import monnef.core.Version;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.CustomDrop;
@@ -31,7 +31,7 @@ import java.util.logging.Level;
 
 import static monnef.jaffas.food.item.JaffaItem.*;
 
-@Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Version.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core;after:moen-jaffas-trees")
+@Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core;after:moen-jaffas-trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_ores {
     @Mod.Instance("moen-jaffas-ores")

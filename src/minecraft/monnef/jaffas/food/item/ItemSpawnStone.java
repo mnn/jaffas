@@ -1,10 +1,10 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.MathHelper;
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -73,9 +73,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
             }
         }
 
-        world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
-
-
+        /*
         ChunkCoordinates bed = player.getBedLocation();
         ChunkCoordinates spawn = bed;
         String type = "b";
@@ -96,12 +94,36 @@ public class ItemSpawnStone extends ItemJaffaBase {
                 spawn.posY += 2f;
             }
         }
+        */
 
-        System.out.println(player.getEntityName() + " used home stone, porting to: " + spawn.posX + ", " + spawn.posY + ", " + spawn.posZ + "  [" + type + "]");
-        player.setPositionAndUpdate(spawn.posX, spawn.posY, spawn.posZ);
-        world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
+        ChunkCoordinates bed = player.getBedLocation();
+        boolean success;
+        if (bed == null) {
+            player.addChatMessage("You have no home.");
+            success = false;
+        } else {
+            if (checkRoomForPlayer(player.worldObj, bed)) {
+                success = true;
+            } else {
+                player.addChatMessage("Cannot find free space.");
+                success = false;
+            }
+        }
 
-        CoolDownRegistry.setCoolDown(player.getEntityName(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
+        if (success) {
+            world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
+            Log.printInfo(player.getEntityName() + " used home stone, porting to: " + bed.posX + ", " + bed.posY + ", " + bed.posZ);
+            //player.setPositionAndUpdate(bed.posX, bed.posY, bed.posZ);
+            player.playerNetServerHandler.setPlayerLocation(bed.posX, bed.posY, bed.posZ, player.rotationYaw, player.rotationPitch);
+            world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
+
+            CoolDownRegistry.setCoolDown(player.getEntityName(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
+        }
+
         SpawnStoneServerPacketSender.sendSyncPacket(player, false);
+    }
+
+    private boolean checkRoomForPlayer(World world, ChunkCoordinates spawn) {
+        return world.getBlockId(spawn.posX, spawn.posY + 1, spawn.posZ) == 0 && world.getBlockId(spawn.posX, spawn.posY + 2, spawn.posZ) == 0;
     }
 }

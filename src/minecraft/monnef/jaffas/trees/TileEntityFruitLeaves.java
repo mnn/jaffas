@@ -1,5 +1,6 @@
 package monnef.jaffas.trees;
 
+import monnef.jaffas.food.Log;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.Block;
@@ -107,7 +108,7 @@ public class TileEntityFruitLeaves extends TileEntity {
                         // no leaves block on my position => something went wrong, kill myself
                         this.invalidate();
                         if (mod_jaffas_trees.debug)
-                            System.err.println(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
+                            Log.printInfo(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
                         return;
                     }
                 }
@@ -155,7 +156,7 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     public boolean generateFruitAndDecay(double chanceForSecondFruit, EntityPlayer player) {
         if (this.getBlockType().blockID != this.leavesID || BlockFruitLeaves.getLeavesType(this.getBlockMetadata()) != this.leavesMeta) {
-            if (mod_jaffas_trees.debug) System.err.println("not fruit block, no fruit generated");
+            if (mod_jaffas_trees.debug) Log.printInfo("not fruit block, no fruit generated");
             return false;
         }
 
@@ -224,18 +225,18 @@ public class TileEntityFruitLeaves extends TileEntity {
                     world.spawnEntityInWorld(ent);
                 } else {
                     if (debug) {
-                        System.err.println("got null in stack: m~" + metadata + " b~" + this.getBlockType().blockID);
+                        Log.printWarning("got null in stack: m~" + metadata + " b~" + this.getBlockType().blockID);
                         debugPrintPos();
                     }
                 }
             } else {
                 if (debug) {
-                    System.err.println("got null in fruit: m~" + metadata + " b~" + this.getBlockType().blockID);
+                    Log.printWarning("got null in fruit: m~" + metadata + " b~" + this.getBlockType().blockID);
                     debugPrintPos();
                 }
             }
         } else {
-            if (debug) System.out.println("tree: not found");
+            if (debug) Log.printWarning("tree: not found");
         }
     }
 
@@ -245,8 +246,6 @@ public class TileEntityFruitLeaves extends TileEntity {
         switch (fruit) {
             case Normal:
                 if (debug) {
-                    //System.err.println("normal tree! - " + metadata + ", t:" + leavesMetadataType);
-                    //debugPrintPos();
                     res.setMessage("normal tree!");
                     res.setStack(new ItemStack(Item.porkRaw));
                 } else
@@ -283,8 +282,6 @@ public class TileEntityFruitLeaves extends TileEntity {
 
             default:
                 if (debug) {
-                    //System.err.println("unknown type of tree - " + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);
-                    // debugPrintPos();
                     res.setMessage("unknown type of tree");
                     res.setStack(new ItemStack(Item.stick));
                 } else
@@ -307,7 +304,7 @@ public class TileEntityFruitLeaves extends TileEntity {
         }
 
         if (info.getMessage() != null) {
-            System.err.println(info.getMessage() + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);
+            Log.printWarning(info.getMessage() + metadata + ", t:" + leavesMetadataType + ", T:" + fruit);
             debugPrintPos();
         }
 
@@ -315,6 +312,6 @@ public class TileEntityFruitLeaves extends TileEntity {
     }
 
     private void debugPrintPos() {
-        System.err.println(this.xCoord + " " + this.yCoord + " " + this.zCoord);
+        Log.printInfo(this.xCoord + " " + this.yCoord + " " + this.zCoord);
     }
 }

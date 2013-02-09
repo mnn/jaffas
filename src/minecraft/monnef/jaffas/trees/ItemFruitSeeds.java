@@ -54,12 +54,7 @@ public class ItemFruitSeeds extends ItemBlockEx {
             dmg = 0;
         }
 
-        //String name = super.getItemName() + "." + mod_jaffas_trees.treeTypes[dmg];
-
         String name = super.getItemName() + "." + dmg;
-
-        //System.out.println("returning name: {" + name + "}");
-
         return name;
     }
 

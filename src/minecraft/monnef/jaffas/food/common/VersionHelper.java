@@ -1,5 +1,6 @@
 package monnef.jaffas.food.common;
 
+import monnef.jaffas.food.Log;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class VersionHelper {
 
             data = lines[0].trim();
         } catch (IOException e) {
-            System.out.println("Unable to get version info.");
+            Log.printWarning("Unable to get version info.");
             e.printStackTrace();
         }
         return data;
