@@ -1,3 +1,10 @@
+﻿## 0.4.10
+- new ice-creams
+- duck (entity, armor, duck à l'orange, compatibility with ExtraBiomesXL)
+- lamb with peas, baked beans with tomato sauce, muffins, sandwich
+- smarter ID assigning after update
+- rewritten teleportation of home stone (hopefuly fixed falling bug)
+
 ## 0.4.9
 - added home stones (beta, sometimes teleports player under bed)
 - wolf armor is repairable in anvil

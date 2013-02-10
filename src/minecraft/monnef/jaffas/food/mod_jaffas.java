@@ -314,14 +314,14 @@ public class mod_jaffas {
 
     private void registerDuckSpawns() {
         EntityRegistry.addSpawn(EntityDuck.class, 7, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills); // low
-        EntityRegistry.addSpawn(EntityDuck.class, 9, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);      // med
-        EntityRegistry.addSpawn(EntityDuck.class, 13, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high
+        EntityRegistry.addSpawn(EntityDuck.class, 10, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);     // med
+        EntityRegistry.addSpawn(EntityDuck.class, 15, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high
 
         if (extraBiomes) {
             // low - med
-            ExtrabiomesHelper.addSpawn(EntityDuck.class, 7, 1, 3, EnumCreatureType.creature, "ALPINE", "FORESTEDHILLS", "MEADOW", "MINIJUNGLE", "PINEFOREST", "SAVANNA");
+            ExtrabiomesHelper.addSpawn(EntityDuck.class, 9, 1, 3, EnumCreatureType.creature, "ALPINE", "FORESTEDHILLS", "MEADOW", "MINIJUNGLE", "PINEFOREST", "SAVANNA");
             // high
-            ExtrabiomesHelper.addSpawn(EntityDuck.class, 14, 2, 6, EnumCreatureType.creature, "AUTUMNWOODS", "BIRCHFOREST", "FORESTEDISLAND", "GREENHILLS", "GREENSWAMP", "MARSH", "SHRUBLAND", "TEMPORATERAINFOREST", "WOODLANDS");
+            ExtrabiomesHelper.addSpawn(EntityDuck.class, 16, 2, 6, EnumCreatureType.creature, "AUTUMNWOODS", "BIRCHFOREST", "FORESTEDISLAND", "GREENHILLS", "GREENSWAMP", "MARSH", "SHRUBLAND", "TEMPORATERAINFOREST", "WOODLANDS");
         }
     }
 
