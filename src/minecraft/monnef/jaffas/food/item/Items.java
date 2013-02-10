@@ -592,7 +592,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(JaffaItem.featherDuck);
         createJaffaItem(JaffaItem.duckRaw);
-        createJaffaItem(JaffaItem.duck);
+        createJaffaFood(JaffaItem.duck, 4, 0.7f);
 
         createJaffaItem(JaffaItem.plateRaw);
         createJaffaItem(JaffaItem.plate);

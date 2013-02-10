@@ -379,6 +379,8 @@ public class Recipes {
 
         GameRegistry.addRecipe(getItemStack(plateRaw, 2), " C ", "CCC", " C ", 'C', Item.clay);
         GameRegistry.addSmelting(getItem(plateRaw).shiftedIndex, getItemStack(plate), 1f);
+
+        GameRegistry.addSmelting(getItem(duckRaw).shiftedIndex, getItemStack(duck), 0.5f);
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {
