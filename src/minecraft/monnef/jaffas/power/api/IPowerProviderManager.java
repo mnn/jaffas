@@ -3,7 +3,7 @@ package monnef.jaffas.power.api;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public interface IPowerProviderManager extends IPowerNode {
+public interface IPowerProviderManager extends IPowerNodeManager {
     void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, boolean[] directSidesMask);
 
     void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection);

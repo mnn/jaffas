@@ -2,7 +2,6 @@ package monnef.jaffas.power;
 
 import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerManagersFactory;
-import monnef.jaffas.power.api.IPowerNode;
 import monnef.jaffas.power.api.IPowerProviderManager;
 
 public class PowerManagersFactory implements IPowerManagersFactory {

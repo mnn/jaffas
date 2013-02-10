@@ -3,7 +3,7 @@ package monnef.jaffas.power.api;
 import monnef.core.api.IIntegerCoordinates;
 
 public interface IPowerNodeCoordinates extends IIntegerCoordinates {
-    IPowerNode asNode();
+    IPowerNodeManager asNode();
 
     IPowerProvider asProvider();
 

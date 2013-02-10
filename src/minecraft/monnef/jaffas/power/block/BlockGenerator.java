@@ -2,7 +2,6 @@ package monnef.jaffas.power.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.BitHelper;
 import monnef.jaffas.power.block.common.BlockMachineWithInventory;
 import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraft.block.material.Material;
@@ -31,12 +30,8 @@ public class BlockGenerator extends BlockMachineWithInventory {
         return false;
     }
 
-    public static boolean isBurning(int meta) {
-        return BitHelper.isBitSet(meta, BURN_BIT);
-    }
-
-    public static int setBurning(int meta, boolean burningValue) {
-        return BitHelper.setBitToValue(meta, BURN_BIT, burningValue);
+    public boolean isBurning(IBlockAccess world, int x, int y, int z) {
+        return ((TileEntityGenerator) getTile(world, x, y, z)).isBurning();
     }
 
     @Override
@@ -49,15 +44,13 @@ public class BlockGenerator extends BlockMachineWithInventory {
         return true;
     }
 
-
     /**
      * A randomly called display update to be able to add particles or other items for display
      */
     @Override
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (isBurning(meta)) {
+        if (isBurning(world, x, y, z)) {
             for (int i = 0; i < 2; i++) {
                 double px = x + 0.1 + rand.nextDouble() * 0.9;
                 double py = y + 0.8;
@@ -71,8 +64,7 @@ public class BlockGenerator extends BlockMachineWithInventory {
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (isBurning(meta)) {
+        if (isBurning(world, x, y, z)) {
             return 12;
         } else {
             return 0;

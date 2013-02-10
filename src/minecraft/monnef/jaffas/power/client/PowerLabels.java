@@ -3,7 +3,7 @@ package monnef.jaffas.power.client;
 import cpw.mods.fml.client.FMLClientHandler;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerNode;
+import monnef.jaffas.power.api.IPowerNodeManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import monnef.jaffas.power.utils.StringPowerFormatter;
@@ -53,7 +53,7 @@ public class PowerLabels {
         text.append("\n");
         boolean isProvider = tile instanceof IPowerProvider;
         boolean isConsumer = tile instanceof IPowerConsumer;
-        IPowerNode powerNode = isProvider ? ((IPowerProvider) tile).getPowerProviderManager() : ((IPowerConsumer) tile).getPowerConsumerManager();
+        IPowerNodeManager powerNode = isProvider ? ((IPowerProvider) tile).getPowerProviderManager() : ((IPowerConsumer) tile).getPowerConsumerManager();
 
         if (isFullyInitialized(tile, isProvider, isConsumer)) {
             text.append(StringPowerFormatter.getEnergyInfo(isProvider, isConsumer, powerNode.getCurrentBufferedEnergy(), powerNode.getBufferSize(), powerNode.getMaximalPacketSize()));

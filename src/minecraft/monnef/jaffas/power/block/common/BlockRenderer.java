@@ -9,6 +9,8 @@ import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+// TODO: remove?
+
 public class BlockRenderer implements ISimpleBlockRenderingHandler {
     private ModelGenerator generator;
 
@@ -23,10 +25,11 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-        int meta = world.getBlockMetadata(x, y, z);
+        TileEntityMachine machine = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+        int rotation = machine.getRotation().ordinal();
 
         float angle;
-        switch (mod_jaffas_power.generator.getRotation(meta)) {
+        switch (rotation) {
             case 0:
                 angle = 0;
                 break;

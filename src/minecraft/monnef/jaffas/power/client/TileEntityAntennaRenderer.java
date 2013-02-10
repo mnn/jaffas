@@ -1,7 +1,6 @@
 package monnef.jaffas.power.client;
 
 import monnef.jaffas.power.block.TileEntityAntenna;
-import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -20,14 +19,16 @@ public class TileEntityAntennaRenderer extends TileEntitySpecialRenderer {
     }
 
     public void renderModelAt(TileEntityAntenna tile, double x, double y, double z, float par8) {
-
-        int meta = tile.worldObj == null ? 1 : tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
-
         float angle[] = new float[3];
         angle[0] = angle[1] = angle[2] = 0;
         float shift[] = new float[3];
         shift[0] = shift[1] = shift[2] = 0;
-        ForgeDirection rotation = ForgeDirection.VALID_DIRECTIONS[mod_jaffas_power.antenna.getRotation(meta)];
+
+        ForgeDirection rotation = tile.getRotation();
+        // inventory rendering
+        if (tile.worldObj == null) {
+            rotation = ForgeDirection.UP;
+        }
         switch (rotation) {
             case UP:
                 angle[0] = 0;
@@ -99,7 +100,7 @@ public class TileEntityAntennaRenderer extends TileEntitySpecialRenderer {
         GL11.glRotatef(angle[1], 0, 1.0f, 0);
         GL11.glRotatef(angle[2], 0, 0, 1.0f);
 
-        antenna.render(0.0625F, mod_jaffas_power.antenna.isLit(meta));
+        antenna.render(0.0625F, tile.isLit());
 
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();

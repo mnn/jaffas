@@ -119,7 +119,7 @@ class CombinedAchievement {
         }
     }
 
-    // TODO
+    // TODO achievements
     public boolean checkPlayer(EntityPlayer player) {
         NBTTagCompound tag = player.getEntityData();
         NBTTagCompound myTag = tag.getCompoundTag("jaffasAchievements");

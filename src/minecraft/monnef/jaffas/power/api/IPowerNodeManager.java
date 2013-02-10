@@ -4,7 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public interface IPowerNode {
+public interface IPowerNodeManager {
     int getMaximalPacketSize();
 
     int getBufferSize();

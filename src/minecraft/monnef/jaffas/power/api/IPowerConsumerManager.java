@@ -3,7 +3,7 @@ package monnef.jaffas.power.api;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public interface IPowerConsumerManager extends IPowerNode {
+public interface IPowerConsumerManager extends IPowerNodeManager {
     void initialize(int maximalPacketSize, int bufferSize, TileEntity tile);
 
     int getCurrentMaximalPacketSize();

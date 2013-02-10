@@ -3,6 +3,7 @@ package monnef.jaffas.power.block.common;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.api.IPipeWrench;
+import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -12,12 +13,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public abstract class BlockMachine extends Block {
     private boolean customRenderer;
-    protected boolean alwaysDropOnWrench = true;
+    protected WrenchAction onWrench = WrenchAction.DROP;
     protected int renderID;
+
 
     public BlockMachine(int par1, int par2, Material par3Material, boolean customRenderer) {
         super(par1, par2, par3Material);
@@ -35,11 +39,16 @@ public abstract class BlockMachine extends Block {
 
     public abstract TileEntity createTileEntity(World world, int meta);
 
+    public TileEntityMachine getTile(IBlockAccess world, int x, int y, int z) {
+        return (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+    }
+
     @Override
     public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity) {
-        int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        var = (var + 2) % 4; // rotation fix
-        w.setBlockMetadata(x, y, z, var);
+        int direction = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        direction = (direction + 2) % 4; // rotation fix
+        //w.setBlockMetadata(x, y, z, direction);
+        getTile(w, x, y, z).setRotation(ForgeDirection.getOrientation(direction));
     }
 
     public boolean useOwnRenderId() {
@@ -76,22 +85,18 @@ public abstract class BlockMachine extends Block {
         return true;
     }
 
-    public int getRotation(int meta) {
-        return meta & 3;
-    }
-
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);
         ItemStack stack = par5EntityPlayer.getCurrentEquippedItem();
         if (stack != null) {
             Item item = stack.getItem();
-            if (item instanceof IMachineTool) {
+            if (item instanceof IPipeWrench) {
+                return this.onPipeWrenchClickDefault(par1World, par2, par3, par4, par5EntityPlayer, par6);
+            } else if (item instanceof IMachineTool) {
                 IMachineTool tool = (IMachineTool) item;
                 TileEntityMachine machineTile = (TileEntityMachine) par1World.getBlockTileEntity(par2, par3, par4);
                 return tool.onMachineClick(machineTile, par5EntityPlayer, par6);
-            } else if (item instanceof IPipeWrench) {
-                return this.onPipeWrenchClickDefault(par1World, par2, par3, par4, par5EntityPlayer, par6);
             }
         }
 
@@ -99,15 +104,33 @@ public abstract class BlockMachine extends Block {
     }
 
     private boolean onPipeWrenchClickDefault(World world, int x, int y, int z, EntityPlayer player, int side) {
-        if (alwaysDropOnWrench) {
-            if (!world.isRemote) {
-                world.setBlock(x, y, z, 0);
-                dropBlockAsItem(world, x, y, z, 0, 0); // meta, fortune
-            }
-            return true;
-        } else {
-            return onPipeWrenchClick(world, x, y, z, player, side);
+        switch (onWrench) {
+            case DROP:
+                if (!world.isRemote) {
+                    world.setBlock(x, y, z, 0);
+                    dropBlockAsItem(world, x, y, z, 0, 0); // meta, fortune
+                }
+                return true;
+
+            case ROTATE:
+                return doRotation(world, x, y, z, player, side);
+
+            case CUSTOM:
+                return onPipeWrenchClick(world, x, y, z, player, side);
+
+            default:
+                return false;
         }
+    }
+
+    private boolean doRotation(World world, int x, int y, int z, EntityPlayer player, int side) {
+        TileEntityMachine machine = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+        if (machine instanceof TileEntityAntenna) {
+            TileEntityAntenna ant = (TileEntityAntenna) machine;
+            ant.changeRotation();
+            return true;
+        }
+        return false;
     }
 
     protected boolean onPipeWrenchClick(World world, int x, int y, int z, EntityPlayer player, int side) {

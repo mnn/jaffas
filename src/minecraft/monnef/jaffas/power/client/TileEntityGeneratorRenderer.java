@@ -1,6 +1,5 @@
 package monnef.jaffas.power.client;
 
-import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -19,11 +18,14 @@ public class TileEntityGeneratorRenderer extends TileEntitySpecialRenderer {
     }
 
     public void renderModelAt(TileEntityGenerator tile, double x, double y, double z, float par8) {
+        boolean burning = tile.isBurning();
+        int rotation = tile.getRotation().ordinal();
 
-        int meta = tile.worldObj == null ? 0 : tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+        // fix for inventory rendering
+        if (tile.worldObj == null) rotation = 0;
 
         float angle;
-        switch (meta & 3) {
+        switch (rotation) {
             case 0:
                 angle = 0;
                 break;
@@ -54,7 +56,7 @@ public class TileEntityGeneratorRenderer extends TileEntitySpecialRenderer {
         bindTextureByName("/jaffas_generator.png");
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
-        generator.render(0.0625F, BlockGenerator.isBurning(meta));
+        generator.render(0.0625F, burning);
 
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();

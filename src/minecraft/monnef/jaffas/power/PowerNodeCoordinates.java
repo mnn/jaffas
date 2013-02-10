@@ -2,7 +2,7 @@ package monnef.jaffas.power;
 
 import monnef.core.IntegerCoordinates;
 import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerNode;
+import monnef.jaffas.power.api.IPowerNodeManager;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;
 import monnef.jaffas.power.api.IPowerProvider;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,8 +24,8 @@ public class PowerNodeCoordinates extends IntegerCoordinates implements IPowerNo
     }
 
     @Override
-    public IPowerNode asNode() {
-        return (IPowerNode) getTile();
+    public IPowerNodeManager asNode() {
+        return (IPowerNodeManager) getTile();
     }
 
     @Override

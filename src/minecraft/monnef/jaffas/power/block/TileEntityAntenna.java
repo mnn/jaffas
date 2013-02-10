@@ -11,11 +11,10 @@ import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-import static monnef.jaffas.power.mod_jaffas_power.antenna;
-
 public class TileEntityAntenna extends TileEntityMachine implements IPowerConsumer, IPowerProvider {
     private IPowerConsumerManager consumerManager;
     private IPowerProviderManager providerManager;
+    private boolean lit;
 
     public TileEntityAntenna() {
         this.providerManager = new PowerProviderManager();
@@ -42,24 +41,22 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
 
         PowerUtils.Disconnect(this.consumerManager.getCoordinates(), providerManager.getCoordinates());
 
-        int rotation = antenna.getRotation(getBlockMetadata());
+        int rotation = this.getRotation().ordinal();
         rotation++;
         rotation %= ForgeDirection.VALID_DIRECTIONS.length;
-        antenna.setRotation(worldObj, xCoord, yCoord, zCoord, rotation);
+        this.setRotation(ForgeDirection.getOrientation(rotation));
 
         tryDirectConnect();
 
-        return ForgeDirection.VALID_DIRECTIONS[rotation];
-    }
+        sendUpdate();
 
-    public ForgeDirection getMyRotation() {
-        return ForgeDirection.VALID_DIRECTIONS[antenna.getRotation(getBlockMetadata())];
+        return ForgeDirection.VALID_DIRECTIONS[rotation];
     }
 
     private void tryDirectConnect() {
         if (worldObj.isRemote) return;
 
-        ForgeDirection rot = getMyRotation();
+        ForgeDirection rot = getRotation();
         ForgeDirection rotInv = rot.getOpposite();
         int provX = xCoord + rotInv.offsetX;
         int provY = yCoord + rotInv.offsetY;
@@ -96,4 +93,7 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
         }
     }
 
+    public boolean isLit() {
+        return lit;
+    }
 }

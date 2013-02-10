@@ -7,11 +7,14 @@ import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityGenerator extends TileEntityMachineWithInventory implements IPowerProvider {
     private final PowerProviderManager manager;
+    private static final String BURN_TIME_TAG_NAME = "burnTime";
+    private static final String BURN_ITEM_TIME_TAG_NAME = "burnItemTime";
     public int burnTime = 0;
     public int burnItemTime = 1;
     private int SLOT_FUEL = 0;
@@ -19,7 +22,7 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
     private static final int tickEach = 20;
     private int tickCounter = 0;
 
-    private GeneratorState lastState = GeneratorState.IDLE;
+    private GeneratorState state = GeneratorState.IDLE;
 
     private enum GeneratorState {
         IDLE, BURNING
@@ -114,13 +117,10 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
                 }
 
                 newState = isBurning() ? GeneratorState.BURNING : GeneratorState.IDLE;
-                if (newState != lastState) {
-                    int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-                    meta = BlockGenerator.setBurning(meta, isBurning());
-                    worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, meta);
-                    worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                if (newState != state) {
+                    sendUpdate();
                 }
-                lastState = newState;
+                state = newState;
             }
         }
     }
@@ -152,5 +152,30 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
 
     public boolean isBurning() {
         return burnTime > 0;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        boolean lastIsBurning = isBurning();
+        super.readFromNBT(tag);
+        manager.readFromNBT(tag);
+        this.burnTime = tag.getInteger(BURN_TIME_TAG_NAME);
+        this.burnItemTime = tag.getInteger(BURN_ITEM_TIME_TAG_NAME);
+
+        if (worldObj != null && worldObj.isRemote) {
+            if (lastIsBurning != isBurning()) {
+                //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                //worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
+                worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+            }
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        tag.setInteger(BURN_TIME_TAG_NAME, this.burnTime);
+        tag.setInteger(BURN_ITEM_TIME_TAG_NAME, this.burnItemTime);
+        manager.writeToNBT(tag);
     }
 }

@@ -3,7 +3,7 @@ package monnef.jaffas.power.utils;
 import com.google.common.base.Joiner;
 import monnef.core.TileEntityHelper;
 import monnef.jaffas.power.api.IPowerConsumerManager;
-import monnef.jaffas.power.api.IPowerNode;
+import monnef.jaffas.power.api.IPowerNodeManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StringPowerFormatter {
-    public static String getConnectionInfo(IPowerNode node, boolean debug) {
+    public static String getConnectionInfo(IPowerNodeManager node, boolean debug) {
         StringBuilder ret = new StringBuilder();
 
         if (node instanceof IPowerProviderManager) {

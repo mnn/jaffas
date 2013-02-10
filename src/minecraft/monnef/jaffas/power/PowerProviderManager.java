@@ -13,6 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
 import java.util.HashMap;
 import java.util.Set;
 
+// TODO: superclass implementing IPowerNodeManager, this superclass will be parent of both power managers
 public class PowerProviderManager implements IPowerProviderManager {
     private static final int MINIMAL_ENERGY_TO_TRANSFER = 5;
     private int maximalPacketSize;

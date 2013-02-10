@@ -3,7 +3,6 @@ package monnef.jaffas.power.item;
 import monnef.jaffas.power.api.*;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.ForgeDirection;
 
 import static monnef.core.TileEntityHelper.getFormattedCoordinates;
 import static monnef.jaffas.power.utils.StringPowerFormatter.getConnectionInfo;
@@ -38,7 +37,7 @@ public class ItemDebug extends ItemPower implements IMachineTool {
         }
 
         if (machine.getMachineBlock().supportRotation()) {
-            print("dir: " + ForgeDirection.VALID_DIRECTIONS[machine.getMachineBlock().getRotation(machine.getBlockMetadata())].toString());
+            print("dir: " + machine.getRotation().toString());
         }
 
         return true;
