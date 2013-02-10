@@ -1,4 +1,4 @@
-﻿## 0.4.10
+## 0.4.10
 - new ice-creams
 - duck (entity, armor, duck à l'orange, compatibility with ExtraBiomesXL)
 - lamb with peas, baked beans with tomato sauce, muffins, sandwich
