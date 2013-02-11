@@ -14,6 +14,7 @@ import monnef.core.IDProvider;
 import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
@@ -23,6 +24,7 @@ import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemPipeWrench;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.logging.Level;
 
@@ -104,6 +106,7 @@ public class mod_jaffas_power {
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.power", "en_US", "Jaffas and more! Power");
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
+        MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
         mod_jaffas.PrintInitialized(ModulesEnum.power);
     }

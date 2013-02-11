@@ -18,8 +18,6 @@ public interface IPowerProviderManager extends IPowerNodeManager {
      */
     int requestEnergy(int amount, IPowerNodeCoordinates consumer);
 
-    int maximalPowerPerPacket();
-
     /**
      * @return Can it be DIRECTLY connected (by player) to a consumer?
      */

@@ -74,7 +74,7 @@ public class ItemCleaverHookContainer {
             if (PlayerHelper.PlayerHasEquipped(player, getMeatCleaverID())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
                     EntityCreature animal = (EntityCreature) mob;
-                    if (EntityHelper.AnimalIsAdult(animal)) {
+                    if (EntityHelper.animalIsAdult(animal)) {
                         for (int i = 0; i < 2; i++) {
                             if (rand.nextFloat() < .5) {
                                 ItemStack loot = getMeatFromAnimal(animal);

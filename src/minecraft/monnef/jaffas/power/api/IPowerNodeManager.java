@@ -42,9 +42,11 @@ public interface IPowerNodeManager {
      */
     void tick();
 
+    boolean isInitialized();
+
+    void initialize(int maximalPacketSize, int bufferSize, TileEntity tile);
+
     boolean isRemotelyConnected();
 
     boolean isConnectedToSide(ForgeDirection side);
-
-    boolean isInitialized();
 }

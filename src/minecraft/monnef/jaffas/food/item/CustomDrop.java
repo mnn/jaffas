@@ -64,7 +64,7 @@ public class CustomDrop {
         if (data != null) {
             for (CustomDropEntry drop : data) {
                 if (drop.checkBabyFlag) {
-                    if (drop.expectedValueOfAdultFlag != EntityHelper.AnimalIsAdult(mob))
+                    if (drop.expectedValueOfAdultFlag != EntityHelper.animalIsAdult(mob))
                         continue;
                 }
 

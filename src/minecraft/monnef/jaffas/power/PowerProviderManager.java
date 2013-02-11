@@ -2,10 +2,7 @@ package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
 import monnef.jaffas.food.mod_jaffas;
-import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerNodeCoordinates;
-import monnef.jaffas.power.api.IPowerProviderManager;
-import monnef.jaffas.power.api.JaffasPowerException;
+import monnef.jaffas.power.api.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -14,46 +11,39 @@ import java.util.HashMap;
 import java.util.Set;
 
 // TODO: superclass implementing IPowerNodeManager, this superclass will be parent of both power managers
-public class PowerProviderManager implements IPowerProviderManager {
+public class PowerProviderManager extends PowerNodeManager implements IPowerProviderManager {
     private static final int MINIMAL_ENERGY_TO_TRANSFER = 5;
-    private int maximalPacketSize;
-    private int bufferSize;
-    private TileEntity tile;
     private boolean remoteConnection;
     private boolean[] directSidesMask;
 
     private HashBiMap<ForgeDirection, IPowerNodeCoordinates> consumers;
     private HashMap<IPowerNodeCoordinates, Integer> distance;
-    private int energyBuffer;
 
     private boolean firstTick = true;
 
     private boolean initialized = false;
     private boolean supportDirectConn;
-    private IPowerNodeCoordinates myCoordinates;
 
     @Override
     public void initialize(int maximalPacketSize, int bufferSize, TileEntity tile, boolean remoteConnection, boolean[] directSidesMask) {
         if (initialized) {
             throw new JaffasPowerException("already initialized");
         }
-        initialized = true;
 
         if (directSidesMask.length != 6) {
             throw new JaffasPowerException("wrong size of direct side connection mask");
         }
 
-        this.maximalPacketSize = maximalPacketSize;
-        this.bufferSize = bufferSize;
-        this.tile = tile;
+        super.initialize(maximalPacketSize, bufferSize, tile);
+
         this.remoteConnection = remoteConnection;
         this.directSidesMask = directSidesMask;
         this.consumers = HashBiMap.create(new HashMap<ForgeDirection, IPowerNodeCoordinates>());
 
         this.energyBuffer = 0;
-        this.myCoordinates = new PowerNodeCoordinates(tile);
 
         fillDirectConnectionSupport();
+        initialized = true;
     }
 
     @Override
@@ -61,46 +51,11 @@ public class PowerProviderManager implements IPowerProviderManager {
         initialize(maximalPacketSize, bufferSize, tile, remoteConnection, new boolean[6]);
     }
 
-    @Override
-    public boolean isInitialized() {
-        return initialized;
-    }
-
     private void fillDirectConnectionSupport() {
         supportDirectConn = false;
         for (int i = 0; i < ForgeDirection.VALID_DIRECTIONS.length; i++) {
             if (directSidesMask[i]) supportDirectConn = true;
         }
-    }
-
-    @Override
-    public int getFreeSpaceInBuffer() {
-        return getBufferSize() - energyBuffer;
-    }
-
-    @Override
-    public int getBufferSize() {
-        return bufferSize;
-    }
-
-    @Override
-    public boolean hasBuffered(int energy) {
-        return getCurrentBufferedEnergy() >= energy;
-    }
-
-    @Override
-    public int getMaximalPacketSize() {
-        return maximalPacketSize;
-    }
-
-    @Override
-    public TileEntity getTile() {
-        return tile;
-    }
-
-    @Override
-    public IPowerNodeCoordinates getCoordinates() {
-        return this.myCoordinates;
     }
 
     @Override
@@ -137,22 +92,6 @@ public class PowerProviderManager implements IPowerProviderManager {
         //float f = MathHelper.sqrt_float(Square(getTile().xCoord - consumerTile.xCoord) + Square(getTile().yCoord - consumerTile.yCoord) + Square(getTile().zCoord - consumerTile.zCoord));
 
         return monnef.core.MathHelper.exactDistanceInt(consumer, myCoordinates);
-    }
-
-    @Override
-    public int maximalPowerPerPacket() {
-        return maximalPacketSize;
-    }
-
-    @Override
-    public int storeEnergy(int amount) {
-        int toStore = amount;
-        if (energyBuffer + toStore > bufferSize) {
-            toStore = bufferSize - energyBuffer;
-        }
-
-        setEnergyBuffer(energyBuffer + toStore);
-        return toStore;
     }
 
     @Override
@@ -251,27 +190,18 @@ public class PowerProviderManager implements IPowerProviderManager {
         return consumers.containsKey(side);
     }
 
-    private void setEnergyBuffer(int energyBuffer) {
-        this.energyBuffer = energyBuffer;
-    }
-
-    @Override
-    public int getCurrentBufferedEnergy() {
-        return energyBuffer;
-    }
-
     // save consumers
     @Override
     public void writeToNBT(NBTTagCompound tagCompound) {
-        throw new RuntimeException("Not implemented yet.");
-        //To change body of implemented methods use File | Settings | File Templates.
+        super.writeToNBT(tagCompound);
+        //TODO
     }
 
     // load consumers
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
-        throw new RuntimeException("Not implemented yet.");
-        //To change body of implemented methods use File | Settings | File Templates.
+        super.readFromNBT(tagCompound);
+        //TODO
     }
 
     @Override
