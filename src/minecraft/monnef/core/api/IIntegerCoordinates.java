@@ -15,11 +15,9 @@ public interface IIntegerCoordinates {
 
     int getZ();
 
-    void saveTo(NBTTagCompound tag);
+    void saveTo(NBTTagCompound tag, String tagName);
 
-    void loadFrom(NBTTagCompound tag);
+    void loadFrom(NBTTagCompound tag, String tagName);
 
-    String getCompoundTagName();
-
-    void setCompoundTagName(String name);
+    void setWorld(World world);
 }

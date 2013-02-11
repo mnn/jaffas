@@ -25,6 +25,10 @@ public class PowerLabels {
     }
 
     public PowerLabels() {
+        refreshPlayer();
+    }
+
+    private void refreshPlayer() {
         player = FMLClientHandler.instance().getClient().thePlayer;
     }
 
@@ -83,6 +87,7 @@ public class PowerLabels {
         if (cacheValidTimer < 0) {
             boolean ret;
             cacheValidTimer = CACHE_MAX_TIME;
+            refreshPlayer();
             ItemStack stack = player.getCurrentEquippedItem();
             if (stack == null) ret = false;
             else {

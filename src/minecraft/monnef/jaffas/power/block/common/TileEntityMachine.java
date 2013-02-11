@@ -7,13 +7,19 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
+import java.util.Random;
+
 public abstract class TileEntityMachine extends TileEntity {
     public static final String ROTATION_TAG_NAME = "rotation";
+    private static final int WORK_EVERY_XTH_TICK = 10;
+    public static final Random rand = new Random();
+
     private ForgeDirection rotation;
 
     public abstract String getMachineTitle();
 
-    private int tickCounter = 0;
+    private int startingTickCounter = 0;
+    private int workTickCounter = rand.nextInt(20);
 
     protected TileEntityMachine() {
         setRotation(ForgeDirection.UNKNOWN);
@@ -27,10 +33,19 @@ public abstract class TileEntityMachine extends TileEntity {
     public void updateEntity() {
         super.updateEntity();
 
-        if (tickCounter < 10) {
-            tickCounter++;
-            onTick(tickCounter);
+        if (startingTickCounter < 10) {
+            startingTickCounter++;
+            onTick(startingTickCounter);
         }
+
+        workTickCounter++;
+        if (workTickCounter > WORK_EVERY_XTH_TICK) {
+            workTickCounter = 0;
+            doWork();
+        }
+    }
+
+    protected void doWork() {
     }
 
     protected void onTick(int number) {

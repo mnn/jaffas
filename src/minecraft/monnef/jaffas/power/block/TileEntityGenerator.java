@@ -123,6 +123,8 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
                 state = newState;
             }
         }
+
+        manager.tick();
     }
 
     private void tryGetFuel() {
@@ -164,8 +166,6 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
 
         if (worldObj != null && worldObj.isRemote) {
             if (lastIsBurning != isBurning()) {
-                //worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-                //worldObj.markBlockForRenderUpdate(xCoord, yCoord, zCoord);
                 worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
             }
         }

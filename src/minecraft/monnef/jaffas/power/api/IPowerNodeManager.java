@@ -49,4 +49,8 @@ public interface IPowerNodeManager {
     boolean isRemotelyConnected();
 
     boolean isConnectedToSide(ForgeDirection side);
+
+    void doWork();
+
+    void sendUpdate();
 }

@@ -3,14 +3,12 @@ package monnef.jaffas.power;
 import com.google.common.collect.HashBiMap;
 import monnef.jaffas.food.mod_jaffas;
 import monnef.jaffas.power.api.*;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 import java.util.HashMap;
 import java.util.Set;
 
-// TODO: superclass implementing IPowerNodeManager, this superclass will be parent of both power managers
 public class PowerProviderManager extends PowerNodeManager implements IPowerProviderManager {
     private static final int MINIMAL_ENERGY_TO_TRANSFER = 5;
     private boolean remoteConnection;
@@ -18,8 +16,6 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
 
     private HashBiMap<ForgeDirection, IPowerNodeCoordinates> consumers;
     private HashMap<IPowerNodeCoordinates, Integer> distance;
-
-    private boolean firstTick = true;
 
     private boolean initialized = false;
     private boolean supportDirectConn;
@@ -39,6 +35,7 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
         this.remoteConnection = remoteConnection;
         this.directSidesMask = directSidesMask;
         this.consumers = HashBiMap.create(new HashMap<ForgeDirection, IPowerNodeCoordinates>());
+        this.distance = new HashMap<IPowerNodeCoordinates, Integer>();
 
         this.energyBuffer = 0;
 
@@ -120,12 +117,16 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
 
     @Override
     public boolean connect(IPowerNodeCoordinates consumer) {
+        if (!initialized) return false;
+
         if (!supportRemoteConnection()) {
-            throw new JaffasPowerException("provider doesn't support remote connections");
+            if (mod_jaffas.debug) System.err.println("[PPM] provider doesn't support remote connections");
+            //            throw new JaffasPowerException("provider doesn't support remote connections");
         }
 
         if (isRemotelyConnected()) {
-            throw new JaffasPowerException("provider already connected");
+            if (mod_jaffas.debug) System.err.println("[PPM] provider already connected");
+            //            throw new JaffasPowerException("provider already connected");
         }
 
         SetConsumer(ForgeDirection.UNKNOWN, consumer);
@@ -138,14 +139,23 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
 
     @Override
     public boolean connectDirect(IPowerNodeCoordinates consumer, ForgeDirection side) {
+        if (!initialized) return false;
+
         if (!supportDirectConnection()) {
             if (mod_jaffas.debug) System.err.println("[PPM] provider doesn't support direct connections");
+            return false;
             //throw new JaffasPowerException("provider doesn't support direct connections");
         }
 
         if (isConnectedToSide(side)) {
             if (mod_jaffas.debug) System.err.println("[PPM] provider already connected");
+            return false;
             //throw new JaffasPowerException("provider already connected");
+        }
+
+        if (!sideProvidesPower(side)) {
+            if (mod_jaffas.debug) System.err.println("[PPM] side does not provide power");
+            return false;
         }
 
         SetConsumer(side, consumer);
@@ -154,6 +164,8 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
 
     @Override
     public boolean disconnect(IPowerNodeCoordinates consumer) {
+        if (!initialized) return false;
+
         if (!consumers.containsValue(consumer)) {
             if (mod_jaffas.debug) System.err.println("[PPM] consumer is not connected, cannot disconnect");
 //            throw new JaffasPowerException("consumer is not connected, cannot disconnect");
@@ -161,15 +173,6 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
 
         consumers.remove(consumers.inverse().get(consumer));
         return true;
-    }
-
-    @Override
-    public void tick() {
-        if (firstTick) {
-            firstTick = false;
-
-            //TODO make connections
-        }
     }
 
     @Override
@@ -182,26 +185,16 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
         return isConnectedToSide(side, true);
     }
 
+    @Override
+    public void doWork() {
+    }
+
     private boolean isConnectedToSide(ForgeDirection side, boolean doCheck) {
         if (doCheck && side == ForgeDirection.UNKNOWN) {
             throw new JaffasPowerException("wrong side");
         }
 
         return consumers.containsKey(side);
-    }
-
-    // save consumers
-    @Override
-    public void writeToNBT(NBTTagCompound tagCompound) {
-        super.writeToNBT(tagCompound);
-        //TODO
-    }
-
-    // load consumers
-    @Override
-    public void readFromNBT(NBTTagCompound tagCompound) {
-        super.readFromNBT(tagCompound);
-        //TODO
     }
 
     @Override

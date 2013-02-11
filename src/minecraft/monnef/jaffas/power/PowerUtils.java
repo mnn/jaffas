@@ -1,25 +1,46 @@
 package monnef.jaffas.power;
 
+import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerProviderManager;
 import net.minecraftforge.common.ForgeDirection;
 
 public class PowerUtils {
     public static final int LOSE_COEFFICIENT_MULTIPLIER = 100;
 
-    public static boolean Connect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer, ForgeDirection providersSide) {
-        boolean success = true;
-        if (providersSide == ForgeDirection.UNKNOWN) {
-            success &= provider.asProvider().getPowerProviderManager().connect(consumer);
-            consumer.asConsumer().getPowerConsumerManager().connect(provider);
-        } else {
-            success &= provider.asProvider().getPowerProviderManager().connectDirect(consumer, providersSide);
-            consumer.asConsumer().getPowerConsumerManager().connectDirect(provider, providersSide.getOpposite());
+    public static boolean connect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer, ForgeDirection providersSide) {
+        // TODO check coords and capabilities?
+        if (provider == null || consumer == null || providersSide == null) {
+            return false;
         }
 
+        if (providersSide == ForgeDirection.UNKNOWN) {
+            return connectRemote(provider, consumer);
+        } else {
+            return connectDirect(provider, consumer, providersSide);
+        }
+    }
+
+    private static boolean connectDirect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer, ForgeDirection providersSide) {
+        boolean success;
+        IPowerProviderManager providerManager = provider.asProvider().getPowerProviderManager();
+        success = providerManager != null ? providerManager.connectDirect(consumer, providersSide) : false;
+
+        IPowerConsumerManager consumerManager = consumer.asConsumer().getPowerConsumerManager();
+        success &= consumerManager != null;
+        if (success) consumerManager.connectDirect(provider, providersSide.getOpposite());
         return success;
     }
 
-    public static void Disconnect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer) {
+    private static boolean connectRemote(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer) {
+        boolean success;
+        success = provider.asProvider().getPowerProviderManager().connect(consumer);
+        consumer.asConsumer().getPowerConsumerManager().connect(provider);
+        return success;
+    }
+
+    public static void disconnect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer) {
+        //TODO more checks
         if (provider == null || consumer == null) return;
         provider.asProvider().getPowerProviderManager().disconnect(consumer);
         consumer.asConsumer().getPowerConsumerManager().disconnect();

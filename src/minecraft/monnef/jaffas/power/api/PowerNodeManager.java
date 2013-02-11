@@ -1,20 +1,23 @@
 package monnef.jaffas.power.api;
 
 import monnef.jaffas.power.PowerNodeCoordinates;
+import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 public abstract class PowerNodeManager implements IPowerNodeManager {
-    private static final String energyBufferTagName = "energyBuffer";
+    private static final String ENERGY_BUFFER_TAG_NAME = "energyBuffer";
+    private static final int WORK_EVERY_XTH_TICK = 10;
 
     protected int maximalPacketSize = 20;
     protected int bufferSize = 40;
     protected int energyBuffer = 0;
 
     protected boolean initialized = false;
-    protected TileEntity myTile;
+    protected TileEntityMachine myTile;
     protected IPowerNodeCoordinates myCoordinates;
+    private int tickCounter;
 
     @Override
     public int getMaximalPacketSize() {
@@ -85,7 +88,7 @@ public abstract class PowerNodeManager implements IPowerNodeManager {
     }
 
     private void setTile(TileEntity te) {
-        myTile = te;
+        myTile = (TileEntityMachine) te;
     }
 
     @Override
@@ -95,12 +98,12 @@ public abstract class PowerNodeManager implements IPowerNodeManager {
 
     @Override
     public void writeToNBT(NBTTagCompound tagCompound) {
-        tagCompound.setInteger(energyBufferTagName, energyBuffer);
+        tagCompound.setInteger(ENERGY_BUFFER_TAG_NAME, energyBuffer);
     }
 
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
-        int storedEnergy = tagCompound.getInteger(energyBufferTagName);
+        int storedEnergy = tagCompound.getInteger(ENERGY_BUFFER_TAG_NAME);
         setEnergyBuffer(storedEnergy);
     }
 
@@ -111,11 +114,13 @@ public abstract class PowerNodeManager implements IPowerNodeManager {
 
     protected void setEnergyBuffer(int energyBuffer) {
         this.energyBuffer = energyBuffer;
+        sendUpdate();
     }
 
     @Override
     public int storeEnergy(int energy) {
         int toStore = energy;
+        if (toStore <= 0) return 0;
         if (bufferSize < energyBuffer + toStore) {
             toStore = bufferSize - energyBuffer;
         }
@@ -125,7 +130,15 @@ public abstract class PowerNodeManager implements IPowerNodeManager {
     }
 
     @Override
-    public abstract void tick();
+    public void tick() {
+        if (!initialized) return;
+
+        tickCounter++;
+        if (tickCounter > WORK_EVERY_XTH_TICK) {
+            tickCounter = 0;
+            doWork();
+        }
+    }
 
     protected void addEnergyToBuffer(int toStore) {
         setEnergyBuffer(energyBuffer + toStore);
@@ -134,5 +147,10 @@ public abstract class PowerNodeManager implements IPowerNodeManager {
     @Override
     public IPowerNodeCoordinates getCoordinates() {
         return this.myCoordinates;
+    }
+
+    @Override
+    public void sendUpdate() {
+        if (myTile != null) myTile.sendUpdate();
     }
 }

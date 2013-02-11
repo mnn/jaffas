@@ -12,7 +12,8 @@ public class IntegerCoordinates implements IIntegerCoordinates {
     protected int z;
 
     protected String compoundTagName;
-    private final World world;
+    private World world;
+    private boolean locked = false;
 
     public IntegerCoordinates(TileEntity tile) {
         this.world = tile.worldObj;
@@ -20,7 +21,7 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         y = tile.yCoord;
         z = tile.zCoord;
 
-        postInitChecks();
+        postInit();
     }
 
     public IntegerCoordinates(int x, int y, int z, World world) {
@@ -29,21 +30,19 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         this.y = y;
         this.z = z;
 
-        postInitChecks();
+        postInit();
     }
 
     public IntegerCoordinates(World world, NBTTagCompound tag, String compoundTagName) {
         this.world = world;
         this.compoundTagName = compoundTagName;
-        loadFrom(tag);
+        loadFrom(tag, compoundTagName);
 
-        postInitChecks();
+        postInit();
     }
 
-    private void postInitChecks() {
-        if (world == null) {
-            throw new RuntimeException("null in world!");
-        }
+    private void postInit() {
+        locked = true;
     }
 
     @Override
@@ -54,6 +53,15 @@ public class IntegerCoordinates implements IIntegerCoordinates {
     @Override
     public World getWorld() {
         return this.world;
+    }
+
+    @Override
+    public void setWorld(World world) {
+        if (world != null) {
+            System.err.println("world cannot be changed");
+        }
+
+        this.world = world;
     }
 
     @Override
@@ -72,17 +80,21 @@ public class IntegerCoordinates implements IIntegerCoordinates {
     }
 
     @Override
-    public void saveTo(NBTTagCompound tag) {
+    public void saveTo(NBTTagCompound tag, String tagName) {
         NBTTagCompound save = new NBTTagCompound();
         save.setInteger("x", getX());
         save.setInteger("y", getY());
         save.setInteger("z", getZ());
-        tag.setCompoundTag(getCompoundTagName(), save);
+        tag.setCompoundTag(tagName, save);
     }
 
     @Override
-    public void loadFrom(NBTTagCompound tag) {
-        NBTTagCompound save = tag.getCompoundTag(getCompoundTagName());
+    public void loadFrom(NBTTagCompound tag, String tagName) {
+        if (locked) {
+            throw new RuntimeException("locked");
+        }
+
+        NBTTagCompound save = tag.getCompoundTag(tagName);
         x = save.getInteger("x");
         y = save.getInteger("y");
         z = save.getInteger("z");
@@ -108,15 +120,5 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         result = 31 * result + y;
         result = 31 * result + z;
         return result;
-    }
-
-    @Override
-    public String getCompoundTagName() {
-        return this.compoundTagName;
-    }
-
-    @Override
-    public void setCompoundTagName(String name) {
-        this.compoundTagName = name;
     }
 }

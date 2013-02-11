@@ -8,6 +8,7 @@ import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachine;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -39,7 +40,7 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
     public ForgeDirection changeRotation() {
         if (worldObj.isRemote) return ForgeDirection.UNKNOWN;
 
-        PowerUtils.Disconnect(this.consumerManager.getCoordinates(), providerManager.getCoordinates());
+        PowerUtils.disconnect(this.consumerManager.getCoordinates(), providerManager.getCoordinates());
 
         int rotation = this.getRotation().ordinal();
         rotation++;
@@ -67,7 +68,7 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
         if (te instanceof IPowerProvider) {
             IPowerProvider provider = (IPowerProvider) te;
             if (provider.getPowerProviderManager().supportDirectConnection()) {
-                PowerUtils.Connect(provider.getPowerProviderManager().getCoordinates(), this.consumerManager.getCoordinates(), rot);
+                PowerUtils.connect(provider.getPowerProviderManager().getCoordinates(), this.consumerManager.getCoordinates(), rot);
             }
         }
     }
@@ -75,6 +76,28 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
     @Override
     public void updateEntity() {
         super.updateEntity();
+        consumerManager.tick();
+        providerManager.tick();
+    }
+
+    @Override
+    protected void doWork() {
+        super.doWork();
+        transferPower();
+    }
+
+    private void transferPower() {
+        if (consumerManager.hasBuffered(1) && providerManager.getFreeSpaceInBuffer() > 0) {
+            int toTransfer = providerManager.getFreeSpaceInBuffer();
+            if (!consumerManager.hasBuffered(toTransfer)) toTransfer = consumerManager.getCurrentBufferedEnergy();
+
+            if (consumerManager.consume(toTransfer) != toTransfer) {
+                System.err.println("consumed != transfered");
+            }
+            if (providerManager.storeEnergy(toTransfer) != toTransfer) {
+                System.err.println("stored != transfered");
+            }
+        }
     }
 
     @Override
@@ -83,8 +106,8 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
 
         switch (number) {
             case 1:
-                consumerManager.initialize(20, 40, this);
-                providerManager.initialize(20, 40, this, true, new boolean[]{true, false, true, true, true, true});
+                consumerManager.initialize(20, 20, this);
+                providerManager.initialize(20, 20, this, true, new boolean[]{true, false, true, true, true, true});
                 break;
 
             case 2:
@@ -95,5 +118,19 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
 
     public boolean isLit() {
         return lit;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
+        providerManager.readFromNBT(tag);
+        consumerManager.readFromNBT(tag);
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
+        consumerManager.writeToNBT(tag);
+        providerManager.writeToNBT(tag);
     }
 }
