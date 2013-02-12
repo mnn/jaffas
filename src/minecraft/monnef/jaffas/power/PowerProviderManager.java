@@ -2,7 +2,10 @@ package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
 import monnef.jaffas.food.mod_jaffas;
-import monnef.jaffas.power.api.*;
+import monnef.jaffas.power.api.IPowerConsumer;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerProviderManager;
+import monnef.jaffas.power.api.JaffasPowerException;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -144,13 +147,11 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
         if (!supportDirectConnection()) {
             if (mod_jaffas.debug) System.err.println("[PPM] provider doesn't support direct connections");
             return false;
-            //throw new JaffasPowerException("provider doesn't support direct connections");
         }
 
         if (isConnectedToSide(side)) {
-            if (mod_jaffas.debug) System.err.println("[PPM] provider already connected");
-            return false;
-            //throw new JaffasPowerException("provider already connected");
+            if (mod_jaffas.debug) System.err.println("[PPM] provider already connected, disconnecting");
+            disconnect(consumers.get(side));
         }
 
         if (!sideProvidesPower(side)) {
@@ -215,5 +216,12 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
     public IPowerConsumer getConsumer(ForgeDirection side) {
         IPowerNodeCoordinates consumer = consumers.get(side);
         return consumer == null ? null : (IPowerConsumer) consumer.getTile();
+    }
+
+    @Override
+    public void disconnectAll() {
+        for (IPowerNodeCoordinates consumer : consumers.values()) {
+            PowerUtils.disconnect(myCoordinates, consumer);
+        }
     }
 }

@@ -29,4 +29,10 @@ public class Log {
     public static void print(Level level, String message) {
         logger.log(level, message);
     }
+
+    public static void debug(String message) {
+        if (mod_jaffas.debug) {
+            print(Level.INFO, "[D] " + message);
+        }
+    }
 }

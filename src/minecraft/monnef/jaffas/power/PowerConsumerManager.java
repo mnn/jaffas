@@ -1,6 +1,10 @@
 package monnef.jaffas.power;
 
-import monnef.jaffas.power.api.*;
+import monnef.jaffas.food.Log;
+import monnef.jaffas.power.api.IPowerConsumerManager;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerProvider;
+import monnef.jaffas.power.api.JaffasPowerException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
@@ -9,10 +13,10 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
     private static final String PROVIDER_TAG_NAME = "provider";
     private static final String PROVIDER_SIDE_TAG_NAME = "providerSide";
     private IPowerNodeCoordinates provider;
-    private ForgeDirection sideOfProvider;
+    private ForgeDirection sideToProvider;
 
     private IPowerNodeCoordinates plannedProvider;
-    private ForgeDirection plannedSideOfProvider;
+    private ForgeDirection plannedSideToProvider;
 
     private boolean firstTick = true;
 
@@ -22,7 +26,7 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
             throw new JaffasPowerException("already initialized");
         }
         super.initialize(maximalPacketSize, bufferSize, tile);
-        sideOfProvider = null;
+        sideToProvider = null;
         initialized = true;
     }
 
@@ -47,18 +51,23 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
     }
 
     @Override
-    public void connectDirect(IPowerNodeCoordinates provider, ForgeDirection side) {
+    public void connectDirect(IPowerNodeCoordinates provider, ForgeDirection sideToProvider) {
         if (this.provider != null) {
             //throw new JaffasPowerException("Connecting already connected consumer.");
             System.err.println("Connecting already connected consumer.");
+            //TODO disconnect?
         }
 
-        setProvider(provider, side);
+        if (sideToProvider != myTile.getRotation()) {
+            Log.debug("Rotations of connection does not match");
+        }
+
+        setProvider(provider, sideToProvider);
     }
 
-    private void setProvider(IPowerNodeCoordinates provider, ForgeDirection side) {
+    private void setProvider(IPowerNodeCoordinates provider, ForgeDirection sideToProvider) {
         this.provider = provider;
-        this.sideOfProvider = side;
+        this.sideToProvider = sideToProvider;
     }
 
     @Override
@@ -74,8 +83,8 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
     @Override
     public boolean isConnectedToSide(ForgeDirection side) {
         if (provider == null) return false;
-        if (sideOfProvider == ForgeDirection.UNKNOWN) return false;
-        return side == sideOfProvider;
+        if (sideToProvider == ForgeDirection.UNKNOWN) return false;
+        return side == sideToProvider;
     }
 
     @Override
@@ -104,16 +113,19 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
     }
 
     private void makePlannedConnection(boolean canUpdate) {
-        PowerUtils.connect(plannedProvider, myCoordinates, plannedSideOfProvider);
+        if (plannedSideToProvider == null) return;
+
+        // side in connect is from provider's view => invert rotation
+        PowerUtils.connect(plannedProvider, myCoordinates, plannedSideToProvider.getOpposite());
 
         plannedProvider = null;
-        plannedSideOfProvider = null;
+        plannedSideToProvider = null;
         if (canUpdate) sendUpdate();
     }
 
     @Override
-    public IPowerProvider getProvider() {
-        return provider == null ? null : provider.asProvider();
+    public IPowerNodeCoordinates getProvider() {
+        return provider;
     }
 
     @Override
@@ -122,8 +134,8 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
         if (provider != null) {
             provider.saveTo(tag, PROVIDER_TAG_NAME);
         }
-        if (sideOfProvider != null) {
-            tag.setByte(PROVIDER_SIDE_TAG_NAME, (byte) sideOfProvider.ordinal());
+        if (sideToProvider != null) {
+            tag.setByte(PROVIDER_SIDE_TAG_NAME, (byte) sideToProvider.ordinal());
         }
     }
 
@@ -137,10 +149,10 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
         }
 
         if (tag.hasKey(PROVIDER_SIDE_TAG_NAME) && plannedProvider != null) {
-            plannedSideOfProvider = ForgeDirection.getOrientation(tag.getByte(PROVIDER_SIDE_TAG_NAME));
+            plannedSideToProvider = ForgeDirection.getOrientation(tag.getByte(PROVIDER_SIDE_TAG_NAME));
         } else {
             plannedProvider = null;
-            plannedSideOfProvider = null;
+            plannedSideToProvider = null;
         }
 
         if (!firstTick) {
@@ -151,4 +163,30 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
     private void removeEnergyFromBuffer(int consumed) {
         addEnergyToBuffer(-consumed);
     }
+
+    @Override
+    public void disconnectAll() {
+        PowerUtils.disconnect(provider, myCoordinates);
+    }
+
+    @Override
+    public void tryDirectConnect() {
+        if (myCoordinates.getWorld().isRemote) return;
+
+        ForgeDirection rot = myTile.getRotation();
+        ForgeDirection rotInv = rot.getOpposite();
+        int provX = myTile.xCoord + rot.offsetX;
+        int provY = myTile.yCoord + rot.offsetY;
+        int provZ = myTile.zCoord + rot.offsetZ;
+
+        TileEntity te = myCoordinates.getWorld().getBlockTileEntity(provX, provY, provZ);
+
+        if (te instanceof IPowerProvider) {
+            IPowerProvider provider = (IPowerProvider) te;
+            if (provider.getPowerProviderManager().supportDirectConnection()) {
+                PowerUtils.connect(provider.getPowerProviderManager().getCoordinates(), myCoordinates, rotInv);
+            }
+        }
+    }
+
 }

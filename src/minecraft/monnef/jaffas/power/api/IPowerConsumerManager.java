@@ -29,5 +29,7 @@ public interface IPowerConsumerManager extends IPowerNodeManager {
      */
     boolean energyNeeded();
 
-    IPowerProvider getProvider();
+    IPowerNodeCoordinates getProvider();
+
+    void tryDirectConnect();
 }

@@ -24,7 +24,7 @@ public class TileEntityAntennaRenderer extends TileEntitySpecialRenderer {
         float shift[] = new float[3];
         shift[0] = shift[1] = shift[2] = 0;
 
-        ForgeDirection rotation = tile.getRotation();
+        ForgeDirection rotation = tile.getRotation().getOpposite();
         // inventory rendering
         if (tile.worldObj == null) {
             rotation = ForgeDirection.UP;

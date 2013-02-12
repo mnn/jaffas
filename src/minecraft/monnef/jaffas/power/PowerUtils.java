@@ -1,8 +1,6 @@
 package monnef.jaffas.power;
 
-import monnef.jaffas.power.api.IPowerConsumerManager;
-import monnef.jaffas.power.api.IPowerNodeCoordinates;
-import monnef.jaffas.power.api.IPowerProviderManager;
+import monnef.jaffas.power.api.*;
 import net.minecraftforge.common.ForgeDirection;
 
 public class PowerUtils {
@@ -40,10 +38,23 @@ public class PowerUtils {
     }
 
     public static void disconnect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer) {
-        //TODO more checks
         if (provider == null || consumer == null) return;
-        provider.asProvider().getPowerProviderManager().disconnect(consumer);
-        consumer.asConsumer().getPowerConsumerManager().disconnect();
+
+        IPowerProvider powerProvider = provider.asProvider();
+        if (powerProvider != null) {
+            IPowerProviderManager providerManager = powerProvider.getPowerProviderManager();
+            if (providerManager != null) {
+                providerManager.disconnect(consumer);
+            }
+        }
+
+        IPowerConsumer powerConsumer = consumer.asConsumer();
+        if (powerConsumer != null) {
+            IPowerConsumerManager consumerManager = powerConsumer.getPowerConsumerManager();
+            if (consumerManager != null) {
+                consumerManager.disconnect();
+            }
+        }
     }
 
     public static int loseEnergy(int energy, int distance) {

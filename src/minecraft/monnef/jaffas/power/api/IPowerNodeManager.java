@@ -53,4 +53,8 @@ public interface IPowerNodeManager {
     void doWork();
 
     void sendUpdate();
+
+    void invalidate();
+
+    void disconnectAll();
 }

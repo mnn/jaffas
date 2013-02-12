@@ -9,7 +9,6 @@ import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityAntenna extends TileEntityMachine implements IPowerConsumer, IPowerProvider {
@@ -40,37 +39,19 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
     public ForgeDirection changeRotation() {
         if (worldObj.isRemote) return ForgeDirection.UNKNOWN;
 
-        PowerUtils.disconnect(this.consumerManager.getCoordinates(), providerManager.getCoordinates());
+        //PowerUtils.disconnect(this.consumerManager.getCoordinates(), providerManager.getCoordinates());
+        PowerUtils.disconnect(this.consumerManager.getProvider(), consumerManager.getCoordinates());
 
         int rotation = this.getRotation().ordinal();
         rotation++;
         rotation %= ForgeDirection.VALID_DIRECTIONS.length;
         this.setRotation(ForgeDirection.getOrientation(rotation));
 
-        tryDirectConnect();
+        consumerManager.tryDirectConnect();
 
         sendUpdate();
 
         return ForgeDirection.VALID_DIRECTIONS[rotation];
-    }
-
-    private void tryDirectConnect() {
-        if (worldObj.isRemote) return;
-
-        ForgeDirection rot = getRotation();
-        ForgeDirection rotInv = rot.getOpposite();
-        int provX = xCoord + rotInv.offsetX;
-        int provY = yCoord + rotInv.offsetY;
-        int provZ = zCoord + rotInv.offsetZ;
-
-        TileEntity te = worldObj.getBlockTileEntity(provX, provY, provZ);
-
-        if (te instanceof IPowerProvider) {
-            IPowerProvider provider = (IPowerProvider) te;
-            if (provider.getPowerProviderManager().supportDirectConnection()) {
-                PowerUtils.connect(provider.getPowerProviderManager().getCoordinates(), this.consumerManager.getCoordinates(), rot);
-            }
-        }
     }
 
     @Override
@@ -111,7 +92,7 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
                 break;
 
             case 2:
-                tryDirectConnect();
+                consumerManager.tryDirectConnect();
                 break;
         }
     }
@@ -132,5 +113,13 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
         super.writeToNBT(tag);
         consumerManager.writeToNBT(tag);
         providerManager.writeToNBT(tag);
+    }
+
+    @Override
+    public void invalidate() {
+        providerManager.invalidate();
+        consumerManager.invalidate();
+
+        super.invalidate();
     }
 }

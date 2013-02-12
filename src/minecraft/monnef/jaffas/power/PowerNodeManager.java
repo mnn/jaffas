@@ -1,6 +1,8 @@
-package monnef.jaffas.power.api;
+package monnef.jaffas.power;
 
-import monnef.jaffas.power.PowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerNodeManager;
+import monnef.jaffas.power.api.JaffasPowerException;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -152,5 +154,10 @@ public abstract class PowerNodeManager implements IPowerNodeManager {
     @Override
     public void sendUpdate() {
         if (myTile != null) myTile.sendUpdate();
+    }
+
+    @Override
+    public void invalidate() {
+        disconnectAll();
     }
 }

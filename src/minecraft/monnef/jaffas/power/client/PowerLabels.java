@@ -1,10 +1,7 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import monnef.jaffas.power.api.IMachineTool;
-import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerNodeManager;
-import monnef.jaffas.power.api.IPowerProvider;
+import monnef.jaffas.power.api.*;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import monnef.jaffas.power.utils.StringPowerFormatter;
 import net.minecraft.client.entity.EntityClientPlayerMP;
@@ -57,10 +54,20 @@ public class PowerLabels {
         text.append("\n");
         boolean isProvider = tile instanceof IPowerProvider;
         boolean isConsumer = tile instanceof IPowerConsumer;
-        IPowerNodeManager powerNode = isProvider ? ((IPowerProvider) tile).getPowerProviderManager() : ((IPowerConsumer) tile).getPowerConsumerManager();
+
+        IPowerProviderManager providerManager = null;
+        if (isProvider) {
+            providerManager = ((IPowerProvider) tile).getPowerProviderManager();
+        }
+        IPowerConsumerManager consumerManager = null;
+        if (isConsumer) {
+            consumerManager = ((IPowerConsumer) tile).getPowerConsumerManager();
+        }
+
+        IPowerNodeManager powerNode = isProvider ? providerManager : consumerManager;
 
         if (isFullyInitialized(tile, isProvider, isConsumer)) {
-            text.append(StringPowerFormatter.getEnergyInfo(isProvider, isConsumer, powerNode.getCurrentBufferedEnergy(), powerNode.getBufferSize(), powerNode.getMaximalPacketSize()));
+            text.append(StringPowerFormatter.formatEnergyInfo(isProvider, isConsumer, StringPowerFormatter.getCurrentBufferedEnergyCombined(providerManager, consumerManager), StringPowerFormatter.getBufferSizeCombined(providerManager,consumerManager), powerNode.getMaximalPacketSize()));
             text.append("\n");
             text.append(StringPowerFormatter.getConnectionInfo(powerNode, debug));
         } else {

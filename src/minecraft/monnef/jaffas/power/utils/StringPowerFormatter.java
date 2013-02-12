@@ -2,10 +2,7 @@ package monnef.jaffas.power.utils;
 
 import com.google.common.base.Joiner;
 import monnef.core.TileEntityHelper;
-import monnef.jaffas.power.api.IPowerConsumerManager;
-import monnef.jaffas.power.api.IPowerNodeManager;
-import monnef.jaffas.power.api.IPowerProvider;
-import monnef.jaffas.power.api.IPowerProviderManager;
+import monnef.jaffas.power.api.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -30,7 +27,8 @@ public class StringPowerFormatter {
 
     public static String getConnectionInfo(IPowerConsumerManager consumer, boolean debug) {
         StringBuilder s = new StringBuilder();
-        IPowerProvider provider = consumer.getProvider();
+        IPowerNodeCoordinates providersCoordinates = consumer.getProvider();
+        IPowerProvider provider = providersCoordinates != null ? providersCoordinates.asProvider() : null;
         if (provider != null) {
             if (debug) {
                 s.append(TileEntityHelper.getFormattedCoordinates(provider.getPowerProviderManager().getTile()));
@@ -53,6 +51,7 @@ public class StringPowerFormatter {
             StringBuilder s = new StringBuilder();
             if (sides[i]) {
                 if (debug) {
+                    s.append(directionStrings[i]);
                     s.append(TileEntityHelper.getFormattedCoordinates((TileEntity) provider.getConsumer(ForgeDirection.getOrientation(i))));
                 } else {
                     s.append(directionStrings[i]);
@@ -72,7 +71,7 @@ public class StringPowerFormatter {
         return Joiner.on("|").join(list);
     }
 
-    public static String getEnergyInfo(boolean provider, boolean consumer, int buffer, int maxBuff, int packetSize) {
+    public static String formatEnergyInfo(boolean provider, boolean consumer, int buffer, int maxBuff, int packetSize) {
         StringBuilder s = new StringBuilder();
         s.append(provider && consumer ? ">B>" : (provider ? " P>" : ">C "));
         s.append(":");
@@ -83,5 +82,13 @@ public class StringPowerFormatter {
         s.append(packetSize);
         s.append(")");
         return s.toString();
+    }
+
+    public static int getCurrentBufferedEnergyCombined(IPowerProviderManager providerManager, IPowerConsumerManager consumerManager) {
+        return (providerManager != null ? providerManager.getCurrentBufferedEnergy() : 0) + (consumerManager != null ? consumerManager.getCurrentBufferedEnergy() : 0);
+    }
+
+    public static int getBufferSizeCombined(IPowerProviderManager providerManager, IPowerConsumerManager consumerManager) {
+        return (providerManager != null ? providerManager.getBufferSize() : 0) + (consumerManager != null ? consumerManager.getBufferSize() : 0);
     }
 }

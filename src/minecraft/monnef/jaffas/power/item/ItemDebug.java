@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 
 import static monnef.core.TileEntityHelper.getFormattedCoordinates;
 import static monnef.jaffas.power.utils.StringPowerFormatter.getConnectionInfo;
-import static monnef.jaffas.power.utils.StringPowerFormatter.getEnergyInfo;
+import static monnef.jaffas.power.utils.StringPowerFormatter.formatEnergyInfo;
 
 public class ItemDebug extends ItemPower implements IMachineTool {
     private EntityPlayer player;
@@ -26,13 +26,13 @@ public class ItemDebug extends ItemPower implements IMachineTool {
         //TODO machine can be both - provider & consumer
         if (machine instanceof IPowerProvider) {
             IPowerProviderManager provider = ((IPowerProvider) machine).getPowerProviderManager();
-            print(getFormattedCoordinates(machine) + ": " + getEnergyInfo(true, false, provider.getCurrentBufferedEnergy(), provider.getBufferSize(), provider.getMaximalPacketSize()));
+            print(getFormattedCoordinates(machine) + ": " + formatEnergyInfo(true, false, provider.getCurrentBufferedEnergy(), provider.getBufferSize(), provider.getMaximalPacketSize()));
             print(getConnectionInfo(provider, true));
         }
 
         if (machine instanceof IPowerConsumer) {
             IPowerConsumerManager consumer = ((IPowerConsumer) machine).getPowerConsumerManager();
-            print(getFormattedCoordinates(machine) + ": " + getEnergyInfo(false, true, consumer.getCurrentBufferedEnergy(), consumer.getBufferSize(), consumer.getMaximalPacketSize()));
+            print(getFormattedCoordinates(machine) + ": " + formatEnergyInfo(false, true, consumer.getCurrentBufferedEnergy(), consumer.getBufferSize(), consumer.getMaximalPacketSize()));
             print(getConnectionInfo(consumer, true));
         }
 
