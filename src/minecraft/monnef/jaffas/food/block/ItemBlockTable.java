@@ -5,6 +5,4 @@ public class ItemBlockTable extends ItemBlockJaffas {
         super(par1);
         subNames = new String[]{"red", "green", "blue"};
     }
-
-
 }

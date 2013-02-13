@@ -26,6 +26,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
         MinecraftForgeClient.preloadTexture("/jaffas_01.png");
+        MinecraftForgeClient.preloadTexture("/jaffas_02.png");
 
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));

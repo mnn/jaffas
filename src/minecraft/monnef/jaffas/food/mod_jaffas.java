@@ -26,10 +26,7 @@ import monnef.jaffas.food.block.*;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
-import monnef.jaffas.food.common.CommonProxy;
-import monnef.jaffas.food.common.ModuleManager;
-import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.common.PacketHandler;
+import monnef.jaffas.food.common.*;
 import monnef.jaffas.food.crafting.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
@@ -97,6 +94,9 @@ public class mod_jaffas {
 
     public static int blockTableID;
     public static BlockTable blockTable;
+
+    public static int blockSwitchgrassID;
+    public static BlockSwitchgrass blockSwitchgrass;
 
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -219,6 +219,7 @@ public class mod_jaffas {
             blockJaffaStatueID = idProvider.getBlockIDFromConfig("statue");
             blockPieID = idProvider.getBlockIDFromConfig("pie");
             blockTableID = idProvider.getBlockIDFromConfig("table");
+            blockSwitchgrassID = idProvider.getBlockIDFromConfig("switchgrass");
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
             createPainting();
@@ -293,6 +294,7 @@ public class mod_jaffas {
         GameRegistry.registerCraftingHandler(new AchievementsCraftingHandler());
 
         proxy.registerRenderThings();
+        GameRegistry.registerFuelHandler(new FuelHandler());
     }
 
     private void createPainting() {
@@ -374,7 +376,10 @@ public class mod_jaffas {
         GameRegistry.registerTileEntity(TileEntityPie.class, "jaffaPie");
 
         blockTable = new BlockTable(blockTableID, 0, Material.wood);
-        RegistryUtils.registerMultiBlock(blockTable, ItemBlockTable.class, BlockTable.multiBlockNames);
+        RegistryUtils.registerMultiBlock(blockTable, ItemBlockSwitchgrass.class, BlockTable.multiBlockNames);
+
+        blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 0);
+        RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
     }
 
     private void createJaffaArmorAndSword() {
