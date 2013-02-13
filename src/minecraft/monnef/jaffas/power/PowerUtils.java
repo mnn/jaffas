@@ -21,11 +21,23 @@ public class PowerUtils {
 
     private static boolean connectDirect(IPowerNodeCoordinates provider, IPowerNodeCoordinates consumer, ForgeDirection providersSide) {
         boolean success;
-        IPowerProviderManager providerManager = provider.asProvider().getPowerProviderManager();
-        success = providerManager != null ? providerManager.connectDirect(consumer, providersSide) : false;
+        IPowerProvider powerProvider = provider.asProvider();
+        if (powerProvider != null) {
+            IPowerProviderManager providerManager = powerProvider.getPowerProviderManager();
+            success = providerManager != null ? providerManager.connectDirect(consumer, providersSide) : false;
+        } else {
+            success = false;
+        }
 
-        IPowerConsumerManager consumerManager = consumer.asConsumer().getPowerConsumerManager();
-        success &= consumerManager != null;
+        IPowerConsumer powerConsumer = consumer.asConsumer();
+        IPowerConsumerManager consumerManager = null;
+        if (powerConsumer != null) {
+            consumerManager = powerConsumer.getPowerConsumerManager();
+            success &= consumerManager != null;
+        } else {
+            success = false;
+        }
+
         if (success) consumerManager.connectDirect(provider, providersSide.getOpposite());
         return success;
     }

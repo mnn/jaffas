@@ -14,8 +14,8 @@ import java.util.regex.Pattern;
 public class VersionHelper {
     private static Pattern versionPatter = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)");
     //public static final String URL = "http://366.hopto.org/jaffas_version.txt";
-    public static final String URL = "http://jaffas.maweb.eu/jaffas_version.php";
-
+    //public static final String URL = "http://jaffas.maweb.eu/jaffas_version.php";
+    public static final String URL = "http://jaffas.moxo.cz/jaffas_version.php";
 
     public static Integer[] GetVersionNumbers(String data) {
         Matcher out = versionPatter.matcher(data);

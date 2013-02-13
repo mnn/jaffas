@@ -59,7 +59,7 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
         }
 
         if (sideToProvider != myTile.getRotation()) {
-            Log.debug("Rotations of connection does not match");
+            Log.printDebug("Rotations of connection does not match");
         }
 
         setProvider(provider, sideToProvider);
@@ -89,7 +89,7 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
 
     @Override
     public void doWork() {
-        if (energyNeeded() && provider != null) {
+        if (energyNeeded() && provider != null && provider.asProvider() != null) {
             int energy = provider.asProvider().getPowerProviderManager().requestEnergy(getCurrentMaximalPacketSize(), getCoordinates());
             storeEnergy(energy);
         }

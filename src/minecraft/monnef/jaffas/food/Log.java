@@ -30,7 +30,7 @@ public class Log {
         logger.log(level, message);
     }
 
-    public static void debug(String message) {
+    public static void printDebug(String message) {
         if (mod_jaffas.debug) {
             print(Level.INFO, "[D] " + message);
         }
