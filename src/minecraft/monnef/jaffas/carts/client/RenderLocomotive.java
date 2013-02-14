@@ -1,9 +1,7 @@
 package monnef.jaffas.carts.client;
 
 import monnef.jaffas.carts.entity.EntityLocomotive;
-import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
@@ -19,24 +17,24 @@ public class RenderLocomotive extends Render {
         this.model = new ModelLocomotive();
     }
 
-    public void renderTheMinecart(EntityMinecart par1EntityMinecart, double par2, double par4, double par6, float par8, float par9) {
+    public void renderTheMinecart(EntityMinecart entity, double par2, double par4, double par6, float renderRotation, float par9) {
         GL11.glPushMatrix();
-        long var10 = (long) par1EntityMinecart.entityId * 493286711L;
+        long var10 = (long) entity.entityId * 493286711L;
         var10 = var10 * var10 * 4392167121L + var10 * 98761L;
         float var12 = (((float) (var10 >> 16 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
         float var13 = (((float) (var10 >> 20 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
         float var14 = (((float) (var10 >> 24 & 7L) + 0.5F) / 8.0F - 0.5F) * 0.004F;
         GL11.glTranslatef(var12, var13, var14);
-        double var15 = par1EntityMinecart.lastTickPosX + (par1EntityMinecart.posX - par1EntityMinecart.lastTickPosX) * (double) par9;
-        double var17 = par1EntityMinecart.lastTickPosY + (par1EntityMinecart.posY - par1EntityMinecart.lastTickPosY) * (double) par9;
-        double var19 = par1EntityMinecart.lastTickPosZ + (par1EntityMinecart.posZ - par1EntityMinecart.lastTickPosZ) * (double) par9;
+        double var15 = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * (double) par9;
+        double var17 = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * (double) par9;
+        double var19 = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * (double) par9;
         double var21 = 0.30000001192092896D;
-        Vec3 var23 = par1EntityMinecart.func_70489_a(var15, var17, var19);
-        float var24 = par1EntityMinecart.prevRotationPitch + (par1EntityMinecart.rotationPitch - par1EntityMinecart.prevRotationPitch) * par9;
+        Vec3 var23 = entity.func_70489_a(var15, var17, var19);
+        float tilt = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * par9;
 
         if (var23 != null) {
-            Vec3 var25 = par1EntityMinecart.func_70495_a(var15, var17, var19, var21);
-            Vec3 var26 = par1EntityMinecart.func_70495_a(var15, var17, var19, -var21);
+            Vec3 var25 = entity.func_70495_a(var15, var17, var19, var21);
+            Vec3 var26 = entity.func_70495_a(var15, var17, var19, -var21);
 
             if (var25 == null) {
                 var25 = var23;
@@ -53,39 +51,58 @@ public class RenderLocomotive extends Render {
 
             if (var27.lengthVector() != 0.0D) {
                 var27 = var27.normalize();
-                par8 = (float) (Math.atan2(var27.zCoord, var27.xCoord) * 180.0D / Math.PI);
-                var24 = (float) (Math.atan(var27.yCoord) * 73.0D);
+                renderRotation = (float) (Math.atan2(var27.zCoord, var27.xCoord) * 180.0D / Math.PI);
+                tilt = (float) (Math.atan(var27.yCoord) * 73.0D);
             }
         }
 
         GL11.glTranslatef((float) par2, (float) par4, (float) par6);
-        GL11.glRotatef(180.0F - par8, 0.0F, 1.0F, 0.0F);
-        GL11.glRotatef(-var24, 0.0F, 0.0F, 1.0F);
-        float var28 = (float) par1EntityMinecart.func_70496_j() - par9;
-        float var30 = (float) par1EntityMinecart.getDamage() - par9;
+
+        // rotation fix based on notes from covertJaguar
+        double yaw = entity.rotationYaw;
+        if (yaw < 0) yaw += 360;
+        double rYaw = renderRotation;
+        if (rYaw < 0) rYaw += 360;
+        boolean applyRotateFix = false;
+
+        if (Math.abs(rYaw - yaw) > 100) {
+            applyRotateFix = true;
+        }
+
+        if (applyRotateFix) {
+            renderRotation += 180;
+            tilt = -tilt;
+        }
+
+        GL11.glRotatef(180.0F - renderRotation, 0.0F, 1.0F, 0.0F);
+
+        GL11.glRotatef(-tilt, 0.0F, 0.0F, 1.0F);
+        float var28 = (float) entity.func_70496_j() - par9;
+        float var30 = (float) entity.getDamage() - par9;
 
         if (var30 < 0.0F) {
             var30 = 0.0F;
         }
 
         if (var28 > 0.0F) {
-            GL11.glRotatef(MathHelper.sin(var28) * var28 * var30 / 10.0F * (float) par1EntityMinecart.func_70493_k(), 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(MathHelper.sin(var28) * var28 * var30 / 10.0F * (float) entity.func_70493_k(), 1.0F, 0.0F, 0.0F);
         }
 
-        if (par1EntityMinecart.minecartType != 0) {
+        /*
+        if (entity.minecartType != 0) {
             this.loadTexture("/terrain.png");
             float var29 = 0.75F;
             GL11.glScalef(var29, var29, var29);
 
-            if (par1EntityMinecart.minecartType == 1) {
+            if (entity.minecartType == 1) {
                 GL11.glTranslatef(0.0F, 0.5F, 0.0F);
-                (new RenderBlocks()).renderBlockAsItem(Block.chest, 0, par1EntityMinecart.getBrightness(par9));
+                (new RenderBlocks()).renderBlockAsItem(Block.chest, 0, entity.getBrightness(par9));
                 GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glTranslatef(0.5F, 0.0F, -0.5F);
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            } else if (par1EntityMinecart.minecartType == 2) {
+            } else if (entity.minecartType == 2) {
                 GL11.glTranslatef(0.0F, 0.3125F, 0.0F);
-                (new RenderBlocks()).renderBlockAsItem(Block.stoneOvenIdle, 0, par1EntityMinecart.getBrightness(par9));
+                (new RenderBlocks()).renderBlockAsItem(Block.stoneOvenIdle, 0, entity.getBrightness(par9));
                 GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
                 GL11.glTranslatef(0.0F, -0.3125F, 0.0F);
                 GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -93,11 +110,13 @@ public class RenderLocomotive extends Render {
 
             GL11.glScalef(1.0F / var29, 1.0F / var29, 1.0F / var29);
         }
+        */
+
 
         this.loadTexture("/jaffas_locomotive.png");
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         GL11.glTranslatef(0F, -1F, 0F);
-        this.model.render(par1EntityMinecart, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
     }
 
