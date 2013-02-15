@@ -30,5 +30,5 @@ public enum JaffaItem {
     featherDuck, duckRaw, duck, plateRaw, plate, plateDuckOrange, tinDuckOrangeRaw, tinDuckOrange,
     duckHelmet, duckBoots, duckChest, duckLeggins,
     strawberryIcecreamRaw, strawberryIcecreamFrozen, strawberryIcecream,
-    chocIce, chocIceStick, duckEgg, muffinRaw, muffinUnfinished, muffin, beansWithTomatoRaw, beansWithTomato, sandwich1, lambWithPeasInTin, lambWithPeasInTinRaw, lambWithPeas, _last
+    chocIce, chocIceStick, duckEgg, muffinRaw, muffinUnfinished, muffin, beansWithTomatoRaw, beansWithTomato, sandwich1, lambWithPeasInTin, lambWithPeasInTinRaw, lambWithPeas, cocoBarWrapper, cocoBar, cupCocoa, cookingPot, cookingPotCocoaCold, cookingPotCocoaHot, eggHardBoiled, _last
 }

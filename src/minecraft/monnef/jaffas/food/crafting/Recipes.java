@@ -381,6 +381,19 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(plateRaw).shiftedIndex, getItemStack(plate), 1f);
 
         GameRegistry.addSmelting(getItem(duckRaw).shiftedIndex, getItemStack(duck), 0.5f);
+
+        addTableRecipe(new ItemStack(blockTable, 1, 0), 14);
+        addTableRecipe(new ItemStack(blockTable, 1, 0), 6);
+        addTableRecipe(new ItemStack(blockTable, 1, 1), 5);
+        addTableRecipe(new ItemStack(blockTable, 1, 1), 13);
+        addTableRecipe(new ItemStack(blockTable, 1, 2), 3);
+        addTableRecipe(new ItemStack(blockTable, 1, 2), 11);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(Item.paper), getItem(crumpledPaper), getItem(crumpledPaper));
+    }
+
+    public static void addTableRecipe(ItemStack output, int color) {
+        GameRegistry.addRecipe(output, "CWC", "PPP", "PPP", 'C', new ItemStack(Block.cloth, 1, color), 'W', new ItemStack(Block.cloth, 1, 0), 'P', new ItemStack(Block.planks, 1, -1));
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {

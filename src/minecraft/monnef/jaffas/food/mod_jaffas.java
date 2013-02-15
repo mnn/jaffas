@@ -376,9 +376,9 @@ public class mod_jaffas {
         GameRegistry.registerTileEntity(TileEntityPie.class, "jaffaPie");
 
         blockTable = new BlockTable(blockTableID, 0, Material.wood);
-        RegistryUtils.registerMultiBlock(blockTable, ItemBlockSwitchgrass.class, BlockTable.multiBlockNames);
+        RegistryUtils.registerMultiBlock(blockTable, ItemBlockTable.class, BlockTable.multiBlockNames);
 
-        blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 0);
+        blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
         RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
     }
 

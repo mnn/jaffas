@@ -339,6 +339,14 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.lambWithPeasInTinRaw, "Raw Lamb With Peas In Tin", 227);
         AddItemInfo(JaffaItem.lambWithPeasInTin, "Lamb With Peas In Tin", 228);
         AddItemInfo(JaffaItem.lambWithPeas, "Lamb With Peas", 229);
+
+        AddItemInfo(JaffaItem.cocoBarWrapper, "Wrapper", 231);
+        AddItemInfo(JaffaItem.cocoBar, "Coco Bar", 232);
+        AddItemInfo(JaffaItem.cupCocoa, "Hot Cocoa", 233);
+        AddItemInfo(JaffaItem.cookingPot, "Cooking Pot", 234);
+        AddItemInfo(JaffaItem.cookingPotCocoaCold, "Cooking Pot Cocoa Cold", 235, "Cold Cocoa");
+        AddItemInfo(JaffaItem.cookingPotCocoaHot, "Cooking Pot Cocoa Hot", 235, "Hot Cocoa");
+        AddItemInfo(JaffaItem.eggHardBoiled, "Hard Boiled Egg", 237);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -396,7 +404,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(chocolateWrapper);
 
-        createJaffaFood(chocolateBar, 1, 0.5F).setPotionEffect(Potion.moveSpeed.id, 60, 0, 0.15F);
+        createJaffaFood(chocolateBar, 3, 0.9F).setPotionEffect(Potion.moveSpeed.id, 60, 0, 0.25F);
 
         createJaffaItem(wrapperJaffas);
 
@@ -544,7 +552,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(milkBoxEmpty);
         createJaffaItem(milkBoxFull);
 
-        createJaffaItem(crumpledPaper);
+        ((ItemJaffaBase) createJaffaItem(crumpledPaper)).setInfo("temporary recipe");
         createJaffaItem(scrap);
 
         createJaffaFood(chips, 2, 1.5f).setPotionEffect(Potion.moveSlowdown.id, 5, 0, 0.2f);
@@ -624,6 +632,16 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(lambWithPeasInTinRaw);
         createJaffaItem(lambWithPeasInTin);
         createJaffaFood(lambWithPeas, 8, 1f).setReturnItem(getItemStack(plate, 1)).setPotionEffect(Potion.regeneration.id, 6, 0, 1f).setMaxStackSize(24);
+
+        createJaffaItem(cocoBarWrapper);
+        createJaffaItem(cookingPot);
+        createJaffaItem(cookingPotCocoaCold);
+        createJaffaItem(cookingPotCocoaHot);
+        createJaffaItem(eggHardBoiled);
+        createJaffaFood(cupCocoa, 4, 0.5F).
+                setReturnItem(new ItemStack(getItem(cup))).setIsDrink().
+                setPotionEffect(Potion.moveSpeed.id, 60, 0, .55F).setAlwaysEdible().setMaxStackSize(16);
+        createJaffaFood(cocoBar, 5, 0.5F).setPotionEffect(Potion.moveSpeed.id, 60, 0, 0.15F);
 
         createItemsRegistration();
     }

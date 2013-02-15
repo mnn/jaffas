@@ -22,11 +22,10 @@ public class BlockTable extends BlockJaffas {
     @Override
     public int getBlockTextureFromSideAndMetadata(int side, int meta) {
         ForgeDirection s = ForgeDirection.getOrientation(side);
-        int index = this.blockIndexInTexture + 3 * meta;
+        int index = this.blockIndexInTexture + 4 * meta;
 
         switch (s) {
             case UP:
-            case DOWN:
                 return index;
 
             case NORTH:
@@ -36,6 +35,9 @@ public class BlockTable extends BlockJaffas {
             case EAST:
             case WEST:
                 return index + 2;
+
+            case DOWN:
+                return index + 3;
 
             default:
                 return index;

@@ -1,7 +1,6 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.BitHelper;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -39,13 +38,15 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
             int height = 1;
             while (world.getBlockId(x, y - height, z) == this.blockID) height++;
             int light = world.getBlockLightValue(x, y + 1, z);
+            boolean onRain = world.canLightningStrikeAt(x, y + 1, z);
 
-            if (height < 4 && (light > 8 || rand.nextBoolean())) {
+            if (height < 4 && (light > 5 || onRain) &&
+                    (light > 9 || onRain || rand.nextBoolean())) {
                 int age = getAge(myMeta);
                 if (age < MAX_AGE) {
-                    int newMeta = setAge(myMeta, age + 1);
+                    int newMeta = setAge(myMeta, age + 1 + (onRain ? 2 : 0));
                     world.setBlockMetadataWithNotify(x, y, z, newMeta);
-                    Log.printDebug(myMeta + " -> " + newMeta);
+                    //Log.printDebug(myMeta + " -> " + newMeta);
                 } else {
                     world.setBlockAndMetadata(x, y + 1, z, this.blockID, BitHelper.setBit(0, BIT_TOP));
                     world.setBlockMetadataWithNotify(x, y, z, 0); // no longer the top one
@@ -57,7 +58,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
 
     private int setAge(int meta, int age) {
         if (age > MAX_AGE) {
-            throw new RuntimeException("invalid age");
+            age = MAX_AGE;
         }
 
         return (isTop(meta) ? 8 : 0) | age;
@@ -80,7 +81,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     }
 
     public int getRenderType() {
-        return 6;
+        return 1;
     }
 
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
@@ -153,9 +154,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
 
     @Override
     public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
-        if (isTop(par2))
-            return blockIndexInTexture + 1;
-        return blockIndexInTexture;
+        return blockIndexInTexture + (isTop(par2) ? 0 : 1);
     }
 
     @Override

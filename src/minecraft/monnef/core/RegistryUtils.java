@@ -16,6 +16,11 @@ public class RegistryUtils {
         LanguageRegistry.addName(block, title);
     }
 
+    public static void registerBlock(Block block, String name, String title) {
+        block.setBlockName(name);
+        registerBlock(block, title);
+    }
+
     public static void registerMultiBlock(Block block, Class<? extends ItemBlock> itemBlock, String[] names) {
         GameRegistry.registerBlock(block, itemBlock, block.getBlockName());
         for (int ix = 0; ix < names.length; ix++) {

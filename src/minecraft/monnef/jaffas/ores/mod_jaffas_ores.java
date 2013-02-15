@@ -9,8 +9,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
-import monnef.jaffas.food.Reference;
 import monnef.core.RegistryUtils;
+import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.CustomDrop;
@@ -26,6 +26,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.logging.Level;
 
@@ -41,7 +42,7 @@ public class mod_jaffas_ores {
     public static CommonProxy proxy;
 
     private static IDProvider idProvider = new IDProvider(3450, 26244);
-    private boolean debug;
+    public boolean debug;
 
     private int JaffarrolID;
     public static ItemOres Jaffarrol;
@@ -77,6 +78,15 @@ public class mod_jaffas_ores {
     private int ItemCasingRefinedID;
     public static ItemOres ItemCasingRefined;
 
+    private int BlockJaffarrolOreID;
+    public static BlockOre blockJaffarrolOre;
+
+    private int BlockLimsewOreID;
+    public static BlockOre blockLimsewOre;
+
+    public static boolean generateOres;
+    public static float switchgrassProbability;
+
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
 
@@ -102,8 +112,13 @@ public class mod_jaffas_ores {
 
             FunnelID = idProvider.getItemIDFromConfig("funnel");
 
+            BlockJaffarrolOreID = idProvider.getBlockIDFromConfig("jaffarrolOre");
+            BlockLimsewOreID = idProvider.getBlockIDFromConfig("limsewOre");
+
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
+            generateOres = config.get(Configuration.CATEGORY_GENERAL, "generateOres", true).getBoolean(true);
+            switchgrassProbability = (float) config.get(Configuration.CATEGORY_GENERAL, "switchgrassProbability", 0.005, "Do not go too high, or face stack overflow caused by recursive chunk generation").getDouble(0.005);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (ores) can't read config file.");
         } finally {
@@ -128,6 +143,9 @@ public class mod_jaffas_ores {
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.ores", "en_US", "Jaffas and more! Ores");
 
         ItemCentralUnit.registerNames();
+
+        OresWorldGen generator = new OresWorldGen();
+        GameRegistry.registerWorldGenerator(generator);
 
         mod_jaffas.PrintInitialized(ModulesEnum.ores);
     }
@@ -185,6 +203,14 @@ public class mod_jaffas_ores {
         mod_jaffas.instance.items.createJaffaArmor(jaffarrolChest, mod_jaffas.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "/jaffas_jarmor1.png", Jaffarrol);
         mod_jaffas.instance.items.createJaffaArmor(jaffarrolLeggins, mod_jaffas.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "/jaffas_jarmor2.png", Jaffarrol);
         mod_jaffas.instance.items.createJaffaArmor(jaffarrolBoots, mod_jaffas.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "/jaffas_jarmor1.png", Jaffarrol);
+
+        blockJaffarrolOre = new BlockOre(BlockJaffarrolOreID, 17);
+        MinecraftForge.setBlockHarvestLevel(blockJaffarrolOre, "pickaxe", 2);
+        RegistryUtils.registerBlock(blockJaffarrolOre, "jaffarrolOre", "Jaffarrol Ore");
+
+        blockLimsewOre = new BlockOre(BlockLimsewOreID, 18);
+        MinecraftForge.setBlockHarvestLevel(blockLimsewOre, "pickaxe", 2);
+        RegistryUtils.registerBlock(blockLimsewOre, "limsewOre", "Limsew Ore");
     }
 
     private void installRecipes() {
@@ -250,6 +276,9 @@ public class mod_jaffas_ores {
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', Jaffarrol);
+
+        GameRegistry.addSmelting(BlockJaffarrolOreID, new ItemStack(Jaffarrol), 1f);
+        GameRegistry.addSmelting(BlockLimsewOreID, new ItemStack(Limsew), 1f);
     }
 
     private Item getItem(JaffaItem item) {
