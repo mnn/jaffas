@@ -9,6 +9,8 @@ package monnef.jaffas.food.client;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL14;
 
 public class ModelSink extends ModelBase {
     //fields
@@ -136,8 +138,15 @@ public class ModelSink extends ModelBase {
         Shape9.render(f5);
         Shape10.render(f5);
         Shape11.render(f5);
-        if (renderWater) Shape12.render(f5);
         Shape13.render(f5);
+
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_SRC_ALPHA);
+        GL14.glBlendColor(.8f, .8f, .99f, .3f);
+        GL11.glColor4f(1f, 1f, 1f, .5f);
+        if (renderWater) Shape12.render(f5);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1f);
+        GL11.glDisable(GL11.GL_BLEND);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
