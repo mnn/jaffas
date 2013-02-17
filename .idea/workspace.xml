@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ModelSink.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ModelSink.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361014778009" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361094238598" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361119903427" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359111019513" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357673633593" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360421096713" ignored="false" />
@@ -193,13 +193,16 @@
     <file path="/FuelHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360794147790" ignored="false" />
     <file path="/BlockOre.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360930467014" ignored="false" />
     <file path="/OreWorldGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360942349404" ignored="false" />
-    <file path="/OresWorldGen.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361110910877" ignored="false" />
+    <file path="/OresWorldGen.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361119796046" ignored="false" />
     <file path="/RenderingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360970004616" ignored="false" />
     <file path="/ItemHandTool.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361010524972" ignored="false" />
     <file path="/ItemAxeOres.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361014354818" ignored="false" />
     <file path="/ItemSpadeOres.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361014387071" ignored="false" />
     <file path="/ItemSwordOres.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361014783324" ignored="false" />
     <file path="/DyeHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361034814983" ignored="false" />
+    <file path="$PROJECT_DIR$/logs/client_reob.log" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361120333875" ignored="false" />
+    <file path="$PROJECT_DIR$/temp/client_reobf.md5" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361120333875" ignored="false" />
+    <file path="$PROJECT_DIR$/logs/client_ro.log" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361120333875" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -302,10 +305,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelSink.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ModelSink.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ModelSink.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="33" selection-start="5114" selection-end="5114" vertical-scroll-proportion="0.70279145">
+            <state line="141" column="66" selection-start="5114" selection-end="5114" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -331,11 +334,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OresWorldGen.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="OresWorldGen.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/OresWorldGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="57" selection-start="2750" selection-end="2750" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="78" column="62" selection-start="2709" selection-end="2709" vertical-scroll-proportion="0.61083746">
+              <folding>
+                <element signature="method#generate#0;class#OresWorldGen#0" expanded="false" />
+                <element signature="method#saveData#0;class#OresWorldGen#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -373,8 +379,8 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/Items.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/mod_jaffas.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/OresWorldGen.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ModelSink.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/OresWorldGen.java" />
       </list>
     </option>
   </component>
@@ -1034,7 +1040,11 @@
       <created>1360278757858</created>
       <updated>1360278757858</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Boosted ore generation.">
+      <created>1361119911885</created>
+      <updated>1361119911885</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1058,7 +1068,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1125,7 +1135,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved id provider." />
+    <option name="LAST_COMMIT_MESSAGE" value="Boosted ore generation." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1153,6 +1163,7 @@
     <MESSAGE value="Added glass of milk, updated crafting handler to support direct output items transfer to a player." />
     <MESSAGE value="Modified/added food effects of most foods (fixed extreme poison effect of new raw meats)." />
     <MESSAGE value="Improved id provider." />
+    <MESSAGE value="Boosted ore generation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1202,13 +1213,6 @@
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/mod_jaffas_ores.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="331" column="43" selection-start="16696" selection-end="16696" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/OresWorldGen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="57" selection-start="2750" selection-end="2750" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1277,8 +1281,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ModelSink.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="33" selection-start="5114" selection-end="5114" vertical-scroll-proportion="0.70279145">
+        <state line="141" column="66" selection-start="5114" selection-end="5114" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/ores/OresWorldGen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="78" column="62" selection-start="2709" selection-end="2709" vertical-scroll-proportion="0.61083746">
+          <folding>
+            <element signature="method#generate#0;class#OresWorldGen#0" expanded="false" />
+            <element signature="method#saveData#0;class#OresWorldGen#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

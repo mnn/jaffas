@@ -1,3 +1,11 @@
+## 0.4.11
+- jaffarrol tools
+- ores
+- switchgrass
+- hot cocoa, coco bar
+- tables
+- updated sink
+
 ## 0.4.10
 - new ice-creams
 - duck (entity, armor, duck à l'orange, compatibility with ExtraBiomesXL)
