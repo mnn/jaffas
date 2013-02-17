@@ -14,10 +14,10 @@ import static monnef.jaffas.food.mod_jaffas.blockSwitchgrass;
 import static monnef.jaffas.food.mod_jaffas.blockSwitchgrassID;
 
 public class OresWorldGen implements IWorldGenerator {
-    private final WorldGenMinable jaffarrolGen;
-    private final WorldGenMinable jaffarrolGen2; // higher layers
-    private final WorldGenMinable limsewGen;
-    private final WorldGenMinable limsewGen2;    // higher layers
+    private final WorldGenMinable jaffarrolGenRich;
+    private final WorldGenMinable jaffarrolGenSmall; // higher layers
+    private final WorldGenMinable limsewGenSmall;
+    private final WorldGenMinable limsewGenRich;    // higher layers
 
     private World world;
     private Random rand;
@@ -27,10 +27,10 @@ public class OresWorldGen implements IWorldGenerator {
     private IChunkProvider generator;
 
     public OresWorldGen() {
-        jaffarrolGen = new WorldGenMinable(mod_jaffas_ores.blockJaffarrolOre.blockID, 10);
-        jaffarrolGen2 = new WorldGenMinable(mod_jaffas_ores.blockJaffarrolOre.blockID, 4);
-        limsewGen = new WorldGenMinable(mod_jaffas_ores.blockLimsewOre.blockID, 2);
-        limsewGen2 = new WorldGenMinable(mod_jaffas_ores.blockLimsewOre.blockID, 5);
+        jaffarrolGenRich = new WorldGenMinable(mod_jaffas_ores.blockJaffarrolOre.blockID, 10);
+        jaffarrolGenSmall = new WorldGenMinable(mod_jaffas_ores.blockJaffarrolOre.blockID, 4);
+        limsewGenSmall = new WorldGenMinable(mod_jaffas_ores.blockLimsewOre.blockID, 2);
+        limsewGenRich = new WorldGenMinable(mod_jaffas_ores.blockLimsewOre.blockID, 5);
     }
 
     @Override
@@ -73,10 +73,10 @@ public class OresWorldGen implements IWorldGenerator {
 
     public void generateAll() {
         if (mod_jaffas_ores.generateOres) {
-            generateOre(jaffarrolGen, 1, 0, 32);
-            generateOre(jaffarrolGen2, 1, 33, 60);
-            generateOre(limsewGen, 1, 0, 32);
-            generateOre(limsewGen2, 3, 33, 70);
+            generateOre(jaffarrolGenRich, 2, 0, 32);
+            generateOre(jaffarrolGenSmall, 3, 33, 60);
+            generateOre(limsewGenSmall, 2, 0, 32);
+            generateOre(limsewGenRich, 3, 33, 70);
         }
         generateSwitchgrass(1, mod_jaffas_ores.switchgrassProbability);
     }
