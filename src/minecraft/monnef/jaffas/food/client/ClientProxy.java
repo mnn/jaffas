@@ -41,7 +41,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPie.class, new TileEntityPieRenderer());
 
         mod_jaffas.renderID = RenderingRegistry.getNextAvailableRenderId();
-        //RenderingRegistry.registerBlockHandler(new RenderingHandler());
+        mod_jaffas.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new SwitchgrassRenderer());
     }
 
     public int addArmor(String name) {

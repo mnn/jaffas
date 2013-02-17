@@ -53,6 +53,9 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 
 import static net.minecraft.world.biome.BiomeGenBase.*;
@@ -117,7 +120,14 @@ public class mod_jaffas {
     public static ItemJaffaSword itemJaffaSword;
     public static int itemJaffaSwordID;
 
+ /* WOOD(0, 59, 2.0F, 0, 15),
+    STONE(1, 131, 4.0F, 1, 5),
+    IRON(2, 250, 6.0F, 2, 14),
+    EMERALD(3, 1561, 8.0F, 3, 10),
+    GOLD(0, 32, 12.0F, 0, 22);*/
+
     public static int renderID;
+    public static int renderSwitchgrassID;
 
     private static IGuiHandler guiHandler;
 
@@ -131,7 +141,7 @@ public class mod_jaffas {
 
     public static boolean debug;
     public static String jaffasTitle;
-    public boolean itemsReady = false;
+    public static String jaffaTitle;
     public boolean checkUpdates;
 
     private static int JaffaPaintingEntityID;
@@ -152,6 +162,9 @@ public class mod_jaffas {
 
     public static boolean transferItemsFromCraftingMatrix;
     public static boolean ignoreBuildCraftsTables;
+
+    public static boolean genDisabled;
+    public static boolean genDisabledForNonStandardDimensions;
 
     public boolean IsForestryDetected() {
         return this.forestryDetected;
@@ -201,6 +214,7 @@ public class mod_jaffas {
 
             // careful - order is important!
             jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").value;
+            jaffaTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffaTitle", "Jaffa").value;
             items.InitializeItemInfos();
             items.LoadItemsFromConfig(idProvider);
 
@@ -233,6 +247,8 @@ public class mod_jaffas {
             spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", false, "Experimental!").getBoolean(false);
             transferItemsFromCraftingMatrix = config.get(Configuration.CATEGORY_GENERAL, "transferItemsFromCraftingMatrix", false, "Experimental, try to transfer items created after craft directly to player (e.g. crumpled paper)?").getBoolean(false);
             ignoreBuildCraftsTables = config.get(Configuration.CATEGORY_GENERAL, "ignoreBuildCraftsTables", true, "BC tables has broken recipes handling - wrong stack size or crash on craft").getBoolean(true);
+            genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
+            genDisabledForNonStandardDimensions = config.get(Configuration.CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -263,8 +279,6 @@ public class mod_jaffas {
 
         Recipes.install();
         MinecraftForge.EVENT_BUS.register(new CustomDrop());
-
-        itemsReady = true; // needed?
 
         //creative tab title
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
@@ -419,7 +433,7 @@ public class mod_jaffas {
     }
 
     private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int id) {
-        if (mod_jaffas.debug) Log.printInfo("Registered: " + entityClass + " id: " + id);
+        //Log.printDebug("Registered: " + entityClass + " id: " + id);
         EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
         EntityRegistry.registerModEntity(entityClass, entityName, id, this, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
@@ -451,5 +465,22 @@ public class mod_jaffas {
 
     public static void PrintInitialized(ModulesEnum module) {
         Log.printInfo("Module " + module + " initialized.");
+    }
+
+    private static final Set<Integer> defaultDimensions = new HashSet<Integer>(Arrays.asList(-1, 0, 1));
+
+    public static boolean isGenerationEnabled(int dimensionID) {
+        if (genDisabled) {
+            return false;
+        }
+        if (defaultDimensions.contains(dimensionID)) {
+            return true;
+        }
+
+        if (genDisabledForNonStandardDimensions) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

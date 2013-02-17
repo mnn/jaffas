@@ -2,6 +2,7 @@ package monnef.jaffas.ores;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import monnef.jaffas.food.Log;
+import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -36,16 +37,24 @@ public class OresWorldGen implements IWorldGenerator {
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         saveData(world, random, chunkX * 16, chunkZ * 16, chunkGenerator, chunkProvider);
 
-        switch (world.provider.dimensionId) {
+        int dimensionId = world.provider.dimensionId;
+        if (!mod_jaffas.isGenerationEnabled(dimensionId)) {
+            return;
+        }
+
+        switch (dimensionId) {
             case -1:
                 generateNether();
                 break;
             case 0:
-                generateSurface();
+                generateAll();
                 break;
             case 1:
                 generateEnd();
                 break;
+
+            default:
+                generateAll();
         }
 
     }
@@ -62,7 +71,7 @@ public class OresWorldGen implements IWorldGenerator {
     private void generateEnd() {
     }
 
-    public void generateSurface() {
+    public void generateAll() {
         if (mod_jaffas_ores.generateOres) {
             generateOre(jaffarrolGen, 1, 0, 32);
             generateOre(jaffarrolGen2, 1, 33, 60);

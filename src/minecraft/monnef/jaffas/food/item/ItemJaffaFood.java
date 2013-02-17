@@ -1,8 +1,8 @@
 package monnef.jaffas.food.item;
 
+import monnef.core.PlayerHelper;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -17,6 +17,7 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
     private int healAmount;
     private float saturation;
     protected int textureFileIndex;
+    private float returnChance;
 
     public ItemJaffaFood(int id) {
         super(id, 0, 0, false);
@@ -50,18 +51,21 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
 
     @Override
     public ItemStack onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-        if (this.returnItem != null) {
-            EntityItem e = new EntityItem(par2World, par3EntityPlayer.posX, par3EntityPlayer.posY + 1, par3EntityPlayer.posZ, returnItem.copy());
-            if (!par2World.isRemote) {
-                par2World.spawnEntityInWorld(e);
-            }
+        if (this.returnItem != null && this.returnChance > itemRand.nextFloat()) {
+            PlayerHelper.giveItemToPlayer(par3EntityPlayer, returnItem.copy());
         }
 
         return super.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
     }
 
     public ItemJaffaFood setReturnItem(ItemStack returnItem) {
+        setReturnItem(returnItem, 1f);
+        return this;
+    }
+
+    public ItemFood setReturnItem(ItemStack returnItem, float chance) {
         this.returnItem = returnItem;
+        this.returnChance = chance;
         return this;
     }
 

@@ -18,6 +18,8 @@ import java.util.Random;
 public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     private static final int BIT_TOP = 3;
     private static final int MAX_AGE = 7;
+    private static final float border = 3f * 1f / 16f;
+    private static final float borderComplement = 1f - border;
 
     public String[] subBlockNames;
 
@@ -29,6 +31,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
             subBlockNames[i] = "";
         }
         subBlockNames[15] = "Switchgrass";
+        setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
     }
 
     // inspired by cactus
@@ -81,7 +84,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     }
 
     public int getRenderType() {
-        return 1;
+        return mod_jaffas.renderSwitchgrassID;
     }
 
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {

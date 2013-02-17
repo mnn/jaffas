@@ -15,6 +15,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import static monnef.core.DyeHelper.getDye;
 import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
 import static monnef.jaffas.food.mod_jaffas.*;
@@ -230,7 +231,7 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(cupRaw)), "XXX", "XX ", 'X', new ItemStack(Item.clay));
         GameRegistry.addSmelting(getItem(cupRaw).shiftedIndex, new ItemStack(getItem(cup)), 3);
         AddMalletShapedRecipe(new ItemStack(getItem(coffee)), new ItemStack(getItem(coffeeRoasted)));
-        GameRegistry.addRecipe(new ItemStack(getItem(kettleWaterCold)), "W", "K", 'W', new ItemStack(Item.bucketWater), 'K', new ItemStack(getItem(kettle)));
+        //GameRegistry.addRecipe(new ItemStack(getItem(kettleWaterCold)), "W", "K", 'W', new ItemStack(Item.bucketWater), 'K', new ItemStack(getItem(kettle)));
         GameRegistry.addSmelting(getItem(kettleWaterCold).shiftedIndex, new ItemStack(getItem(kettleWaterHot)), 0);
         GameRegistry.addRecipe(new ItemStack(getItem(cupCoffee)), "K", "C", "U",
                 'K', new ItemStack(getItem(kettleWaterHot), 1, -1), 'C', new ItemStack(getItem(coffee)), 'U', new ItemStack(getItem(cup)));
@@ -389,7 +390,22 @@ public class Recipes {
         addTableRecipe(new ItemStack(blockTable, 1, 2), 3);
         addTableRecipe(new ItemStack(blockTable, 1, 2), 11);
 
+        GameRegistry.addShapelessRecipe(getItemStack(cocoBarWrapper, 15), getDye("lightBlue"), Item.paper, Item.paper, Item.paper, Item.paper, Item.paper);
+
         GameRegistry.addShapelessRecipe(new ItemStack(Item.paper), getItem(crumpledPaper), getItem(crumpledPaper));
+        GameRegistry.addRecipe(getItemStack(cocoBar, 3), "cC ", " Cc", "WWW", 'c', getItem(coconutPowder), 'C', getItem(chocolate), 'W', getItem(cocoBarWrapper));
+
+        addRecipe(new ShapedOreRecipe(getItemStack(cookingPotEggsRaw), "EEE", "EEE", " P ", 'E', Items.EGG, 'P', getItem(cookingPotWater)));
+        GameRegistry.addSmelting(getItem(cookingPotEggsRaw).shiftedIndex, getItemStack(cookingPotEggs), 3f);
+        JaffaCraftingHandler.AddPersistentItem(cookingPotEggs, false, cookingPot);
+        GameRegistry.addShapelessRecipe(getItemStack(eggHardBoiled, 6), getItem(cookingPotEggs));
+
+        GameRegistry.addShapelessRecipe(getItemStack(cookingPotCocoaCold), getItem(milkBoxFull), getItem(milkBoxFull), getItem(sweetBeans), getItem(sweetBeans), getItem(cookingPot));
+        GameRegistry.addSmelting(getItem(cookingPotCocoaCold).shiftedIndex, getItemStack(cookingPotCocoaHot), 3f);
+        JaffaCraftingHandler.AddPersistentItem(cookingPotCocoaHot, false, cookingPot);
+        GameRegistry.addShapelessRecipe(getItemStack(cupCocoa, 5), getItem(cookingPotCocoaHot), getItem(cup), getItem(cup), getItem(cup), getItem(cup), getItem(cup));
+
+        GameRegistry.addShapelessRecipe(getItemStack(cookingPot), getItem(cookingPotWater));
     }
 
     public static void addTableRecipe(ItemStack output, int color) {

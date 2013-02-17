@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class BlockSink extends BlockJaffas {
@@ -72,6 +73,17 @@ public class BlockSink extends BlockJaffas {
         }
     }
 
+    private static final HashMap<Integer, Integer> fillableItems;
+
+    static {
+        fillableItems = new HashMap<Integer, Integer>();
+        fillableItems.put(Item.bucketEmpty.shiftedIndex, Item.bucketWater.shiftedIndex);
+    }
+
+    public static void addFillableItem(Item empty, Item full) {
+        fillableItems.put(empty.shiftedIndex, full.shiftedIndex);
+    }
+
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         if (debug && mod_jaffas.debug && !par1World.isRemote) {
@@ -89,13 +101,18 @@ public class BlockSink extends BlockJaffas {
         }
 
         ItemStack currentItem = par5EntityPlayer.getCurrentEquippedItem();
-        if (currentItem != null && currentItem.itemID == Item.bucketEmpty.shiftedIndex) {
-            par1World.setBlockMetadata(par2, par3, par4, BitHelper.unsetBit(meta, waterBit));
-            currentItem.stackSize--;
-            if (!par1World.isRemote) {
-                PlayerHelper.giveItemToPlayer(par5EntityPlayer, new ItemStack(Item.bucketWater));
+        if (currentItem != null) {
+            Integer filledItem = fillableItems.get(currentItem.itemID);
+            if (filledItem != null) {
+                par1World.setBlockMetadata(par2, par3, par4, BitHelper.unsetBit(meta, waterBit));
+                currentItem.stackSize--;
+                if (!par1World.isRemote) {
+                    PlayerHelper.giveItemToPlayer(par5EntityPlayer, new ItemStack(filledItem, 1, 0));
+                }
+                return true;
+            } else {
+                return false;
             }
-            return true;
         } else {
             return false;
         }

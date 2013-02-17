@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ItemJaffaBase extends Item {
+public class ItemJaffaBase extends Item implements IItemJaffa {
     protected int textureFileIndex;
     private String info = null;
 
@@ -32,6 +32,7 @@ public class ItemJaffaBase extends Item {
         textureFileIndex = value;
     }
 
+    @Override
     public void setInfo(String text) {
         this.info = text;
     }

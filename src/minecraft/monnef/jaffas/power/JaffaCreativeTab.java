@@ -14,7 +14,7 @@ public class JaffaCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        Item item = ModuleManager.IsModuleEnabled(ModulesEnum.ores) ? mod_jaffas_ores.Limsew : Item.redstone;
+        Item item = ModuleManager.IsModuleEnabled(ModulesEnum.ores) ? mod_jaffas_ores.limsew : Item.redstone;
         return new ItemStack(item);
     }
 }

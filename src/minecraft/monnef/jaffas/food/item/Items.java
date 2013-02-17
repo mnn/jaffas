@@ -1,6 +1,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.jaffas.food.block.BlockPie;
+import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
 import net.minecraft.block.Block;
@@ -19,6 +20,7 @@ public class Items extends ItemManagerAccessor {
     public static final String JAFFA = "jaffasAny";
     public static final String JAFFA_FILLED = "jaffasFilled";
     public static final String MUSHROOM = "jaffasMushroom";
+    public static final String EGG = "jaffasEgg";
 
     public enum Juice {
         LEMON(JaffaItem.juiceLemon, 181, "Lemon Juice", JaffaItem.glassLemon, 186, ""),
@@ -70,7 +72,7 @@ public class Items extends ItemManagerAccessor {
     }
 
     private String getJaffaTitle(String type) {
-        String title = mod_jaffas.jaffasTitle;
+        String title = mod_jaffas.jaffaTitle;
 
         if (type == null || type.isEmpty()) {
             return title;
@@ -347,6 +349,9 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.cookingPotCocoaCold, "Cooking Pot Cocoa Cold", 235, "Cold Cocoa");
         AddItemInfo(JaffaItem.cookingPotCocoaHot, "Cooking Pot Cocoa Hot", 235, "Hot Cocoa");
         AddItemInfo(JaffaItem.eggHardBoiled, "Hard Boiled Egg", 237);
+        AddItemInfo(JaffaItem.cookingPotWater, "Cooking Pot With Water", 236);
+        AddItemInfo(JaffaItem.cookingPotEggsRaw, "Cooking Pot With Raw Eggs", 236);
+        AddItemInfo(JaffaItem.cookingPotEggs, "Cooking Pot With Eggs", 236);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -508,7 +513,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(fryingPanEggRaw);
         createJaffaItem(fryingPanBurger);
         createJaffaItem(fryingPanEgg);
-        createJaffaItem(eggFried);
+        createJaffaFood(eggFried, 2, 0.5f).setMaxStackSize(16);
         createJaffaItem(bread);
         createJaffaItem(breadRaw);
         createJaffaItem(breadSlice);
@@ -552,7 +557,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(milkBoxEmpty);
         createJaffaItem(milkBoxFull);
 
-        ((ItemJaffaBase) createJaffaItem(crumpledPaper)).setInfo("temporary recipe");
+        ((IItemJaffa) createJaffaItem(crumpledPaper)).setInfo("temporary recipe");
         createJaffaItem(scrap);
 
         createJaffaFood(chips, 2, 1.5f).setPotionEffect(Potion.moveSlowdown.id, 5, 0, 0.2f);
@@ -634,14 +639,20 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(lambWithPeas, 8, 1f).setReturnItem(getItemStack(plate, 1)).setPotionEffect(Potion.regeneration.id, 6, 0, 1f).setMaxStackSize(24);
 
         createJaffaItem(cocoBarWrapper);
-        createJaffaItem(cookingPot);
-        createJaffaItem(cookingPotCocoaCold);
-        createJaffaItem(cookingPotCocoaHot);
-        createJaffaItem(eggHardBoiled);
+        createJaffaItem(cookingPot).setMaxStackSize(16);
+        createJaffaItem(cookingPotCocoaCold).setMaxStackSize(16);
+        createJaffaItem(cookingPotCocoaHot).setMaxStackSize(16);
+        createJaffaFood(eggHardBoiled, 2, 0.5f).setMaxStackSize(16);
         createJaffaFood(cupCocoa, 4, 0.5F).
                 setReturnItem(new ItemStack(getItem(cup))).setIsDrink().
                 setPotionEffect(Potion.moveSpeed.id, 60, 0, .55F).setAlwaysEdible().setMaxStackSize(16);
-        createJaffaFood(cocoBar, 5, 0.5F).setPotionEffect(Potion.moveSpeed.id, 60, 0, 0.15F);
+        createJaffaFood(cocoBar, 5, 0.5F).setReturnItem(getItemStack(crumpledPaper), 0.3333f).setPotionEffect(Potion.moveSpeed.id, 60, 0, 0.15F);
+        createJaffaItem(cookingPotWater).setMaxStackSize(16);
+        createJaffaItem(cookingPotEggsRaw).setMaxStackSize(16);
+        createJaffaItem(cookingPotEggs).setMaxStackSize(16);
+
+        BlockSink.addFillableItem(getItem(kettle), getItem(kettleWaterCold));
+        BlockSink.addFillableItem(getItem(cookingPot), getItem(cookingPotWater));
 
         createItemsRegistration();
     }
@@ -682,5 +693,8 @@ public class Items extends ItemManagerAccessor {
 
         OreDictionary.registerOre(MUSHROOM, Block.mushroomBrown);
         OreDictionary.registerOre(MUSHROOM, Block.mushroomRed);
+
+        OreDictionary.registerOre(EGG, Item.egg);
+        OreDictionary.registerOre(EGG, getItem(duckEgg));
     }
 }

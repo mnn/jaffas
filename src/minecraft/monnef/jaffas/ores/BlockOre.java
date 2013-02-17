@@ -28,7 +28,7 @@ public class BlockOre extends BlockOres {
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
         if (blockID == blockLimsewOre.blockID) {
-            return mod_jaffas_ores.Limsew.shiftedIndex;
+            return mod_jaffas_ores.limsew.shiftedIndex;
         }
         return super.idDropped(par1, par2Random, par3);
     }

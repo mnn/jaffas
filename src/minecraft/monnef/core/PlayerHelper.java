@@ -15,7 +15,7 @@ public class PlayerHelper {
 
     public static void giveItemToPlayer(EntityPlayer player, ItemStack item) {
         World world = player.worldObj;
-        if (item == null || item.stackSize <= 0) return;
+        if (item == null || item.stackSize <= 0 || world.isRemote) return;
         Entity entity = new EntityItem(world, player.posX, player.posY + 0.5, player.posZ, item.copy());
         world.spawnEntityInWorld(entity);
     }

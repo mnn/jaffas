@@ -10,6 +10,6 @@ public class JaffaCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(mod_jaffas_ores.JaffarrolRefined);
+        return new ItemStack(mod_jaffas_ores.jaffarrolRefined);
     }
 }

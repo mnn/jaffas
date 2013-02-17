@@ -3,6 +3,7 @@ package monnef.core;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -27,5 +28,11 @@ public class RegistryUtils {
             ItemStack multiBlockStack = new ItemStack(block, 1, ix);
             LanguageRegistry.addName(multiBlockStack, names[multiBlockStack.getItemDamage()]);
         }
+    }
+
+    public static void registerItem(Item item, String name, String title) {
+        item.setItemName(name);
+        GameRegistry.registerItem(item, item.getItemName());
+        LanguageRegistry.addName(item, title);
     }
 }
