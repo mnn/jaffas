@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
+import monnef.core.RegistryUtils;
 import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -26,12 +27,13 @@ import monnef.jaffas.power.item.ItemPipeWrench;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
+import java.lang.reflect.Field;
 import java.util.logging.Level;
 
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PreInit;
 
-@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_power {
     @Instance("moen-jaffas-power")
@@ -61,6 +63,9 @@ public class mod_jaffas_power {
     private int ItemWrenchID;
     public static ItemPipeWrench wrench;
 
+    private int ItemLinkToolID;
+    public static ItemLinkTool linkTool;
+
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
 
@@ -74,16 +79,28 @@ public class mod_jaffas_power {
             //JaffarrolID = idProvider.getItemIDFromConfig("jaffarrol");
             ItemDebugID = idProvider.getItemIDFromConfig("debug");
             ItemWrenchID = idProvider.getItemIDFromConfig("pipeWrench");
+            ItemLinkToolID = idProvider.getItemIDFromConfig("linkTool");
 
             blockGeneratorID = idProvider.getBlockIDFromConfig("generator");
             blockAntennaID = idProvider.getBlockIDFromConfig("antenna");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
+            getAnnotatedItemIDs();
+
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (power) can't read config file.");
         } finally {
             config.save();
+        }
+    }
+
+    private void getAnnotatedItemIDs() {
+        for (Field field : this.getClass().getFields()) {
+            ItemID annotation = field.getAnnotation(ItemID.class);
+            if (annotation != null) {
+                idProvider.getItemIDFromConfig(annotation.nameInConfig().isEmpty() ? field.getName() : annotation.nameInConfig());
+            }
         }
     }
 
@@ -113,18 +130,19 @@ public class mod_jaffas_power {
 
     private void createItems() {
         generator = new BlockGenerator(blockGeneratorID, 0);
-        GameRegistry.registerBlock(generator, generator.getBlockName());
-        LanguageRegistry.addName(generator, "Generator");
+        RegistryUtils.registerBlock(generator, "Generator");
 
         ItemDebug = new ItemDebug(ItemDebugID, 1);
         LanguageRegistry.addName(ItemDebug, "Power Debug Tool");
 
         antenna = new BlockAntenna(blockAntennaID, 2);
-        GameRegistry.registerBlock(antenna, antenna.getBlockName());
-        LanguageRegistry.addName(antenna, "Small Antenna");
+        RegistryUtils.registerBlock(antenna, "Small Antenna");
 
         wrench = new ItemPipeWrench(ItemWrenchID, 1);
         LanguageRegistry.addName(wrench, "Pipe Wrench");
+
+        linkTool = new ItemLinkTool(ItemLinkToolID, 0);
+        RegistryUtils.registerItem(linkTool, "itemLinkTool", "Link Gun");
     }
 
     private void installRecipes() {

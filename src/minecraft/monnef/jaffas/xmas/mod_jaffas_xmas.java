@@ -23,7 +23,7 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas-xmas", name = "Jaffas - xmas", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-xmas", name = "Jaffas - xmas", version = Reference.Version, dependencies = "required-after:moen-jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_xmas {
     @Mod.Instance("moen-jaffas-xmas")

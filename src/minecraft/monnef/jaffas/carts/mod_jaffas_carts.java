@@ -10,10 +10,10 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.IDProvider;
-import monnef.jaffas.food.Reference;
 import monnef.jaffas.carts.client.JaffaCreativeTab;
 import monnef.jaffas.carts.entity.EntityLocomotive;
 import monnef.jaffas.carts.item.ItemLocomotive;
+import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas;
@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PreInit;
 
-@Mod(modid = "moen-jaffas-carts", name = "Jaffas - carts", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core")
+@Mod(modid = "moen-jaffas-carts", name = "Jaffas - carts", version = Reference.Version, dependencies = "required-after:moen-jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_carts {
     @Instance("moen-jaffas-carts")

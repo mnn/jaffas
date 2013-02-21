@@ -36,7 +36,7 @@ import java.util.logging.Level;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.*;
 
-@Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Reference.Version, dependencies = "required-after:moen-jaffas;required-after:moen-monnef-core;after:moen-jaffas-trees")
+@Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_ores {
     @Mod.Instance("moen-jaffas-ores")

@@ -60,7 +60,7 @@ import java.util.logging.Level;
 
 import static net.minecraft.world.biome.BiomeGenBase.*;
 
-@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL")
+@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
 public class mod_jaffas {
     public static JaffaCreativeTab CreativeTab;
@@ -409,7 +409,7 @@ public class mod_jaffas {
     private void printInitializedMessage() {
         Log.printInfo("Mod 'Jaffas and more!' successfully initialized");
         Log.printInfo("created by monnef and Tiartyos");
-        Log.printInfo("version: " + Reference.Version + " ; http://jaffas.maweb.eu");
+        Log.printInfo("version: " + Reference.Version + " ; " + monnef.core.Reference.URL);
 
         Log.printInfo("enabled modules: " + Joiner.on(", ").join(moduleManager.CompileEnabledModules()));
         Log.printInfo("detected mods: " + Joiner.on(", ").join(compileDetectedMods()));

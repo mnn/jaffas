@@ -1,9 +1,10 @@
 package monnef.jaffas.power;
 
 import monnef.core.IntegerCoordinates;
+import monnef.core.api.IIntegerCoordinates;
 import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerNodeManager;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerNodeManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +24,10 @@ public class PowerNodeCoordinates extends IntegerCoordinates implements IPowerNo
         super(tile);
     }
 
+    public PowerNodeCoordinates(IIntegerCoordinates coordinates) {
+        super(coordinates.getX(), coordinates.getY(), coordinates.getZ(), coordinates.getWorld());
+    }
+
     @Override
     public IPowerNodeManager asNode() {
         return (IPowerNodeManager) getTile();
@@ -37,5 +42,4 @@ public class PowerNodeCoordinates extends IntegerCoordinates implements IPowerNo
     public IPowerConsumer asConsumer() {
         return (IPowerConsumer) getTile();
     }
-
 }
