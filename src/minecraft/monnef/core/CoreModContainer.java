@@ -26,8 +26,8 @@ public class CoreModContainer extends DummyModContainer {
     }
 
     /*
-         * Use this in place of @Init, @Preinit, @Postinit in the file.
-         */
+     * Use this in place of @Init, @Preinit, @Postinit in the file.
+     */
     @Subscribe
     public void onServerStarting(FMLServerStartingEvent ev) {
     }

@@ -4,7 +4,7 @@ import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerFramework;
 import monnef.jaffas.food.Log;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -107,7 +107,7 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
 
 
     public void setPowerProvider(IPowerProvider provider) {
-        if (mod_jaffas.debug) Log.printInfo("power provider set");
+        if (mod_jaffas_food.debug) Log.printInfo("power provider set");
         this.powerProvider = provider;
     }
 

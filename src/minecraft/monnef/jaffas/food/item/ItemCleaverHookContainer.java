@@ -2,7 +2,7 @@ package monnef.jaffas.food.item;
 
 import monnef.core.EntityHelper;
 import monnef.core.PlayerHelper;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -98,7 +98,7 @@ public class ItemCleaverHookContainer {
 
     private int getMeatCleaverID() {
         if (meatCleaverID == 0) {
-            meatCleaverID = mod_jaffas.getItem(JaffaItem.meatCleaver).shiftedIndex;
+            meatCleaverID = mod_jaffas_food.getItem(JaffaItem.meatCleaver).shiftedIndex;
         }
 
         return meatCleaverID;

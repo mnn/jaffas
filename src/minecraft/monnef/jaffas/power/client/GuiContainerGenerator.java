@@ -1,6 +1,6 @@
 package monnef.jaffas.power.client;
 
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
@@ -29,7 +29,7 @@ public class GuiContainerGenerator extends GuiContainerMachine {
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         super.drawGuiContainerForegroundLayer(param1, param2);
 
-        if (mod_jaffas.debug) {
+        if (mod_jaffas_food.debug) {
             String s = String.valueOf(generator.burnTime);
             fontRenderer.drawString(s, 100, 10, 4210752);
         }

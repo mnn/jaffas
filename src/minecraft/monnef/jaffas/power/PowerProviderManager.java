@@ -1,7 +1,7 @@
 package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;
 import monnef.jaffas.power.api.IPowerProviderManager;
@@ -123,12 +123,12 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
         if (!initialized) return false;
 
         if (!supportRemoteConnection()) {
-            if (mod_jaffas.debug) System.err.println("[PPM] provider doesn't support remote connections");
+            if (mod_jaffas_food.debug) System.err.println("[PPM] provider doesn't support remote connections");
             //            throw new JaffasPowerException("provider doesn't support remote connections");
         }
 
         if (isRemotelyConnected()) {
-            if (mod_jaffas.debug) System.err.println("[PPM] provider already connected");
+            if (mod_jaffas_food.debug) System.err.println("[PPM] provider already connected");
             //            throw new JaffasPowerException("provider already connected");
         }
 
@@ -145,17 +145,17 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
         if (!initialized) return false;
 
         if (!supportDirectConnection()) {
-            if (mod_jaffas.debug) System.err.println("[PPM] provider doesn't support direct connections");
+            if (mod_jaffas_food.debug) System.err.println("[PPM] provider doesn't support direct connections");
             return false;
         }
 
         if (isConnectedToSide(side)) {
-            if (mod_jaffas.debug) System.err.println("[PPM] provider already connected, disconnecting");
+            if (mod_jaffas_food.debug) System.err.println("[PPM] provider already connected, disconnecting");
             disconnect(consumers.get(side));
         }
 
         if (!sideProvidesPower(side)) {
-            if (mod_jaffas.debug) System.err.println("[PPM] side does not provide power");
+            if (mod_jaffas_food.debug) System.err.println("[PPM] side does not provide power");
             return false;
         }
 
@@ -168,7 +168,7 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
         if (!initialized) return false;
 
         if (!consumers.containsValue(consumer)) {
-            if (mod_jaffas.debug) System.err.println("[PPM] consumer is not connected, cannot disconnect");
+            if (mod_jaffas_food.debug) System.err.println("[PPM] consumer is not connected, cannot disconnect");
 //            throw new JaffasPowerException("consumer is not connected, cannot disconnect");
         }
 

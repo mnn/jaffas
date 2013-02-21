@@ -3,7 +3,7 @@ package monnef.jaffas.food.item;
 import monnef.core.MathHelper;
 import monnef.jaffas.food.Log;
 import monnef.jaffas.food.common.CoolDownRegistry;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -65,7 +65,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
 
         boolean homeWorld = player.dimension == 0;
         if (!homeWorld) {
-            if (mod_jaffas.spawnStoneMultidimensional) {
+            if (mod_jaffas_food.spawnStoneMultidimensional) {
                 MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension(player, 0);
             } else {
                 player.addChatMessage("Home stone works only in overworld.");

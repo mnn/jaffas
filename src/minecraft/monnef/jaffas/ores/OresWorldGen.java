@@ -2,7 +2,7 @@ package monnef.jaffas.ores;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import monnef.jaffas.food.Log;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -10,8 +10,8 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
 
-import static monnef.jaffas.food.mod_jaffas.blockSwitchgrass;
-import static monnef.jaffas.food.mod_jaffas.blockSwitchgrassID;
+import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrass;
+import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrassID;
 
 public class OresWorldGen implements IWorldGenerator {
     private final WorldGenMinable jaffarrolGenRich;
@@ -38,7 +38,7 @@ public class OresWorldGen implements IWorldGenerator {
         saveData(world, random, chunkX * 16, chunkZ * 16, chunkGenerator, chunkProvider);
 
         int dimensionId = world.provider.dimensionId;
-        if (!mod_jaffas.isGenerationEnabled(dimensionId)) {
+        if (!mod_jaffas_food.isGenerationEnabled(dimensionId)) {
             return;
         }
 

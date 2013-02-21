@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 
-import static monnef.jaffas.food.mod_jaffas.getItem;
+import static monnef.jaffas.food.mod_jaffas_food.getItem;
 
 public class RecipesBoard {
     private static HashMap<Integer, BoardRecipe> recipes = new HashMap<Integer, BoardRecipe>();

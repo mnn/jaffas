@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import static monnef.jaffas.food.mod_jaffas.blockPizza;
-import static monnef.jaffas.food.mod_jaffas.getItem;
+import static monnef.jaffas.food.mod_jaffas_food.blockPizza;
+import static monnef.jaffas.food.mod_jaffas_food.getItem;
 
 public class ItemPizza extends ItemJaffaBase {
     public ItemPizza(int par1) {

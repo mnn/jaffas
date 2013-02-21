@@ -16,7 +16,7 @@ import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.TileEntityAntenna;
@@ -125,7 +125,7 @@ public class mod_jaffas_power {
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
-        mod_jaffas.PrintInitialized(ModulesEnum.power);
+        mod_jaffas_food.PrintInitialized(ModulesEnum.power);
     }
 
     private void createItems() {

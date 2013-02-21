@@ -14,7 +14,7 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -102,7 +102,7 @@ public class mod_jaffas_xmas {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
 
-        mod_jaffas.PrintInitialized(ModulesEnum.xmas);
+        mod_jaffas_food.PrintInitialized(ModulesEnum.xmas);
     }
 
     private void createItems() {
@@ -181,7 +181,7 @@ public class mod_jaffas_xmas {
     }
 
     private Item getItem(JaffaItem type) {
-        return mod_jaffas.getItem(type);
+        return mod_jaffas_food.getItem(type);
     }
 
     private void installPresentRecipe(int ribbonColor, int color, boolean big, int presentMeta) {

@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.EntityHelper;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
@@ -40,7 +40,7 @@ public class CustomDrop {
     }
 
     public static CustomDropEntry addDrop(Class<? extends EntityLiving> clazz, JaffaItem item, float chance) {
-        return addDrop(clazz, mod_jaffas.getItem(item), chance);
+        return addDrop(clazz, mod_jaffas_food.getItem(item), chance);
     }
 
     public static CustomDropEntry addDrop(Class<? extends EntityLiving> clazz, Item item, float chance) {

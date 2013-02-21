@@ -1,6 +1,6 @@
 package monnef.jaffas.food.item;
 
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -22,12 +22,12 @@ public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
         super(par1, par2EnumArmorMaterial, renderIndex, type.ordinal());
         this.armorTexture = armorTexture;
         this.repairItem = repairItem;
-        this.setCreativeTab(mod_jaffas.CreativeTab);
+        this.setCreativeTab(mod_jaffas_food.CreativeTab);
         setItemName("armor." + par2EnumArmorMaterial.name());
     }
 
     public String getTextureFile() {
-        return mod_jaffas.textureFile[0];
+        return mod_jaffas_food.textureFile[0];
     }
 
     public String getArmorTextureFile(ItemStack par1) {

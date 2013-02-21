@@ -16,7 +16,7 @@ import monnef.jaffas.carts.item.ItemLocomotive;
 import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
@@ -85,7 +85,7 @@ public class mod_jaffas_carts {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.carts", "en_US", "Jaffas and more! Carts");
 
-        mod_jaffas.PrintInitialized(ModulesEnum.carts);
+        mod_jaffas_food.PrintInitialized(ModulesEnum.carts);
     }
 
     private void createItems() {

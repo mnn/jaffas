@@ -1,6 +1,6 @@
 package monnef.jaffas.food.item;
 
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -23,7 +23,7 @@ public class ItemJaffaTool extends ItemJaffaBase implements IItemTool {
     private void initialize() {
         setMaxStackSize(1);
         this.setCreativeTab(CreativeTabs.tabTools);
-        this.setCreativeTab(mod_jaffas.CreativeTab);
+        this.setCreativeTab(mod_jaffas_food.CreativeTab);
     }
 
     @Override

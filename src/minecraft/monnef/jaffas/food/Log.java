@@ -31,7 +31,7 @@ public class Log {
     }
 
     public static void printDebug(String message) {
-        if (mod_jaffas.debug) {
+        if (mod_jaffas_food.debug) {
             print(Level.INFO, "[D] " + message);
         }
     }

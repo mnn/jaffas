@@ -3,8 +3,8 @@ package monnef.jaffas.food;
 import com.google.common.base.Joiner;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -35,6 +35,7 @@ import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
+import monnef.jaffas.mod_jaffas;
 import monnef.jaffas.power.PowerManagersFactory;
 import monnef.jaffas.power.api.PowerManager;
 import net.minecraft.block.material.Material;
@@ -62,7 +63,7 @@ import static net.minecraft.world.biome.BiomeGenBase.*;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
-public class mod_jaffas {
+public class mod_jaffas_food extends mod_jaffas {
     public static JaffaCreativeTab CreativeTab;
 
     private static MinecraftServer server;
@@ -132,7 +133,7 @@ public class mod_jaffas {
     private static IGuiHandler guiHandler;
 
     @Mod.Instance("moen-jaffas")
-    public static mod_jaffas instance;
+    public static mod_jaffas_food instance;
 
     public static ItemJaffaPainting itemPainting;
     private int itemPaintingID;
@@ -174,7 +175,9 @@ public class mod_jaffas {
         return this.extraBiomes;
     }
 
-    public mod_jaffas() {
+    public mod_jaffas_food() {
+        super();
+
         this.itemManager = new ItemManager();
         items = new Items();
         items.RegisterItemType(JaffaItemType.basic, ItemJaffaBase.class);
@@ -183,6 +186,12 @@ public class mod_jaffas {
         items.RegisterItemType(JaffaItemType.pack, ItemJaffaPack.class);
         ItemManager.mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
         ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
+    }
+
+    @Override
+    protected void fillModuleSpecificMetadata(ModMetadata data) {
+        data.description = "Adding famous Jaffa Cakes and a lot more into Minecraft (recipes are quite complex).";
+        data.url = monnef.core.Reference.URL;
     }
 
     @SidedProxy(clientSide = "monnef.jaffas.food.client.ClientProxy", serverSide = "monnef.jaffas.food.common.CommonProxy")
@@ -259,8 +268,10 @@ public class mod_jaffas {
         PowerManager.InitializeFactory(new PowerManagersFactory());
     }
 
-    @Init
+    @Mod.Init
     public void load(FMLInitializationEvent event) {
+        super.load(event);
+
         checkJsoup();
         checkForestry();
         checkExtrabiomes();

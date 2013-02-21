@@ -5,7 +5,7 @@ import monnef.core.PlayerHelper;
 import monnef.jaffas.food.Log;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -21,7 +21,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     private static HashMap<Integer, PersistentItemInfo> persistentItems = new HashMap<Integer, PersistentItemInfo>();
 
     public JaffaCraftingHandler() {
-        debug = mod_jaffas.debug;
+        debug = mod_jaffas_food.debug;
     }
 
     public static PersistentItemInfo AddPersistentItem(int ID) {
@@ -92,10 +92,10 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     }
 
     private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info, EntityPlayer player) {
-        if (player == null || !mod_jaffas.transferItemsFromCraftingMatrix) {
+        if (player == null || !mod_jaffas_food.transferItemsFromCraftingMatrix) {
             // "fix" to not crash/return more on BuildCraft's tables...
             String inventoryClassName = matrix.getClass().getName();
-            if (mod_jaffas.ignoreBuildCraftsTables) {
+            if (mod_jaffas_food.ignoreBuildCraftsTables) {
                 if (inventoryClassName.contains("TileAssemblyAdvancedWorkbench")
                         || inventoryClassName.contains("TileAutoWorkbench")) {
                     return;

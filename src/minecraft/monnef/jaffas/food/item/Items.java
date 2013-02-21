@@ -3,7 +3,7 @@ package monnef.jaffas.food.item;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
@@ -72,7 +72,7 @@ public class Items extends ItemManagerAccessor {
     }
 
     private String getJaffaTitle(String type) {
-        String title = mod_jaffas.jaffaTitle;
+        String title = mod_jaffas_food.jaffaTitle;
 
         if (type == null || type.isEmpty()) {
             return title;
@@ -124,10 +124,10 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(flour, "Flour", 49, "Flour");
         AddItemInfo(chocolateWrapper, "Chocolate Wrapper", 33, "Chocolate Wrapper");
         AddItemInfo(chocolateBar, "Chocolate Bar", 34, "Chocolate Bar");
-        AddItemInfo(wrapperJaffas, "Wrapper Jaffas", 50, mod_jaffas.jaffasTitle + " Wrapper");
-        AddItemInfo(jaffasPack, "Jaffa Cakes Pack", 51, mod_jaffas.jaffasTitle + " Pack");
-        AddItemInfo(jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange " + mod_jaffas.jaffasTitle + " Pack");
-        AddItemInfo(jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple " + mod_jaffas.jaffasTitle + " Pack");
+        AddItemInfo(wrapperJaffas, "Wrapper Jaffas", 50, mod_jaffas_food.jaffasTitle + " Wrapper");
+        AddItemInfo(jaffasPack, "Jaffa Cakes Pack", 51, mod_jaffas_food.jaffasTitle + " Pack");
+        AddItemInfo(jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange " + mod_jaffas_food.jaffasTitle + " Pack");
+        AddItemInfo(jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple " + mod_jaffas_food.jaffasTitle + " Pack");
         AddItemInfo(vanillaBeans, "Vanilla Beans", 52, "Vanilla Beans");
         AddItemInfo(waferIcecream, "Wafer Ice-cream", 53, "Wafer");
         AddItemInfo(cone, "Icecream Cone", 54, "Cone");
@@ -529,7 +529,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(bottleBrownMustard);
         createJaffaItem(mincedMeat);
         createJaffaItemManual(meatCleaver,
-                new ItemCleaver(getItemInfo(meatCleaver).getId(), mod_jaffas.EnumToolMaterialCleaver));
+                new ItemCleaver(getItemInfo(meatCleaver).getId(), mod_jaffas_food.EnumToolMaterialCleaver));
 
         createJaffaItemManual(sink, ItemSink.class);
 
@@ -545,12 +545,12 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(wolfSkin);
         /*
-        int renderIndex = mod_jaffas.proxy.addArmor("wolf");
-        createJaffaArmor(wolfHelmet, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.helm, "/jaffas_wolf1.png", wolfSkin);
-        createJaffaArmor(wolfChest, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.chest, "/jaffas_wolf1.png", wolfSkin);
-        createJaffaArmor(wolfLeggins, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.leggings, "/jaffas_wolf2.png", wolfSkin);
-        createJaffaArmor(wolfBoots, mod_jaffas.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.boots, "/jaffas_wolf1.png", wolfSkin);*/
-        createJaffaArmorSet("wolf", mod_jaffas.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
+        int renderIndex = mod_jaffas_food.proxy.addArmor("wolf");
+        createJaffaArmor(wolfHelmet, mod_jaffas_food.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.helm, "/jaffas_wolf1.png", wolfSkin);
+        createJaffaArmor(wolfChest, mod_jaffas_food.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.chest, "/jaffas_wolf1.png", wolfSkin);
+        createJaffaArmor(wolfLeggins, mod_jaffas_food.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.leggings, "/jaffas_wolf2.png", wolfSkin);
+        createJaffaArmor(wolfBoots, mod_jaffas_food.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.boots, "/jaffas_wolf1.png", wolfSkin);*/
+        createJaffaArmorSet("wolf", mod_jaffas_food.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
 
         createJaffaItem(pastry);
 
@@ -570,10 +570,10 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(pieVanillaRaw);
         createJaffaItem(piePlumRaw);
 
-        if (mod_jaffas.spawnStonesEnabled) {
-            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(getItemInfo(spawnStoneLittle), mod_jaffas.spawnStoneLittleCD));
-            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(getItemInfo(spawnStoneMedium), mod_jaffas.spawnStoneMediumCD));
-            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(getItemInfo(spawnStoneBig), mod_jaffas.spawnStoneBigCD));
+        if (mod_jaffas_food.spawnStonesEnabled) {
+            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(getItemInfo(spawnStoneLittle), mod_jaffas_food.spawnStoneLittleCD));
+            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(getItemInfo(spawnStoneMedium), mod_jaffas_food.spawnStoneMediumCD));
+            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(getItemInfo(spawnStoneBig), mod_jaffas_food.spawnStoneBigCD));
         }
 
         createJaffaItem(juiceBottle);
@@ -614,7 +614,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.tinDuckOrangeRaw);
         createJaffaItem(JaffaItem.tinDuckOrange);
 
-        createJaffaArmorSet("duck", mod_jaffas.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
+        createJaffaArmorSet("duck", mod_jaffas_food.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
 
         createJaffaItem(strawberryIcecreamRaw);
         createJaffaItem(strawberryIcecreamFrozen);
@@ -667,7 +667,7 @@ public class Items extends ItemManagerAccessor {
 
     // helm, chest, leggings, boots
     public void createJaffaArmorSet(String renderName, EnumArmorMaterial material, String file1, String file2, Item repairItem, JaffaItem[] pieces) {
-        int renderIndex = mod_jaffas.proxy.addArmor(renderName);
+        int renderIndex = mod_jaffas_food.proxy.addArmor(renderName);
         createJaffaArmor(pieces[0], material, renderIndex, ItemJaffaPlate.ArmorType.helm, file1, repairItem);
         createJaffaArmor(pieces[1], material, renderIndex, ItemJaffaPlate.ArmorType.chest, file1, repairItem);
         createJaffaArmor(pieces[2], material, renderIndex, ItemJaffaPlate.ArmorType.leggings, file2, repairItem);

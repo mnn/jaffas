@@ -6,7 +6,7 @@ import cpw.mods.fml.common.TickType;
 import monnef.jaffas.food.Log;
 import monnef.jaffas.food.common.ThreadVersionCheck;
 import monnef.jaffas.food.common.VersionHelper;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiScreen;
@@ -27,7 +27,7 @@ public class ClientTickHandler implements IScheduledTickHandler {
     public static Object lock = new Object();
 
     public ClientTickHandler() {
-        if (!mod_jaffas.instance.checkUpdates) {
+        if (!mod_jaffas_food.instance.checkUpdates) {
             checked = true;
         }
     }
@@ -70,13 +70,13 @@ public class ClientTickHandler implements IScheduledTickHandler {
 
     public void onTickInGame() {
         if (!checked && tries < 2) {
-            if (mod_jaffas.debug) {
+            if (mod_jaffas_food.debug) {
                 Log.printInfo("Doing version check");
             }
 
             EntityClientPlayerMP player = Minecraft.getMinecraft().thePlayer;
             if (player == null) {
-                if (mod_jaffas.debug) {
+                if (mod_jaffas_food.debug) {
                     Log.printInfo("got null player O_0");
                 }
                 return;
@@ -84,14 +84,14 @@ public class ClientTickHandler implements IScheduledTickHandler {
 
             synchronized (lock) {
                 name = player.username;
-                clientVersionString = mod_jaffas.class.getAnnotation(Mod.class).version();
+                clientVersionString = mod_jaffas_food.class.getAnnotation(Mod.class).version();
                 if (data == null) {
                     if ((versionThread != null && !versionThread.isAlive()) || versionThread == null) {
-                        if (mod_jaffas.debug) Log.printInfo("starting version thread");
+                        if (mod_jaffas_food.debug) Log.printInfo("starting version thread");
                         versionThread = new Thread(new ThreadVersionCheck(), "versionCheck");
                         versionThread.start();
                     } else {
-                        if (mod_jaffas.debug) Log.printInfo("version thread alive but data field is empty");
+                        if (mod_jaffas_food.debug) Log.printInfo("version thread alive but data field is empty");
                     }
                 }
 

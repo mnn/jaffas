@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
 
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,12 +16,12 @@ public class ItemJaffaBase extends Item implements IItemJaffa {
         super(v);
         maxStackSize = 64;
         //this.setCreativeTab(CreativeTabs.tabMaterials);
-        this.setCreativeTab(mod_jaffas.CreativeTab);
+        this.setCreativeTab(mod_jaffas_food.CreativeTab);
     }
 
     @Override
     public String getTextureFile() {
-        return mod_jaffas.textureFile[getTextureFileIndex()];
+        return mod_jaffas_food.textureFile[getTextureFileIndex()];
     }
 
     public int getTextureFileIndex() {

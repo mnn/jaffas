@@ -1,6 +1,6 @@
 package monnef.jaffas.food.block;
 
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 
@@ -16,11 +16,11 @@ public abstract class BlockContainerJaffas extends BlockContainer {
     }
 
     protected void init() {
-        setCreativeTab(mod_jaffas.CreativeTab);
+        setCreativeTab(mod_jaffas_food.CreativeTab);
     }
 
     public String getTextureFile() {
-        return mod_jaffas.textureFile[getTextureFileIndex()];
+        return mod_jaffas_food.textureFile[getTextureFileIndex()];
     }
 
     public int getTextureFileIndex() {

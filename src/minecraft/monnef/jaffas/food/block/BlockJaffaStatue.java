@@ -1,6 +1,6 @@
 package monnef.jaffas.food.block;
 
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.tileentity.TileEntity;
@@ -23,7 +23,7 @@ public class BlockJaffaStatue extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return mod_jaffas.renderID;
+        return mod_jaffas_food.renderID;
     }
 
     @Override

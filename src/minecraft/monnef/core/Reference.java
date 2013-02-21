@@ -10,5 +10,6 @@ public class Reference {
     public static final String URL = "http://jaffas.moxo.cz"; // without trailing slash
     public static final String MONNEF = "monnef";
     public static ArrayList<String> Authors = new ArrayList<String>(Arrays.asList(MONNEF));
+    public static final String TIARTYOS = "Tiartyos";
 }
 

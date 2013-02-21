@@ -6,7 +6,7 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import monnef.jaffas.food.Log;
 import monnef.jaffas.food.item.ItemSpawnStone;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -48,7 +48,7 @@ public class SpawnStonePacketUtils {
 
         Side side = FMLCommonHandler.instance().getEffectiveSide();
         if (side == CLIENT && packetType == SYNC) {
-            mod_jaffas.proxy.handleSyncPacket(player, secondsRemaining, openGUI);
+            mod_jaffas_food.proxy.handleSyncPacket(player, secondsRemaining, openGUI);
         } else if (side == SERVER && packetType == PORT) {
             EntityPlayerMP p = (EntityPlayerMP) player;
             if (CoolDownRegistry.isCoolDownActive(p.getEntityName(), SPAWN_STONE)) {

@@ -13,7 +13,7 @@ import monnef.jaffas.food.common.SpawnStonePacketUtils;
 import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.ItemSpawnStone;
-import monnef.jaffas.food.mod_jaffas;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.src.ModLoader;
@@ -40,8 +40,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJaffaStatue.class, new TileEntityJaffaStatueRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPie.class, new TileEntityPieRenderer());
 
-        mod_jaffas.renderID = RenderingRegistry.getNextAvailableRenderId();
-        mod_jaffas.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
+        mod_jaffas_food.renderID = RenderingRegistry.getNextAvailableRenderId();
+        mod_jaffas_food.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new SwitchgrassRenderer());
     }
 
