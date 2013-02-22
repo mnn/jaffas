@@ -21,4 +21,8 @@ public class MathHelper {
     public static int exactDistanceInt(IPowerNodeCoordinates a, IPowerNodeCoordinates b) {
         return ceiling_float_int(exactDistance(a, b));
     }
+
+    public static float degToRad(float deg) {
+        return (float) (deg * Math.PI / 180f);
+    }
 }
