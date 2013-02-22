@@ -19,24 +19,30 @@ if [ ${#output} -lt 5 ]; then
 fi
 
 rm -fr "./$outtmp/*"
-rm -fr "./$dist/*"
 rm -fr "./$output/*"
+rm -fr "./$core/*"
 touch "$outtmp/.placeholder"
 
 echo Done
 echo -n Parsing version...
 
-ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/jaffas/food/Reference.java`
+ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/core/Reference.java`
 if [ $? -ne 0 ]; then
 	echo "Cannot determine version"
-	exit
+	exit 2
 fi
 
 version=`sed -r 's/^.*"(.*)".*;$/\1/' <<< "$ver_line"`
 if [ $? -ne 0 ]; then
 	echo "Cannot parse version"
-	exit
+	exit 2
 fi
+
+if [ ${#version} -gt 8 ]; then
+	echo "Parsed version is suspiciously long, stopping"
+	exit 2
+fi
+
 
 echo Done
 echo "Version detected: [$version]"
@@ -60,9 +66,14 @@ echo Done
 
 #prepare core
 echo -n Copying core files...
-mkdir "$core/monnef" &>/dev/null
-cp -r reobf/minecraft/monnef/core "$core"
-unzip jars/coremods/monnefCore_dummy.jar "$core"
+core2="$core/monnef"
+mkdir "$core2" &>/dev/null
+cp -r reobf/minecraft/monnef/core "$core2"
+unzip -q jars/coremods/monnefCore_dummy.jar -d "$core"
+if [ $? -ne 0 ]; then
+	echo "Cannot unpack meta-inf stuff"
+	exit 3
+fi
 
 outName="mod_monnef_core_$version"
 cd "$core"
