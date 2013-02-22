@@ -13,8 +13,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
 import monnef.core.IDProvider;
-import monnef.jaffas.food.Reference;
 import monnef.core.RegistryUtils;
+import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -23,6 +23,7 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.mod_jaffas;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -48,7 +49,7 @@ import static monnef.jaffas.trees.EatableType.NotEatable;
 
 @Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Reference.Version, dependencies = "required-after:moen-jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = mod_jaffas_trees.channel, packetHandler = PacketHandler.class)
-public class mod_jaffas_trees {
+public class mod_jaffas_trees extends mod_jaffas {
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;
 
@@ -286,6 +287,8 @@ public class mod_jaffas_trees {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
+        super.load(event);
+
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.trees))
             return;
 

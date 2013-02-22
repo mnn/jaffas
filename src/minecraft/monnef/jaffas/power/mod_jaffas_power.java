@@ -17,6 +17,7 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.mod_jaffas;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.TileEntityAntenna;
@@ -35,7 +36,7 @@ import static cpw.mods.fml.common.Mod.PreInit;
 
 @Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_jaffas_power {
+public class mod_jaffas_power extends mod_jaffas {
     @Instance("moen-jaffas-power")
     public static mod_jaffas_power instance;
 
@@ -106,6 +107,8 @@ public class mod_jaffas_power {
 
     @Init
     public void load(FMLInitializationEvent event) {
+        super.load(event);
+
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.power))
             return;
 

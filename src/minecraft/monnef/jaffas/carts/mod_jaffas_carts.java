@@ -17,6 +17,7 @@ import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.mod_jaffas;
 import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
@@ -26,7 +27,7 @@ import static cpw.mods.fml.common.Mod.PreInit;
 
 @Mod(modid = "moen-jaffas-carts", name = "Jaffas - carts", version = Reference.Version, dependencies = "required-after:moen-jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_jaffas_carts {
+public class mod_jaffas_carts extends mod_jaffas {
     @Instance("moen-jaffas-carts")
     public static mod_jaffas_carts instance;
 
@@ -70,6 +71,8 @@ public class mod_jaffas_carts {
 
     @Init
     public void load(FMLInitializationEvent event) {
+        super.load(event);
+
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.carts))
             return;
 

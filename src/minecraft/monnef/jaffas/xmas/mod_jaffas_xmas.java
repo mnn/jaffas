@@ -15,6 +15,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.mod_jaffas;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -25,7 +26,7 @@ import java.util.logging.Level;
 
 @Mod(modid = "moen-jaffas-xmas", name = "Jaffas - xmas", version = Reference.Version, dependencies = "required-after:moen-jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_jaffas_xmas {
+public class mod_jaffas_xmas extends mod_jaffas {
     @Mod.Instance("moen-jaffas-xmas")
     public static mod_jaffas_xmas instance;
 
@@ -85,6 +86,8 @@ public class mod_jaffas_xmas {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
+        super.load(event);
+
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.xmas))
             return;
 

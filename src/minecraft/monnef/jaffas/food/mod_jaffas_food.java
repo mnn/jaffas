@@ -65,7 +65,6 @@ public class mod_jaffas_food extends mod_jaffas {
 
     private static MinecraftServer server;
 
-
     public static JaffaBombBlock blockJaffaBomb;
     public static int blockJaffaBombID;
 
@@ -184,12 +183,12 @@ public class mod_jaffas_food extends mod_jaffas {
         items.RegisterItemType(JaffaItemType.pack, ItemJaffaPack.class);
         ItemManager.mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
         ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
+        thisIsMainModule = true;
     }
 
     @Override
     protected void fillModuleSpecificMetadata(ModMetadata data) {
         data.description = "Adding famous Jaffa Cakes and a lot more into Minecraft (recipes are quite complex).";
-        data.url = monnef.core.Reference.URL;
     }
 
     @SidedProxy(clientSide = "monnef.jaffas.food.client.ClientProxy", serverSide = "monnef.jaffas.food.common.CommonProxy")

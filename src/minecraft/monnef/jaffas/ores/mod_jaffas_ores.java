@@ -17,6 +17,7 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.mod_jaffas;
 import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -38,7 +39,7 @@ import static monnef.jaffas.food.item.JaffaItem.*;
 
 @Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_jaffas_ores {
+public class mod_jaffas_ores extends mod_jaffas {
     @Mod.Instance("moen-jaffas-ores")
     public static mod_jaffas_ores instance;
 
@@ -159,6 +160,8 @@ public class mod_jaffas_ores {
 
     @Mod.Init
     public void load(FMLInitializationEvent event) {
+        super.load(event);
+
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores))
             return;
 
