@@ -1,7 +1,6 @@
 package monnef.jaffas.ores;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -10,6 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
 
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrass;
 import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrassID;
 

@@ -1,11 +1,12 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.BitHelper;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class TileEntitySink extends TileEntity {
     private final static int maxDelay = 20;

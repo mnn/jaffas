@@ -1,7 +1,6 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.MathHelper;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
@@ -15,6 +14,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class ItemSpawnStone extends ItemJaffaBase {
     private int coolDown;

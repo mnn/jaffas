@@ -1,11 +1,9 @@
 package monnef.core;
 
 import com.google.common.eventbus.EventBus;
-import com.google.common.eventbus.Subscribe;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.LoadController;
 import cpw.mods.fml.common.ModMetadata;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
 public class CoreModContainer extends DummyModContainer {
     public CoreModContainer() {
@@ -17,6 +15,7 @@ public class CoreModContainer extends DummyModContainer {
         myMeta.version = Reference.Version;
         myMeta.name = Reference.ModName;
         myMeta.url = Reference.URL;
+        MonnefCorePlugin.Log.printInfo("monnef's Core initialized, version: " + Reference.Version);
     }
 
     @Override
@@ -25,11 +24,5 @@ public class CoreModContainer extends DummyModContainer {
         return true;
     }
 
-    /*
-     * Use this in place of @Init, @Preinit, @Postinit in the file.
-     */
-    @Subscribe
-    public void onServerStarting(FMLServerStartingEvent ev) {
-    }
-
+    // use google subscribe and FML events
 }

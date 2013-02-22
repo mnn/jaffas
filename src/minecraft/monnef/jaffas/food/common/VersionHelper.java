@@ -1,6 +1,5 @@
 package monnef.jaffas.food.common;
 
-import monnef.jaffas.food.Log;
 import org.jsoup.Jsoup;
 
 import java.io.IOException;
@@ -10,6 +9,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class VersionHelper {
     private static Pattern versionPatter = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)");

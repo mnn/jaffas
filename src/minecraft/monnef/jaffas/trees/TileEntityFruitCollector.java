@@ -5,10 +5,10 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.block.TileEntityJaffaMachine;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class TileEntityFruitCollector extends TileEntityJaffaMachine implements IInventory {
 

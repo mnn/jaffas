@@ -1,6 +1,5 @@
 package monnef.jaffas.trees;
 
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.Block;
@@ -15,6 +14,7 @@ import net.minecraft.world.World;
 import java.util.HashSet;
 import java.util.Random;
 
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 import static monnef.jaffas.trees.mod_jaffas_trees.*;
 
 

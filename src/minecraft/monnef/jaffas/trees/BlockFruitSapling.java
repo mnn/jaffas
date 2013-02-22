@@ -2,7 +2,6 @@ package monnef.jaffas.trees;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.Log;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,6 +12,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.List;
 import java.util.Random;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class BlockFruitSapling extends BlockFlower {
     public static Random rand = new Random();

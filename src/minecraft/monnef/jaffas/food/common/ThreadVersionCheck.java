@@ -1,8 +1,9 @@
 package monnef.jaffas.food.common;
 
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.client.ClientTickHandler;
 import monnef.jaffas.food.mod_jaffas_food;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class ThreadVersionCheck implements Runnable {
     @Override

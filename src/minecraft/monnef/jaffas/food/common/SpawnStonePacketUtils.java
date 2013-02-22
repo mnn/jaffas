@@ -4,7 +4,6 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +19,7 @@ import static cpw.mods.fml.relauncher.Side.SERVER;
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
 import static monnef.jaffas.food.common.SpawnStonePacketType.PORT;
 import static monnef.jaffas.food.common.SpawnStonePacketType.SYNC;
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class SpawnStonePacketUtils {
 

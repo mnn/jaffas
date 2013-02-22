@@ -3,7 +3,6 @@ package monnef.jaffas.food.client;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.TickType;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.common.ThreadVersionCheck;
 import monnef.jaffas.food.common.VersionHelper;
 import monnef.jaffas.food.mod_jaffas_food;
@@ -12,6 +11,8 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiScreen;
 
 import java.util.EnumSet;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class ClientTickHandler implements IScheduledTickHandler {
     private boolean checked = false;

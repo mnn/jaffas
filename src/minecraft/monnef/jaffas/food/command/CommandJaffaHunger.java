@@ -1,12 +1,13 @@
 package monnef.jaffas.food.command;
 
-import monnef.jaffas.food.Log;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class CommandJaffaHunger extends CommandBase {
     @Override

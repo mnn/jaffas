@@ -2,7 +2,6 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import monnef.core.PlayerHelper;
-import monnef.jaffas.food.Log;
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
@@ -13,6 +12,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
 import java.util.HashSet;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class JaffaCraftingHandler implements ICraftingHandler {
 

@@ -1,6 +1,5 @@
 package monnef.jaffas.food.block;
 
-import monnef.jaffas.food.Log;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -9,6 +8,8 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
+
+import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class TileEntityPie extends TileEntity {
     public static final int PIECES_COUNT = 4;
