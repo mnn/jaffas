@@ -15,7 +15,6 @@ public class CoreModContainer extends DummyModContainer {
         myMeta.version = Reference.Version;
         myMeta.name = Reference.ModName;
         myMeta.url = Reference.URL;
-        MonnefCorePlugin.Log.printInfo("monnef's Core initialized, version: " + Reference.Version);
     }
 
     @Override

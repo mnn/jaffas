@@ -9,10 +9,6 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 
 public class DyeHelper {
-    // "black", "red", "green", "brown",
-    // "blue", "purple", "cyan", "silver",
-    // "gray", "pink", "lime", "yellow",
-    // "lightBlue", "magenta", "orange", "white"
     private static final HashMap<String, Integer> dyeNames;
     private static final HashMap<String, Integer> woolNames;
 
@@ -26,27 +22,27 @@ public class DyeHelper {
         }
     }
 
-    public static int getDyeNum(String colorName) {
-        Integer index = dyeNames.get(colorName);
+    public static int getDyeNum(DyeColor color) {
+        Integer index = dyeNames.get(color.getColor());
         if (index == null) {
-            throw new RuntimeException("unknown color name: " + colorName);
+            throw new RuntimeException("unknown color name: " + color.getColor());
         }
         return index;
     }
 
-    public static int getWoolNum(String colorName) {
-        Integer index = woolNames.get(colorName);
+    public static int getWoolNum(DyeColor color) {
+        Integer index = woolNames.get(color.getColor());
         if (index == null) {
-            throw new RuntimeException("unknown color name: " + colorName);
+            throw new RuntimeException("unknown color name: " + color.getColor());
         }
         return index;
     }
 
-    public static ItemStack getDye(String colorName) {
-        return new ItemStack(Item.dyePowder, 1, getDyeNum(colorName));
+    public static ItemStack getDye(DyeColor color) {
+        return new ItemStack(Item.dyePowder, 1, getDyeNum(color));
     }
 
-    public static ItemStack getWool(String colorName) {
-        return new ItemStack(Block.cloth, 1, getWoolNum(colorName));
+    public static ItemStack getWool(DyeColor color) {
+        return new ItemStack(Block.cloth, 1, getWoolNum(color));
     }
 }

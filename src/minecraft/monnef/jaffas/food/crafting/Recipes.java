@@ -1,6 +1,7 @@
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import monnef.core.DyeColor;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemManager;
@@ -390,7 +391,7 @@ public class Recipes {
         addTableRecipe(new ItemStack(blockTable, 1, 2), 3);
         addTableRecipe(new ItemStack(blockTable, 1, 2), 11);
 
-        GameRegistry.addShapelessRecipe(getItemStack(cocoBarWrapper, 15), getDye("lightBlue"), Item.paper, Item.paper, Item.paper, Item.paper, Item.paper);
+        GameRegistry.addShapelessRecipe(getItemStack(cocoBarWrapper, 15), getDye(DyeColor.L_BLUE), Item.paper, Item.paper, Item.paper, Item.paper, Item.paper);
 
         GameRegistry.addShapelessRecipe(new ItemStack(Item.paper), getItem(crumpledPaper), getItem(crumpledPaper));
         GameRegistry.addRecipe(getItemStack(cocoBar, 3), "cC ", " Cc", "WWW", 'c', getItem(coconutPowder), 'C', getItem(chocolate), 'W', getItem(cocoBarWrapper));

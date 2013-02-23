@@ -5,11 +5,15 @@ import cpw.mods.fml.relauncher.ILibrarySet;
 public class Library implements ILibrarySet {
     public static final String DOWNLOAD_URL = Reference.URL + "/lib/%s";
 
+    public Library() {
+        // TODO config file - skipping of libraries, here?
+    }
+
     @Override
     public String[] getLibraries() {
         return new String[]{
                 "jsoup-1.7.1.jar",
-                "lombok.jar"
+                "lombok_0_11_6.jar"
         };
     }
 

@@ -4,10 +4,16 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 
 import java.util.Map;
 
-@IFMLLoadingPlugin.TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE})
+import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
+
+@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE})
 public class MonnefCorePlugin implements IFMLLoadingPlugin {
     public static final String CORE_NAMESPACE = "monnef.core.";
     public static CustomLogger Log = new CustomLogger("mC");
+
+    public MonnefCorePlugin() {
+
+    }
 
     @Override
     public String[] getLibraryRequestClass() {
@@ -26,7 +32,7 @@ public class MonnefCorePlugin implements IFMLLoadingPlugin {
 
     @Override
     public String getSetupClass() {
-        return null;
+        return CORE_NAMESPACE + "CoreInitializer";
     }
 
     @Override
