@@ -12,7 +12,6 @@ public class MonnefCorePlugin implements IFMLLoadingPlugin {
     public static CustomLogger Log = new CustomLogger("mC");
 
     public MonnefCorePlugin() {
-
     }
 
     @Override

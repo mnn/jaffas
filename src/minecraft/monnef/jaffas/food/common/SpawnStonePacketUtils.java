@@ -26,7 +26,7 @@ public class SpawnStonePacketUtils {
     static void HandleSpawnStone(Packet250CustomPayload packet, Player player) {
         DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 
-        // SYNC server -> client [type, timeRemaining, openGUI?]
+        // SYNC server -> client [type, timeRemaining, openGUI]
         // PORT client -> server [type]
 
         SpawnStonePacketType packetType;

@@ -6,6 +6,8 @@ import cpw.mods.fml.common.LoadController;
 import cpw.mods.fml.common.ModMetadata;
 
 public class CoreModContainer extends DummyModContainer {
+    private static CoreModContainer instance;
+
     public CoreModContainer() {
         super(new ModMetadata());
         ModMetadata myMeta = super.getMetadata();
@@ -15,12 +17,22 @@ public class CoreModContainer extends DummyModContainer {
         myMeta.version = Reference.Version;
         myMeta.name = Reference.ModName;
         myMeta.url = Reference.URL;
+
+        if (instance != null) {
+            System.out.println("multiple container creation?");
+        }
+
+        instance = this;
     }
 
     @Override
     public boolean registerBus(EventBus bus, LoadController controller) {
         bus.register(this);
         return true;
+    }
+
+    public static CoreModContainer instance() {
+        return instance;
     }
 
     // use google subscribe and FML events

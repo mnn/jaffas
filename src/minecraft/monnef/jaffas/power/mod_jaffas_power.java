@@ -24,6 +24,7 @@ import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.item.ItemDebug;
+import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
