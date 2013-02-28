@@ -79,4 +79,8 @@ public class PowerUtils {
         if (distance <= 30) return 40;
         return 0;
     }
+
+    public static void disconnectSafelyDirectPowerConsumer(IPowerConsumerManager consumerManager) {
+        PowerUtils.disconnect(consumerManager.getProvider(), consumerManager.getCoordinates());
+    }
 }

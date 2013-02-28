@@ -5,12 +5,15 @@ import monnef.jaffas.power.block.common.WrenchAction;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockAntenna extends BlockMachine {
     public BlockAntenna(int par1, int par2) {
         super(par1, par2, Material.rock, true);
         setBlockName("antenna");
         onWrench = WrenchAction.ROTATE;
+        useDefaultDirection = true;
+        defaultDirection = ForgeDirection.NORTH;
     }
 
     @Override

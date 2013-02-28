@@ -1,5 +1,8 @@
 package monnef.jaffas.power.block.common;
 
+import monnef.jaffas.power.api.IPowerConsumer;
+import monnef.jaffas.power.api.IPowerConsumerManager;
+import monnef.jaffas.power.api.IPowerProvider;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -20,6 +23,7 @@ public abstract class TileEntityMachine extends TileEntity {
 
     private int startingTickCounter = 0;
     private int workTickCounter = rand.nextInt(20);
+    private boolean markedForDirectConnectionTry = false;
 
     protected TileEntityMachine() {
         setRotation(ForgeDirection.UNKNOWN);
@@ -27,6 +31,10 @@ public abstract class TileEntityMachine extends TileEntity {
 
     public BlockMachine getMachineBlock() {
         return (BlockMachine) this.getBlockType();
+    }
+
+    public void markForDirectConnectionTry() {
+        markedForDirectConnectionTry = true;
     }
 
     @Override
@@ -41,6 +49,7 @@ public abstract class TileEntityMachine extends TileEntity {
         workTickCounter++;
         if (workTickCounter > WORK_EVERY_XTH_TICK) {
             workTickCounter = 0;
+            if (markedForDirectConnectionTry) tryDirectConnectInternal();
             doWork();
         }
     }
@@ -49,6 +58,21 @@ public abstract class TileEntityMachine extends TileEntity {
     }
 
     protected void onTick(int number) {
+        switch (number) {
+            case 2:
+                tryDirectConnectInternal();
+                break;
+        }
+    }
+
+    private void tryDirectConnectInternal() {
+        if (this instanceof IPowerConsumer) {
+            IPowerConsumerManager consumerManager = ((IPowerConsumer) this).getPowerConsumerManager();
+            markedForDirectConnectionTry = false;
+            if (consumerManager.tryDirectConnect()) {
+                sendUpdate();
+            }
+        }
     }
 
     public ForgeDirection getRotation() {
@@ -90,6 +114,20 @@ public abstract class TileEntityMachine extends TileEntity {
 
     public void sendUpdate() {
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    public void setRotation(int direction) {
+        this.setRotation(ForgeDirection.getOrientation(direction));
+    }
+
+    public void disconnectAll() {
+        if (this instanceof IPowerConsumer){
+            ((IPowerConsumer)this).getPowerConsumerManager().disconnectAll();
+        }
+
+        if(this instanceof IPowerProvider){
+            ((IPowerProvider)this).getPowerProviderManager().disconnectAll();
+        }
     }
 }
 

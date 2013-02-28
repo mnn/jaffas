@@ -31,5 +31,5 @@ public interface IPowerConsumerManager extends IPowerNodeManager {
 
     IPowerNodeCoordinates getProvider();
 
-    void tryDirectConnect();
+    boolean tryDirectConnect();
 }

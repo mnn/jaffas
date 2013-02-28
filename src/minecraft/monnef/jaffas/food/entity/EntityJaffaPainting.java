@@ -91,6 +91,7 @@ public class EntityJaffaPainting extends Entity {
     }
     */
 
+    @Override
     protected void entityInit() {
         this.dataWatcher.addObject(watcherByteNumber, Integer.valueOf(0));
         this.dataWatcher.addObject(watcherNumberPosX, Integer.valueOf(this.xPosition));
@@ -274,6 +275,7 @@ public class EntityJaffaPainting extends Entity {
     /**
      * Returns true if other Entities should be prevented from moving through this Entity.
      */
+    @Override
     public boolean canBeCollidedWith() {
         return true;
     }
@@ -281,6 +283,7 @@ public class EntityJaffaPainting extends Entity {
     /**
      * Called when the entity is attacked.
      */
+    @Override
     public boolean attackEntityFrom(DamageSource par1DamageSource, int par2) {
         if (!this.isDead && !this.worldObj.isRemote) {
             this.setDead();
@@ -304,6 +307,7 @@ public class EntityJaffaPainting extends Entity {
     /**
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
+    @Override
     public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
         par1NBTTagCompound.setByte("Dir", (byte) this.direction);
         par1NBTTagCompound.setString("Motive", this.art.title);
@@ -315,6 +319,7 @@ public class EntityJaffaPainting extends Entity {
     /**
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
+    @Override
     public void readEntityFromNBT(NBTTagCompound par1NBTTagCompound) {
         this.direction = par1NBTTagCompound.getByte("Dir");
         this.xPosition = par1NBTTagCompound.getInteger("TileX");
@@ -342,6 +347,7 @@ public class EntityJaffaPainting extends Entity {
     /**
      * Tries to moves the entity by the passed in displacement. Args: x, y, z
      */
+    @Override
     public void moveEntity(double par1, double par3, double par5) {
         if (!this.worldObj.isRemote && !this.isDead && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D) {
             this.setDead();
@@ -352,6 +358,7 @@ public class EntityJaffaPainting extends Entity {
     /**
      * Adds to the current velocity of the entity. Args: x, y, z
      */
+    @Override
     public void addVelocity(double par1, double par3, double par5) {
         if (!this.worldObj.isRemote && !this.isDead && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D) {
             this.setDead();

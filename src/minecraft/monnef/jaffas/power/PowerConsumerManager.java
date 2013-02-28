@@ -170,8 +170,9 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
     }
 
     @Override
-    public void tryDirectConnect() {
-        if (myCoordinates.getWorld().isRemote) return;
+    // TODO move to PowerUtils?
+    public boolean tryDirectConnect() {
+        if (myCoordinates.getWorld().isRemote) return false;
 
         ForgeDirection rot = myTile.getRotation();
         ForgeDirection rotInv = rot.getOpposite();
@@ -184,9 +185,11 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
         if (te instanceof IPowerProvider) {
             IPowerProvider provider = (IPowerProvider) te;
             if (provider.getPowerProviderManager().supportDirectConnection()) {
-                PowerUtils.connect(provider.getPowerProviderManager().getCoordinates(), myCoordinates, rotInv);
+                return PowerUtils.connect(provider.getPowerProviderManager().getCoordinates(), myCoordinates, rotInv);
             }
         }
+
+        return false;
     }
 
 }

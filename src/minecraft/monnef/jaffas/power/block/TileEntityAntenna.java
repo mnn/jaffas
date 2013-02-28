@@ -39,8 +39,7 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
     public ForgeDirection changeRotation() {
         if (worldObj.isRemote) return ForgeDirection.UNKNOWN;
 
-        //PowerUtils.disconnect(this.consumerManager.getCoordinates(), providerManager.getCoordinates());
-        PowerUtils.disconnect(this.consumerManager.getProvider(), consumerManager.getCoordinates());
+        PowerUtils.disconnectSafelyDirectPowerConsumer(this.consumerManager);
 
         int rotation = this.getRotation().ordinal();
         rotation++;
@@ -89,10 +88,6 @@ public class TileEntityAntenna extends TileEntityMachine implements IPowerConsum
             case 1:
                 consumerManager.initialize(20, 20, this);
                 providerManager.initialize(20, 20, this, true, new boolean[]{true, false, true, true, true, true});
-                break;
-
-            case 2:
-                consumerManager.tryDirectConnect();
                 break;
         }
     }
