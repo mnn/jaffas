@@ -10,8 +10,14 @@ import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 public class MonnefCorePlugin implements IFMLLoadingPlugin {
     public static final String CORE_NAMESPACE = "monnef.core.";
     public static CustomLogger Log = new CustomLogger("mC");
+    public static boolean debugEnv;
+
+    static {
+        debugEnv = System.getProperty("debugFlag") != null;
+    }
 
     public MonnefCorePlugin() {
+        CloakHookHandler.registerCloakHandler(new CustomCloaksHandler());
     }
 
     @Override
@@ -21,7 +27,7 @@ public class MonnefCorePlugin implements IFMLLoadingPlugin {
 
     @Override
     public String[] getASMTransformerClass() {
-        return null;
+        return new String[]{CORE_NAMESPACE + "asm.CoreTransformer"};
     }
 
     @Override
