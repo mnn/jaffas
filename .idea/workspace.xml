@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/CoreTransformer.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/CoreTransformer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/InjectCloakHookAdapter.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/InjectCloakHookAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/MyVisitor.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/MyVisitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/ObfuscationHelper.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/core/asm/ObfuscationHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -227,7 +224,7 @@
     <file path="/EntityJaffaPainting.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362057852360" ignored="false" />
     <file path="$PROJECT_DIR$/logs/client_reob.log" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362064483269" ignored="false" />
     <file path="$PROJECT_DIR$/logs/client_ro.log" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362064483269" ignored="false" />
-    <file path="/ObfuscationHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362094478878" ignored="false" />
+    <file path="/ObfuscationHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362094824159" ignored="false" />
     <file path="/MyVisitor.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362094359058" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -312,7 +309,7 @@
       <file leaf-file-name="ObfuscationHelper.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/core/asm/ObfuscationHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="35" selection-start="544" selection-end="544" vertical-scroll-proportion="0.50246304">
+            <state line="27" column="75" selection-start="869" selection-end="869" vertical-scroll-proportion="0.7536946">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -334,7 +331,7 @@
       <file leaf-file-name="CoreTransformer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/core/asm/CoreTransformer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="59" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
+            <state line="17" column="0" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -1443,7 +1440,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/core/asm/CoreTransformer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="59" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
+        <state line="17" column="0" selection-start="602" selection-end="602" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1452,7 +1449,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/core/asm/ObfuscationHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="35" selection-start="544" selection-end="544" vertical-scroll-proportion="0.50246304">
+        <state line="27" column="75" selection-start="869" selection-end="869" vertical-scroll-proportion="0.7536946">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

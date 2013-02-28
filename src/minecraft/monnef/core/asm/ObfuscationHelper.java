@@ -25,7 +25,7 @@ public class ObfuscationHelper {
         C_ENTITY("net/minecraft/entity/Entity", CLASS),
         M_UPDATE_CLOAK("updateCloak", METHOD),
         M_OBTAIN_ENTITY_SKIN("obtainEntitySkin", METHOD),
-        M_RENDER_GLOBAL("net.minecraft.client.renderer.RenderGlobal", METHOD);
+        C_RENDER_GLOBAL("net.minecraft.client.renderer.RenderGlobal", CLASS);
 
         private final String fullName;
         private final MappedObjectType type;
