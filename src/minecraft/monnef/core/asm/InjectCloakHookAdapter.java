@@ -63,5 +63,6 @@ public class InjectCloakHookAdapter extends MethodVisitor {
     private void insertHook() {
         mv.visitMethodInsn(INVOKESTATIC, "monnef/core/CloakHookHandler", "handleUpdateCloak", "(Lnet/minecraft/entity/Entity;)V");
         mv.visitVarInsn(ALOAD, 1);
+        CoreTransformer.cloakHookApplied = true;
     }
 }

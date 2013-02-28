@@ -1,9 +1,12 @@
 package monnef.core;
 
 import com.google.common.eventbus.EventBus;
+import com.google.common.eventbus.Subscribe;
 import cpw.mods.fml.common.DummyModContainer;
 import cpw.mods.fml.common.LoadController;
 import cpw.mods.fml.common.ModMetadata;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import monnef.core.asm.CoreTransformer;
 
 public class CoreModContainer extends DummyModContainer {
     private static CoreModContainer instance;
@@ -36,4 +39,10 @@ public class CoreModContainer extends DummyModContainer {
     }
 
     // use google subscribe and FML events
+    @Subscribe
+    public void onStart(FMLPostInitializationEvent event) {
+        if (!CoreTransformer.cloakHookApplied) {
+            MonnefCorePlugin.Log.printSevere("Unable to install a cloak hook!");
+        }
+    }
 }

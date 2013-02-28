@@ -1,10 +1,5 @@
 package monnef.core;
 
-import argo.format.PrettyJsonFormatter;
-import argo.jdom.JdomParser;
-import argo.jdom.JsonNode;
-import argo.jdom.JsonRootNode;
-import argo.saj.InvalidSyntaxException;
 import cpw.mods.fml.relauncher.ILibrarySet;
 
 import java.io.*;
@@ -12,14 +7,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.Properties;
 
-import static argo.jdom.JsonNodeFactories.*;
 import static monnef.core.MonnefCorePlugin.Log;
 
 public class Library implements ILibrarySet {
     public static final String SKIP_LIBRARY_DOWNLOAD_TAG = "skipLibraryDownload";
-    private static JdomParser parser = new JdomParser();
 
     public static final String DOWNLOAD_URL = Reference.URL + "/lib/%s";
     public static final String CONFIG_DIR = "config";
@@ -33,7 +26,7 @@ public class Library implements ILibrarySet {
     }
 
     private static void addLibrary(String name, String hash, String fileName) {
-        Libraries.put(name, new LibraryInfo(name, hash, fileName));
+        Libraries.put(name.toLowerCase(), new LibraryInfo(name, hash, fileName));
     }
 
     public Library() {
@@ -63,41 +56,45 @@ public class Library implements ILibrarySet {
             OutputStream outputStream;
             try {
                 outputStream = new FileOutputStream(pathname);
-
-                JsonRootNode json = object(field(SKIP_LIBRARY_DOWNLOAD_TAG, array()));
-                PrettyJsonFormatter formatter = new PrettyJsonFormatter();
-                outputStream.write(formatter.format(json).getBytes());
+                Properties prop = new Properties();
+                prop.setProperty(SKIP_LIBRARY_DOWNLOAD_TAG, "");
+                prop.store(outputStream, null);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 Log.printInfo("Problem occurred in default config writing.");
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.printInfo("Problem occurred in default config generating.");
+                Log.printInfo("Problem occurred in default config writing.");
             }
         }
 
         if (fileIsReady) {
             InputStreamReader reader = new InputStreamReader(inputStream);
             try {
-                JsonRootNode root = parser.parse(reader);
-                List<JsonNode> list = root.getArrayNode(SKIP_LIBRARY_DOWNLOAD_TAG);
-                for (JsonNode node : list) {
-                    String name = node.getStringValue();
-                    if (Libraries.containsKey(name)) {
-                        Log.printInfo("Disabled download for library: " + name);
-                        Libraries.remove(name);
-                    } else {
-                        Log.printWarning("Not found library named \"" + name + "\", skipping.");
+                Properties prop = new Properties();
+                prop.load(inputStream);
+                String skipString = prop.getProperty(SKIP_LIBRARY_DOWNLOAD_TAG, "");
+
+                if (!skipString.isEmpty()) {
+                    String[] skipList = skipString.split(", ?");
+                    for (String toSkip : skipList) {
+                        tryDisableLibrary(toSkip.toLowerCase());
                     }
                 }
             } catch (IOException e) {
                 e.printStackTrace();
                 Log.printInfo("Problem occurred parsing config.");
-            } catch (InvalidSyntaxException e) {
-                e.printStackTrace();
-                Log.printInfo("Problem occurred parsing config.");
             }
 
+        }
+    }
+
+    private void tryDisableLibrary(String name) {
+        if (Libraries.containsKey(name)) {
+            Log.printInfo("Disabled download for library: " + name);
+            Libraries.remove(name);
+        } else {
+            Log.printWarning("Not found library named \"" + name + "\", skipping.");
         }
     }
 

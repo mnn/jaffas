@@ -8,6 +8,8 @@ import org.objectweb.asm.ClassWriter;
 import static org.objectweb.asm.Opcodes.ASM4;
 
 public class CoreTransformer implements IClassTransformer {
+    public static boolean cloakHookApplied = false;
+
     @Override
     public byte[] transform(String name, byte[] bytes) {
         if (bytes == null) return null;
