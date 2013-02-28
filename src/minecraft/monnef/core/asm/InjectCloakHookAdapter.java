@@ -2,6 +2,9 @@ package monnef.core.asm;
 
 import org.objectweb.asm.MethodVisitor;
 
+import static monnef.core.asm.ObfuscationHelper.MappedObject.C_ENTITY;
+import static monnef.core.asm.ObfuscationHelper.MappedObject.M_UPDATE_CLOAK;
+import static monnef.core.asm.ObfuscationHelper.getRealName;
 import static org.objectweb.asm.Opcodes.*;
 
 public class InjectCloakHookAdapter extends MethodVisitor {
@@ -22,7 +25,7 @@ public class InjectCloakHookAdapter extends MethodVisitor {
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
         switch (state) {
             case LOOKING:
-                if (opcode == INVOKEVIRTUAL && "updateCloak".equals(name))
+                if (opcode == INVOKEVIRTUAL && getRealName(M_UPDATE_CLOAK).equals(name))
                     state = State.READ_UPDATECLOAK;
                 break;
 
@@ -61,7 +64,7 @@ public class InjectCloakHookAdapter extends MethodVisitor {
     }
 
     private void insertHook() {
-        mv.visitMethodInsn(INVOKESTATIC, "monnef/core/CloakHookHandler", "handleUpdateCloak", "(Lnet/minecraft/entity/Entity;)V");
+        mv.visitMethodInsn(INVOKESTATIC, "monnef/core/CloakHookHandler", "handleUpdateCloak", "(L" + getRealName(C_ENTITY) + ";)V");
         mv.visitVarInsn(ALOAD, 1);
         CoreTransformer.cloakHookApplied = true;
     }
