@@ -7,6 +7,9 @@ import cpw.mods.fml.common.LoadController;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import monnef.core.asm.CoreTransformer;
+import monnef.core.asm.ObfuscationHelper;
+
+import static monnef.core.MonnefCorePlugin.Log;
 
 public class CoreModContainer extends DummyModContainer {
     private static CoreModContainer instance;
@@ -42,7 +45,13 @@ public class CoreModContainer extends DummyModContainer {
     @Subscribe
     public void onStart(FMLPostInitializationEvent event) {
         if (!CoreTransformer.cloakHookApplied) {
-            MonnefCorePlugin.Log.printSevere("Unable to install a cloak hook!");
+            Log.printSevere("Unable to install a cloak hook!");
+            Log.printFine("Mapping database:");
+            ObfuscationHelper.printAllDataToLog();
+        }
+
+        if (MonnefCorePlugin.debugEnv) {
+            ObfuscationHelper.dumpUsedItemsToConfig();
         }
     }
 }

@@ -37,4 +37,8 @@ public class CustomLogger {
             print(Level.INFO, "[D] " + message);
         }
     }
+
+    public void printFine(String message) {
+        print(Level.FINE, message);
+    }
 }

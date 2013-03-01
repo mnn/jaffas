@@ -2,9 +2,10 @@ package monnef.core.asm;
 
 import org.objectweb.asm.MethodVisitor;
 
-import static monnef.core.asm.ObfuscationHelper.MappedObject.C_ENTITY;
-import static monnef.core.asm.ObfuscationHelper.MappedObject.M_UPDATE_CLOAK;
-import static monnef.core.asm.ObfuscationHelper.getRealName;
+import static monnef.core.MonnefCorePlugin.Log;
+import static monnef.core.asm.MappedObject.C_ENTITY;
+import static monnef.core.asm.MappedObject.M_UPDATE_CLOAK;
+import static monnef.core.asm.ObfuscationHelper.getRealNameSlashed;
 import static org.objectweb.asm.Opcodes.*;
 
 public class InjectCloakHookAdapter extends MethodVisitor {
@@ -25,8 +26,10 @@ public class InjectCloakHookAdapter extends MethodVisitor {
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
         switch (state) {
             case LOOKING:
-                if (opcode == INVOKEVIRTUAL && getRealName(M_UPDATE_CLOAK).equals(name))
+                if (opcode == INVOKEVIRTUAL && ObfuscationHelper.namesAreEqual(name, M_UPDATE_CLOAK)) {
+                    Log.printFine("Found updateCloak method.");
                     state = State.READ_UPDATECLOAK;
+                }
                 break;
 
             case READ_UPDATECLOAK:
@@ -50,7 +53,8 @@ public class InjectCloakHookAdapter extends MethodVisitor {
                 break;
 
             case READ_UPDATECLOAK:
-                if (opcode == ALOAD && var == 1) {
+                //if (opcode == ALOAD && var == 1) {
+                if (opcode == ALOAD) {
                     insertHook = true;
                     state = State.DONE;
                 } else {
@@ -64,8 +68,11 @@ public class InjectCloakHookAdapter extends MethodVisitor {
     }
 
     private void insertHook() {
-        mv.visitMethodInsn(INVOKESTATIC, "monnef/core/CloakHookHandler", "handleUpdateCloak", "(L" + getRealName(C_ENTITY) + ";)V");
+        String signature = "(L" + getRealNameSlashed(C_ENTITY) + ";)V";
+        mv.visitMethodInsn(INVOKESTATIC, "monnef/core/CloakHookHandler", "handleUpdateCloak", signature);
         mv.visitVarInsn(ALOAD, 1);
         CoreTransformer.cloakHookApplied = true;
+        Log.printFine("Cloak hook inserted.");
     }
+
 }

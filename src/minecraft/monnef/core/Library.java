@@ -35,7 +35,7 @@ public class Library implements ILibrarySet {
 
     private void handleConfig() {
         String pathname = getActualPath() + "/" + CONFIG_DIR + "/" + Reference.ModId + ".cfg";
-        Log.printInfo("Trying to open config file: \"" + pathname + "\"");
+        Log.printFine("Opening config file: \"" + pathname + "\"");
         File config = new File(pathname);
         InputStream inputStream = null;
 
@@ -61,10 +61,10 @@ public class Library implements ILibrarySet {
                 prop.store(outputStream, null);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                Log.printInfo("Problem occurred in default config writing.");
+                Log.printWarning("Problem occurred in default config writing.");
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.printInfo("Problem occurred in default config writing.");
+                Log.printWarning("Problem occurred in default config writing.");
             }
         }
 
@@ -83,7 +83,7 @@ public class Library implements ILibrarySet {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.printInfo("Problem occurred parsing config.");
+                Log.printWarning("Problem occurred parsing config.");
             }
 
         }
@@ -98,7 +98,7 @@ public class Library implements ILibrarySet {
         }
     }
 
-    private String getMyPath() {
+    public static String getMyPath() {
         URL url = Library.class.getProtectionDomain().getCodeSource().getLocation();
         File file;
         try {
@@ -111,7 +111,7 @@ public class Library implements ILibrarySet {
         return file.getAbsolutePath();
     }
 
-    private String getActualPath() {
+    public static String getActualPath() {
         String path;
         try {
             path = new File(".").getCanonicalPath();

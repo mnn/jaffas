@@ -1,20 +1,25 @@
 package monnef.core;
 
+import cpw.mods.fml.relauncher.IFMLCallHook;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+import cpw.mods.fml.relauncher.RelaunchClassLoader;
 
 import java.util.Map;
 
 import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 
-@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE})
-public class MonnefCorePlugin implements IFMLLoadingPlugin {
+@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE, MonnefCorePlugin.CORE_NAMESPACE + ".asm"})
+public class MonnefCorePlugin implements IFMLLoadingPlugin, IFMLCallHook {
     public static final String CORE_NAMESPACE = "monnef.core.";
+    public static final String CLASS_LOADER_TAG = "classLoader";
     public static CustomLogger Log = new CustomLogger("mC");
     public static boolean debugEnv;
 
     static {
         debugEnv = System.getProperty("debugFlag") != null;
     }
+
+    public static RelaunchClassLoader classLoader;
 
     public MonnefCorePlugin() {
         CloakHookHandler.registerCloakHandler(new CustomCloaksHandler());
@@ -37,10 +42,19 @@ public class MonnefCorePlugin implements IFMLLoadingPlugin {
 
     @Override
     public String getSetupClass() {
-        return CORE_NAMESPACE + "CoreInitializer";
+        return CORE_NAMESPACE + "MonnefCorePlugin";
     }
 
     @Override
     public void injectData(Map<String, Object> data) {
+        if (data.containsKey(CLASS_LOADER_TAG)) {
+            MonnefCorePlugin.classLoader = (RelaunchClassLoader) data.get(CLASS_LOADER_TAG);
+        }
+    }
+
+    @Override
+    public Void call() throws Exception {
+        MonnefCorePlugin.Log.printInfo("monnef's Core initialized, version: " + Reference.Version);
+        return null;
     }
 }

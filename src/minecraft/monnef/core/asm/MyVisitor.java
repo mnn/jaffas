@@ -1,12 +1,13 @@
 package monnef.core.asm;
 
+import monnef.core.MonnefCorePlugin;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 
-import static monnef.core.asm.ObfuscationHelper.MappedObject.M_OBTAIN_ENTITY_SKIN;
-import static monnef.core.asm.ObfuscationHelper.getRealName;
+import static monnef.core.asm.MappedObject.M_OBTAIN_ENTITY_SKIN;
 
 public class MyVisitor extends ClassVisitor {
+
     public MyVisitor(int version, ClassVisitor nextNode) {
         super(version, nextNode);
     }
@@ -14,7 +15,8 @@ public class MyVisitor extends ClassVisitor {
     @Override
     public MethodVisitor visitMethod(int access, String name, String desc, String signature, String[] exceptions) {
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
-        if (mv != null && getRealName(M_OBTAIN_ENTITY_SKIN).equals(name)) {
+        if (mv != null && ObfuscationHelper.namesAreEqual(name, M_OBTAIN_ENTITY_SKIN)) {
+            MonnefCorePlugin.Log.printFine("Found obtainEntitySkin method.");
             mv = new InjectCloakHookAdapter(mv);
         }
 
