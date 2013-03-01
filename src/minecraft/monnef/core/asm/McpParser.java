@@ -49,10 +49,10 @@ public class McpParser {
                         if (methods.containsKey(funcName)) {
                             HashSet<String> longNames = methods.get(funcName);
                             for (String longName : longNames) {
-                                finalMethods.put(longName, shortName);
+                                finalMethods.putQuietly(longName, shortName);
                             }
                         } else {
-                            Log.printWarning(String.format("Not found counterpart of [%s] funcName.", funcName));
+                            Log.printFine(String.format("Not found counterpart of [%s] funcName.", funcName));
                         }
                     }
                 }

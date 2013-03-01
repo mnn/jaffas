@@ -1,7 +1,5 @@
 package monnef.core.asm;
 
-import monnef.core.MonnefCorePlugin;
-
 import java.io.ObjectStreamField;
 import java.io.Serializable;
 import java.util.Arrays;
@@ -9,6 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import static monnef.core.MonnefCorePlugin.Log;
 import static monnef.core.asm.ObfuscationHelper.isRunningInObfuscatedMode;
 
 public class MappingDictionary implements Serializable {
@@ -59,7 +58,15 @@ public class MappingDictionary implements Serializable {
         return set;
     }
 
+    public void putQuietly(String name, String translation) {
+        put(name, translation, true);
+    }
+
     public void put(String name, String translation) {
+        put(name, translation, false);
+    }
+
+    private void put(String name, String translation, boolean quiet) {
         HashSet<String> set;
         if (data.containsKey(name)) {
             set = data.get(name);
@@ -69,7 +76,12 @@ public class MappingDictionary implements Serializable {
         }
 
         if (set.contains(translation)) {
-            MonnefCorePlugin.Log.printWarning(String.format("Translation [%s] for [%s] already exists.", translation, name));
+            String message = String.format("Translation [%s] for [%s] already exists.", translation, name);
+            if (quiet) {
+                Log.printFine(message);
+            } else {
+                Log.printWarning(message);
+            }
         }
         set.add(translation);
     }

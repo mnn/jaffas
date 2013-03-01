@@ -45,9 +45,9 @@ public class CoreModContainer extends DummyModContainer {
     @Subscribe
     public void onStart(FMLPostInitializationEvent event) {
         if (!CoreTransformer.cloakHookApplied) {
-            Log.printSevere("Unable to install a cloak hook!");
             Log.printFine("Mapping database:");
             ObfuscationHelper.printAllDataToLog();
+            throw new RuntimeException("Unable to install a cloak hook!");
         }
 
         if (MonnefCorePlugin.debugEnv) {
