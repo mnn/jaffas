@@ -7,10 +7,6 @@ binPath=bin_data
 
 echo -n Preparing...
 
-mkdir $output &>/dev/null
-mkdir $outtmp &>/dev/null
-mkdir $core &>/dev/null
-
 od=`pwd`
 
 if [ ${#output} -lt 5 ]; then
@@ -18,9 +14,14 @@ if [ ${#output} -lt 5 ]; then
 	exit 1
 fi
 
-rm -fr "./$outtmp/*"
-rm -fr "./$output/*"
-rm -fr "./$core/*"
+rm -fr ./$outtmp/*
+rm -fr ./$output/*
+rm -fr ./$core/*
+
+mkdir $output &>/dev/null
+mkdir $outtmp &>/dev/null
+mkdir $core &>/dev/null
+
 touch "$outtmp/.placeholder"
 
 echo Done
@@ -70,6 +71,7 @@ core2="$core/monnef"
 mkdir "$core2" &>/dev/null
 cp -r reobf/minecraft/monnef/core "$core2"
 unzip -q jars/coremods/monnefCore_dummy.jar -d "$core"
+cp bin_data/jaffas_mappings.ser "$core"
 if [ $? -ne 0 ]; then
 	echo "Cannot unpack meta-inf stuff"
 	exit 3
