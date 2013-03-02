@@ -28,6 +28,7 @@ import monnef.jaffas.food.crafting.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityDuck;
+import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.server.PlayerTracker;
@@ -143,6 +144,7 @@ public class mod_jaffas_food extends mod_jaffas {
 
     private static int JaffaPaintingEntityID;
     private static int DuckEntityID;
+    private static int DuckEggEntityID;
 
     public ItemManager itemManager;
     public ModuleManager moduleManager;
@@ -244,6 +246,7 @@ public class mod_jaffas_food extends mod_jaffas {
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
             createPainting();
             DuckEntityID = idProvider.getEntityIDFromConfig("duck");
+            DuckEntityID = idProvider.getEntityIDFromConfig("duckEgg");
             registerDuck();
 
             spawnStonesEnabled = config.get(Configuration.CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
@@ -277,13 +280,13 @@ public class mod_jaffas_food extends mod_jaffas {
 
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
-        registerHandlers();
-
         createBlocks();
         items.CreateItems();
         createJaffaArmorAndSword();
         registerDuckSpawns();
         AchievementsCraftingHandler.init();
+
+        registerHandlers();
 
         Recipes.install();
         MinecraftForge.EVENT_BUS.register(new CustomDrop());
@@ -329,6 +332,7 @@ public class mod_jaffas_food extends mod_jaffas {
         EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", DuckEntityID, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
         EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", DuckEntityID, this, 160, 1, true);
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
+        EntityRegistry.registerModEntity(EntityDuckEgg.class, "duckEgg", DuckEggEntityID, this, 160, 1, true);
     }
 
     private void checkExtrabiomes() {

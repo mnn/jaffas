@@ -17,6 +17,7 @@ public class ItemJaffaBase extends Item implements IItemJaffa {
         maxStackSize = 64;
         //this.setCreativeTab(CreativeTabs.tabMaterials);
         this.setCreativeTab(mod_jaffas_food.CreativeTab);
+        textureFileIndex = 0;
     }
 
     @Override

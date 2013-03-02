@@ -623,7 +623,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(chocIceStick);
         createJaffaFood(chocIce, 4, 1f).setReturnItem(new ItemStack(getItem(chocIceStick))).setPotionEffect(Potion.moveSpeed.id, 70, 0, 0.25F);
 
-        createJaffaItem(duckEgg).setMaxStackSize(16);
+        createJaffaItemManual(duckEgg, ItemDuckEgg.class).setMaxStackSize(16);
 
         createJaffaItem(muffinRaw);
         createJaffaItem(muffinUnfinished);

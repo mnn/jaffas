@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 
-@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE, MonnefCorePlugin.CORE_NAMESPACE + ".asm"})
+@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE, MonnefCorePlugin.CORE_NAMESPACE + ".asm", MonnefCorePlugin.CORE_NAMESPACE + ".asm.cloakHook"})
 public class MonnefCorePlugin implements IFMLLoadingPlugin, IFMLCallHook {
     public static final String CORE_NAMESPACE = "monnef.core.";
     public static final String CLASS_LOADER_TAG = "classLoader";

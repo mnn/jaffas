@@ -11,8 +11,10 @@ import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.SpawnStonePacketUtils;
 import monnef.jaffas.food.entity.EntityDuck;
+import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.ItemSpawnStone;
+import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
@@ -31,6 +33,7 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(mod_jaffas_food.getItem(JaffaItem.duckEgg)));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCross.class, new TileEntityCrossRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySink.class, new TileEntitySinkRenderer());

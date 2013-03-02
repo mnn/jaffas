@@ -1,14 +1,15 @@
-package monnef.core.asm;
+package monnef.core.asm.cloakHook;
 
 import monnef.core.MonnefCorePlugin;
+import monnef.core.asm.ObfuscationHelper;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 
 import static monnef.core.asm.MappedObject.M_OBTAIN_ENTITY_SKIN;
 
-public class MyVisitor extends ClassVisitor {
+public class RenderGlobalVisitor extends ClassVisitor {
 
-    public MyVisitor(int version, ClassVisitor nextNode) {
+    public RenderGlobalVisitor(int version, ClassVisitor nextNode) {
         super(version, nextNode);
     }
 

@@ -1,5 +1,7 @@
-package monnef.core.asm;
+package monnef.core.asm.cloakHook;
 
+import monnef.core.asm.CoreTransformer;
+import monnef.core.asm.ObfuscationHelper;
 import org.objectweb.asm.MethodVisitor;
 
 import static monnef.core.MonnefCorePlugin.Log;
