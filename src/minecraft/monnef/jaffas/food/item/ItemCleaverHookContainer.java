@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
-import monnef.core.EntityHelper;
-import monnef.core.PlayerHelper;
+import monnef.core.utils.EntityHelper;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;

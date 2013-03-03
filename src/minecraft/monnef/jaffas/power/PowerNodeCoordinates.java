@@ -1,6 +1,6 @@
 package monnef.jaffas.power;
 
-import monnef.core.IntegerCoordinates;
+import monnef.core.utils.IntegerCoordinates;
 import monnef.core.api.IIntegerCoordinates;
 import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;

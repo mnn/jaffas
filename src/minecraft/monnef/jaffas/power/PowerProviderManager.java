@@ -1,6 +1,7 @@
 package monnef.jaffas.power;
 
 import com.google.common.collect.HashBiMap;
+import monnef.core.utils.MathHelper;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;
@@ -91,7 +92,7 @@ public class PowerProviderManager extends PowerNodeManager implements IPowerProv
         //TileEntity consumerTile = consumer.getPowerConsumerManager().getTile();
         //float f = MathHelper.sqrt_float(Square(getTile().xCoord - consumerTile.xCoord) + Square(getTile().yCoord - consumerTile.yCoord) + Square(getTile().zCoord - consumerTile.zCoord));
 
-        return monnef.core.MathHelper.exactDistanceInt(consumer, myCoordinates);
+        return MathHelper.exactDistanceInt(consumer, myCoordinates);
     }
 
     @Override

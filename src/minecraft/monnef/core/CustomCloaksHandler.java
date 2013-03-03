@@ -1,5 +1,6 @@
 package monnef.core;
 
+import monnef.core.utils.UrlHelper;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.lang.reflect.InvocationTargetException;

@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.core.IDProvider;
+import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.ModulesEnum;
 import net.minecraft.item.Item;
 

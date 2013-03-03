@@ -2,7 +2,7 @@ package monnef.jaffas.trees;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.PlayerHelper;
+import monnef.core.utils.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;

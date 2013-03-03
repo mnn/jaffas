@@ -2,7 +2,7 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.BitHelper;
+import monnef.core.utils.BitHelper;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.material.Material;

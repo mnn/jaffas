@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 public class TimeUtils {
     public static long getCurrentTimeInSeconds() {

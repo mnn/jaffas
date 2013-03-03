@@ -3,21 +3,19 @@ package monnef.core;
 import cpw.mods.fml.relauncher.IFMLCallHook;
 import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import cpw.mods.fml.relauncher.RelaunchClassLoader;
+import monnef.core.asm.ObfuscationHelper;
+import monnef.core.utils.CustomLogger;
 
 import java.util.Map;
 
 import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 
-@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE, MonnefCorePlugin.CORE_NAMESPACE + ".asm", MonnefCorePlugin.CORE_NAMESPACE + ".asm.cloakHook"})
+@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE + ".utils", MonnefCorePlugin.CORE_NAMESPACE + ".asm", MonnefCorePlugin.CORE_NAMESPACE + ".asm.cloakHook"})
 public class MonnefCorePlugin implements IFMLLoadingPlugin, IFMLCallHook {
-    public static final String CORE_NAMESPACE = "monnef.core.";
+    public static final String CORE_NAMESPACE = "monnef.core";
     public static final String CLASS_LOADER_TAG = "classLoader";
     public static CustomLogger Log = new CustomLogger("mC");
-    public static boolean debugEnv;
-
-    static {
-        debugEnv = System.getProperty("debugFlag") != null;
-    }
+    public static boolean debugEnv = !ObfuscationHelper.isRunningInObfuscatedMode();
 
     public static RelaunchClassLoader classLoader;
 
@@ -27,22 +25,22 @@ public class MonnefCorePlugin implements IFMLLoadingPlugin, IFMLCallHook {
 
     @Override
     public String[] getLibraryRequestClass() {
-        return new String[]{CORE_NAMESPACE + "Library"};
+        return new String[]{CORE_NAMESPACE + ".Library"};
     }
 
     @Override
     public String[] getASMTransformerClass() {
-        return new String[]{CORE_NAMESPACE + "asm.CoreTransformer"};
+        return new String[]{CORE_NAMESPACE + ".asm.CoreTransformer"};
     }
 
     @Override
     public String getModContainerClass() {
-        return CORE_NAMESPACE + "CoreModContainer";
+        return CORE_NAMESPACE + ".CoreModContainer";
     }
 
     @Override
     public String getSetupClass() {
-        return CORE_NAMESPACE + "MonnefCorePlugin";
+        return CORE_NAMESPACE + ".MonnefCorePlugin";
     }
 
     @Override

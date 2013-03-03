@@ -18,7 +18,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import extrabiomes.api.Api;
-import monnef.core.*;
+import monnef.core.utils.*;
 import monnef.jaffas.food.block.*;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;

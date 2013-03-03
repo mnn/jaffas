@@ -1,6 +1,6 @@
 package monnef.jaffas.food.common;
 
-import monnef.core.TimeUtils;
+import monnef.core.utils.TimeUtils;
 
 public class CoolDownEntry {
     private long coolDownEnd = 0;

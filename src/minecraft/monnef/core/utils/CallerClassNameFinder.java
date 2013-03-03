@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 public class CallerClassNameFinder {
     private final static MySecurityManager manager = new MySecurityManager();

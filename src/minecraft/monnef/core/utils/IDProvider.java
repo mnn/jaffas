@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import net.minecraftforge.common.ConfigCategory;

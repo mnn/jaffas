@@ -9,7 +9,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.core.IDProvider;
+import monnef.core.utils.IDProvider;
 import monnef.jaffas.carts.client.JaffaCreativeTab;
 import monnef.jaffas.carts.entity.EntityLocomotive;
 import monnef.jaffas.carts.item.ItemLocomotive;

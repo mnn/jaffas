@@ -22,7 +22,6 @@ public class ItemJaffaTool extends ItemJaffaBase implements IItemTool {
 
     private void initialize() {
         setMaxStackSize(1);
-        this.setCreativeTab(CreativeTabs.tabTools);
         this.setCreativeTab(mod_jaffas_food.CreativeTab);
     }
 

@@ -8,6 +8,7 @@ import static monnef.core.MonnefCorePlugin.Log;
 import static monnef.core.asm.MappedObject.C_ENTITY;
 import static monnef.core.asm.MappedObject.M_UPDATE_CLOAK;
 import static monnef.core.asm.ObfuscationHelper.getRealNameSlashed;
+import static monnef.core.asm.cloakHook.InjectCloakHookAdapter.State.*;
 import static org.objectweb.asm.Opcodes.*;
 
 public class InjectCloakHookAdapter extends MethodVisitor {
@@ -21,7 +22,7 @@ public class InjectCloakHookAdapter extends MethodVisitor {
 
     public InjectCloakHookAdapter(MethodVisitor visitor) {
         super(ASM4, visitor);
-        state = State.LOOKING;
+        state = LOOKING;
     }
 
     @Override
@@ -30,12 +31,12 @@ public class InjectCloakHookAdapter extends MethodVisitor {
             case LOOKING:
                 if (opcode == INVOKEVIRTUAL && ObfuscationHelper.namesAreEqual(name, M_UPDATE_CLOAK)) {
                     Log.printFine("Found updateCloak method.");
-                    state = State.READ_UPDATECLOAK;
+                    state = READ_UPDATECLOAK;
                 }
                 break;
 
             case READ_UPDATECLOAK:
-                state = State.LOOKING;
+                state = LOOKING;
                 break;
 
             case DONE:
@@ -58,9 +59,9 @@ public class InjectCloakHookAdapter extends MethodVisitor {
                 //if (opcode == ALOAD && var == 1) {
                 if (opcode == ALOAD) {
                     insertHook = true;
-                    state = State.DONE;
+                    state = DONE;
                 } else {
-                    state = State.LOOKING;
+                    state = LOOKING;
                 }
                 break;
         }

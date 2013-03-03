@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 public class BitHelper {
     public static boolean isBitSet(int a, int bitNumber) {

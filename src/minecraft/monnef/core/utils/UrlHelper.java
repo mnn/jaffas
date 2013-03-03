@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;

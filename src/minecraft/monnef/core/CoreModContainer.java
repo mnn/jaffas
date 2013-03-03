@@ -50,6 +50,10 @@ public class CoreModContainer extends DummyModContainer {
             throw new RuntimeException("Unable to install a cloak hook!");
         }
 
+        if (!CoreTransformer.lightningHookApplied) {
+            throw new RuntimeException("Unable to install a lightning hook!");
+        }
+
         if (MonnefCorePlugin.debugEnv) {
             ObfuscationHelper.dumpUsedItemsToConfig();
         }

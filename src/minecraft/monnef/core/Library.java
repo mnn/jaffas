@@ -1,10 +1,9 @@
 package monnef.core;
 
 import cpw.mods.fml.relauncher.ILibrarySet;
+import monnef.core.utils.PathHelper;
 
 import java.io.*;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
@@ -34,7 +33,7 @@ public class Library implements ILibrarySet {
     }
 
     private void handleConfig() {
-        String pathname = getActualPath() + "/" + CONFIG_DIR + "/" + Reference.ModId + ".cfg";
+        String pathname = PathHelper.getActualPath() + "/" + CONFIG_DIR + "/" + Reference.ModId + ".cfg";
         Log.printFine("Opening config file: \"" + pathname + "\"");
         File config = new File(pathname);
         InputStream inputStream = null;
@@ -96,31 +95,6 @@ public class Library implements ILibrarySet {
         } else {
             Log.printWarning("Not found library named \"" + name + "\", skipping.");
         }
-    }
-
-    public static String getMyPath() {
-        URL url = Library.class.getProtectionDomain().getCodeSource().getLocation();
-        File file;
-        try {
-            file = new File(url.toURI());
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            throw new RuntimeException("cannot detect my path");
-        }
-
-        return file.getAbsolutePath();
-    }
-
-    public static String getActualPath() {
-        String path;
-        try {
-            path = new File(".").getCanonicalPath();
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException("cannot detect current path");
-        }
-
-        return path;
     }
 
     @Override

@@ -4,7 +4,7 @@ import monnef.jaffas.power.api.*;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
 
-import static monnef.core.TileEntityHelper.getFormattedCoordinates;
+import static monnef.core.utils.TileEntityHelper.getFormattedCoordinates;
 import static monnef.jaffas.power.utils.StringPowerFormatter.getConnectionInfo;
 import static monnef.jaffas.power.utils.StringPowerFormatter.formatEnergyInfo;
 

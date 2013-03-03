@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 import com.google.common.base.Optional;
 import cpw.mods.fml.common.registry.EntityRegistry;

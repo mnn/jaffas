@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;

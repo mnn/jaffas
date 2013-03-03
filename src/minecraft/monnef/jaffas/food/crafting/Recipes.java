@@ -1,7 +1,7 @@
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import monnef.core.DyeColor;
+import monnef.core.utils.DyeColor;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemManager;
@@ -16,7 +16,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import static monnef.core.DyeHelper.getDye;
+import static monnef.core.utils.DyeHelper.getDye;
 import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
 import static monnef.jaffas.food.mod_jaffas_food.*;

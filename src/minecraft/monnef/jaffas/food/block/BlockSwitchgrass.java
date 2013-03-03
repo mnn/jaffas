@@ -1,6 +1,6 @@
 package monnef.jaffas.food.block;
 
-import monnef.core.BitHelper;
+import monnef.core.utils.BitHelper;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;

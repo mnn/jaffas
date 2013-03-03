@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCloth;

@@ -1,6 +1,6 @@
 package monnef.jaffas.food.client;
 
-import monnef.core.MathHelper;
+import monnef.core.utils.MathHelper;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.CoolDownType;
 import monnef.jaffas.food.common.SpawnStonePacketUtils;

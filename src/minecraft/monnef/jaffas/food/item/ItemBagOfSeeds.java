@@ -1,6 +1,8 @@
 package monnef.jaffas.food.item;
 
-import monnef.core.PlayerHelper;
+import monnef.core.utils.PlayerHelper;
+import monnef.jaffas.food.common.ModuleManager;
+import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,29 +28,13 @@ public class ItemBagOfSeeds extends Item {
         return mod_jaffas_food.textureFile[0];
     }
 
-    /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-     */
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-        //par3EntityPlayer.inventory.addItemStackToInventory(content.copy());
-
         if (!par2World.isRemote) {
 
             for (int i = 0; i < 7; i++) {
                 if (rand.nextInt(10) < 8) {
                     ItemStack seed;
-                    if (rand.nextInt(2) == 0) {
-                        seed = new ItemStack(Item.seeds);
-                    } else {
-                        // choosing from our seeds (tree, bush)
-                        if (rand.nextBoolean()) {
-                            int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
-                            seed = mod_jaffas_trees.getTreeSeeds(type);
-                        } else {
-                            int type = rand.nextInt(mod_jaffas_trees.BushesList.size());
-                            seed = new ItemStack(mod_jaffas_trees.BushesList.get(mod_jaffas_trees.bushType.values()[type]).itemSeeds);
-                        }
-                    }
+                    seed = getRandomSeed();
 
                     PlayerHelper.giveItemToPlayer(par3EntityPlayer, seed);
                 }
@@ -59,5 +45,25 @@ public class ItemBagOfSeeds extends Item {
         return par1ItemStack;
     }
 
+    public static ItemStack getRandomSeed() {
+        ItemStack seed;
+        if (rand.nextInt(2) == 0 || !ModuleManager.IsModuleEnabled(ModulesEnum.trees)) {
+            seed = new ItemStack(Item.seeds);
+        } else {
+            seed = getRandomJaffaSeed();
+        }
+        return seed;
+    }
 
+    public static ItemStack getRandomJaffaSeed() {
+        ItemStack seed;// choosing from our seeds (tree, bush)
+        if (rand.nextBoolean()) {
+            int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
+            seed = mod_jaffas_trees.getTreeSeeds(type);
+        } else {
+            int type = rand.nextInt(mod_jaffas_trees.BushesList.size());
+            seed = new ItemStack(mod_jaffas_trees.BushesList.get(mod_jaffas_trees.bushType.values()[type]).itemSeeds);
+        }
+        return seed;
+    }
 }

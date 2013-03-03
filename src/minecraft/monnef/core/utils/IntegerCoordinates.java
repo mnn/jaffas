@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 import monnef.core.api.IIntegerCoordinates;
 import net.minecraft.nbt.NBTTagCompound;

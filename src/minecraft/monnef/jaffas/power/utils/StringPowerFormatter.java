@@ -1,7 +1,7 @@
 package monnef.jaffas.power.utils;
 
 import com.google.common.base.Joiner;
-import monnef.core.TileEntityHelper;
+import monnef.core.utils.TileEntityHelper;
 import monnef.jaffas.power.api.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;

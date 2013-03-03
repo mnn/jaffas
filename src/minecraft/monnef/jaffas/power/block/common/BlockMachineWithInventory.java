@@ -1,6 +1,6 @@
 package monnef.jaffas.power.block.common;
 
-import monnef.core.InventoryUtils;
+import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

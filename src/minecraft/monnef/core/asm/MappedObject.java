@@ -7,7 +7,11 @@ public enum MappedObject {
     C_ENTITY("net.minecraft.entity.Entity", CLASS),
     M_UPDATE_CLOAK("updateCloak", METHOD),
     M_OBTAIN_ENTITY_SKIN("obtainEntitySkin", METHOD),
-    C_RENDER_GLOBAL("net.minecraft.client.renderer.RenderGlobal", CLASS);
+    C_RENDER_GLOBAL("net.minecraft.client.renderer.RenderGlobal", CLASS),
+    C_WORLD_SERVER("net.minecraft.world.WorldServer", CLASS),
+    M_TICK_BLOCKS_AND_AMBIANCE("tickBlocksAndAmbiance", METHOD),
+    M_CAN_LIGHTNING_STRIKE_AT("canLightningStrikeAt", METHOD),
+    C_WORLD("net.minecraft.world.World", CLASS);
 
     private final String fullName;
     private final MappedObjectType type;

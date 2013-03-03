@@ -10,8 +10,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.core.IDProvider;
-import monnef.core.RegistryUtils;
+import monnef.core.utils.IDProvider;
+import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -128,6 +128,7 @@ public class mod_jaffas_power extends mod_jaffas {
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
+        MinecraftForge.EVENT_BUS.register(new PowerEventHandler());
 
         mod_jaffas_food.PrintInitialized(ModulesEnum.power);
     }

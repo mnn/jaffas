@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-import static monnef.core.MathHelper.degToRad;
+import static monnef.core.utils.MathHelper.degToRad;
 
 public class EntityLocomotive extends EntityMinecart {
     public static final String REVERSE_TAG_NAME = "isInReverse";

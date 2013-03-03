@@ -1,7 +1,6 @@
 package monnef.core.asm;
 
-import monnef.core.Library;
-import monnef.core.MonnefCorePlugin;
+import monnef.core.utils.PathHelper;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -13,13 +12,12 @@ import static monnef.core.MonnefCorePlugin.Log;
 
 public class ObfuscationHelper {
     public static final String JAFFAS_MAPPINGS_CFG = "jaffas_mappings.ser";
-    private static boolean runningInObfuscatedMode = !MonnefCorePlugin.debugEnv;
+    private static boolean runningInObfuscatedMode = System.getProperty("debugFlag") == null;
 
     private static HashMap<MappedObjectType, MappingDictionary> database;
     private static HashMap<MappedObjectType, HashSet<MappedObject>> usedFlags;
 
     private static boolean initialized = false;
-    public static ClassLoader cl;
 
     static {
         database = new HashMap<MappedObjectType, MappingDictionary>();
@@ -60,7 +58,7 @@ public class ObfuscationHelper {
         if (runningInObfuscatedMode) {
             loadConfigFromJar();
         } else {
-            McpParser.parse(database, Library.getActualPath() + "/../conf/");
+            McpParser.parse(database, PathHelper.getActualPath() + "/../conf/");
             Log.printInfo("After MCP parser we have " + formatDatabaseStats(database) + ".");
         }
 
@@ -68,7 +66,7 @@ public class ObfuscationHelper {
     }
 
     private static void loadConfigFromJar() {
-        String myJar = Library.getMyPath();
+        String myJar = PathHelper.getMyPath();
         URL url;
         InputStream inputStream = null;
         try {
@@ -112,7 +110,7 @@ public class ObfuscationHelper {
     }
 
     public static void dumpUsedItemsToConfig() {
-        String path = Library.getActualPath() + "/../bin_data/" + JAFFAS_MAPPINGS_CFG;
+        String path = PathHelper.getActualPath() + "/../bin_data/" + JAFFAS_MAPPINGS_CFG;
         try {
             OutputStream output = new FileOutputStream(path);
             HashMap<MappedObjectType, MappingDictionary> usedOnlyDatabase = constructOnlyUsed(database, usedFlags);

@@ -1,4 +1,4 @@
-package monnef.core;
+package monnef.core.utils;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;

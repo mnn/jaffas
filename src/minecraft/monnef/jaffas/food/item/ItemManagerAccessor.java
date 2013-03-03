@@ -1,6 +1,6 @@
 package monnef.jaffas.food.item;
 
-import monnef.core.IDProvider;
+import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.ModulesEnum;
 import net.minecraft.item.Item;
 
