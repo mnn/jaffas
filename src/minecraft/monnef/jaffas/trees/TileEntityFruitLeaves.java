@@ -2,6 +2,8 @@ package monnef.jaffas.trees;
 
 import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.item.ItemFromFruitResult;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

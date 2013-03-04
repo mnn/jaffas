@@ -1,5 +1,9 @@
 package monnef.jaffas.trees;
 
+import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.block.BlockFruitSapling;
+import monnef.jaffas.trees.item.ItemFruitSeeds;
+
 public class LeavesInfo {
     public BlockFruitLeaves leavesBlock;
     public BlockFruitSapling saplingBlock;

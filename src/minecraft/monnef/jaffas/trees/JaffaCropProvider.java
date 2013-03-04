@@ -2,6 +2,8 @@ package monnef.jaffas.trees;
 
 import forestry.api.cultivation.ICropEntity;
 import forestry.api.cultivation.ICropProvider;
+import monnef.jaffas.trees.block.BlockJaffaCrops;
+import monnef.jaffas.trees.item.ItemJaffaSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;

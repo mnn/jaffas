@@ -1,8 +1,9 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.common;
 
+import monnef.jaffas.trees.block.BlockFruitLeaves;
 import net.minecraft.world.World;
 
-public class CommonProxyTutorial {
+public class CommonProxy {
     public void registerRenderThings() {
     }
 

@@ -1,7 +1,9 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.trees.WorldGenFruitTrees;
+import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,7 +36,7 @@ public class BlockFruitSapling extends BlockFlower {
         return true;
     }
 
-    protected BlockFruitSapling(int blockId, int blockIndexInTexture) {
+    public BlockFruitSapling(int blockId, int blockIndexInTexture) {
         super(blockId, blockIndexInTexture);
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);

@@ -1,5 +1,6 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.block;
 
+import monnef.jaffas.trees.TileEntityFruitCollector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

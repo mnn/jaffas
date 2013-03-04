@@ -1,6 +1,7 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.item;
 
 import monnef.jaffas.food.item.ItemJaffaFood;
+import monnef.jaffas.trees.mod_jaffas_trees;
 
 public class ItemJaffaBerryEatable extends ItemJaffaFood {
     public ItemJaffaBerryEatable(int id) {

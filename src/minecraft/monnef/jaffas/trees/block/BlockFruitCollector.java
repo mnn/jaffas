@@ -1,6 +1,8 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.block;
 
 import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.trees.TileEntityFruitCollector;
+import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,8 +18,7 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockFruitCollector extends BlockContainer {
-
-    protected BlockFruitCollector(int id) {
+    public BlockFruitCollector(int id) {
         super(id, Material.rock);
         setHardness(2.0F);
         setResistance(5.0F);

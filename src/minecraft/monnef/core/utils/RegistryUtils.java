@@ -30,9 +30,10 @@ public class RegistryUtils {
         }
     }
 
-    public static void registerItem(Item item, String name, String title) {
+    public static <T extends Item> T registerItem(T item, String name, String title) {
         item.setItemName(name);
         GameRegistry.registerItem(item, item.getItemName());
         LanguageRegistry.addName(item, title);
+        return item;
     }
 }

@@ -1,7 +1,9 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.trees.TileEntityJaffaCrops;
+import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,7 +26,7 @@ public class BlockJaffaCrops extends BlockFlower {
     // 6 - Crops
     private int renderer;
 
-    protected BlockJaffaCrops(int blockID, int textureIndex, int phasesMax, Item product, Item seeds, int renderer) {
+    public BlockJaffaCrops(int blockID, int textureIndex, int phasesMax, Item product, Item seeds, int renderer) {
         super(blockID, textureIndex);
         this.blockIndexInTexture = textureIndex;
         this.setTickRandomly(true);

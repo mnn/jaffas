@@ -1,5 +1,7 @@
 package monnef.jaffas.trees;
 
+import monnef.jaffas.trees.block.BlockJaffaCrops;
+import monnef.jaffas.trees.item.ItemJaffaSeeds;
 import net.minecraft.item.Item;
 
 public class BushInfo {

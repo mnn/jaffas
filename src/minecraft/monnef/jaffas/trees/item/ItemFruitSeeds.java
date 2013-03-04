@@ -1,7 +1,8 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -17,16 +18,10 @@ public class ItemFruitSeeds extends ItemBlockEx {
         super(itemID, blockID);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
-        this.setCreativeTab(CreativeTabs.tabDecorations);
-        setCreativeTab(mod_jaffas_trees.CreativeTab);
         this.setIconIndex(textureOffset);
         this.isDefaultTexture = true;
         this.texture = textureOffset;
         this.subCount = subCount;
-    }
-
-    public String getTextureFile() {
-        return "/jaffas_02.png";
     }
 
     /**

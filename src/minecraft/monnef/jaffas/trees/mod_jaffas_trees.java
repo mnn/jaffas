@@ -24,6 +24,15 @@ import monnef.jaffas.food.item.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.mod_jaffas;
+import monnef.jaffas.trees.block.BlockFruitCollector;
+import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.block.BlockFruitSapling;
+import monnef.jaffas.trees.block.BlockJaffaCrops;
+import monnef.jaffas.trees.client.GuiHandlerTrees;
+import monnef.jaffas.trees.client.JaffaCreativeTab;
+import monnef.jaffas.trees.client.PacketHandler;
+import monnef.jaffas.trees.common.CommonProxy;
+import monnef.jaffas.trees.item.*;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -139,13 +148,16 @@ public class mod_jaffas_trees extends mod_jaffas {
     public static ItemJaffaTreeDebugTool itemDebug;
 
     private int itemStickID;
-    public static ItemJaffaT itemStick;
+    public static ItemTrees itemStick;
     private int itemRodID;
-    public static ItemJaffaT itemRod;
+    public static ItemTrees itemRod;
     private int itemFruitPickerID;
-    public static ItemJaffaT itemFruitPicker;
+    public static ItemTrees itemFruitPicker;
     private int itemFruitPickerHeadID;
-    public static ItemJaffaT itemFruitPickerHead;
+    public static ItemTrees itemFruitPickerHead;
+
+    private int itemUnknownSeedsID;
+    public static ItemTrees itemUnknownSeeds;
 
     public static enum bushType {
         Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato, Mustard, Peanuts, Pea, Bean
@@ -161,8 +173,8 @@ public class mod_jaffas_trees extends mod_jaffas {
 
     private static IDProvider idProvider = new IDProvider(3500, 25244);
 
-    @SidedProxy(clientSide = "monnef.jaffas.trees.ClientProxyTutorial", serverSide = "monnef.jaffas.trees.CommonProxyTutorial")
-    public static CommonProxyTutorial proxy;
+    @SidedProxy(clientSide = "monnef.jaffas.trees.client.ClientProxy", serverSide = "monnef.jaffas.trees.common.CommonProxy")
+    public static CommonProxy proxy;
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -204,6 +216,7 @@ public class mod_jaffas_trees extends mod_jaffas {
             itemRodID = idProvider.getItemIDFromConfig("rod");
             itemFruitPickerID = idProvider.getItemIDFromConfig("fruit picker");
             itemFruitPickerHeadID = idProvider.getItemIDFromConfig("fruit picker head");
+            itemUnknownSeedsID = idProvider.getItemIDFromConfig("unknownSeeds");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", false).getBoolean(false);
@@ -333,21 +346,24 @@ public class mod_jaffas_trees extends mod_jaffas {
         itemDebug.setMaxStackSize(1).setItemName("jaffaTreeDebug").setIconCoord(13, 0);
         LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
 
-        itemStick = new ItemJaffaT(itemStickID);
+        itemStick = new ItemTrees(itemStickID);
         itemStick.setItemName("stickImpregnated").setIconCoord(0, 10);
         LanguageRegistry.addName(itemStick, "Impregnated Stick");
 
-        itemRod = new ItemJaffaT(itemRodID);
+        itemRod = new ItemTrees(itemRodID);
         itemRod.setItemName("rod").setIconCoord(1, 10).setMaxStackSize(1).setMaxDamage(64);
         LanguageRegistry.addName(itemRod, "Reinforced Rod");
 
-        itemFruitPickerHead = new ItemJaffaT(itemFruitPickerHeadID);
+        itemFruitPickerHead = new ItemTrees(itemFruitPickerHeadID);
         itemFruitPickerHead.setItemName("fruitPickerHead").setIconCoord(2, 10);
         LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
 
-        itemFruitPicker = new ItemJaffaT(itemFruitPickerID);
+        itemFruitPicker = new ItemTrees(itemFruitPickerID);
         itemFruitPicker.setItemName("fruitPicker").setIconCoord(3, 10).setMaxStackSize(1).setMaxDamage(256);
         LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
+
+        itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
+        RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds").setIconIndex(34);
 
         installRecipes();
 

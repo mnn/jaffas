@@ -1,4 +1,4 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.client;
 
 
 import cpw.mods.fml.relauncher.Side;

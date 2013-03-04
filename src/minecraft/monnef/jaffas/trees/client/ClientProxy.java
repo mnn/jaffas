@@ -1,11 +1,13 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.client;
 
+import monnef.jaffas.trees.common.CommonProxy;
+import monnef.jaffas.trees.block.BlockFruitLeaves;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 
-public class ClientProxyTutorial extends CommonProxyTutorial {
+public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
         MinecraftForgeClient.preloadTexture("/jaffas_02.png");

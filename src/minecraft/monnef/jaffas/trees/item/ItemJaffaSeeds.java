@@ -1,22 +1,21 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.IPlantable;
 
-public class ItemJaffaSeeds extends ItemSeeds {
+public class ItemJaffaSeeds extends ItemTrees implements IPlantable {
+    private int blockType;
+    private int soilBlockID;
+
     public ItemJaffaSeeds(int id, int blockId, int soilBlockId) {
-        super(id, blockId, soilBlockId);
-        this.setCreativeTab(CreativeTabs.tabMaterials);
-        setCreativeTab(mod_jaffas_trees.CreativeTab);
-    }
-
-    public String getTextureFile() {
-        return "/jaffas_02.png";
+        super(id);
+        this.blockType = blockId;
+        this.soilBlockID = soilBlockId;
     }
 
     @Override
@@ -37,5 +36,20 @@ public class ItemJaffaSeeds extends ItemSeeds {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public EnumPlantType getPlantType(World world, int x, int y, int z) {
+        return EnumPlantType.Crop;
+    }
+
+    @Override
+    public int getPlantID(World world, int x, int y, int z) {
+        return blockType;
+    }
+
+    @Override
+    public int getPlantMetadata(World world, int x, int y, int z) {
+        return 0;
     }
 }

@@ -1,9 +1,11 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.client;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
+import monnef.jaffas.trees.TileEntityFruitCollector;
+import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
