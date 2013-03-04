@@ -20,7 +20,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public abstract class BlockMachine extends Block {
+public abstract class BlockMachine extends BlockPower {
     private boolean customRenderer;
     protected WrenchAction onWrench = WrenchAction.DROP;
     protected int renderID;
@@ -30,15 +30,9 @@ public abstract class BlockMachine extends Block {
     public BlockMachine(int par1, int par2, Material par3Material, boolean customRenderer) {
         super(par1, par2, par3Material);
         this.customRenderer = customRenderer;
-        setCreativeTab(mod_jaffas_power.CreativeTab);
         if (useOwnRenderId()) {
             renderID = RenderingRegistry.getNextAvailableRenderId();
         }
-    }
-
-    @Override
-    public String getTextureFile() {
-        return mod_jaffas_power.textureFile;
     }
 
     public abstract TileEntity createTileEntity(World world, int meta);

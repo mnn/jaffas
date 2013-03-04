@@ -1,7 +1,7 @@
 package monnef.jaffas.power;
 
-import monnef.core.utils.IntegerCoordinates;
 import monnef.core.api.IIntegerCoordinates;
+import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;
 import monnef.jaffas.power.api.IPowerNodeManager;
@@ -16,8 +16,8 @@ public class PowerNodeCoordinates extends IntegerCoordinates implements IPowerNo
         super(x, y, z, world);
     }
 
-    public PowerNodeCoordinates(World world, NBTTagCompound tag, String compoundTagName) {
-        super(world, tag, compoundTagName);
+    public PowerNodeCoordinates(NBTTagCompound tag, String compoundTagName) {
+        super(tag, compoundTagName);
     }
 
     public PowerNodeCoordinates(TileEntity tile) {

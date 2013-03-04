@@ -1,6 +1,8 @@
-package monnef.core.asm;
+package monnef.core.asm.lightningHook;
 
 import monnef.core.MonnefCorePlugin;
+import monnef.core.asm.MappedObject;
+import monnef.core.asm.ObfuscationHelper;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.MethodVisitor;

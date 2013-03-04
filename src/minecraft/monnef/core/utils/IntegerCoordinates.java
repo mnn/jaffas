@@ -1,9 +1,13 @@
 package monnef.core.utils;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import monnef.core.api.IIntegerCoordinates;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import static monnef.core.utils.MathHelper.square;
+import static net.minecraft.util.MathHelper.sqrt_float;
 
 public class IntegerCoordinates implements IIntegerCoordinates {
     // do not ever change after construction!
@@ -12,11 +16,11 @@ public class IntegerCoordinates implements IIntegerCoordinates {
     protected int z;
 
     protected String compoundTagName;
-    private World world;
+    private int dimension;
     private boolean locked = false;
 
     public IntegerCoordinates(TileEntity tile) {
-        this.world = tile.worldObj;
+        setWorld(tile.worldObj);
         x = tile.xCoord;
         y = tile.yCoord;
         z = tile.zCoord;
@@ -25,7 +29,7 @@ public class IntegerCoordinates implements IIntegerCoordinates {
     }
 
     public IntegerCoordinates(int x, int y, int z, World world) {
-        this.world = world;
+        setWorld(world);
         this.x = x;
         this.y = y;
         this.z = z;
@@ -33,8 +37,7 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         postInit();
     }
 
-    public IntegerCoordinates(World world, NBTTagCompound tag, String compoundTagName) {
-        this.world = world;
+    public IntegerCoordinates(NBTTagCompound tag, String compoundTagName) {
         this.compoundTagName = compoundTagName;
         loadFrom(tag, compoundTagName);
 
@@ -47,21 +50,20 @@ public class IntegerCoordinates implements IIntegerCoordinates {
 
     @Override
     public TileEntity getTile() {
-        return world.getBlockTileEntity(x, y, z);
+        return getWorld().getBlockTileEntity(x, y, z);
     }
 
     @Override
     public World getWorld() {
-        return this.world;
+        return FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(dimension);
     }
 
-    @Override
-    public void setWorld(World world) {
-        if (world != null) {
-            System.err.println("world cannot be changed");
+    private void setWorld(World world) {
+        if (world == null) {
+            throw new NullPointerException("world");
         }
 
-        this.world = world;
+        this.dimension = world.provider.dimensionId;
     }
 
     @Override
@@ -85,6 +87,7 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         save.setInteger("x", getX());
         save.setInteger("y", getY());
         save.setInteger("z", getZ());
+        save.setInteger("dim", getWorld().provider.dimensionId);
         tag.setCompoundTag(tagName, save);
     }
 
@@ -98,6 +101,7 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         x = save.getInteger("x");
         y = save.getInteger("y");
         z = save.getInteger("z");
+        dimension = save.getInteger("dim");
     }
 
     @Override
@@ -110,6 +114,7 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         if (x != that.x) return false;
         if (y != that.y) return false;
         if (z != that.z) return false;
+        if (dimension != that.dimension) return false;
 
         return true;
     }
@@ -119,6 +124,15 @@ public class IntegerCoordinates implements IIntegerCoordinates {
         int result = x;
         result = 31 * result + y;
         result = 31 * result + z;
+        result = 31 * result + dimension;
         return result;
+    }
+
+    public float computeDistance(IIntegerCoordinates other) {
+        return sqrt_float(computeDistanceSquare(other));
+    }
+
+    public float computeDistanceSquare(IIntegerCoordinates other) {
+        return square(getX() - other.getX()) + square(getY() - other.getY()) + square(getZ() - other.getZ());
     }
 }

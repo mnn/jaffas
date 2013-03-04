@@ -1,10 +1,12 @@
-package monnef.core.asm;
+package monnef.core.asm.lightningHook;
 
+import monnef.core.asm.CoreTransformer;
+import monnef.core.asm.ObfuscationHelper;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 
 import static monnef.core.MonnefCorePlugin.Log;
-import static monnef.core.asm.InjectLightningEventAdapter.State.*;
+import static monnef.core.asm.lightningHook.InjectLightningEventAdapter.State.*;
 import static monnef.core.asm.MappedObject.C_WORLD;
 import static monnef.core.asm.MappedObject.M_CAN_LIGHTNING_STRIKE_AT;
 import static org.objectweb.asm.Opcodes.*;

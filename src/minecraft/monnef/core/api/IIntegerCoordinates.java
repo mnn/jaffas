@@ -18,6 +18,4 @@ public interface IIntegerCoordinates {
     void saveTo(NBTTagCompound tag, String tagName);
 
     void loadFrom(NBTTagCompound tag, String tagName);
-
-    void setWorld(World world);
 }

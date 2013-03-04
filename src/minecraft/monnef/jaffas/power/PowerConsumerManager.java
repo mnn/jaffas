@@ -106,7 +106,7 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
         if (!initialized) return;
 
         if (firstTick) {
-            if (plannedProvider != null) plannedProvider.setWorld(myTile.worldObj);
+            //if (plannedProvider != null) plannedProvider.setWorld(myTile.worldObj); // not needed because of nbt-reader gets world on its own
             makePlannedConnection(false);
             firstTick = false;
         }
@@ -143,7 +143,7 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
         if (tag.hasKey(PROVIDER_TAG_NAME)) {
-            plannedProvider = new PowerNodeCoordinates(myTile != null ? myTile.worldObj : null, tag, PROVIDER_TAG_NAME);
+            plannedProvider = new PowerNodeCoordinates(tag, PROVIDER_TAG_NAME);
         } else {
             plannedProvider = null;
         }

@@ -18,10 +18,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.mod_jaffas;
-import monnef.jaffas.power.block.BlockAntenna;
-import monnef.jaffas.power.block.BlockGenerator;
-import monnef.jaffas.power.block.TileEntityAntenna;
-import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.block.*;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
@@ -68,6 +65,10 @@ public class mod_jaffas_power extends mod_jaffas {
     private int ItemLinkToolID;
     public static ItemLinkTool linkTool;
 
+    private int blockLightningConductorID;
+    public static BlockLightningConductor lightningConductor;
+    public static int lightningConductorRadius = 30;
+
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
 
@@ -85,6 +86,7 @@ public class mod_jaffas_power extends mod_jaffas {
 
             blockGeneratorID = idProvider.getBlockIDFromConfig("generator");
             blockAntennaID = idProvider.getBlockIDFromConfig("antenna");
+            blockLightningConductorID = idProvider.getBlockIDFromConfig("lightningConductor");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -128,7 +130,7 @@ public class mod_jaffas_power extends mod_jaffas {
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
-        MinecraftForge.EVENT_BUS.register(new PowerEventHandler());
+        MinecraftForge.EVENT_BUS.register(new LightingHandler());
 
         mod_jaffas_food.PrintInitialized(ModulesEnum.power);
     }
@@ -148,6 +150,9 @@ public class mod_jaffas_power extends mod_jaffas {
 
         linkTool = new ItemLinkTool(ItemLinkToolID, 0);
         RegistryUtils.registerItem(linkTool, "itemLinkTool", "Link Gun");
+
+        lightningConductor = new BlockLightningConductor(blockLightningConductorID, 0);
+        RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
     }
 
     private void installRecipes() {
