@@ -8,6 +8,7 @@ import net.minecraft.world.World;
 
 public class PlayerHelper {
     public static void damageCurrentItem(EntityPlayer player) {
+        if (player.worldObj.isRemote) return;
         ItemStack handItem = player.getCurrentEquippedItem();
         if (handItem == null) return;
         handItem.damageItem(1, player);

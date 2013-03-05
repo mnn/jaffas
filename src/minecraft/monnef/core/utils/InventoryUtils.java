@@ -1,6 +1,7 @@
 package monnef.core.utils;
 
 
+import monnef.core.ItemStackInInventory;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -44,5 +45,21 @@ public class InventoryUtils {
                 item.stackSize = 0;
             }
         }
+    }
+
+    public static ItemStackInInventory findFirstMatchingItem(IInventory inventory, ItemStack needle) {
+        int index = -1;
+        for (int i = 0; i < inventory.getSizeInventory(); i++) {
+            ItemStack curr = inventory.getStackInSlot(i);
+            if (curr != null) {
+                if (needle.isItemEqual(curr)) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+        if (index == -1) return null;
+
+        return new ItemStackInInventory(inventory, index);
     }
 }

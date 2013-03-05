@@ -442,7 +442,8 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(sprinkles);
         createJaffaItem(bagOfSeeds);
         //createJaffaItem(JaffaItem.bagOfSeedsIdentified);
-        createJaffaItem(magnifier);
+        //createJaffaItem(magnifier);
+        createJaffaItemManual(magnifier, ItemMagnifier.class);
 
         createJaffaFood(jaffaP, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
         createJaffaFood(jaffaV, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);

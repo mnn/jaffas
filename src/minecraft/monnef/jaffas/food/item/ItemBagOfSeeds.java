@@ -1,10 +1,8 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.food.common.ModuleManager;
-import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.common.SeedsHelper;
 import monnef.jaffas.food.mod_jaffas_food;
-import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -34,7 +32,7 @@ public class ItemBagOfSeeds extends Item {
             for (int i = 0; i < 7; i++) {
                 if (rand.nextInt(10) < 8) {
                     ItemStack seed;
-                    seed = getRandomSeed();
+                    seed = SeedsHelper.getRandomSeed();
 
                     PlayerHelper.giveItemToPlayer(par3EntityPlayer, seed);
                 }
@@ -43,27 +41,5 @@ public class ItemBagOfSeeds extends Item {
 
         par1ItemStack.stackSize--;
         return par1ItemStack;
-    }
-
-    public static ItemStack getRandomSeed() {
-        ItemStack seed;
-        if (rand.nextInt(2) == 0 || !ModuleManager.IsModuleEnabled(ModulesEnum.trees)) {
-            seed = new ItemStack(Item.seeds);
-        } else {
-            seed = getRandomJaffaSeed();
-        }
-        return seed;
-    }
-
-    public static ItemStack getRandomJaffaSeed() {
-        ItemStack seed;// choosing from our seeds (tree, bush)
-        if (rand.nextBoolean()) {
-            int type = rand.nextInt(mod_jaffas_trees.leavesTypesCount) + 1;
-            seed = mod_jaffas_trees.getTreeSeeds(type);
-        } else {
-            int type = rand.nextInt(mod_jaffas_trees.BushesList.size());
-            seed = new ItemStack(mod_jaffas_trees.BushesList.get(mod_jaffas_trees.bushType.values()[type]).itemSeeds);
-        }
-        return seed;
     }
 }

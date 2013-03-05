@@ -73,7 +73,8 @@ public class mod_jaffas_trees extends mod_jaffas {
 
     public static BlockFruitCollector blockFruitCollector;
     public static int blockFruitCollectorID;
-    private static final int SEEDS_WEIGHT = 1;
+    private static final int SEEDS_WEIGHT = 20;
+    public static ArrayList<ItemStack> seedsList = new ArrayList<ItemStack>();
 
     public static fruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
@@ -220,7 +221,6 @@ public class mod_jaffas_trees extends mod_jaffas {
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", false).getBoolean(false);
-
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
         } finally {
@@ -262,7 +262,9 @@ public class mod_jaffas_trees extends mod_jaffas {
             seeds.setItemName(info.getSeedsLanguageName()).setIconIndex(info.seedsTexture);
             LanguageRegistry.addName(seeds, info.seedsTitle);
             info.itemSeeds = seeds;
-            if (info.drop == DropsFromGrass) MinecraftForge.addGrassSeed(new ItemStack(seeds), SEEDS_WEIGHT);
+            if (info.drop == DropsFromGrass) {
+                seedsList.add(new ItemStack(seeds));
+            }
 
             Item fruit = constructFruit(info.itemFruitID, info.eatable);
             fruit.setItemName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setCreativeTab(CreativeTab);
@@ -313,7 +315,7 @@ public class mod_jaffas_trees extends mod_jaffas {
         AddFruitTreesSequence(1, 4, 32 + 4, 4);
 
         for (int i = 1; i < mod_jaffas_trees.leavesTypesCount + 1; i++) {
-            MinecraftForge.addGrassSeed(getTreeSeeds(i), SEEDS_WEIGHT);
+            seedsList.add(getTreeSeeds(i));
         }
 
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
@@ -364,6 +366,8 @@ public class mod_jaffas_trees extends mod_jaffas {
 
         itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
         RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds").setIconIndex(34);
+
+        MinecraftForge.addGrassSeed(new ItemStack(itemUnknownSeeds), SEEDS_WEIGHT);
 
         installRecipes();
 
