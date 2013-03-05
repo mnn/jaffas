@@ -20,7 +20,7 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.RecipesBoard;
-import monnef.jaffas.food.item.ItemManager;
+import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.mod_jaffas;

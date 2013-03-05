@@ -6,7 +6,7 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.block.TileEntityJaffaMachine;
-import monnef.jaffas.food.item.ItemManager;
+import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;

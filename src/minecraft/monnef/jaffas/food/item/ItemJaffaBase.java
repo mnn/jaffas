@@ -1,14 +1,15 @@
 package monnef.jaffas.food.item;
 
 
+import monnef.core.base.ItemMonnefCore;
+import monnef.jaffas.food.item.common.IItemJaffa;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class ItemJaffaBase extends Item implements IItemJaffa {
+public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     protected int textureFileIndex;
     private String info = null;
 

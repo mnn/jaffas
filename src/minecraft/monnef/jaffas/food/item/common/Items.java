@@ -1,8 +1,9 @@
-package monnef.jaffas.food.item;
+package monnef.jaffas.food.item.common;
 
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.item.*;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
@@ -12,7 +13,6 @@ import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
-import static monnef.jaffas.food.item.ItemManager.getItemInfo;
 import static monnef.jaffas.food.item.JaffaItem.*;
 
 public class Items extends ItemManagerAccessor {
@@ -63,6 +63,7 @@ public class Items extends ItemManagerAccessor {
         return (ItemJaffaTool) createJaffaTool(ji).Setup(durability);
     }
 
+    @Deprecated
     private Item createJaffaPack(JaffaItem ji, ItemStack stack) {
         return createJaffaPack(ji).Setup(stack);
     }
@@ -530,7 +531,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(bottleBrownMustard);
         createJaffaItem(mincedMeat);
         createJaffaItemManual(meatCleaver,
-                new ItemCleaver(getItemInfo(meatCleaver).getId(), mod_jaffas_food.EnumToolMaterialCleaver));
+                new ItemCleaver(ItemManager.getItemInfo(meatCleaver).getId(), mod_jaffas_food.EnumToolMaterialCleaver));
 
         createJaffaItemManual(sink, ItemSink.class);
 
@@ -572,9 +573,9 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(piePlumRaw);
 
         if (mod_jaffas_food.spawnStonesEnabled) {
-            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(getItemInfo(spawnStoneLittle), mod_jaffas_food.spawnStoneLittleCD));
-            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(getItemInfo(spawnStoneMedium), mod_jaffas_food.spawnStoneMediumCD));
-            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(getItemInfo(spawnStoneBig), mod_jaffas_food.spawnStoneBigCD));
+            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneLittle), mod_jaffas_food.spawnStoneLittleCD));
+            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneMedium), mod_jaffas_food.spawnStoneMediumCD));
+            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneBig), mod_jaffas_food.spawnStoneBigCD));
         }
 
         createJaffaItem(juiceBottle);
@@ -659,7 +660,7 @@ public class Items extends ItemManagerAccessor {
     }
 
     public void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, Item repairItem) {
-        createJaffaItemManual(item, new ItemJaffaPlate(getItemInfo(item).getId(), material, renderIndex, type, texture, repairItem));
+        createJaffaItemManual(item, new ItemJaffaPlate(ItemManager.getItemInfo(item).getId(), material, renderIndex, type, texture, repairItem));
     }
 
     public void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, JaffaItem repairItem) {

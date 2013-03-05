@@ -1,4 +1,4 @@
-package monnef.jaffas.food.item;
+package monnef.jaffas.food.item.common;
 
 import net.minecraft.item.Item;
 

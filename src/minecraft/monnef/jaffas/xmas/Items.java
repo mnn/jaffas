@@ -1,7 +1,7 @@
 package monnef.jaffas.xmas;
 
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.item.ItemManagerAccessor;
+import monnef.jaffas.food.item.common.ItemManagerAccessor;
 import monnef.jaffas.food.item.JaffaItem;
 
 public class Items extends ItemManagerAccessor {

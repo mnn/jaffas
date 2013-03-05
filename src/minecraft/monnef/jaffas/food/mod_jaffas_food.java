@@ -31,6 +31,8 @@ import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.*;
+import monnef.jaffas.food.item.common.ItemManager;
+import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.mod_jaffas;

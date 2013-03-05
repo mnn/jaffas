@@ -1,6 +1,6 @@
 package monnef.jaffas.food.block;
 
-import monnef.jaffas.food.item.ItemManager;
+import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;

@@ -1,6 +1,6 @@
 package monnef.jaffas.food.crafting;
 
-import monnef.jaffas.food.item.ItemManager;
+import monnef.jaffas.food.item.common.ItemManager;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 

@@ -1,10 +1,14 @@
-package monnef.jaffas.food.item;
+package monnef.jaffas.food.item.common;
 
+import monnef.core.base.ItemMonnefCore;
 import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.item.ItemJaffaBase;
+import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.JaffaItemType;
 import net.minecraft.item.Item;
 
-public abstract class ItemManagerAccessor {
+public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
     public abstract ModulesEnum getMyModule();
 
     protected abstract void InitializeItemInfos();
@@ -15,7 +19,7 @@ public abstract class ItemManagerAccessor {
         ItemManager.AddItemInfo(item, name, iconIndex, title, this.getMyModule());
     }
 
-    protected Item createJaffaItem(JaffaItem ji) {
+    protected ItemMonnefCore createJaffaItem(JaffaItem ji) {
         return ItemManager.createJaffaItem(ji, JaffaItemType.basic, this.getMyModule());
     }
 
@@ -27,15 +31,16 @@ public abstract class ItemManagerAccessor {
         return ItemManager.createJaffaFood(ji, this.getMyModule());
     }
 
+    @Deprecated
     protected IItemPack createJaffaPack(JaffaItem ji) {
         return ItemManager.createJaffaPack(ji, this.getMyModule());
     }
 
-    protected Item createJaffaItemManual(JaffaItem ji, Class<? extends Item> item) {
-        return ItemManager.createJaffaItemManual(ji, item);
+    protected <T extends Item> T createJaffaItemManual(JaffaItem ji, Class<T> itemClass) {
+        return ItemManager.createJaffaItemManual(ji, itemClass);
     }
 
-    protected Item createJaffaItemManual(JaffaItem ji, Item item) {
+    protected <T extends Item> T createJaffaItemManual(JaffaItem ji, T item) {
         return ItemManager.createJaffaItemManual(ji, item);
     }
 
@@ -43,7 +48,7 @@ public abstract class ItemManagerAccessor {
         ItemManager.LoadItemsFromConfig(this.getMyModule(), idProvider);
     }
 
-    public void RegisterItemType(JaffaItemType type, Class<? extends Item> clazz) {
+    public void RegisterItemType(JaffaItemType type, Class<? extends IT> clazz) {
         ItemManager.RegisterItemTypeForModule(this.getMyModule(), type, clazz);
     }
 }

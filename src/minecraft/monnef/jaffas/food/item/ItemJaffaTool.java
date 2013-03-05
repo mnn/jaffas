@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
+import monnef.jaffas.food.item.common.IItemTool;
 import monnef.jaffas.food.mod_jaffas_food;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
 public class ItemJaffaTool extends ItemJaffaBase implements IItemTool {

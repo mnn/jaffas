@@ -1,6 +1,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.PlayerHelper;
+import monnef.jaffas.food.item.common.IItemFood;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
