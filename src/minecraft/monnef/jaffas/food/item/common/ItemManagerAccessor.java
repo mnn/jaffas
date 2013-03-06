@@ -1,6 +1,5 @@
 package monnef.jaffas.food.item.common;
 
-import monnef.core.base.ItemMonnefCore;
 import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemJaffaBase;
@@ -19,7 +18,7 @@ public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
         ItemManager.AddItemInfo(item, name, iconIndex, title, this.getMyModule());
     }
 
-    protected ItemMonnefCore createJaffaItem(JaffaItem ji) {
+    protected Item createJaffaItem(JaffaItem ji) {
         return ItemManager.createJaffaItem(ji, JaffaItemType.basic, this.getMyModule());
     }
 

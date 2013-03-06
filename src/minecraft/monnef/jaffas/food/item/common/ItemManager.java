@@ -87,13 +87,13 @@ public class ItemManager {
         LanguageRegistry.addName(item, info.getTitle());
     }
 
-    public static ItemMonnefCore createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {
+    public static Item createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {
         JaffaItemInfo info = ItemsInfo.get(ji);
 
-        ItemMonnefCore newJaffaItem = null;
+        Item newJaffaItem = null;
         try {
-            Class<? extends ItemMonnefCore> clazz = ClassMapping.get(module).get(type);
-            Constructor<? extends ItemMonnefCore> constructor = clazz.getConstructor(int.class);
+            Class<? extends Item> clazz = ClassMapping.get(module).get(type);
+            Constructor<? extends Item> constructor = clazz.getConstructor(int.class);
             newJaffaItem = constructor.newInstance(info.getId());
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,17 +104,17 @@ public class ItemManager {
         return newJaffaItem;
     }
 
-    public static AItemFood createJaffaFood(JaffaItem ji, ModulesEnum module) {
-        return (AItemFood) createJaffaItem(ji, JaffaItemType.food, module);
+    public static IItemFood createJaffaFood(JaffaItem ji, ModulesEnum module) {
+        return (IItemFood) createJaffaItem(ji, JaffaItemType.food, module);
     }
 
-    public static AItemTool createJaffaTool(JaffaItem ji, ModulesEnum module) {
-        return (AItemTool) createJaffaItem(ji, JaffaItemType.tool, module);
+    public static IItemTool createJaffaTool(JaffaItem ji, ModulesEnum module) {
+        return (IItemTool) createJaffaItem(ji, JaffaItemType.tool, module);
     }
 
     @Deprecated
-    public static AItemPack createJaffaPack(JaffaItem ji, ModulesEnum module) {
-        return (AItemPack) createJaffaItem(ji, JaffaItemType.pack, module);
+    public static IItemPack createJaffaPack(JaffaItem ji, ModulesEnum module) {
+        return (IItemPack) createJaffaItem(ji, JaffaItemType.pack, module);
     }
 
     public static <T extends Item> T createJaffaItemManual(JaffaItem ji, Class<T> item) {

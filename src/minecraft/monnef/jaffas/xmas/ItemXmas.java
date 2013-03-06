@@ -1,8 +1,9 @@
 package monnef.jaffas.xmas;
 
+import monnef.core.base.ItemMonnefCore;
 import net.minecraft.item.Item;
 
-public class ItemXmas extends Item {
+public class ItemXmas extends ItemMonnefCore {
     public ItemXmas(int id) {
         super(id);
         init();
