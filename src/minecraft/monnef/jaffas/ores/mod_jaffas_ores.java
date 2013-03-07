@@ -348,6 +348,13 @@ public class mod_jaffas_ores extends mod_jaffas {
 
         OreDictionary.registerOre("oreJaffarrol", blockJaffarrolOre);
         OreDictionary.registerOre("oreLimsew", blockLimsewOre);
+
+        /*
+        ItemStack hoe = new ItemStack(hoeJaffarrol);
+        hoe.addEnchantment(Enchantment.fortune, 2);
+        hoe.addEnchantment(Enchantment.unbreaking, 2);
+        GameRegistry.addRecipe(hoe, "JJL", "LS ", " S ", 'J', jaffarrol, 'S', Item.stick, 'L', limsew);
+        */
     }
 
     private Item getItem(JaffaItem item) {

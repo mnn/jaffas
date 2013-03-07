@@ -5,6 +5,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.jaffas.power.CommonProxy;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -16,8 +17,11 @@ public class ClientProxy extends CommonProxy {
         //RenderingRegistry.registerBlockHandler(new BlockRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGenerator.class, new TileEntityGeneratorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new TileEntityAntennaRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightningConductor.class, new TileEntityLightningConductorRenderer());
 
-        RenderingRegistry.registerBlockHandler(new BlockRenderingHandler());
-        RenderingRegistry.registerBlockHandler(mod_jaffas_power.antenna.getRenderType(), new BlockRenderingHandler());
+        BlockRenderingHandler handler = new BlockRenderingHandler();
+        RenderingRegistry.registerBlockHandler(handler);
+        RenderingRegistry.registerBlockHandler(mod_jaffas_power.antenna.getRenderType(), handler);
+        RenderingRegistry.registerBlockHandler(mod_jaffas_power.lightningConductor.getRenderType(), handler);
     }
 }
