@@ -8,7 +8,6 @@ import monnef.jaffas.food.Reference;
 
 import java.util.Arrays;
 
-// TODO all module should inherit this
 public abstract class mod_jaffas {
     protected boolean thisIsMainModule = false;
 
