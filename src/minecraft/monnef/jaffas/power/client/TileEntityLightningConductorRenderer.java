@@ -1,6 +1,7 @@
 package monnef.jaffas.power.client;
 
 import monnef.jaffas.power.block.TileEntityLightningConductor;
+import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
@@ -36,4 +37,7 @@ public class TileEntityLightningConductorRenderer extends TileEntitySpecialRende
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
+    public void setTileEntityRenderer(TileEntityRenderer par1TileEntityRenderer) {
+        super.setTileEntityRenderer(par1TileEntityRenderer);
+    }
 }

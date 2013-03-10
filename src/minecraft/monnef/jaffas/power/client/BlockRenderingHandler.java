@@ -1,14 +1,19 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import monnef.core.utils.RenderUtils;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
+
+import static monnef.jaffas.power.mod_jaffas_power.lightningConductor;
 
 public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     public static final double POSITION_FIX = -0.5D;
@@ -18,19 +23,32 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-        //TODO: cache TEs?
+        TileEntityRenderer entityRenderer = TileEntityRenderer.instance;
         if (modelID == mod_jaffas_power.generator.getRenderType()) {
-            TileEntityRenderer.instance.renderTileEntityAt(generator, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+            entityRenderer.renderTileEntityAt(generator, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         } else if (modelID == mod_jaffas_power.antenna.getRenderType()) {
-            TileEntityRenderer.instance.renderTileEntityAt(antenna, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
-        } else if (modelID == mod_jaffas_power.lightningConductor.getRenderType()) {
-            TileEntityRenderer.instance.renderTileEntityAt(conductor, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+            entityRenderer.renderTileEntityAt(antenna, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+        } else if (modelID == lightningConductor.getRenderType()) {
+            entityRenderer.renderTileEntityAt(conductor, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         }
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-        return true;
+        Tessellator tes = Tessellator.instance;
+        //if (tes.isDrawing) return false;
+        TileEntity toRender = null;
+
+        if (modelId == lightningConductor.getRenderType()) {
+            toRender = conductor;
+        }
+
+        if (toRender != null) {
+            RenderUtils.RenderStaticTileEntity(world, x, y, z, renderer, toRender);
+            return true;
+        }
+
+        return false;
     }
 
     @Override

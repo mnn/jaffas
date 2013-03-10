@@ -43,11 +43,11 @@ public class BlockLightningConductor extends BlockPower {
 
     @Override
     public boolean hasTileEntity(int metadata) {
-        return true;
+        return false;
     }
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityLightningConductor();
+        return null;
     }
 }
