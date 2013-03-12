@@ -1,16 +1,13 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import monnef.core.utils.RenderUtils;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 
 import static monnef.jaffas.power.mod_jaffas_power.lightningConductor;
@@ -28,7 +25,7 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
             entityRenderer.renderTileEntityAt(generator, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         } else if (modelID == mod_jaffas_power.antenna.getRenderType()) {
             entityRenderer.renderTileEntityAt(antenna, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
-        } else if (modelID == lightningConductor.getRenderType()) {
+        } else if (mod_jaffas_power.lightningConductorEnabled && modelID == lightningConductor.getRenderType()) {
             entityRenderer.renderTileEntityAt(conductor, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         }
     }

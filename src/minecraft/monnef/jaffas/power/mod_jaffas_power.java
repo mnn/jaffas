@@ -75,6 +75,7 @@ public class mod_jaffas_power extends mod_jaffas {
     private int blockLightningConductorID;
     public static BlockLightningConductor lightningConductor;
     public static int lightningConductorRadius = 30;
+    public static boolean lightningConductorEnabled;
 
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
@@ -93,7 +94,11 @@ public class mod_jaffas_power extends mod_jaffas {
 
             blockGeneratorID = idProvider.getBlockIDFromConfig("generator");
             blockAntennaID = idProvider.getBlockIDFromConfig("antenna");
-            blockLightningConductorID = idProvider.getBlockIDFromConfig("lightningConductor");
+
+            lightningConductorEnabled = config.get(Configuration.CATEGORY_GENERAL, "lightningConductorEnabled", true).getBoolean(true);
+            if (lightningConductorEnabled) {
+                blockLightningConductorID = idProvider.getBlockIDFromConfig("lightningConductor");
+            }
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -137,7 +142,9 @@ public class mod_jaffas_power extends mod_jaffas {
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
-        MinecraftForge.EVENT_BUS.register(new LightingHandler());
+        if (lightningConductorEnabled) {
+            MinecraftForge.EVENT_BUS.register(new LightingHandler());
+        }
 
         mod_jaffas_food.PrintInitialized(ModulesEnum.power);
     }
@@ -158,12 +165,14 @@ public class mod_jaffas_power extends mod_jaffas {
         linkTool = new ItemLinkTool(ItemLinkToolID, 0);
         RegistryUtils.registerItem(linkTool, "itemLinkTool", "Link Gun");
 
-        lightningConductor = new BlockLightningConductor(blockLightningConductorID, 5);
-        RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
+        if (lightningConductorEnabled) {
+            lightningConductor = new BlockLightningConductor(blockLightningConductorID, 5);
+            RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
+        }
     }
 
     private void installRecipes() {
-        if (ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
+        if (lightningConductorEnabled && ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
             GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', mod_jaffas_ores.jaffarrol, 'B', Block.blockSteel);
         }
     }

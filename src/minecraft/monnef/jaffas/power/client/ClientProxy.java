@@ -22,6 +22,8 @@ public class ClientProxy extends CommonProxy {
         BlockRenderingHandler handler = new BlockRenderingHandler();
         RenderingRegistry.registerBlockHandler(handler);
         RenderingRegistry.registerBlockHandler(mod_jaffas_power.antenna.getRenderType(), handler);
-        RenderingRegistry.registerBlockHandler(mod_jaffas_power.lightningConductor.getRenderType(), handler);
+        if (mod_jaffas_power.lightningConductorEnabled) {
+            RenderingRegistry.registerBlockHandler(mod_jaffas_power.lightningConductor.getRenderType(), handler);
+        }
     }
 }
