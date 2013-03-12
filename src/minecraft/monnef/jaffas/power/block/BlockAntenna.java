@@ -14,6 +14,8 @@ public class BlockAntenna extends BlockMachine {
         onWrench = WrenchAction.ROTATE;
         useDefaultDirection = true;
         defaultDirection = ForgeDirection.NORTH;
+        setHardness(0.5f);
+        setResistance(3);
     }
 
     @Override

@@ -18,11 +18,18 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.mod_jaffas;
-import monnef.jaffas.power.block.*;
+import monnef.jaffas.ores.mod_jaffas_ores;
+import monnef.jaffas.power.block.BlockAntenna;
+import monnef.jaffas.power.block.BlockGenerator;
+import monnef.jaffas.power.block.BlockLightningConductor;
+import monnef.jaffas.power.block.TileEntityAntenna;
+import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -32,7 +39,7 @@ import java.util.logging.Level;
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PreInit;
 
-@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas")
+@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-ores")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_power extends mod_jaffas {
     @Instance("moen-jaffas-power")
@@ -136,13 +143,13 @@ public class mod_jaffas_power extends mod_jaffas {
     }
 
     private void createItems() {
-        generator = new BlockGenerator(blockGeneratorID, 0);
+        generator = new BlockGenerator(blockGeneratorID, 5);
         RegistryUtils.registerBlock(generator, "Generator");
 
         ItemDebug = new ItemDebug(ItemDebugID, 1);
         LanguageRegistry.addName(ItemDebug, "Power Debug Tool");
 
-        antenna = new BlockAntenna(blockAntennaID, 2);
+        antenna = new BlockAntenna(blockAntennaID, 5);
         RegistryUtils.registerBlock(antenna, "Small Antenna");
 
         wrench = new ItemPipeWrench(ItemWrenchID, 1);
@@ -151,10 +158,13 @@ public class mod_jaffas_power extends mod_jaffas {
         linkTool = new ItemLinkTool(ItemLinkToolID, 0);
         RegistryUtils.registerItem(linkTool, "itemLinkTool", "Link Gun");
 
-        lightningConductor = new BlockLightningConductor(blockLightningConductorID, 0);
+        lightningConductor = new BlockLightningConductor(blockLightningConductorID, 5);
         RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
     }
 
     private void installRecipes() {
+        if (ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
+            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', mod_jaffas_ores.jaffarrol, 'B', Block.blockSteel);
+        }
     }
 }

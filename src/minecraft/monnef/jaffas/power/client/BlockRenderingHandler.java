@@ -35,19 +35,6 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-        Tessellator tes = Tessellator.instance;
-        //if (tes.isDrawing) return false;
-        TileEntity toRender = null;
-
-        if (modelId == lightningConductor.getRenderType()) {
-            toRender = conductor;
-        }
-
-        if (toRender != null) {
-            RenderUtils.RenderStaticTileEntity(world, x, y, z, renderer, toRender);
-            return true;
-        }
-
         return false;
     }
 
