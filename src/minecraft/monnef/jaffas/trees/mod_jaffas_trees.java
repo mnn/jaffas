@@ -472,7 +472,7 @@ public class mod_jaffas_trees extends mod_jaffas {
         RecipesBoard.addRecipe(getFruitStack(bushType.Tomato), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
 
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
             GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",
                     'I', new ItemStack(Block.blockSteel), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
         }

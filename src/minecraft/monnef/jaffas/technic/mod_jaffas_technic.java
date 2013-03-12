@@ -1,4 +1,4 @@
-package monnef.jaffas.ores;
+package monnef.jaffas.technic;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -6,6 +6,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.IDProvider;
@@ -18,6 +19,19 @@ import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.mod_jaffas;
+import monnef.jaffas.technic.block.BlockOre;
+import monnef.jaffas.technic.block.BlockTechnic;
+import monnef.jaffas.technic.client.JaffaCreativeTab;
+import monnef.jaffas.technic.common.CommonProxy;
+import monnef.jaffas.technic.entity.EntityLocomotive;
+import monnef.jaffas.technic.item.ItemAxeTechnic;
+import monnef.jaffas.technic.item.ItemCentralUnit;
+import monnef.jaffas.technic.item.ItemHoeTechnic;
+import monnef.jaffas.technic.item.ItemLocomotive;
+import monnef.jaffas.technic.item.ItemPickaxeTechnic;
+import monnef.jaffas.technic.item.ItemSpadeTechnic;
+import monnef.jaffas.technic.item.ItemSwordTechnic;
+import monnef.jaffas.technic.item.ItemTechnic;
 import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -35,53 +49,61 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
-import static monnef.jaffas.food.item.JaffaItem.*;
+import static monnef.jaffas.food.item.JaffaItem.cookingPot;
+import static monnef.jaffas.food.item.JaffaItem.jaffarrolBoots;
+import static monnef.jaffas.food.item.JaffaItem.jaffarrolChest;
+import static monnef.jaffas.food.item.JaffaItem.jaffarrolHelmet;
+import static monnef.jaffas.food.item.JaffaItem.jaffarrolLeggins;
+import static monnef.jaffas.food.item.JaffaItem.juiceBottle;
+import static monnef.jaffas.food.item.JaffaItem.spawnStoneBig;
+import static monnef.jaffas.food.item.JaffaItem.spawnStoneLittle;
+import static monnef.jaffas.food.item.JaffaItem.spawnStoneMedium;
 
-@Mod(modid = "moen-jaffas-ores", name = "Jaffas - ores", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-trees")
+@Mod(modid = "moen-jaffas-technic", name = "Jaffas - technic", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_jaffas_ores extends mod_jaffas {
-    @Mod.Instance("moen-jaffas-ores")
-    public static mod_jaffas_ores instance;
+public class mod_jaffas_technic extends mod_jaffas {
+    @Mod.Instance("moen-jaffas-technic")
+    public static mod_jaffas_technic instance;
 
-    @SidedProxy(clientSide = "monnef.jaffas.ores.ClientProxy", serverSide = "monnef.jaffas.ores.CommonProxy")
+    @SidedProxy(clientSide = "monnef.jaffas.technic.client.ClientProxy", serverSide = "monnef.jaffas.technic.common.CommonProxy")
     public static CommonProxy proxy;
 
     private static IDProvider idProvider = new IDProvider(3450, 26244);
     public boolean debug;
 
     private int JaffarrolID;
-    public static ItemOres jaffarrol;
+    public static ItemTechnic jaffarrol;
 
     private int JaffarrolRawID;
-    public static ItemOres jaffarrolRaw;
+    public static ItemTechnic jaffarrolRaw;
 
     private int JaffarrolRefinedID;
-    public static ItemOres jaffarrolRefined;
+    public static ItemTechnic jaffarrolRefined;
 
     private int LimsewID;
-    public static ItemOres limsew;
+    public static ItemTechnic limsew;
 
     private int BlockJaffarrolID;
-    public static BlockOres blockJaffarrol;
+    public static BlockTechnic blockJaffarrol;
 
     private int BlockLimsewID;
-    public static BlockOres blockLimsew;
+    public static BlockTechnic blockLimsew;
 
     private int ItemCentralUnitID;
     public static ItemCentralUnit itemCentralUnit;
 
     private int FunnelID;
-    public static ItemOres funnel;
+    public static ItemTechnic funnel;
 
     public static String textureFile = "/jaffas_03.png";
 
     public static JaffaCreativeTab CreativeTab;
 
     private int ItemCasingID;
-    public static ItemOres itemCasing;
+    public static ItemTechnic itemCasing;
 
     private int ItemCasingRefinedID;
-    public static ItemOres itemCasingRefined;
+    public static ItemTechnic itemCasingRefined;
 
     private int BlockJaffarrolOreID;
     public static BlockOre blockJaffarrolOre;
@@ -95,14 +117,19 @@ public class mod_jaffas_ores extends mod_jaffas {
     private int ItemJHoeID;
     private int ItemJSwordID;
 
-    public static ItemAxeOres axeJaffarrol;
-    public static ItemPickaxeOres pickaxeJaffarrol;
-    public static ItemSpadeOres spadeJaffarrol;
-    public static ItemHoeOres hoeJaffarrol;
-    public static ItemSwordOres swordJaffarrol;
+    public static ItemAxeTechnic axeJaffarrol;
+    public static ItemPickaxeTechnic pickaxeJaffarrol;
+    public static ItemSpadeTechnic spadeJaffarrol;
+    public static ItemHoeTechnic hoeJaffarrol;
+    public static ItemSwordTechnic swordJaffarrol;
 
     public static boolean generateOres;
     public static float switchgrassProbability;
+
+    private int LocomotiveEntityID;
+
+    private int ItemLocomotiveID;
+    public static ItemLocomotive itemLocomotive;
 
     /*
     WOOD(0, 59, 2.0F, 0, 15),
@@ -146,13 +173,16 @@ public class mod_jaffas_ores extends mod_jaffas {
             ItemJHoeID = idProvider.getItemIDFromConfig("jaffarrolHow");
             ItemJSpadeID = idProvider.getItemIDFromConfig("jaffarrolSpade");
             ItemJSwordID = idProvider.getItemIDFromConfig("jaffarrolSword");
+            ItemLocomotiveID = idProvider.getBlockIDFromConfig("locomotive");
+
+            LocomotiveEntityID = idProvider.getEntityIDFromConfig("locomotive");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
             generateOres = config.get(Configuration.CATEGORY_GENERAL, "generateOres", true).getBoolean(true);
             switchgrassProbability = (float) config.get(Configuration.CATEGORY_GENERAL, "switchgrassProbability", 0.005, "Do not go too high, or face stack overflow caused by recursive chunk generation").getDouble(0.005);
         } catch (Exception e) {
-            FMLLog.log(Level.SEVERE, e, "Mod Jaffas (ores) can't read config file.");
+            FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {
             config.save();
         }
@@ -162,26 +192,28 @@ public class mod_jaffas_ores extends mod_jaffas {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores))
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic))
             return;
 
-        CreativeTab = new JaffaCreativeTab("jaffas.ores");
+        CreativeTab = new JaffaCreativeTab("jaffas.technic");
 
         createItems();
         installRecipes();
         addDrops();
 
+        EntityRegistry.registerModEntity(EntityLocomotive.class, "locomotive", LocomotiveEntityID, this, 100, 5, false);
+
         // texture stuff
         proxy.registerRenderThings();
 
-        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.ores", "en_US", "Jaffas and more! Ores");
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.technic", "en_US", "Jaffas and more! Ores");
 
         itemCentralUnit.registerNames();
 
-        OresWorldGen generator = new OresWorldGen();
+        TechnicWorldGen generator = new TechnicWorldGen();
         GameRegistry.registerWorldGenerator(generator);
 
-        mod_jaffas_food.PrintInitialized(ModulesEnum.ores);
+        mod_jaffas_food.PrintInitialized(ModulesEnum.technic);
     }
 
     private void addDrops() {
@@ -191,43 +223,43 @@ public class mod_jaffas_ores extends mod_jaffas {
     }
 
     private void createItems() {
-        jaffarrol = new ItemOres(JaffarrolID, 0);
+        jaffarrol = new ItemTechnic(JaffarrolID, 0);
         jaffarrol.setItemName("jaffarrol");
         LanguageRegistry.addName(jaffarrol, "Jaffarrol Ingot");
 
-        jaffarrolRaw = new ItemOres(JaffarrolRawID, 1);
+        jaffarrolRaw = new ItemTechnic(JaffarrolRawID, 1);
         jaffarrolRaw.setItemName("jaffarrolRaw");
         LanguageRegistry.addName(jaffarrolRaw, "Raw Jaffarrol");
 
-        jaffarrolRefined = new ItemOres(JaffarrolRefinedID, 2);
+        jaffarrolRefined = new ItemTechnic(JaffarrolRefinedID, 2);
         jaffarrolRefined.setItemName("jaffarrolRefined");
         LanguageRegistry.addName(jaffarrolRefined, "Refined Jaffarrol");
 
-        limsew = new ItemOres(LimsewID, 3);
+        limsew = new ItemTechnic(LimsewID, 3);
         limsew.setItemName("limsewDust");
         LanguageRegistry.addName(limsew, "Limsew Dust");
 
-        blockJaffarrol = new BlockOres(BlockJaffarrolID, 4, Material.iron);
+        blockJaffarrol = new BlockTechnic(BlockJaffarrolID, 4, Material.iron);
         blockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
         RegistryUtils.registerBlock(blockJaffarrol);
         LanguageRegistry.addName(blockJaffarrol, "Block of Jaffarrol");
 
-        blockLimsew = new BlockOres(BlockLimsewID, 5, Material.iron);
+        blockLimsew = new BlockTechnic(BlockLimsewID, 5, Material.iron);
         blockLimsew.setBlockName("blockOfLimsew").setHardness(4f).setResistance(7f);
         RegistryUtils.registerBlock(blockLimsew);
         LanguageRegistry.addName(blockLimsew, "Block of Limsew");
 
         itemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);
 
-        funnel = new ItemOres(FunnelID, 16);
+        funnel = new ItemTechnic(FunnelID, 16);
         funnel.setItemName("funnel");
         LanguageRegistry.addName(funnel, "Funnel");
 
-        itemCasing = new ItemOres(ItemCasingID, 13);
+        itemCasing = new ItemTechnic(ItemCasingID, 13);
         itemCasing.setItemName("casing");
         LanguageRegistry.addName(itemCasing, "Casing");
 
-        itemCasingRefined = new ItemOres(ItemCasingRefinedID, 14);
+        itemCasingRefined = new ItemTechnic(ItemCasingRefinedID, 14);
         itemCasingRefined.setItemName("casingRefined");
         LanguageRegistry.addName(itemCasingRefined, "Refined Casing");
 
@@ -246,28 +278,31 @@ public class mod_jaffas_ores extends mod_jaffas {
         MinecraftForge.setBlockHarvestLevel(blockLimsewOre, "pickaxe", 2);
         RegistryUtils.registerBlock(blockLimsewOre, "limsewOre", "Limsew Ore");
 
+        itemLocomotive = new ItemLocomotive(ItemLocomotiveID, 0);
+        LanguageRegistry.addName(itemLocomotive, "Mini-Locomotive");
+
         createTools();
     }
 
     private void createTools() {
         EnumToolMaterialJaffarrol.customCraftingMaterial = jaffarrol;
 
-        axeJaffarrol = new ItemAxeOres(ItemJAxeID, 21, EnumToolMaterialJaffarrol);
+        axeJaffarrol = new ItemAxeTechnic(ItemJAxeID, 21, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(axeJaffarrol, "axeJaffarrol", "Jaffarrol Axe");
         MinecraftForge.setToolClass(axeJaffarrol, "axe", 3);
 
-        pickaxeJaffarrol = new ItemPickaxeOres(ItemJPickaxeID, 20, EnumToolMaterialJaffarrol);
+        pickaxeJaffarrol = new ItemPickaxeTechnic(ItemJPickaxeID, 20, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(pickaxeJaffarrol, "pickaxeJaffarrol", "Jaffarrol Pickaxe");
         MinecraftForge.setToolClass(pickaxeJaffarrol, "pickaxe", 3);
 
-        spadeJaffarrol = new ItemSpadeOres(ItemJSpadeID, 19, EnumToolMaterialJaffarrol);
+        spadeJaffarrol = new ItemSpadeTechnic(ItemJSpadeID, 19, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(spadeJaffarrol, "spadeJaffarrol", "Jaffarrol Shovel");
         MinecraftForge.setToolClass(spadeJaffarrol, "shovel", 3);
 
-        hoeJaffarrol = new ItemHoeOres(ItemJHoeID, 22, EnumToolMaterialJaffarrol);
+        hoeJaffarrol = new ItemHoeTechnic(ItemJHoeID, 22, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(hoeJaffarrol, "hoeJaffarrol", "Jaffarrol Hoe");
 
-        swordJaffarrol = new ItemSwordOres(ItemJSwordID, 23, EnumToolMaterialJaffarrol);
+        swordJaffarrol = new ItemSwordTechnic(ItemJSwordID, 23, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(swordJaffarrol, "swordJaffarrol", "Jaffarrol Sword");
     }
 
@@ -308,16 +343,16 @@ public class mod_jaffas_ores extends mod_jaffas {
         GameRegistry.addRecipe(new ItemStack(mod_jaffas_trees.blockFruitCollector), "JFJ", "J@J", "JCJ",
                 'J', jaffarrol, 'F', funnel, '@', itemCasing, 'C', new ItemStack(itemCentralUnit, 1, 2));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', mod_jaffas_ores.jaffarrol);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', mod_jaffas_ores.jaffarrol);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grinderMeat)), " FS", "III", "III", 'I', Item.ingotIron, 'F', mod_jaffas_ores.funnel, 'S', Item.stick);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', mod_jaffas_technic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', mod_jaffas_technic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grinderMeat)), " FS", "III", "III", 'I', Item.ingotIron, 'F', mod_jaffas_technic.funnel, 'S', Item.stick);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', mod_jaffas_ores.jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockSteel);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', mod_jaffas_technic.jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockSteel);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', mod_jaffas_ores.jaffarrol, 'I', Item.ingotIron);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', mod_jaffas_ores.jaffarrol, 'G', Block.glass);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', mod_jaffas_technic.jaffarrol, 'I', Item.ingotIron);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', mod_jaffas_technic.jaffarrol, 'G', Block.glass);
 
-        GameRegistry.addRecipe(new ItemStack(mod_jaffas_food.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', mod_jaffas_ores.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(mod_jaffas_food.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', mod_jaffas_technic.jaffarrol);
 
         // jarmor
         GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolHelmet)), "JJJ", "J J", 'J', jaffarrol);
@@ -355,6 +390,8 @@ public class mod_jaffas_ores extends mod_jaffas {
         hoe.addEnchantment(Enchantment.unbreaking, 2);
         GameRegistry.addRecipe(hoe, "JJL", "LS ", " S ", 'J', jaffarrol, 'S', Item.stick, 'L', limsew);
         */
+
+        GameRegistry.addRecipe(new ItemStack(itemLocomotive), "I F", "BCB", "III", 'F', funnel, 'I', Item.ingotIron, 'B', Block.blockSteel, 'C', itemCasingRefined);
     }
 
     private Item getItem(JaffaItem item) {

@@ -25,6 +25,6 @@ public class ItemXmas extends ItemMonnefCore {
 
     @Override
     public Item setItemName(String par1Str) {
-        return super.setItemName("jaffas.ores." + par1Str);
+        return super.setItemName("jaffas.technic." + par1Str);
     }
 }

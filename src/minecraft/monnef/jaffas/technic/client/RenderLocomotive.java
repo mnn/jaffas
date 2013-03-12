@@ -1,6 +1,6 @@
-package monnef.jaffas.carts.client;
+package monnef.jaffas.technic.client;
 
-import monnef.jaffas.carts.entity.EntityLocomotive;
+import monnef.jaffas.technic.entity.EntityLocomotive;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;

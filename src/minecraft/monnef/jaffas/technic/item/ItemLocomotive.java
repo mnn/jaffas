@@ -1,12 +1,14 @@
-package monnef.jaffas.carts.item;
+package monnef.jaffas.technic.item;
 
-import monnef.jaffas.carts.entity.EntityLocomotive;
-import monnef.jaffas.carts.mod_jaffas_carts;
+import monnef.jaffas.technic.entity.EntityLocomotive;
+import monnef.jaffas.technic.mod_jaffas_technic;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class ItemLocomotive extends Item {
     public int minecartType;
@@ -15,13 +17,18 @@ public class ItemLocomotive extends Item {
         super(par1);
         this.maxStackSize = 1;
         this.minecartType = par2;
-        this.setCreativeTab(mod_jaffas_carts.CreativeTab);
+        this.setCreativeTab(mod_jaffas_technic.CreativeTab);
         this.setItemName("locomotive");
     }
 
     @Override
     public String getTextureFile() {
-        return "/jaffas_06.png";
+        return "/jaffas_06.png"; // TODO move icon to the ores
+    }
+
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
+        par3List.add("\u00A7lbeta\u00A7r");
     }
 
     /**

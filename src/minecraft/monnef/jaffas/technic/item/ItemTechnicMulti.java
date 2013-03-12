@@ -1,4 +1,4 @@
-package monnef.jaffas.ores;
+package monnef.jaffas.technic.item;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
@@ -9,11 +9,11 @@ import net.minecraft.util.MathHelper;
 
 import java.util.List;
 
-public class ItemOresMulti extends ItemOres {
+public class ItemTechnicMulti extends ItemTechnic {
     protected String[] subNames;
     protected String[] subTitles;
 
-    public ItemOresMulti(int id, int textureIndex) {
+    public ItemTechnicMulti(int id, int textureIndex) {
         super(id, textureIndex);
         setMaxDamage(0);
         setHasSubtypes(true);

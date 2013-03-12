@@ -175,7 +175,7 @@ public class Recipes {
         RecipesFridge.AddRecipe(getItem(vanillaIcecreamRaw).shiftedIndex, new ItemStack(getItem(vanillaIcecreamFrozen)));
         RecipesFridge.AddRecipe(getItem(chocolateIcecreamRaw).shiftedIndex, new ItemStack(getItem(chocolateIcecreamFrozen)));
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
+        if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
             GameRegistry.addRecipe(new ItemStack(instance.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
         }
 

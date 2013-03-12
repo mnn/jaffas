@@ -1,6 +1,6 @@
-package monnef.jaffas.carts.client;
+package monnef.jaffas.technic.client;
 
-import monnef.jaffas.carts.mod_jaffas_carts;
+import monnef.jaffas.technic.mod_jaffas_technic;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -11,6 +11,6 @@ public class JaffaCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(mod_jaffas_carts.itemLocomotive);
+        return new ItemStack(mod_jaffas_technic.jaffarrolRefined);
     }
 }

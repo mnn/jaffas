@@ -18,7 +18,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.mod_jaffas;
-import monnef.jaffas.ores.mod_jaffas_ores;
+import monnef.jaffas.technic.mod_jaffas_technic;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.BlockLightningConductor;
@@ -39,7 +39,7 @@ import java.util.logging.Level;
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PreInit;
 
-@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-ores")
+@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-technic")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_power extends mod_jaffas {
     @Instance("moen-jaffas-power")
@@ -172,8 +172,8 @@ public class mod_jaffas_power extends mod_jaffas {
     }
 
     private void installRecipes() {
-        if (lightningConductorEnabled && ModuleManager.IsModuleEnabled(ModulesEnum.ores)) {
-            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', mod_jaffas_ores.jaffarrol, 'B', Block.blockSteel);
+        if (lightningConductorEnabled && ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
+            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', mod_jaffas_technic.jaffarrol, 'B', Block.blockSteel);
         }
     }
 }

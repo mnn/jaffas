@@ -1,14 +1,15 @@
-package monnef.jaffas.ores;
+package monnef.jaffas.technic.block;
 
+import monnef.jaffas.technic.mod_jaffas_technic;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static monnef.jaffas.ores.mod_jaffas_ores.blockLimsewOre;
+import static monnef.jaffas.technic.mod_jaffas_technic.blockLimsewOre;
 
-public class BlockOre extends BlockOres {
+public class BlockOre extends BlockTechnic {
     public BlockOre(int id, int textureID) {
         super(id, textureID, Material.rock);
         setStepSound(soundStoneFootstep);
@@ -28,7 +29,7 @@ public class BlockOre extends BlockOres {
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
         if (blockID == blockLimsewOre.blockID) {
-            return mod_jaffas_ores.limsew.shiftedIndex;
+            return mod_jaffas_technic.limsew.shiftedIndex;
         }
         return super.idDropped(par1, par2Random, par3);
     }

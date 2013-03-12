@@ -1,6 +1,6 @@
-package monnef.jaffas.carts.entity;
+package monnef.jaffas.technic.entity;
 
-import monnef.jaffas.carts.mod_jaffas_carts;
+import monnef.jaffas.technic.mod_jaffas_technic;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -30,7 +30,7 @@ public class EntityLocomotive extends EntityMinecart {
     @Override
     public List<ItemStack> getItemsDropped() {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        ret.add(new ItemStack(mod_jaffas_carts.itemLocomotive));
+        ret.add(new ItemStack(mod_jaffas_technic.itemLocomotive));
         return ret;
     }
 

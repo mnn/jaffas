@@ -1,6 +1,6 @@
-package monnef.jaffas.ores;
+package monnef.jaffas.technic.item;
 
-public class ItemCentralUnit extends ItemOresMulti {
+public class ItemCentralUnit extends ItemTechnicMulti {
     public ItemCentralUnit(int id, int textureIndex) {
         super(id, textureIndex);
         setItemName("centralUnit");
