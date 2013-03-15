@@ -44,6 +44,8 @@ public class CoreModContainer extends DummyModContainer {
     // use google subscribe and FML events
     @Subscribe
     public void onStart(FMLPostInitializationEvent event) {
+        CloakHookHandler.registerCloakHandler(new CustomCloaksHandler());
+
         if (!CoreTransformer.cloakHookApplied) {
             Log.printFine("Mapping database:");
             ObfuscationHelper.printAllDataToLog();

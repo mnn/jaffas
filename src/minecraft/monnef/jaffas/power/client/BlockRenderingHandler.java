@@ -8,6 +8,7 @@ import monnef.jaffas.power.mod_jaffas_power;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.world.IBlockAccess;
 
 import static monnef.jaffas.power.mod_jaffas_power.lightningConductor;

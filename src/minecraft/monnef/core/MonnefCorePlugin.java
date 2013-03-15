@@ -20,7 +20,6 @@ public class MonnefCorePlugin implements IFMLLoadingPlugin, IFMLCallHook {
     public static RelaunchClassLoader classLoader;
 
     public MonnefCorePlugin() {
-        CloakHookHandler.registerCloakHandler(new CustomCloaksHandler());
     }
 
     @Override

@@ -1,6 +1,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.jaffas.food.item.common.IItemPack;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
