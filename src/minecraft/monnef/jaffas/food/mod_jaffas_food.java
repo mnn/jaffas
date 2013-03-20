@@ -18,6 +18,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import extrabiomes.api.Api;
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.*;
 import monnef.jaffas.food.block.*;
 import monnef.jaffas.food.client.GuiHandler;
@@ -274,6 +275,7 @@ public class mod_jaffas_food extends mod_jaffas {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
+        checkCore(); // really necessary?
         checkJsoup();
         checkForestry();
         checkExtrabiomes();
@@ -299,6 +301,12 @@ public class mod_jaffas_food extends mod_jaffas {
         GameRegistry.registerPlayerTracker(new PlayerTracker());
 
         printInitializedMessage();
+    }
+
+    private void checkCore() {
+        if(!MonnefCorePlugin.isInitialized()){
+            throw new RuntimeException("Core is not properly initialized!");
+        }
     }
 
     private void checkForestry() {

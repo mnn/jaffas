@@ -2,7 +2,11 @@ package monnef.core.asm;
 
 import monnef.core.utils.PathHelper;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -70,7 +74,9 @@ public class ObfuscationHelper {
         URL url;
         InputStream inputStream = null;
         try {
-            url = new URL("jar:file:" + myJar + "!/" + JAFFAS_MAPPINGS_CFG);
+            String urlString = "jar:file:" + myJar + "!/" + JAFFAS_MAPPINGS_CFG;
+            Log.printFine(String.format("url string: [%s], jar path: [%s]", urlString, myJar));
+            url = new URL(urlString);
             inputStream = url.openStream();
             if (inputStream == null) {
                 throw new RuntimeException("Unable to get data from my JAR.");
@@ -79,8 +85,10 @@ public class ObfuscationHelper {
             Log.printFine("Loaded from mappings config: " + formatDatabaseStats(database) + ".");
         } catch (MalformedURLException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         } catch (IOException e) {
             e.printStackTrace();
+            throw new RuntimeException(e);
         } finally {
             if (inputStream != null) try {
                 inputStream.close();
@@ -115,6 +123,9 @@ public class ObfuscationHelper {
             OutputStream output = new FileOutputStream(path);
             HashMap<MappedObjectType, MappingDictionary> usedOnlyDatabase = constructOnlyUsed(database, usedFlags);
             MappingsConfigManager.saveConfig(usedOnlyDatabase, output);
+
+            Log.printFine(String.format("Saved items to \"%s\":", path));
+            printAllDataToLog(usedOnlyDatabase);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -123,6 +134,8 @@ public class ObfuscationHelper {
     private static HashMap<MappedObjectType, MappingDictionary> constructOnlyUsed(HashMap<MappedObjectType, MappingDictionary> database, HashMap<MappedObjectType, HashSet<MappedObject>> usedFlags) {
         HashMap<MappedObjectType, MappingDictionary> ret = new HashMap<MappedObjectType, MappingDictionary>();
 
+        /*
+        // construct based on usage flags (dangerous, when running server not all items are used...)
         for (MappedObjectType type : MappedObjectType.values()) {
             MappingDictionary entry = new MappingDictionary();
             MappingDictionary data = database.get(type);
@@ -131,6 +144,22 @@ public class ObfuscationHelper {
             for (MappedObject obj : flagged) {
                 entry.put(obj.getFullName(), data.get(obj.getFullName()));
             }
+        }
+        */
+
+        // construct from all enum items
+        for (MappedObjectType type : MappedObjectType.values()) {
+            MappingDictionary entry = new MappingDictionary();
+            ret.put(type, entry);
+        }
+
+        for (MappedObject obj : MappedObject.values()) {
+            MappedObjectType type = obj.getType();
+            String fullName = obj.getFullName();
+
+            MappingDictionary entry = ret.get(type);
+            MappingDictionary data = database.get(type);
+            entry.put(fullName, data.get(fullName));
         }
 
         return ret;

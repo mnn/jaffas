@@ -3,9 +3,11 @@ package monnef.core;
 import com.google.common.eventbus.EventBus;
 import com.google.common.eventbus.Subscribe;
 import cpw.mods.fml.common.DummyModContainer;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.LoadController;
 import cpw.mods.fml.common.ModMetadata;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.relauncher.Side;
 import monnef.core.asm.CoreTransformer;
 import monnef.core.asm.ObfuscationHelper;
 
@@ -43,21 +45,32 @@ public class CoreModContainer extends DummyModContainer {
 
     // use google subscribe and FML events
     @Subscribe
-    public void onStart(FMLPostInitializationEvent event) {
-        CloakHookHandler.registerCloakHandler(new CustomCloaksHandler());
+    public void onStart(FMLInitializationEvent event) {
+        Side side = FMLCommonHandler.instance().getEffectiveSide();
 
-        if (!CoreTransformer.cloakHookApplied) {
-            Log.printFine("Mapping database:");
-            ObfuscationHelper.printAllDataToLog();
-            throw new RuntimeException("Unable to install a cloak hook!");
-        }
+        if (side == Side.CLIENT) {
+            CloakHookHandler.registerCloakHandler(new CustomCloaksHandler());
 
-        if (!CoreTransformer.lightningHookApplied) {
-            throw new RuntimeException("Unable to install a lightning hook!");
+            if (!CoreTransformer.cloakHookApplied) {
+                printDebugDataAndCrash("Unable to install a cloak hook!");
+            }
+        } else {
+            if (!CoreTransformer.lightningHookApplied) {
+                printDebugDataAndCrash("Unable to install a lightning hook!");
+            }
         }
 
         if (MonnefCorePlugin.debugEnv) {
             ObfuscationHelper.dumpUsedItemsToConfig();
         }
+
+        MonnefCorePlugin.initialized = true;
+    }
+
+    private void printDebugDataAndCrash(String msg) {
+        Log.printSevere(msg);
+        Log.printFine("Mapping database:");
+        ObfuscationHelper.printAllDataToLog();
+        throw new RuntimeException(msg);
     }
 }
