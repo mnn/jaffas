@@ -18,16 +18,17 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.mod_jaffas_food;
 import monnef.jaffas.mod_jaffas;
-import monnef.jaffas.technic.mod_jaffas_technic;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
+import monnef.jaffas.technic.mod_jaffas_technic;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
@@ -129,6 +130,7 @@ public class mod_jaffas_power extends mod_jaffas {
 
         GameRegistry.registerTileEntity(TileEntityGenerator.class, "jp.generator");
         GameRegistry.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
+        GameRegistry.registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
 
         CreativeTab = new JaffaCreativeTab("jaffas.power");
 
