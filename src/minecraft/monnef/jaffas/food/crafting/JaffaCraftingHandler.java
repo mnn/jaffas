@@ -2,8 +2,8 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -30,11 +30,11 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     }
 
     public static PersistentItemInfo AddPersistentItem(JaffaItem item) {
-        return AddPersistentItem(ItemManager.getItem(item).shiftedIndex);
+        return AddPersistentItem(ItemManager.getItem(item).itemID);
     }
 
     public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, int substituteItem) {
-        return AddPersistentItem(ItemManager.getItem(item).shiftedIndex, takesDamage, substituteItem);
+        return AddPersistentItem(ItemManager.getItem(item).itemID, takesDamage, substituteItem);
     }
 
     public static PersistentItemInfo AddPersistentItem(int ID, boolean takesDamage, int substituteItem) {
@@ -47,7 +47,7 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     }
 
     public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, JaffaItem substitude) {
-        return AddPersistentItem(item, takesDamage, ItemManager.getItem(substitude).shiftedIndex);
+        return AddPersistentItem(item, takesDamage, ItemManager.getItem(substitude).itemID);
     }
 
     @Override
@@ -139,9 +139,9 @@ public class JaffaCraftingHandler implements ICraftingHandler {
             if (matrix.getStackInSlot(i) != null) {
                 ingredientsCount++;
                 ItemStack item = matrix.getStackInSlot(i);
-                if (item.itemID == ItemManager.getItem(JaffaItem.puffPastry).shiftedIndex) {
+                if (item.itemID == ItemManager.getItem(JaffaItem.puffPastry).itemID) {
                     foundPuff = true;
-                } else if (item.itemID == Item.stick.shiftedIndex) {
+                } else if (item.itemID == Item.stick.itemID) {
                     stickSlot = i;
                 }
             }

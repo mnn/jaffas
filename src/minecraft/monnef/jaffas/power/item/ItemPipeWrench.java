@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class ItemPipeWrench extends ItemPower implements IPipeWrench {
     public ItemPipeWrench(int id, int textureIndex) {
         super(id, textureIndex);
-        setItemName("pipeWrench");
+        setUnlocalizedName("pipeWrench");
     }
 
     @Override

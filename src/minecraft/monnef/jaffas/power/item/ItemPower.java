@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 public class ItemPower extends Item {
     public ItemPower(int id, int textureIndex) {
         super(id);
-        setIconIndex(textureIndex);
+        //setIconIndex(textureIndex);
         setCreativeTab(mod_jaffas_power.CreativeTab);
     }
 

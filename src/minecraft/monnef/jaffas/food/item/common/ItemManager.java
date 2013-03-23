@@ -81,8 +81,8 @@ public class ItemManager {
     }
 
     private static void finalizeItemSetup(JaffaItemInfo info, Item item) {
-        item.setItemName(info.getTitle());
-        item.setIconIndex(info.getIconIndex());
+        item.setUnlocalizedName(info.getTitle());
+        //item.setIconIndex(info.getIconIndex());
         info.setItem(item);
         LanguageRegistry.addName(item, info.getTitle());
     }

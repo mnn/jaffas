@@ -1,7 +1,7 @@
 package monnef.jaffas.food.block;
 
-import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -9,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -19,21 +20,23 @@ public class JaffaBombBlock extends Block {
     private static Random rand = new Random();
     private static int itemCount = 15;
 
-    public JaffaBombBlock(int par1, int par2, Material par3Material) {
-        super(par1, par2, par3Material);
+    public JaffaBombBlock(int par1, int index, Material par3Material) {
+        super(par1, par3Material);
         setCreativeTab(CreativeTabs.tabRedstone);
-        setBlockName("Jaffa Cakes BOMB");
+        setUnlocalizedName("Jaffa Cakes BOMB");
         setHardness(0.1F);
         setResistance(0.1F);
         this.setCreativeTab(mod_jaffas_food.CreativeTab);
+        // TODO add icon handling
     }
 
     /**
      * Returns the block texture based on the side being looked at.  Args: side
      */
-    public int getBlockTextureFromSide(int par1) {
-        //return par1 == 0 ? this.blockIndexInTexture + 2 : (par1 == 1 ? this.blockIndexInTexture + 1 : this.blockIndexInTexture);
-        return par1 == 0 || par1 == 1 ? blockIndexInTexture + 1 : blockIndexInTexture;
+    @Override
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
+        //return par1 == 0 || par1 == 1 ? blockIndexInTexture + 1 : blockIndexInTexture;
+        return null;
     }
 
     public String getTextureFile() {

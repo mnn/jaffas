@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
@@ -14,6 +15,9 @@ import net.minecraftforge.common.IPlantable;
 
 import java.util.List;
 import java.util.Random;
+
+import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
 public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     private static final int BIT_TOP = 3;
@@ -48,11 +52,11 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
                 int age = getAge(myMeta);
                 if (age < MAX_AGE) {
                     int newMeta = setAge(myMeta, age + 1 + (onRain ? 2 : 0));
-                    world.setBlockMetadataWithNotify(x, y, z, newMeta);
+                    setBlockMetadata(world, x, y, z, newMeta);
                     //Log.printDebug(myMeta + " -> " + newMeta);
                 } else {
-                    world.setBlockAndMetadata(x, y + 1, z, this.blockID, BitHelper.setBit(0, BIT_TOP));
-                    world.setBlockMetadataWithNotify(x, y, z, 0); // no longer the top one
+                    setBlock(world, x, y + 1, z, this.blockID, BitHelper.setBit(0, BIT_TOP));
+                    setBlockMetadata(world, x, y, z, 0); // no longer the top one
                     world.markBlockForUpdate(x, y, z);
                 }
             }
@@ -98,7 +102,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         if (!this.canBlockStay(par1World, par2, par3, par4)) {
             this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), par5);
-            par1World.setBlockWithNotify(par2, par3, par4, 0);
+            setBlock(par1World, par2, par3, par4, 0);
         }
     }
 
@@ -156,8 +160,9 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
-        return blockIndexInTexture + (isTop(par2) ? 0 : 1);
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
+        return null;
+        //return blockIndexInTexture + (isTop(par2) ? 0 : 1);
     }
 
     @Override
@@ -165,7 +170,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         if (mod_jaffas_food.debug) {
             int meta = par1World.getBlockMetadata(par2, par3, par4);
             if (par5EntityPlayer.isSneaking()) {
-                par1World.setBlockMetadata(par2, par3, par4, MAX_AGE | (isTop(meta) ? 8 : 0));
+                setBlockMetadata(par1World, par2, par3, par4, MAX_AGE | (isTop(meta) ? 8 : 0));
             }
             par5EntityPlayer.addChatMessage("meta: " + meta);
         }

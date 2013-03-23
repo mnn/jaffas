@@ -15,6 +15,6 @@ public class ItemBlockSwitchgrass extends ItemBlockJaffas {
 
     @Override
     public String getItemNameIS(ItemStack itemstack) {
-        return getItemName() + "." + subNames[0];
+        return getUnlocalizedName() + "." + subNames[0];
     }
 }

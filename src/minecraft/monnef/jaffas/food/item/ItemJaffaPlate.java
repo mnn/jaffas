@@ -23,7 +23,7 @@ public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
         this.armorTexture = armorTexture;
         this.repairItem = repairItem;
         this.setCreativeTab(mod_jaffas_food.CreativeTab);
-        setItemName("armor." + par2EnumArmorMaterial.name());
+        setUnlocalizedName("armor." + par2EnumArmorMaterial.name());
     }
 
     public String getTextureFile() {
@@ -36,7 +36,7 @@ public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
 
     @Override
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
-        if (repairItem == null || repairItem.shiftedIndex != par2ItemStack.itemID)
+        if (repairItem == null || repairItem.itemID != par2ItemStack.itemID)
             return super.getIsRepairable(par1ItemStack, par2ItemStack);
         return true;
     }

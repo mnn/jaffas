@@ -10,11 +10,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
+
+import static monnef.core.utils.BlockHelper.*;
 
 public class BlockPie extends BlockJaffas {
     public static final float f2 = 2F / 16F;
@@ -25,7 +28,7 @@ public class BlockPie extends BlockJaffas {
 
     public BlockPie(int par1, int par2) {
         super(par1, par2, Material.cake);
-        setBlockName("blockJPie");
+        setUnlocalizedName("blockJPie");
         setBlockBounds(f3, 0, f3, f3d, f3, f3d);
         setHardness(0.5f);
 
@@ -39,7 +42,7 @@ public class BlockPie extends BlockJaffas {
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
-        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2 + f3), (double) par3, (double) ((float) par4 + f3), (double) ((float) par2 + f3d), (double) ((float) par3 + f3), (double) ((float) par4 + f3d));
+        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2 + f3), (double) par3, (double) ((float) par4 + f3), (double) ((float) par2 + f3d), (double) ((float) par3 + f3), (double) ((float) par4 + f3d));
     }
 
     @Override
@@ -93,7 +96,7 @@ public class BlockPie extends BlockJaffas {
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         if (!this.canBlockStay(par1World, par2, par3, par4)) {
             this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-            par1World.setBlockWithNotify(par2, par3, par4, 0);
+            setBlock(par1World, par2, par3, par4, 0);
         }
     }
 
@@ -129,7 +132,8 @@ public class BlockPie extends BlockJaffas {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return textureIndexFromMeta[metadata];
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+        return null;
+        //return textureIndexFromMeta[metadata];
     }
 }

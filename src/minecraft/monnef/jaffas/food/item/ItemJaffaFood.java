@@ -37,6 +37,7 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
         this.setCreativeTab(mod_jaffas_food.CreativeTab);
     }
 
+    /*
     @Override
     public String getTextureFile() {
         return mod_jaffas_food.textureFile[getTextureFileIndex()];
@@ -48,15 +49,15 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
 
     public void setTextureFileIndex(int value) {
         textureFileIndex = value;
-    }
+    } */
 
     @Override
-    public ItemStack onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+    public void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
         if (this.returnItem != null && this.returnChance > itemRand.nextFloat()) {
             PlayerHelper.giveItemToPlayer(par3EntityPlayer, returnItem.copy());
         }
 
-        return super.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
+        super.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
     }
 
     public ItemJaffaFood setReturnItem(ItemStack returnItem) {

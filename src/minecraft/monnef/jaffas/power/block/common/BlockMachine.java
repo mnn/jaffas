@@ -27,8 +27,8 @@ public abstract class BlockMachine extends BlockPower {
     protected boolean useDefaultDirection = false;
     protected ForgeDirection defaultDirection = ForgeDirection.NORTH;
 
-    public BlockMachine(int par1, int par2, Material par3Material, boolean customRenderer) {
-        super(par1, par2, par3Material);
+    public BlockMachine(int par1, int index, Material par3Material, boolean customRenderer) {
+        super(par1, par3Material);
         this.customRenderer = customRenderer;
         if (useOwnRenderId()) {
             renderID = RenderingRegistry.getNextAvailableRenderId();
@@ -42,7 +42,7 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     @Override
-    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity) {
+    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity, ItemStack stack) {
         TileEntityMachine tile = getTile(w, x, y, z);
 
         if (useDefaultDirection) {
@@ -173,13 +173,14 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     @Override
-    public void onBlockEventReceived(World par1World, int par2, int par3, int par4, int par5, int par6) {
+    public boolean onBlockEventReceived(World par1World, int par2, int par3, int par4, int par5, int par6) {
         super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
         TileEntity var7 = par1World.getBlockTileEntity(par2, par3, par4);
 
         if (var7 != null) {
             var7.receiveClientEvent(par5, par6);
         }
+        return false;
     }
 
     public abstract boolean supportRotation();

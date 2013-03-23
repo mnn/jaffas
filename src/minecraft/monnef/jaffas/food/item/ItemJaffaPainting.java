@@ -12,8 +12,8 @@ public class ItemJaffaPainting extends Item {
     public ItemJaffaPainting(int par1) {
         super(par1);
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        this.setItemName("jaffaPainting");
-        this.setIconIndex(1);
+        this.setUnlocalizedName("jaffaPainting");
+        //this.setIconIndex(1);
         this.setCreativeTab(mod_jaffas_food.CreativeTab);
     }
 

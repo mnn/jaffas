@@ -224,8 +224,8 @@ public class mod_jaffas_food extends mod_jaffas {
             itemPaintingID = idProvider.getItemIDFromConfig("painting");
 
             // careful - order is important!
-            jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").value;
-            jaffaTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffaTitle", "Jaffa").value;
+            jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").getString();
+            jaffaTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffaTitle", "Jaffa").getString();
             items.InitializeItemInfos();
             items.LoadItemsFromConfig(idProvider);
 
@@ -388,12 +388,12 @@ public class mod_jaffas_food extends mod_jaffas {
         GameRegistry.registerTileEntity(TileEntitySink.class, "sink");
 
         blockBoard = new BlockBoard(blockBoardID, 142, Material.wood);
-        GameRegistry.registerBlock(blockBoard, blockBoard.getBlockName());
+        RegistryUtils.registerBlock(blockBoard);
         LanguageRegistry.addName(blockBoard, "Kitchen Board");
         GameRegistry.registerTileEntity(TileEntityBoard.class, "kitchenBoard");
 
         blockPizza = new BlockPizza(blockPizzaID, 149, Material.cake);
-        GameRegistry.registerBlock(blockPizza, blockPizza.getBlockName());
+        RegistryUtils.registerBlock(blockPizza);
         LanguageRegistry.addName(blockPizza, "Block of Pizza");
         GameRegistry.registerTileEntity(TileEntityPizza.class, "pizza");
 
@@ -421,11 +421,11 @@ public class mod_jaffas_food extends mod_jaffas {
     private void createJaffaArmorAndSword() {
         int armorRender = proxy.addArmor("Jaffa");
         itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png", null);
-        itemJaffaPlate.setIconIndex(90);
+        //itemJaffaPlate.setIconIndex(90);
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 
         itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, EnumToolMaterialJaffas);
-        itemJaffaSword.setItemName("jaffaSword").setIconIndex(88);
+        itemJaffaSword.setUnlocalizedName("jaffaSword"); //.setIconIndex(88);
     }
 
     private void printInitializedMessage() {

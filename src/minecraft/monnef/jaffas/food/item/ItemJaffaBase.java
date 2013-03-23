@@ -21,11 +21,6 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
         textureFileIndex = 0;
     }
 
-    @Override
-    public String getTextureFile() {
-        return mod_jaffas_food.textureFile[getTextureFileIndex()];
-    }
-
     public int getTextureFileIndex() {
         return textureFileIndex;
     }

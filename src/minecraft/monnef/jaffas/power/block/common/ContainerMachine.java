@@ -97,8 +97,9 @@ public abstract class ContainerMachine extends Container {
     /**
      * Updates crafting matrix; called from onCraftMatrixChanged. Args: none
      */
-    public void updateCraftingResults() {
-        super.updateCraftingResults();
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
 
         for (int var1 = 0; var1 < this.crafters.size(); ++var1) {
             ICrafting var2 = (ICrafting) this.crafters.get(var1);

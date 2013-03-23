@@ -12,12 +12,16 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
 public class BlockFruitLeaves extends BlockLeavesBase {
     // Old:    .. D N T T
@@ -36,18 +40,19 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     private int subCount;
     private static Random rand = new Random();
 
-    public BlockFruitLeaves(int par1, int par2, int subCount) {
-        super(par1, par2, Material.leaves, false);
+    public BlockFruitLeaves(int par1, int index, int subCount) {
+        super(par1, Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         mod_jaffas_trees.proxy.setFancyGraphicsLevel(this, true);
         this.subCount = subCount;
         //this.setGraphicsLevel(true);
         setCreativeTab(mod_jaffas_trees.CreativeTab);
+        // TODO index
     }
 
     public BlockFruitLeaves setLeavesRequiresSelfNotify() {
-        this.setRequiresSelfNotify();
+        //this.setRequiresSelfNotify();
         return this;
     }
 
@@ -60,8 +65,8 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
         ItemStack handItem = player.getCurrentEquippedItem();
         if (handItem != null) {
-            int itemId = handItem.getItem().shiftedIndex;
-            if (itemId == mod_jaffas_trees.itemDebug.shiftedIndex) {
+            int itemId = handItem.getItem().itemID;
+            if (itemId == mod_jaffas_trees.itemDebug.itemID) {
                 int bid = world.getBlockId(x, y, z);
                 int bmeta = world.getBlockMetadata(x, y, z);
 
@@ -78,12 +83,12 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         if (world.isRemote) return true;
 
         if (handItem != null) {
-            if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemRod.shiftedIndex) {
+            if (handItem.getItem().itemID == mod_jaffas_trees.itemRod.itemID) {
                 boolean harvested;
                 harvested = harvestArea(world, x, y, z, 0.10, null, 3);
                 if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
                 return harvested;
-            } else if (handItem.getItem().shiftedIndex == mod_jaffas_trees.itemFruitPicker.shiftedIndex) {
+            } else if (handItem.getItem().itemID == mod_jaffas_trees.itemFruitPicker.itemID) {
                 boolean harvested;
                 harvested = harvestArea(world, x, y, z, 0.50, player, 5);
                 if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
@@ -294,7 +299,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
                 if (var12 >= 0) {
                     // 9 -> 0..001001 -> 1..110110 +1 -> 1..110111
                     // => masking out 0x8 bit
-                    world.setBlockMetadata(x, y, z, unsetDecayBit(metadata));
+                    setBlockMetadata(world, x, y, z, unsetDecayBit(metadata));
                 } else {
                     this.removeLeaves(world, x, y, z);
                 }
@@ -318,7 +323,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
     private void removeLeaves(World par1World, int par2, int par3, int par4) {
         this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-        par1World.setBlockWithNotify(par2, par3, par4, 0);
+        setBlock(par1World, par2, par3, par4, 0);
     }
 
     /**
@@ -400,11 +405,9 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
-        //return (par2 & 3) == 1 ? this.blockIndexInTexture + 80 : ((par2 & 3) == 3 ? this.blockIndexInTexture + 144 : this.blockIndexInTexture);
-        //return (getLeavesType(par2)) == 1 ? this.blockIndexInTexture + 80 : ((getLeavesType(par2)) == 3 ? this.blockIndexInTexture + 144 : this.blockIndexInTexture);
-        return this.blockIndexInTexture + getLeavesType(par2);
-        //return this.blockIndexInTexture + par2;
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
+        return null;
+        // TODO: return this.blockIndexInTexture + getLeavesType(par2);
     }
 
     @SideOnly(Side.CLIENT)
@@ -437,7 +440,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
     @Override
     public void beginLeavesDecay(World world, int x, int y, int z) {
-        world.setBlockMetadata(x, y, z, setLeavesDecay(world.getBlockMetadata(x, y, z)));
+        setBlockMetadata(world, x, y, z, setLeavesDecay(world.getBlockMetadata(x, y, z)));
     }
 
     @Override

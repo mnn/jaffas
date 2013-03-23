@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class RegistryUtils {
     public static void registerBlock(Block block) {
-        GameRegistry.registerBlock(block, block.getBlockName());
+        GameRegistry.registerBlock(block, block.getUnlocalizedName());
     }
 
     public static void registerBlock(Block block, String title) {
@@ -18,12 +18,12 @@ public class RegistryUtils {
     }
 
     public static void registerBlock(Block block, String name, String title) {
-        block.setBlockName(name);
+        block.setUnlocalizedName(name);
         registerBlock(block, title);
     }
 
     public static void registerMultiBlock(Block block, Class<? extends ItemBlock> itemBlock, String[] names) {
-        GameRegistry.registerBlock(block, itemBlock, block.getBlockName());
+        GameRegistry.registerBlock(block, itemBlock, block.getUnlocalizedName());
         for (int ix = 0; ix < names.length; ix++) {
             ItemStack multiBlockStack = new ItemStack(block, 1, ix);
             LanguageRegistry.addName(multiBlockStack, names[multiBlockStack.getItemDamage()]);
@@ -31,8 +31,8 @@ public class RegistryUtils {
     }
 
     public static <T extends Item> T registerItem(T item, String name, String title) {
-        item.setItemName(name);
-        GameRegistry.registerItem(item, item.getItemName());
+        item.setUnlocalizedName(name);
+        GameRegistry.registerItem(item, item.getUnlocalizedName());
         LanguageRegistry.addName(item, title);
         return item;
     }

@@ -1,6 +1,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.BitHelper;
+import monnef.core.utils.BlockHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.mod_jaffas_food;
@@ -20,7 +21,7 @@ public class BlockSink extends BlockJaffas {
 
     public BlockSink(int id, int texture) {
         super(id, texture, Material.iron);
-        setRequiresSelfNotify();
+        //setRequiresSelfNotify();
         setCreativeTab(null);
         setHardness(2f);
         setResistance(20f);
@@ -66,7 +67,7 @@ public class BlockSink extends BlockJaffas {
     @Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         if (par1World.getBlockId(par2, par3 + 1, par4) != 0) {
-            par1World.setBlockWithNotify(par2, par3, par4, 0);
+            par1World.setBlock(par2, par3, par4, 0);
             if (!par1World.isRemote) {
                 this.dropBlockAsItem(par1World, par2, par3, par4, 0, 0);
             }
@@ -77,11 +78,11 @@ public class BlockSink extends BlockJaffas {
 
     static {
         fillableItems = new HashMap<Integer, Integer>();
-        fillableItems.put(Item.bucketEmpty.shiftedIndex, Item.bucketWater.shiftedIndex);
+        fillableItems.put(Item.bucketEmpty.itemID, Item.bucketWater.itemID);
     }
 
     public static void addFillableItem(Item empty, Item full) {
-        fillableItems.put(empty.shiftedIndex, full.shiftedIndex);
+        fillableItems.put(empty.itemID, full.itemID);
     }
 
     @Override
@@ -104,7 +105,7 @@ public class BlockSink extends BlockJaffas {
         if (currentItem != null) {
             Integer filledItem = fillableItems.get(currentItem.itemID);
             if (filledItem != null) {
-                par1World.setBlockMetadata(par2, par3, par4, BitHelper.unsetBit(meta, waterBit));
+                par1World.setBlockMetadataWithNotify(par2, par3, par4, BitHelper.unsetBit(meta, waterBit), BlockHelper.NOTIFY_ALL);
                 currentItem.stackSize--;
                 if (!par1World.isRemote) {
                     PlayerHelper.giveItemToPlayer(par5EntityPlayer, new ItemStack(filledItem, 1, 0));
@@ -124,11 +125,11 @@ public class BlockSink extends BlockJaffas {
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
-        return mod_jaffas_food.getItem(JaffaItem.sink).shiftedIndex;
+        return mod_jaffas_food.getItem(JaffaItem.sink).itemID;
     }
 
     @Override
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return mod_jaffas_food.getItem(JaffaItem.sink).shiftedIndex;
+        return mod_jaffas_food.getItem(JaffaItem.sink).itemID;
     }
 }

@@ -10,7 +10,7 @@ public class BlockCross extends BlockJaffas {
     public BlockCross(int id, int texture, Material material) {
         super(id, texture, material);
         setCreativeTab(null);
-        setRequiresSelfNotify();
+        //setRequiresSelfNotify();
     }
 
     @Override

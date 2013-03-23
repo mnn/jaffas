@@ -8,8 +8,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public abstract class BlockMachineWithInventory extends BlockMachine {
-    public BlockMachineWithInventory(int par1, int par2, Material par3Material, boolean customRenderer) {
-        super(par1, par2, par3Material, customRenderer);
+    public BlockMachineWithInventory(int par1, int index, Material par3Material, boolean customRenderer) {
+        super(par1, index, par3Material, customRenderer);
     }
 
     @Override

@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 import java.util.List;
 
@@ -17,8 +18,9 @@ public class BlockXmasMulti extends BlockXmas {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return this.blockIndexInTexture + metadata;
+    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
+        return null;
+        //return this.blockIndexInTexture + metadata;
     }
 
     @Override

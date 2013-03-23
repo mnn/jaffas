@@ -8,8 +8,8 @@ import net.minecraft.world.World;
 public class BlockColumn extends BlockJaffas {
     public BlockColumn(int par1, int par2, Material par3Material) {
         super(par1, par2, par3Material);
-        setRequiresSelfNotify();
-        setBlockName("blockColumn");
+        //setRequiresSelfNotify();
+        setUnlocalizedName("blockColumn");
         setHardness(1f);
         setResistance(10f);
     }

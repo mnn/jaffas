@@ -10,6 +10,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import static monnef.core.utils.BlockHelper.setBlock;
+
 public class ItemBlockEx extends ItemTrees {
     /**
      * The block ID of the Block associated with this ItemBlock
@@ -71,10 +73,10 @@ public class ItemBlockEx extends ItemTrees {
             return false;
         } else if (par5 == 255 && Block.blocksList[this.blockID].blockMaterial.isSolid()) {
             return false;
-        } else if (par3World.canPlaceEntityOnSide(this.blockID, par4, par5, par6, false, par7, par2EntityPlayer)) {
+        } else if (par3World.canPlaceEntityOnSide(this.blockID, par4, par5, par6, false, par7, par2EntityPlayer, par1ItemStack)) {
             Block var12 = Block.blocksList[this.blockID];
             int var13 = this.getMetadata(par1ItemStack.getItemDamage());
-            int var14 = Block.blocksList[this.blockID].func_85104_a(par3World, par4, par5, par6, par7, par8, par9, par10, var13);
+            int var14 = Block.blocksList[this.blockID].onBlockPlaced(par3World, par4, par5, par6, par7, par8, par9, par10, var13);
 
             //if (placeBlockAt(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10))
             if (placeBlockAt(par1ItemStack, par2EntityPlayer, par3World, par4, par5, par6, par7, par8, par9, par10, var14)) {
@@ -125,7 +127,7 @@ public class ItemBlockEx extends ItemTrees {
             }
         }
 
-        return par1World.canPlaceEntityOnSide(this.getBlockID(), par2, par3, par4, false, par5, (Entity) null);
+        return par1World.canPlaceEntityOnSide(this.getBlockID(), par2, par3, par4, false, par5, (Entity) null, par7ItemStack);
     }
 
     @SideOnly(Side.CLIENT)
@@ -145,13 +147,13 @@ public class ItemBlockEx extends ItemTrees {
      * @param side   The side the player (or machine) right-clicked on.
      */
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata) {
-        if (!world.setBlockAndMetadataWithNotify(x, y, z, this.blockID, metadata)) {
+        if (!setBlock(world, x, y, z, this.blockID, metadata)) {
             return false;
         }
 
         if (world.getBlockId(x, y, z) == this.blockID) {
-            Block.blocksList[this.blockID].onBlockPlacedBy(world, x, y, z, player);
-            Block.blocksList[this.blockID].func_85105_g(world, x, y, z, metadata);
+            Block.blocksList[this.blockID].onBlockPlacedBy(world, x, y, z, player, stack);
+            Block.blocksList[this.blockID].onPostBlockPlaced(world, x, y, z, metadata);
         }
 
         return true;

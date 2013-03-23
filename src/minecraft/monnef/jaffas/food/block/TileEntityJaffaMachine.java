@@ -57,7 +57,7 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
 
         int fuelBurnTime = TileEntityFurnace.getItemBurnTime(item);
         if (fuelBurnTime > 0) {
-            if (item.itemID == Item.bucketLava.shiftedIndex) {
+            if (item.itemID == Item.bucketLava.itemID) {
                 setInventorySlotContents(fuelSlot, new ItemStack(Item.bucketEmpty));
             } else {
                 item.stackSize--;
@@ -183,7 +183,7 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     }
 
     public boolean canAddToInventory(EntityItem item) {
-        return this.addItemToInventory(item.func_92014_d(), false) > 0;
+        return this.addItemToInventory(item.getEntityItem(), false) > 0;
     }
 
     @Override

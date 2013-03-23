@@ -3,6 +3,7 @@ package monnef.jaffas.food.block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraftforge.common.ForgeDirection;
 
 import java.util.List;
@@ -21,7 +22,9 @@ public class BlockTable extends BlockJaffas {
     }
 
     @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int meta) {
+    public Icon getBlockTextureFromSideAndMetadata(int side, int meta) {
+        return null;
+        /*
         ForgeDirection s = ForgeDirection.getOrientation(side);
         int index = this.blockIndexInTexture + 4 * meta;
 
@@ -43,6 +46,7 @@ public class BlockTable extends BlockJaffas {
             default:
                 return index;
         }
+        */
     }
 
     @Override

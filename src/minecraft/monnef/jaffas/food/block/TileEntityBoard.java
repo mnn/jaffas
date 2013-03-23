@@ -124,7 +124,7 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
         if (item == null) {
             return false;
         }
-        if (item.itemID != getItem(JaffaItem.knifeKitchen).shiftedIndex) {
+        if (item.itemID != getItem(JaffaItem.knifeKitchen).itemID) {
             return false;
         }
 
@@ -194,6 +194,11 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     }
 
     @Override
+    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+        return true;
+    }
+
+    @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
 
@@ -229,6 +234,11 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
         return "jaffas.board";
     }
 
+    @Override
+    public boolean isInvNameLocalized() {
+        return false;
+    }
+
     /**
      * Returns an integer between 0 and the passed value representing how close the current item is to being completely
      * cooked
@@ -241,7 +251,7 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     public void checkKnife() {
         boolean isKnifePresent = false;
         ItemStack slotItem = getStackInSlot(slotKnife);
-        if (slotItem != null && slotItem.itemID == getItem(JaffaItem.knifeKitchen).shiftedIndex) {
+        if (slotItem != null && slotItem.itemID == getItem(JaffaItem.knifeKitchen).itemID) {
             isKnifePresent = true;
         }
 

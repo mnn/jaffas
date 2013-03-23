@@ -13,6 +13,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
+import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.jaffas.food.mod_jaffas_food.blockPizza;
 import static monnef.jaffas.food.mod_jaffas_food.getItem;
 
@@ -24,12 +26,12 @@ public class BlockPizza extends BlockJaffas {
         super(par1, par2, par3Material);
         setCreativeTab(null);
         setHardness(0.5f);
-        setBlockName("blockPizza");
+        setUnlocalizedName("blockPizza");
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f2, 1.0F);
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
-        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2), (double) par3, (double) ((float) par4), (double) ((float) par2), (double) ((float) par3 + f2), (double) ((float) par4));
+        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2), (double) par3, (double) ((float) par4), (double) ((float) par2), (double) ((float) par3 + f2), (double) ((float) par4));
     }
 
     public int setRotation(int meta, boolean direction) {
@@ -105,10 +107,10 @@ public class BlockPizza extends BlockJaffas {
             int slices = blockPizza.getPieces(meta) - 1;
 
             if (slices > 0) {
-                world.setBlockMetadataWithNotify(x, y, z, blockPizza.setPieces(meta, slices));
-                world.markBlockForRenderUpdate2(x, y, z);
+                setBlockMetadata(world, x, y, z, blockPizza.setPieces(meta, slices));
+                world.markBlockForRenderUpdate(x, y, z);
             } else {
-                world.setBlockWithNotify(x, y, z, 0);
+                setBlock(world, x, y, z, 0);
             }
         }
     }
@@ -117,7 +119,7 @@ public class BlockPizza extends BlockJaffas {
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         if (!this.canBlockStay(par1World, par2, par3, par4)) {
             this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-            par1World.setBlockWithNotify(par2, par3, par4, 0);
+            setBlock(par1World, par2, par3, par4, 0);
         }
     }
 
@@ -131,6 +133,6 @@ public class BlockPizza extends BlockJaffas {
 
     @SideOnly(Side.CLIENT)
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return getItem(JaffaItem.pizza).shiftedIndex;
+        return getItem(JaffaItem.pizza).itemID;
     }
 }

@@ -1,22 +1,19 @@
 package monnef.jaffas.food.block;
 
 
+import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class BlockFridge extends BlockContainerJaffas {
 
@@ -32,8 +29,8 @@ public class BlockFridge extends BlockContainerJaffas {
         super(id, Material.rock);
         setHardness(2.0F);
         setResistance(5.0F);
-        setBlockName("blockFridge");
-        setRequiresSelfNotify();
+        setUnlocalizedName("blockFridge");
+        // setRequiresSelfNotify();
     }
 
     @Override
@@ -50,43 +47,8 @@ public class BlockFridge extends BlockContainerJaffas {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        dropItems(world, x, y, z);
+        InventoryUtils.dropItems(world, x, y, z);
         super.breakBlock(world, x, y, z, par5, par6);
-    }
-
-    private void dropItems(World world, int x, int y, int z) {
-        Random rand = new Random();
-
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if (!(tileEntity instanceof IInventory)) {
-            return;
-        }
-        IInventory inventory = (IInventory) tileEntity;
-
-        for (int i = 0; i < inventory.getSizeInventory(); i++) {
-            ItemStack item = inventory.getStackInSlot(i);
-
-            if (item != null && item.stackSize > 0) {
-                float rx = rand.nextFloat() * 0.8F + 0.1F;
-                float ry = rand.nextFloat() * 0.8F + 0.1F;
-                float rz = rand.nextFloat() * 0.8F + 0.1F;
-
-                EntityItem entityItem = new EntityItem(world,
-                        x + rx, y + ry, z + rz,
-                        new ItemStack(item.itemID, item.stackSize, item.getItemDamage()));
-
-                if (item.hasTagCompound()) {
-                    entityItem.func_92014_d().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
-                }
-
-                float factor = 0.05F;
-                entityItem.motionX = rand.nextGaussian() * factor;
-                entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
-                entityItem.motionZ = rand.nextGaussian() * factor;
-                world.spawnEntityInWorld(entityItem);
-                item.stackSize = 0;
-            }
-        }
     }
 
     @Override
@@ -97,20 +59,11 @@ public class BlockFridge extends BlockContainerJaffas {
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
-    public int getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
-        int front = 0;
+    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
+        // TODO
+        return null;
         /*
-//        TileEntity tile = ModLoader.getMinecraftInstance().getIntegratedServer().theWorldServer[0].getBlockTileEntity(x, y, z);
-        TileEntity tile = ModLoader.getMinecraftServerInstance().worldServerForDimension(0).getBlockTileEntity(x, y, z);
-
-
-        if (tile != null) {
-            front = ((TileEntityFridge) tile).getFront();
-        } else {
-            //ModLoader.getMinecraftInstance().getIntegratedServer().theWorldServer[0].markBlockAsNeedsUpdate(x, y, z);
-            ModLoader.getMinecraftServerInstance().worldServerForDimension(0).markBlockAsNeedsUpdate(x, y, z);
-        }
-        */
+        int front = 0;
 
         front = access.getBlockMetadata(x, y, z);
 
@@ -169,13 +122,13 @@ public class BlockFridge extends BlockContainerJaffas {
                     return FridgeBottom;
                 }
         }
+        */
     }
 
-    /**
-     * Returns the block texture based on the side being looked at. Args: side
-     */
-    public int getBlockTextureFromSide(int side) {
-        return getTextureFromSide(side);
+    @Override
+    public Icon getBlockTextureFromSideAndMetadata(int side, int meta) {
+        return null;
+        //return getTextureFromSide(side);
     }
 
     private int getTextureFromSide(int side) {
@@ -228,19 +181,13 @@ public class BlockFridge extends BlockContainerJaffas {
         ((TileEntityFridge) blockEntity).setFront(byte0);
     }
 
-    /**
-     * Called whenever the block is added into the world. Args: world, x, y, z
-     */
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
         setDefaultDirection(par1World, par2, par3, par4);
     }
 
-    /**
-     * Called when the block is placed in the world.
-     */
     @Override
-    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity) {
+    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity, ItemStack stack) {
         int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         TileEntity blockEntity = w.getBlockTileEntity(x, y, z);
@@ -266,12 +213,9 @@ public class BlockFridge extends BlockContainerJaffas {
         }
 
         ((TileEntityFridge) blockEntity).setFront(front);
-        w.setBlockMetadata(x, y, z, front);
+        w.setBlockMetadataWithNotify(x, y, z, front, 2 + 4);
 
-        //w.markBlockAsNeedsUpdate(x, y, z);
         w.notifyBlockChange(x, y, z, blockID);
-        //w.markBlocksDirty(x - 1, y - 1, z - 1, x + 1, y + 1, z + 1);
         w.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
-        //w.markBlockNeedsUpdate(x, y, z);
     }
 }

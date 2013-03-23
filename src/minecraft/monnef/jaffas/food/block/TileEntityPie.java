@@ -9,6 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class TileEntityPie extends TileEntity {
@@ -70,7 +71,7 @@ public class TileEntityPie extends TileEntity {
         }
 
         // all pieces eaten, destroy
-        worldObj.setBlockWithNotify(xCoord, yCoord, zCoord, 0);
+        setBlock(worldObj, xCoord, yCoord, zCoord, 0);
         this.invalidate();
     }
 

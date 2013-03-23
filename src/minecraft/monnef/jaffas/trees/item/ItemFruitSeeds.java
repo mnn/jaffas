@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.trees.mod_jaffas_trees;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class ItemFruitSeeds extends ItemBlockEx {
         super(itemID, blockID);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
-        this.setIconIndex(textureOffset);
-        this.isDefaultTexture = true;
+        //this.setIconIndex(textureOffset);
+        //this.isDefaultTexture = true;
         this.texture = textureOffset;
         this.subCount = subCount;
     }
@@ -36,20 +37,20 @@ public class ItemFruitSeeds extends ItemBlockEx {
     /**
      * Gets an icon index based on an item's damage value
      */
-    public int getIconFromDamage(int par1) {
-        //return Block.sapling.getBlockTextureFromSideAndMetadata(0, par1);
-        //return 2 * 16 + par1;
-        return texture + par1;
+    public Icon getIconFromDamage(int par1) {
+        return null;
+        // TODO: return texture + par1;
     }
 
-    public String getItemNameIS(ItemStack par1ItemStack) {
+    @Override
+    public String getItemDisplayName(ItemStack par1ItemStack) {
         int dmg = par1ItemStack.getItemDamage();
 
         if (dmg < 0 || dmg >= mod_jaffas_trees.treeTypes.length) {
             dmg = 0;
         }
 
-        String name = super.getItemName() + "." + dmg;
+        String name = super.getUnlocalizedName() + "." + dmg;
         return name;
     }
 
