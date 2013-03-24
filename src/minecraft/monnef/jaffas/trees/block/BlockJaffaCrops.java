@@ -11,10 +11,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Random;
+
+import static monnef.core.utils.BlockHelper.setBlock;
 
 public class BlockJaffaCrops extends BlockFlower {
 
@@ -27,8 +30,8 @@ public class BlockJaffaCrops extends BlockFlower {
     private int renderer;
 
     public BlockJaffaCrops(int blockID, int textureIndex, int phasesMax, Item product, Item seeds, int renderer) {
-        super(blockID, textureIndex);
-        this.blockIndexInTexture = textureIndex;
+        super(blockID);
+        //this.blockIndexInTexture = textureIndex;
         this.setTickRandomly(true);
         float var3 = 0.5F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
@@ -37,7 +40,7 @@ public class BlockJaffaCrops extends BlockFlower {
         this.product = product;
         this.seeds = seeds;
         this.renderer = renderer;
-        this.setRequiresSelfNotify();
+        //this.setRequiresSelfNotify();
     }
 
     public String getTextureFile() {
@@ -82,18 +85,15 @@ public class BlockJaffaCrops extends BlockFlower {
                     // slow grow a bit
                     if (par5Random.nextInt(4) == 0) {
                         ++var6;
-                        par1World.setBlockMetadataWithNotify(par2, par3, par4, var6);
+                        setBlock(par1World, par2, par3, par4, var6);
                     }
                 }
             }
         }
     }
 
-    /**
-     * Apply bonemeal to the crops.
-     */
     public void fertilize(World par1World, int par2, int par3, int par4) {
-        par1World.setBlockMetadataWithNotify(par2, par3, par4, phasesMax);
+        setBlock(par1World, par2, par3, par4, phasesMax);
     }
 
     /**
@@ -146,17 +146,20 @@ public class BlockJaffaCrops extends BlockFlower {
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
+    @Override
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
         if (par2 < 0) {
             par2 = phasesMax;
         }
 
-        return this.blockIndexInTexture + par2;
+        return null;
+        //return this.blockIndexInTexture + par2;
     }
 
     /**
      * The type of render function that is called for this block
      */
+    @Override
     public int getRenderType() {
         return this.renderer;
     }
@@ -164,6 +167,7 @@ public class BlockJaffaCrops extends BlockFlower {
     /**
      * Drops the block items with a specified chance of dropping the specified items
      */
+    @Override
     public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7) {
         super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, 0);
     }
@@ -184,24 +188,18 @@ public class BlockJaffaCrops extends BlockFlower {
         return ret;
     }
 
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
+    @Override
     public int idDropped(int par1, Random par2Random, int par3) {
         return par1 == phasesMax ? product.itemID : -1;
     }
 
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
+    @Override
     public int quantityDropped(Random par1Random) {
         return 1;
     }
 
     @SideOnly(Side.CLIENT)
-    /**
-     * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
-     */
+    @Override
     public int idPicked(World par1World, int par2, int par3, int par4) {
         return seeds.itemID;
     }
@@ -210,6 +208,7 @@ public class BlockJaffaCrops extends BlockFlower {
         return phasesMax;
     }
 
+    @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
         par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));

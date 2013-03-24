@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 
 import java.util.List;
@@ -19,9 +20,11 @@ public class ItemXmasMulti extends ItemXmas {
     }
 
     @SideOnly(Side.CLIENT)
-    public int getIconFromDamage(int par1) {
+    @Override
+    public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, subNames.length);
-        return this.iconIndex + var2;
+        return null;
+        //return this.iconIndex + var2;
     }
 
     @Override
@@ -36,10 +39,8 @@ public class ItemXmasMulti extends ItemXmas {
         }
     }
 
-    /**
-     * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
-     */
     @SideOnly(Side.CLIENT)
+    @Override
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < subNames.length; i++) {
             par3List.add(new ItemStack(par1, 1, i));

@@ -2,6 +2,7 @@ package monnef.jaffas.xmas;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 
 public class ItemBlockPresent extends ItemBlockXmasMulti {
@@ -30,11 +31,9 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
 
     @SideOnly(Side.CLIENT)
     @Override
-    /**
-     * Gets an icon index based on an item's damage value
-     */
-    public int getIconFromDamage(int par1) {
+    public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, count);
-        return this.iconIndex + (var2 % (count / 2));
+        return null;
+        //return this.iconIndex + (var2 % (count / 2));
     }
 }

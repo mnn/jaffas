@@ -259,7 +259,7 @@ public class mod_jaffas_trees extends mod_jaffas {
             BushInfo info = entry.getValue();
 
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
-            seeds.setUnlocalizedName(info.getSeedsLanguageName()).setIconIndex(info.seedsTexture);
+            seeds.setUnlocalizedName(info.getSeedsLanguageName());// TODO .setIconIndex(info.seedsTexture);
             LanguageRegistry.addName(seeds, info.seedsTitle);
             info.itemSeeds = seeds;
             if (info.drop == DropsFromGrass) {
@@ -267,7 +267,7 @@ public class mod_jaffas_trees extends mod_jaffas {
             }
 
             Item fruit = constructFruit(info.itemFruitID, info.eatable);
-            fruit.setUnlocalizedName(info.getFruitLanguageName()).setIconIndex(info.fruitTexture).setCreativeTab(CreativeTab);
+            fruit.setUnlocalizedName(info.getFruitLanguageName()).setCreativeTab(CreativeTab); // TODO .setIconIndex(info.fruitTexture);
             LanguageRegistry.addName(fruit, info.fruitTitle);
             info.itemFruit = fruit;
 
@@ -322,19 +322,19 @@ public class mod_jaffas_trees extends mod_jaffas {
         GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
 
         itemLemon = constructFruit(itemLemonID, NotEatable);
-        itemLemon.setUnlocalizedName("lemon").setIconCoord(4, 4);
+        itemLemon.setUnlocalizedName("lemon");//.setIconCoord(4, 4);
         LanguageRegistry.addName(itemLemon, "Lemon");
 
         itemOrange = constructFruit(itemOrangeID, EatableNormal);
-        itemOrange.setUnlocalizedName("orange").setIconCoord(5, 4);
+        itemOrange.setUnlocalizedName("orange");//.setIconCoord(5, 4);
         LanguageRegistry.addName(itemOrange, "Orange");
 
         itemPlum = constructFruit(itemPlumID, EatableNormal);
-        itemPlum.setUnlocalizedName("plum").setIconCoord(6, 4);
+        itemPlum.setUnlocalizedName("plum");//.setIconCoord(6, 4);
         LanguageRegistry.addName(itemPlum, "Plum");
 
         itemCoconut = constructFruit(itemCoconutID, NotEatable);
-        itemCoconut.setUnlocalizedName("coconut").setIconCoord(7, 4);
+        itemCoconut.setUnlocalizedName("coconut");//.setIconCoord(7, 4);
         LanguageRegistry.addName(itemCoconut, "Coconut");
 
         constructItemsInBushInfo();
@@ -345,27 +345,27 @@ public class mod_jaffas_trees extends mod_jaffas {
         GameRegistry.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
 
         itemDebug = new ItemJaffaTreeDebugTool(itemDebugID);
-        itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug").setIconCoord(13, 0);
+        itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");//.setIconCoord(13, 0);
         LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
 
         itemStick = new ItemTrees(itemStickID);
-        itemStick.setUnlocalizedName("stickImpregnated").setIconCoord(0, 10);
+        itemStick.setUnlocalizedName("stickImpregnated");//.setIconCoord(0, 10);
         LanguageRegistry.addName(itemStick, "Impregnated Stick");
 
         itemRod = new ItemTrees(itemRodID);
-        itemRod.setUnlocalizedName("rod").setIconCoord(1, 10).setMaxStackSize(1).setMaxDamage(64);
+        itemRod.setUnlocalizedName("rod").setMaxStackSize(1).setMaxDamage(64);//setIconCoord(1, 10).
         LanguageRegistry.addName(itemRod, "Reinforced Rod");
 
         itemFruitPickerHead = new ItemTrees(itemFruitPickerHeadID);
-        itemFruitPickerHead.setUnlocalizedName("fruitPickerHead").setIconCoord(2, 10);
+        itemFruitPickerHead.setUnlocalizedName("fruitPickerHead");//.setIconCoord(2, 10);
         LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
 
         itemFruitPicker = new ItemTrees(itemFruitPickerID);
-        itemFruitPicker.setUnlocalizedName("fruitPicker").setIconCoord(3, 10).setMaxStackSize(1).setMaxDamage(256);
+        itemFruitPicker.setUnlocalizedName("fruitPicker").setMaxStackSize(1).setMaxDamage(256); //.setIconCoord(3, 10)
         LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
 
         itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
-        RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds").setIconIndex(34);
+        RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");//.setIconIndex(34);
 
         MinecraftForge.addGrassSeed(new ItemStack(itemUnknownSeeds), SEEDS_WEIGHT);
 

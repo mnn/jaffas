@@ -35,9 +35,8 @@ public class GuiSpawnStone extends GuiScreen {
     public void drawScreen(int x, int y, float f) {
         drawDefaultBackground();
 
-        int var4 = this.mc.renderEngine.getTexture("/guispawnstone.png");
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(var4);
+        this.mc.renderEngine.bindTexture("/guispawnstone.png");
 
         int posX = (this.width - xSizeOfTexture) / 2;
         int posY = (this.height - ySizeOfTexture) / 2;
@@ -65,15 +64,15 @@ public class GuiSpawnStone extends GuiScreen {
 
     @Override
     public void initGui() {
-        this.controlList.clear();
+        this.buttonList.clear();
         int posX = (this.width - xSizeOfTexture) / 2;
         int posY = (this.height - ySizeOfTexture) / 2;
 
         buttonUse = new GuiButton(0, posX + 90, posY + 60, 70, 20, "Use");
-        this.controlList.add(buttonUse);
+        this.buttonList.add(buttonUse);
 
         buttonClose = new GuiButton(1, posX + 15, posY + 60, 70, 20, "Close");
-        this.controlList.add(buttonClose);
+        this.buttonList.add(buttonClose);
     }
 
     @Override

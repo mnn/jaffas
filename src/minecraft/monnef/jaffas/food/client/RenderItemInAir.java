@@ -4,25 +4,24 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
+import net.minecraft.util.Icon;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class RenderItemInAir extends Render {
     public RenderItemInAir(Item item) {
         super();
-        itemIconIndex = item.getIconFromDamage(0);
-        textureFile = item.getTextureFile();
+        textureFile = item.getIconFromDamage(0);
     }
 
-    protected int itemIconIndex;
-    protected String textureFile;
+    protected Icon textureFile;
 
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
         GL11.glPushMatrix();
         GL11.glTranslatef((float) par2, (float) par4, (float) par6);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glScalef(0.5F, 0.5F, 0.5F);
-        this.loadTexture(textureFile);
+        // this.loadTexture(textureFile); //TODO?
         Tessellator var10 = Tessellator.instance;
 
         /*
@@ -39,27 +38,27 @@ public class RenderItemInAir extends Render {
         }
         */
 
-        this.doRender(var10, this.itemIconIndex);
+        this.doRender(var10, this.textureFile);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
     }
 
-    private void doRender(Tessellator tessellator, int iconIndex) {
-        float x1 = (float) (iconIndex % 16 * 16 + 0) / 256.0F;
-        float x2 = (float) (iconIndex % 16 * 16 + 16) / 256.0F;
-        float y2 = (float) (iconIndex / 16 * 16 + 0) / 256.0F;
-        float y1 = (float) (iconIndex / 16 * 16 + 16) / 256.0F;
-        float var7 = 1.0F;
-        float var8 = 0.5F;
-        float var9 = 0.25F;
+    private void doRender(Tessellator par1Tessellator, Icon par2Icon) {
+        float f = par2Icon.getMinU();
+        float f1 = par2Icon.getMaxU();
+        float f2 = par2Icon.getMinV();
+        float f3 = par2Icon.getMaxV();
+        float f4 = 1.0F;
+        float f5 = 0.5F;
+        float f6 = 0.25F;
         GL11.glRotatef(180.0F - this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
         GL11.glRotatef(-this.renderManager.playerViewX, 1.0F, 0.0F, 0.0F);
-        tessellator.startDrawingQuads();
-        tessellator.setNormal(0.0F, 1.0F, 0.0F);
-        tessellator.addVertexWithUV((double) (0.0F - var8), (double) (0.0F - var9), 0.0D, (double) x1, (double) y1);
-        tessellator.addVertexWithUV((double) (var7 - var8), (double) (0.0F - var9), 0.0D, (double) x2, (double) y1);
-        tessellator.addVertexWithUV((double) (var7 - var8), (double) (var7 - var9), 0.0D, (double) x2, (double) y2);
-        tessellator.addVertexWithUV((double) (0.0F - var8), (double) (var7 - var9), 0.0D, (double) x1, (double) y2);
-        tessellator.draw();
+        par1Tessellator.startDrawingQuads();
+        par1Tessellator.setNormal(0.0F, 1.0F, 0.0F);
+        par1Tessellator.addVertexWithUV((double) (0.0F - f5), (double) (0.0F - f6), 0.0D, (double) f, (double) f3);
+        par1Tessellator.addVertexWithUV((double) (f4 - f5), (double) (0.0F - f6), 0.0D, (double) f1, (double) f3);
+        par1Tessellator.addVertexWithUV((double) (f4 - f5), (double) (f4 - f6), 0.0D, (double) f1, (double) f2);
+        par1Tessellator.addVertexWithUV((double) (0.0F - f5), (double) (f4 - f6), 0.0D, (double) f, (double) f2);
+        par1Tessellator.draw();
     }
 }

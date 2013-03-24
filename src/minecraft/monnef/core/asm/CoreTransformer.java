@@ -20,7 +20,7 @@ public class CoreTransformer implements IClassTransformer {
     }
 
     @Override
-    public byte[] transform(String name, byte[] bytes) {
+    public byte[] transform(String name, String transformedName, byte[] bytes) {
         if (bytes == null) return null;
 
         if (ObfuscationHelper.namesAreEqual(name, C_RENDER_GLOBAL)) {

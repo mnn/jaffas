@@ -1,6 +1,7 @@
 package monnef.jaffas.technic;
 
 import cpw.mods.fml.common.IWorldGenerator;
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -9,6 +10,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.*;
 import static monnef.jaffas.food.mod_jaffas_food.Log;
 import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrass;
 import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrassID;
@@ -129,7 +131,7 @@ public class TechnicWorldGen implements IWorldGenerator {
             int cZ = z + rand.nextInt(radius) - rand.nextInt(radius);
 
             if (world.isAirBlock(cX, cY, cZ) && blockSwitchgrass.canPlaceBlockAt(world, cX, cY, cZ)) {
-                world.setBlockAndMetadata(cX, cY, cZ, blockSwitchgrassID, 8);
+                setBlock(world, cX, cY, cZ, blockSwitchgrassID, 8);
                 hit++;
             }
         }

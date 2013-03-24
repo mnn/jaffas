@@ -1,5 +1,6 @@
 package monnef.jaffas.food.item;
 
+import monnef.core.utils.BlockHelper;
 import monnef.core.utils.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import static monnef.core.utils.BlockHelper.*;
 import static monnef.jaffas.food.mod_jaffas_food.blockPizza;
 import static monnef.jaffas.food.mod_jaffas_food.getItem;
 
@@ -33,8 +35,7 @@ public class ItemPizza extends ItemJaffaBase {
 
             if (player.canPlayerEdit(x, y, z, side, item) && player.canPlayerEdit(x, y + 1, z, side, item)) {
                 if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z)) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, blockToPlace.blockID, meta);
-
+                    setBlock(world, x, y, z, blockToPlace.blockID, meta);
                     --item.stackSize;
 
                     PlayerHelper.giveItemToPlayer(player, new ItemStack(getItem(JaffaItem.cakeTin)));

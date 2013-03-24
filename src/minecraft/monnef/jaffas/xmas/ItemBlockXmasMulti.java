@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 
 public abstract class ItemBlockXmasMulti extends ItemBlock {
@@ -41,12 +42,12 @@ public abstract class ItemBlockXmasMulti extends ItemBlock {
     }
 
     @SideOnly(Side.CLIENT)
-    /**
-     * Gets an icon index based on an item's damage value
-     */
-    public int getIconFromDamage(int par1) {
+    @Override
+    public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, subNames.length);
-        return this.iconIndex + var2;
+        //TODO
+        // return this.iconIndex + var2;
+        return null;
     }
 
     protected abstract String[] getSubNames();

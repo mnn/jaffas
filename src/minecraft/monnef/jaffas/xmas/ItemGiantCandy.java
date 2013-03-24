@@ -7,6 +7,8 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import static monnef.core.utils.BlockHelper.setBlock;
+
 public class ItemGiantCandy extends ItemXmas {
     public ItemGiantCandy(int id, int textureIndex) {
         super(id, textureIndex);
@@ -28,10 +30,10 @@ public class ItemGiantCandy extends ItemXmas {
 
             if (player.canPlayerEdit(x, y, z, side, item) && player.canPlayerEdit(x, y + 1, z, side, item)) {
                 if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z) && world.doesBlockHaveSolidTopSurface(x, y - 1, z)) {
-                    world.setBlockAndMetadataWithNotify(x, y, z, blockToPlace.blockID, direction);
+                    setBlock(world, x, y, z, blockToPlace.blockID, direction);
 
                     if (world.getBlockId(x, y, z) == blockToPlace.blockID) {
-                        world.setBlockAndMetadataWithNotify(x, y + 1, z, blockToPlace.blockID, direction | 8);
+                        setBlock(world, x, y + 1, z, blockToPlace.blockID, direction | 8);
                     }
 
                     --item.stackSize;

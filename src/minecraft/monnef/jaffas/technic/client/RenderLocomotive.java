@@ -77,7 +77,7 @@ public class RenderLocomotive extends Render {
         GL11.glRotatef(180.0F - renderRotation, 0.0F, 1.0F, 0.0F);
 
         GL11.glRotatef(-tilt, 0.0F, 0.0F, 1.0F);
-        float var28 = (float) entity.func_70496_j() - par9;
+        float var28 = (float) entity.getRollingAmplitude() - par9;
         float var30 = (float) entity.getDamage() - par9;
 
         if (var30 < 0.0F) {
@@ -85,7 +85,7 @@ public class RenderLocomotive extends Render {
         }
 
         if (var28 > 0.0F) {
-            GL11.glRotatef(MathHelper.sin(var28) * var28 * var30 / 10.0F * (float) entity.func_70493_k(), 1.0F, 0.0F, 0.0F);
+            GL11.glRotatef(MathHelper.sin(var28) * var28 * var30 / 10.0F * (float) entity.getRollingDirection(), 1.0F, 0.0F, 0.0F);
         }
 
         /*

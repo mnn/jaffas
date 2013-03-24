@@ -11,7 +11,7 @@ public class ItemXmas extends ItemMonnefCore {
 
     public ItemXmas(int id, int textureIndex) {
         super(id);
-        setIconIndex(textureIndex);
+        //setIconIndex(textureIndex);
         init();
     }
 

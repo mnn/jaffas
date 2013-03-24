@@ -1,11 +1,13 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.BitHelper;
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.mod_jaffas_food;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.*;
 import static monnef.jaffas.food.mod_jaffas_food.Log;
 
 public class TileEntitySink extends TileEntity {
@@ -39,7 +41,7 @@ public class TileEntitySink extends TileEntity {
                     delay = maxDelay * (2 + rand.nextInt(3));
 
                     int newMeta = BitHelper.setBit(meta, BlockSink.waterBit);
-                    worldObj.setBlockMetadata(xCoord, yCoord, zCoord, newMeta);
+                    setBlockMetadata(worldObj, xCoord, yCoord, zCoord, newMeta);
                 }
             }
         }

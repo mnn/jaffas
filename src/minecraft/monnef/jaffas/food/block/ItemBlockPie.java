@@ -2,6 +2,7 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 
 public class ItemBlockPie extends ItemBlockJaffas {
@@ -18,8 +19,11 @@ public class ItemBlockPie extends ItemBlockJaffas {
     }
 
     @SideOnly(Side.CLIENT)
-    public int getIconFromDamage(int par1) {
+    @Override
+    public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, BlockPie.textureIndexFromMeta.length);
-        return BlockPie.textureIndexFromMeta[var2];
+        return null;
+        //TODO
+        //return BlockPie.textureIndexFromMeta[var2];
     }
 }

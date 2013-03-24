@@ -1,7 +1,8 @@
 package monnef.jaffas.trees;
 
-import monnef.jaffas.food.item.common.ItemManager;
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
 import monnef.jaffas.trees.item.ItemFromFruitResult;
 import net.minecraft.block.Block;
@@ -17,7 +18,13 @@ import java.util.HashSet;
 import java.util.Random;
 
 import static monnef.jaffas.food.mod_jaffas_food.Log;
-import static monnef.jaffas.trees.mod_jaffas_trees.*;
+import static monnef.jaffas.trees.mod_jaffas_trees.debug;
+import static monnef.jaffas.trees.mod_jaffas_trees.fruitType;
+import static monnef.jaffas.trees.mod_jaffas_trees.getActualLeavesType;
+import static monnef.jaffas.trees.mod_jaffas_trees.itemCoconut;
+import static monnef.jaffas.trees.mod_jaffas_trees.itemLemon;
+import static monnef.jaffas.trees.mod_jaffas_trees.itemOrange;
+import static monnef.jaffas.trees.mod_jaffas_trees.itemPlum;
 
 
 public class TileEntityFruitLeaves extends TileEntity {
@@ -120,7 +127,7 @@ public class TileEntityFruitLeaves extends TileEntity {
     }
 
     private void ChangeBlockAndRespawnMe(int newBlock, int newMeta) {
-        worldObj.setBlockAndMetadata(this.xCoord, this.yCoord, this.zCoord, newBlock, BlockFruitLeaves.getChangedTypeInMeta(newMeta, this.getBlockMetadata()));
+        BlockHelper.setBlock(worldObj, this.xCoord, this.yCoord, this.zCoord, newBlock, BlockFruitLeaves.getChangedTypeInMeta(newMeta, this.getBlockMetadata()));
         this.invalidate();
         TileEntityFruitLeaves te = new TileEntityFruitLeaves(this);
         worldObj.setBlockTileEntity(this.xCoord, this.yCoord, this.zCoord, te);
