@@ -1,11 +1,14 @@
 package monnef.jaffas.trees;
 
 import forestry.api.cultivation.ICropEntity;
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.trees.block.BlockJaffaCrops;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
+
+import static monnef.core.utils.BlockHelper.*;
 
 public class TileEntityJaffaCrops extends TileEntity implements ICropEntity {
 
@@ -24,7 +27,7 @@ public class TileEntityJaffaCrops extends TileEntity implements ICropEntity {
     public ArrayList<ItemStack> doHarvest() {
         BlockJaffaCrops b = (BlockJaffaCrops) this.getBlockType();
         ArrayList<ItemStack> res = b.getBlockDropped(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.getBlockMetadata(), 0);
-        this.worldObj.setBlockWithNotify(this.xCoord, this.yCoord, this.zCoord, 0);
+        setBlock(this.worldObj, this.xCoord, this.yCoord, this.zCoord, 0);
         return res;
     }
 }

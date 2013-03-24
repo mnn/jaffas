@@ -8,7 +8,7 @@ public class ItemPickaxeTechnic extends ItemPickaxe {
     public ItemPickaxeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, material);
         setCreativeTab(mod_jaffas_technic.CreativeTab);
-        setIconIndex(textureOffset);
-        setTextureFile(mod_jaffas_technic.textureFile);
+        //setIconIndex(textureOffset);
+        //setTextureFile(mod_jaffas_technic.textureFile);
     }
 }

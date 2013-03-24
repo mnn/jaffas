@@ -6,8 +6,8 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.block.TileEntityJaffaMachine;
-import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
 import net.minecraft.entity.item.EntityItem;
@@ -77,7 +77,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
     }
 
     private static void addToFruitList(Item item, int dmg) {
-        fruitList.put(item.shiftedIndex, dmg);
+        fruitList.put(item.itemID, dmg);
     }
 
     static {
@@ -176,8 +176,8 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                     cooldown -= 1;
                     if (cooldown <= 0) {
                         if (targetedItem != null && this.targetedItem.isEntityAlive()) {
-                            ItemStack stack = this.targetedItem.func_92014_d().copy();
-                            int itemsAdded = addItemToInventory(this.targetedItem.func_92014_d().copy(), true);
+                            ItemStack stack = this.targetedItem.getEntityItem().copy();
+                            int itemsAdded = addItemToInventory(this.targetedItem.getEntityItem().copy(), true);
                             this.targetedItem.setDead();
                             if (mod_jaffas_trees.debug) Log.printInfo("target destroyed");
                             int itemsLeft = stack.stackSize - itemsAdded;
@@ -251,8 +251,8 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
             EntityItem item = null;
             while (notFound && it.hasNext()) {
                 item = it.next();
-                Integer itemDmg = fruitList.get(item.func_92014_d().itemID);
-                if (itemDmg != null && itemDmg == item.func_92014_d().getItemDamage() && canAddToInventory(item)) {
+                Integer itemDmg = fruitList.get(item.getEntityItem().itemID);
+                if (itemDmg != null && itemDmg == item.getEntityItem().getItemDamage() && canAddToInventory(item)) {
                     notFound = false;
                 }
             }
@@ -332,6 +332,11 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
     }
 
     @Override
+    public boolean isInvNameLocalized() {
+        return false;
+    }
+
+    @Override
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);
         if (stack != null) {
@@ -373,6 +378,11 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
     @Override
     public void closeChest() {
+    }
+
+    @Override
+    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+        return true;
     }
 
     @Override

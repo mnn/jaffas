@@ -49,7 +49,7 @@ public class ItemStackMap<T> extends HashMap<ItemStack, T>{
 		else if(b instanceof Integer)
 			return ((Integer)b).equals(a.itemID);
 		else if(b instanceof Item)
-			return ((Item)b).shiftedIndex == a.itemID;
+			return ((Item)b).itemID == a.itemID;
 		return false;
 	}
 

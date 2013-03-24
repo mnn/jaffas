@@ -1,5 +1,6 @@
 package monnef.jaffas.food.item;
 
+import monnef.core.base.ItemMonnefCore;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.item.common.IItemFood;
 import monnef.jaffas.food.mod_jaffas_food;
@@ -12,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemJaffaFood extends ItemFood implements IItemFood {
+    // TODO rewrite to inherit from ItemMonnefCore
 
     private ItemStack returnItem;
     private boolean isDrink;

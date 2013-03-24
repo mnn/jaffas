@@ -1,7 +1,7 @@
 package monnef.jaffas.trees.client;
 
-import monnef.jaffas.trees.common.CommonProxy;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.common.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
@@ -27,7 +27,7 @@ public class ClientProxy extends CommonProxy {
         }
 
         if (efx != null) {
-            Minecraft.getMinecraft().effectRenderer.addEffect(efx, null);
+            Minecraft.getMinecraft().effectRenderer.addEffect(efx);
         }
     }
 }

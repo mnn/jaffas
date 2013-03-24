@@ -47,7 +47,7 @@ public class BlockJaffaCrops extends BlockFlower {
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         // bonemeal
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.itemID == Item.dyePowder.shiftedIndex && mod_jaffas_trees.bonemealingAllowed) {
+        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && mod_jaffas_trees.bonemealingAllowed) {
             if (itemstack.getItemDamage() == 15) {
                 //growTree(par1World, par2, par3, par4, rand);
                 this.fertilize(par1World, par2, par3, par4);
@@ -188,7 +188,7 @@ public class BlockJaffaCrops extends BlockFlower {
      * Returns the ID of the items to drop on destruction.
      */
     public int idDropped(int par1, Random par2Random, int par3) {
-        return par1 == phasesMax ? product.shiftedIndex : -1;
+        return par1 == phasesMax ? product.itemID : -1;
     }
 
     /**
@@ -203,7 +203,7 @@ public class BlockJaffaCrops extends BlockFlower {
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return seeds.shiftedIndex;
+        return seeds.itemID;
     }
 
     public int getPhasesMax() {

@@ -31,9 +31,8 @@ public abstract class GuiContainerMachine extends GuiContainer {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
-        int texture = mc.renderEngine.getTexture(getBackgroundTexture());
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(texture);
+        this.mc.renderEngine.bindTexture(getBackgroundTexture());
         x = (width - xSize) / 2;
         y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

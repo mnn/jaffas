@@ -38,8 +38,9 @@ public class ContainerFruitCollector extends Container {
         bindPlayerInventory(inventoryPlayer);
     }
 
-    public void updateCraftingResults() {
-        super.updateCraftingResults();
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
         Iterator var1 = this.crafters.iterator();
 
         while (var1.hasNext()) {

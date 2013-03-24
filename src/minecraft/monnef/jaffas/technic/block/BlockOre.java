@@ -29,7 +29,7 @@ public class BlockOre extends BlockTechnic {
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
         if (blockID == blockLimsewOre.blockID) {
-            return mod_jaffas_technic.limsew.shiftedIndex;
+            return mod_jaffas_technic.limsew.itemID;
         }
         return super.idDropped(par1, par2Random, par3);
     }

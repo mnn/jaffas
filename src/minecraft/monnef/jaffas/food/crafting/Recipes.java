@@ -314,7 +314,7 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(breadRaw).itemID, getItemStack(bread), 0.5f);
 
         GameRegistry.addRecipe(getItemStack(rawBurger), "PPP", "PPP", 'P', getItem(mincedMeat));
-        //GameRegistry.addSmelting(getItem(JaffaItem.rawBurger).shiftedIndex, getItemStack(JaffaItem.burger), 2f);
+        //GameRegistry.addSmelting(getItem(JaffaItem.rawBurger).itemID, getItemStack(JaffaItem.burger), 2f);
         addFryingPanRecipe(rawBurger, fryingPanBurgerRaw, fryingPanBurger, burger);
         RecipesBoard.addRecipe(bread, 1, breadSlice, 12);
         GameRegistry.addShapelessRecipe(getItemStack(hamburger, 5), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(burger), getItem(onionSliced));

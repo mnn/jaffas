@@ -2,29 +2,46 @@ package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.base.BlockMonnefCore;
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.trees.WorldGenFruitTrees;
 import monnef.jaffas.trees.mod_jaffas_trees;
-import net.minecraft.block.BlockFlower;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.IPlantable;
 
 import java.util.List;
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.jaffas.food.mod_jaffas_food.Log;
+import static net.minecraftforge.common.EnumPlantType.Cave;
+import static net.minecraftforge.common.EnumPlantType.Crop;
+import static net.minecraftforge.common.EnumPlantType.Desert;
+import static net.minecraftforge.common.EnumPlantType.Nether;
+import static net.minecraftforge.common.EnumPlantType.Plains;
+import static net.minecraftforge.common.EnumPlantType.Water;
 
-public class BlockFruitSapling extends BlockFlower {
+public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
     public static Random rand = new Random();
     public int serialNumber = -1;
 
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         // bonemeal
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.itemID == Item.dyePowder.shiftedIndex && mod_jaffas_trees.bonemealingAllowed) {
+        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && mod_jaffas_trees.bonemealingAllowed) {
             if (itemstack.getItemDamage() == 15) {
                 if (!par1World.isRemote) {
                     growTree(par1World, par2, par3, par4, rand);
@@ -37,16 +54,18 @@ public class BlockFruitSapling extends BlockFlower {
     }
 
     public BlockFruitSapling(int blockId, int blockIndexInTexture) {
-        super(blockId, blockIndexInTexture);
+        super(blockId, blockIndexInTexture, Material.plants);
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         setCreativeTab(mod_jaffas_trees.CreativeTab);
+        this.setTickRandomly(true);
     }
 
     /**
      * Ticks the block if it's been scheduled
      */
+    @Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
         if (!par1World.isRemote) {
             super.updateTick(par1World, par2, par3, par4, par5Random);
@@ -61,10 +80,8 @@ public class BlockFruitSapling extends BlockFlower {
                             + BlockFruitLeaves.areLeavesMarkedForDecay(BlockFruitLeaves.setLeavesDecay(metadata)) + ")");
                 }
 
-                //if ((var6 & 8) == 0) {
                 if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
-                    //par1World.setBlockMetadataWithNotify(par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
-                    par1World.setBlockMetadata(par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
+                    setBlockMetadata(par1World, par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
                     if (mod_jaffas_trees.debug) {
                         Log.printInfo("after set: " + par1World.getBlockMetadata(par2, par3, par4));
                     }
@@ -75,18 +92,12 @@ public class BlockFruitSapling extends BlockFlower {
         }
     }
 
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
-    public int getBlockTextureFromSideAndMetadata(int par1, int par2) {
-/*        par2 &= 3;
-        return par2 == 1 ? 63 : (par2 == 2 ? 79 : (par2 == 3 ? 30 : super.getBlockTextureFromSideAndMetadata(par1, par2)));*/
-        return 63;
+    @Override
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
+        return null;
+        //return 63;
     }
 
-    /**
-     * Attempts to grow a sapling into a tree
-     */
     public void growTree(World par1World, int par2, int par3, int par4, Random par5Random) {
         int metadata = par1World.getBlockMetadata(par2, par3, par4);
         metadata = BlockFruitLeaves.getLeavesType(metadata);
@@ -95,16 +106,11 @@ public class BlockFruitSapling extends BlockFlower {
         int var9 = 0;
 
         par1World.setBlock(par2, par3, par4, 0);
-        /*
-    this.minTreeHeight = par2;
-    this.metaWood = par3;
-    this.metaLeaves = par4;
-    this.vinesGrow = par5;  */
 
         var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false, mod_jaffas_trees.leavesList.get(serialNumber).leavesID);
 
         if (!((WorldGenerator) var7).generate(par1World, par5Random, par2 + var8, par3, par4 + var9)) {
-            par1World.setBlockAndMetadata(par2, par3, par4, this.blockID, metadata);
+            setBlock(par1World, par2, par3, par4, this.blockID, metadata);
         }
     }
 
@@ -118,19 +124,72 @@ public class BlockFruitSapling extends BlockFlower {
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
+    @Override
     public int damageDropped(int par1) {
         return BlockFruitLeaves.getLeavesType(par1);
     }
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
 /*        par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
         par3List.add(new ItemStack(par1, 1, 3));*/
+    }
+
+    @Override
+    public int getRenderType()
+    {
+        return 1;
+    }
+
+    @Override
+    public EnumPlantType getPlantType(World world, int x, int y, int z)
+    {
+        return Plains;
+    }
+
+    @Override
+    public int getPlantID(World world, int x, int y, int z)
+    {
+        return blockID;
+    }
+
+    @Override
+    public int getPlantMetadata(World world, int x, int y, int z)
+    {
+        return world.getBlockMetadata(x, y, z);
+    }
+
+    @Override
+    public boolean canBlockStay(World par1World, int par2, int par3, int par4)
+    {
+        Block soil = blocksList[par1World.getBlockId(par2, par3 - 1, par4)];
+        return (par1World.getFullBlockLightValue(par2, par3, par4) >= 8 || par1World.canBlockSeeTheSky(par2, par3, par4)) &&
+                (soil != null && soil.canSustainPlant(par1World, par2, par3 - 1, par4, ForgeDirection.UP, this));
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    {
+        return null;
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
+    {
+        return super.canPlaceBlockAt(par1World, par2, par3, par4) && canBlockStay(par1World, par2, par3, par4);
     }
 }

@@ -71,7 +71,7 @@ public class ContainerBoard extends Container {
             }
             //places it into the tileEntity is possible since its in the player inventory
             else {
-                if (stackInSlot.itemID == mod_jaffas_food.getItem(JaffaItem.knifeKitchen).shiftedIndex) {
+                if (stackInSlot.itemID == mod_jaffas_food.getItem(JaffaItem.knifeKitchen).itemID) {
                     if (!this.mergeItemStack(stackInSlot, 0, slots, true)) {
                         return null;
                     }
@@ -110,8 +110,9 @@ public class ContainerBoard extends Container {
     /**
      * Updates crafting matrix; called from onCraftMatrixChanged. Args: none
      */
-    public void updateCraftingResults() {
-        super.updateCraftingResults();
+    @Override
+    public void detectAndSendChanges() {
+        super.detectAndSendChanges();
 
         for (int var1 = 0; var1 < this.crafters.size(); ++var1) {
             ICrafting var2 = (ICrafting) this.crafters.get(var1);

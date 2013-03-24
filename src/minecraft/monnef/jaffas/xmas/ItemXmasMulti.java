@@ -24,14 +24,15 @@ public class ItemXmasMulti extends ItemXmas {
         return this.iconIndex + var2;
     }
 
-    public String getItemNameIS(ItemStack par1ItemStack) {
+    @Override
+    public String getItemDisplayName(ItemStack par1ItemStack) {
         int var2 = MathHelper.clamp_int(par1ItemStack.getItemDamage(), 0, subNames.length);
-        return super.getItemName() + "." + subNames[var2];
+        return super.getUnlocalizedName() + "." + subNames[var2];
     }
 
     public void registerNames() {
         for (int i = 0; i < subNames.length; i++) {
-            LanguageRegistry.instance().addStringLocalization(this.getItemName() + "." + subNames[i] + ".name", subTitles[i]);
+            LanguageRegistry.instance().addStringLocalization(this.getUnlocalizedName() + "." + subNames[i] + ".name", subTitles[i]);
         }
     }
 

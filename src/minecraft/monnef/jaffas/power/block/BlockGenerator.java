@@ -17,7 +17,7 @@ public class BlockGenerator extends BlockMachineWithInventory {
     public BlockGenerator(int id, int texture) {
         super(id, texture, Material.iron, true);
         setCreativeTab(mod_jaffas_power.CreativeTab);
-        setBlockName("generator");
+        setUnlocalizedName("generator");
         setHardness(1.5f);
         setResistance(5);
     }

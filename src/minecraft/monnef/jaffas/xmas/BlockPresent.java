@@ -25,7 +25,7 @@ public class BlockPresent extends BlockXmasMulti {
 
     public BlockPresent(int id, int textureID, Material material, int subBlocksCount) {
         super(id, textureID, material, subBlocksCount);
-        setBlockName("present");
+        setUnlocalizedName("present");
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {

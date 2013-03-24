@@ -110,12 +110,12 @@ public class mod_jaffas_xmas extends mod_jaffas {
 
     private void createItems() {
         BlockCandy = new BlockCandy(BlockCandyID, 16, Material.wood);
-        BlockCandy.setBlockName("jaffas.candy");
+        BlockCandy.setUnlocalizedName("jaffas.candy");
         GameRegistry.registerBlock(BlockCandy, "blockCandy");
         LanguageRegistry.addName(BlockCandy, "Candy Cane");
 
         ItemGiantCandy = new ItemGiantCandy(ItemGiantCandyID, 16);
-        ItemGiantCandy.setItemName("jaffas.giantCandy");
+        ItemGiantCandy.setUnlocalizedName("jaffas.giantCandy");
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
 
         BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, ItemBlockPresent.count);
@@ -152,7 +152,7 @@ public class mod_jaffas_xmas extends mod_jaffas {
 
         // star
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.pastrySweet));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandyStarRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandyStar)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyStarRaw).itemID, new ItemStack(getItem(JaffaItem.xcandyStar)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarChoco), 16), "C", "S", 'C', getItem(JaffaItem.chocolate), 'S', getItem(JaffaItem.xcandyStar));
         Item[] starJams = new Item[]{getItem(JaffaItem.jamR), getItem(JaffaItem.jamStrawberry), getItem(JaffaItem.jamRaspberry)};
         for (Item i : starJams) {
@@ -164,12 +164,12 @@ public class mod_jaffas_xmas extends mod_jaffas {
 
         // small roll
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X ", " X", "X ", 'X', getItem(JaffaItem.pastrySweet));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw).itemID, new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollChoco), 6), "C", "R", "C", 'C', getItem(JaffaItem.chocolate), 'R', getItem(JaffaItem.xcandySmallRoll));
 
         // circle
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.brownPastry));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandyChocoCircleRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandyChocoCircle)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyChocoCircleRaw).itemID, new ItemStack(getItem(JaffaItem.xcandyChocoCircle)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleCoated), 12), "C", "P", 'C', getItem(JaffaItem.chocolate), 'P', getItem(JaffaItem.xcandyChocoCircle));
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleSprinkled), 12), "S", "C", "P", 'C', getItem(JaffaItem.chocolate), 'P', getItem(JaffaItem.xcandyChocoCircle), 'S', getItem(JaffaItem.sprinkles));
 
@@ -179,7 +179,7 @@ public class mod_jaffas_xmas extends mod_jaffas {
 
         // gingerbread figure
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerFigureRaw)), "XXX", " X ", "X X", 'X', getItem(JaffaItem.gingerbread));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandyGingerFigureRaw).shiftedIndex, new ItemStack(getItem(JaffaItem.xcandyGingerFigure)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyGingerFigureRaw).itemID, new ItemStack(getItem(JaffaItem.xcandyGingerFigure)), 0.2f);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerCreamed), 26), getItem(JaffaItem.xcandyGingerFigure), getItem(JaffaItem.cream));
     }
 

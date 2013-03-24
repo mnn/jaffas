@@ -8,8 +8,10 @@ public class ItemXmasFood extends ItemJaffaFood {
         this.setCreativeTab(mod_jaffas_xmas.CreativeTab);
     }
 
+    /*
     @Override
     public String getTextureFile() {
         return "/jaffas_04.png";
     }
+    */
 }

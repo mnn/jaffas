@@ -224,43 +224,43 @@ public class mod_jaffas_technic extends mod_jaffas {
 
     private void createItems() {
         jaffarrol = new ItemTechnic(JaffarrolID, 0);
-        jaffarrol.setItemName("jaffarrol");
+        jaffarrol.setUnlocalizedName("jaffarrol");
         LanguageRegistry.addName(jaffarrol, "Jaffarrol Ingot");
 
         jaffarrolRaw = new ItemTechnic(JaffarrolRawID, 1);
-        jaffarrolRaw.setItemName("jaffarrolRaw");
+        jaffarrolRaw.setUnlocalizedName("jaffarrolRaw");
         LanguageRegistry.addName(jaffarrolRaw, "Raw Jaffarrol");
 
         jaffarrolRefined = new ItemTechnic(JaffarrolRefinedID, 2);
-        jaffarrolRefined.setItemName("jaffarrolRefined");
+        jaffarrolRefined.setUnlocalizedName("jaffarrolRefined");
         LanguageRegistry.addName(jaffarrolRefined, "Refined Jaffarrol");
 
         limsew = new ItemTechnic(LimsewID, 3);
-        limsew.setItemName("limsewDust");
+        limsew.setUnlocalizedName("limsewDust");
         LanguageRegistry.addName(limsew, "Limsew Dust");
 
         blockJaffarrol = new BlockTechnic(BlockJaffarrolID, 4, Material.iron);
-        blockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
+        blockJaffarrol.setUnlocalizedName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
         RegistryUtils.registerBlock(blockJaffarrol);
         LanguageRegistry.addName(blockJaffarrol, "Block of Jaffarrol");
 
         blockLimsew = new BlockTechnic(BlockLimsewID, 5, Material.iron);
-        blockLimsew.setBlockName("blockOfLimsew").setHardness(4f).setResistance(7f);
+        blockLimsew.setUnlocalizedName("blockOfLimsew").setHardness(4f).setResistance(7f);
         RegistryUtils.registerBlock(blockLimsew);
         LanguageRegistry.addName(blockLimsew, "Block of Limsew");
 
         itemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);
 
         funnel = new ItemTechnic(FunnelID, 16);
-        funnel.setItemName("funnel");
+        funnel.setUnlocalizedName("funnel");
         LanguageRegistry.addName(funnel, "Funnel");
 
         itemCasing = new ItemTechnic(ItemCasingID, 13);
-        itemCasing.setItemName("casing");
+        itemCasing.setUnlocalizedName("casing");
         LanguageRegistry.addName(itemCasing, "Casing");
 
         itemCasingRefined = new ItemTechnic(ItemCasingRefinedID, 14);
-        itemCasingRefined.setItemName("casingRefined");
+        itemCasingRefined.setUnlocalizedName("casingRefined");
         LanguageRegistry.addName(itemCasingRefined, "Refined Casing");
 
         // jarmor
@@ -312,8 +312,8 @@ public class mod_jaffas_technic extends mod_jaffas {
                 new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(Item.ingotGold),
                 new ItemStack(Item.redstone));
 
-        GameRegistry.addSmelting(jaffarrolRaw.shiftedIndex, new ItemStack(jaffarrol), 1f);
-        GameRegistry.addSmelting(jaffarrol.shiftedIndex, new ItemStack(jaffarrolRefined), 1f);
+        GameRegistry.addSmelting(jaffarrolRaw.itemID, new ItemStack(jaffarrol), 1f);
+        GameRegistry.addSmelting(jaffarrol.itemID, new ItemStack(jaffarrolRefined), 1f);
 
         GameRegistry.addShapelessRecipe(new ItemStack(blockJaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol),
                 new ItemStack(jaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol),
@@ -336,7 +336,7 @@ public class mod_jaffas_technic extends mod_jaffas {
 
         GameRegistry.addRecipe(new ItemStack(funnel), "I I", "J J", " J ", 'I', Item.ingotIron, 'J', jaffarrol);
         GameRegistry.addRecipe(new ItemStack(itemCasing, 1, 0), "JJJ", "J J", "JJJ", 'J', jaffarrol);
-        GameRegistry.addSmelting(itemCasing.shiftedIndex, new ItemStack(itemCasingRefined), 1f);
+        GameRegistry.addSmelting(itemCasing.itemID, new ItemStack(itemCasingRefined), 1f);
 
         GameRegistry.addRecipe(new ItemStack(mod_jaffas_food.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
                 '&', itemCasing, 'J', jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(itemCentralUnit, 1, 0));

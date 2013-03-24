@@ -90,7 +90,7 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
     }
 
     private static int getItemID(JaffaItem jItem) {
-        return getItem(jItem).shiftedIndex;
+        return getItem(jItem).itemID;
     }
 
     @Override

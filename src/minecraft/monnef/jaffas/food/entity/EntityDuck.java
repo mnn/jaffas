@@ -20,7 +20,7 @@ public class EntityDuck extends EntityAnimal {
     public float field_70888_h;
     public float field_70889_i = 1.0F;
 
-    protected int itemToDrop = getItem(featherDuck).shiftedIndex;
+    protected int itemToDrop = getItem(featherDuck).itemID;
 
     /**
      * The time until the next egg is spawned.
@@ -36,7 +36,7 @@ public class EntityDuck extends EntityAnimal {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 0.38F));
         this.tasks.addTask(2, new EntityAIMate(this, var2));
-        this.tasks.addTask(3, new EntityAITempt(this, 0.25F, Item.seeds.shiftedIndex, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 0.25F, Item.seeds.itemID, false));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 0.28F));
         this.tasks.addTask(5, new EntityAIWander(this, var2));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -88,9 +88,9 @@ public class EntityDuck extends EntityAnimal {
             boolean isFeather = rand.nextInt(5) == 0;
 
             if (!isFeather)
-                this.func_85030_a("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 
-            this.dropItem(getItem(isFeather ? featherDuck : duckEgg).shiftedIndex, 1);
+            this.dropItem(getItem(isFeather ? featherDuck : duckEgg).itemID, 1);
 
             this.timeUntilNextEgg = this.rand.nextInt(8000) + 4000;
         }
@@ -99,12 +99,14 @@ public class EntityDuck extends EntityAnimal {
     /**
      * Called when the mob is falling. Calculates and applies fall damage.
      */
+    @Override
     protected void fall(float par1) {
     }
 
     /**
      * Returns the sound this mob makes while it's alive.
      */
+    @Override
     protected String getLivingSound() {
         return "mob.chicken.say";
     }
@@ -112,6 +114,7 @@ public class EntityDuck extends EntityAnimal {
     /**
      * Returns the sound this mob makes when it is hurt.
      */
+    @Override
     protected String getHurtSound() {
         return "mob.chicken.hurt";
     }
@@ -119,6 +122,7 @@ public class EntityDuck extends EntityAnimal {
     /**
      * Returns the sound this mob makes on death.
      */
+    @Override
     protected String getDeathSound() {
         return "mob.chicken.hurt";
     }
@@ -126,13 +130,15 @@ public class EntityDuck extends EntityAnimal {
     /**
      * Plays step sound at given x, y, z for the entity
      */
+    @Override
     protected void playStepSound(int par1, int par2, int par3, int par4) {
-        this.func_85030_a("mob.chicken.step", 0.15F, 1.0F);
+        this.playSound("mob.chicken.step", 0.15F, 1.0F);
     }
 
     /**
      * Returns the item ID for the item the mob drops on death.
      */
+    @Override
     protected int getDropItemId() {
         return itemToDrop;
     }
@@ -140,6 +146,7 @@ public class EntityDuck extends EntityAnimal {
     /**
      * Drop 0-2 items of this living's type
      */
+    @Override
     protected void dropFewItems(boolean par1, int fortune) {
         int var3 = this.rand.nextInt(3) + this.rand.nextInt(1 + fortune);
 
@@ -148,15 +155,12 @@ public class EntityDuck extends EntityAnimal {
         }
 
         if (this.isBurning()) {
-            this.dropItem(getItem(duck).shiftedIndex, 1);
+            this.dropItem(getItem(duck).itemID, 1);
         } else {
-            this.dropItem(getItem(duckRaw).shiftedIndex, 1);
+            this.dropItem(getItem(duckRaw).itemID, 1);
         }
     }
 
-    /**
-     * This function is used when two same-species animals in 'love mode' breed to generate the new baby animal.
-     */
     public EntityDuck spawnBabyAnimal(EntityAgeable par1EntityAgeable) {
         return new EntityDuck(this.worldObj);
     }
@@ -165,11 +169,13 @@ public class EntityDuck extends EntityAnimal {
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
+    @Override
     public boolean isBreedingItem(ItemStack par1ItemStack) {
         return par1ItemStack != null && par1ItemStack.getItem() instanceof ItemSeeds;
     }
 
-    public EntityAgeable func_90011_a(EntityAgeable par1EntityAgeable) {
+    @Override
+    public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
         return this.spawnBabyAnimal(par1EntityAgeable);
     }
 }

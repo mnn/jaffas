@@ -18,13 +18,15 @@ public class ItemLocomotive extends Item {
         this.maxStackSize = 1;
         this.minecartType = par2;
         this.setCreativeTab(mod_jaffas_technic.CreativeTab);
-        this.setItemName("locomotive");
+        this.setUnlocalizedName("locomotive");
     }
 
+    /*
     @Override
     public String getTextureFile() {
         return "/jaffas_06.png"; // TODO move icon to the ores
     }
+    */
 
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {

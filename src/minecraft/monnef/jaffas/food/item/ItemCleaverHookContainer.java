@@ -98,7 +98,7 @@ public class ItemCleaverHookContainer {
 
     private int getMeatCleaverID() {
         if (meatCleaverID == 0) {
-            meatCleaverID = mod_jaffas_food.getItem(JaffaItem.meatCleaver).shiftedIndex;
+            meatCleaverID = mod_jaffas_food.getItem(JaffaItem.meatCleaver).itemID;
         }
 
         return meatCleaverID;

@@ -85,7 +85,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
                     inv[slotNum] = newItem;
                     melt();
                 }
-            } else if (stack.itemID == Block.ice.blockID || stack.itemID == Item.snowball.shiftedIndex) {
+            } else if (stack.itemID == Block.ice.blockID || stack.itemID == Item.snowball.itemID) {
                 if (rand.nextDouble() < 0.25) {
                     if (stack.stackSize < stack.getMaxStackSize()) {
                         stack.stackSize++;
@@ -206,6 +206,16 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
 
     @Override
     public void closeChest() {
+    }
+
+    @Override
+    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+        return true;
+    }
+
+    @Override
+    public boolean isInvNameLocalized() {
+        return false;
     }
 
     @Override

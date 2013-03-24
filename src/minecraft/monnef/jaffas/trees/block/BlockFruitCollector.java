@@ -12,6 +12,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -22,9 +23,9 @@ public class BlockFruitCollector extends BlockContainer {
         super(id, Material.rock);
         setHardness(2.0F);
         setResistance(5.0F);
-        setBlockName("blockFruitCollector");
+        setUnlocalizedName("blockFruitCollector");
         setCreativeTab(CreativeTabs.tabMisc);
-        setRequiresSelfNotify();
+        //setRequiresSelfNotify();
         setCreativeTab(mod_jaffas_trees.CreativeTab);
     }
 
@@ -72,7 +73,7 @@ public class BlockFruitCollector extends BlockContainer {
                         new ItemStack(item.itemID, item.stackSize, item.getItemDamage()));
 
                 if (item.hasTagCompound()) {
-                    entityItem.func_92014_d().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
+                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
                 }
 
                 float factor = 0.05F;
@@ -118,16 +119,12 @@ public class BlockFruitCollector extends BlockContainer {
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
-    public int getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
-        return getBlockTextureFromSide(side);
+    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
+        return null;
+        // TODO
+        // return getTextureFromSide(side);
     }
 
-    /**
-     * Returns the block texture based on the side being looked at. Args: side
-     */
-    public int getBlockTextureFromSide(int side) {
-        return getTextureFromSide(side);
-    }
 
     private int getTextureFromSide(int side) {
         if (side == 0) {

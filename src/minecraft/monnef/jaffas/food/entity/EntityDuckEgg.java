@@ -1,5 +1,6 @@
 package monnef.jaffas.food.entity;
 
+import cpw.mods.fml.server.FMLServerHandler;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
@@ -22,7 +23,7 @@ public class EntityDuckEgg extends EntityThrowable {
     // based on EntityEgg
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         if (par1MovingObjectPosition.entityHit != null) {
-            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.func_85052_h()), 0);
+            par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0);
         }
 
         if (!this.worldObj.isRemote && this.rand.nextInt(8) == 0) {

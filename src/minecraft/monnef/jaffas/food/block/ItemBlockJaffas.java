@@ -17,8 +17,8 @@ public class ItemBlockJaffas extends ItemBlock {
     }
 
     @Override
-    public String getItemNameIS(ItemStack itemstack) {
+    public String getItemDisplayName(ItemStack itemstack) {
         String subName = itemstack.getItemDamage() >= subNames.length ? "STRING NOT FOUND" : subNames[itemstack.getItemDamage()];
-        return getItemName() + "." + subName;
+        return getUnlocalizedName() + "." + subName;
     }
 }

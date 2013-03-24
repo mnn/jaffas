@@ -25,8 +25,8 @@ public abstract class ItemBlockXmasMulti extends ItemBlock {
     }
 
     @Override
-    public String getItemNameIS(ItemStack itemstack) {
-        return getItemName() + "." + subNames[itemstack.getItemDamage()];
+    public String getItemDisplayName(ItemStack itemstack) {
+        return getUnlocalizedName() + "." + subNames[itemstack.getItemDamage()];
     }
 
     public int getSubBlocksCount() {

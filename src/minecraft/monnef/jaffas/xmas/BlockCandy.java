@@ -8,11 +8,13 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.setBlock;
+
 public class BlockCandy extends BlockXmas {
 
     public BlockCandy(int id, int texture, Material material) {
         super(id, texture, material);
-        setRequiresSelfNotify();
+        //setRequiresSelfNotify();
         setHardness(0.5f);
         setCreativeTab(null);
     }
@@ -58,7 +60,7 @@ public class BlockCandy extends BlockXmas {
 
         if (isBlockTopPart(meta)) {
             if (par1World.getBlockId(par2, par3 - 1, par4) != this.blockID) {
-                par1World.setBlockWithNotify(par2, par3, par4, 0);
+                setBlock(par1World, par2, par3, par4, 0);
             }
         } else {
             boolean destroy = false;
@@ -71,7 +73,7 @@ public class BlockCandy extends BlockXmas {
             }
 
             if (destroy) {
-                par1World.setBlockWithNotify(par2, par3, par4, 0);
+                setBlock(par1World, par2, par3, par4, 0);
                 if (!par1World.isRemote) {
                     this.dropBlockAsItem(par1World, par2, par3, par4, meta, 0);
                 }
@@ -86,12 +88,12 @@ public class BlockCandy extends BlockXmas {
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
-        return isBlockTopPart(par1) ? 0 : mod_jaffas_xmas.ItemGiantCandy.shiftedIndex;
+        return isBlockTopPart(par1) ? 0 : mod_jaffas_xmas.ItemGiantCandy.itemID;
     }
 
     @Override
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return mod_jaffas_xmas.ItemGiantCandy.shiftedIndex;
+        return mod_jaffas_xmas.ItemGiantCandy.itemID;
     }
 
     public final static float unit = 1f / 16f;
@@ -117,7 +119,7 @@ public class BlockCandy extends BlockXmas {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
         BoundsHelper b = new BoundsHelper(meta);
 
-        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2 + b.x1), (double) par3, (double) ((float) par4 + b.y1), (double) ((float) par2 + b.x2), (double) ((float) par3 + b.top), (double) ((float) par4 + b.y2));
+        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2 + b.x1), (double) par3, (double) ((float) par4 + b.y1), (double) ((float) par2 + b.x2), (double) ((float) par3 + b.top), (double) ((float) par4 + b.y2));
     }
 
     private class BoundsHelper {

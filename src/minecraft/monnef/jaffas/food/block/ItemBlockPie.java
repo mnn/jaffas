@@ -13,7 +13,7 @@ public class ItemBlockPie extends ItemBlockJaffas {
             subNames[i] = TileEntityPie.PieType.values()[i].toString().toLowerCase();
         }
 
-        setItemName("itemBlockJPie");
+        setUnlocalizedName("itemBlockJPie");
         setMaxStackSize(16);
     }
 

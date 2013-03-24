@@ -118,4 +118,14 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
     public void setCurrentValueOfIntegerToSync(int index, int value) {
         throw new RuntimeException("not implemented setting of sync ints");
     }
+
+    @Override
+    public boolean isInvNameLocalized() {
+        return false;
+    }
+
+    @Override
+    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+        return true;
+    }
 }

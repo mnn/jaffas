@@ -13,7 +13,7 @@ public class ItemDebug extends ItemPower implements IMachineTool {
 
     public ItemDebug(int id, int textureIndex) {
         super(id, textureIndex);
-        setItemName("debugPower");
+        setUnlocalizedName("debugPower");
     }
 
     public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side) {

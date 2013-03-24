@@ -8,6 +8,8 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 
+import static monnef.core.utils.BlockHelper.setBlock;
+
 public class ItemJaffaSeeds extends ItemTrees implements IPlantable {
     private int blockType;
     private int soilBlockID;
@@ -27,7 +29,7 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable {
             Block soil = Block.blocksList[var11];
 
             if (soil != null && soil.canSustainPlant(par3World, par4, par5, par6, ForgeDirection.UP, this) && par3World.isAirBlock(par4, par5 + 1, par6)) {
-                par3World.setBlockWithNotify(par4, par5 + 1, par6, this.getPlantID(null, 0, 0, 0));
+                setBlock(par3World, par4, par5 + 1, par6, this.getPlantID(null, 0, 0, 0));
                 --par1ItemStack.stackSize;
                 return true;
             } else {

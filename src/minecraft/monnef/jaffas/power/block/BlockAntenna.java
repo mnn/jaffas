@@ -10,7 +10,7 @@ import net.minecraftforge.common.ForgeDirection;
 public class BlockAntenna extends BlockMachine {
     public BlockAntenna(int par1, int par2) {
         super(par1, par2, Material.rock, true);
-        setBlockName("antenna");
+        setUnlocalizedName("antenna");
         onWrench = WrenchAction.ROTATE;
         useDefaultDirection = true;
         defaultDirection = ForgeDirection.NORTH;
