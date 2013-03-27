@@ -1,3 +1,9 @@
+## 0.4.12
+- added lightning conductor
+- reworked seeds getting
+- fixed durability of tables
+- throwable duck eggs
+
 ## 0.4.11
 - jaffarrol tools
 - ores
