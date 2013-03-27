@@ -1,5 +1,6 @@
 ## 0.4.12
 - added lightning conductor
+- added mini-locomotive
 - reworked seeds getting
 - fixed durability of tables
 - throwable duck eggs
