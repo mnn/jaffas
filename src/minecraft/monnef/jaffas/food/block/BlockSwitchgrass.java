@@ -32,10 +32,11 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         this.setTickRandomly(true);
         subBlockNames = new String[16];
         for (int i = 0; i <= 15; i++) {
-            subBlockNames[i] = "";
+            subBlockNames[i] = "switchgrass";
         }
-        subBlockNames[15] = "Switchgrass";
+        subBlockNames[15] = "switchgrass";
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
+        setUnlocalizedName("blockJSwitchgrass");
     }
 
     // inspired by cactus

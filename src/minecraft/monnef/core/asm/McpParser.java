@@ -52,7 +52,7 @@ public class McpParser {
                                 finalMethods.putQuietly(longName, shortName);
                             }
                         } else {
-                            Log.printFine(String.format("Not found counterpart of [%s] funcName.", funcName));
+                            Log.printFinest(String.format("Not found counterpart of [%s] funcName.", funcName));
                         }
                     }
                 }

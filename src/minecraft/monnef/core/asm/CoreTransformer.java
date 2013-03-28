@@ -1,6 +1,7 @@
 package monnef.core.asm;
 
 import cpw.mods.fml.relauncher.IClassTransformer;
+import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.asm.cloakHook.RenderGlobalVisitor;
 import monnef.core.asm.lightningHook.WorldServerVisitor;
@@ -8,6 +9,8 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 
+import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.MCVersion;
+import static monnef.core.MonnefCorePlugin.Log;
 import static monnef.core.asm.MappedObject.C_RENDER_GLOBAL;
 import static monnef.core.asm.MappedObject.C_WORLD_SERVER;
 import static org.objectweb.asm.Opcodes.ASM4;
@@ -24,14 +27,14 @@ public class CoreTransformer implements IClassTransformer {
         if (bytes == null) return null;
 
         if (ObfuscationHelper.namesAreEqual(name, C_RENDER_GLOBAL)) {
-            MonnefCorePlugin.Log.printFine("Found RenderGlobal class.");
+            Log.printFine("Found RenderGlobal class.");
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
             ClassReader reader = new ClassReader(bytes);
             ClassVisitor visitor = new RenderGlobalVisitor(ASM4, writer);
             reader.accept(visitor, 0);
             return writer.toByteArray();
         } else if (ObfuscationHelper.namesAreEqual(name, C_WORLD_SERVER)) {
-            MonnefCorePlugin.Log.printFine("Found WorldServer class.");
+            Log.printFine("Found WorldServer class.");
             ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
             ClassReader reader = new ClassReader(bytes);
             ClassVisitor visitor = new WorldServerVisitor(ASM4, writer);

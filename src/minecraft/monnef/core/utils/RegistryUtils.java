@@ -23,7 +23,12 @@ public class RegistryUtils {
     }
 
     public static void registerMultiBlock(Block block, Class<? extends ItemBlock> itemBlock, String[] names) {
-        GameRegistry.registerBlock(block, itemBlock, block.getUnlocalizedName());
+        String blockName = block.getUnlocalizedName();
+        if (blockName == null) {
+            throw new RuntimeException("Block name not set - " + itemBlock.getSimpleName() + ".");
+        }
+
+        GameRegistry.registerBlock(block, itemBlock, blockName);
         for (int ix = 0; ix < names.length; ix++) {
             ItemStack multiBlockStack = new ItemStack(block, 1, ix);
             LanguageRegistry.addName(multiBlockStack, names[multiBlockStack.getItemDamage()]);

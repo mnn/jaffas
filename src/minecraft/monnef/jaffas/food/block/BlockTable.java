@@ -15,6 +15,7 @@ public class BlockTable extends BlockJaffas {
     public BlockTable(int par1, int par2, Material par3Material) {
         super(par1, par2, par3Material);
         setHardness(2f);
+        setUnlocalizedName("blockJTable");
     }
 
     public int getTextureFileIndex() {

@@ -41,4 +41,8 @@ public class CustomLogger {
     public void printFine(String message) {
         print(Level.FINE, message);
     }
+
+    public void printFinest(String message) {
+        print(Level.FINEST, message);
+    }
 }

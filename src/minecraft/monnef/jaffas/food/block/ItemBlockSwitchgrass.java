@@ -6,6 +6,7 @@ public class ItemBlockSwitchgrass extends ItemBlockJaffas {
     public ItemBlockSwitchgrass(int par1) {
         super(par1);
         subNames = new String[]{"top"};
+        setUnlocalizedName("itemBlockJSwitchgrass");
     }
 
     @Override

@@ -78,7 +78,7 @@ public class MappingDictionary implements Serializable {
         if (set.contains(translation)) {
             String message = String.format("Translation [%s] for [%s] already exists.", translation, name);
             if (quiet) {
-                Log.printFine(message);
+                Log.printFinest(message);
             } else {
                 Log.printWarning(message);
             }
