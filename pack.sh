@@ -4,6 +4,7 @@ output=jar_output
 outtmp=$output/tmp
 core=$output/core
 binPath=bin_data
+dist=$output/dist
 
 echo -n Preparing...
 
@@ -17,10 +18,12 @@ fi
 rm -fr ./$outtmp/*
 rm -fr ./$output/*
 rm -fr ./$core/*
+rm -fr ./$dist/*
 
 mkdir $output &>/dev/null
 mkdir $outtmp &>/dev/null
 mkdir $core &>/dev/null
+mkdir $dist &>/dev/null
 
 touch "$outtmp/.placeholder"
 
@@ -77,10 +80,24 @@ if [ $? -ne 0 ]; then
 	exit 3
 fi
 
-outName="mod_monnef_core_$version"
+outNameB="mod_monnef_core_$version"
 cd "$core"
-zip -q -9r "../$outName.jar" ./*
+zip -q -9r "../$outNameB.jar" ./*
 cd "$od"
+echo Done
+
+echo -n Creating final zip...
+cd $dist
+mkdir coremods
+mkdir mods
+cd "$od"
+cp "$output/$outName.jar" "$dist/mods"
+cp "$output/$outNameB.jar" "$dist/coremods"
+cd "$dist"
+outNameZ="mod_jaffas_${version}_packed"
+zip -q -9r "../$outNameZ.zip" ./*
+cd "$od"
+
 echo Done
 #core done
 
