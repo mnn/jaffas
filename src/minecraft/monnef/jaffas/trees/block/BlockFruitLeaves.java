@@ -3,7 +3,6 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.trees.TileEntityFruitLeaves;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;

@@ -3,6 +3,7 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.BlockMonnefCore;
+import monnef.jaffas.trees.Reference;
 import monnef.jaffas.trees.WorldGenFruitTrees;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
@@ -132,58 +133,59 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
     }
 
     @Override
-    public int getRenderType()
-    {
+    public int getRenderType() {
         return 1;
     }
 
     @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z)
-    {
+    public EnumPlantType getPlantType(World world, int x, int y, int z) {
         return Plains;
     }
 
     @Override
-    public int getPlantID(World world, int x, int y, int z)
-    {
+    public int getPlantID(World world, int x, int y, int z) {
         return blockID;
     }
 
     @Override
-    public int getPlantMetadata(World world, int x, int y, int z)
-    {
+    public int getPlantMetadata(World world, int x, int y, int z) {
         return world.getBlockMetadata(x, y, z);
     }
 
     @Override
-    public boolean canBlockStay(World par1World, int par2, int par3, int par4)
-    {
+    public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
         Block soil = blocksList[par1World.getBlockId(par2, par3 - 1, par4)];
         return (par1World.getFullBlockLightValue(par2, par3, par4) >= 8 || par1World.canBlockSeeTheSky(par2, par3, par4)) &&
                 (soil != null && soil.canSustainPlant(par1World, par2, par3 - 1, par4, ForgeDirection.UP, this));
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
-    {
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
         return null;
     }
 
     @Override
-    public boolean isOpaqueCube()
-    {
+    public boolean isOpaqueCube() {
         return false;
     }
 
     @Override
-    public boolean renderAsNormalBlock()
-    {
+    public boolean renderAsNormalBlock() {
         return false;
     }
 
     @Override
-    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
-    {
+    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
         return super.canPlaceBlockAt(par1World, par2, par3, par4) && canBlockStay(par1World, par2, par3, par4);
+    }
+
+    @Override
+    public String getModId() {
+        return Reference.ModId;
+    }
+
+    @Override
+    public int getDefaultSheetNumber() {
+        return 2;
     }
 }

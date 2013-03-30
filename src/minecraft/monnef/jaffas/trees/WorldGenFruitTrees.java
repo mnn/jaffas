@@ -1,5 +1,6 @@
 package monnef.jaffas.trees;
 
+import monnef.jaffas.trees.block.TileEntityFruitLeaves;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

@@ -2,7 +2,6 @@ package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.trees.TileEntityJaffaCrops;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;

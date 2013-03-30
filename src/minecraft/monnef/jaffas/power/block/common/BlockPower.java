@@ -1,6 +1,7 @@
 package monnef.jaffas.power.block.common;
 
 import monnef.core.base.BlockMonnefCore;
+import monnef.jaffas.power.Reference;
 import monnef.jaffas.power.jaffasPower;
 import net.minecraft.block.material.Material;
 
@@ -17,5 +18,15 @@ public class BlockPower extends BlockMonnefCore {
 
     private void init() {
         setCreativeTab(jaffasPower.CreativeTab);
+    }
+
+    @Override
+    public String getModId() {
+        return Reference.ModId;
+    }
+
+    @Override
+    public int getDefaultSheetNumber() {
+        return 5;
     }
 }

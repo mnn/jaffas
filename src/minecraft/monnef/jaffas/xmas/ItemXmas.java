@@ -27,4 +27,14 @@ public class ItemXmas extends ItemMonnefCore {
     public Item setUnlocalizedName(String par1Str) {
         return super.setUnlocalizedName("jaffas.technic." + par1Str);
     }
+
+    @Override
+    public String getModId() {
+        return Reference.ModId;
+    }
+
+    @Override
+    public int getDefaultSheetNumber() {
+        return 4;
+    }
 }

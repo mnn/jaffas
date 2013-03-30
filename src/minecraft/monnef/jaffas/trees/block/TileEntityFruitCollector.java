@@ -1,4 +1,4 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -10,6 +10,7 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

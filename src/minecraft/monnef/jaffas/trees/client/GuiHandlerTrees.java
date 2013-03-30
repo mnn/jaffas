@@ -2,7 +2,7 @@ package monnef.jaffas.trees.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import monnef.jaffas.trees.block.ContainerFruitCollector;
-import monnef.jaffas.trees.TileEntityFruitCollector;
+import monnef.jaffas.trees.block.TileEntityFruitCollector;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

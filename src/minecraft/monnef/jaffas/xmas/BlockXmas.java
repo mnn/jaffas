@@ -19,4 +19,14 @@ public class BlockXmas extends BlockMonnefCore {
     public Block setUnlocalizedName(String par1Str) {
         return super.setUnlocalizedName("jaffas.xmas." + par1Str);
     }
+
+    @Override
+    public String getModId() {
+        return Reference.ModId;
+    }
+
+    @Override
+    public int getDefaultSheetNumber() {
+        return 4;
+    }
 }

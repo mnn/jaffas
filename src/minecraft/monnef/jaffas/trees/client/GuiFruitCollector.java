@@ -1,7 +1,7 @@
 package monnef.jaffas.trees.client;
 
 import monnef.jaffas.trees.block.ContainerFruitCollector;
-import monnef.jaffas.trees.TileEntityFruitCollector;
+import monnef.jaffas.trees.block.TileEntityFruitCollector;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;

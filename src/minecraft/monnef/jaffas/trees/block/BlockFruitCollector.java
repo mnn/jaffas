@@ -1,7 +1,6 @@
 package monnef.jaffas.trees.block;
 
 import monnef.jaffas.food.jaffasFood;
-import monnef.jaffas.trees.TileEntityFruitCollector;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;

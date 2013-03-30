@@ -1,6 +1,7 @@
 package monnef.jaffas.technic.block;
 
 import monnef.core.base.BlockMonnefCore;
+import monnef.jaffas.technic.Reference;
 import monnef.jaffas.technic.jaffasTechnic;
 import net.minecraft.block.material.Material;
 
@@ -13,5 +14,15 @@ public class BlockTechnic extends BlockMonnefCore {
 
     public String getTextureFile() {
         return jaffasTechnic.textureFile;
+    }
+
+    @Override
+    public String getModId() {
+        return Reference.ModId;
+    }
+
+    @Override
+    public int getDefaultSheetNumber() {
+        return 3;
     }
 }

@@ -1,4 +1,4 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.block;
 
 import forestry.api.cultivation.ICropEntity;
 import monnef.core.utils.BlockHelper;

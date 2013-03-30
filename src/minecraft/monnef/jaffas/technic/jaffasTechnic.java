@@ -11,7 +11,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
-import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.CustomDrop;
@@ -58,11 +57,12 @@ import static monnef.jaffas.food.item.JaffaItem.juiceBottle;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneBig;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneLittle;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneMedium;
+import static monnef.jaffas.technic.Reference.*;
 
-@Mod(modid = "Jaffas-Technic", name = "Jaffas - Technic", version = Reference.Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
+@Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class jaffasTechnic extends jaffasMod {
-    @Mod.Instance("Jaffas-Technic")
+    @Mod.Instance(ModId)
     public static jaffasTechnic instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.technic.client.ClientProxy", serverSide = "monnef.jaffas.technic.common.CommonProxy")

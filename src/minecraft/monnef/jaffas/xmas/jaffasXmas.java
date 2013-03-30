@@ -9,7 +9,6 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.IDProvider;
-import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
@@ -24,10 +23,14 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
-@Mod(modid = "Jaffas-Xmas", name = "Jaffas - Xmas", version = Reference.Version, dependencies = "required-after:Jaffas")
+import static monnef.jaffas.xmas.Reference.ModId;
+import static monnef.jaffas.xmas.Reference.ModName;
+import static monnef.jaffas.xmas.Reference.Version;
+
+@Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class jaffasXmas extends jaffasMod {
-    @Mod.Instance("moen-jaffas-xmas")
+    @Mod.Instance(ModId)
     public static jaffasXmas instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.xmas.ClientProxy", serverSide = "monnef.jaffas.xmas.CommonProxy")

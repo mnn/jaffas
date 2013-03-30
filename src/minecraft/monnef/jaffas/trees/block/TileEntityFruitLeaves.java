@@ -1,10 +1,11 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.block;
 
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
-import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.LeavesInfo;
 import monnef.jaffas.trees.item.ItemFromFruitResult;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
