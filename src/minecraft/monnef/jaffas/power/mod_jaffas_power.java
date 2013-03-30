@@ -40,10 +40,10 @@ import java.util.logging.Level;
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PreInit;
 
-@Mod(modid = "moen-jaffas-power", name = "Jaffas - power", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-technic")
+@Mod(modid = "Jaffas-Power", name = "Jaffas - Power", version = Reference.Version, dependencies = "required-after:Jaffas;after:Jaffas-Technic")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_power extends mod_jaffas {
-    @Instance("moen-jaffas-power")
+    @Instance("Jaffas-Power")
     public static mod_jaffas_power instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.power.client.ClientProxy", serverSide = "monnef.jaffas.power.CommonProxy")

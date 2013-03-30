@@ -2,7 +2,7 @@
 
 ed="eclipse/Minecraft/bin"
 bd="bin_data"
-args="-d --preserve=all -f"
+args="-d --preserve=all -f -r"
 cargs=""$args" "$bd/*" "$ed/""
 cp $cargs
 

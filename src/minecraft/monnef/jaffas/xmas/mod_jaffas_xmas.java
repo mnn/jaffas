@@ -24,7 +24,7 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
-@Mod(modid = "moen-jaffas-xmas", name = "Jaffas - xmas", version = Reference.Version, dependencies = "required-after:moen-jaffas")
+@Mod(modid = "Jaffas-Xmas", name = "Jaffas - Xmas", version = Reference.Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_xmas extends mod_jaffas {
     @Mod.Instance("moen-jaffas-xmas")

@@ -56,7 +56,7 @@ import static monnef.jaffas.trees.DropType.DropsFromGrass;
 import static monnef.jaffas.trees.EatableType.EatableNormal;
 import static monnef.jaffas.trees.EatableType.NotEatable;
 
-@Mod(modid = "moen-jaffas-trees", name = "Jaffas - trees", version = Reference.Version, dependencies = "required-after:moen-jaffas")
+@Mod(modid = "Jaffas-Trees", name = "Jaffas - Trees", version = Reference.Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = mod_jaffas_trees.channel, packetHandler = PacketHandler.class)
 public class mod_jaffas_trees extends mod_jaffas {
     private static MinecraftServer server;
@@ -126,7 +126,7 @@ public class mod_jaffas_trees extends mod_jaffas {
         }
     }
 
-    @Mod.Instance("moen-jaffas-trees")
+    @Mod.Instance("Jaffas-Trees")
     public static mod_jaffas_trees instance;
 
     public static ArrayList<LeavesInfo> leavesList = new ArrayList<LeavesInfo>();

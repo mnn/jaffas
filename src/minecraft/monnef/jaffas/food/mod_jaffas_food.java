@@ -132,7 +132,7 @@ public class mod_jaffas_food extends mod_jaffas {
 
     private static IGuiHandler guiHandler;
 
-    @Mod.Instance("moen-jaffas")
+    @Mod.Instance("Jaffas")
     public static mod_jaffas_food instance;
 
     public static ItemJaffaPainting itemPainting;

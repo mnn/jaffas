@@ -59,10 +59,10 @@ import static monnef.jaffas.food.item.JaffaItem.spawnStoneBig;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneLittle;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneMedium;
 
-@Mod(modid = "moen-jaffas-technic", name = "Jaffas - technic", version = Reference.Version, dependencies = "required-after:moen-jaffas;after:moen-jaffas-trees")
+@Mod(modid = "Jaffas-Technic", name = "Jaffas - Technic", version = Reference.Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class mod_jaffas_technic extends mod_jaffas {
-    @Mod.Instance("moen-jaffas-technic")
+    @Mod.Instance("Jaffas-Technic")
     public static mod_jaffas_technic instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.technic.client.ClientProxy", serverSide = "monnef.jaffas.technic.common.CommonProxy")
