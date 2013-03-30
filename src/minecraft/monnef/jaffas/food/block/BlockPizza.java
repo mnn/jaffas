@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.BitHelper;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -15,8 +15,8 @@ import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.core.utils.BlockHelper.setBlock;
-import static monnef.jaffas.food.mod_jaffas_food.blockPizza;
-import static monnef.jaffas.food.mod_jaffas_food.getItem;
+import static monnef.jaffas.food.jaffasFood.blockPizza;
+import static monnef.jaffas.food.jaffasFood.getItem;
 
 public class BlockPizza extends BlockJaffas {
     public static final int BIT_ROTATION = 3;
@@ -64,7 +64,7 @@ public class BlockPizza extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return mod_jaffas_food.renderID;
+        return jaffasFood.renderID;
     }
 
     @Override

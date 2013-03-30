@@ -2,7 +2,7 @@ package monnef.jaffas.food.block;
 
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,7 +26,7 @@ public class JaffaBombBlock extends Block {
         setUnlocalizedName("Jaffa Cakes BOMB");
         setHardness(0.1F);
         setResistance(0.1F);
-        this.setCreativeTab(mod_jaffas_food.CreativeTab);
+        this.setCreativeTab(jaffasFood.CreativeTab);
         // TODO add icon handling
     }
 
@@ -40,7 +40,7 @@ public class JaffaBombBlock extends Block {
     }
 
     public String getTextureFile() {
-        return mod_jaffas_food.textureFile[0];
+        return jaffasFood.textureFile[0];
     }
 
     /**

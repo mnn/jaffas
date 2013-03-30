@@ -1,7 +1,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.BitHelper;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -89,7 +89,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     }
 
     public int getRenderType() {
-        return mod_jaffas_food.renderSwitchgrassID;
+        return jaffasFood.renderSwitchgrassID;
     }
 
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
@@ -168,7 +168,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
 
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        if (mod_jaffas_food.debug) {
+        if (jaffasFood.debug) {
             int meta = par1World.getBlockMetadata(par2, par3, par4);
             if (par5EntityPlayer.isSneaking()) {
                 setBlockMetadata(par1World, par2, par3, par4, MAX_AGE | (isTop(meta) ? 8 : 0));

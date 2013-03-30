@@ -36,7 +36,7 @@ import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
-import monnef.jaffas.mod_jaffas;
+import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.PowerManagersFactory;
 import monnef.jaffas.power.api.PowerManager;
 import net.minecraft.block.material.Material;
@@ -64,7 +64,7 @@ import static net.minecraft.world.biome.BiomeGenBase.*;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
-public class mod_jaffas_food extends mod_jaffas {
+public class jaffasFood extends jaffasMod {
     public static JaffaCreativeTab CreativeTab;
 
     private static MinecraftServer server;
@@ -133,7 +133,7 @@ public class mod_jaffas_food extends mod_jaffas {
     private static IGuiHandler guiHandler;
 
     @Mod.Instance("Jaffas")
-    public static mod_jaffas_food instance;
+    public static jaffasFood instance;
 
     public static ItemJaffaPainting itemPainting;
     private int itemPaintingID;
@@ -177,7 +177,7 @@ public class mod_jaffas_food extends mod_jaffas {
         return this.extraBiomes;
     }
 
-    public mod_jaffas_food() {
+    public jaffasFood() {
         super();
 
         this.itemManager = new ItemManager();

@@ -2,7 +2,7 @@ package monnef.jaffas.power.block.common;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.jaffas.power.client.ModelGenerator;
-import monnef.jaffas.power.mod_jaffas_power;
+import monnef.jaffas.power.jaffasPower;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
@@ -76,6 +76,6 @@ public class BlockRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public int getRenderId() {
-        return mod_jaffas_power.renderID;
+        return jaffasPower.renderID;
     }
 }

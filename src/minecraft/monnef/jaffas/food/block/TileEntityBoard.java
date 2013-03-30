@@ -16,8 +16,8 @@ import net.minecraftforge.common.ISidedInventory;
 
 import java.util.Random;
 
-import static monnef.jaffas.food.mod_jaffas_food.blockBoard;
-import static monnef.jaffas.food.mod_jaffas_food.getItem;
+import static monnef.jaffas.food.jaffasFood.blockBoard;
+import static monnef.jaffas.food.jaffasFood.getItem;
 
 public class TileEntityBoard extends TileEntity implements IInventory, ISidedInventory {
     private ItemStack[] inv;

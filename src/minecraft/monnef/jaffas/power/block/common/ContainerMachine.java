@@ -2,7 +2,7 @@ package monnef.jaffas.power.block.common;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -128,7 +128,7 @@ public abstract class ContainerMachine extends Container {
             this.tileEntity.chopTime = value;
         } */
         if (index < 0 || index > lastValue.size()) {
-            if (mod_jaffas_food.debug) {
+            if (jaffasFood.debug) {
                 System.err.println("skipping invalid index [" + index + "] of int to sync in container [" + this.getClass().getName() + "]");
             }
             return;

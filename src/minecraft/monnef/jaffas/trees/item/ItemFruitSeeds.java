@@ -2,7 +2,7 @@ package monnef.jaffas.trees.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.trees.mod_jaffas_trees;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -46,7 +46,7 @@ public class ItemFruitSeeds extends ItemBlockEx {
     public String getItemDisplayName(ItemStack par1ItemStack) {
         int dmg = par1ItemStack.getItemDamage();
 
-        if (dmg < 0 || dmg >= mod_jaffas_trees.treeTypes.length) {
+        if (dmg < 0 || dmg >= jaffasTrees.treeTypes.length) {
             dmg = 0;
         }
 

@@ -56,7 +56,7 @@ public class TileEntityPresentRenderer extends TileEntitySpecialRenderer {
                 break;
 
             default:
-                bindTextureByName(mod_jaffas_xmas.textureFile);
+                bindTextureByName(jaffasXmas.textureFile);
                 break;
         }
 

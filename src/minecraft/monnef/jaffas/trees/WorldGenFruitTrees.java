@@ -30,7 +30,7 @@ public class WorldGenFruitTrees extends WorldGenerator {
     private final int leavesID;
 
     public WorldGenFruitTrees(boolean par1) {
-        this(par1, 4, 0, 0, false, mod_jaffas_trees.leavesList.get(0).leavesID);
+        this(par1, 4, 0, 0, false, jaffasTrees.leavesList.get(0).leavesID);
     }
 
     public WorldGenFruitTrees(boolean notify, int minHeight, int metaWood, int metaLeaves, boolean vines, int leavesID) {
@@ -119,11 +119,11 @@ public class WorldGenFruitTrees extends WorldGenerator {
                                         chosenLeavesID = this.leavesID;
                                         chosenLeavesMeta = this.metaLeaves;
                                     } else {
-                                        chosenLeavesID = mod_jaffas_trees.leavesList.get(0).leavesID;
+                                        chosenLeavesID = jaffasTrees.leavesList.get(0).leavesID;
                                         chosenLeavesMeta = 0;
                                     }
 
-                                    this.setBlockAndMetadata(par1World, var14, var11, var16, mod_jaffas_trees.leavesList.get(0).leavesID, 0);
+                                    this.setBlockAndMetadata(par1World, var14, var11, var16, jaffasTrees.leavesList.get(0).leavesID, 0);
                                     TileEntityFruitLeaves te = new TileEntityFruitLeaves(chosenLeavesID, chosenLeavesMeta);
                                     par1World.setBlockTileEntity(var14, var11, var16, te);
                                 }

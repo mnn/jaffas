@@ -1,6 +1,6 @@
 package monnef.jaffas.food.common;
 
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 
 import java.util.HashMap;
 
@@ -13,7 +13,7 @@ public class CoolDownRegistry {
         for (CoolDownType type : CoolDownType.values()) {
             table.put(type, new HashMap<String, CoolDownEntry>());
         }
-        if (mod_jaffas_food.debug) debug = true;
+        if (jaffasFood.debug) debug = true;
     }
 
     public static int getRemainingCoolDownInSeconds(String name, CoolDownType type) {

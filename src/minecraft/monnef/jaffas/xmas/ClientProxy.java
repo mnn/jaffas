@@ -7,12 +7,12 @@ import net.minecraftforge.client.MinecraftForgeClient;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
-        MinecraftForgeClient.preloadTexture(mod_jaffas_xmas.textureFile);
+        MinecraftForgeClient.preloadTexture(jaffasXmas.textureFile);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCandy.class, new TileEntityCandyRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPresent.class, new TileEntityPresentRenderer());
 
-        mod_jaffas_xmas.renderID = RenderingRegistry.getNextAvailableRenderId();
+        jaffasXmas.renderID = RenderingRegistry.getNextAvailableRenderId();
 
     }
 }

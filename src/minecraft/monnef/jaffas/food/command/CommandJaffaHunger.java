@@ -7,7 +7,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 
-import static monnef.jaffas.food.mod_jaffas_food.Log;
+import static monnef.jaffas.food.jaffasFood.Log;
 
 public class CommandJaffaHunger extends CommandBase {
     @Override

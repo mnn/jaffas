@@ -13,8 +13,8 @@ import net.minecraftforge.event.ForgeSubscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import static monnef.jaffas.food.mod_jaffas_food.Log;
-import static monnef.jaffas.power.mod_jaffas_power.lightningConductorRadius;
+import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.power.jaffasPower.lightningConductorRadius;
 
 public class LightingHandler {
     @ForgeSubscribe
@@ -23,7 +23,7 @@ public class LightingHandler {
         int y = event.y;
         int z = event.z;
         World w = event.world;
-        int conductorId = mod_jaffas_power.lightningConductor.blockID;
+        int conductorId = jaffasPower.lightningConductor.blockID;
 
         Log.printDebug(String.format("Lightning detected at %d, %d, %d.", x, y, z));
 

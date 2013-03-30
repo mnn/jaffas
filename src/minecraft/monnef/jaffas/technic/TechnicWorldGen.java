@@ -1,8 +1,7 @@
 package monnef.jaffas.technic;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import monnef.core.utils.BlockHelper;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -11,9 +10,9 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.*;
-import static monnef.jaffas.food.mod_jaffas_food.Log;
-import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrass;
-import static monnef.jaffas.food.mod_jaffas_food.blockSwitchgrassID;
+import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.food.jaffasFood.blockSwitchgrass;
+import static monnef.jaffas.food.jaffasFood.blockSwitchgrassID;
 
 public class TechnicWorldGen implements IWorldGenerator {
     private final WorldGenMinable jaffarrolGenRich;
@@ -29,10 +28,10 @@ public class TechnicWorldGen implements IWorldGenerator {
     private IChunkProvider generator;
 
     public TechnicWorldGen() {
-        jaffarrolGenRich = new WorldGenMinable(mod_jaffas_technic.blockJaffarrolOre.blockID, 10);
-        jaffarrolGenSmall = new WorldGenMinable(mod_jaffas_technic.blockJaffarrolOre.blockID, 4);
-        limsewGenSmall = new WorldGenMinable(mod_jaffas_technic.blockLimsewOre.blockID, 2);
-        limsewGenRich = new WorldGenMinable(mod_jaffas_technic.blockLimsewOre.blockID, 5);
+        jaffarrolGenRich = new WorldGenMinable(jaffasTechnic.blockJaffarrolOre.blockID, 10);
+        jaffarrolGenSmall = new WorldGenMinable(jaffasTechnic.blockJaffarrolOre.blockID, 4);
+        limsewGenSmall = new WorldGenMinable(jaffasTechnic.blockLimsewOre.blockID, 2);
+        limsewGenRich = new WorldGenMinable(jaffasTechnic.blockLimsewOre.blockID, 5);
     }
 
     @Override
@@ -40,7 +39,7 @@ public class TechnicWorldGen implements IWorldGenerator {
         saveData(world, random, chunkX * 16, chunkZ * 16, chunkGenerator, chunkProvider);
 
         int dimensionId = world.provider.dimensionId;
-        if (!mod_jaffas_food.isGenerationEnabled(dimensionId)) {
+        if (!jaffasFood.isGenerationEnabled(dimensionId)) {
             return;
         }
 
@@ -74,13 +73,13 @@ public class TechnicWorldGen implements IWorldGenerator {
     }
 
     public void generateAll() {
-        if (mod_jaffas_technic.generateOres) {
+        if (jaffasTechnic.generateOres) {
             generateOre(jaffarrolGenRich, 2, 0, 32);
             generateOre(jaffarrolGenSmall, 3, 33, 60);
             generateOre(limsewGenSmall, 2, 0, 32);
             generateOre(limsewGenRich, 3, 33, 70);
         }
-        generateSwitchgrass(1, mod_jaffas_technic.switchgrassProbability);
+        generateSwitchgrass(1, jaffasTechnic.switchgrassProbability);
     }
 
     private void generateSwitchgrass(int shots, float chance) {

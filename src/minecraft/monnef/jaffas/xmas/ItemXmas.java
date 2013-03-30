@@ -16,11 +16,11 @@ public class ItemXmas extends ItemMonnefCore {
     }
 
     private void init() {
-        setCreativeTab(mod_jaffas_xmas.CreativeTab);
+        setCreativeTab(jaffasXmas.CreativeTab);
     }
 
     public String getTextureFile() {
-        return mod_jaffas_xmas.textureFile;
+        return jaffasXmas.textureFile;
     }
 
     @Override

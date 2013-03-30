@@ -1,9 +1,8 @@
 package monnef.jaffas.food.item;
 
-import monnef.core.base.ItemMonnefCore;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.item.common.IItemFood;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -36,13 +35,13 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
     private void initialize() {
         maxStackSize = 64;
         this.setCreativeTab(CreativeTabs.tabFood);
-        this.setCreativeTab(mod_jaffas_food.CreativeTab);
+        this.setCreativeTab(jaffasFood.CreativeTab);
     }
 
     /*
     @Override
     public String getTextureFile() {
-        return mod_jaffas_food.textureFile[getTextureFileIndex()];
+        return jaffasFood.textureFile[getTextureFileIndex()];
     }
 
     public int getTextureFileIndex() {

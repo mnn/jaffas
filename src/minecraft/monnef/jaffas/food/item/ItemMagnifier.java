@@ -6,7 +6,7 @@ import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.SeedsHelper;
-import monnef.jaffas.trees.mod_jaffas_trees;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -27,7 +27,7 @@ public class ItemMagnifier extends ItemJaffaTool {
 
         if (needle == null) {
             if (ModuleManager.IsModuleEnabled(ModulesEnum.trees)) {
-                needle = new ItemStack(mod_jaffas_trees.itemUnknownSeeds);
+                needle = new ItemStack(jaffasTrees.itemUnknownSeeds);
             } else {
                 return stack;
             }

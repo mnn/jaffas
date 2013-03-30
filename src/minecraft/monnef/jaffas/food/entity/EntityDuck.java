@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 import static monnef.jaffas.food.item.JaffaItem.*;
-import static monnef.jaffas.food.mod_jaffas_food.getItem;
+import static monnef.jaffas.food.jaffasFood.getItem;
 
 public class EntityDuck extends EntityAnimal {
     public boolean field_70885_d = false;

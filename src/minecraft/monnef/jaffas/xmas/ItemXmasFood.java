@@ -5,7 +5,7 @@ import monnef.jaffas.food.item.ItemJaffaFood;
 public class ItemXmasFood extends ItemJaffaFood {
     public ItemXmasFood(int id) {
         super(id);
-        this.setCreativeTab(mod_jaffas_xmas.CreativeTab);
+        this.setCreativeTab(jaffasXmas.CreativeTab);
     }
 
     /*

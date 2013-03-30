@@ -3,7 +3,7 @@ package monnef.jaffas.food.item;
 
 import monnef.core.base.ItemMonnefCore;
 import monnef.jaffas.food.item.common.IItemJaffa;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -17,7 +17,7 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
         super(id);
         maxStackSize = 64;
         //this.setCreativeTab(CreativeTabs.tabMaterials);
-        this.setCreativeTab(mod_jaffas_food.CreativeTab);
+        this.setCreativeTab(jaffasFood.CreativeTab);
         textureFileIndex = 0;
     }
 

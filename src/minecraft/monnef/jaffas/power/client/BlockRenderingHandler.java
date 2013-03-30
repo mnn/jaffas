@@ -4,14 +4,13 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
-import monnef.jaffas.power.mod_jaffas_power;
+import monnef.jaffas.power.jaffasPower;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.world.IBlockAccess;
 
-import static monnef.jaffas.power.mod_jaffas_power.lightningConductor;
+import static monnef.jaffas.power.jaffasPower.lightningConductor;
 
 public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     public static final double POSITION_FIX = -0.5D;
@@ -22,11 +21,11 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         TileEntityRenderer entityRenderer = TileEntityRenderer.instance;
-        if (modelID == mod_jaffas_power.generator.getRenderType()) {
+        if (modelID == jaffasPower.generator.getRenderType()) {
             entityRenderer.renderTileEntityAt(generator, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
-        } else if (modelID == mod_jaffas_power.antenna.getRenderType()) {
+        } else if (modelID == jaffasPower.antenna.getRenderType()) {
             entityRenderer.renderTileEntityAt(antenna, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
-        } else if (mod_jaffas_power.lightningConductorEnabled && modelID == lightningConductor.getRenderType()) {
+        } else if (jaffasPower.lightningConductorEnabled && modelID == lightningConductor.getRenderType()) {
             entityRenderer.renderTileEntityAt(conductor, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         }
     }
@@ -43,6 +42,6 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
 
     @Override
     public int getRenderId() {
-        return mod_jaffas_power.generator.getRenderType();
+        return jaffasPower.generator.getRenderType();
     }
 }

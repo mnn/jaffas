@@ -24,7 +24,7 @@ public class BushInfo {
     public Item product;
     public int phases;
     public int renderer;
-    public mod_jaffas_trees.bushType type;
+    public jaffasTrees.bushType type;
     public EatableType eatable;
     public DropType drop;
 

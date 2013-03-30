@@ -8,10 +8,10 @@ import monnef.jaffas.food.Reference;
 
 import java.util.Arrays;
 
-public abstract class mod_jaffas {
+public abstract class jaffasMod {
     protected boolean thisIsMainModule = false;
 
-    protected mod_jaffas() {
+    protected jaffasMod() {
     }
 
     private void handleMetadata() {

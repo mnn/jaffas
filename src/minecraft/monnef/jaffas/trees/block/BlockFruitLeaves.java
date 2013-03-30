@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.trees.TileEntityFruitLeaves;
-import monnef.jaffas.trees.mod_jaffas_trees;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
@@ -44,10 +44,10 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         super(par1, Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        mod_jaffas_trees.proxy.setFancyGraphicsLevel(this, true);
+        jaffasTrees.proxy.setFancyGraphicsLevel(this, true);
         this.subCount = subCount;
         //this.setGraphicsLevel(true);
-        setCreativeTab(mod_jaffas_trees.CreativeTab);
+        setCreativeTab(jaffasTrees.CreativeTab);
         // TODO index
     }
 
@@ -66,7 +66,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         ItemStack handItem = player.getCurrentEquippedItem();
         if (handItem != null) {
             int itemId = handItem.getItem().itemID;
-            if (itemId == mod_jaffas_trees.itemDebug.itemID) {
+            if (itemId == jaffasTrees.itemDebug.itemID) {
                 int bid = world.getBlockId(x, y, z);
                 int bmeta = world.getBlockMetadata(x, y, z);
 
@@ -83,12 +83,12 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         if (world.isRemote) return true;
 
         if (handItem != null) {
-            if (handItem.getItem().itemID == mod_jaffas_trees.itemRod.itemID) {
+            if (handItem.getItem().itemID == jaffasTrees.itemRod.itemID) {
                 boolean harvested;
                 harvested = harvestArea(world, x, y, z, 0.10, null, 3);
                 if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
                 return harvested;
-            } else if (handItem.getItem().itemID == mod_jaffas_trees.itemFruitPicker.itemID) {
+            } else if (handItem.getItem().itemID == jaffasTrees.itemFruitPicker.itemID) {
                 boolean harvested;
                 harvested = harvestArea(world, x, y, z, 0.50, player, 5);
                 if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
@@ -154,7 +154,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     public static boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
         TileEntity e = world.getBlockTileEntity(x, y, z);
         if (e == null || !(e instanceof TileEntityFruitLeaves)) {
-            //if (mod_jaffas_trees.debug) System.err.println("null in TE, where are my leaves?");
+            //if (jaffasTrees.debug) System.err.println("null in TE, where are my leaves?");
             return false;
         }
 
@@ -169,8 +169,8 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         if (!(b instanceof BlockFruitLeaves)) return false;
 
         BlockFruitLeaves leaves = (BlockFruitLeaves) b;
-        mod_jaffas_trees.fruitType fruit = mod_jaffas_trees.getActualLeavesType(leaves, BlockFruitLeaves.getLeavesType(meta));
-        return fruit != mod_jaffas_trees.fruitType.Normal;
+        jaffasTrees.fruitType fruit = jaffasTrees.getActualLeavesType(leaves, BlockFruitLeaves.getLeavesType(meta));
+        return fruit != jaffasTrees.fruitType.Normal;
     }
 
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
@@ -339,7 +339,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
      */
     /*
     public int idDropped(int par1, Random par2Random, int par3) {
-        return mod_jaffas_trees.blockFruitSapling.blockID;
+        return jaffasTrees.blockFruitSapling.blockID;
     } */
 
     /**

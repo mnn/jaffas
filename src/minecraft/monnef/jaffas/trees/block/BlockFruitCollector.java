@@ -1,8 +1,8 @@
 package monnef.jaffas.trees.block;
 
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import monnef.jaffas.trees.TileEntityFruitCollector;
-import monnef.jaffas.trees.mod_jaffas_trees;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,11 +26,11 @@ public class BlockFruitCollector extends BlockContainer {
         setUnlocalizedName("blockFruitCollector");
         setCreativeTab(CreativeTabs.tabMisc);
         //setRequiresSelfNotify();
-        setCreativeTab(mod_jaffas_trees.CreativeTab);
+        setCreativeTab(jaffasTrees.CreativeTab);
     }
 
     public String getTextureFile() {
-        return mod_jaffas_food.textureFile[0];
+        return jaffasFood.textureFile[0];
     }
 
     @Override
@@ -41,7 +41,7 @@ public class BlockFruitCollector extends BlockContainer {
             return false;
         }
 
-        player.openGui(mod_jaffas_trees.instance, 0, world, x, y, z);
+        player.openGui(jaffasTrees.instance, 0, world, x, y, z);
         return true;
     }
 
@@ -91,7 +91,7 @@ public class BlockFruitCollector extends BlockContainer {
 
         /*
         for (int a = 0; a < 3; a++) {
-            mod_jaffas_trees.proxy.addEffect("sucking", world, i + randomShift(random), j + randomShift(random), k + randomShift(random), 0D, 0.02D,0D);
+            jaffasTrees.proxy.addEffect("sucking", world, i + randomShift(random), j + randomShift(random), k + randomShift(random), 0D, 0.02D,0D);
         }
         */
     }
@@ -100,7 +100,7 @@ public class BlockFruitCollector extends BlockContainer {
         TileEntityFruitCollector et = (TileEntityFruitCollector) world.getBlockTileEntity(i, j, k);
         if (et.getState() == TileEntityFruitCollector.CollectorStates.targeted || force) {
             for (int a = 0; a < 15; a++) {
-                mod_jaffas_trees.proxy.addEffect("sucking", world, et.getIX() + randomShift(random), et.getIY() + randomShift(random), et.getIZ() + randomShift(random), (random.nextDouble() - 0.5) / 40D, (random.nextDouble()) / 200D, (random.nextDouble() - 0.5) / 40D);
+                jaffasTrees.proxy.addEffect("sucking", world, et.getIX() + randomShift(random), et.getIY() + randomShift(random), et.getIZ() + randomShift(random), (random.nextDouble() - 0.5) / 40D, (random.nextDouble()) / 200D, (random.nextDouble() - 0.5) / 40D);
             }
 
         }

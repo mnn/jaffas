@@ -6,14 +6,14 @@ import monnef.jaffas.power.CommonProxy;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
-import monnef.jaffas.power.mod_jaffas_power;
+import monnef.jaffas.power.jaffasPower;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
-        MinecraftForgeClient.preloadTexture(mod_jaffas_power.textureFile);
-        mod_jaffas_power.renderID = RenderingRegistry.getNextAvailableRenderId();
+        MinecraftForgeClient.preloadTexture(jaffasPower.textureFile);
+        jaffasPower.renderID = RenderingRegistry.getNextAvailableRenderId();
         //RenderingRegistry.registerBlockHandler(new BlockRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGenerator.class, new TileEntityGeneratorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new TileEntityAntennaRenderer());
@@ -21,9 +21,9 @@ public class ClientProxy extends CommonProxy {
 
         BlockRenderingHandler handler = new BlockRenderingHandler();
         RenderingRegistry.registerBlockHandler(handler);
-        RenderingRegistry.registerBlockHandler(mod_jaffas_power.antenna.getRenderType(), handler);
-        if (mod_jaffas_power.lightningConductorEnabled) {
-            RenderingRegistry.registerBlockHandler(mod_jaffas_power.lightningConductor.getRenderType(), handler);
+        RenderingRegistry.registerBlockHandler(jaffasPower.antenna.getRenderType(), handler);
+        if (jaffasPower.lightningConductorEnabled) {
+            RenderingRegistry.registerBlockHandler(jaffasPower.lightningConductor.getRenderType(), handler);
         }
     }
 }

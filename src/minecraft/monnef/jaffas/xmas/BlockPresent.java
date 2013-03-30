@@ -55,7 +55,7 @@ public class BlockPresent extends BlockXmasMulti {
 
     @Override
     public int getRenderType() {
-        return mod_jaffas_xmas.renderID;
+        return jaffasXmas.renderID;
     }
 
     @Override

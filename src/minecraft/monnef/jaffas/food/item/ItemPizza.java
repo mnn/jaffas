@@ -1,6 +1,5 @@
 package monnef.jaffas.food.item;
 
-import monnef.core.utils.BlockHelper;
 import monnef.core.utils.PlayerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,8 +8,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import static monnef.core.utils.BlockHelper.*;
-import static monnef.jaffas.food.mod_jaffas_food.blockPizza;
-import static monnef.jaffas.food.mod_jaffas_food.getItem;
+import static monnef.jaffas.food.jaffasFood.blockPizza;
+import static monnef.jaffas.food.jaffasFood.getItem;
 
 public class ItemPizza extends ItemJaffaBase {
     public ItemPizza(int par1) {

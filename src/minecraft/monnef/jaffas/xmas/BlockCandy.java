@@ -26,7 +26,7 @@ public class BlockCandy extends BlockXmas {
 
     @Override
     public int getRenderType() {
-        return mod_jaffas_xmas.renderID;
+        return jaffasXmas.renderID;
     }
 
     @Override
@@ -88,12 +88,12 @@ public class BlockCandy extends BlockXmas {
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
-        return isBlockTopPart(par1) ? 0 : mod_jaffas_xmas.ItemGiantCandy.itemID;
+        return isBlockTopPart(par1) ? 0 : jaffasXmas.ItemGiantCandy.itemID;
     }
 
     @Override
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return mod_jaffas_xmas.ItemGiantCandy.itemID;
+        return jaffasXmas.ItemGiantCandy.itemID;
     }
 
     public final static float unit = 1f / 16f;

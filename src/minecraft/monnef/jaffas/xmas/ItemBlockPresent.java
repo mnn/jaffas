@@ -26,7 +26,7 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
 
     @Override
     protected BlockXmasMulti getParentBlock() {
-        return mod_jaffas_xmas.BlockPresent;
+        return jaffasXmas.BlockPresent;
     }
 
     @SideOnly(Side.CLIENT)

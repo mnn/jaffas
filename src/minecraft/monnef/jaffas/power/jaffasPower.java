@@ -16,8 +16,8 @@ import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
-import monnef.jaffas.food.mod_jaffas_food;
-import monnef.jaffas.mod_jaffas;
+import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.BlockLightningConductor;
@@ -28,7 +28,7 @@ import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
-import monnef.jaffas.technic.mod_jaffas_technic;
+import monnef.jaffas.technic.jaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
@@ -42,9 +42,9 @@ import static cpw.mods.fml.common.Mod.PreInit;
 
 @Mod(modid = "Jaffas-Power", name = "Jaffas - Power", version = Reference.Version, dependencies = "required-after:Jaffas;after:Jaffas-Technic")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_jaffas_power extends mod_jaffas {
+public class jaffasPower extends jaffasMod {
     @Instance("Jaffas-Power")
-    public static mod_jaffas_power instance;
+    public static jaffasPower instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.power.client.ClientProxy", serverSide = "monnef.jaffas.power.CommonProxy")
     public static CommonProxy proxy;
@@ -148,7 +148,7 @@ public class mod_jaffas_power extends mod_jaffas {
             MinecraftForge.EVENT_BUS.register(new LightingHandler());
         }
 
-        mod_jaffas_food.PrintInitialized(ModulesEnum.power);
+        jaffasFood.PrintInitialized(ModulesEnum.power);
     }
 
     private void createItems() {
@@ -175,7 +175,7 @@ public class mod_jaffas_power extends mod_jaffas {
 
     private void installRecipes() {
         if (lightningConductorEnabled && ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
-            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', mod_jaffas_technic.jaffarrol, 'B', Block.blockSteel);
+            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', jaffasTechnic.jaffarrol, 'B', Block.blockSteel);
         }
     }
 }

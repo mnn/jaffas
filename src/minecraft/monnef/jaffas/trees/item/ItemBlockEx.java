@@ -2,7 +2,7 @@ package monnef.jaffas.trees.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.trees.mod_jaffas_trees;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -21,7 +21,7 @@ public class ItemBlockEx extends ItemTrees {
     public ItemBlockEx(int itemID, int blockID) {
         super(itemID);
         this.blockID = blockID;
-        setCreativeTab(mod_jaffas_trees.CreativeTab);
+        setCreativeTab(jaffasTrees.CreativeTab);
     }
 
     /**

@@ -1,6 +1,6 @@
 package monnef.jaffas.power;
 
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerNodeCoordinates;
 import monnef.jaffas.power.api.IPowerProvider;
@@ -59,7 +59,7 @@ public class PowerConsumerManager extends PowerNodeManager implements IPowerCons
         }
 
         if (sideToProvider != myTile.getRotation()) {
-            mod_jaffas_food.Log.printDebug("Rotations of connection does not match");
+            jaffasFood.Log.printDebug("Rotations of connection does not match");
         }
 
         setProvider(provider, sideToProvider);

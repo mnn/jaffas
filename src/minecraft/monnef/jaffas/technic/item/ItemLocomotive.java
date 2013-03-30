@@ -1,7 +1,7 @@
 package monnef.jaffas.technic.item;
 
 import monnef.jaffas.technic.entity.EntityLocomotive;
-import monnef.jaffas.technic.mod_jaffas_technic;
+import monnef.jaffas.technic.jaffasTechnic;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,7 +17,7 @@ public class ItemLocomotive extends Item {
         super(par1);
         this.maxStackSize = 1;
         this.minecartType = par2;
-        this.setCreativeTab(mod_jaffas_technic.CreativeTab);
+        this.setCreativeTab(jaffasTechnic.CreativeTab);
         this.setUnlocalizedName("locomotive");
     }
 

@@ -10,7 +10,7 @@ import net.minecraft.tileentity.TileEntity;
 import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
-import static monnef.jaffas.food.mod_jaffas_food.Log;
+import static monnef.jaffas.food.jaffasFood.Log;
 
 public class TileEntityPie extends TileEntity {
     public static final int PIECES_COUNT = 4;

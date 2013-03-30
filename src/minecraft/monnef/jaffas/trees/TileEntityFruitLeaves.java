@@ -17,14 +17,14 @@ import net.minecraft.world.World;
 import java.util.HashSet;
 import java.util.Random;
 
-import static monnef.jaffas.food.mod_jaffas_food.Log;
-import static monnef.jaffas.trees.mod_jaffas_trees.debug;
-import static monnef.jaffas.trees.mod_jaffas_trees.fruitType;
-import static monnef.jaffas.trees.mod_jaffas_trees.getActualLeavesType;
-import static monnef.jaffas.trees.mod_jaffas_trees.itemCoconut;
-import static monnef.jaffas.trees.mod_jaffas_trees.itemLemon;
-import static monnef.jaffas.trees.mod_jaffas_trees.itemOrange;
-import static monnef.jaffas.trees.mod_jaffas_trees.itemPlum;
+import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.trees.jaffasTrees.debug;
+import static monnef.jaffas.trees.jaffasTrees.fruitType;
+import static monnef.jaffas.trees.jaffasTrees.getActualLeavesType;
+import static monnef.jaffas.trees.jaffasTrees.itemCoconut;
+import static monnef.jaffas.trees.jaffasTrees.itemLemon;
+import static monnef.jaffas.trees.jaffasTrees.itemOrange;
+import static monnef.jaffas.trees.jaffasTrees.itemPlum;
 
 
 public class TileEntityFruitLeaves extends TileEntity {
@@ -50,7 +50,7 @@ public class TileEntityFruitLeaves extends TileEntity {
     private static final HashSet<Integer> fruitFallThroughBlocks = new HashSet<Integer>();
 
     static {
-        for (LeavesInfo info : mod_jaffas_trees.leavesList) {
+        for (LeavesInfo info : jaffasTrees.leavesList) {
             fruitFallThroughBlocks.add(info.leavesID);
         }
 
@@ -111,12 +111,12 @@ public class TileEntityFruitLeaves extends TileEntity {
             timer = 0;
             if (this.rand.nextDouble() < this.turnChance * this.turnChanceMultiplier) {
                 if (this.fruit != fruitType.Vanilla || rand.nextInt(3) == 0) {
-                    if (this.getBlockType().blockID == mod_jaffas_trees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
+                    if (this.getBlockType().blockID == jaffasTrees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
                         ChangeBlockAndRespawnMe(this.leavesID, this.leavesMeta);
                     } else {
                         // no leaves block on my position => something went wrong, kill myself
                         this.invalidate();
-                        if (mod_jaffas_trees.debug)
+                        if (jaffasTrees.debug)
                             Log.printInfo(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
                         return;
                     }
@@ -165,7 +165,7 @@ public class TileEntityFruitLeaves extends TileEntity {
 
     public boolean generateFruitAndDecay(double chanceForSecondFruit, EntityPlayer player) {
         if (this.getBlockType().blockID != this.leavesID || BlockFruitLeaves.getLeavesType(this.getBlockMetadata()) != this.leavesMeta) {
-            if (mod_jaffas_trees.debug) Log.printInfo("not fruit block, no fruit generated");
+            if (jaffasTrees.debug) Log.printInfo("not fruit block, no fruit generated");
             return false;
         }
 
@@ -176,7 +176,7 @@ public class TileEntityFruitLeaves extends TileEntity {
         for (int i = 0; i < fruits; i++)
             this.generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand, this.leavesMeta, player);
 
-        ChangeBlockAndRespawnMe(mod_jaffas_trees.leavesList.get(0).leavesID, 0);
+        ChangeBlockAndRespawnMe(jaffasTrees.leavesList.get(0).leavesID, 0);
 
         return true;
     }

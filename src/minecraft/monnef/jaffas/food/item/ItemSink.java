@@ -1,7 +1,6 @@
 package monnef.jaffas.food.item;
 
-import monnef.core.utils.BlockHelper;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,7 +30,7 @@ public class ItemSink extends ItemJaffaBase {
         } else {
             y++;
 
-            Block blockToPlace = mod_jaffas_food.blockSink;
+            Block blockToPlace = jaffasFood.blockSink;
             int direction = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
             direction = (direction + 3) % 4;
 

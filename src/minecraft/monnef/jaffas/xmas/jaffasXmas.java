@@ -14,8 +14,8 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
-import monnef.jaffas.food.mod_jaffas_food;
-import monnef.jaffas.mod_jaffas;
+import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.jaffasMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -26,9 +26,9 @@ import java.util.logging.Level;
 
 @Mod(modid = "Jaffas-Xmas", name = "Jaffas - Xmas", version = Reference.Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class mod_jaffas_xmas extends mod_jaffas {
+public class jaffasXmas extends jaffasMod {
     @Mod.Instance("moen-jaffas-xmas")
-    public static mod_jaffas_xmas instance;
+    public static jaffasXmas instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.xmas.ClientProxy", serverSide = "monnef.jaffas.xmas.CommonProxy")
     public static CommonProxy proxy;
@@ -51,7 +51,7 @@ public class mod_jaffas_xmas extends mod_jaffas {
     public static JaffaCreativeTab CreativeTab;
     private Items items;
 
-    public mod_jaffas_xmas() {
+    public jaffasXmas() {
         this.items = new Items();
         items.RegisterItemType(JaffaItemType.basic, ItemXmas.class);
         items.RegisterItemType(JaffaItemType.food, ItemXmasFood.class);
@@ -105,7 +105,7 @@ public class mod_jaffas_xmas extends mod_jaffas {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
 
-        mod_jaffas_food.PrintInitialized(ModulesEnum.xmas);
+        jaffasFood.PrintInitialized(ModulesEnum.xmas);
     }
 
     private void createItems() {
@@ -184,7 +184,7 @@ public class mod_jaffas_xmas extends mod_jaffas {
     }
 
     private Item getItem(JaffaItem type) {
-        return mod_jaffas_food.getItem(type);
+        return jaffasFood.getItem(type);
     }
 
     private void installPresentRecipe(int ribbonColor, int color, boolean big, int presentMeta) {

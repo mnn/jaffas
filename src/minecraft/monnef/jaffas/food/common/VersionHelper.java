@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static monnef.jaffas.food.mod_jaffas_food.Log;
+import static monnef.jaffas.food.jaffasFood.Log;
 
 public class VersionHelper {
     private static Pattern versionPatter = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)");

@@ -1,13 +1,13 @@
 package monnef.jaffas.technic.block;
 
-import monnef.jaffas.technic.mod_jaffas_technic;
+import monnef.jaffas.technic.jaffasTechnic;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static monnef.jaffas.technic.mod_jaffas_technic.blockLimsewOre;
+import static monnef.jaffas.technic.jaffasTechnic.blockLimsewOre;
 
 public class BlockOre extends BlockTechnic {
     public BlockOre(int id, int textureID) {
@@ -29,7 +29,7 @@ public class BlockOre extends BlockTechnic {
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
         if (blockID == blockLimsewOre.blockID) {
-            return mod_jaffas_technic.limsew.itemID;
+            return jaffasTechnic.limsew.itemID;
         }
         return super.idDropped(par1, par2Random, par3);
     }

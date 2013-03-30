@@ -15,7 +15,7 @@ import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.src.ModLoader;
@@ -33,7 +33,7 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(mod_jaffas_food.getItem(JaffaItem.duckEgg)));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(jaffasFood.getItem(JaffaItem.duckEgg)));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCross.class, new TileEntityCrossRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySink.class, new TileEntitySinkRenderer());
@@ -43,8 +43,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJaffaStatue.class, new TileEntityJaffaStatueRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPie.class, new TileEntityPieRenderer());
 
-        mod_jaffas_food.renderID = RenderingRegistry.getNextAvailableRenderId();
-        mod_jaffas_food.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
+        jaffasFood.renderID = RenderingRegistry.getNextAvailableRenderId();
+        jaffasFood.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new SwitchgrassRenderer());
     }
 

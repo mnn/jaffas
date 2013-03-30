@@ -3,9 +3,8 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.BlockMonnefCore;
-import monnef.core.utils.BlockHelper;
 import monnef.jaffas.trees.WorldGenFruitTrees;
-import monnef.jaffas.trees.mod_jaffas_trees;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -25,13 +24,8 @@ import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
-import static monnef.jaffas.food.mod_jaffas_food.Log;
-import static net.minecraftforge.common.EnumPlantType.Cave;
-import static net.minecraftforge.common.EnumPlantType.Crop;
-import static net.minecraftforge.common.EnumPlantType.Desert;
-import static net.minecraftforge.common.EnumPlantType.Nether;
+import static monnef.jaffas.food.jaffasFood.Log;
 import static net.minecraftforge.common.EnumPlantType.Plains;
-import static net.minecraftforge.common.EnumPlantType.Water;
 
 public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
     public static Random rand = new Random();
@@ -41,7 +35,7 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         // bonemeal
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && mod_jaffas_trees.bonemealingAllowed) {
+        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && jaffasTrees.bonemealingAllowed) {
             if (itemstack.getItemDamage() == 15) {
                 if (!par1World.isRemote) {
                     growTree(par1World, par2, par3, par4, rand);
@@ -58,7 +52,7 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        setCreativeTab(mod_jaffas_trees.CreativeTab);
+        setCreativeTab(jaffasTrees.CreativeTab);
         this.setTickRandomly(true);
     }
 
@@ -73,7 +67,7 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
             if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9 && par5Random.nextInt(7) == 0) {
                 int metadata = par1World.getBlockMetadata(par2, par3, par4);
 
-                if (mod_jaffas_trees.debug) {
+                if (jaffasTrees.debug) {
                     Log.printInfo("meta(" + metadata + ") markForDecay("
                             + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
                             + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
@@ -82,7 +76,7 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
 
                 if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
                     setBlockMetadata(par1World, par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
-                    if (mod_jaffas_trees.debug) {
+                    if (jaffasTrees.debug) {
                         Log.printInfo("after set: " + par1World.getBlockMetadata(par2, par3, par4));
                     }
                 } else {
@@ -107,7 +101,7 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
 
         par1World.setBlock(par2, par3, par4, 0);
 
-        var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false, mod_jaffas_trees.leavesList.get(serialNumber).leavesID);
+        var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false, jaffasTrees.leavesList.get(serialNumber).leavesID);
 
         if (!((WorldGenerator) var7).generate(par1World, par5Random, par2 + var8, par3, par4 + var9)) {
             setBlock(par1World, par2, par3, par4, this.blockID, metadata);

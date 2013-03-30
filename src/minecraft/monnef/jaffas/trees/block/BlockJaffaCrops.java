@@ -3,7 +3,7 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.trees.TileEntityJaffaCrops;
-import monnef.jaffas.trees.mod_jaffas_trees;
+import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.creativetab.CreativeTabs;
@@ -50,7 +50,7 @@ public class BlockJaffaCrops extends BlockFlower {
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         // bonemeal
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && mod_jaffas_trees.bonemealingAllowed) {
+        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && jaffasTrees.bonemealingAllowed) {
             if (itemstack.getItemDamage() == 15) {
                 //growTree(par1World, par2, par3, par4, rand);
                 this.fertilize(par1World, par2, par3, par4);

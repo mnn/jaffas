@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import static monnef.jaffas.food.mod_jaffas_food.Log;
+import static monnef.jaffas.food.jaffasFood.Log;
 
 public class TileEntityFruitCollector extends TileEntityJaffaMachine implements IInventory {
 
@@ -82,12 +82,12 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
     static {
         fruitList = new HashMap<Integer, Integer>();
-        addToFruitList(mod_jaffas_trees.itemLemon);
-        addToFruitList(mod_jaffas_trees.itemOrange);
-        addToFruitList(mod_jaffas_trees.itemPlum);
+        addToFruitList(jaffasTrees.itemLemon);
+        addToFruitList(jaffasTrees.itemOrange);
+        addToFruitList(jaffasTrees.itemPlum);
         addToFruitList(ItemManager.getItem(JaffaItem.vanillaBeans));
         addToFruitList(Item.appleRed);
-        addToFruitList(mod_jaffas_trees.itemLemon);
+        addToFruitList(jaffasTrees.itemLemon);
         addToFruitList(Item.dyePowder, 3); // cocoa beans
 
         OrdinalToState = new CollectorStates[CollectorStates.values().length];
@@ -179,7 +179,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                             ItemStack stack = this.targetedItem.getEntityItem().copy();
                             int itemsAdded = addItemToInventory(this.targetedItem.getEntityItem().copy(), true);
                             this.targetedItem.setDead();
-                            if (mod_jaffas_trees.debug) Log.printInfo("target destroyed");
+                            if (jaffasTrees.debug) Log.printInfo("target destroyed");
                             int itemsLeft = stack.stackSize - itemsAdded;
 
                             this.queueSound("suck");
@@ -294,7 +294,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         }
 
         Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = mod_jaffas_trees.channel;
+        packet.channel = jaffasTrees.channel;
         packet.data = bos.toByteArray();
         packet.length = bos.size();
 

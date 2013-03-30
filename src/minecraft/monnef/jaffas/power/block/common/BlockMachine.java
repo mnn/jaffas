@@ -1,11 +1,11 @@
 package monnef.jaffas.power.block.common;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import monnef.jaffas.food.mod_jaffas_food;
+import monnef.jaffas.food.jaffasFood;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.api.IPipeWrench;
 import monnef.jaffas.power.block.TileEntityAntenna;
-import monnef.jaffas.power.mod_jaffas_power;
+import monnef.jaffas.power.jaffasPower;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
@@ -51,7 +51,7 @@ public abstract class BlockMachine extends BlockPower {
                 tile.setRotation(ForgeDirection.getOrientation(obj.sideHit).getOpposite());
             } else {
                 tile.setRotation(defaultDirection);
-                mod_jaffas_food.Log.printDebug("No hit, using default side.");
+                jaffasFood.Log.printDebug("No hit, using default side.");
             }
         } else {
             int direction = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
@@ -67,7 +67,7 @@ public abstract class BlockMachine extends BlockPower {
     @Override
     public int getRenderType() {
         if (customRenderer) {
-            return useOwnRenderId() ? this.renderID : mod_jaffas_power.renderID;
+            return useOwnRenderId() ? this.renderID : jaffasPower.renderID;
         } else {
             return super.getRenderType();
         }
