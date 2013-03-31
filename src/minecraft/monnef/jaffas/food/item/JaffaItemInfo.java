@@ -10,6 +10,7 @@ public class JaffaItemInfo {
     private String title;
     private int iconIndex;
     private ModulesEnum module;
+    private int sheetNumber;
 
     public JaffaItemInfo(String configName) {
         this.setConfigName(configName);
@@ -61,5 +62,13 @@ public class JaffaItemInfo {
 
     public void setModule(ModulesEnum module) {
         this.module = module;
+    }
+
+    public int getSheetNumber() {
+        return sheetNumber;
+    }
+
+    public void setSheetNumber(int sheetNumber) {
+        this.sheetNumber = sheetNumber;
     }
 }

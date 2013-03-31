@@ -19,19 +19,59 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import extrabiomes.api.Api;
 import monnef.core.MonnefCorePlugin;
-import monnef.core.utils.*;
-import monnef.jaffas.food.block.*;
+import monnef.core.utils.ColorHelper;
+import monnef.core.utils.CustomLogger;
+import monnef.core.utils.ExtrabiomesHelper;
+import monnef.core.utils.IDProvider;
+import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.block.BlockBoard;
+import monnef.jaffas.food.block.BlockColumn;
+import monnef.jaffas.food.block.BlockCross;
+import monnef.jaffas.food.block.BlockFridge;
+import monnef.jaffas.food.block.BlockJaffaStatue;
+import monnef.jaffas.food.block.BlockPie;
+import monnef.jaffas.food.block.BlockPizza;
+import monnef.jaffas.food.block.BlockSink;
+import monnef.jaffas.food.block.BlockSwitchgrass;
+import monnef.jaffas.food.block.BlockTable;
+import monnef.jaffas.food.block.ItemBlockPie;
+import monnef.jaffas.food.block.ItemBlockSwitchgrass;
+import monnef.jaffas.food.block.ItemBlockTable;
+import monnef.jaffas.food.block.JaffaBombBlock;
+import monnef.jaffas.food.block.TileEntityBoard;
+import monnef.jaffas.food.block.TileEntityColumn;
+import monnef.jaffas.food.block.TileEntityCross;
+import monnef.jaffas.food.block.TileEntityFridge;
+import monnef.jaffas.food.block.TileEntityJaffaStatue;
+import monnef.jaffas.food.block.TileEntityPie;
+import monnef.jaffas.food.block.TileEntityPizza;
+import monnef.jaffas.food.block.TileEntitySink;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
-import monnef.jaffas.food.common.*;
+import monnef.jaffas.food.common.CommonProxy;
+import monnef.jaffas.food.common.FuelHandler;
+import monnef.jaffas.food.common.ModuleManager;
+import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.crafting.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
-import monnef.jaffas.food.item.*;
+import monnef.jaffas.food.item.CustomDrop;
+import monnef.jaffas.food.item.ItemCleaverHookContainer;
+import monnef.jaffas.food.item.ItemJaffaBase;
+import monnef.jaffas.food.item.ItemJaffaFood;
+import monnef.jaffas.food.item.ItemJaffaPack;
+import monnef.jaffas.food.item.ItemJaffaPainting;
+import monnef.jaffas.food.item.ItemJaffaPlate;
+import monnef.jaffas.food.item.ItemJaffaSword;
+import monnef.jaffas.food.item.ItemJaffaTool;
+import monnef.jaffas.food.item.JaffaCreativeTab;
+import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.food.server.PlayerTracker;
@@ -60,7 +100,16 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.logging.Level;
 
-import static net.minecraft.world.biome.BiomeGenBase.*;
+import static net.minecraft.world.biome.BiomeGenBase.beach;
+import static net.minecraft.world.biome.BiomeGenBase.forest;
+import static net.minecraft.world.biome.BiomeGenBase.forestHills;
+import static net.minecraft.world.biome.BiomeGenBase.jungle;
+import static net.minecraft.world.biome.BiomeGenBase.jungleHills;
+import static net.minecraft.world.biome.BiomeGenBase.plains;
+import static net.minecraft.world.biome.BiomeGenBase.river;
+import static net.minecraft.world.biome.BiomeGenBase.swampland;
+import static net.minecraft.world.biome.BiomeGenBase.taiga;
+import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
@@ -304,7 +353,7 @@ public class jaffasFood extends jaffasMod {
     }
 
     private void checkCore() {
-        if(!MonnefCorePlugin.isInitialized()){
+        if (!MonnefCorePlugin.isInitialized()) {
             throw new RuntimeException("Core is not properly initialized!");
         }
     }
@@ -425,7 +474,7 @@ public class jaffasFood extends jaffasMod {
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 
         itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, EnumToolMaterialJaffas);
-        itemJaffaSword.setUnlocalizedName("jaffaSword"); //.setIconIndex(88);
+        RegistryUtils.registerItem(itemJaffaSword, "jaffaSword", "Jaffa Sword"); //.setIconIndex(88);
     }
 
     private void printInitializedMessage() {

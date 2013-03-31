@@ -7,58 +7,40 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ItemJaffaFood extends ItemFood implements IItemFood {
-    // TODO rewrite to inherit from ItemMonnefCore
-
+public class ItemJaffaFood extends ItemJaffaBase implements IItemFood {
     private ItemStack returnItem;
     private boolean isDrink;
     private int healAmount;
     private float saturation;
-    protected int textureFileIndex;
     private float returnChance;
 
     public ItemJaffaFood(int id) {
-        super(id, 0, 0, false);
-        initialize();
-    }
-
-    public ItemJaffaFood(int id, int healAmount, float saturation) {
-        //super(id, healAmount, saturation, false);
-        super(id, 0, 0, false);
+        super(id);
         initialize();
     }
 
     private void initialize() {
         maxStackSize = 64;
-        this.setCreativeTab(CreativeTabs.tabFood);
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.itemUseDuration = 32;
     }
-
-    /*
-    @Override
-    public String getTextureFile() {
-        return jaffasFood.textureFile[getTextureFileIndex()];
-    }
-
-    public int getTextureFileIndex() {
-        return textureFileIndex;
-    }
-
-    public void setTextureFileIndex(int value) {
-        textureFileIndex = value;
-    } */
 
     @Override
-    public void onFoodEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[]{jaffasFood.CreativeTab, CreativeTabs.tabFood};
+    }
+
+    public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {
         if (this.returnItem != null && this.returnChance > itemRand.nextFloat()) {
-            PlayerHelper.giveItemToPlayer(par3EntityPlayer, returnItem.copy());
+            PlayerHelper.giveItemToPlayer(player, returnItem.copy());
         }
 
-        super.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
+        if (!world.isRemote && this.potionId > 0 && world.rand.nextFloat() < this.potionEffectProbability) {
+            player.addPotionEffect(new PotionEffect(this.potionId, this.potionDuration * 20, this.potionAmplifier));
+        }
     }
 
     public ItemJaffaFood setReturnItem(ItemStack returnItem) {
@@ -66,15 +48,13 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
         return this;
     }
 
-    public ItemFood setReturnItem(ItemStack returnItem, float chance) {
+    public ItemJaffaFood setReturnItem(ItemStack returnItem, float chance) {
         this.returnItem = returnItem;
         this.returnChance = chance;
         return this;
     }
 
-    /**
-     * returns the action that specifies what animation to play when the items is being used
-     */
+    @Override
     public EnumAction getItemUseAction(ItemStack par1ItemStack) {
         return this.isDrink ? EnumAction.drink : EnumAction.eat;
     }
@@ -92,13 +72,59 @@ public class ItemJaffaFood extends ItemFood implements IItemFood {
         return this;
     }
 
-    @Override
     public int getHealAmount() {
         return this.healAmount;
     }
 
-    @Override
     public float getSaturationModifier() {
         return this.saturation;
+    }
+
+    // ---------------------------------------------------------
+    // from ItemFood
+
+    private int itemUseDuration;
+
+    private boolean alwaysEdible;
+
+    private int potionId;
+    private int potionDuration;
+    private int potionAmplifier;
+    private float potionEffectProbability;
+
+    @Override
+    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+        --par1ItemStack.stackSize;
+        par3EntityPlayer.getFoodStats().addStats(this.getHealAmount(), this.getSaturationModifier());
+        par2World.playSoundAtEntity(par3EntityPlayer, "random.burp", 0.5F, par2World.rand.nextFloat() * 0.1F + 0.9F);
+        this.onFoodEaten(par1ItemStack, par2World, par3EntityPlayer);
+        return par1ItemStack;
+    }
+
+    @Override
+    public int getMaxItemUseDuration(ItemStack par1ItemStack) {
+        return this.itemUseDuration;
+    }
+
+    @Override
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
+        if (par3EntityPlayer.canEat(this.alwaysEdible)) {
+            par3EntityPlayer.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        }
+
+        return par1ItemStack;
+    }
+
+    public ItemJaffaFood setPotionEffect(int par1, int par2, int par3, float par4) {
+        this.potionId = par1;
+        this.potionDuration = par2;
+        this.potionAmplifier = par3;
+        this.potionEffectProbability = par4;
+        return this;
+    }
+
+    public ItemJaffaFood setAlwaysEdible() {
+        this.alwaysEdible = true;
+        return this;
     }
 }

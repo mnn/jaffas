@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.IArmorTextureProvider;
 
 public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
+    // TODO rewrite to inherit from ItemMonnefCore?
 
     private String armorTexture;
     private Item repairItem;

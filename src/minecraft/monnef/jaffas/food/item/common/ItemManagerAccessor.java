@@ -8,6 +8,8 @@ import monnef.jaffas.food.item.JaffaItemType;
 import net.minecraft.item.Item;
 
 public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
+    protected int currentSheetNumber = 1;
+
     public abstract ModulesEnum getMyModule();
 
     protected abstract void InitializeItemInfos();
@@ -15,7 +17,7 @@ public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
     protected abstract void CreateItems();
 
     protected void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
-        ItemManager.AddItemInfo(item, name, iconIndex, title, this.getMyModule());
+        ItemManager.AddItemInfo(item, name, iconIndex, title, this.getMyModule(), currentSheetNumber);
     }
 
     protected Item createJaffaItem(JaffaItem ji) {
@@ -49,5 +51,13 @@ public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
 
     public void RegisterItemType(JaffaItemType type, Class<? extends IT> clazz) {
         ItemManager.RegisterItemTypeForModule(this.getMyModule(), type, clazz);
+    }
+
+    public int getCurrentSheetNumber() {
+        return currentSheetNumber;
+    }
+
+    public void setCurrentSheetNumber(int currentSheetNumber) {
+        this.currentSheetNumber = currentSheetNumber;
     }
 }

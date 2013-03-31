@@ -71,12 +71,13 @@ public class ItemManager {
         return ItemsInfo.get(item);
     }
 
-    public static void AddItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module) {
+    public static void AddItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
         JaffaItemInfo newItem = new JaffaItemInfo(name);
         newItem.setIconIndex(iconIndex);
         if (title.isEmpty()) title = name;
         newItem.setTitle(title);
         newItem.setModule(module);
+        newItem.setSheetNumber(sheetNumber);
         ItemsInfo.put(item, newItem);
     }
 

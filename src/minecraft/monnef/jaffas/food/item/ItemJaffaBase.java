@@ -5,6 +5,7 @@ import monnef.core.base.ItemMonnefCore;
 import monnef.jaffas.food.Reference;
 import monnef.jaffas.food.item.common.IItemJaffa;
 import monnef.jaffas.food.jaffasFood;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     private String info = null;
+    private CreativeTabs secondCreativeTab;
 
     public ItemJaffaBase(int id) {
         super(id);
@@ -42,5 +44,18 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     @Override
     public int getDefaultSheetNumber() {
         return 1;
+    }
+
+    public void setSecondCreativeTab(CreativeTabs tab) {
+        this.secondCreativeTab = tab;
+    }
+
+    @Override
+    public CreativeTabs[] getCreativeTabs() {
+        if (secondCreativeTab != null) {
+            return new CreativeTabs[]{secondCreativeTab, getCreativeTab()};
+        } else {
+            return super.getCreativeTabs();
+        }
     }
 }

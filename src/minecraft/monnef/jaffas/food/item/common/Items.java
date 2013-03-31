@@ -3,7 +3,17 @@ package monnef.jaffas.food.item.common;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.item.*;
+import monnef.jaffas.food.item.ItemBagOfSeeds;
+import monnef.jaffas.food.item.ItemCleaver;
+import monnef.jaffas.food.item.ItemDuckEgg;
+import monnef.jaffas.food.item.ItemJaffaFood;
+import monnef.jaffas.food.item.ItemJaffaPlate;
+import monnef.jaffas.food.item.ItemJaffaTool;
+import monnef.jaffas.food.item.ItemMagnifier;
+import monnef.jaffas.food.item.ItemPizza;
+import monnef.jaffas.food.item.ItemSink;
+import monnef.jaffas.food.item.ItemSpawnStone;
+import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
@@ -86,6 +96,7 @@ public class Items extends ItemManagerAccessor {
 
     @Override
     public void InitializeItemInfos() {
+        setCurrentSheetNumber(1);
         AddItemInfo(pastrySweet, "Pastry", 13, "Sweet Pastry");
         AddItemInfo(cake, "Cake", 1, "Sponge Cake");
         AddItemInfo(jamO, "Jam Orange", 2, "Orange Jam");
@@ -546,12 +557,6 @@ public class Items extends ItemManagerAccessor {
         createJaffaItemManual(pizza, ItemPizza.class);
 
         createJaffaItem(wolfSkin);
-        /*
-        int renderIndex = jaffasFood.proxy.addArmor("wolf");
-        createJaffaArmor(wolfHelmet, jaffasFood.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.helm, "/jaffas_wolf1.png", wolfSkin);
-        createJaffaArmor(wolfChest, jaffasFood.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.chest, "/jaffas_wolf1.png", wolfSkin);
-        createJaffaArmor(wolfLeggins, jaffasFood.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.leggings, "/jaffas_wolf2.png", wolfSkin);
-        createJaffaArmor(wolfBoots, jaffasFood.EnumArmorMaterialWolf, renderIndex, ItemJaffaPlate.ArmorType.boots, "/jaffas_wolf1.png", wolfSkin);*/
         createJaffaArmorSet("wolf", jaffasFood.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
 
         createJaffaItem(pastry);

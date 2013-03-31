@@ -27,10 +27,6 @@ import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
-        MinecraftForgeClient.preloadTexture("/jaffas_01_a.png");
-        MinecraftForgeClient.preloadTexture("/jaffas_01_b.png");
-        MinecraftForgeClient.preloadTexture("/jaffas_02.png");
-
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(jaffasFood.getItem(JaffaItem.duckEgg)));
