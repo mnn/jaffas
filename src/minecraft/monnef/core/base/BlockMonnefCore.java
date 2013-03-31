@@ -39,7 +39,7 @@ public abstract class BlockMonnefCore extends Block implements ICustomIcon {
     }
 
     @Override
-    public String customIconName() {
+    public String getCustomIconName() {
         return null;
     }
 

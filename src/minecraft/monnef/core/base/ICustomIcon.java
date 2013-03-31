@@ -1,7 +1,7 @@
 package monnef.core.base;
 
 public interface ICustomIcon {
-    String getModId();
+    String getModName();
 
     int getDefaultSheetNumber();
 
@@ -13,5 +13,5 @@ public interface ICustomIcon {
 
     int getSheetNumber();
 
-    String customIconName();
+    String getCustomIconName();
 }

@@ -14,6 +14,7 @@ import monnef.jaffas.food.item.ItemPizza;
 import monnef.jaffas.food.item.ItemSink;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.JaffaItemInfo;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
@@ -665,7 +666,8 @@ public class Items extends ItemManagerAccessor {
     }
 
     public void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, Item repairItem) {
-        createJaffaItemManual(item, new ItemJaffaPlate(ItemManager.getItemInfo(item).getId(), material, renderIndex, type, texture, repairItem));
+        JaffaItemInfo info = ItemManager.getItemInfo(item);
+        createJaffaItemManual(item, new ItemJaffaPlate(info.getId(), material, renderIndex, type, texture, repairItem, info.getIconIndex()));
     }
 
     public void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, JaffaItem repairItem) {

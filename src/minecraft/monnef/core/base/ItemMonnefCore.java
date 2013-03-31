@@ -9,6 +9,7 @@ public abstract class ItemMonnefCore extends Item implements ICustomIcon {
 
     public ItemMonnefCore(int id) {
         super(id);
+        this.sheetNumber = getDefaultSheetNumber();
     }
 
     @Override
@@ -32,7 +33,7 @@ public abstract class ItemMonnefCore extends Item implements ICustomIcon {
     }
 
     @Override
-    public String customIconName() {
+    public String getCustomIconName() {
         return null;
     }
 

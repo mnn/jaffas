@@ -1,6 +1,7 @@
 package monnef.jaffas.food.item.common;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.core.base.ICustomIcon;
 import monnef.core.base.ItemMonnefCore;
 import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -83,7 +84,11 @@ public class ItemManager {
 
     private static void finalizeItemSetup(JaffaItemInfo info, Item item) {
         item.setUnlocalizedName(info.getTitle());
-        //item.setIconIndex(info.getIconIndex());
+        if (ICustomIcon.class.isAssignableFrom(item.getClass())) {
+            ICustomIcon itemWithIcon = (ICustomIcon) item;
+            itemWithIcon.setCustomIconIndex(info.getIconIndex());
+            itemWithIcon.setSheetNumber(info.getSheetNumber());
+        }
         info.setItem(item);
         LanguageRegistry.addName(item, info.getTitle());
     }

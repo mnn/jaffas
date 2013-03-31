@@ -469,12 +469,13 @@ public class jaffasFood extends jaffasMod {
 
     private void createJaffaArmorAndSword() {
         int armorRender = proxy.addArmor("Jaffa");
-        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png", null);
-        //itemJaffaPlate.setIconIndex(90);
+        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png", null, 90);
         LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
 
         itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, EnumToolMaterialJaffas);
-        RegistryUtils.registerItem(itemJaffaSword, "jaffaSword", "Jaffa Sword"); //.setIconIndex(88);
+        RegistryUtils.registerItem(itemJaffaSword, "jaffaSword", "Jaffa Sword");
+        itemJaffaSword.setCustomIconIndex(88);
+        itemJaffaSword.setSheetNumber(1);
     }
 
     private void printInitializedMessage() {

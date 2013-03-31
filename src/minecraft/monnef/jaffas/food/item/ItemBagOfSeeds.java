@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class ItemBagOfSeeds extends Item {
+public class ItemBagOfSeeds extends ItemJaffaBase {
     private static Random rand = new Random();
 
     public ItemBagOfSeeds(int par1) {

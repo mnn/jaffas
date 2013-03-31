@@ -21,8 +21,8 @@ public class BlockPower extends BlockMonnefCore {
     }
 
     @Override
-    public String getModId() {
-        return Reference.ModId;
+    public String getModName() {
+        return Reference.ModName;
     }
 
     @Override

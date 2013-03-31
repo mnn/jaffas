@@ -6,7 +6,13 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
-import monnef.jaffas.food.block.*;
+import monnef.jaffas.food.block.TileEntityBoard;
+import monnef.jaffas.food.block.TileEntityColumn;
+import monnef.jaffas.food.block.TileEntityCross;
+import monnef.jaffas.food.block.TileEntityJaffaStatue;
+import monnef.jaffas.food.block.TileEntityPie;
+import monnef.jaffas.food.block.TileEntityPizza;
+import monnef.jaffas.food.block.TileEntitySink;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.SpawnStonePacketUtils;
@@ -18,8 +24,6 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
-import net.minecraft.src.ModLoader;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
@@ -45,7 +49,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     public int addArmor(String name) {
-        return ModLoader.addArmor(name);
+        return RenderingRegistry.addNewArmourRendererPrefix(name);
     }
 
     @Override

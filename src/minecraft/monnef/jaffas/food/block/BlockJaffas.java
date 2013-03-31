@@ -12,13 +12,13 @@ public abstract class BlockJaffas extends BlockMonnefCore {
     }
 
     @Override
-    public String customIconName() {
+    public String getCustomIconName() {
         return "todo";
     }
 
     @Override
-    public String getModId() {
-        return Reference.ModId;
+    public String getModName() {
+        return Reference.ModName;
     }
 
     @Override

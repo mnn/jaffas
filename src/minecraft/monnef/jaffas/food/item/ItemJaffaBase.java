@@ -19,11 +19,16 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
         super(id);
         maxStackSize = 64;
         this.setCreativeTab(jaffasFood.CreativeTab);
+        setCustomIconIndex(-1);
     }
 
     @Override
-    public String customIconName() {
-        return "todo";
+    public String getCustomIconName() {
+        if (getCustomIconIndex() < 0) {
+            return "todo";
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -37,7 +42,7 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     }
 
     @Override
-    public String getModId() {
+    public String getModName() {
         return Reference.ModName;
     }
 
