@@ -4,6 +4,10 @@ import monnef.core.Reference;
 
 public class CustomIconHelper {
     public static String generateId(ICustomIcon obj) {
+        return generateId(obj, obj.getCustomIconIndex());
+    }
+
+    public static String generateId(ICustomIcon obj, int index) {
         if (obj.getModName().equals(Reference.ModId)) {
             throw new RuntimeException("wrong import, class: " + obj.getClass().getSimpleName());
         }
@@ -12,7 +16,7 @@ public class CustomIconHelper {
         sb.append(":");
 
         if (obj.getCustomIconName() == null) {
-            sb.append(String.format("%02d_%03d", obj.getSheetNumber(), obj.getCustomIconIndex()));
+            sb.append(String.format("%02d_%03d", obj.getSheetNumber(), index));
         } else {
             sb.append(String.format("%s", obj.getCustomIconName()));
         }

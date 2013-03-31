@@ -6,6 +6,7 @@ import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,15 +16,36 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockFridge extends BlockContainerJaffas {
+import static monnef.core.base.CustomIconHelper.generateId;
 
-    private static int FridgeBottom = 43;
-    private static int FridgeTopTop = 40;
-    private static int FridgeTopBottom = 41;
-    private static int FridgeLeft = 38;
-    private static int FridgeRight = 39;
-    private static int FridgeFront = 37;
-    private static int FridgeBack = 42;
+public class BlockFridge extends BlockContainerJaffas {
+    /*
+        private static Icon FridgeBottom = 43;
+        private static Icon FridgeTopTop = 40;
+        private static Icon FridgeTopBottom = 41;
+        private static Icon FridgeLeft = 38;
+        private static Icon FridgeRight = 39;
+        private static Icon FridgeFront = 37;
+        private static Icon FridgeBack = 42;
+      */
+    private static Icon FridgeBottom;
+    private static Icon FridgeTopTop;
+    private static Icon FridgeTopBottom;
+    private static Icon FridgeLeft;
+    private static Icon FridgeRight;
+    private static Icon FridgeFront;
+    private static Icon FridgeBack;
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        FridgeBottom = iconRegister.registerIcon(generateId(this, 43));
+        FridgeTopTop = iconRegister.registerIcon(generateId(this, 40));
+        FridgeTopBottom = iconRegister.registerIcon(generateId(this, 41));
+        FridgeLeft = iconRegister.registerIcon(generateId(this, 38));
+        FridgeRight = iconRegister.registerIcon(generateId(this, 39));
+        FridgeFront = iconRegister.registerIcon(generateId(this, 37));
+        FridgeBack = iconRegister.registerIcon(generateId(this, 42));
+    }
 
     public BlockFridge(int id) {
         super(id, 0, Material.rock);
@@ -60,9 +82,6 @@ public class BlockFridge extends BlockContainerJaffas {
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
     public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
-        // TODO
-        return null;
-        /*
         int front = 0;
 
         front = access.getBlockMetadata(x, y, z);
@@ -122,16 +141,14 @@ public class BlockFridge extends BlockContainerJaffas {
                     return FridgeBottom;
                 }
         }
-        */
     }
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int meta) {
-        return null;
-        //return getTextureFromSide(side);
+        return getTextureFromSide(side);
     }
 
-    private int getTextureFromSide(int side) {
+    private Icon getTextureFromSide(int side) {
         switch (side) {
             case 0:
                 return FridgeBottom;
@@ -146,7 +163,7 @@ public class BlockFridge extends BlockContainerJaffas {
             case 5:
                 return FridgeRight;
             default:
-                return 0;
+                return null;
         }
     }
 

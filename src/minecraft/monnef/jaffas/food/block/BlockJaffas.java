@@ -6,14 +6,14 @@ import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
 
 public abstract class BlockJaffas extends BlockMonnefCore {
-    public BlockJaffas(int par1, int par2, Material par3Material) {
-        super(par1, par3Material);
+    public BlockJaffas(int id, int index, Material material) {
+        super(id, index, material);
         setCreativeTab(jaffasFood.CreativeTab);
     }
 
     @Override
     public String getCustomIconName() {
-        return "todo";
+        return null;
     }
 
     @Override

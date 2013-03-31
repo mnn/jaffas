@@ -28,6 +28,7 @@ import monnef.jaffas.food.block.BlockBoard;
 import monnef.jaffas.food.block.BlockColumn;
 import monnef.jaffas.food.block.BlockCross;
 import monnef.jaffas.food.block.BlockFridge;
+import monnef.jaffas.food.block.BlockJaffaBomb;
 import monnef.jaffas.food.block.BlockJaffaStatue;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockPizza;
@@ -37,7 +38,6 @@ import monnef.jaffas.food.block.BlockTable;
 import monnef.jaffas.food.block.ItemBlockPie;
 import monnef.jaffas.food.block.ItemBlockSwitchgrass;
 import monnef.jaffas.food.block.ItemBlockTable;
-import monnef.jaffas.food.block.JaffaBombBlock;
 import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityColumn;
 import monnef.jaffas.food.block.TileEntityCross;
@@ -118,7 +118,7 @@ public class jaffasFood extends jaffasMod {
 
     private static MinecraftServer server;
 
-    public static JaffaBombBlock blockJaffaBomb;
+    public static BlockJaffaBomb blockJaffaBomb;
     public static int blockJaffaBombID;
 
     public static BlockFridge blockFridge;
@@ -422,7 +422,7 @@ public class jaffasFood extends jaffasMod {
         LanguageRegistry.addName(blockFridge, "Fridge");
         GameRegistry.registerTileEntity(TileEntityFridge.class, "Fridge");
 
-        blockJaffaBomb = new JaffaBombBlock(blockJaffaBombID, 35, Material.rock);
+        blockJaffaBomb = new BlockJaffaBomb(blockJaffaBombID, 35, Material.rock);
         GameRegistry.registerBlock(blockJaffaBomb, "blockJaffaBomb");
         LanguageRegistry.addName(blockJaffaBomb, "Jaffa Cakes BOMB");
 
@@ -437,8 +437,7 @@ public class jaffasFood extends jaffasMod {
         GameRegistry.registerTileEntity(TileEntitySink.class, "sink");
 
         blockBoard = new BlockBoard(blockBoardID, 142, Material.wood);
-        RegistryUtils.registerBlock(blockBoard);
-        LanguageRegistry.addName(blockBoard, "Kitchen Board");
+        RegistryUtils.registerBlock(blockBoard, "Kitchen Board");
         GameRegistry.registerTileEntity(TileEntityBoard.class, "kitchenBoard");
 
         blockPizza = new BlockPizza(blockPizzaID, 149, Material.cake);

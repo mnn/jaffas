@@ -5,7 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 
 public abstract class BlockMonnefCore extends Block implements ICustomIcon {
-    protected int iconIndex;
+    protected int customIconIndex;
     protected int sheetNumber;
 
     public BlockMonnefCore(int id, Material material) {
@@ -14,13 +14,13 @@ public abstract class BlockMonnefCore extends Block implements ICustomIcon {
     }
 
     public BlockMonnefCore(int id, int index, Material material) {
-        super(id, material);
-        this.iconIndex = index;
+        this(id, material);
+        this.customIconIndex = index;
     }
 
     @Override
     public void setCustomIconIndex(int index) {
-        this.iconIndex = index;
+        this.customIconIndex = index;
     }
 
     @Override
@@ -30,7 +30,7 @@ public abstract class BlockMonnefCore extends Block implements ICustomIcon {
 
     @Override
     public int getCustomIconIndex() {
-        return iconIndex;
+        return customIconIndex;
     }
 
     @Override

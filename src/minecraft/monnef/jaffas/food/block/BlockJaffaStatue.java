@@ -3,16 +3,16 @@ package monnef.jaffas.food.block;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import static monnef.core.utils.BlockHelper.*;
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
 public class BlockJaffaStatue extends BlockJaffas {
     public BlockJaffaStatue(int par1, int par2, Material par3Material) {
         super(par1, par2, par3Material);
-        //setRequiresSelfNotify();
         setUnlocalizedName("blockJaffaStatue");
         setHardness(1f);
         setResistance(10f);
@@ -49,7 +49,8 @@ public class BlockJaffaStatue extends BlockJaffas {
         return true;
     }
 
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving) {
+    @Override
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack par6ItemStack) {
         int rotation = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         setBlockMetadata(par1World, par2, par3, par4, rotation);
