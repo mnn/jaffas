@@ -24,6 +24,7 @@ public class ItemJaffaSword extends ItemJaffaBase {
         this.weaponDamage = 4 + material.getDamageVsEntity();
     }
 
+    // TODO: remove?
     public int func_82803_g() {
         return this.toolMaterial.getDamageVsEntity();
     }

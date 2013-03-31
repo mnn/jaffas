@@ -18,12 +18,14 @@ import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
+import static monnef.core.utils.BlockHelper.setBlockWithoutNotify;
 
 public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     private static final int BIT_TOP = 3;
     private static final int MAX_AGE = 7;
     private static final float border = 3f * 1f / 16f;
     private static final float borderComplement = 1f - border;
+    public static final int VALUE_TOP = BitHelper.setBit(0, BIT_TOP);
 
     public String[] subBlockNames;
 
@@ -31,16 +33,17 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         super(id, icon, Material.plants);
         this.setTickRandomly(true);
         subBlockNames = new String[16];
-        for (int i = 0; i <= 15; i++) {
-            subBlockNames[i] = "switchgrass";
+        for (int i = 0; i < subBlockNames.length; i++) {
+            subBlockNames[i] = "Switchgrass";
         }
-        subBlockNames[15] = "switchgrass";
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
         setUnlocalizedName("blockJSwitchgrass");
     }
 
     // inspired by cactus
     public void updateTick(World world, int x, int y, int z, Random rand) {
+        if (world.isRemote) return;
+
         int myMeta = world.getBlockMetadata(x, y, z);
         if (isTop(myMeta) && world.isAirBlock(x, y + 1, z)) {
             int height = 1;
@@ -56,7 +59,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
                     setBlockMetadata(world, x, y, z, newMeta);
                     //Log.printDebug(myMeta + " -> " + newMeta);
                 } else {
-                    setBlock(world, x, y + 1, z, this.blockID, BitHelper.setBit(0, BIT_TOP));
+                    setBlockWithoutNotify(world, x, y + 1, z, this.blockID, VALUE_TOP);
                     setBlockMetadata(world, x, y, z, 0); // no longer the top one
                     world.markBlockForUpdate(x, y, z);
                 }
@@ -69,7 +72,8 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
             age = MAX_AGE;
         }
 
-        return (isTop(meta) ? 8 : 0) | age;
+        //return (isTop(meta) ? 8 : 0) | age;
+        return BitHelper.setBitToValue(age, BIT_TOP, isTop(meta));
     }
 
     public boolean isTop(int meta) {
@@ -77,7 +81,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     }
 
     public int getAge(int meta) {
-        return meta & 7;
+        return BitHelper.unsetBit(meta, BIT_TOP);
     }
 
     public boolean renderAsNormalBlock() {
@@ -157,7 +161,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
 
     @Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(new ItemStack(this, 1, BitHelper.setBit(0, BIT_TOP)));
+        par3List.add(new ItemStack(this, 1, VALUE_TOP));
     }
 
     @Override
@@ -192,7 +196,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
 
     @Override
     public int damageDropped(int par1) {
-        return 8;
+        return VALUE_TOP;
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {

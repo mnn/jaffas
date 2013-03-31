@@ -4,8 +4,8 @@ import monnef.core.Reference;
 
 public class CustomIconHelper {
     public static String generateId(ICustomIcon obj) {
-        if(obj.getModId().equals(Reference.ModId)){
-            throw new RuntimeException("wrong import");
+        if (obj.getModId().equals(Reference.ModId)) {
+            throw new RuntimeException("wrong import, class: " + obj.getClass().getSimpleName());
         }
 
         StringBuilder sb = new StringBuilder(obj.getModId());

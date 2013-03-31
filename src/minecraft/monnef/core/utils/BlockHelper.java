@@ -11,6 +11,7 @@ public class BlockHelper {
     public static final int NOTIFY_FLAG = 2;
     public static final int SEND_ID_OF_CHANGED_BLOCK_FLAG = 1;
     public static final int NOT_UPDATE_ON_CLIENT = 4;
+    public static final int NOTIFY_NONE = 0;
 
     public static final int NOTIFY_ALL = NOTIFY_FLAG | SEND_ID_OF_CHANGED_BLOCK_FLAG;
 
@@ -26,5 +27,9 @@ public class BlockHelper {
     // with notify
     public static boolean setBlock(World world, int x, int y, int z, int id, int meta) {
         return world.setBlock(x, y, z, id, meta, NOTIFY_ALL);
+    }
+
+    public static boolean setBlockWithoutNotify(World world, int x, int y, int z, int id, int meta) {
+        return world.setBlock(x, y, z, id, meta, NOTIFY_NONE);
     }
 }

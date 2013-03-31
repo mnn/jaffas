@@ -35,12 +35,11 @@ public class BlockBoard extends BlockContainerJaffas {
     protected static final int knifeBit = 2;
 
     public BlockBoard(int par1, int index, Material par3Material) {
-        super(par1, par3Material);
+        super(par1, index, par3Material);
         //setRequiresSelfNotify();
         setCreativeTab(jaffasFood.CreativeTab);
         setHardness(0.2f);
         setUnlocalizedName("blockBoard");
-        // TODO icon
     }
 
     @Override

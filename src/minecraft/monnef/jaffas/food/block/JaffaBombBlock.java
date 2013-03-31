@@ -14,20 +14,19 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class JaffaBombBlock extends Block {
+public class JaffaBombBlock extends BlockJaffas {
 
     private float blastStrengh = 0.2F;
     private static Random rand = new Random();
     private static int itemCount = 15;
 
     public JaffaBombBlock(int par1, int index, Material par3Material) {
-        super(par1, par3Material);
+        super(par1, index, par3Material);
         setCreativeTab(CreativeTabs.tabRedstone);
         setUnlocalizedName("Jaffa Cakes BOMB");
         setHardness(0.1F);
         setResistance(0.1F);
         this.setCreativeTab(jaffasFood.CreativeTab);
-        // TODO add icon handling
     }
 
     /**

@@ -26,7 +26,7 @@ public class BlockFridge extends BlockContainerJaffas {
     private static int FridgeBack = 42;
 
     public BlockFridge(int id) {
-        super(id, Material.rock);
+        super(id, 0, Material.rock);
         setHardness(2.0F);
         setResistance(5.0F);
         setUnlocalizedName("blockFridge");
