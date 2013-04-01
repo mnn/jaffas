@@ -1,35 +1,29 @@
 package monnef.jaffas.trees.block;
 
-import monnef.jaffas.food.jaffasFood;
+import monnef.core.base.CustomIconHelper;
+import monnef.core.utils.InventoryUtils;
+import monnef.jaffas.food.block.BlockContainerJaffas;
 import monnef.jaffas.trees.jaffasTrees;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 import java.util.Random;
 
-public class BlockFruitCollector extends BlockContainer {
+public class BlockFruitCollector extends BlockContainerJaffas {
+    private Icon topIcon;
+
     public BlockFruitCollector(int id) {
-        super(id, Material.rock);
+        super(id, 95, Material.rock);
         setHardness(2.0F);
         setResistance(5.0F);
         setUnlocalizedName("blockFruitCollector");
-        setCreativeTab(CreativeTabs.tabMisc);
-        //setRequiresSelfNotify();
         setCreativeTab(jaffasTrees.CreativeTab);
-    }
-
-    public String getTextureFile() {
-        return jaffasFood.textureFile[0];
+        setSheetNumber(1);
     }
 
     @Override
@@ -46,45 +40,11 @@ public class BlockFruitCollector extends BlockContainer {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        dropItems(world, x, y, z);
         super.breakBlock(world, x, y, z, par5, par6);
+        InventoryUtils.dropItems(world, x, y, z);
     }
 
-    private void dropItems(World world, int x, int y, int z) {
-        Random rand = new Random();
-
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if (!(tileEntity instanceof IInventory)) {
-            return;
-        }
-        IInventory inventory = (IInventory) tileEntity;
-
-        for (int i = 0; i < inventory.getSizeInventory(); i++) {
-            ItemStack item = inventory.getStackInSlot(i);
-
-            if (item != null && item.stackSize > 0) {
-                float rx = rand.nextFloat() * 0.8F + 0.1F;
-                float ry = rand.nextFloat() * 0.8F + 0.1F;
-                float rz = rand.nextFloat() * 0.8F + 0.1F;
-
-                EntityItem entityItem = new EntityItem(world,
-                        x + rx, y + ry, z + rz,
-                        new ItemStack(item.itemID, item.stackSize, item.getItemDamage()));
-
-                if (item.hasTagCompound()) {
-                    entityItem.getEntityItem().setTagCompound((NBTTagCompound) item.getTagCompound().copy());
-                }
-
-                float factor = 0.05F;
-                entityItem.motionX = rand.nextGaussian() * factor;
-                entityItem.motionY = rand.nextGaussian() * factor + 0.2F;
-                entityItem.motionZ = rand.nextGaussian() * factor;
-                world.spawnEntityInWorld(entityItem);
-                item.stackSize = 0;
-            }
-        }
-    }
-
+    @Override
     public void randomDisplayTick(World world, int i, int j, int k, Random random) {
         spawnParticlesOfTargetedItem(world, random, i, j, k, false);
 
@@ -115,23 +75,23 @@ public class BlockFruitCollector extends BlockContainer {
         return new TileEntityFruitCollector();
     }
 
-    /**
-     * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
-     */
-    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
-        return null;
-        // TODO
-        // return getTextureFromSide(side);
+    @Override
+    public Icon getBlockTextureFromSideAndMetadata(int side, int meta) {
+        return getTextureFromSide(side);
     }
 
-
-    private int getTextureFromSide(int side) {
-        if (side == 0) {
-            return 96; // bottom
-        } else if (side == 1) {
-            return 96; // top
+    private Icon getTextureFromSide(int side) {
+        ForgeDirection s = ForgeDirection.getOrientation(side);
+        if (s == ForgeDirection.DOWN || s == ForgeDirection.UP) {
+            return topIcon;
         } else {
-            return 95;
+            return blockIcon;
         }
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        super.registerIcons(iconRegister);
+        topIcon = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
     }
 }

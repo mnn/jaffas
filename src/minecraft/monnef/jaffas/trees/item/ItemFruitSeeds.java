@@ -2,7 +2,9 @@ package monnef.jaffas.trees.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.base.CustomIconHelper;
 import monnef.jaffas.trees.jaffasTrees;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -13,6 +15,7 @@ public class ItemFruitSeeds extends ItemBlockTrees {
     public int serialNumber = -1;
     private int subCount;
     private boolean firstInSequence = false;
+    private Icon[] icons;
 
     public ItemFruitSeeds(int itemID, int blockID, int textureOffset, int subCount) {
         super(itemID, blockID);
@@ -28,8 +31,16 @@ public class ItemFruitSeeds extends ItemBlockTrees {
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIconFromDamage(int par1) {
-        return iconIndex;
-        // TODO: return texture + par1;
+        return icons[par1];
+    }
+
+    @Override
+    public void updateIcons(IconRegister register) {
+        icons = new Icon[subCount];
+        for (int i = 0; i < icons.length; i++) {
+            if (firstInSequence && i == 0) continue;
+            icons[i] = register.registerIcon(CustomIconHelper.generateShiftedId(this, i));
+        }
     }
 
     @Override

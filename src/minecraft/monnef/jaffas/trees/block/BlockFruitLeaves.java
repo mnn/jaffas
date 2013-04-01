@@ -2,11 +2,14 @@ package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.PlayerHelper;
+import monnef.jaffas.food.block.BlockLeavesBaseJaffas;
+import monnef.jaffas.trees.Reference;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,8 +25,8 @@ import java.util.Random;
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
-public class BlockFruitLeaves extends BlockLeavesBase {
-    // Old:    .. D N T T
+public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
+    // D N T T
     // D - decay, N - never decay, T - type
     public static final int bitMarkedForDecay = 8;
     public static final int bitNeverDecay = 4;
@@ -31,33 +34,22 @@ public class BlockFruitLeaves extends BlockLeavesBase {
 
     public int serialNumber = -1;
 
-    /**
-     * The base index in terrain.png corresponding to the fancy version of the leaf texture. This is stored so we can
-     * switch the displayed version between fancy and fast graphics (fast is this index + 1).
-     */
     int[] adjacentTreeBlocks;
     private int subCount;
     private static Random rand = new Random();
+    private Icon[] icons;
 
     public BlockFruitLeaves(int par1, int index, int subCount) {
-        super(par1, Material.leaves, false);
+        super(par1, index, Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         jaffasTrees.proxy.setFancyGraphicsLevel(this, true);
         this.subCount = subCount;
         //this.setGraphicsLevel(true);
         setCreativeTab(jaffasTrees.CreativeTab);
-        // TODO index
+        setSheetNumber(2);
     }
 
-    public BlockFruitLeaves setLeavesRequiresSelfNotify() {
-        //this.setRequiresSelfNotify();
-        return this;
-    }
-
-    /**
-     * Called upon block activation (right click on the block.)
-     */
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
         if (player.isSneaking()) return false;
@@ -172,6 +164,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         return fruit != jaffasTrees.fruitType.Normal;
     }
 
+    @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         if (hasTileEntity(par1World.getBlockMetadata(par2, par3, par4))) {
             //par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
@@ -182,18 +175,13 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         return new TileEntityFruitLeaves();
     }
 
+    @Override
     public boolean hasTileEntity(int metadata) {
         //return getLeavesType(metadata) != 0;
         return true;
     }
 
-    public String getTextureFile() {
-        return "/jaffas_02.png";
-    }
-
-    /**
-     * ejects contained items into the world, and notifies neighbours of an update, as appropriate
-     */
+    @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
         byte var7 = 1;
         int var8 = var7 + 1;
@@ -215,9 +203,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         }
     }
 
-    /**
-     * Ticks the block if it's been scheduled
-     */
+    @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         if (!world.isRemote) {
             int metadata = world.getBlockMetadata(x, y, z);
@@ -307,10 +293,7 @@ public class BlockFruitLeaves extends BlockLeavesBase {
     }
 
     @SideOnly(Side.CLIENT)
-
-    /**
-     * A randomly called display update to be able to add particles or other items for display
-     */
+    @Override
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
         if (par1World.canLightningStrikeAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) && par5Random.nextInt(15) == 1) {
             double var6 = (double) ((float) par2 + par5Random.nextFloat());
@@ -325,25 +308,12 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         setBlock(par1World, par2, par3, par4, 0);
     }
 
-    /**
-     * Returns the quantity of items to drop on block destruction.
-     */
+    @Override
     public int quantityDropped(Random par1Random) {
         return 0;
-        //return par1Random.nextInt(20) == 0 ? 1 : 0;
     }
 
-    /**
-     * Returns the ID of the items to drop on destruction.
-     */
-    /*
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return jaffasTrees.blockFruitSapling.blockID;
-    } */
-
-    /**
-     * Drops the block items with a specified chance of dropping the specified items
-     */
+    @Override
     public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int metadata, float par6, int par7) {
         if (!par1World.isRemote) {
             /*
@@ -353,17 +323,12 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         }
     }
 
-    /**
-     * Called when the player destroys a block with an item that can harvest it. (i, j, k) are the coordinates of the
-     * block and l is the block's subtype/damage.
-     */
+    @Override
     public void harvestBlock(World par1World, EntityPlayer par2EntityPlayer, int par3, int par4, int par5, int par6) {
         super.harvestBlock(par1World, par2EntityPlayer, par3, par4, par5, par6);
     }
 
-    /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
-     */
+    @Override
     public int damageDropped(int par1) {
         return getLeavesType(par1);
     }
@@ -393,45 +358,44 @@ public class BlockFruitLeaves extends BlockLeavesBase {
         //return BitHelper.isBitSet(metadata, bitNeverDecayN);
     }
 
-    /**
-     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
-     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
-     */
+    @Override
     public boolean isOpaqueCube() {
         return !this.graphicsLevel;
     }
 
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
+    @Override
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
         return null;
         // TODO: return this.blockIndexInTexture + getLeavesType(par2);
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+    public String getModName() {
+        return Reference.ModName;
+    }
 
-    /**
-     * Pass true to draw this block using fancy graphics, or false for fast graphics.
-     */
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        icons = new Icon[subCount];
+        for (int i = 0; i < subCount; i++) {
+            icons[i] = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, i));
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
     public void setGraphicsLevel(boolean par1) {
         this.graphicsLevel = par1;
         //this.blockIndexInTexture = this.baseIndexInPNG + (par1 ? 0 : 1);
     }
 
-    /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
-     * coordinates.  Args: blockAccess, x, y, z, side
-     */
+    @Override
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
         int var6 = par1IBlockAccess.getBlockId(par2, par3, par4);
         return !this.graphicsLevel && var6 == this.blockID ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
     }
 
     @SideOnly(Side.CLIENT)
-    /**
-     * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
-     */
+    @Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < subCount; i++)
             par3List.add(new ItemStack(par1, 1, i));

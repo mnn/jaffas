@@ -6,8 +6,8 @@ import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
 
 public abstract class BlockJaffas extends BlockMonnefCore {
-    public BlockJaffas(int id, int index, Material material) {
-        super(id, index, material);
+    public BlockJaffas(int id, int texture, Material material) {
+        super(id, texture, material);
         setCreativeTab(jaffasFood.CreativeTab);
     }
 

@@ -432,7 +432,7 @@ public class jaffasTrees extends jaffasMod {
         LeavesInfo leaves = leavesList.get(i);
         leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;
-        leaves.leavesBlock.setLeavesRequiresSelfNotify().setUnlocalizedName("fruitLeaves" + i).setCreativeTab(CreativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
+        leaves.leavesBlock.setUnlocalizedName("fruitLeaves" + i).setCreativeTab(CreativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
         RegistryUtils.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
@@ -444,13 +444,18 @@ public class jaffasTrees extends jaffasMod {
         LanguageRegistry.addName(leaves.saplingBlock, "Fruit Sapling");
 
         for (int j = 0; j < subCount; j++) {
-            LanguageRegistry.instance().addStringLocalization("item.fruitSeeds" + i + "." + j + ".name", seedsNames[j + i * 4]);
+            LanguageRegistry.instance().addStringLocalization("tile.fruitSapling" + i + "." + j + ".name", seedsNames[j + i * 4]);
         }
         leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
         leaves.seedsItem.setFirstInSequence();
         leaves.seedsItem.setUnlocalizedName("fruitSeeds" + i);
         leaves.seedsItem.serialNumber = i;
         LanguageRegistry.addName(leaves.seedsItem, "Fruit Seeds");
+
+        if (i == 0) {
+            // bonemeal event
+            MinecraftForge.EVENT_BUS.register(leaves.saplingBlock);
+        }
     }
 
     public static ItemStack getTreeSeeds(int type) {

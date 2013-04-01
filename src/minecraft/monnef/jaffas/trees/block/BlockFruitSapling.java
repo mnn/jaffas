@@ -1,5 +1,6 @@
 package monnef.jaffas.trees.block;
 
+import com.google.common.eventbus.Subscribe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.BlockMonnefCore;
@@ -9,9 +10,6 @@ import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -19,6 +17,9 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.event.Event;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 
 import java.util.List;
 import java.util.Random;
@@ -29,23 +30,18 @@ import static monnef.jaffas.food.jaffasFood.Log;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
 public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
+    // TODO rewrite to inherit from BlockJaffas
     public static Random rand = new Random();
     public int serialNumber = -1;
 
-    @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        // bonemeal
-        ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && jaffasTrees.bonemealingAllowed) {
-            if (itemstack.getItemDamage() == 15) {
-                if (!par1World.isRemote) {
-                    growTree(par1World, par2, par3, par4, rand);
-                    itemstack.stackSize--;
-                }
+    @ForgeSubscribe
+    public void onBonemeal(BonemealEvent event) {
+        if (jaffasTrees.bonemealingAllowed) {
+            event.setResult(Event.Result.ALLOW);
+            if (!event.world.isRemote) {
+                growTree(event.world, event.X, event.Y, event.Z, rand);
             }
         }
-        super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);
-        return true;
     }
 
     public BlockFruitSapling(int blockId, int blockIndexInTexture) {
@@ -89,8 +85,7 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
-        return null;
-        //return 63;
+        return Block.sapling.getBlockTextureFromSide(1);
     }
 
     public void growTree(World par1World, int par2, int par3, int par4, Random par5Random) {
