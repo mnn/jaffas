@@ -22,8 +22,6 @@ public class ItemBlockPie extends ItemBlockJaffas {
     @Override
     public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, BlockPie.textureIndexFromMeta.length);
-        return null;
-        //TODO
-        //return BlockPie.textureIndexFromMeta[var2];
+        return BlockPie.icons[var2];
     }
 }

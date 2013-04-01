@@ -2,8 +2,10 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.base.CustomIconHelper;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +19,7 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.*;
+import static monnef.core.utils.BlockHelper.setBlock;
 
 public class BlockPie extends BlockJaffas {
     public static final float f2 = 2F / 16F;
@@ -25,6 +27,7 @@ public class BlockPie extends BlockJaffas {
     public static final float f3d = 1F - f3;
     public static final String[] multiBlockNames = new String[]{"Strawberry Pie", "Raspberry Pie", "Vanilla Pie", "Plum Pie"};
     public static final int[] textureIndexFromMeta = new int[]{156, 157, 159, 158};
+    public static Icon[] icons;
 
     public BlockPie(int par1, int par2) {
         super(par1, par2, Material.cake);
@@ -39,6 +42,7 @@ public class BlockPie extends BlockJaffas {
         if (TileEntityPie.PieType.values().length != textureIndexFromMeta.length) {
             throw new RuntimeException("pie types number != texture types title number");
         }
+        icons = new Icon[textureIndexFromMeta.length];
     }
 
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
@@ -133,7 +137,13 @@ public class BlockPie extends BlockJaffas {
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return null;
-        //return textureIndexFromMeta[metadata];
+        return icons[metadata];
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        for (int i = 0; i < textureIndexFromMeta.length; i++) {
+            icons[i] = iconRegister.registerIcon(CustomIconHelper.generateId(this, textureIndexFromMeta[i]));
+        }
     }
 }

@@ -44,7 +44,7 @@ public class BlockJaffaBomb extends BlockJaffas {
     @Override
     public void registerIcons(IconRegister iconRegister) {
         super.registerIcons(iconRegister);
-        specialTexture = iconRegister.registerIcon(CustomIconHelper.generateId(this, this.getCustomIconIndex() + 1));
+        specialTexture = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
     }
 
     /**
@@ -140,6 +140,7 @@ public class BlockJaffaBomb extends BlockJaffas {
         this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(jaffasFood.blockJaffaBomb));
     }
 
+    @Override
     public void onBlockDestroyedByExplosion(World par1World, int par2, int par3, int par4, Explosion par5Explosion) {
         detonate(par1World, par2, par3, par4);
     }

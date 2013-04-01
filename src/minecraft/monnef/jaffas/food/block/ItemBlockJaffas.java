@@ -52,7 +52,7 @@ public class ItemBlockJaffas extends ItemJaffaBase {
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIconFromDamage(int par1) {
-        return this.field_94588_b != null ? this.field_94588_b : Block.blocksList[this.blockID].getBlockTextureFromSide(1);
+        return this.field_94588_b != null ? this.field_94588_b : Block.blocksList[this.blockID].getBlockTextureFromSideAndMetadata(1, par1);
     }
 
     @Override

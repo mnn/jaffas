@@ -1,8 +1,10 @@
 package monnef.jaffas.food.block;
 
+import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.BitHelper;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,6 +27,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     private static final int MAX_AGE = 7;
     private static final float border = 3f * 1f / 16f;
     private static final float borderComplement = 1f - border;
+    private static Icon bodyIcon;
     public static final int VALUE_TOP = BitHelper.setBit(0, BIT_TOP);
 
     public String[] subBlockNames;
@@ -61,7 +64,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
                 } else {
                     setBlockWithoutNotify(world, x, y + 1, z, this.blockID, VALUE_TOP);
                     setBlockMetadata(world, x, y, z, 0); // no longer the top one
-                    world.markBlockForUpdate(x, y, z);
+                    world.markBlockForUpdate(x, y + 1, z);
                 }
             }
         }
@@ -84,18 +87,22 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         return BitHelper.unsetBit(meta, BIT_TOP);
     }
 
+    @Override
     public boolean renderAsNormalBlock() {
         return false;
     }
 
+    @Override
     public boolean isOpaqueCube() {
         return false;
     }
 
+    @Override
     public int getRenderType() {
         return jaffasFood.renderSwitchgrassID;
     }
 
+    @Override
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
         return super.canPlaceBlockAt(par1World, par2, par3, par4) && this.floorCanSustainPlant(par1World, par2, par3, par4);
     }
@@ -104,6 +111,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor blockID
      */
+    @Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         if (!this.canBlockStay(par1World, par2, par3, par4)) {
             this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), par5);
@@ -114,6 +122,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     /**
      * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
      */
+    @Override
     public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
         int myMeta = par1World.getBlockMetadata(par2, par3, par4);
         int topBlock = par1World.getBlockId(par2, par3 + 1, par4);
@@ -166,8 +175,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
-        return null;
-        //return blockIndexInTexture + (isTop(par2) ? 0 : 1);
+        return isTop(par2) ? blockIcon : bodyIcon;
     }
 
     @Override
@@ -199,7 +207,14 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         return VALUE_TOP;
     }
 
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
         return null;
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        super.registerIcons(iconRegister);
+        bodyIcon = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
     }
 }

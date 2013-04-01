@@ -1,6 +1,8 @@
 package monnef.jaffas.food.block;
 
+import monnef.core.base.CustomIconHelper;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
@@ -10,7 +12,11 @@ import java.util.List;
 
 public class BlockTable extends BlockJaffas {
     private static final int NUMBER_OF_TABLES = 3;
+    private static final int SIDES_COUNT = 4;
+    private Icon[][] icons;
+
     public static final String[] multiBlockNames = new String[]{"Table with Red Tablecloth", "Table with Green Tablecloth", "Table with Blue Tablecloth"};
+
 
     public BlockTable(int par1, int par2, Material par3Material) {
         super(par1, par2, par3Material);
@@ -18,36 +24,41 @@ public class BlockTable extends BlockJaffas {
         setUnlocalizedName("blockJTable");
     }
 
-    public int getTextureFileIndex() {
-        return 1;
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        icons = new Icon[NUMBER_OF_TABLES][];
+        for (int color = 0; color < NUMBER_OF_TABLES; color++) {
+            icons[color] = new Icon[SIDES_COUNT];
+            int index = this.customIconIndex + SIDES_COUNT * color;
+            for (int side = 0; side < SIDES_COUNT; side++) {
+                int idx = index + side;
+                icons[color][side] = iconRegister.registerIcon(CustomIconHelper.generateId(this, idx));
+            }
+        }
     }
 
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int side, int meta) {
-        return null;
-        /*
         ForgeDirection s = ForgeDirection.getOrientation(side);
-        int index = this.blockIndexInTexture + 4 * meta;
 
         switch (s) {
             case UP:
-                return index;
+                return icons[meta][0];
 
             case NORTH:
             case SOUTH:
-                return index + 1;
+                return icons[meta][1];
 
             case EAST:
             case WEST:
-                return index + 2;
+                return icons[meta][2];
 
             case DOWN:
-                return index + 3;
+                return icons[meta][3];
 
             default:
-                return index;
+                return icons[meta][0];
         }
-        */
     }
 
     @Override

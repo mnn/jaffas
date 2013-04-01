@@ -3,6 +3,10 @@ package monnef.core.base;
 import monnef.core.Reference;
 
 public class CustomIconHelper {
+    public static String generateShiftedId(ICustomIcon obj, int shift) {
+        return generateId(obj, obj.getCustomIconIndex() + shift);
+    }
+
     public static String generateId(ICustomIcon obj) {
         return generateId(obj, obj.getCustomIconIndex());
     }

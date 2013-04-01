@@ -461,6 +461,7 @@ public class jaffasFood extends jaffasMod {
 
         blockTable = new BlockTable(blockTableID, 0, Material.wood);
         RegistryUtils.registerMultiBlock(blockTable, ItemBlockTable.class, BlockTable.multiBlockNames);
+        blockTable.setSheetNumber(7);
 
         blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
         RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
