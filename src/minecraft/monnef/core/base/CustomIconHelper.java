@@ -28,8 +28,8 @@ public class CustomIconHelper {
         return sb.toString();
     }
 
-    public static String generateId(String modId, int sheetNumber, int customIconIndex) {
-        return generateId(new DummyCustomIconProvider(modId, sheetNumber, customIconIndex));
+    public static String generateId(String modName, int sheetNumber, int customIconIndex) {
+        return generateId(new DummyCustomIconProvider(modName, sheetNumber, customIconIndex));
     }
 
     public static String generateCustomId(String customIconName) {

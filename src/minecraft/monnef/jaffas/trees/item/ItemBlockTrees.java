@@ -1,13 +1,11 @@
 package monnef.jaffas.trees.item;
 
-import monnef.jaffas.food.item.ItemJaffaBase;
+import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.trees.Reference;
-import monnef.jaffas.trees.jaffasTrees;
 
-public class ItemTrees extends ItemJaffaBase {
-    public ItemTrees(int v) {
-        super(v);
-        setCreativeTab(jaffasTrees.CreativeTab);
+public class ItemBlockTrees extends ItemBlockJaffas {
+    public ItemBlockTrees(int id, int blockId) {
+        super(id, blockId);
     }
 
     @Override

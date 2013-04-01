@@ -19,6 +19,7 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.RecipesBoard;
+import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.jaffasFood;
@@ -34,7 +35,7 @@ import monnef.jaffas.trees.client.GuiHandlerTrees;
 import monnef.jaffas.trees.client.JaffaCreativeTab;
 import monnef.jaffas.trees.client.PacketHandler;
 import monnef.jaffas.trees.common.CommonProxy;
-import monnef.jaffas.trees.item.ItemFromFruitResult;
+import monnef.jaffas.trees.common.ItemFromFruitResult;
 import monnef.jaffas.trees.item.ItemFruitSeeds;
 import monnef.jaffas.trees.item.ItemJaffaBerry;
 import monnef.jaffas.trees.item.ItemJaffaBerryEatable;
@@ -180,10 +181,10 @@ public class jaffasTrees extends jaffasMod {
     private int itemOrangeID;
     private int itemPlumID;
     private int itemCoconutID;
-    public static Item itemLemon;
-    public static Item itemOrange;
-    public static Item itemPlum;
-    public static Item itemCoconut;
+    public static ItemJaffaBase itemLemon;
+    public static ItemJaffaBase itemOrange;
+    public static ItemJaffaBase itemPlum;
+    public static ItemJaffaBase itemCoconut;
 
     private int itemDebugID;
     public static ItemJaffaTreeDebugTool itemDebug;
@@ -284,14 +285,20 @@ public class jaffasTrees extends jaffasMod {
         AddBushInfo(bushType.Bean, "bean", "Little Beans", 34, "Bean Plant", 123, "Beans", 137, null, 2, 1, NotEatable, DropsFromGrass);
     }
 
-    private Item constructFruit(int id, EatableType type) {
+    private ItemJaffaBase constructFruit(int id, EatableType type, int textureOffset, String name, String title) {
+        ItemJaffaBase res;
         if (type == NotEatable) {
-            return new ItemJaffaBerry(id);
+            res = new ItemJaffaBerry(id);
         } else if (type == EatableNormal) {
-            return (new ItemJaffaBerryEatable(id)).Setup(2, 0.2f);
+            res = (ItemJaffaBase) (new ItemJaffaBerryEatable(id)).Setup(2, 0.2f);
+        } else {
+            throw new RuntimeException("unknown eatable type");
         }
 
-        throw new RuntimeException("unknown eatable type");
+        res.setUnlocalizedName(name);
+        res.setCustomIconIndex(textureOffset);
+        LanguageRegistry.addName(res, title);
+        return res;
     }
 
     private void constructItemsInBushInfo() {
@@ -299,16 +306,16 @@ public class jaffasTrees extends jaffasMod {
             BushInfo info = entry.getValue();
 
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
-            seeds.setUnlocalizedName(info.getSeedsLanguageName());// TODO .setIconIndex(info.seedsTexture);
-            LanguageRegistry.addName(seeds, info.seedsTitle);
+            RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
+            seeds.setCustomIconIndex(info.seedsTexture);
+
             info.itemSeeds = seeds;
             if (info.drop == DropsFromGrass) {
                 seedsList.add(new ItemStack(seeds));
             }
 
-            Item fruit = constructFruit(info.itemFruitID, info.eatable);
-            fruit.setUnlocalizedName(info.getFruitLanguageName()).setCreativeTab(CreativeTab); // TODO .setIconIndex(info.fruitTexture);
-            LanguageRegistry.addName(fruit, info.fruitTitle);
+            Item fruit = constructFruit(info.itemFruitID, info.eatable, info.fruitTexture, info.getFruitLanguageName(), info.fruitTitle);
+            fruit.setCreativeTab(CreativeTab);
             info.itemFruit = fruit;
 
             BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, info.product == null ? info.itemFruit : info.product, info.itemSeeds, info.renderer);
@@ -361,21 +368,13 @@ public class jaffasTrees extends jaffasMod {
         GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
         GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
 
-        itemLemon = constructFruit(itemLemonID, NotEatable);
-        itemLemon.setUnlocalizedName("lemon");//.setIconCoord(4, 4);
-        LanguageRegistry.addName(itemLemon, "Lemon");
+        itemLemon = constructFruit(itemLemonID, NotEatable, 68, "lemon", "Lemon");
 
-        itemOrange = constructFruit(itemOrangeID, EatableNormal);
-        itemOrange.setUnlocalizedName("orange");//.setIconCoord(5, 4);
-        LanguageRegistry.addName(itemOrange, "Orange");
+        itemOrange = constructFruit(itemOrangeID, EatableNormal, 69, "orange", "Orange");
 
-        itemPlum = constructFruit(itemPlumID, EatableNormal);
-        itemPlum.setUnlocalizedName("plum");//.setIconCoord(6, 4);
-        LanguageRegistry.addName(itemPlum, "Plum");
+        itemPlum = constructFruit(itemPlumID, EatableNormal, 70, "plum", "Plum");
 
-        itemCoconut = constructFruit(itemCoconutID, NotEatable);
-        itemCoconut.setUnlocalizedName("coconut");//.setIconCoord(7, 4);
-        LanguageRegistry.addName(itemCoconut, "Coconut");
+        itemCoconut = constructFruit(itemCoconutID, NotEatable, 71, "coconut", "Coconut");
 
         constructItemsInBushInfo();
 
@@ -385,27 +384,32 @@ public class jaffasTrees extends jaffasMod {
         GameRegistry.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
 
         itemDebug = new ItemJaffaTreeDebugTool(itemDebugID);
-        itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");//.setIconCoord(13, 0);
+        itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");
         LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
 
         itemStick = new ItemTrees(itemStickID);
-        itemStick.setUnlocalizedName("stickImpregnated");//.setIconCoord(0, 10);
+        itemStick.setUnlocalizedName("stickImpregnated");
+        itemStick.setCustomIconIndex(160);
         LanguageRegistry.addName(itemStick, "Impregnated Stick");
 
         itemRod = new ItemTrees(itemRodID);
-        itemRod.setUnlocalizedName("rod").setMaxStackSize(1).setMaxDamage(64);//setIconCoord(1, 10).
+        itemRod.setUnlocalizedName("rod").setMaxStackSize(1).setMaxDamage(64);
+        itemRod.setCustomIconIndex(161);
         LanguageRegistry.addName(itemRod, "Reinforced Rod");
 
         itemFruitPickerHead = new ItemTrees(itemFruitPickerHeadID);
-        itemFruitPickerHead.setUnlocalizedName("fruitPickerHead");//.setIconCoord(2, 10);
+        itemFruitPickerHead.setUnlocalizedName("fruitPickerHead");
+        itemFruitPickerHead.setCustomIconIndex(162);
         LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
 
         itemFruitPicker = new ItemTrees(itemFruitPickerID);
-        itemFruitPicker.setUnlocalizedName("fruitPicker").setMaxStackSize(1).setMaxDamage(256); //.setIconCoord(3, 10)
+        itemFruitPicker.setUnlocalizedName("fruitPicker").setMaxStackSize(1).setMaxDamage(256);
+        itemFruitPicker.setCustomIconIndex(163);
         LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
 
         itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
-        RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");//.setIconIndex(34);
+        itemUnknownSeeds.setCustomIconIndex(34);
+        RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
 
         MinecraftForge.addGrassSeed(new ItemStack(itemUnknownSeeds), SEEDS_WEIGHT);
 

@@ -2,7 +2,6 @@ package monnef.jaffas.food.item;
 
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.item.common.IItemFood;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -26,11 +25,7 @@ public class ItemJaffaFood extends ItemJaffaBase implements IItemFood {
     private void initialize() {
         maxStackSize = 64;
         this.itemUseDuration = 32;
-    }
-
-    @Override
-    public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{jaffasFood.CreativeTab, CreativeTabs.tabFood};
+        this.setSecondCreativeTab(CreativeTabs.tabFood);
     }
 
     public void onFoodEaten(ItemStack stack, World world, EntityPlayer player) {

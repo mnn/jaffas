@@ -1,4 +1,4 @@
-package monnef.jaffas.trees.item;
+package monnef.jaffas.trees.common;
 
 import net.minecraft.item.ItemStack;
 

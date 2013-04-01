@@ -23,6 +23,11 @@ public class ItemBlockJaffas extends ItemJaffaBase {
         this.blockID = par1 + 256;
     }
 
+    public ItemBlockJaffas(int id, int blockId) {
+        this(id);
+        this.blockID = blockId;
+    }
+
     @Override
     public int getMetadata(int damageValue) {
         return damageValue;

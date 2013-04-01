@@ -2,9 +2,12 @@ package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.base.CustomIconHelper;
+import monnef.jaffas.trees.Reference;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -27,25 +30,23 @@ public class BlockJaffaCrops extends BlockFlower {
     // 1 - "Crossed Squares" (Flowers, reeds, etc)
     // 6 - Crops
     private int renderer;
+    private int baseTexture;
 
     public BlockJaffaCrops(int blockID, int textureIndex, int phasesMax, Item product, Item seeds, int renderer) {
         super(blockID);
-        //this.blockIndexInTexture = textureIndex;
+        baseTexture = textureIndex;
         this.setTickRandomly(true);
         float var3 = 0.5F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
         this.setCreativeTab((CreativeTabs) null);
+        this.setCreativeTab(jaffasTrees.CreativeTab);
         this.phasesMax = phasesMax;
         this.product = product;
         this.seeds = seeds;
         this.renderer = renderer;
-        //this.setRequiresSelfNotify();
     }
 
-    public String getTextureFile() {
-        return "/jaffas_02.png";
-    }
-
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         // bonemeal
         ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
@@ -64,6 +65,7 @@ public class BlockJaffaCrops extends BlockFlower {
      * Gets passed in the blockID of the block below and supposed to return true if its allowed to grow on the type of
      * blockID passed in. Args: blockID
      */
+    @Override
     protected boolean canThisPlantGrowOnThisBlockID(int par1) {
         return par1 == Block.tilledField.blockID;
     }
@@ -71,6 +73,7 @@ public class BlockJaffaCrops extends BlockFlower {
     /**
      * Ticks the block if it's been scheduled
      */
+    @Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
         super.updateTick(par1World, par2, par3, par4, par5Random);
 
@@ -153,6 +156,16 @@ public class BlockJaffaCrops extends BlockFlower {
 
         return null;
         //return this.blockIndexInTexture + par2;
+    }
+
+    private Icon[] icons;
+
+    @Override
+    public void registerIcons(IconRegister register) {
+        icons = new Icon[phasesMax + 1];
+        for (int i = 0; i <= phasesMax; i++) {
+            icons[i] = register.registerIcon(CustomIconHelper.generateId(Reference.ModName, 2, baseTexture + i));
+        }
     }
 
     /**

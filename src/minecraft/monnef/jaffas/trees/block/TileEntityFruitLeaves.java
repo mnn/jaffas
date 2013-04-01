@@ -4,7 +4,7 @@ import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.LeavesInfo;
-import monnef.jaffas.trees.item.ItemFromFruitResult;
+import monnef.jaffas.trees.common.ItemFromFruitResult;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
