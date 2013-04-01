@@ -364,9 +364,8 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
-        return null;
-        // TODO: return this.blockIndexInTexture + getLeavesType(par2);
+    public Icon getBlockTextureFromSideAndMetadata(int side, int meta) {
+        return icons[getLeavesType(meta)];
     }
 
     @Override

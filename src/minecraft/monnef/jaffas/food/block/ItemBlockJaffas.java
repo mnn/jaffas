@@ -16,6 +16,7 @@ import java.util.List;
 
 public class ItemBlockJaffas extends ItemJaffaBase {
     protected String[] subNames;
+    protected boolean useItemName = false;
 
     public ItemBlockJaffas(int par1) {
         super(par1);
@@ -155,7 +156,7 @@ public class ItemBlockJaffas extends ItemJaffaBase {
 
     @Override
     public String getUnlocalizedName() {
-        return Block.blocksList[this.blockID].getUnlocalizedName();
+        return useItemName ? super.getUnlocalizedName() : Block.blocksList[this.blockID].getUnlocalizedName();
     }
 
     @SideOnly(Side.CLIENT)

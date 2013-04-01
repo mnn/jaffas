@@ -1,14 +1,14 @@
 package monnef.jaffas.trees.block;
 
-import com.google.common.eventbus.Subscribe;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.base.BlockMonnefCore;
+import monnef.jaffas.food.block.BlockJaffas;
 import monnef.jaffas.trees.Reference;
 import monnef.jaffas.trees.WorldGenFruitTrees;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
@@ -29,13 +29,15 @@ import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.jaffas.food.jaffasFood.Log;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
-public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
-    // TODO rewrite to inherit from BlockJaffas
+public class BlockFruitSapling extends BlockJaffas implements IPlantable {
     public static Random rand = new Random();
     public int serialNumber = -1;
 
     @ForgeSubscribe
     public void onBonemeal(BonemealEvent event) {
+        if (!(Block.blocksList[event.ID] instanceof BlockFruitSapling)) {
+            return;
+        }
         if (jaffasTrees.bonemealingAllowed) {
             event.setResult(Event.Result.ALLOW);
             if (!event.world.isRemote) {
@@ -86,6 +88,10 @@ public class BlockFruitSapling extends BlockMonnefCore implements IPlantable {
     @Override
     public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
         return Block.sapling.getBlockTextureFromSide(1);
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
     }
 
     public void growTree(World par1World, int par2, int par3, int par4, Random par5Random) {

@@ -9,19 +9,22 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.event.Event;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
 public class BlockJaffaCrops extends BlockFlower {
+    //TODO rewrite to inherit from BlockJaffas
 
     private int phasesMax; // 7
     private Item product = Item.wheat;
@@ -39,26 +42,10 @@ public class BlockJaffaCrops extends BlockFlower {
         float var3 = 0.5F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
         this.setCreativeTab((CreativeTabs) null);
-        this.setCreativeTab(jaffasTrees.CreativeTab);
         this.phasesMax = phasesMax;
         this.product = product;
         this.seeds = seeds;
         this.renderer = renderer;
-    }
-
-    @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        // bonemeal
-        ItemStack itemstack = par5EntityPlayer.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.itemID == Item.dyePowder.itemID && jaffasTrees.bonemealingAllowed) {
-            if (itemstack.getItemDamage() == 15) {
-                //growTree(par1World, par2, par3, par4, rand);
-                this.fertilize(par1World, par2, par3, par4);
-                itemstack.stackSize--;
-            }
-        }
-        super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);
-        return true;
     }
 
     /**
@@ -86,16 +73,35 @@ public class BlockJaffaCrops extends BlockFlower {
                 if (par5Random.nextInt((int) (25.0F / var7) + 1) == 0) {
                     // slow grow a bit
                     if (par5Random.nextInt(4) == 0) {
-                        ++var6;
-                        setBlock(par1World, par2, par3, par4, var6);
+                        growABit(par1World, par2, par3, par4);
                     }
                 }
             }
         }
     }
 
-    public void fertilize(World par1World, int par2, int par3, int par4) {
-        setBlock(par1World, par2, par3, par4, phasesMax);
+    public boolean growABit(World par1World, int par2, int par3, int par4) {
+        int meta = par1World.getBlockMetadata(par2, par3, par4);
+        if (meta < phasesMax) {
+            setBlockMetadata(par1World, par2, par3, par4, meta + 1);
+            return true;
+        }
+        return false;
+    }
+
+    @ForgeSubscribe
+    public void onBonemeal(BonemealEvent event) {
+        if (!(Block.blocksList[event.ID] instanceof BlockJaffaCrops)) {
+            return;
+        }
+
+        if (jaffasTrees.bonemealingAllowed) {
+            if (!event.world.isRemote) {
+                if (growABit(event.world, event.X, event.Y, event.Z)) {
+                    event.setResult(Event.Result.ALLOW);
+                }
+            }
+        }
     }
 
     /**
@@ -154,8 +160,7 @@ public class BlockJaffaCrops extends BlockFlower {
             par2 = phasesMax;
         }
 
-        return null;
-        //return this.blockIndexInTexture + par2;
+        return icons[par2];
     }
 
     private Icon[] icons;

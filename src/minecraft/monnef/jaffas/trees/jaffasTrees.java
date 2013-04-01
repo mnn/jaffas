@@ -302,6 +302,7 @@ public class jaffasTrees extends jaffasMod {
     }
 
     private void constructItemsInBushInfo() {
+        boolean first = true;
         for (EnumMap.Entry<bushType, BushInfo> entry : BushesList.entrySet()) {
             BushInfo info = entry.getValue();
 
@@ -323,7 +324,10 @@ public class jaffasTrees extends jaffasMod {
             GameRegistry.registerBlock(crops, info.name);
             LanguageRegistry.addName(crops, info.plantTitle);
             info.block = crops;
-
+            if (first) {
+                first = false;
+                MinecraftForge.EVENT_BUS.register(crops);
+            }
         }
     }
 
@@ -450,7 +454,7 @@ public class jaffasTrees extends jaffasMod {
         leaves.seedsItem.setFirstInSequence();
         leaves.seedsItem.setUnlocalizedName("fruitSeeds" + i);
         leaves.seedsItem.serialNumber = i;
-        LanguageRegistry.addName(leaves.seedsItem, "Fruit Seeds");
+        //LanguageRegistry.addName(leaves.seedsItem, "Fruit Seeds");
 
         if (i == 0) {
             // bonemeal event
