@@ -6,10 +6,23 @@ import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 
 import static monnef.core.MonnefCorePlugin.Log;
-import static monnef.core.asm.lightningHook.InjectLightningEventAdapter.State.*;
 import static monnef.core.asm.MappedObject.C_WORLD;
 import static monnef.core.asm.MappedObject.M_CAN_LIGHTNING_STRIKE_AT;
-import static org.objectweb.asm.Opcodes.*;
+import static monnef.core.asm.lightningHook.InjectLightningEventAdapter.State.DONE;
+import static monnef.core.asm.lightningHook.InjectLightningEventAdapter.State.LOOKING;
+import static monnef.core.asm.lightningHook.InjectLightningEventAdapter.State.READ_CANSTRIKE;
+import static org.objectweb.asm.Opcodes.ALOAD;
+import static org.objectweb.asm.Opcodes.ASM4;
+import static org.objectweb.asm.Opcodes.ASTORE;
+import static org.objectweb.asm.Opcodes.DUP;
+import static org.objectweb.asm.Opcodes.GETSTATIC;
+import static org.objectweb.asm.Opcodes.IFEQ;
+import static org.objectweb.asm.Opcodes.IF_ACMPEQ;
+import static org.objectweb.asm.Opcodes.ILOAD;
+import static org.objectweb.asm.Opcodes.INVOKESPECIAL;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
+import static org.objectweb.asm.Opcodes.NEW;
+import static org.objectweb.asm.Opcodes.POP;
 
 public class InjectLightningEventAdapter extends MethodVisitor {
     private Label savedLabel;

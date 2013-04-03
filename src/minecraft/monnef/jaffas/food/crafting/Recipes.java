@@ -2,12 +2,12 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
-import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -17,9 +17,13 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import static monnef.core.utils.DyeHelper.getDye;
+import static monnef.jaffas.food.JaffasFood.blockColumn;
+import static monnef.jaffas.food.JaffasFood.blockJaffaStatue;
+import static monnef.jaffas.food.JaffasFood.blockPie;
+import static monnef.jaffas.food.JaffasFood.blockTable;
+import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
-import static monnef.jaffas.food.JaffasFood.*;
 
 public class Recipes {
     public static void install() {

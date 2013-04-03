@@ -1,6 +1,5 @@
 package monnef.jaffas.food.entity;
 
-import cpw.mods.fml.server.FMLServerHandler;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;

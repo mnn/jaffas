@@ -1,6 +1,10 @@
 package monnef.jaffas.power.common;
 
-import monnef.jaffas.power.api.*;
+import monnef.jaffas.power.api.IPowerConsumer;
+import monnef.jaffas.power.api.IPowerConsumerManager;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerProvider;
+import monnef.jaffas.power.api.IPowerProviderManager;
 import net.minecraftforge.common.ForgeDirection;
 
 public class PowerUtils {

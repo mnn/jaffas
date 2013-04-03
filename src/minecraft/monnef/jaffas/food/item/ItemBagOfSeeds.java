@@ -1,8 +1,8 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.food.common.SeedsHelper;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.SeedsHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

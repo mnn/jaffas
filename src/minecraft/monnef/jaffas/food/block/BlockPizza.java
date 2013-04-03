@@ -3,8 +3,8 @@ package monnef.jaffas.food.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.BitHelper;
-import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.jaffas.food.JaffasFood.blockPizza;
 import static monnef.jaffas.food.JaffasFood.getItem;
 

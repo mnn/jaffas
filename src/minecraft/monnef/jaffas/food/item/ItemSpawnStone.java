@@ -1,8 +1,8 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.MathHelper;
-import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
 import static monnef.jaffas.food.JaffasFood.Log;
+import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
 
 public class ItemSpawnStone extends ItemJaffaBase {
     private int coolDown;

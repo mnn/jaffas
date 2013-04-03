@@ -62,6 +62,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.logging.Level;
 
+import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.crafting.Recipes.AddPieRecipe;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.beansWithTomato;
@@ -94,7 +95,6 @@ import static monnef.jaffas.food.item.JaffaItem.tinDuckOrange;
 import static monnef.jaffas.food.item.JaffaItem.tinDuckOrangeRaw;
 import static monnef.jaffas.food.item.JaffaItem.tomatoChopped;
 import static monnef.jaffas.food.item.JaffaItem.woodenBowl;
-import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.trees.common.DropType.DropsFromGrass;
 import static monnef.jaffas.trees.common.EatableType.EatableNormal;
 import static monnef.jaffas.trees.common.EatableType.NotEatable;

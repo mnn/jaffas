@@ -1,8 +1,8 @@
 package monnef.jaffas.trees.item;
 
 import monnef.jaffas.food.item.ItemJaffaFood;
-import monnef.jaffas.trees.common.Reference;
 import monnef.jaffas.trees.JaffasTrees;
+import monnef.jaffas.trees.common.Reference;
 
 public class ItemJaffaBerryEatable extends ItemJaffaFood {
     public ItemJaffaBerryEatable(int id) {

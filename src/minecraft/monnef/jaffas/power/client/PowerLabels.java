@@ -1,7 +1,12 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import monnef.jaffas.power.api.*;
+import monnef.jaffas.power.api.IMachineTool;
+import monnef.jaffas.power.api.IPowerConsumer;
+import monnef.jaffas.power.api.IPowerConsumerManager;
+import monnef.jaffas.power.api.IPowerNodeManager;
+import monnef.jaffas.power.api.IPowerProvider;
+import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import monnef.jaffas.power.utils.StringPowerFormatter;
 import net.minecraft.client.entity.EntityClientPlayerMP;

@@ -8,8 +8,13 @@ import static monnef.core.MonnefCorePlugin.Log;
 import static monnef.core.asm.MappedObject.C_ENTITY;
 import static monnef.core.asm.MappedObject.M_UPDATE_CLOAK;
 import static monnef.core.asm.ObfuscationHelper.getRealNameSlashed;
-import static monnef.core.asm.cloakHook.InjectCloakHookAdapter.State.*;
-import static org.objectweb.asm.Opcodes.*;
+import static monnef.core.asm.cloakHook.InjectCloakHookAdapter.State.DONE;
+import static monnef.core.asm.cloakHook.InjectCloakHookAdapter.State.LOOKING;
+import static monnef.core.asm.cloakHook.InjectCloakHookAdapter.State.READ_UPDATECLOAK;
+import static org.objectweb.asm.Opcodes.ALOAD;
+import static org.objectweb.asm.Opcodes.ASM4;
+import static org.objectweb.asm.Opcodes.INVOKESTATIC;
+import static org.objectweb.asm.Opcodes.INVOKEVIRTUAL;
 
 public class InjectCloakHookAdapter extends MethodVisitor {
     public State getState() {

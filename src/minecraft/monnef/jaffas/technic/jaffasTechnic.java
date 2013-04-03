@@ -11,12 +11,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
@@ -57,7 +57,9 @@ import static monnef.jaffas.food.item.JaffaItem.juiceBottle;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneBig;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneLittle;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneMedium;
-import static monnef.jaffas.technic.Reference.*;
+import static monnef.jaffas.technic.Reference.ModId;
+import static monnef.jaffas.technic.Reference.ModName;
+import static monnef.jaffas.technic.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)

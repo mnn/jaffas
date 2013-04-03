@@ -1,7 +1,7 @@
 package monnef.jaffas.technic.item;
 
-import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.entity.EntityLocomotive;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

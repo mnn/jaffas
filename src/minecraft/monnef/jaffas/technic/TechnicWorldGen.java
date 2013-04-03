@@ -9,7 +9,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.*;
+import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.blockSwitchgrass;
 import static monnef.jaffas.food.JaffasFood.blockSwitchgrassID;

@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-import static monnef.core.utils.BlockHelper.*;
+import static monnef.core.utils.BlockHelper.setBlock;
 
 public class ItemSink extends ItemJaffaBase {
     public ItemSink(int id) {

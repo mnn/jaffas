@@ -1,8 +1,8 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.base.BlockMonnefCore;
-import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 

@@ -7,7 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import static monnef.core.utils.BlockHelper.*;
+import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.jaffas.food.JaffasFood.blockPizza;
 import static monnef.jaffas.food.JaffasFood.getItem;
 

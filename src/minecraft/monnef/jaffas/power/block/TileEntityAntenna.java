@@ -1,13 +1,13 @@
 package monnef.jaffas.power.block;
 
-import monnef.jaffas.power.common.PowerConsumerManager;
-import monnef.jaffas.power.common.PowerProviderManager;
-import monnef.jaffas.power.common.PowerUtils;
 import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.power.common.PowerConsumerManager;
+import monnef.jaffas.power.common.PowerProviderManager;
+import monnef.jaffas.power.common.PowerUtils;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 

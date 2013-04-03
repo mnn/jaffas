@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.*;
+import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.jaffas.food.JaffasFood.Log;
 
 public class TileEntitySink extends TileEntity {

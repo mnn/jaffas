@@ -1,8 +1,8 @@
 package monnef.jaffas.technic.item;
 
 import monnef.core.base.ItemMonnefCore;
-import monnef.jaffas.technic.Reference;
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class ItemTechnic extends ItemMonnefCore {

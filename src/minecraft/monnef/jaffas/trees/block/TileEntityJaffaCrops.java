@@ -1,14 +1,12 @@
 package monnef.jaffas.trees.block;
 
 import forestry.api.cultivation.ICropEntity;
-import monnef.core.utils.BlockHelper;
-import monnef.jaffas.trees.block.BlockJaffaCrops;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
 
-import static monnef.core.utils.BlockHelper.*;
+import static monnef.core.utils.BlockHelper.setBlock;
 
 public class TileEntityJaffaCrops extends TileEntity implements ICropEntity {
 

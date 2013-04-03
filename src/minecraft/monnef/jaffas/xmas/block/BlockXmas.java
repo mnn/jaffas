@@ -1,25 +1,16 @@
 package monnef.jaffas.xmas.block;
 
-import monnef.core.base.BlockMonnefCore;
+import monnef.jaffas.food.block.BlockJaffas;
 import monnef.jaffas.xmas.JaffasXmas;
 import monnef.jaffas.xmas.common.Reference;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
-public class BlockXmas extends BlockMonnefCore {
+public class BlockXmas extends BlockJaffas {
     public BlockXmas(int id, int textureID, Material material) {
         super(id, textureID, material);
         setCreativeTab(CreativeTabs.tabBlock);
         setCreativeTab(JaffasXmas.CreativeTab);
-    }
-
-    public String getTextureFile() {
-        return JaffasXmas.textureFile;
-    }
-
-    public Block setUnlocalizedName(String par1Str) {
-        return super.setUnlocalizedName("jaffas.xmas." + par1Str);
     }
 
     @Override

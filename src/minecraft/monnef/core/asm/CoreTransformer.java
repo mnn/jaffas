@@ -1,15 +1,12 @@
 package monnef.core.asm;
 
 import cpw.mods.fml.relauncher.IClassTransformer;
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
-import monnef.core.MonnefCorePlugin;
 import monnef.core.asm.cloakHook.RenderGlobalVisitor;
 import monnef.core.asm.lightningHook.WorldServerVisitor;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 
-import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 import static monnef.core.MonnefCorePlugin.Log;
 import static monnef.core.asm.MappedObject.C_RENDER_GLOBAL;
 import static monnef.core.asm.MappedObject.C_WORLD_SERVER;

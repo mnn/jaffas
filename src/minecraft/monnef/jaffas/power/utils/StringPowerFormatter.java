@@ -2,7 +2,11 @@ package monnef.jaffas.power.utils;
 
 import com.google.common.base.Joiner;
 import monnef.core.utils.TileEntityHelper;
-import monnef.jaffas.power.api.*;
+import monnef.jaffas.power.api.IPowerConsumerManager;
+import monnef.jaffas.power.api.IPowerNodeCoordinates;
+import monnef.jaffas.power.api.IPowerNodeManager;
+import monnef.jaffas.power.api.IPowerProvider;
+import monnef.jaffas.power.api.IPowerProviderManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
