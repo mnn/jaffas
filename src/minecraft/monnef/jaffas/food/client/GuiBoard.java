@@ -2,7 +2,7 @@ package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.ContainerBoard;
 import monnef.jaffas.food.block.TileEntityBoard;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
@@ -26,7 +26,7 @@ public class GuiBoard extends GuiContainer {
         //draws "Inventory" or your regional equivalent
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 
-        if (jaffasFood.debug) {
+        if (JaffasFood.debug) {
             String s = String.valueOf(board.getChopTimeScaled(board.chopTime));
             fontRenderer.drawString(s, 100, 10, 4210752);
         }

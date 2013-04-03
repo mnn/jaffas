@@ -2,7 +2,7 @@ package monnef.jaffas.technic.item;
 
 import monnef.core.base.ItemMonnefCore;
 import monnef.jaffas.technic.Reference;
-import monnef.jaffas.technic.jaffasTechnic;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.creativetab.CreativeTabs;
 
 public class ItemTechnic extends ItemMonnefCore {
@@ -10,7 +10,7 @@ public class ItemTechnic extends ItemMonnefCore {
         super(id);
         //setIconIndex(textureIndex);
         setCreativeTab(CreativeTabs.tabMaterials);
-        setCreativeTab(jaffasTechnic.CreativeTab);
+        setCreativeTab(JaffasTechnic.CreativeTab);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class ItemTechnic extends ItemMonnefCore {
     /*
     @Override
     public String getTextureFile() {
-        return jaffasTechnic.textureFile;
+        return JaffasTechnic.textureFile;
     }
     */
 }

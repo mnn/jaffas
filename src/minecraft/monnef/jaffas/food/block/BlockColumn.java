@@ -1,6 +1,6 @@
 package monnef.jaffas.food.block;
 
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -21,7 +21,7 @@ public class BlockColumn extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return jaffasFood.renderID;
+        return JaffasFood.renderID;
     }
 
     @Override

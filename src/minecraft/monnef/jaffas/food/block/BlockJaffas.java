@@ -2,14 +2,14 @@ package monnef.jaffas.food.block;
 
 import monnef.core.base.BlockMonnefCore;
 import monnef.jaffas.food.common.Reference;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public abstract class BlockJaffas extends BlockMonnefCore {
     public BlockJaffas(int id, int texture, Material material) {
         super(id, texture, material);
-        setCreativeTab(jaffasFood.CreativeTab);
+        setCreativeTab(JaffasFood.CreativeTab);
     }
 
     @Override

@@ -114,7 +114,7 @@ import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
-public class jaffasFood extends jaffasMod {
+public class JaffasFood extends jaffasMod {
     public static JaffaCreativeTab CreativeTab;
 
     private static MinecraftServer server;
@@ -183,7 +183,7 @@ public class jaffasFood extends jaffasMod {
     private static IGuiHandler guiHandler;
 
     @Mod.Instance("Jaffas")
-    public static jaffasFood instance;
+    public static JaffasFood instance;
 
     public static ItemJaffaPainting itemPainting;
     private int itemPaintingID;
@@ -227,7 +227,7 @@ public class jaffasFood extends jaffasMod {
         return this.extraBiomes;
     }
 
-    public jaffasFood() {
+    public JaffasFood() {
         super();
 
         this.itemManager = new ItemManager();

@@ -1,7 +1,7 @@
 package monnef.jaffas.power.block.common;
 
 import monnef.core.utils.InventoryUtils;
-import monnef.jaffas.power.jaffasPower;
+import monnef.jaffas.power.JaffasPower;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -20,7 +20,7 @@ public abstract class BlockMachineWithInventory extends BlockMachine {
                 return false;
             }
 
-            player.openGui(jaffasPower.instance, getGuiId(), par1World, x, y, z);
+            player.openGui(JaffasPower.instance, getGuiId(), par1World, x, y, z);
             return true;
         } else {
             return true;

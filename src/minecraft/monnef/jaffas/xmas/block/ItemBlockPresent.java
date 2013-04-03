@@ -2,7 +2,7 @@ package monnef.jaffas.xmas.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.xmas.jaffasXmas;
+import monnef.jaffas.xmas.JaffasXmas;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 
@@ -27,7 +27,7 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
 
     @Override
     protected BlockXmasMulti getParentBlock() {
-        return jaffasXmas.BlockPresent;
+        return JaffasXmas.BlockPresent;
     }
 
     @SideOnly(Side.CLIENT)

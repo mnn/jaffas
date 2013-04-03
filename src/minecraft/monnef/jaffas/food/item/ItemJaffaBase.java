@@ -4,7 +4,7 @@ package monnef.jaffas.food.item;
 import monnef.core.base.ItemMonnefCore;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.item.common.IItemJaffa;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -19,7 +19,7 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     public ItemJaffaBase(int id) {
         super(id);
         maxStackSize = 64;
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.setCreativeTab(JaffasFood.CreativeTab);
         setCustomIconIndex(-1);
     }
 

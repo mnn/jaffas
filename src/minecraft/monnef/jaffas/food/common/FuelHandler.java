@@ -1,13 +1,13 @@
 package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.IFuelHandler;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.item.ItemStack;
 
 public class FuelHandler implements IFuelHandler {
     @Override
     public int getBurnTime(ItemStack fuel) {
-        if (fuel.itemID == jaffasFood.blockSwitchgrass.blockID) {
+        if (fuel.itemID == JaffasFood.blockSwitchgrass.blockID) {
             return 100;
         }
 

@@ -9,11 +9,11 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.IDProvider;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
-import monnef.jaffas.food.jaffasFood;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.xmas.block.BlockCandy;
 import monnef.jaffas.xmas.block.BlockPresent;
@@ -40,9 +40,9 @@ import static monnef.jaffas.xmas.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class jaffasXmas extends jaffasMod {
+public class JaffasXmas extends jaffasMod {
     @Mod.Instance(ModId)
-    public static jaffasXmas instance;
+    public static JaffasXmas instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.xmas.client.ClientProxy", serverSide = "monnef.jaffas.xmas.common.CommonProxy")
     public static CommonProxy proxy;
@@ -65,7 +65,7 @@ public class jaffasXmas extends jaffasMod {
     public static JaffaCreativeTab CreativeTab;
     private Items items;
 
-    public jaffasXmas() {
+    public JaffasXmas() {
         this.items = new Items();
         items.RegisterItemType(JaffaItemType.basic, ItemXmas.class);
         items.RegisterItemType(JaffaItemType.food, ItemXmasFood.class);
@@ -119,7 +119,7 @@ public class jaffasXmas extends jaffasMod {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
 
-        jaffasFood.PrintInitialized(ModulesEnum.xmas);
+        JaffasFood.PrintInitialized(ModulesEnum.xmas);
     }
 
     private void createItems() {
@@ -198,7 +198,7 @@ public class jaffasXmas extends jaffasMod {
     }
 
     private Item getItem(JaffaItem type) {
-        return jaffasFood.getItem(type);
+        return JaffasFood.getItem(type);
     }
 
     private void installPresentRecipe(int ribbonColor, int color, boolean big, int presentMeta) {

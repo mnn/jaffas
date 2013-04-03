@@ -3,8 +3,8 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
+import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
-import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -95,7 +95,7 @@ public class BlockJaffaCrops extends BlockFlower {
             return;
         }
 
-        if (jaffasTrees.bonemealingAllowed) {
+        if (JaffasTrees.bonemealingAllowed) {
             if (!event.world.isRemote) {
                 if (growABit(event.world, event.X, event.Y, event.Z)) {
                     event.setResult(Event.Result.ALLOW);

@@ -3,8 +3,8 @@ package monnef.jaffas.food.block;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.PlayerHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -35,7 +35,7 @@ public class BlockSink extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return jaffasFood.renderID;
+        return JaffasFood.renderID;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class BlockSink extends BlockJaffas {
 
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        if (debug && jaffasFood.debug && !par1World.isRemote) {
+        if (debug && JaffasFood.debug && !par1World.isRemote) {
             int m = par1World.getBlockMetadata(par2, par3, par4);
             par5EntityPlayer.sendChatToPlayer("meta: " + m);
         }
@@ -125,11 +125,11 @@ public class BlockSink extends BlockJaffas {
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
-        return jaffasFood.getItem(JaffaItem.sink).itemID;
+        return JaffasFood.getItem(JaffaItem.sink).itemID;
     }
 
     @Override
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return jaffasFood.getItem(JaffaItem.sink).itemID;
+        return JaffasFood.getItem(JaffaItem.sink).itemID;
     }
 }

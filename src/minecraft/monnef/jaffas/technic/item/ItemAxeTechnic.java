@@ -1,14 +1,14 @@
 package monnef.jaffas.technic.item;
 
-import monnef.jaffas.technic.jaffasTechnic;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.item.*;
 
 public class ItemAxeTechnic extends ItemAxe {
     public ItemAxeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, material);
-        setCreativeTab(jaffasTechnic.CreativeTab);
+        setCreativeTab(JaffasTechnic.CreativeTab);
         //setIconIndex(textureOffset);
-        //setTextureFile(jaffasTechnic.textureFile);
+        //setTextureFile(JaffasTechnic.textureFile);
     }
 }
 

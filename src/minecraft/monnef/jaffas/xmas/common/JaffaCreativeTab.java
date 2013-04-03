@@ -1,7 +1,7 @@
 package monnef.jaffas.xmas.common;
 
 
-import monnef.jaffas.xmas.jaffasXmas;
+import monnef.jaffas.xmas.JaffasXmas;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -12,6 +12,6 @@ public class JaffaCreativeTab extends CreativeTabs {
 
     @Override
     public ItemStack getIconItemStack() {
-        return new ItemStack(jaffasXmas.ItemGiantCandy);
+        return new ItemStack(JaffasXmas.ItemGiantCandy);
     }
 }

@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,11 +14,11 @@ public class ItemJaffaPainting extends Item {
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setUnlocalizedName("jaffaPainting");
         //this.setIconIndex(1);
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.setCreativeTab(JaffasFood.CreativeTab);
     }
 
     public String getTextureFile() {
-        return jaffasFood.textureFile[0];
+        return JaffasFood.textureFile[0];
     }
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {

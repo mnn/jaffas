@@ -1,8 +1,8 @@
 package monnef.jaffas.xmas.block;
 
+import monnef.jaffas.xmas.JaffasXmas;
 import monnef.jaffas.xmas.client.ModelPresent;
 import monnef.jaffas.xmas.client.ModelPresentSmall;
-import monnef.jaffas.xmas.jaffasXmas;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
@@ -59,7 +59,7 @@ public class TileEntityPresentRenderer extends TileEntitySpecialRenderer {
                 break;
 
             default:
-                bindTextureByName(jaffasXmas.textureFile);
+                bindTextureByName(JaffasXmas.textureFile);
                 break;
         }
 

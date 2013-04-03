@@ -1,6 +1,6 @@
 package monnef.jaffas.xmas.block;
 
-import monnef.jaffas.xmas.jaffasXmas;
+import monnef.jaffas.xmas.JaffasXmas;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -27,7 +27,7 @@ public class BlockCandy extends BlockXmas {
 
     @Override
     public int getRenderType() {
-        return jaffasXmas.renderID;
+        return JaffasXmas.renderID;
     }
 
     @Override
@@ -89,12 +89,12 @@ public class BlockCandy extends BlockXmas {
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
-        return isBlockTopPart(par1) ? 0 : jaffasXmas.ItemGiantCandy.itemID;
+        return isBlockTopPart(par1) ? 0 : JaffasXmas.ItemGiantCandy.itemID;
     }
 
     @Override
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return jaffasXmas.ItemGiantCandy.itemID;
+        return JaffasXmas.ItemGiantCandy.itemID;
     }
 
     public final static float unit = 1f / 16f;

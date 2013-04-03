@@ -2,10 +2,9 @@ package monnef.jaffas.food.item;
 
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.common.SeedsHelper;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -19,11 +18,11 @@ public class ItemBagOfSeeds extends ItemJaffaBase {
 
         setMaxStackSize(1);
         this.setCreativeTab(CreativeTabs.tabMaterials);
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.setCreativeTab(JaffasFood.CreativeTab);
     }
 
     public String getTextureFile() {
-        return jaffasFood.textureFile[0];
+        return JaffasFood.textureFile[0];
     }
 
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {

@@ -1,5 +1,6 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.common;
 
+import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.block.TileEntityFruitLeaves;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -31,7 +32,7 @@ public class WorldGenFruitTrees extends WorldGenerator {
     private final int leavesID;
 
     public WorldGenFruitTrees(boolean par1) {
-        this(par1, 4, 0, 0, false, jaffasTrees.leavesList.get(0).leavesID);
+        this(par1, 4, 0, 0, false, JaffasTrees.leavesList.get(0).leavesID);
     }
 
     public WorldGenFruitTrees(boolean notify, int minHeight, int metaWood, int metaLeaves, boolean vines, int leavesID) {
@@ -120,11 +121,11 @@ public class WorldGenFruitTrees extends WorldGenerator {
                                         chosenLeavesID = this.leavesID;
                                         chosenLeavesMeta = this.metaLeaves;
                                     } else {
-                                        chosenLeavesID = jaffasTrees.leavesList.get(0).leavesID;
+                                        chosenLeavesID = JaffasTrees.leavesList.get(0).leavesID;
                                         chosenLeavesMeta = 0;
                                     }
 
-                                    this.setBlockAndMetadata(par1World, var14, var11, var16, jaffasTrees.leavesList.get(0).leavesID, 0);
+                                    this.setBlockAndMetadata(par1World, var14, var11, var16, JaffasTrees.leavesList.get(0).leavesID, 0);
                                     TileEntityFruitLeaves te = new TileEntityFruitLeaves(chosenLeavesID, chosenLeavesMeta);
                                     par1World.setBlockTileEntity(var14, var11, var16, te);
                                 }

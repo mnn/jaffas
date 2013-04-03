@@ -3,7 +3,7 @@ package monnef.jaffas.trees.item;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
-import monnef.jaffas.trees.jaffasTrees;
+import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -47,7 +47,7 @@ public class ItemFruitSeeds extends ItemBlockTrees {
     public String getUnlocalizedName(ItemStack par1ItemStack) {
         int dmg = par1ItemStack.getItemDamage();
 
-        if (dmg < 0 || dmg >= jaffasTrees.treeTypes.length) {
+        if (dmg < 0 || dmg >= JaffasTrees.treeTypes.length) {
             dmg = 0;
         }
 

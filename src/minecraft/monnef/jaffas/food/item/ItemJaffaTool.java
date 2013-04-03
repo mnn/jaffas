@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.common.IItemTool;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.item.Item;
 
 public class ItemJaffaTool extends ItemJaffaBase implements IItemTool {
@@ -22,7 +22,7 @@ public class ItemJaffaTool extends ItemJaffaBase implements IItemTool {
 
     private void initialize() {
         setMaxStackSize(1);
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.setCreativeTab(JaffasFood.CreativeTab);
     }
 
     @Override

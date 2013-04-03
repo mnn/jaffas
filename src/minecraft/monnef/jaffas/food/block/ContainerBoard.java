@@ -2,8 +2,8 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -71,7 +71,7 @@ public class ContainerBoard extends Container {
             }
             //places it into the tileEntity is possible since its in the player inventory
             else {
-                if (stackInSlot.itemID == jaffasFood.getItem(JaffaItem.knifeKitchen).itemID) {
+                if (stackInSlot.itemID == JaffasFood.getItem(JaffaItem.knifeKitchen).itemID) {
                     if (!this.mergeItemStack(stackInSlot, 0, slots, true)) {
                         return null;
                     }

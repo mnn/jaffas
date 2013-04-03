@@ -1,13 +1,13 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.BitHelper;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.*;
-import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.food.JaffasFood.Log;
 
 public class TileEntitySink extends TileEntity {
     private final static int maxDelay = 20;
@@ -20,8 +20,8 @@ public class TileEntitySink extends TileEntity {
     public void updateEntity() {
         playQueuedSound();
 
-        if (getBlockType().blockID != jaffasFood.blockSink.blockID) {
-            if (jaffasFood.debug) {
+        if (getBlockType().blockID != JaffasFood.blockSink.blockID) {
+            if (JaffasFood.debug) {
                 Log.printInfo("sink block not detected, ending - " + xCoord + "x" + yCoord + "x" + zCoord);
             }
             invalidate();

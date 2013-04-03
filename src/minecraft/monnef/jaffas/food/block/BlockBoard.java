@@ -3,8 +3,8 @@ package monnef.jaffas.food.block;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.InventoryUtils;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +37,7 @@ public class BlockBoard extends BlockContainerJaffas {
     public BlockBoard(int par1, int index, Material par3Material) {
         super(par1, index, par3Material);
         //setRequiresSelfNotify();
-        setCreativeTab(jaffasFood.CreativeTab);
+        setCreativeTab(JaffasFood.CreativeTab);
         setHardness(0.2f);
         setUnlocalizedName("blockBoard");
     }
@@ -50,7 +50,7 @@ public class BlockBoard extends BlockContainerJaffas {
             return false;
         }
 
-        player.openGui(jaffasFood.instance, GuiHandler.GuiTypes.BOARD.ordinal(), world, x, y, z);
+        player.openGui(JaffasFood.instance, GuiHandler.GuiTypes.BOARD.ordinal(), world, x, y, z);
         return true;
     }
 
@@ -86,7 +86,7 @@ public class BlockBoard extends BlockContainerJaffas {
 
     @Override
     public int getRenderType() {
-        return jaffasFood.renderID;
+        return JaffasFood.renderID;
     }
 
     @Override

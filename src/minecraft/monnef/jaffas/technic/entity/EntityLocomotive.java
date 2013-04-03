@@ -1,6 +1,6 @@
 package monnef.jaffas.technic.entity;
 
-import monnef.jaffas.technic.jaffasTechnic;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
@@ -120,7 +120,7 @@ public class EntityLocomotive extends EntityMinecart {
 
     public void func_94095_a(DamageSource par1DamageSource) {
         this.setDead();
-        this.entityDropItem(new ItemStack(jaffasTechnic.itemLocomotive, 1), 0.0F);
+        this.entityDropItem(new ItemStack(JaffasTechnic.itemLocomotive, 1), 0.0F);
     }
 
     @Override

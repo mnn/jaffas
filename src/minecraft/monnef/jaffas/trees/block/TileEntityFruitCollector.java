@@ -8,9 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.block.TileEntityJaffaMachine;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
-import monnef.jaffas.trees.block.BlockFruitCollector;
-import monnef.jaffas.trees.block.BlockFruitLeaves;
-import monnef.jaffas.trees.jaffasTrees;
+import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -28,7 +26,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
-import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.food.JaffasFood.Log;
 
 public class TileEntityFruitCollector extends TileEntityJaffaMachine implements IInventory {
 
@@ -83,12 +81,12 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
 
     static {
         fruitList = new HashMap<Integer, Integer>();
-        addToFruitList(jaffasTrees.itemLemon);
-        addToFruitList(jaffasTrees.itemOrange);
-        addToFruitList(jaffasTrees.itemPlum);
+        addToFruitList(JaffasTrees.itemLemon);
+        addToFruitList(JaffasTrees.itemOrange);
+        addToFruitList(JaffasTrees.itemPlum);
         addToFruitList(ItemManager.getItem(JaffaItem.vanillaBeans));
         addToFruitList(Item.appleRed);
-        addToFruitList(jaffasTrees.itemLemon);
+        addToFruitList(JaffasTrees.itemLemon);
         addToFruitList(Item.dyePowder, 3); // cocoa beans
 
         OrdinalToState = new CollectorStates[CollectorStates.values().length];
@@ -180,7 +178,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
                             ItemStack stack = this.targetedItem.getEntityItem().copy();
                             int itemsAdded = addItemToInventory(this.targetedItem.getEntityItem().copy(), true);
                             this.targetedItem.setDead();
-                            if (jaffasTrees.debug) Log.printInfo("target destroyed");
+                            if (JaffasTrees.debug) Log.printInfo("target destroyed");
                             int itemsLeft = stack.stackSize - itemsAdded;
 
                             this.queueSound("suck");
@@ -295,7 +293,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         }
 
         Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = jaffasTrees.channel;
+        packet.channel = JaffasTrees.channel;
         packet.data = bos.toByteArray();
         packet.length = bos.size();
 

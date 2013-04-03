@@ -6,7 +6,7 @@ import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import static monnef.jaffas.food.jaffasFood.blockPizza;
+import static monnef.jaffas.food.JaffasFood.blockPizza;
 
 public class TileEntityPizzaRenderer extends TileEntitySpecialRenderer {
     private ModelPizza pizza;

@@ -1,6 +1,6 @@
 package monnef.jaffas.xmas.block;
 
-import monnef.jaffas.xmas.jaffasXmas;
+import monnef.jaffas.xmas.JaffasXmas;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -56,7 +56,7 @@ public class BlockPresent extends BlockXmasMulti {
 
     @Override
     public int getRenderType() {
-        return jaffasXmas.renderID;
+        return JaffasXmas.renderID;
     }
 
     @Override

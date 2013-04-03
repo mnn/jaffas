@@ -4,7 +4,7 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.event.LightningGeneratedEvent;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.WorldHelper;
-import monnef.jaffas.power.jaffasPower;
+import monnef.jaffas.power.JaffasPower;
 import net.minecraft.block.Block;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.world.World;
@@ -14,8 +14,8 @@ import net.minecraftforge.event.ForgeSubscribe;
 import java.util.ArrayList;
 import java.util.List;
 
-import static monnef.jaffas.food.jaffasFood.Log;
-import static monnef.jaffas.power.jaffasPower.lightningConductorRadius;
+import static monnef.jaffas.food.JaffasFood.Log;
+import static monnef.jaffas.power.JaffasPower.lightningConductorRadius;
 
 public class LightingHandler {
     @ForgeSubscribe
@@ -24,7 +24,7 @@ public class LightingHandler {
         int y = event.y;
         int z = event.z;
         World w = event.world;
-        int conductorId = jaffasPower.lightningConductor.blockID;
+        int conductorId = JaffasPower.lightningConductor.blockID;
 
         Log.printDebug(String.format("Lightning detected at %d, %d, %d.", x, y, z));
 

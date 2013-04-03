@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import static monnef.jaffas.food.jaffasFood.getItem;
+import static monnef.jaffas.food.JaffasFood.getItem;
 
 public class AchievementsCraftingHandler implements ICraftingHandler {
     private static AchievementPage page;

@@ -35,7 +35,7 @@ public class MalletHelper {
 
     public static boolean isMallet(int itemID) {
         for (int i = 0; i < ItemManager.mallets.length; i++) {
-            //if (jaffasFood.ItemsInfo.get(jaffasFood.mallets[i]).getItem().itemID == itemID){
+            //if (JaffasFood.ItemsInfo.get(JaffasFood.mallets[i]).getItem().itemID == itemID){
             if (ItemManager.getItem(ItemManager.mallets[i]).itemID == itemID) {
                 return true;
             }

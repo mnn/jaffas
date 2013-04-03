@@ -7,7 +7,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.food.JaffasFood.Log;
 
 public class ExtrabiomesHelper {
     /**

@@ -4,8 +4,8 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
+import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.block.TileEntityFruitCollector;
-import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
@@ -17,7 +17,7 @@ import java.io.IOException;
 public class PacketHandler implements IPacketHandler {
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
-        if (packet.channel.equals(jaffasTrees.channel)) {
+        if (packet.channel.equals(JaffasTrees.channel)) {
             handleCollectorState(packet, player);
         }
     }

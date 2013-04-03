@@ -6,6 +6,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityColumn;
 import monnef.jaffas.food.block.TileEntityCross;
@@ -21,7 +22,6 @@ import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,7 +33,7 @@ public class ClientProxy extends CommonProxy {
     public void registerRenderThings() {
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(jaffasFood.getItem(JaffaItem.duckEgg)));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(JaffasFood.getItem(JaffaItem.duckEgg)));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCross.class, new TileEntityCrossRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySink.class, new TileEntitySinkRenderer());
@@ -43,8 +43,8 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJaffaStatue.class, new TileEntityJaffaStatueRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPie.class, new TileEntityPieRenderer());
 
-        jaffasFood.renderID = RenderingRegistry.getNextAvailableRenderId();
-        jaffasFood.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
+        JaffasFood.renderID = RenderingRegistry.getNextAvailableRenderId();
+        JaffasFood.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new SwitchgrassRenderer());
     }
 

@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 
-import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.food.JaffasFood.Log;
 
 public class RegistryUtils {
     public static void registerBlock(Block block) {

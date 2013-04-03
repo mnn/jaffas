@@ -12,10 +12,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
-import monnef.jaffas.food.jaffasFood;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
@@ -30,13 +30,12 @@ import monnef.jaffas.power.common.LightingHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
-import monnef.jaffas.technic.jaffasTechnic;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
-import java.lang.reflect.Field;
 import java.util.logging.Level;
 
 import static cpw.mods.fml.common.Mod.Init;
@@ -47,9 +46,9 @@ import static monnef.jaffas.power.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Technic")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class jaffasPower extends jaffasMod {
+public class JaffasPower extends jaffasMod {
     @Instance("Jaffas-Power")
-    public static jaffasPower instance;
+    public static JaffasPower instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.power.client.ClientProxy", serverSide = "monnef.jaffas.power.common.CommonProxy")
     public static CommonProxy proxy;
@@ -142,7 +141,7 @@ public class jaffasPower extends jaffasMod {
             MinecraftForge.EVENT_BUS.register(new LightingHandler());
         }
 
-        jaffasFood.PrintInitialized(ModulesEnum.power);
+        JaffasFood.PrintInitialized(ModulesEnum.power);
     }
 
     private void createItems() {
@@ -169,7 +168,7 @@ public class jaffasPower extends jaffasMod {
 
     private void installRecipes() {
         if (lightningConductorEnabled && ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
-            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', jaffasTechnic.jaffarrol, 'B', Block.blockSteel);
+            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockSteel);
         }
     }
 }

@@ -2,7 +2,7 @@ package monnef.jaffas.food.item;
 
 import monnef.core.base.CustomIconHelper;
 import monnef.jaffas.food.common.Reference;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
@@ -26,7 +26,7 @@ public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
         this.armorTexture = armorTexture;
         this.repairItem = repairItem;
         this.customIconIndex = customIconIndex;
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.setCreativeTab(JaffasFood.CreativeTab);
         setUnlocalizedName("armor." + par2EnumArmorMaterial.name());
     }
 

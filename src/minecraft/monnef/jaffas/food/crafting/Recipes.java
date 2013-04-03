@@ -7,7 +7,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -19,7 +19,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import static monnef.core.utils.DyeHelper.getDye;
 import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
-import static monnef.jaffas.food.jaffasFood.*;
+import static monnef.jaffas.food.JaffasFood.*;
 
 public class Recipes {
     public static void install() {
@@ -473,7 +473,7 @@ public class Recipes {
     }
 
     private static Item getItem(JaffaItem item) {
-        return jaffasFood.getItem(item);
+        return JaffasFood.getItem(item);
     }
 
     private static void AddMalletRecipes() {

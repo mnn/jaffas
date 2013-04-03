@@ -1,9 +1,9 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.base.CustomIconHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -30,7 +30,7 @@ public class BlockJaffaBomb extends BlockJaffas {
         setUnlocalizedName("Jaffa Cakes BOMB");
         setHardness(0.1F);
         setResistance(0.1F);
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.setCreativeTab(JaffasFood.CreativeTab);
     }
 
     /**
@@ -137,7 +137,7 @@ public class BlockJaffaBomb extends BlockJaffas {
 
     @Override
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) {
-        this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(jaffasFood.blockJaffaBomb));
+        this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(JaffasFood.blockJaffaBomb));
     }
 
     @Override

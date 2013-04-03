@@ -1,5 +1,6 @@
 package monnef.jaffas.food.item.common;
 
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -15,7 +16,6 @@ import monnef.jaffas.food.item.ItemSink;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemInfo;
-import monnef.jaffas.food.jaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
@@ -84,7 +84,7 @@ public class Items extends ItemManagerAccessor {
     }
 
     private String getJaffaTitle(String type) {
-        String title = jaffasFood.jaffaTitle;
+        String title = JaffasFood.jaffaTitle;
 
         if (type == null || type.isEmpty()) {
             return title;
@@ -137,10 +137,10 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(flour, "Flour", 49, "Flour");
         AddItemInfo(chocolateWrapper, "Chocolate Wrapper", 33, "Chocolate Wrapper");
         AddItemInfo(chocolateBar, "Chocolate Bar", 34, "Chocolate Bar");
-        AddItemInfo(wrapperJaffas, "Wrapper Jaffas", 50, jaffasFood.jaffasTitle + " Wrapper");
-        AddItemInfo(jaffasPack, "Jaffa Cakes Pack", 51, jaffasFood.jaffasTitle + " Pack");
-        AddItemInfo(jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange " + jaffasFood.jaffasTitle + " Pack");
-        AddItemInfo(jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple " + jaffasFood.jaffasTitle + " Pack");
+        AddItemInfo(wrapperJaffas, "Wrapper Jaffas", 50, JaffasFood.jaffasTitle + " Wrapper");
+        AddItemInfo(jaffasPack, "Jaffa Cakes Pack", 51, JaffasFood.jaffasTitle + " Pack");
+        AddItemInfo(jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange " + JaffasFood.jaffasTitle + " Pack");
+        AddItemInfo(jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple " + JaffasFood.jaffasTitle + " Pack");
         AddItemInfo(vanillaBeans, "Vanilla Beans", 52, "Vanilla Beans");
         AddItemInfo(waferIcecream, "Wafer Ice-cream", 53, "Wafer");
         AddItemInfo(cone, "Icecream Cone", 54, "Cone");
@@ -543,7 +543,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(bottleBrownMustard);
         createJaffaItem(mincedMeat);
         createJaffaItemManual(meatCleaver,
-                new ItemCleaver(ItemManager.getItemInfo(meatCleaver).getId(), jaffasFood.EnumToolMaterialCleaver));
+                new ItemCleaver(ItemManager.getItemInfo(meatCleaver).getId(), JaffasFood.EnumToolMaterialCleaver));
 
         createJaffaItemManual(sink, ItemSink.class);
 
@@ -558,7 +558,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItemManual(pizza, ItemPizza.class);
 
         createJaffaItem(wolfSkin);
-        createJaffaArmorSet("wolf", jaffasFood.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
+        createJaffaArmorSet("wolf", JaffasFood.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
 
         createJaffaItem(pastry);
 
@@ -578,10 +578,10 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(pieVanillaRaw);
         createJaffaItem(piePlumRaw);
 
-        if (jaffasFood.spawnStonesEnabled) {
-            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneLittle), jaffasFood.spawnStoneLittleCD));
-            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneMedium), jaffasFood.spawnStoneMediumCD));
-            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneBig), jaffasFood.spawnStoneBigCD));
+        if (JaffasFood.spawnStonesEnabled) {
+            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneLittle), JaffasFood.spawnStoneLittleCD));
+            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneMedium), JaffasFood.spawnStoneMediumCD));
+            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneBig), JaffasFood.spawnStoneBigCD));
         }
 
         createJaffaItem(juiceBottle);
@@ -622,7 +622,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.tinDuckOrangeRaw);
         createJaffaItem(JaffaItem.tinDuckOrange);
 
-        createJaffaArmorSet("duck", jaffasFood.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
+        createJaffaArmorSet("duck", JaffasFood.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
 
         createJaffaItem(strawberryIcecreamRaw);
         createJaffaItem(strawberryIcecreamFrozen);
@@ -676,7 +676,7 @@ public class Items extends ItemManagerAccessor {
 
     // helm, chest, leggings, boots
     public void createJaffaArmorSet(String renderName, EnumArmorMaterial material, String file1, String file2, Item repairItem, JaffaItem[] pieces) {
-        int renderIndex = jaffasFood.proxy.addArmor(renderName);
+        int renderIndex = JaffasFood.proxy.addArmor(renderName);
         createJaffaArmor(pieces[0], material, renderIndex, ItemJaffaPlate.ArmorType.helm, file1, repairItem);
         createJaffaArmor(pieces[1], material, renderIndex, ItemJaffaPlate.ArmorType.chest, file1, repairItem);
         createJaffaArmor(pieces[2], material, renderIndex, ItemJaffaPlate.ArmorType.leggings, file2, repairItem);

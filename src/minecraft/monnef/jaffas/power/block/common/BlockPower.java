@@ -2,7 +2,7 @@ package monnef.jaffas.power.block.common;
 
 import monnef.core.base.BlockMonnefCore;
 import monnef.jaffas.power.common.Reference;
-import monnef.jaffas.power.jaffasPower;
+import monnef.jaffas.power.JaffasPower;
 import net.minecraft.block.material.Material;
 
 public class BlockPower extends BlockMonnefCore {
@@ -17,7 +17,7 @@ public class BlockPower extends BlockMonnefCore {
     }
 
     private void init() {
-        setCreativeTab(jaffasPower.CreativeTab);
+        setCreativeTab(JaffasPower.CreativeTab);
     }
 
     @Override

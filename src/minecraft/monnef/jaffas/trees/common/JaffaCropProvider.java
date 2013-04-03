@@ -1,4 +1,4 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.common;
 
 import forestry.api.cultivation.ICropEntity;
 import forestry.api.cultivation.ICropProvider;

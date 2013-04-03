@@ -1,6 +1,6 @@
 package monnef.jaffas.food.common;
 
-import monnef.jaffas.trees.jaffasTrees;
+import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -22,11 +22,11 @@ public class SeedsHelper {
     public static ItemStack getRandomJaffaSeed() {
         ItemStack seed;// choosing from our seeds (tree, bush)
         if (rand.nextBoolean()) {
-            int type = rand.nextInt(jaffasTrees.leavesTypesCount) + 1;
-            seed = jaffasTrees.getTreeSeeds(type);
+            int type = rand.nextInt(JaffasTrees.leavesTypesCount) + 1;
+            seed = JaffasTrees.getTreeSeeds(type);
         } else {
-            int type = rand.nextInt(jaffasTrees.BushesList.size());
-            seed = new ItemStack(jaffasTrees.BushesList.get(jaffasTrees.bushType.values()[type]).itemSeeds);
+            int type = rand.nextInt(JaffasTrees.BushesList.size());
+            seed = new ItemStack(JaffasTrees.BushesList.get(JaffasTrees.bushType.values()[type]).itemSeeds);
         }
         return seed;
     }

@@ -3,9 +3,9 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.block.BlockJaffas;
+import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
-import monnef.jaffas.trees.WorldGenFruitTrees;
-import monnef.jaffas.trees.jaffasTrees;
+import monnef.jaffas.trees.common.WorldGenFruitTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -26,7 +26,7 @@ import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
-import static monnef.jaffas.food.jaffasFood.Log;
+import static monnef.jaffas.food.JaffasFood.Log;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
 public class BlockFruitSapling extends BlockJaffas implements IPlantable {
@@ -38,7 +38,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
         if (!(Block.blocksList[event.ID] instanceof BlockFruitSapling)) {
             return;
         }
-        if (jaffasTrees.bonemealingAllowed) {
+        if (JaffasTrees.bonemealingAllowed) {
             event.setResult(Event.Result.ALLOW);
             if (!event.world.isRemote) {
                 growTree(event.world, event.X, event.Y, event.Z, rand);
@@ -51,7 +51,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        setCreativeTab(jaffasTrees.CreativeTab);
+        setCreativeTab(JaffasTrees.CreativeTab);
         this.setTickRandomly(true);
     }
 
@@ -66,7 +66,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
             if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9 && par5Random.nextInt(7) == 0) {
                 int metadata = par1World.getBlockMetadata(par2, par3, par4);
 
-                if (jaffasTrees.debug) {
+                if (JaffasTrees.debug) {
                     Log.printInfo("meta(" + metadata + ") markForDecay("
                             + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
                             + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
@@ -75,7 +75,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
 
                 if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
                     setBlockMetadata(par1World, par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
-                    if (jaffasTrees.debug) {
+                    if (JaffasTrees.debug) {
                         Log.printInfo("after set: " + par1World.getBlockMetadata(par2, par3, par4));
                     }
                 } else {
@@ -103,7 +103,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
 
         par1World.setBlock(par2, par3, par4, 0);
 
-        var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false, jaffasTrees.leavesList.get(serialNumber).leavesID);
+        var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false, JaffasTrees.leavesList.get(serialNumber).leavesID);
 
         if (!((WorldGenerator) var7).generate(par1World, par5Random, par2 + var8, par3, par4 + var9)) {
             setBlock(par1World, par2, par3, par4, this.blockID, metadata);

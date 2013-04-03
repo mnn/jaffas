@@ -2,8 +2,8 @@ package monnef.jaffas.power.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.common.BlockMachineWithInventory;
-import monnef.jaffas.power.jaffasPower;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -16,7 +16,7 @@ public class BlockGenerator extends BlockMachineWithInventory {
 
     public BlockGenerator(int id, int texture) {
         super(id, texture, Material.iron, true);
-        setCreativeTab(jaffasPower.CreativeTab);
+        setCreativeTab(JaffasPower.CreativeTab);
         setUnlocalizedName("generator");
         setHardness(1.5f);
         setResistance(5);

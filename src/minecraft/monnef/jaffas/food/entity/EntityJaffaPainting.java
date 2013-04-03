@@ -1,6 +1,6 @@
 package monnef.jaffas.food.entity;
 
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -176,7 +176,7 @@ public class EntityJaffaPainting extends Entity {
             if (!this.worldObj.isRemote) {
                 if (!this.isDead && !this.onValidSurface()) {
                     this.setDead();
-                    this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(jaffasFood.itemPainting)));
+                    this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(JaffasFood.itemPainting)));
                 }
             }
 
@@ -298,7 +298,7 @@ public class EntityJaffaPainting extends Entity {
                 return true;
             }
 
-            this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(jaffasFood.itemPainting)));
+            this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(JaffasFood.itemPainting)));
         }
 
         return true;
@@ -351,7 +351,7 @@ public class EntityJaffaPainting extends Entity {
     public void moveEntity(double par1, double par3, double par5) {
         if (!this.worldObj.isRemote && !this.isDead && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D) {
             this.setDead();
-            this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(jaffasFood.itemPainting)));
+            this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(JaffasFood.itemPainting)));
         }
     }
 
@@ -362,7 +362,7 @@ public class EntityJaffaPainting extends Entity {
     public void addVelocity(double par1, double par3, double par5) {
         if (!this.worldObj.isRemote && !this.isDead && par1 * par1 + par3 * par3 + par5 * par5 > 0.0D) {
             this.setDead();
-            this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(jaffasFood.itemPainting)));
+            this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(JaffasFood.itemPainting)));
         }
     }
 }

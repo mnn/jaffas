@@ -1,8 +1,8 @@
 package monnef.jaffas.xmas.item;
 
 import monnef.jaffas.food.item.ItemJaffaBase;
+import monnef.jaffas.xmas.JaffasXmas;
 import monnef.jaffas.xmas.common.Reference;
-import monnef.jaffas.xmas.jaffasXmas;
 import net.minecraft.item.Item;
 
 public class ItemXmas extends ItemJaffaBase {
@@ -18,7 +18,7 @@ public class ItemXmas extends ItemJaffaBase {
     }
 
     private void init() {
-        setCreativeTab(jaffasXmas.CreativeTab);
+        setCreativeTab(JaffasXmas.CreativeTab);
     }
 
     @Override

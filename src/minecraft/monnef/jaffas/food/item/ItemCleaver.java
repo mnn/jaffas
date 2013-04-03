@@ -1,17 +1,16 @@
 package monnef.jaffas.food.item;
 
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.ItemSword;
 
 public class ItemCleaver extends ItemJaffaSword {
     public ItemCleaver(int ItemID, EnumToolMaterial material) {
         super(ItemID, material);
-        this.setCreativeTab(jaffasFood.CreativeTab);
+        this.setCreativeTab(JaffasFood.CreativeTab);
     }
 
     public String getTextureFile() {
-        return jaffasFood.textureFile[0];
+        return JaffasFood.textureFile[0];
     }
 }
 

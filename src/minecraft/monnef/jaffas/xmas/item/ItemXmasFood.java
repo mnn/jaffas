@@ -1,12 +1,12 @@
 package monnef.jaffas.xmas.item;
 
 import monnef.jaffas.food.item.ItemJaffaFood;
-import monnef.jaffas.xmas.jaffasXmas;
+import monnef.jaffas.xmas.JaffasXmas;
 
 public class ItemXmasFood extends ItemJaffaFood {
     public ItemXmasFood(int id) {
         super(id);
-        this.setCreativeTab(jaffasXmas.CreativeTab);
+        this.setCreativeTab(JaffasXmas.CreativeTab);
     }
 
     /*

@@ -1,4 +1,4 @@
-package monnef.jaffas.trees;
+package monnef.jaffas.trees.common;
 
 import monnef.jaffas.trees.block.BlockFruitLeaves;
 import monnef.jaffas.trees.block.BlockFruitSapling;

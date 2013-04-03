@@ -1,7 +1,7 @@
 package monnef.jaffas.xmas.item;
 
+import monnef.jaffas.xmas.JaffasXmas;
 import monnef.jaffas.xmas.block.BlockCandy;
-import monnef.jaffas.xmas.jaffasXmas;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -26,7 +26,7 @@ public class ItemGiantCandy extends ItemXmas {
         } else {
             y++;
 
-            BlockCandy blockToPlace = jaffasXmas.BlockCandy;
+            BlockCandy blockToPlace = JaffasXmas.BlockCandy;
             int direction = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
             direction = (direction + 1) % 4;
 

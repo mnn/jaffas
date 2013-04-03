@@ -16,7 +16,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.jaffasFood;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
@@ -31,7 +31,7 @@ import monnef.jaffas.technic.item.ItemPickaxeTechnic;
 import monnef.jaffas.technic.item.ItemSpadeTechnic;
 import monnef.jaffas.technic.item.ItemSwordTechnic;
 import monnef.jaffas.technic.item.ItemTechnic;
-import monnef.jaffas.trees.jaffasTrees;
+import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -61,9 +61,9 @@ import static monnef.jaffas.technic.Reference.*;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class jaffasTechnic extends jaffasMod {
+public class JaffasTechnic extends jaffasMod {
     @Mod.Instance(ModId)
-    public static jaffasTechnic instance;
+    public static JaffasTechnic instance;
 
     @SidedProxy(clientSide = "monnef.jaffas.technic.client.ClientProxy", serverSide = "monnef.jaffas.technic.common.CommonProxy")
     public static CommonProxy proxy;
@@ -213,7 +213,7 @@ public class jaffasTechnic extends jaffasMod {
         TechnicWorldGen generator = new TechnicWorldGen();
         GameRegistry.registerWorldGenerator(generator);
 
-        jaffasFood.PrintInitialized(ModulesEnum.technic);
+        JaffasFood.PrintInitialized(ModulesEnum.technic);
     }
 
     private void addDrops() {
@@ -264,11 +264,11 @@ public class jaffasTechnic extends jaffasMod {
         LanguageRegistry.addName(itemCasingRefined, "Refined Casing");
 
         // jarmor
-        int renderIndexJaffarrol = jaffasFood.proxy.addArmor("jarmor");
-        jaffasFood.instance.items.createJaffaArmor(jaffarrolHelmet, jaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.helm, "/jaffas_jarmor1.png", jaffarrol);
-        jaffasFood.instance.items.createJaffaArmor(jaffarrolChest, jaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "/jaffas_jarmor1.png", jaffarrol);
-        jaffasFood.instance.items.createJaffaArmor(jaffarrolLeggins, jaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "/jaffas_jarmor2.png", jaffarrol);
-        jaffasFood.instance.items.createJaffaArmor(jaffarrolBoots, jaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "/jaffas_jarmor1.png", jaffarrol);
+        int renderIndexJaffarrol = JaffasFood.proxy.addArmor("jarmor");
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolHelmet, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.helm, "/jaffas_jarmor1.png", jaffarrol);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolChest, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "/jaffas_jarmor1.png", jaffarrol);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolLeggins, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "/jaffas_jarmor2.png", jaffarrol);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolBoots, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "/jaffas_jarmor1.png", jaffarrol);
 
         blockJaffarrolOre = new BlockOre(BlockJaffarrolOreID, 17);
         MinecraftForge.setBlockHarvestLevel(blockJaffarrolOre, "pickaxe", 2);
@@ -338,21 +338,21 @@ public class jaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ItemStack(itemCasing, 1, 0), "JJJ", "J J", "JJJ", 'J', jaffarrol);
         GameRegistry.addSmelting(itemCasing.itemID, new ItemStack(itemCasingRefined), 1f);
 
-        GameRegistry.addRecipe(new ItemStack(jaffasFood.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
+        GameRegistry.addRecipe(new ItemStack(JaffasFood.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
                 '&', itemCasing, 'J', jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(itemCentralUnit, 1, 0));
-        GameRegistry.addRecipe(new ItemStack(jaffasTrees.blockFruitCollector), "JFJ", "J@J", "JCJ",
+        GameRegistry.addRecipe(new ItemStack(JaffasTrees.blockFruitCollector), "JFJ", "J@J", "JCJ",
                 'J', jaffarrol, 'F', funnel, '@', itemCasing, 'C', new ItemStack(itemCentralUnit, 1, 2));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', jaffasTechnic.jaffarrol);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', jaffasTechnic.jaffarrol);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grinderMeat)), " FS", "III", "III", 'I', Item.ingotIron, 'F', jaffasTechnic.funnel, 'S', Item.stick);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grinderMeat)), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', jaffasTechnic.jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockSteel);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', JaffasTechnic.jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockSteel);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', jaffasTechnic.jaffarrol, 'I', Item.ingotIron);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', jaffasTechnic.jaffarrol, 'G', Block.glass);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', JaffasTechnic.jaffarrol, 'I', Item.ingotIron);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', JaffasTechnic.jaffarrol, 'G', Block.glass);
 
-        GameRegistry.addRecipe(new ItemStack(jaffasFood.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', jaffasTechnic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(JaffasFood.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', JaffasTechnic.jaffarrol);
 
         // jarmor
         GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolHelmet)), "JJJ", "J J", 'J', jaffarrol);
@@ -361,7 +361,7 @@ public class jaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolLeggins)), "JJJ", "J J", "J J", 'J', jaffarrol);
 
         // spawn stones
-        if (jaffasFood.spawnStonesEnabled) {
+        if (JaffasFood.spawnStonesEnabled) {
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Item.ingotIron, 'J', jaffarrol);
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "GRG", "LJL", "GRG", 'G', Item.ingotGold, 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew);
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "GLG", "LJR", "GRG", 'G', Item.ingotGold, 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew);
@@ -395,6 +395,6 @@ public class jaffasTechnic extends jaffasMod {
     }
 
     private Item getItem(JaffaItem item) {
-        return jaffasFood.getItem(item);
+        return JaffasFood.getItem(item);
     }
 }
