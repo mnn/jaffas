@@ -1,6 +1,6 @@
 package monnef.test.power;
 
-import monnef.jaffas.power.PowerProviderManager;
+import monnef.jaffas.power.common.PowerProviderManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import net.minecraft.tileentity.TileEntity;

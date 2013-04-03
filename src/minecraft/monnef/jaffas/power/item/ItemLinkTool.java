@@ -1,7 +1,7 @@
 package monnef.jaffas.power.item;
 
 import monnef.core.utils.NBTHelper;
-import monnef.jaffas.power.PowerNodeCoordinates;
+import monnef.jaffas.power.common.PowerNodeCoordinates;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;

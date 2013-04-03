@@ -2,7 +2,7 @@ package monnef.jaffas.power.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.power.PowerProviderManager;
+import monnef.jaffas.power.common.PowerProviderManager;
 import monnef.jaffas.power.api.IPowerProvider;
 import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;

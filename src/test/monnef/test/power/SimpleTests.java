@@ -1,9 +1,9 @@
 package monnef.test.power;
 
-import monnef.jaffas.power.PowerConsumerManager;
-import monnef.jaffas.power.PowerManagersFactory;
-import monnef.jaffas.power.PowerProviderManager;
-import monnef.jaffas.power.PowerUtils;
+import monnef.jaffas.power.common.PowerConsumerManager;
+import monnef.jaffas.power.common.PowerManagersFactory;
+import monnef.jaffas.power.common.PowerProviderManager;
+import monnef.jaffas.power.common.PowerUtils;
 import monnef.jaffas.power.api.PowerManager;
 import net.minecraftforge.common.ForgeDirection;
 import org.junit.Assert;

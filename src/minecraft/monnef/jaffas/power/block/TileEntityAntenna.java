@@ -1,8 +1,8 @@
 package monnef.jaffas.power.block;
 
-import monnef.jaffas.power.PowerConsumerManager;
-import monnef.jaffas.power.PowerProviderManager;
-import monnef.jaffas.power.PowerUtils;
+import monnef.jaffas.power.common.PowerConsumerManager;
+import monnef.jaffas.power.common.PowerProviderManager;
+import monnef.jaffas.power.common.PowerUtils;
 import monnef.jaffas.power.api.IPowerConsumer;
 import monnef.jaffas.power.api.IPowerConsumerManager;
 import monnef.jaffas.power.api.IPowerProvider;

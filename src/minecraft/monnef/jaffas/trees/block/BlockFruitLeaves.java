@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.block.BlockLeavesBaseJaffas;
-import monnef.jaffas.trees.Reference;
+import monnef.jaffas.trees.common.Reference;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

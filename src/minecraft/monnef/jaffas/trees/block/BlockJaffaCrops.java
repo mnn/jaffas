@@ -3,7 +3,7 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
-import monnef.jaffas.trees.Reference;
+import monnef.jaffas.trees.common.Reference;
 import monnef.jaffas.trees.jaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;

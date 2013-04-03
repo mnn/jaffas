@@ -24,6 +24,9 @@ import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.client.GuiHandler;
+import monnef.jaffas.power.common.CommonProxy;
+import monnef.jaffas.power.common.JaffaCreativeTab;
+import monnef.jaffas.power.common.LightingHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
@@ -38,9 +41,9 @@ import java.util.logging.Level;
 
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PreInit;
-import static monnef.jaffas.power.Reference.ModId;
-import static monnef.jaffas.power.Reference.ModName;
-import static monnef.jaffas.power.Reference.Version;
+import static monnef.jaffas.power.common.Reference.ModId;
+import static monnef.jaffas.power.common.Reference.ModName;
+import static monnef.jaffas.power.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Technic")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -48,7 +51,7 @@ public class jaffasPower extends jaffasMod {
     @Instance("Jaffas-Power")
     public static jaffasPower instance;
 
-    @SidedProxy(clientSide = "monnef.jaffas.power.client.ClientProxy", serverSide = "monnef.jaffas.power.CommonProxy")
+    @SidedProxy(clientSide = "monnef.jaffas.power.client.ClientProxy", serverSide = "monnef.jaffas.power.common.CommonProxy")
     public static CommonProxy proxy;
 
     private static IDProvider idProvider = new IDProvider(3750, 26644);
@@ -105,21 +108,10 @@ public class jaffasPower extends jaffasMod {
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
-            getAnnotatedItemIDs();
-
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (power) can't read config file.");
         } finally {
             config.save();
-        }
-    }
-
-    private void getAnnotatedItemIDs() {
-        for (Field field : this.getClass().getFields()) {
-            ItemID annotation = field.getAnnotation(ItemID.class);
-            if (annotation != null) {
-                idProvider.getItemIDFromConfig(annotation.nameInConfig().isEmpty() ? field.getName() : annotation.nameInConfig());
-            }
         }
     }
 

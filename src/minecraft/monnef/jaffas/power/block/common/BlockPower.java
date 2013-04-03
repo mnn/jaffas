@@ -1,7 +1,7 @@
 package monnef.jaffas.power.block.common;
 
 import monnef.core.base.BlockMonnefCore;
-import monnef.jaffas.power.Reference;
+import monnef.jaffas.power.common.Reference;
 import monnef.jaffas.power.jaffasPower;
 import net.minecraft.block.material.Material;
 

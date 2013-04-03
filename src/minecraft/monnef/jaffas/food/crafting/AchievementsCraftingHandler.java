@@ -2,7 +2,7 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.jaffas.food.JaffasException;
+import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

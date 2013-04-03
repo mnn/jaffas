@@ -1,7 +1,7 @@
 package monnef.jaffas.trees.item;
 
 import monnef.jaffas.food.item.ItemJaffaBase;
-import monnef.jaffas.trees.Reference;
+import monnef.jaffas.trees.common.Reference;
 import monnef.jaffas.trees.jaffasTrees;
 
 public class ItemTrees extends ItemJaffaBase {

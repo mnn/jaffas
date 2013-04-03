@@ -93,9 +93,9 @@ import static monnef.jaffas.food.jaffasFood.getItem;
 import static monnef.jaffas.trees.DropType.DropsFromGrass;
 import static monnef.jaffas.trees.EatableType.EatableNormal;
 import static monnef.jaffas.trees.EatableType.NotEatable;
-import static monnef.jaffas.trees.Reference.ModId;
-import static monnef.jaffas.trees.Reference.ModName;
-import static monnef.jaffas.trees.Reference.Version;
+import static monnef.jaffas.trees.common.Reference.ModId;
+import static monnef.jaffas.trees.common.Reference.ModName;
+import static monnef.jaffas.trees.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = jaffasTrees.channel, packetHandler = PacketHandler.class)

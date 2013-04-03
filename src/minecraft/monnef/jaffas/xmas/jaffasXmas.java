@@ -15,6 +15,17 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.jaffasFood;
 import monnef.jaffas.jaffasMod;
+import monnef.jaffas.xmas.block.BlockCandy;
+import monnef.jaffas.xmas.block.BlockPresent;
+import monnef.jaffas.xmas.block.ItemBlockPresent;
+import monnef.jaffas.xmas.block.TileEntityCandy;
+import monnef.jaffas.xmas.block.TileEntityPresent;
+import monnef.jaffas.xmas.common.CommonProxy;
+import monnef.jaffas.xmas.common.JaffaCreativeTab;
+import monnef.jaffas.xmas.item.ItemGiantCandy;
+import monnef.jaffas.xmas.item.ItemXmas;
+import monnef.jaffas.xmas.item.ItemXmasFood;
+import monnef.jaffas.xmas.item.Items;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -23,9 +34,9 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.logging.Level;
 
-import static monnef.jaffas.xmas.Reference.ModId;
-import static monnef.jaffas.xmas.Reference.ModName;
-import static monnef.jaffas.xmas.Reference.Version;
+import static monnef.jaffas.xmas.common.Reference.ModId;
+import static monnef.jaffas.xmas.common.Reference.ModName;
+import static monnef.jaffas.xmas.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -33,20 +44,20 @@ public class jaffasXmas extends jaffasMod {
     @Mod.Instance(ModId)
     public static jaffasXmas instance;
 
-    @SidedProxy(clientSide = "monnef.jaffas.xmas.ClientProxy", serverSide = "monnef.jaffas.xmas.CommonProxy")
+    @SidedProxy(clientSide = "monnef.jaffas.xmas.client.ClientProxy", serverSide = "monnef.jaffas.xmas.common.CommonProxy")
     public static CommonProxy proxy;
 
     private static IDProvider idProvider = new IDProvider(3650, 26444);
     private boolean debug;
 
     private int BlockCandyID;
-    public static BlockCandy BlockCandy;
+    public static monnef.jaffas.xmas.block.BlockCandy BlockCandy;
 
     private int ItemGiantCandyID;
-    public static ItemGiantCandy ItemGiantCandy;
+    public static monnef.jaffas.xmas.item.ItemGiantCandy ItemGiantCandy;
 
     private int BlockPresentID;
-    public static BlockPresent BlockPresent;
+    public static monnef.jaffas.xmas.block.BlockPresent BlockPresent;
 
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;

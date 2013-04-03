@@ -1,8 +1,9 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.base.BlockMonnefCore;
-import monnef.jaffas.food.Reference;
+import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.jaffasFood;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 public abstract class BlockJaffas extends BlockMonnefCore {
@@ -24,5 +25,10 @@ public abstract class BlockJaffas extends BlockMonnefCore {
     @Override
     public int getDefaultSheetNumber() {
         return 1;
+    }
+
+    @Override
+    public Block setUnlocalizedName(String par1Str) {
+        return super.setUnlocalizedName("jaffas." + par1Str);
     }
 }

@@ -2,11 +2,12 @@ package monnef.jaffas.food.item;
 
 
 import monnef.core.base.ItemMonnefCore;
-import monnef.jaffas.food.Reference;
+import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.item.common.IItemJaffa;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -62,5 +63,10 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
         } else {
             return super.getCreativeTabs();
         }
+    }
+
+    @Override
+    public Item setUnlocalizedName(String par1Str) {
+        return super.setUnlocalizedName("jaffas." + par1Str);
     }
 }

@@ -4,7 +4,7 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import monnef.jaffas.food.Reference;
+import monnef.jaffas.food.common.Reference;
 
 import java.util.Arrays;
 

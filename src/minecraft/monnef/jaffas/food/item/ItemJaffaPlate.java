@@ -1,7 +1,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.base.CustomIconHelper;
-import monnef.jaffas.food.Reference;
+import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.jaffasFood;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumArmorMaterial;
