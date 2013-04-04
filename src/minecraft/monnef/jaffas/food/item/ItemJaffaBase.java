@@ -23,6 +23,11 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
         setCustomIconIndex(-1);
     }
 
+    public ItemJaffaBase(int id, int textureIndex) {
+        this(id);
+        setCustomIconIndex(textureIndex);
+    }
+
     @Override
     public String getCustomIconName() {
         if (getCustomIconIndex() < 0) {

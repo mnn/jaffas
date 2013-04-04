@@ -1,14 +1,13 @@
 package monnef.jaffas.technic.item;
 
+import monnef.jaffas.food.item.ItemJaffaSword;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.ItemSword;
 
-public class ItemSwordTechnic extends ItemSword {
+public class ItemSwordTechnic extends ItemJaffaSword {
     public ItemSwordTechnic(int id, int textureOffset, EnumToolMaterial material) {
-        super(id, material);
+        super(id, textureOffset, material);
         setCreativeTab(JaffasTechnic.CreativeTab);
-        //setIconIndex(textureOffset);
-        //setTextureFile(JaffasTechnic.textureFile);
+        setSheetNumber(3);
     }
 }

@@ -1,5 +1,7 @@
 package monnef.core.base;
 
+import net.minecraft.util.Icon;
+
 public interface ICustomIcon {
     String getModName();
 
@@ -14,4 +16,10 @@ public interface ICustomIcon {
     int getSheetNumber();
 
     String getCustomIconName();
+
+    int getIconsCount();
+
+    void setIconsCount(int iconsCount);
+
+    Icon getCustomIcon(int index);
 }

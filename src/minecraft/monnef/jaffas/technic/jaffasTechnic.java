@@ -280,7 +280,7 @@ public class JaffasTechnic extends jaffasMod {
         MinecraftForge.setBlockHarvestLevel(blockLimsewOre, "pickaxe", 2);
         RegistryUtils.registerBlock(blockLimsewOre, "limsewOre", "Limsew Ore");
 
-        itemLocomotive = new ItemLocomotive(ItemLocomotiveID, 0);
+        itemLocomotive = new ItemLocomotive(ItemLocomotiveID, 24);
         LanguageRegistry.addName(itemLocomotive, "Mini-Locomotive");
 
         createTools();

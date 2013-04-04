@@ -3,10 +3,13 @@ package monnef.core.base;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.util.Icon;
 
 public abstract class BlockMonnefCore extends Block implements ICustomIcon {
     protected int customIconIndex;
     protected int sheetNumber;
+    protected int iconsCount = 1;
+    protected Icon[] icons;
 
     public BlockMonnefCore(int id, Material material) {
         super(id, material);
@@ -44,7 +47,28 @@ public abstract class BlockMonnefCore extends Block implements ICustomIcon {
     }
 
     @Override
+    public int getIconsCount() {
+        return iconsCount;
+    }
+
+    @Override
+    public void setIconsCount(int iconsCount) {
+        this.iconsCount = iconsCount;
+    }
+
+    @Override
     public void registerIcons(IconRegister iconRegister) {
         this.blockIcon = iconRegister.registerIcon(CustomIconHelper.generateId(this));
+        if (iconsCount > 1) {
+            icons[0] = this.blockIcon;
+            for (int i = 1; i < iconsCount; i++) {
+                icons[i] = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, i));
+            }
+        }
+    }
+
+    @Override
+    public Icon getCustomIcon(int index) {
+        return icons[index];
     }
 }

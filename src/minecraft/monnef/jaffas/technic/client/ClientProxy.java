@@ -9,8 +9,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
-        MinecraftForgeClient.preloadTexture(JaffasTechnic.textureFile);
-
         RenderingRegistry.registerEntityRenderingHandler(EntityLocomotive.class, new RenderLocomotive());
     }
 }

@@ -1,15 +1,12 @@
 package monnef.jaffas.technic.item;
 
-import monnef.core.base.ItemMonnefCore;
+import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.Reference;
-import net.minecraft.creativetab.CreativeTabs;
 
-public class ItemTechnic extends ItemMonnefCore {
+public class ItemTechnic extends ItemJaffaBase {
     public ItemTechnic(int id, int textureIndex) {
-        super(id);
-        //setIconIndex(textureIndex);
-        setCreativeTab(CreativeTabs.tabMaterials);
+        super(id, textureIndex);
         setCreativeTab(JaffasTechnic.CreativeTab);
     }
 
@@ -22,11 +19,4 @@ public class ItemTechnic extends ItemMonnefCore {
     public int getDefaultSheetNumber() {
         return 3;
     }
-
-    /*
-    @Override
-    public String getTextureFile() {
-        return JaffasTechnic.textureFile;
-    }
-    */
 }

@@ -542,8 +542,9 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(bottleMustard);
         createJaffaItem(bottleBrownMustard);
         createJaffaItem(mincedMeat);
+        JaffaItemInfo cleaverInfo = ItemManager.getItemInfo(meatCleaver);
         createJaffaItemManual(meatCleaver,
-                new ItemCleaver(ItemManager.getItemInfo(meatCleaver).getId(), JaffasFood.EnumToolMaterialCleaver));
+                new ItemCleaver(cleaverInfo.getId(), cleaverInfo.getIconIndex(), JaffasFood.EnumToolMaterialCleaver));
 
         createJaffaItemManual(sink, ItemSink.class);
 

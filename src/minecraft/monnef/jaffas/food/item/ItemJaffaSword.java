@@ -16,12 +16,13 @@ public class ItemJaffaSword extends ItemJaffaBase {
     private int weaponDamage;
     private final EnumToolMaterial toolMaterial;
 
-    public ItemJaffaSword(int ItemID, EnumToolMaterial material) {
+    public ItemJaffaSword(int ItemID, int textureOffset, EnumToolMaterial material) {
         super(ItemID);
         this.toolMaterial = material;
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.weaponDamage = 4 + material.getDamageVsEntity();
+        this.setCustomIconIndex(textureOffset);
     }
 
     // TODO: remove?
