@@ -58,7 +58,9 @@ public class TileEntityGeneratorRenderer extends TileEntitySpecialRenderer {
 
         generator.render(0.0625F, burning);
 
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        if (tile.worldObj != null) {
+            GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        }
         GL11.glPopMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 

@@ -28,7 +28,7 @@ public abstract class BlockMachine extends BlockPower {
     protected ForgeDirection defaultDirection = ForgeDirection.NORTH;
 
     public BlockMachine(int par1, int index, Material par3Material, boolean customRenderer) {
-        super(par1, par3Material);
+        super(par1, index, par3Material);
         this.customRenderer = customRenderer;
         if (useOwnRenderId()) {
             renderID = RenderingRegistry.getNextAvailableRenderId();

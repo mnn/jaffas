@@ -1,16 +1,22 @@
 package monnef.jaffas.power.item;
 
+import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.power.JaffasPower;
-import net.minecraft.item.Item;
+import monnef.jaffas.power.common.Reference;
 
-public class ItemPower extends Item {
+public class ItemPower extends ItemJaffaBase {
     public ItemPower(int id, int textureIndex) {
-        super(id);
-        //setIconIndex(textureIndex);
+        super(id, textureIndex);
         setCreativeTab(JaffasPower.CreativeTab);
     }
 
-    public String getTextureFile() {
-        return JaffasPower.textureFile;
+    @Override
+    public String getModName() {
+        return Reference.ModName;
+    }
+
+    @Override
+    public int getDefaultSheetNumber() {
+        return 5;
     }
 }

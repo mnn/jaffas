@@ -1,22 +1,13 @@
 package monnef.jaffas.power.block.common;
 
-import monnef.core.base.BlockMonnefCore;
+import monnef.jaffas.food.block.BlockJaffas;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.common.Reference;
 import net.minecraft.block.material.Material;
 
-public class BlockPower extends BlockMonnefCore {
-    public BlockPower(int id, Material material) {
-        super(id, material);
-        init();
-    }
-
+public class BlockPower extends BlockJaffas {
     public BlockPower(int id, int index, Material material) {
         super(id, index, material);
-        init();
-    }
-
-    private void init() {
         setCreativeTab(JaffasPower.CreativeTab);
     }
 

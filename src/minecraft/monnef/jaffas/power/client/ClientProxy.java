@@ -12,9 +12,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
-        MinecraftForgeClient.preloadTexture(JaffasPower.textureFile);
         JaffasPower.renderID = RenderingRegistry.getNextAvailableRenderId();
-        //RenderingRegistry.registerBlockHandler(new BlockRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGenerator.class, new TileEntityGeneratorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new TileEntityAntennaRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightningConductor.class, new TileEntityLightningConductorRenderer());
