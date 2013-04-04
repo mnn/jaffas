@@ -18,12 +18,6 @@ public class BlockXmasMulti extends BlockXmas {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata) {
-        return null;
-        //return this.blockIndexInTexture + metadata;
-    }
-
-    @Override
     public int damageDropped(int metadata) {
         return metadata;
     }
@@ -35,13 +29,4 @@ public class BlockXmasMulti extends BlockXmas {
             subItems.add(new ItemStack(this, 1, ix));
         }
     }
-
-    /*
-    public void registerNames() {
-        for (int i = 0; i < subNames.length; i++) {
-            //ItemStack multiBlockStack = new ItemStack(this, 1, i);
-            //LanguageRegistry.addName(multiBlockStack, subTitles[multiBlockStack.getItemDamage()]);
-            LanguageRegistry.instance().addStringLocalization(this.getBlockName() + "." + subNames[i] + ".name", subTitles[i]);
-        }
-    }  */
 }

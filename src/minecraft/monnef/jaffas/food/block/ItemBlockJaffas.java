@@ -36,6 +36,9 @@ public class ItemBlockJaffas extends ItemJaffaBase {
 
     @Override
     public String getUnlocalizedName(ItemStack itemstack) {
+        if (subNames == null) {
+            throw new NullPointerException("subnames not set!");
+        }
         String subName = itemstack.getItemDamage() >= subNames.length ? "STRING NOT FOUND" : subNames[itemstack.getItemDamage()];
         return getUnlocalizedName() + "." + subName;
     }

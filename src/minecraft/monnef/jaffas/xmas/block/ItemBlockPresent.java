@@ -8,25 +8,27 @@ import net.minecraft.util.MathHelper;
 
 public class ItemBlockPresent extends ItemBlockXmasMulti {
     public static final int count = 12;
+    public static final String[] titles = {"White Present", "Blue Present", "Yellow Present", "Black Present", "Magenta Present", "Present",
+            "Small White Present", "Small Blue Present", "Small Yellow Present", "Small Black Present", "Small Magenta Present", "Small Present"};
 
     public ItemBlockPresent(int id) {
         super(id);
+        setCustomIconIndex(0);
     }
 
     @Override
-    protected String[] getSubNames() {
+    public String[] getSubNames() {
         return new String[]{"white", "blue", "yellow", "black", "magenta", "question",
                 "whiteSmall", "blueSmall", "yellowSmall", "blackSmall", "magentaSmall", "questionSmall"};
     }
 
     @Override
-    protected String[] getSubTitles() {
-        return new String[]{"White Present", "Blue Present", "Yellow Present", "Black Present", "Magenta Present", "Present",
-                "Small White Present", "Small Blue Present", "Small Yellow Present", "Small Black Present", "Small Magenta Present", "Small Present"};
+    public String[] getSubTitles() {
+        return titles;
     }
 
     @Override
-    protected BlockXmasMulti getParentBlock() {
+    public BlockXmasMulti getParentBlock() {
         return JaffasXmas.BlockPresent;
     }
 
@@ -34,7 +36,6 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
     @Override
     public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, count);
-        return null;
-        //return this.iconIndex + (var2 % (count / 2));
+        return icons[(var2 % (count / 2))];
     }
 }

@@ -4,9 +4,11 @@ import monnef.jaffas.xmas.JaffasXmas;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -150,4 +152,8 @@ public class BlockPresent extends BlockXmasMulti {
         dropItems(par1World, par2, par3, par4);
     }
 
+    @Override
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
+        return Item.itemsList[this.blockID].getIconFromDamage(par2);
+    }
 }

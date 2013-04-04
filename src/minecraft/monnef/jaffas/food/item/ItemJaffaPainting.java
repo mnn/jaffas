@@ -1,7 +1,10 @@
 package monnef.jaffas.food.item;
 
+import monnef.core.base.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,8 +20,10 @@ public class ItemJaffaPainting extends Item {
         this.setCreativeTab(JaffasFood.CreativeTab);
     }
 
-    public String getTextureFile() {
-        return JaffasFood.textureFile[0];
+
+    @Override
+    public void updateIcons(IconRegister par1IconRegister) {
+        this.iconIndex = par1IconRegister.registerIcon(CustomIconHelper.generateId(Reference.ModName, 1, 1));
     }
 
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {

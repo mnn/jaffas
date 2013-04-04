@@ -3,13 +3,15 @@ package monnef.jaffas.xmas.block;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.item.ItemBlock;
+import monnef.core.base.CustomIconHelper;
+import monnef.jaffas.food.block.ItemBlockJaffas;
+import monnef.jaffas.xmas.common.Reference;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 
-public abstract class ItemBlockXmasMulti extends ItemBlock {
-    private String[] subNames;
+public abstract class ItemBlockXmasMulti extends ItemBlockJaffas {
     private String[] subTitles;
 
     public ItemBlockXmasMulti(int id) {
@@ -23,11 +25,6 @@ public abstract class ItemBlockXmasMulti extends ItemBlock {
     @Override
     public int getMetadata(int damageValue) {
         return damageValue;
-    }
-
-    @Override
-    public String getItemDisplayName(ItemStack itemstack) {
-        return getUnlocalizedName() + "." + subNames[itemstack.getItemDamage()];
     }
 
     public int getSubBlocksCount() {
@@ -45,14 +42,32 @@ public abstract class ItemBlockXmasMulti extends ItemBlock {
     @Override
     public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, subNames.length);
-        //TODO
-        // return this.iconIndex + var2;
-        return null;
+        return icons[var2];
     }
 
-    protected abstract String[] getSubNames();
+    @Override
+    public String getModName() {
+        return Reference.ModName;
+    }
 
-    protected abstract String[] getSubTitles();
+    @Override
+    public int getDefaultSheetNumber() {
+        return 4;
+    }
 
-    protected abstract BlockXmasMulti getParentBlock();
+    public abstract String[] getSubNames();
+
+    public abstract String[] getSubTitles();
+
+    public abstract BlockXmasMulti getParentBlock();
+
+    public Icon[] icons;
+
+    @Override
+    public void updateIcons(IconRegister register) {
+        icons = new Icon[getSubBlocksCount()];
+        for (int i = 0; i < icons.length; i++) {
+            icons[i] = register.registerIcon(CustomIconHelper.generateShiftedId(this, i));
+        }
+    }
 }

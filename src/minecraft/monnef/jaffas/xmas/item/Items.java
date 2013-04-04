@@ -17,6 +17,7 @@ public class Items extends ItemManagerAccessor {
 
     @Override
     public void InitializeItemInfos() {
+        setCurrentSheetNumber(4);
         AddItemInfo(JaffaItem.xcandyStarRaw, "starRaw", 18, "Raw Christmas Candy");
         AddItemInfo(JaffaItem.xcandyStar, "star", 6, "Unfinished Christmas Candy");
         AddItemInfo(JaffaItem.xcandyStarJam, "starJam", 7, "Christmas Candy");

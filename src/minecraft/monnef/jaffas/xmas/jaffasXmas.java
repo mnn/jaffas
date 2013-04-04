@@ -9,6 +9,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.IDProvider;
+import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -133,7 +134,7 @@ public class JaffasXmas extends jaffasMod {
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
 
         BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, ItemBlockPresent.count);
-        GameRegistry.registerBlock(BlockPresent, ItemBlockPresent.class, "blockPresent");
+        RegistryUtils.registerMultiBlock(BlockPresent, ItemBlockPresent.class, ItemBlockPresent.titles);
     }
 
     private void installRecipes() {
