@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.HashSet;
 
 import static monnef.core.MonnefCorePlugin.Log;
 
@@ -17,7 +16,7 @@ public class McpParser {
         methods = new MappingDictionary();
         fields = new MappingDictionary();
 
-        parseCsv(methods, path + "methods.csv", true);
+        parseCsv(database.get(MappedObjectType.METHOD), path + "methods.csv", false);
         parseCsv(database.get(MappedObjectType.FIELD), path + "fields.csv", false);
         parsePackaged(database, path + "packaged.srg");
     }
@@ -30,8 +29,6 @@ public class McpParser {
         if (classes.countKeys() > 0) {
             Log.printWarning("Map is not blank, eh?");
         }
-
-        MappingDictionary finalMethods = database.get(MappedObjectType.METHOD);
 
         FileInputStream inputStream = null;
         try {
@@ -47,17 +44,6 @@ public class McpParser {
                 } else {
                     if ("CL:".equals(chopped[0])) {
                         classes.put(chopped[2].replace('/', '.'), chopped[1].replace('/', '.'));
-                    } else if ("MD:".equals(chopped[0])) {
-                        String funcName = afterLastSlash(chopped[3]);
-                        String shortName = afterLastSlash(chopped[1]);
-                        if (methods.containsKey(funcName)) {
-                            HashSet<String> longNames = methods.get(funcName);
-                            for (String longName : longNames) {
-                                finalMethods.putQuietly(longName, shortName);
-                            }
-                        } else {
-                            Log.printFinest(String.format("Not found counterpart of [%s] funcName.", funcName));
-                        }
                     }
                 }
             }
@@ -91,10 +77,10 @@ public class McpParser {
                     //format:
                     //searge,name,side,desc
                     //func_70000_a,addServerStatsToSnooper,2,
-                    if (!reversed) {
-                        table.put(chopped[1], chopped[0]);
-                    } else {
+                    if (reversed) {
                         table.put(chopped[0], chopped[1]);
+                    } else {
+                        table.put(chopped[1], chopped[0]);
                     }
                 }
             }

@@ -87,11 +87,16 @@ public class MappingDictionary implements Serializable {
     }
 
     public boolean canBeTranslatedTo(String toTranslateName, String testedTranslatedName) {
+        boolean res;
         if (isRunningInObfuscatedMode()) {
-            return containsKey(toTranslateName) && get(toTranslateName).contains(testedTranslatedName);
+            res = containsKey(toTranslateName) && get(toTranslateName).contains(testedTranslatedName);
         } else {
-            return testedTranslatedName != null && testedTranslatedName.equals(toTranslateName);
+            res = testedTranslatedName != null && testedTranslatedName.equals(toTranslateName);
         }
+
+        // TODO comment this out!
+        Log.printFinest(String.format("canBeTranslatedTo(\"%s\", \"%s\") returns %s", toTranslateName, testedTranslatedName, res));
+        return res;
     }
 
     public boolean containsKey(String name) {
