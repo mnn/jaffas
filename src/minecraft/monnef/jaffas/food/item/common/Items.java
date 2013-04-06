@@ -271,7 +271,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(milkBoxFull, "Milk Box Full", 165, "Milk");
 
         AddItemInfo(crumpledPaper, "Crumpled Paper", 162, "Crumpled Paper");
-        AddItemInfo(scrap, "Scrap", 149, "Scrap");
+        AddItemInfo(scrap, "Scrap", 162, "Scrap");
 
         AddItemInfo(JaffaItem.chipsRaw, "Raw Chips", 166, "Raw Chips");
         AddItemInfo(JaffaItem.chips, "Chips", 167, "Chips");

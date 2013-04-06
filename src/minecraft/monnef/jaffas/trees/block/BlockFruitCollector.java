@@ -4,6 +4,7 @@ import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.food.block.BlockContainerJaffas;
 import monnef.jaffas.trees.JaffasTrees;
+import monnef.jaffas.trees.common.Reference;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +25,11 @@ public class BlockFruitCollector extends BlockContainerJaffas {
         setUnlocalizedName("blockFruitCollector");
         setCreativeTab(JaffasTrees.CreativeTab);
         setSheetNumber(1);
+    }
+
+    @Override
+    public String getModName() {
+        return Reference.ModName;
     }
 
     @Override

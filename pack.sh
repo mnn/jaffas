@@ -53,7 +53,7 @@ echo "Version detected: [$version]"
 #sleep 0.3
 
 echo -n Copying mod files...
-cp $binPath/* "$outtmp"
+cp -r $binPath/* "$outtmp"
 cp -r reobf/minecraft/{buildcraft,monnef,forestry,extrabiomes} "$outtmp"
 rm -fr "$outtmp/monnef/core"
 cp "lib/Jsoup_license.txt" "$outtmp"
@@ -85,6 +85,7 @@ cd "$core"
 zip -q -9r "../$outNameB.jar" ./*
 cd "$od"
 echo Done
+#core done
 
 echo -n Creating final zip...
 cd $dist
@@ -99,7 +100,6 @@ zip -q -9r "../$outNameZ.zip" ./*
 cd "$od"
 
 echo Done
-#core done
 
 
 

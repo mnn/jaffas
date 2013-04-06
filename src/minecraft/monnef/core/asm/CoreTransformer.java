@@ -25,14 +25,14 @@ public class CoreTransformer implements IClassTransformer {
 
         if (ObfuscationHelper.namesAreEqual(name, C_RENDER_GLOBAL)) {
             Log.printFine("Found RenderGlobal class.");
-            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
             ClassReader reader = new ClassReader(bytes);
             ClassVisitor visitor = new RenderGlobalVisitor(ASM4, writer);
             reader.accept(visitor, 0);
             return writer.toByteArray();
         } else if (ObfuscationHelper.namesAreEqual(name, C_WORLD_SERVER)) {
             Log.printFine("Found WorldServer class.");
-            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+            ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
             ClassReader reader = new ClassReader(bytes);
             ClassVisitor visitor = new WorldServerVisitor(ASM4, writer);
             reader.accept(visitor, 0);

@@ -12,7 +12,7 @@ import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.MCVersion;
 import static cpw.mods.fml.relauncher.IFMLLoadingPlugin.TransformerExclusions;
 
 @MCVersion
-@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE + ".utils", MonnefCorePlugin.CORE_NAMESPACE + ".asm", MonnefCorePlugin.CORE_NAMESPACE + ".asm.cloakHook"})
+@TransformerExclusions({MonnefCorePlugin.CORE_NAMESPACE + ".asm", MonnefCorePlugin.CORE_NAMESPACE + ".asm.cloakHook"})
 public class MonnefCorePlugin implements IFMLLoadingPlugin, IFMLCallHook {
     public static final String CORE_NAMESPACE = "monnef.core";
     public static final String CLASS_LOADER_TAG = "classLoader";
