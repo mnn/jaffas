@@ -1,3 +1,7 @@
+## 0.4.13
+- update to 1.5.1
+- trees and plants support fertilizers from other forge mods
+
 ## 0.4.12
 - added lightning conductor
 - added mini-locomotive
