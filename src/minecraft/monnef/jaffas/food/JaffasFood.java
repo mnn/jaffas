@@ -21,7 +21,6 @@ import extrabiomes.api.Api;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
-import monnef.core.utils.ExtrabiomesHelper;
 import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.block.BlockBoard;

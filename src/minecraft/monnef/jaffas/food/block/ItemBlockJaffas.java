@@ -2,6 +2,7 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.api.IItemBlock;
 import monnef.jaffas.food.item.ItemJaffaBase;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemBlockJaffas extends ItemJaffaBase {
+public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
     protected String[] subNames;
     protected boolean useItemName = false;
 
@@ -194,5 +195,10 @@ public class ItemBlockJaffas extends ItemJaffaBase {
         }
 
         return true;
+    }
+
+    @Override
+    public int getBlockIdCustom() {
+        return this.getBlockID();
     }
 }
