@@ -24,8 +24,13 @@ import static monnef.jaffas.food.JaffasFood.blockTable;
 import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
+import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 public class Recipes {
+    public static final String WOOD_PLANK = "plankWood";
+    public static final String WOOD_LOG = "logWood";
+    public static final String WOOD_SLAB = "slabWood";
+
     public static void install() {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(pastrySweet)), new ItemStack(Item.sugar),
                 new ItemStack(Item.egg), new ItemStack(getItem(butter)), new ItemStack(getItem(flour)), new ItemStack(getItem(flour)));
@@ -77,9 +82,8 @@ public class Recipes {
                 'B', new ItemStack(Item.slimeBall), 'I', new ItemStack(Item.ingotIron),
                 'S', new ItemStack(Item.silk), 'D', new ItemStack(Block.blockDiamond));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(malletHead)), "SP ", "PWP", " P ",
-                'S', new ItemStack(Item.silk), 'P', new ItemStack(Block.planks, 1, -1),
-                'W', new ItemStack(Block.wood, 1, -1));
+        addRecipe(new ShapedOreRecipe(new ItemStack(getItem(malletHead)), "SP ", "PWP", " P ",
+                'S', new ItemStack(Item.silk), 'P', WOOD_PLANK, 'W', WOOD_LOG));
 
         GameRegistry.addRecipe(new ItemStack(getItem(malletHeadStone)), "SC ", "COC", " CS",
                 'S', new ItemStack(Item.silk), 'C', new ItemStack(Block.cobblestone),
@@ -110,7 +114,7 @@ public class Recipes {
 
         GameRegistry.addRecipe(new ItemStack(getItem(browniesInTinRaw)), "P", "T", 'P', new ItemStack(getItem(browniesPastry)), 'T', new ItemStack(getItem(cakeTin)));
         GameRegistry.addSmelting(getItem(browniesInTinRaw).itemID, new ItemStack(getItem(browniesInTin)), 1F);
-        GameRegistry.addRecipe(new ItemStack(getItem(brownie), 15), "S", "T", 'S', new ItemStack(getItem(knifeKitchen), 1, -1), 'T', getItem(browniesInTin));
+        GameRegistry.addRecipe(new ItemStack(getItem(brownie), 15), "S", "T", 'S', new ItemStack(getItem(knifeKitchen), 1, WILDCARD_VALUE), 'T', getItem(browniesInTin));
         JaffaCraftingHandler.AddPersistentItem(browniesInTin, false, cakeTin);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(sweetRollRaw), 10), new ItemStack(getItem(puffPastry)), new ItemStack(Item.stick));
@@ -239,14 +243,12 @@ public class Recipes {
         //GameRegistry.addRecipe(new ItemStack(getItem(kettleWaterCold)), "W", "K", 'W', new ItemStack(Item.bucketWater), 'K', new ItemStack(getItem(kettle)));
         GameRegistry.addSmelting(getItem(kettleWaterCold).itemID, new ItemStack(getItem(kettleWaterHot)), 0);
         GameRegistry.addRecipe(new ItemStack(getItem(cupCoffee)), "K", "C", "U",
-                'K', new ItemStack(getItem(kettleWaterHot), 1, -1), 'C', new ItemStack(getItem(coffee)), 'U', new ItemStack(getItem(cup)));
+                'K', new ItemStack(getItem(kettleWaterHot), 1, WILDCARD_VALUE), 'C', new ItemStack(getItem(coffee)), 'U', new ItemStack(getItem(cup)));
         JaffaCraftingHandler.AddPersistentItem(kettleWaterHot, true, kettle);
 
         GameRegistry.addRecipe(new ItemStack(getItem(knifeKitchen)), "I  ", " I ", "  S", 'I', new ItemStack(Item.ingotIron), 'S', new ItemStack(Item.stick));
         JaffaCraftingHandler.AddPersistentItem(knifeKitchen, true, -1);
 
-        //GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatChopped), 4), "K", "M", 'K', new ItemStack(getItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(Item.porkRaw));
-        //GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.rollChopped), 1), "K", "M", 'K', new ItemStack(getItem(JaffaItem.knifeKitchen), 1, -1), 'M', new ItemStack(getItem(JaffaItem.roll)));
         RecipesBoard.addRecipeSimple(roll, rollChopped);
         RecipesBoard.addRecipe(new ItemStack(Item.porkRaw), new ItemStack(getItem(meatChopped)));
         RecipesBoard.addRecipe(new ItemStack(Item.beefRaw), new ItemStack(getItem(meatChopped)));
@@ -347,7 +349,7 @@ public class Recipes {
         GameRegistry.addRecipe(getItemStack(glassEmpty, 4), "G G", "GGG", 'G', Block.glass);
         GameRegistry.addShapelessRecipe(getItemStack(glassMilk, 2), getItem(milkBoxFull), getItem(glassEmpty), getItem(glassEmpty));
 
-        GameRegistry.addRecipe(getItemStack(woodenBowl, 2), "W W", " S ", 'W', new ItemStack(Block.planks, 1, -1), 'S', new ItemStack(Block.woodSingleSlab, 1, -1));
+        addRecipe(new ShapedOreRecipe(getItemStack(woodenBowl, 2), "W W", " S ", 'W', WOOD_PLANK, 'S', WOOD_SLAB));
         addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), Items.MUSHROOM, Items.MUSHROOM));
         GameRegistry.addSmelting(getItem(cookedMushroomsRaw).itemID, getItemStack(cookedMushrooms), 0.3f);
 
@@ -363,7 +365,7 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(strawberryIcecream), 4), "S", "C", 'S', new ItemStack(getItem(strawberryIcecreamFrozen)), 'C', new ItemStack(getItem(cone)));
 
         GameRegistry.addRecipe(new ItemStack(getItem(duckHelmet)), " S ", "S S", 'S', getItem(featherDuck));
-        GameRegistry.addRecipe(getItemStack(duckChest), "S S", "SCS", "CCC", 'S', getItem(featherDuck), 'C', new ItemStack(Block.cloth, 1, -1));
+        GameRegistry.addRecipe(getItemStack(duckChest), "S S", "SCS", "CCC", 'S', getItem(featherDuck), 'C', new ItemStack(Block.cloth, 1, WILDCARD_VALUE));
         GameRegistry.addRecipe(getItemStack(duckLeggins), "SCS", "S S", "C C", 'S', getItem(featherDuck), 'C', Item.leather);
         GameRegistry.addRecipe(getItemStack(duckBoots), "S S", "S S", 'S', getItem(featherDuck));
 
@@ -414,7 +416,7 @@ public class Recipes {
     }
 
     public static void addTableRecipe(ItemStack output, int color) {
-        GameRegistry.addRecipe(output, "CWC", "PPP", "PPP", 'C', new ItemStack(Block.cloth, 1, color), 'W', new ItemStack(Block.cloth, 1, 0), 'P', new ItemStack(Block.planks, 1, -1));
+        addRecipe(new ShapedOreRecipe(output, "CWC", "PPP", "PPP", 'C', new ItemStack(Block.cloth, 1, color), 'W', new ItemStack(Block.cloth, 1, 0), 'P', WOOD_PLANK));
     }
 
     public static void AddPieRecipe(Item lowCostIngredient, JaffaItem rawPie, PieType type, boolean isSweet, Item highCostIngredient) {
@@ -454,8 +456,8 @@ public class Recipes {
         addFryingPanRecipe(getItem(input), coupledRaw, coupled, output);
     }
 
-    private static ItemStack getItemStackAnyDamage(JaffaItem item) {
-        return new ItemStack(getItem(item), 1, -1);
+    public static ItemStack getItemStackAnyDamage(JaffaItem item) {
+        return new ItemStack(getItem(item), 1, WILDCARD_VALUE);
     }
 
     public static ItemStack getItemStack(JaffaItem item, int size) {
@@ -468,12 +470,13 @@ public class Recipes {
         return new ItemStack(getItem(item));
     }
 
-    private static void addRecipe(IRecipe recipe) {
+    public static void addRecipe(IRecipe recipe) {
         CraftingManager.getInstance().getRecipeList().add(recipe);
     }
 
-    private static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
-        instance.AddMalletShapedRecipe(output, input);
+    public static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
+        //GameRegistry.addRecipe(output, "M", "O", 'M', new ItemStack(getItem(itemManager.mallets[i]), 1, WILDCARD_VALUE), 'O', input);
+        addRecipe(new ShapedOreRecipe(output, "M", "O", 'M', Items.MALLET, 'O', input));
     }
 
     private static Item getItem(JaffaItem item) {

@@ -1,3 +1,9 @@
+## 0.4.14
+- added support for modded wood and planks
+- added config option to disable achievements
+- fixed recipes with "any damage"
+- fixed server crash
+
 ## 0.4.13
 - update to 1.5.1
 - trees and plants support fertilizers from other forge mods

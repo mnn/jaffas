@@ -166,6 +166,7 @@ public class BlockJaffaCrops extends BlockFlower {
     private Icon[] icons;
 
     @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister register) {
         icons = new Icon[phasesMax + 1];
         for (int i = 0; i <= phasesMax; i++) {

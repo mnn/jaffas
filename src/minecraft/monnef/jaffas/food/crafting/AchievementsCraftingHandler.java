@@ -2,6 +2,7 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.Block;
@@ -27,6 +28,7 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
     private static int idCounter = 9790;
 
     public static void init() {
+        if (JaffasFood.achievementsDisabled) return;
         createAchievements();
         createPage();
     }
@@ -97,13 +99,14 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
     public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) {
         Achievement achiev = craftAchievement.get(item.itemID);
         if (achiev != null) {
-            player.addStat(achiev, 1);
+            if (player != null) {
+                player.addStat(achiev, 1);
+            }
         }
     }
 
     @Override
     public void onSmelting(EntityPlayer player, ItemStack item) {
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 }
 

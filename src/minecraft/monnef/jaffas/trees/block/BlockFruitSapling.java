@@ -90,6 +90,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
         return Block.sapling.getBlockTextureFromSide(1);
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void registerIcons(IconRegister iconRegister) {
     }

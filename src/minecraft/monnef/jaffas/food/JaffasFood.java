@@ -87,7 +87,6 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
@@ -218,6 +217,8 @@ public class JaffasFood extends jaffasMod {
     public static boolean genDisabled;
     public static boolean genDisabledForNonStandardDimensions;
 
+    public static boolean achievementsDisabled;
+
     public boolean IsForestryDetected() {
         return this.forestryDetected;
     }
@@ -310,6 +311,7 @@ public class JaffasFood extends jaffasMod {
             ignoreBuildCraftsTables = config.get(Configuration.CATEGORY_GENERAL, "ignoreBuildCraftsTables", true, "BC tables has broken recipes handling - wrong stack size or crash on craft").getBoolean(true);
             genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
             genDisabledForNonStandardDimensions = config.get(Configuration.CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
+            achievementsDisabled = config.get(Configuration.CATEGORY_GENERAL, "achievementsDisabled", false).getBoolean(false);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -375,7 +377,9 @@ public class JaffasFood extends jaffasMod {
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
         GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
-        GameRegistry.registerCraftingHandler(new AchievementsCraftingHandler());
+        if (!achievementsDisabled) {
+            GameRegistry.registerCraftingHandler(new AchievementsCraftingHandler());
+        }
 
         proxy.registerRenderThings();
         GameRegistry.registerFuelHandler(new FuelHandler());
@@ -479,7 +483,7 @@ public class JaffasFood extends jaffasMod {
     private void printInitializedMessage() {
         Log.printInfo("Mod 'Jaffas and more!' successfully initialized");
         Log.printInfo("created by monnef and Tiartyos");
-        Log.printInfo("version: " + Reference.Version + " ; " + monnef.core.Reference.URL);
+        Log.printInfo("version: " + Reference.Version + " ; " + monnef.core.Reference.URL_JAFFAS);
 
         Log.printInfo("enabled modules: " + Joiner.on(", ").join(moduleManager.CompileEnabledModules()));
         Log.printInfo("detected mods: " + Joiner.on(", ").join(compileDetectedMods()));
@@ -520,12 +524,6 @@ public class JaffasFood extends jaffasMod {
         if (debug) {
             manager.registerCommand(new CommandJaffaHunger());
             manager.registerCommand(new CommandFridgeDebug());
-        }
-    }
-
-    public void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
-        for (int i = 0; i < itemManager.mallets.length; i++) {
-            GameRegistry.addRecipe(output, "M", "O", 'M', new ItemStack(getItem(itemManager.mallets[i]), 1, -1), 'O', input);
         }
     }
 

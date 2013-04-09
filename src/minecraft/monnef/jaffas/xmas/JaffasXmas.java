@@ -13,6 +13,7 @@ import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.jaffasMod;
@@ -27,11 +28,11 @@ import monnef.jaffas.xmas.item.ItemGiantCandy;
 import monnef.jaffas.xmas.item.ItemXmas;
 import monnef.jaffas.xmas.item.ItemXmasFood;
 import monnef.jaffas.xmas.item.Items;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.logging.Level;
 
@@ -138,8 +139,8 @@ public class JaffasXmas extends jaffasMod {
     }
 
     private void installRecipes() {
-        GameRegistry.addRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", "WB ", 'W',
-                new ItemStack(Block.planks, 1, -1), 'R', new ItemStack(Item.dyePowder, 1, 1), 'B', new ItemStack(Item.dyePowder, 1, 15));
+        Recipes.addRecipe(new ShapedOreRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", "WB ", 'W',
+                Recipes.WOOD_PLANK, 'R', new ItemStack(Item.dyePowder, 1, 1), 'B', new ItemStack(Item.dyePowder, 1, 15)));
 
         GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Item.dyePowder, 1, 1),
                 'S', Item.silk, 'P', Item.paper);

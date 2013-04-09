@@ -24,6 +24,7 @@ import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
+import static monnef.jaffas.food.crafting.Recipes.getItemStackAnyDamage;
 import static monnef.jaffas.food.item.JaffaItem.*;
 
 public class Items extends ItemManagerAccessor {
@@ -32,6 +33,7 @@ public class Items extends ItemManagerAccessor {
     public static final String JAFFA_FILLED = "jaffasFilled";
     public static final String MUSHROOM = "jaffasMushroom";
     public static final String EGG = "jaffasEgg";
+    public static final String MALLET = "jaffasMallet";
 
     public enum Juice {
         LEMON(JaffaItem.juiceLemon, 181, "Lemon Juice", JaffaItem.glassLemon, 186, ""),
@@ -706,5 +708,10 @@ public class Items extends ItemManagerAccessor {
 
         OreDictionary.registerOre(EGG, Item.egg);
         OreDictionary.registerOre(EGG, getItem(duckEgg));
+
+        OreDictionary.registerOre(MALLET, getItemStackAnyDamage(mallet));
+        OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletStone));
+        OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletIron));
+        OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletDiamond));
     }
 }

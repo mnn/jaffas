@@ -56,8 +56,6 @@ public class JaffasPower extends jaffasMod {
     private static IDProvider idProvider = new IDProvider(3750, 26644);
     private boolean debug;
 
-    public static String textureFile = "/jaffas_05.png";
-
     public static JaffaCreativeTab CreativeTab;
 
     private int ItemDebugID;
