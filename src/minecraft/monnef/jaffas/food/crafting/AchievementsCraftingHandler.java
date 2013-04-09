@@ -2,6 +2,7 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.core.utils.CallerClassNameFinder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.getItem;
 
 public class AchievementsCraftingHandler implements ICraftingHandler {
@@ -26,11 +28,16 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
 
     private static HashMap<Integer, Achievement> craftAchievement = new HashMap<Integer, Achievement>();
     private static int idCounter = 9790;
+    private static boolean initialized = false;
 
     public static void init() {
         if (JaffasFood.achievementsDisabled) return;
+        if (initialized) {
+            Log.printSevere("AchievementsCraftingHandler reinitialization by " + CallerClassNameFinder.getCallerClassName(1));
+        }
         createAchievements();
         createPage();
+        initialized = true;
     }
 
     private static void createAchievements() {
