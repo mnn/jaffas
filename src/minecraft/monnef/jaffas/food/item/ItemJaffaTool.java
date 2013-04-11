@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.item;
 
 import monnef.jaffas.food.JaffasFood;

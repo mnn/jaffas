@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.xmas.item;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;

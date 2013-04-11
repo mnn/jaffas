@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;

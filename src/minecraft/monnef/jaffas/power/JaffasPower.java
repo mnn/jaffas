@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.power;
 
 import cpw.mods.fml.common.FMLLog;

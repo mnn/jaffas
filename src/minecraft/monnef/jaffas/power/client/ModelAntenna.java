@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.power.client;
 
 // Date: 19.1.2013 23:45:25

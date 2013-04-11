@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.technic.item;
 
 public class ItemCentralUnit extends ItemTechnicMulti {

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.registry.GameRegistry;

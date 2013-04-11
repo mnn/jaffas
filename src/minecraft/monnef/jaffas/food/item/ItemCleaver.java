@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.item;
 
 import monnef.jaffas.food.JaffasFood;
@@ -7,10 +11,6 @@ public class ItemCleaver extends ItemJaffaSword {
     public ItemCleaver(int ItemID, int texture, EnumToolMaterial material) {
         super(ItemID, texture, material);
         this.setCreativeTab(JaffasFood.CreativeTab);
-    }
-
-    public String getTextureFile() {
-        return JaffasFood.textureFile[0];
     }
 }
 

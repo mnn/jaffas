@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.server;
 
 import cpw.mods.fml.common.IPlayerTracker;

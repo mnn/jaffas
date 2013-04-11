@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.xmas.client;
 
 // Date: 30.11.2012 17:56:00

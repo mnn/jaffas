@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.client;
 // Date: 27.11.2012 22:26:26
 // Template version 1.1

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food;
 
 import com.google.common.base.Joiner;
@@ -202,7 +206,6 @@ public class JaffasFood extends jaffasMod {
     public Items items;
     public static CustomLogger Log = new CustomLogger("Jaffas");
     boolean forestryDetected;
-    public static String[] textureFile = new String[]{"/jaffas_01_a.png", "/jaffas_01_b.png"};
     boolean extraBiomes;
 
     public static boolean spawnStonesEnabled = true;

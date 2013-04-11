@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.power.api;
 
 import net.minecraft.nbt.NBTTagCompound;

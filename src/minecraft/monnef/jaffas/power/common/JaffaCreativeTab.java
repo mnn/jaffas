@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.power.common;
 
 import monnef.jaffas.food.common.ModuleManager;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.block;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -103,7 +107,8 @@ public class TileEntityPie extends TileEntity {
             tag.setBoolean("piece" + i, pieces[i]);
         }
         tag.setByte("rotation", (byte) rotation);
-        tag.setByte("type", (byte) type.ordinal());
+        int typeNum = type != null ? type.ordinal() : 0;
+        tag.setByte("type", (byte) typeNum);
     }
 
     private void loadInfoFromNBT(NBTTagCompound tag) {

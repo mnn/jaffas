@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.trees.item;
 
 import cpw.mods.fml.relauncher.Side;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.technic.item;
 
 import monnef.jaffas.technic.JaffasTechnic;

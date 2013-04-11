@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.trees.common;
 
 import net.minecraft.item.ItemStack;

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.trees.client;
 
 import monnef.jaffas.trees.block.ContainerFruitCollector;

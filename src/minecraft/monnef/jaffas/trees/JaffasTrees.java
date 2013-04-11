@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.trees;
 
 import cpw.mods.fml.common.FMLLog;
@@ -57,8 +61,8 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
 
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -455,22 +459,25 @@ public class JaffasTrees extends jaffasMod {
         GameRegistry.registerBlock(leaves.saplingBlock, saplingBlockName);
         LanguageRegistry.addName(leaves.saplingBlock, "Fruit Sapling");
 
-        for (int j = 0; j < subCount; j++) {
-            LanguageRegistry.instance().addStringLocalization("tile.fruitSapling" + i + "." + j + ".name", seedsNames[j + i * 4]);
-        }
         leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
-        leaves.seedsItem.setFirstInSequence();
-        leaves.seedsItem.setUnlocalizedName("fruitSeeds" + i);
         leaves.seedsItem.serialNumber = i;
-        //LanguageRegistry.addName(leaves.seedsItem, "Fruit Seeds");
+        for (int j = 0; j < subCount; j++) {
+            String combinedName = leaves.seedsItem.getUnlocalizedName() + "." + j + ".name";
+            LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
+        }
 
         if (i == 0) {
+            leaves.seedsItem.setFirstInSequence();
             // bonemeal event
             MinecraftForge.EVENT_BUS.register(leaves.saplingBlock);
         }
     }
 
     public static ItemStack getTreeSeeds(int type) {
+        if (type == 0 || type >= JaffasTrees.treeTypes.length) {
+            throw new InvalidParameterException("type = " + type);
+        }
+
         ItemStack seed;
         ItemFruitSeeds item = JaffasTrees.leavesList.get(type / 4).seedsItem;
         int meta = type % 4;

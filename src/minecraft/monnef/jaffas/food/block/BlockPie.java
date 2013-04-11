@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
@@ -80,7 +84,8 @@ public class BlockPie extends BlockJaffas {
         return true;
     }
 
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving) {
+    @Override
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLiving par5EntityLiving, ItemStack stack) {
         int rotation = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         if (!par1World.isRemote) {
@@ -90,6 +95,7 @@ public class BlockPie extends BlockJaffas {
         }
     }
 
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         TileEntityPie te = (TileEntityPie) par1World.getBlockTileEntity(par2, par3, par4);
         te.eatPiece(par5EntityPlayer);
@@ -97,6 +103,7 @@ public class BlockPie extends BlockJaffas {
     }
 
     //from cake block
+    @Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         if (!this.canBlockStay(par1World, par2, par3, par4)) {
             this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
@@ -104,10 +111,12 @@ public class BlockPie extends BlockJaffas {
         }
     }
 
+    @Override
     public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
         return par1World.getBlockMaterial(par2, par3 - 1, par4).isSolid();
     }
 
+    @Override
     public int idDropped(int par1, Random par2Random, int par3) {
         return 0;
     }

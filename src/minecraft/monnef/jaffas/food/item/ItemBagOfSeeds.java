@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.PlayerHelper;
@@ -19,10 +23,6 @@ public class ItemBagOfSeeds extends ItemJaffaBase {
         setMaxStackSize(1);
         this.setCreativeTab(CreativeTabs.tabMaterials);
         this.setCreativeTab(JaffasFood.CreativeTab);
-    }
-
-    public String getTextureFile() {
-        return JaffasFood.textureFile[0];
     }
 
     public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {

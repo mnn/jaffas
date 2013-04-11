@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.power.block.common;
 
 import monnef.jaffas.power.api.IPowerConsumer;

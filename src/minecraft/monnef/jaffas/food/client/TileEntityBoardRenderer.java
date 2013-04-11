@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.TileEntityBoard;

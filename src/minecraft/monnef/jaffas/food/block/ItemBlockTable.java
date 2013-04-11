@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2013 monnef.
+ */
+
 package monnef.jaffas.food.block;
 
 public class ItemBlockTable extends ItemBlockJaffas {
