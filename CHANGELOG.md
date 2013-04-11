@@ -1,3 +1,7 @@
+## 0.4.15
+- fixed pies (rendering and saving)
+- fixed names of tree seeds
+
 ## 0.4.14
 - added support for modded wood and planks
 - added config option to disable achievements
