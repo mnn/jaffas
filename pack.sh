@@ -9,6 +9,7 @@ dist=$output/dist
 echo -n Preparing...
 
 od=`pwd`
+cd "$od"
 
 if [ ${#output} -lt 5 ]; then
 	echo "weird string in output directory variable. halting for safety reasons."
@@ -30,23 +31,13 @@ touch "$outtmp/.placeholder"
 echo Done
 echo -n Parsing version...
 
-ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/core/Reference.java`
-if [ $? -ne 0 ]; then
-	echo "Cannot determine version"
-	exit 2
-fi
+ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/jaffas/food/common/Reference.java`
+test $? -ne 0 && { echo "Cannot determine version" ; exit 2 ; }
 
 version=`sed -r 's/^.*"(.*)".*;$/\1/' <<< "$ver_line"`
-if [ $? -ne 0 ]; then
-	echo "Cannot parse version"
-	exit 2
-fi
+test $? -ne 0 && { echo "Cannot parse version" ; exit 2 ; }
 
-if [ ${#version} -gt 8 ]; then
-	echo "Parsed version is suspiciously long, stopping"
-	exit 2
-fi
-
+test ${#version} -gt 8 && { echo "Parsed version is suspiciously long, stopping" ; exit 2 ; }
 
 echo Done
 echo "Version detected: [$version]"
@@ -68,6 +59,18 @@ cd "$od"
 echo Done
 #jar packing done
 
+#core version
+echo -n Parsing core version...
+ver_line=`grep -Ei 'String +Version' src/minecraft/monnef/core/Reference.java`
+test $? -ne 0 && { echo "Cannot determine version" ; exit 2 ; }
+
+version_core=`sed -r 's/^.*"(.*)".*;$/\1/' <<< "$ver_line"`
+test $? -ne 0 && { echo "Cannot parse version" ; exit 2 ; }
+
+test ${#version_core} -gt 8 && { echo "Parsed version is suspiciously long, stopping" ; exit 2 ; }
+echo Done
+echo "Version detected: [$version_core]"
+
 #prepare core
 echo -n Copying core files...
 core2="$core/monnef"
@@ -80,25 +83,33 @@ if [ $? -ne 0 ]; then
 	exit 3
 fi
 
-outNameB="mod_monnef_core_$version"
+outNameB="mod_monnef_core_$version_core"
 cd "$core"
 zip -q -9r "../$outNameB.jar" ./*
 cd "$od"
 echo Done
 #core done
 
-echo -n Creating final zip...
+echo -n Creating final zips...
 cd $dist
-mkdir coremods
 mkdir mods
 cd "$od"
 cp "$output/$outName.jar" "$dist/mods"
-cp "$output/$outNameB.jar" "$dist/coremods"
 cd "$dist"
 outNameZ="mod_jaffas_${version}_packed"
 zip -q -9r "../$outNameZ.zip" ./*
 cd "$od"
 
+cd $dist
+rm -fr mods
+mkdir coremods
+cd "$od"
+cp "$output/$outNameB.jar" "$dist/coremods"
+cd "$dist"
+outNameZ="monnef_core_${version_core}_packed"
+zip -q -9r "../$outNameZ.zip" ./*
+
+cd "$od"
 echo Done
 
 
