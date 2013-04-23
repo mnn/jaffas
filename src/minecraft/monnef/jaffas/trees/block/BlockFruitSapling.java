@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
@@ -35,11 +36,17 @@ import static net.minecraftforge.common.EnumPlantType.Plains;
 
 public class BlockFruitSapling extends BlockJaffas implements IPlantable {
     public static Random rand = new Random();
+    private final int subCount;
     public int serialNumber = -1;
+
+    public int getSubCount() {
+        return subCount;
+    }
 
     @ForgeSubscribe
     public void onBonemeal(BonemealEvent event) {
-        if (!(Block.blocksList[event.ID] instanceof BlockFruitSapling)) {
+        Block bonemealedBlock = Block.blocksList[event.ID];
+        if (bonemealedBlock == null || bonemealedBlock.blockID != this.blockID) {
             return;
         }
         if (JaffasTrees.bonemealingAllowed) {
@@ -50,8 +57,9 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
         }
     }
 
-    public BlockFruitSapling(int blockId, int blockIndexInTexture) {
+    public BlockFruitSapling(int blockId, int blockIndexInTexture, int subCount) {
         super(blockId, blockIndexInTexture, Material.plants);
+        this.subCount = subCount;
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         this.setCreativeTab(CreativeTabs.tabDecorations);
@@ -127,15 +135,12 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
      */
     @Override
     public int damageDropped(int par1) {
-        return BlockFruitLeaves.getLeavesType(par1);
+        return par1;
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
-/*        par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 1));
-        par3List.add(new ItemStack(par1, 1, 2));
-        par3List.add(new ItemStack(par1, 1, 3));*/
+        for (int i = 0; i < subCount; i++) par3List.add(new ItemStack(par1, 1, i));
     }
 
     @Override

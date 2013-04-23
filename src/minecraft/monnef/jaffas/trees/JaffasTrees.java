@@ -46,6 +46,7 @@ import monnef.jaffas.trees.common.EatableType;
 import monnef.jaffas.trees.common.ItemFromFruitResult;
 import monnef.jaffas.trees.common.JaffaCropProvider;
 import monnef.jaffas.trees.common.LeavesInfo;
+import monnef.jaffas.trees.item.ItemBlockFruitSapling;
 import monnef.jaffas.trees.item.ItemFruitSeeds;
 import monnef.jaffas.trees.item.ItemJaffaBerry;
 import monnef.jaffas.trees.item.ItemJaffaBerryEatable;
@@ -121,6 +122,7 @@ public class JaffasTrees extends jaffasMod {
 
     public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum", "coconut"};
     public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds", "Coconut Seeds"};
+    public static final String[] saplingNames = new String[]{"[UNUSED]", "Apple Sapling", "Cocoa Sapling", "Vanilla Sapling", "Lemon Sapling", "Orange Sapling", "Plum Sapling", "Coconut Sapling"};
 
     private static IGuiHandler guiHandler;
 
@@ -452,12 +454,12 @@ public class JaffasTrees extends jaffasMod {
         RegistryUtils.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
-        leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15);
+        leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15, subCount);
         leaves.saplingBlock.serialNumber = i;
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(CreativeTab);
-        GameRegistry.registerBlock(leaves.saplingBlock, saplingBlockName);
-        LanguageRegistry.addName(leaves.saplingBlock, "Fruit Sapling");
+        RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
+
 
         leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
         leaves.seedsItem.serialNumber = i;
@@ -466,11 +468,17 @@ public class JaffasTrees extends jaffasMod {
             LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
         }
 
+        // bonemeal event
+        MinecraftForge.EVENT_BUS.register(leaves.saplingBlock);
         if (i == 0) {
             leaves.seedsItem.setFirstInSequence();
-            // bonemeal event
-            MinecraftForge.EVENT_BUS.register(leaves.saplingBlock);
         }
+    }
+
+    public static String[] constructSubNames(String[] names, int groupNumber, int subCount) {
+        String[] res = new String[subCount];
+        System.arraycopy(names, groupNumber * 4, res, 0, subCount);
+        return res;
     }
 
     public static ItemStack getTreeSeeds(int type) {
