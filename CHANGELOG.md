@@ -1,3 +1,8 @@
+## 0.4.16
+- separated core
+- rewritten tree saplings to support custom titles
+- fixed tree bonemealing to not change type of tree
+
 ## 0.4.15
 - fixed pies (rendering and saving)
 - fixed names of tree seeds
