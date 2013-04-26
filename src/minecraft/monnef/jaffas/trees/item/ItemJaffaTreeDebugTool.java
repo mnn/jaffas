@@ -17,7 +17,7 @@ public class ItemJaffaTreeDebugTool extends ItemTrees {
     }
 
     @Override
-    public void updateIcons(IconRegister iconRegister) {
-        this.iconIndex = Item.sugar.getIconFromDamage(0);
+    public void registerIcons(IconRegister iconRegister) {
+        this.itemIcon = Item.sugar.getIconFromDamage(0);
     }
 }

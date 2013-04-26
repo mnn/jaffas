@@ -94,7 +94,7 @@ public class Recipes {
                 'O', new ItemStack(Block.stone));
 
         GameRegistry.addRecipe(new ItemStack(getItem(malletHeadIron)), "SOS", "OBO", "SOS",
-                'S', new ItemStack(Item.silk), 'B', new ItemStack(Block.blockSteel),
+                'S', new ItemStack(Item.silk), 'B', new ItemStack(Block.blockIron),
                 'O', new ItemStack(Block.stone));
 
         JaffaCraftingHandler.AddPersistentItem(mallet, true, -1);
@@ -188,7 +188,7 @@ public class Recipes {
         RecipesFridge.AddRecipe(getItem(chocolateIcecreamRaw).itemID, new ItemStack(getItem(chocolateIcecreamFrozen)));
 
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
-            GameRegistry.addRecipe(new ItemStack(instance.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockSteel), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
+            GameRegistry.addRecipe(new ItemStack(instance.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockIron), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(donutRaw)), " P ", "P P", " P ", 'P', new ItemStack(getItem(pastrySweet)));

@@ -170,7 +170,7 @@ public class JaffasPower extends jaffasMod {
 
     private void installRecipes() {
         if (lightningConductorEnabled && ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
-            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockSteel);
+            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockIron);
         }
     }
 }

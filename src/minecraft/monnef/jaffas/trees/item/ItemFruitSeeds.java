@@ -39,7 +39,7 @@ public class ItemFruitSeeds extends ItemBlockTrees {
     }
 
     @Override
-    public void updateIcons(IconRegister register) {
+    public void registerIcons(IconRegister register) {
         icons = new Icon[subCount];
         for (int i = 0; i < icons.length; i++) {
             if (firstInSequence && i == 0) continue;

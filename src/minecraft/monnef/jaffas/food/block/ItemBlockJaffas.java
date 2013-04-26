@@ -60,13 +60,13 @@ public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public int getSpriteNumber() {
-        return Block.blocksList[this.blockID].func_94327_t_() != null ? 1 : 0;
+        return Block.blocksList[this.blockID].getItemIconName() != null ? 1 : 0;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIconFromDamage(int par1) {
-        return this.field_94588_b != null ? this.field_94588_b : Block.blocksList[this.blockID].getBlockTextureFromSideAndMetadata(1, par1);
+        return this.field_94588_b != null ? this.field_94588_b : Block.blocksList[this.blockID].getIcon(1, par1);
     }
 
     @Override
@@ -180,8 +180,9 @@ public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
     }
 
     @SideOnly(Side.CLIENT)
-    public void updateIcons(IconRegister par1IconRegister) {
-        String s = Block.blocksList[this.blockID].func_94327_t_();
+    @Override
+    public void registerIcons(IconRegister par1IconRegister) {
+        String s = Block.blocksList[this.blockID].getItemIconName();
 
         if (s != null) {
             this.field_94588_b = par1IconRegister.registerIcon(s);

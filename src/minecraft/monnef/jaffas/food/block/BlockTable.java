@@ -42,7 +42,7 @@ public class BlockTable extends BlockJaffas {
     }
 
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int side, int meta) {
+    public Icon getIcon(int side, int meta) {
         ForgeDirection s = ForgeDirection.getOrientation(side);
 
         switch (s) {

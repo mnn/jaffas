@@ -68,7 +68,7 @@ public abstract class ItemBlockXmasMulti extends ItemBlockJaffas {
     public Icon[] icons;
 
     @Override
-    public void updateIcons(IconRegister register) {
+    public void registerIcons(IconRegister register) {
         icons = new Icon[getSubBlocksCount()];
         for (int i = 0; i < icons.length; i++) {
             icons[i] = register.registerIcon(CustomIconHelper.generateShiftedId(this, i));

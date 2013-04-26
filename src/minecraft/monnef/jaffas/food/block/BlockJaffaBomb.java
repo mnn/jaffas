@@ -41,7 +41,7 @@ public class BlockJaffaBomb extends BlockJaffas {
      * Returns the block texture based on the side being looked at.  Args: side
      */
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2) {
+    public Icon getIcon(int par1, int par2) {
         return (par1 == 0 || par1 == 1) ? specialTexture : blockIcon;
     }
 

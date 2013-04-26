@@ -46,8 +46,8 @@ public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
     }
 
     @Override
-    public void updateIcons(IconRegister par1IconRegister) {
+    public void registerIcons(IconRegister par1IconRegister) {
         String id = CustomIconHelper.generateId(Reference.ModName, 1, customIconIndex);
-        iconIndex = par1IconRegister.registerIcon(id);
+        itemIcon = par1IconRegister.registerIcon(id);
     }
 }

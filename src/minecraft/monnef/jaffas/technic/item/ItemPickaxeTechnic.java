@@ -21,7 +21,7 @@ public class ItemPickaxeTechnic extends ItemPickaxe {
     }
 
     @Override
-    public void updateIcons(IconRegister par1IconRegister) {
-        this.iconIndex = par1IconRegister.registerIcon(CustomIconHelper.generateId(Reference.ModName, 3, textureOffset));
+    public void registerIcons(IconRegister par1IconRegister) {
+        this.itemIcon = par1IconRegister.registerIcon(CustomIconHelper.generateId(Reference.ModName, 3, textureOffset));
     }
 }

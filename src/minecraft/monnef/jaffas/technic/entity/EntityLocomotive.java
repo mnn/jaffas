@@ -38,6 +38,11 @@ public class EntityLocomotive extends EntityMinecart {
         tag.setBoolean(REVERSE_TAG_NAME, isInReverse);
     }
 
+    @Override
+    public int getMinecartType() {
+        return 297;
+    }
+
     protected void readEntityFromNBT(NBTTagCompound tag) {
         super.readEntityFromNBT(tag);
         this.pushX = tag.getDouble("PushX");
@@ -128,8 +133,8 @@ public class EntityLocomotive extends EntityMinecart {
     }
 
     @Override
-    protected void func_94091_a(int par1, int par2, int par3, double par4, double par6, int par8, int par9) {
-        super.func_94091_a(par1, par2, par3, par4, par6, par8, par9);
+    protected void updateOnTrack(int par1, int par2, int par3, double par4, double par6, int par8, int par9) {
+        super.updateOnTrack(par1, par2, par3, par4, par6, par8, par9);
         double d2 = this.pushX * this.pushX + this.pushZ * this.pushZ;
 
         if (d2 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {
@@ -148,7 +153,7 @@ public class EntityLocomotive extends EntityMinecart {
     }
 
     @Override
-    protected void func_94101_h() {
+    protected void applyDrag() {
         double d0 = this.pushX * this.pushX + this.pushZ * this.pushZ;
 
         if (d0 > 1.0E-4D) {
@@ -167,7 +172,7 @@ public class EntityLocomotive extends EntityMinecart {
             this.motionZ *= 0.9800000190734863D;
         }
 
-        super.func_94101_h();
+        super.applyDrag();
     }
 
     protected boolean isMinecartPowered() {
@@ -183,12 +188,12 @@ public class EntityLocomotive extends EntityMinecart {
     }
 
     @Override
-    public Block func_94093_n() {
+    public Block getDefaultDisplayTile() {
         return Block.furnaceBurning;
     }
 
     @Override
-    public int func_94097_p() {
+    public int getDefaultDisplayTileData() {
         return 2;
     }
 }

@@ -548,7 +548,7 @@ public class JaffasTrees extends jaffasMod {
 
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
             GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",
-                    'I', new ItemStack(Block.blockSteel), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
+                    'I', new ItemStack(Block.blockIron), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
         }
 
         installFruitSeedsRecipes();
