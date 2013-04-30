@@ -5,6 +5,7 @@
 package monnef.jaffas.food.entity;
 
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMate;
@@ -19,6 +20,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
+import powercrystals.minefactoryreloaded.api.MobDrop;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.item.JaffaItem.duck;
@@ -34,7 +41,10 @@ public class EntityDuck extends EntityAnimal {
     public float field_70888_h;
     public float field_70889_i = 1.0F;
 
-    protected int itemToDrop = getItem(featherDuck).itemID;
+    public static final int feather = getItem(featherDuck).itemID;
+    public static final int egg = getItem(duckEgg).itemID;
+    public static final int rawMeat = getItem(duckRaw).itemID;
+    public static final int cookedMeat = getItem(duck).itemID;
 
     /**
      * The time until the next egg is spawned.
@@ -104,7 +114,7 @@ public class EntityDuck extends EntityAnimal {
             if (!isFeather)
                 this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 
-            this.dropItem(getItem(isFeather ? featherDuck : duckEgg).itemID, 1);
+            this.dropItem(isFeather ? feather : egg, 1);
 
             this.timeUntilNextEgg = this.rand.nextInt(8000) + 4000;
         }
@@ -154,7 +164,7 @@ public class EntityDuck extends EntityAnimal {
      */
     @Override
     protected int getDropItemId() {
-        return itemToDrop;
+        return feather;
     }
 
     /**
@@ -165,13 +175,13 @@ public class EntityDuck extends EntityAnimal {
         int var3 = this.rand.nextInt(3) + this.rand.nextInt(1 + fortune);
 
         for (int var4 = 0; var4 < var3; ++var4) {
-            this.dropItem(itemToDrop, 1);
+            this.dropItem(feather, 1);
         }
 
         if (this.isBurning()) {
-            this.dropItem(getItem(duck).itemID, 1);
+            this.dropItem(cookedMeat, 1);
         } else {
-            this.dropItem(getItem(duckRaw).itemID, 1);
+            this.dropItem(rawMeat, 1);
         }
     }
 
@@ -179,10 +189,6 @@ public class EntityDuck extends EntityAnimal {
         return new EntityDuck(this.worldObj);
     }
 
-    /**
-     * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
-     * the animal type)
-     */
     @Override
     public boolean isBreedingItem(ItemStack par1ItemStack) {
         return par1ItemStack != null && par1ItemStack.getItem() instanceof ItemSeeds;
@@ -191,5 +197,20 @@ public class EntityDuck extends EntityAnimal {
     @Override
     public EntityAgeable createChild(EntityAgeable par1EntityAgeable) {
         return this.spawnBabyAnimal(par1EntityAgeable);
+    }
+
+    public static class MFR implements IFactoryGrindable {
+        @Override
+        public Class<?> getGrindableEntity() {
+            return EntityDuck.class;
+        }
+
+        @Override
+        public List<MobDrop> grind(World world, EntityLiving entity, Random random) {
+            ArrayList<MobDrop> res = new ArrayList<MobDrop>();
+            res.add(new MobDrop(3, new ItemStack(rawMeat, 1, 0)));
+            res.add(new MobDrop(1, new ItemStack(feather, 1, 0)));
+            return res;
+        }
     }
 }

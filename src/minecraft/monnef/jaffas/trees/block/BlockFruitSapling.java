@@ -39,6 +39,16 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
     private final int subCount;
     public int serialNumber = -1;
 
+    public BlockFruitSapling(int blockId, int blockIndexInTexture, int subCount) {
+        super(blockId, blockIndexInTexture, Material.plants);
+        this.subCount = subCount;
+        float var3 = 0.4F;
+        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
+        setCreativeTab(JaffasTrees.CreativeTab);
+        this.setTickRandomly(true);
+    }
+
     public int getSubCount() {
         return subCount;
     }
@@ -51,48 +61,39 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
         }
         if (JaffasTrees.bonemealingAllowed) {
             event.setResult(Event.Result.ALLOW);
-            if (!event.world.isRemote) {
-                growTree(event.world, event.X, event.Y, event.Z, rand);
+            if (!event.world.isRemote /*&& JaffasFood.rand.nextFloat() < 0.30*/) {
+                tryGrow(event.world, event.X, event.Y, event.Z, rand);
             }
         }
     }
 
-    public BlockFruitSapling(int blockId, int blockIndexInTexture, int subCount) {
-        super(blockId, blockIndexInTexture, Material.plants);
-        this.subCount = subCount;
-        float var3 = 0.4F;
-        this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
-        this.setCreativeTab(CreativeTabs.tabDecorations);
-        setCreativeTab(JaffasTrees.CreativeTab);
-        this.setTickRandomly(true);
-    }
-
-    /**
-     * Ticks the block if it's been scheduled
-     */
     @Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
+        super.updateTick(par1World, par2, par3, par4, par5Random);
         if (!par1World.isRemote) {
-            super.updateTick(par1World, par2, par3, par4, par5Random);
+            tryGrow(par1World, par2, par3, par4, par5Random);
+        }
+    }
 
-            if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9 && par5Random.nextInt(7) == 0) {
-                int metadata = par1World.getBlockMetadata(par2, par3, par4);
+    private void tryGrow(World world, int x, int y, int z, Random rand) {
+        if (world.isRemote) return;
+        if (world.getBlockLightValue(x, y + 1, z) >= 9 && rand.nextInt(7) == 0) {
+            int metadata = world.getBlockMetadata(x, y, z);
 
+            if (JaffasTrees.debug) {
+                Log.printInfo("meta(" + metadata + ") markForDecay("
+                        + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
+                        + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
+                        + BlockFruitLeaves.areLeavesMarkedForDecay(BlockFruitLeaves.setLeavesDecay(metadata)) + ")");
+            }
+
+            if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
+                setBlockMetadata(world, x, y, z, BlockFruitLeaves.setLeavesDecay(metadata));
                 if (JaffasTrees.debug) {
-                    Log.printInfo("meta(" + metadata + ") markForDecay("
-                            + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
-                            + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
-                            + BlockFruitLeaves.areLeavesMarkedForDecay(BlockFruitLeaves.setLeavesDecay(metadata)) + ")");
+                    Log.printInfo("after set: " + world.getBlockMetadata(x, y, z));
                 }
-
-                if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
-                    setBlockMetadata(par1World, par2, par3, par4, BlockFruitLeaves.setLeavesDecay(metadata));
-                    if (JaffasTrees.debug) {
-                        Log.printInfo("after set: " + par1World.getBlockMetadata(par2, par3, par4));
-                    }
-                } else {
-                    this.growTree(par1World, par2, par3, par4, par5Random);
-                }
+            } else {
+                this.growTree(world, x, y, z, rand);
             }
         }
     }
@@ -107,7 +108,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
     public void registerIcons(IconRegister iconRegister) {
     }
 
-    public void growTree(World par1World, int par2, int par3, int par4, Random par5Random) {
+    public boolean growTree(World par1World, int par2, int par3, int par4, Random par5Random) {
         int metadata = par1World.getBlockMetadata(par2, par3, par4);
         metadata = BlockFruitLeaves.getLeavesType(metadata);
         Object var7 = null;
@@ -120,7 +121,9 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
 
         if (!((WorldGenerator) var7).generate(par1World, par5Random, par2 + var8, par3, par4 + var9)) {
             setBlock(par1World, par2, par3, par4, this.blockID, metadata);
+            return false;
         }
+        return true;
     }
 
     /**

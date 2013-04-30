@@ -118,16 +118,13 @@ public class EntityLocomotive extends EntityMinecart {
     public double pushX;
     public double pushZ;
 
-    public int func_94087_l() {
-        return 2;
-    }
-
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(16, new Byte((byte) 0));
     }
 
-    public void func_94095_a(DamageSource par1DamageSource) {
+    @Override
+    public void killMinecart(DamageSource par1DamageSource) {
         this.setDead();
         this.entityDropItem(new ItemStack(JaffasTechnic.itemLocomotive, 1), 0.0F);
     }

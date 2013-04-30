@@ -7,6 +7,7 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
 import net.minecraft.block.Block;
@@ -21,13 +22,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import powercrystals.minefactoryreloaded.api.FertilizerType;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
-public class BlockJaffaCrops extends BlockFlower {
+public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable, IFactoryFertilizable {
     //TODO rewrite to inherit from BlockJaffas
 
     private int phasesMax; // 7
@@ -69,9 +76,9 @@ public class BlockJaffaCrops extends BlockFlower {
         super.updateTick(par1World, par2, par3, par4, par5Random);
 
         if (par1World.getBlockLightValue(par2, par3 + 1, par4) >= 9) {
-            int var6 = par1World.getBlockMetadata(par2, par3, par4);
+            int meta = par1World.getBlockMetadata(par2, par3, par4);
 
-            if (var6 < phasesMax) {
+            if (canGrow(meta)) {
                 float var7 = this.getGrowthRate(par1World, par2, par3, par4);
 
                 if (par5Random.nextInt((int) (25.0F / var7) + 1) == 0) {
@@ -84,9 +91,13 @@ public class BlockJaffaCrops extends BlockFlower {
         }
     }
 
+    public boolean canGrow(int meta) {
+        return meta < phasesMax;
+    }
+
     public boolean growABit(World par1World, int par2, int par3, int par4) {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
-        if (meta < phasesMax) {
+        if (canGrow(meta)) {
             setBlockMetadata(par1World, par2, par3, par4, meta + 1);
             return true;
         }
@@ -99,13 +110,19 @@ public class BlockJaffaCrops extends BlockFlower {
             return;
         }
 
-        if (JaffasTrees.bonemealingAllowed) {
-            if (!event.world.isRemote) {
-                if (growABit(event.world, event.X, event.Y, event.Z)) {
-                    event.setResult(Event.Result.ALLOW);
-                }
+        if (tryBonemeal(event.world, event.X, event.Y, event.Z)) {
+            event.setResult(Event.Result.ALLOW);
+        }
+    }
+
+    public boolean tryBonemeal(World w, int x, int y, int z) {
+        if (JaffasTrees.bonemealingAllowed && canGrow(w.getBlockMetadata(x, y, z))) {
+            if (!w.isRemote) {
+                if (JaffasFood.rand.nextFloat() < 0.4) growABit(w, x, y, z);
+                return true;
             }
         }
+        return false;
     }
 
     /**
@@ -243,5 +260,54 @@ public class BlockJaffaCrops extends BlockFlower {
     @Override
     public boolean hasTileEntity(int metadata) {
         return true;
+    }
+
+    /* Mine Factory Reloaded */
+    @Override
+    public int getPlantId() {
+        return blockID;
+    }
+
+    @Override
+    public HarvestType getHarvestType() {
+        return HarvestType.Normal;
+    }
+
+    @Override
+    public boolean breakBlock() {
+        return true;
+    }
+
+    @Override
+    public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
+        return !canGrow(world.getBlockMetadata(x, y, z));
+    }
+
+    @Override
+    public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
+        return getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+    }
+
+    @Override
+    public void preHarvest(World world, int x, int y, int z) {
+    }
+
+    @Override
+    public void postHarvest(World world, int x, int y, int z) {
+    }
+
+    @Override
+    public int getFertilizableBlockId() {
+        return blockID;
+    }
+
+    @Override
+    public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType) {
+        return canGrow(world.getBlockMetadata(x, y, z));
+    }
+
+    @Override
+    public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType) {
+        return tryBonemeal(world, x, y, z);
     }
 }

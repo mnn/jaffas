@@ -62,6 +62,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
+import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -275,7 +276,7 @@ public class JaffasTrees extends jaffasMod {
             itemUnknownSeedsID = idProvider.getItemIDFromConfig("unknownSeeds");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
-            bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", false).getBoolean(false);
+            bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
         } finally {
@@ -323,6 +324,7 @@ public class JaffasTrees extends jaffasMod {
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
             RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
             seeds.setCustomIconIndex(info.seedsTexture);
+            FarmingRegistry.registerPlantable(seeds);
 
             info.itemSeeds = seeds;
             if (info.drop == DropsFromGrass) {
@@ -342,6 +344,8 @@ public class JaffasTrees extends jaffasMod {
                 first = false;
                 MinecraftForge.EVENT_BUS.register(crops);
             }
+            FarmingRegistry.registerHarvestable(crops);
+            FarmingRegistry.registerFertilizable(crops);
         }
     }
 

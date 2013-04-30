@@ -96,10 +96,12 @@ import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
+import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 import java.util.logging.Level;
 
@@ -114,7 +116,7 @@ import static net.minecraft.world.biome.BiomeGenBase.swampland;
 import static net.minecraft.world.biome.BiomeGenBase.taiga;
 import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
 
-@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
+@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
 public class JaffasFood extends jaffasMod {
     public static JaffaCreativeTab CreativeTab;
@@ -221,6 +223,7 @@ public class JaffasFood extends jaffasMod {
     public static boolean genDisabledForNonStandardDimensions;
 
     public static boolean achievementsDisabled;
+    public static Random rand = new Random();
 
     public boolean IsForestryDetected() {
         return this.forestryDetected;
@@ -399,6 +402,7 @@ public class JaffasFood extends jaffasMod {
         EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", DuckEntityID, this, 160, 1, true);
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         EntityRegistry.registerModEntity(EntityDuckEgg.class, "duckEgg", DuckEggEntityID, this, 160, 1, true);
+        FarmingRegistry.registerGrindable(new EntityDuck.MFR());
     }
 
     private void checkExtrabiomes() {
@@ -472,6 +476,7 @@ public class JaffasFood extends jaffasMod {
 
         blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
         RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
+        MinecraftForge.EVENT_BUS.register(blockSwitchgrass);
     }
 
     private void createJaffaArmorAndSword() {

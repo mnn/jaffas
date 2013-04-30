@@ -11,10 +11,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 
-public class ItemJaffaSeeds extends ItemTrees implements IPlantable {
+public class ItemJaffaSeeds extends ItemTrees implements IPlantable, IFactoryPlantable {
     private int blockType;
     private int soilBlockID;
 
@@ -25,16 +26,13 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable {
     }
 
     @Override
-    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer par2EntityPlayer, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
         if (par7 != 1) {
             return false;
-        } else if (par2EntityPlayer == null || (par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack) && par2EntityPlayer.canPlayerEdit(par4, par5 + 1, par6, par7, par1ItemStack))) {
-            int var11 = par3World.getBlockId(par4, par5, par6);
-            Block soil = Block.blocksList[var11];
-
-            if (soil != null && soil.canSustainPlant(par3World, par4, par5, par6, ForgeDirection.UP, this) && par3World.isAirBlock(par4, par5 + 1, par6)) {
-                setBlock(par3World, par4, par5 + 1, par6, this.getPlantID(null, 0, 0, 0));
-                --par1ItemStack.stackSize;
+        } else if (par2EntityPlayer == null || (par2EntityPlayer.canPlayerEdit(x, y, z, par7, stack) && par2EntityPlayer.canPlayerEdit(x, y + 1, z, par7, stack))) {
+            if (canBePlanted(world, x, y, z, stack)) {
+                setBlock(world, x, y + 1, z, this.getPlantID(null, 0, 0, 0));
+                --stack.stackSize;
                 return true;
             } else {
                 return false;
@@ -42,6 +40,14 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable {
         } else {
             return false;
         }
+    }
+
+    /* y is not the plant block, but soil block! */
+    public boolean canBePlanted(World w, int x, int y, int z, ItemStack stack) {
+        int bottomBlock = w.getBlockId(x, y, z);
+        Block soil = Block.blocksList[bottomBlock];
+
+        return soil != null && soil.canSustainPlant(w, x, y, z, ForgeDirection.UP, this) && w.isAirBlock(x, y + 1, z);
     }
 
     @Override
@@ -57,5 +63,37 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable {
     @Override
     public int getPlantMetadata(World world, int x, int y, int z) {
         return 0;
+    }
+
+    @Override
+    public int getSeedId() {
+        return itemID;
+    }
+
+    @Override
+    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
+        return blockType;
+    }
+
+    @Override
+    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
+        return 0;
+    }
+
+    @Override
+    public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
+        return canBePlanted(world, x, y - 1, z, stack);
+    }
+
+    @Override
+    public void prePlant(World world, int x, int y, int z, ItemStack stack) {
+        int bID = world.getBlockId(x, y - 1, z);
+        if (bID == Block.grass.blockID || bID == Block.dirt.blockID) {
+            setBlock(world, x, y - 1, z, Block.tilledField.blockID);
+        }
+    }
+
+    @Override
+    public void postPlant(World world, int x, int y, int z, ItemStack stack) {
     }
 }

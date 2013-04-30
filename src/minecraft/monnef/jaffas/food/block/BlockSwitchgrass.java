@@ -7,6 +7,7 @@ package monnef.jaffas.food.block;
 import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.BitHelper;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,6 +19,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.event.Event;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.player.BonemealEvent;
 
 import java.util.List;
 import java.util.Random;
@@ -31,6 +35,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     private static final int MAX_AGE = 7;
     private static final float border = 3f * 1f / 16f;
     private static final float borderComplement = 1f - border;
+    public static int maximalHeight = 4;
     private static Icon bodyIcon;
     public static final int VALUE_TOP = BitHelper.setBit(0, BIT_TOP);
 
@@ -50,7 +55,11 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     // inspired by cactus
     public void updateTick(World world, int x, int y, int z, Random rand) {
         if (world.isRemote) return;
+        tryGrow(world, x, y, z, rand);
+    }
 
+    private void tryGrow(World world, int x, int y, int z, Random rand) {
+        if (world.isRemote) return;
         int myMeta = world.getBlockMetadata(x, y, z);
         if (isTop(myMeta) && world.isAirBlock(x, y + 1, z)) {
             int height = 1;
@@ -58,7 +67,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
             int light = world.getBlockLightValue(x, y + 1, z);
             boolean onRain = world.canLightningStrikeAt(x, y + 1, z);
 
-            if (height < 4 && (light > 5 || onRain) &&
+            if (height < maximalHeight && (light > 5 || onRain) &&
                     (light > 9 || onRain || rand.nextBoolean())) {
                 int age = getAge(myMeta);
                 if (age < MAX_AGE) {
@@ -220,5 +229,41 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     public void registerIcons(IconRegister iconRegister) {
         super.registerIcons(iconRegister);
         bodyIcon = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
+    }
+
+    @ForgeSubscribe
+    public void onBonemeal(BonemealEvent event) {
+        if (event.ID != blockID) {
+            return;
+        }
+
+        if (tryBonemeal(event.world, event.X, event.Y, event.Z)) {
+            event.setResult(Event.Result.ALLOW);
+        }
+    }
+
+    public boolean tryBonemeal(World w, int x, int y, int z) {
+        if (JaffasTrees.bonemealingAllowed) {
+            if (!w.isRemote) {
+                int higherY = y;
+                while (!isTop(w.getBlockMetadata(x, higherY, z)) && w.getBlockId(x, higherY, z) == blockID) {
+                    higherY++;
+                    if (higherY - y > maximalHeight) return false;
+                }
+                int lowerY = y;
+                while (w.getBlockId(x, lowerY, z) == blockID) {
+                    lowerY--;
+                    if (higherY - lowerY > maximalHeight) return false;
+                }
+                lowerY++; // fix to point on a lowest grass block, not on a soil
+                if (higherY - lowerY + 1 >= maximalHeight) return false;
+                if (JaffasFood.rand.nextFloat() < 1.0) {
+                    tryGrow(w, x, higherY, z, JaffasFood.rand);
+                }
+                w.playAuxSFX(2005, x, higherY, z, 0);
+                return true;
+            }
+        }
+        return false;
     }
 }
