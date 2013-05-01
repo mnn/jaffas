@@ -57,6 +57,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
         this.product = product;
         this.seeds = seeds;
         this.renderer = renderer;
+        setBurnProperties(blockID, 60, 100);
     }
 
     /**

@@ -22,6 +22,7 @@ public class BlockCandy extends BlockXmas {
         //setRequiresSelfNotify();
         setHardness(0.5f);
         setCreativeTab(null);
+        setBurnProperties(blockID, 5,5);
     }
 
     @Override

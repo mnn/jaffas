@@ -26,6 +26,7 @@ public class BlockTable extends BlockJaffas {
         super(par1, par2, par3Material);
         setHardness(2f);
         setUnlocalizedName("blockJTable");
+        setBurnProperties(blockID, 5, 5);
     }
 
     @Override

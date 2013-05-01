@@ -44,6 +44,7 @@ public class BlockBoard extends BlockContainerJaffas {
         setCreativeTab(JaffasFood.CreativeTab);
         setHardness(0.2f);
         setUnlocalizedName("blockBoard");
+        setBurnProperties(blockID, 5, 5);
     }
 
     @Override

@@ -50,6 +50,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         }
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
         setUnlocalizedName("blockJSwitchgrass");
+        setBurnProperties(blockID, 60, 100);
     }
 
     // inspired by cactus

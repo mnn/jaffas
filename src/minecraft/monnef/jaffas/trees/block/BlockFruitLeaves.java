@@ -52,6 +52,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         //this.setGraphicsLevel(true);
         setCreativeTab(JaffasTrees.CreativeTab);
         setSheetNumber(2);
+        setBurnProperties(blockID, 30, 60);
     }
 
     @Override

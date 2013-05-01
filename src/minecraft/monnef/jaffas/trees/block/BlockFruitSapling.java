@@ -47,6 +47,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
         this.setCreativeTab(CreativeTabs.tabDecorations);
         setCreativeTab(JaffasTrees.CreativeTab);
         this.setTickRandomly(true);
+        setBurnProperties(blockID, 30, 60);
     }
 
     public int getSubCount() {
