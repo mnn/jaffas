@@ -346,11 +346,11 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         int countToDrop = 0;
         int height = calculateHeight(world, x, y, z);
 
-        for (int i = 0; i <= height; i++) {
+        for (int i = 0; i < height; i++) {
             countToDrop += quantityDropped(rand);
         }
 
-        return Arrays.asList(new ItemStack(this, countToDrop));
+        return Arrays.asList(new ItemStack(this, countToDrop, VALUE_TOP));
     }
 
     @Override
@@ -362,7 +362,9 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         int lowerY = getBaseY(world, x, y, z);
         int topY = getTopY(world, x, y, z);
         for (int i = lowerY; i <= topY; i++)
-            setBlockWithoutNotify(world, x, y, z, 0, 0);
+            setBlockWithoutNotify(world, x, i, z, 0, 0);
+        for (int i = lowerY; i <= topY; i++)
+            world.markBlockForUpdate(x, i, z);
     }
 
     @Override

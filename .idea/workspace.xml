@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrass.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CommonProxy.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CommonProxy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemDuckEgg.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemDuckEgg.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemJaffaSeeds.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemJaffaSeeds.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -192,7 +187,7 @@
     <file path="/BlockTable.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993855853" ignored="false" />
     <file path="/ItemBlockTable.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360774021697" ignored="false" />
     <file path="/ItemBlockJaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366995500387" ignored="false" />
-    <file path="/BlockSwitchgrass.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367436331278" ignored="false" />
+    <file path="/BlockSwitchgrass.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367441301885" ignored="false" />
     <file path="/ItemBlockSwitchgrass.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364741472581" ignored="false" />
     <file path="/FuelHanler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360793957873" ignored="false" />
     <file path="/FuelHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360794147790" ignored="false" />
@@ -498,10 +493,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BlockSwitchgrass.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BlockSwitchgrass.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="390" column="33" selection-start="12447" selection-end="12447" vertical-scroll-proportion="0.0">
+            <state line="348" column="27" selection-start="11331" selection-end="11331" vertical-scroll-proportion="0.57052296">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlockHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/BlockHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="26" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -525,10 +529,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RenderItemInAir.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="RenderItemInAir.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/RenderItemInAir.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="46" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.78129953">
+            <state line="42" column="46" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -590,12 +594,12 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/BlockJaffaCrops.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrass.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemJaffaSeeds.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/CommonProxy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemDuckEgg.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/RenderItemInAir.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrass.java" />
       </list>
     </option>
   </component>
@@ -1519,13 +1523,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/cpw/mods/fml/client/registry/RenderingRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="23" selection-start="1833" selection-end="1833" vertical-scroll-proportion="0.33280507">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockContainerJaffas.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="22" selection-start="306" selection-end="306" vertical-scroll-proportion="0.16164818">
@@ -1557,13 +1554,6 @@
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/model/AdvancedModelLoader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="13" selection-start="679" selection-end="679" vertical-scroll-proportion="0.33280507">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="390" column="33" selection-start="12447" selection-end="12447" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1626,7 +1616,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/RenderItemInAir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="46" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.78129953">
+        <state line="42" column="46" selection-start="1281" selection-end="1281" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/BlockHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="26" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="348" column="27" selection-start="11331" selection-end="11331" vertical-scroll-proportion="0.57052296">
           <folding />
         </state>
       </provider>
