@@ -82,7 +82,8 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable, IFactoryPla
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        return canBePlanted(world, x, y - 1, z, stack);
+        int bId = world.getBlockId(x, y, z);
+        return bId == Block.grass.blockID || bId == Block.dirt.blockID || bId == Block.tilledField.blockID;
     }
 
     @Override

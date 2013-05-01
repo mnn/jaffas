@@ -477,6 +477,9 @@ public class JaffasFood extends jaffasMod {
         blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
         RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
         MinecraftForge.EVENT_BUS.register(blockSwitchgrass);
+        FarmingRegistry.registerFertilizable(blockSwitchgrass);
+        FarmingRegistry.registerHarvestable(blockSwitchgrass);
+        FarmingRegistry.registerPlantable(blockSwitchgrass);
     }
 
     private void createJaffaArmorAndSword() {

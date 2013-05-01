@@ -4,7 +4,6 @@
 
 package monnef.jaffas.food.client;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -39,8 +38,6 @@ public class ClientProxy extends CommonProxy {
     public void registerRenderThings() {
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));
-
-        FMLClientHandler.instance().getClient().renderEngine.refreshTextureMaps();
         RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(JaffasFood.getItem(JaffaItem.duckEgg)));
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCross.class, new TileEntityCrossRenderer());

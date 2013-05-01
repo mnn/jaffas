@@ -22,15 +22,22 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import powercrystals.minefactoryreloaded.api.FertilizerType;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.core.utils.BlockHelper.setBlockWithoutNotify;
 
-public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
+public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactoryHarvestable, IFactoryFertilizable, IFactoryPlantable {
     private static final int BIT_TOP = 3;
     private static final int MAX_AGE = 7;
     private static final float border = 3f * 1f / 16f;
@@ -133,14 +140,11 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         }
     }
 
-    /**
-     * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
-     */
     @Override
-    public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
-        int myMeta = par1World.getBlockMetadata(par2, par3, par4);
-        int topBlock = par1World.getBlockId(par2, par3 + 1, par4);
-        int bottomBlock = par1World.getBlockId(par2, par3 - 1, par4);
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        int myMeta = world.getBlockMetadata(x, y, z);
+        int topBlock = world.getBlockId(x, y + 1, z);
+        int bottomBlock = world.getBlockId(x, y - 1, z);
 
         boolean top = false;
         boolean bottom = false;
@@ -155,16 +159,16 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
             }
         }
 
-        if (bottomBlock == blockID || floorCanSustainPlant(par1World, par2, par3, par4)) {
+        if (bottomBlock == blockID || floorCanSustainPlant(world, x, y, z)) {
             bottom = true;
         }
 
         return top && bottom;
     }
 
-    public boolean floorCanSustainPlant(World par1World, int par2, int par3, int par4) {
-        int var5 = par1World.getBlockId(par2, par3 - 1, par4);
-        return blocksList[var5] != null && blocksList[var5].canSustainPlant(par1World, par2, par3 - 1, par4, ForgeDirection.UP, this);
+    public boolean floorCanSustainPlant(World world, int x, int y, int z) {
+        int var5 = world.getBlockId(x, y - 1, z);
+        return blocksList[var5] != null && blocksList[var5].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
     }
 
     @Override
@@ -246,18 +250,9 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
     public boolean tryBonemeal(World w, int x, int y, int z) {
         if (JaffasTrees.bonemealingAllowed) {
             if (!w.isRemote) {
-                int higherY = y;
-                while (!isTop(w.getBlockMetadata(x, higherY, z)) && w.getBlockId(x, higherY, z) == blockID) {
-                    higherY++;
-                    if (higherY - y > maximalHeight) return false;
-                }
-                int lowerY = y;
-                while (w.getBlockId(x, lowerY, z) == blockID) {
-                    lowerY--;
-                    if (higherY - lowerY > maximalHeight) return false;
-                }
-                lowerY++; // fix to point on a lowest grass block, not on a soil
-                if (higherY - lowerY + 1 >= maximalHeight) return false;
+                int height = calculateHeight(w, x, y, z);
+                if (isFullyGrown(height)) return false;
+                int higherY = getTopY(w, x, y, z);
                 if (JaffasFood.rand.nextFloat() < 1.0) {
                     tryGrow(w, x, higherY, z, JaffasFood.rand);
                 }
@@ -268,5 +263,133 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         return false;
     }
 
-    // TODO: MFR: harvastable, plantable, fertilizable
+    public boolean canGrow(World w, int x, int y, int z) {
+        return canGrow(calculateHeight(w, x, y, z));
+    }
+
+    public boolean canGrow(int height) {
+        return height < maximalHeight;
+    }
+
+    public boolean isFullyGrown(World w, int x, int y, int z) {
+        return isFullyGrown(calculateHeight(w, x, y, z));
+    }
+
+    public boolean isFullyGrown(int height) {
+        return height >= maximalHeight;
+    }
+
+    public int getBaseY(World w, int x, int y, int z) {
+        int lowerY = y;
+        while (w.getBlockId(x, lowerY, z) == blockID) {
+            lowerY--;
+            if (y - lowerY > maximalHeight) break;
+        }
+        lowerY++; // fix to point on a lowest grass block, not on a soil
+        return lowerY;
+    }
+
+    public int getTopY(World w, int x, int y, int z) {
+        int higherY = y;
+        while (!isTop(w.getBlockMetadata(x, higherY, z)) && w.getBlockId(x, higherY, z) == blockID) {
+            higherY++;
+            if (higherY - y > maximalHeight) break;
+        }
+        return higherY;
+    }
+
+    public int calculateHeight(World w, int x, int y, int z) {
+        if (w.getBlockId(x, y, z) != blockID) return 0;
+        int lowerY = getBaseY(w, x, y, z);
+        int higherY = getTopY(w, x, y, z);
+        return higherY - lowerY + 1;
+    }
+
+    // MFR
+    @Override
+    public int getFertilizableBlockId() {
+        return blockID;
+    }
+
+    @Override
+    public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType) {
+        return canGrow(world, x, y, z);
+    }
+
+    @Override
+    public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType) {
+        return tryBonemeal(world, x, y, z);
+    }
+
+    @Override
+    public int getPlantId() {
+        return blockID;
+    }
+
+    @Override
+    public HarvestType getHarvestType() {
+        return HarvestType.Normal;
+    }
+
+    @Override
+    public boolean breakBlock() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
+        return isFullyGrown(world, x, y, z);
+    }
+
+    @Override
+    public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
+        int countToDrop = 0;
+        int height = calculateHeight(world, x, y, z);
+
+        for (int i = 0; i <= height; i++) {
+            countToDrop += quantityDropped(rand);
+        }
+
+        return Arrays.asList(new ItemStack(this, countToDrop));
+    }
+
+    @Override
+    public void preHarvest(World world, int x, int y, int z) {
+    }
+
+    @Override
+    public void postHarvest(World world, int x, int y, int z) {
+        int lowerY = getBaseY(world, x, y, z);
+        int topY = getTopY(world, x, y, z);
+        for (int i = lowerY; i <= topY; i++)
+            setBlockWithoutNotify(world, x, y, z, 0, 0);
+    }
+
+    @Override
+    public int getSeedId() {
+        return blockID;
+    }
+
+    @Override
+    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
+        return blockID;
+    }
+
+    @Override
+    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
+        return VALUE_TOP;
+    }
+
+    @Override
+    public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
+        return floorCanSustainPlant(world, x, y, z);
+    }
+
+    @Override
+    public void prePlant(World world, int x, int y, int z, ItemStack stack) {
+    }
+
+    @Override
+    public void postPlant(World world, int x, int y, int z, ItemStack stack) {
+    }
 }

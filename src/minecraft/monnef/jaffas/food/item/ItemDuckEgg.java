@@ -4,7 +4,9 @@
 
 package monnef.jaffas.food.item;
 
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.entity.EntityDuckEgg;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

@@ -22,4 +22,6 @@ public class CommonProxy {
 
     public void handleSyncPacket(Player player, int secondsRemaining, boolean openGUI) {
     }
+
+    public void registerEggRendering(){}
 }
