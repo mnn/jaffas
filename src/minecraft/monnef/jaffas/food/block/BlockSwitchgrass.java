@@ -266,4 +266,6 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable {
         }
         return false;
     }
+
+    // TODO: MFR: harvastable, plantable, fertilizable
 }
