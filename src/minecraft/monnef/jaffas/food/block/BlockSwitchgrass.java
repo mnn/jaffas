@@ -384,7 +384,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        return floorCanSustainPlant(world, x, y, z);
+        return world.getBlockId(x, y, z) == 0 && floorCanSustainPlant(world, x, y, z);
     }
 
     @Override

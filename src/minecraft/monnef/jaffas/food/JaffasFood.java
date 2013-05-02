@@ -6,6 +6,7 @@ package monnef.jaffas.food;
 
 import com.google.common.base.Joiner;
 import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.ModMetadata;
@@ -91,6 +92,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
@@ -209,6 +211,7 @@ public class JaffasFood extends jaffasMod {
     public static CustomLogger Log = new CustomLogger("Jaffas");
     boolean forestryDetected;
     boolean extraBiomes;
+    boolean MFRDetected;
 
     public static boolean spawnStonesEnabled = true;
     public static int spawnStoneLittleCD;
@@ -231,6 +234,10 @@ public class JaffasFood extends jaffasMod {
 
     public boolean IsExtraBiomesDetected() {
         return this.extraBiomes;
+    }
+
+    public boolean IsMineFactoryReloadedDetected() {
+        return this.MFRDetected;
     }
 
     public JaffasFood() {
@@ -257,6 +264,10 @@ public class JaffasFood extends jaffasMod {
 
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
+        checkForestry();
+        checkExtrabiomes();
+        checkMFR();
+
         Configuration config = new Configuration(
                 event.getSuggestedConfigurationFile());
 
@@ -334,8 +345,6 @@ public class JaffasFood extends jaffasMod {
 
         checkCore(); // really necessary?
         checkJsoup();
-        checkForestry();
-        checkExtrabiomes();
 
         CreativeTab = new JaffaCreativeTab("jaffas");
 
@@ -375,6 +384,10 @@ public class JaffasFood extends jaffasMod {
         }
     }
 
+    private void checkMFR() {
+        MFRDetected = Loader.isModLoaded("MineFactoryReloaded");
+    }
+
     private void registerHandlers() {
         proxy.registerTickHandler();
         TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
@@ -402,7 +415,10 @@ public class JaffasFood extends jaffasMod {
         EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", DuckEntityID, this, 160, 1, true);
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         EntityRegistry.registerModEntity(EntityDuckEgg.class, "duckEgg", DuckEggEntityID, this, 160, 1, true);
-        FarmingRegistry.registerGrindable(new EntityDuck.MFR());
+        if (IsMineFactoryReloadedDetected()) {
+            FarmingRegistry.registerGrindable(new EntityDuck.MFR());
+            FarmingRegistry.registerBreederFood(EntityDuck.class, new ItemStack(Item.seeds));
+        }
     }
 
     private void checkExtrabiomes() {
@@ -477,9 +493,11 @@ public class JaffasFood extends jaffasMod {
         blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
         RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
         MinecraftForge.EVENT_BUS.register(blockSwitchgrass);
-        FarmingRegistry.registerFertilizable(blockSwitchgrass);
-        FarmingRegistry.registerHarvestable(blockSwitchgrass);
-        FarmingRegistry.registerPlantable(blockSwitchgrass);
+        if (IsMineFactoryReloadedDetected()) {
+            FarmingRegistry.registerFertilizable(blockSwitchgrass);
+            FarmingRegistry.registerHarvestable(blockSwitchgrass);
+            FarmingRegistry.registerPlantable(blockSwitchgrass);
+        }
     }
 
     private void createJaffaArmorAndSword() {
@@ -504,6 +522,7 @@ public class JaffasFood extends jaffasMod {
         ArrayList<String> list = new ArrayList<String>();
         if (IsForestryDetected()) list.add("forestry");
         if (IsExtraBiomesDetected()) list.add("extrabiomesxl");
+        if (IsMineFactoryReloadedDetected()) list.add("MFR");
         if (list.size() == 0) list.add("none");
         return list;
     }

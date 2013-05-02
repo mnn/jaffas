@@ -324,7 +324,9 @@ public class JaffasTrees extends jaffasMod {
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
             RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
             seeds.setCustomIconIndex(info.seedsTexture);
-            FarmingRegistry.registerPlantable(seeds);
+            if (JaffasFood.instance.IsMineFactoryReloadedDetected()) {
+                FarmingRegistry.registerPlantable(seeds);
+            }
 
             info.itemSeeds = seeds;
             if (info.drop == DropsFromGrass) {
@@ -344,8 +346,10 @@ public class JaffasTrees extends jaffasMod {
                 first = false;
                 MinecraftForge.EVENT_BUS.register(crops);
             }
-            FarmingRegistry.registerHarvestable(crops);
-            FarmingRegistry.registerFertilizable(crops);
+            if (JaffasFood.instance.IsMineFactoryReloadedDetected()) {
+                FarmingRegistry.registerHarvestable(crops);
+                FarmingRegistry.registerFertilizable(crops);
+            }
         }
     }
 
