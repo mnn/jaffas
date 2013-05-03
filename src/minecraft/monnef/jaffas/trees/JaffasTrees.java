@@ -467,13 +467,19 @@ public class JaffasTrees extends jaffasMod {
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(CreativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
-
+        if (JaffasFood.instance.IsMineFactoryReloadedDetected()) {
+            FarmingRegistry.registerFertilizable(leaves.saplingBlock);
+            FarmingRegistry.registerPlantable(leaves.saplingBlock);
+        }
 
         leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
         leaves.seedsItem.serialNumber = i;
         for (int j = 0; j < subCount; j++) {
             String combinedName = leaves.seedsItem.getUnlocalizedName() + "." + j + ".name";
             LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
+        }
+        if (JaffasFood.instance.IsMineFactoryReloadedDetected()) {
+            FarmingRegistry.registerPlantable(leaves.seedsItem);
         }
 
         // bonemeal event

@@ -25,6 +25,9 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import powercrystals.minefactoryreloaded.api.FertilizerType;
+import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 import java.util.List;
 import java.util.Random;
@@ -34,7 +37,7 @@ import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static net.minecraftforge.common.EnumPlantType.Plains;
 
-public class BlockFruitSapling extends BlockJaffas implements IPlantable {
+public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFactoryPlantable, IFactoryFertilizable {
     public static Random rand = new Random();
     private final int subCount;
     public int serialNumber = -1;
@@ -127,16 +130,6 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
         return true;
     }
 
-    /**
-     * Determines if the same sapling is present at the given location.
-     */
-    public boolean isSameSapling(World par1World, int par2, int par3, int par4, int par5) {
-        return par1World.getBlockId(par2, par3, par4) == this.blockID && (BlockFruitLeaves.getLeavesType(par1World.getBlockMetadata(par2, par3, par4))) == par5;
-    }
-
-    /**
-     * Determines the damage on the item the block drops. Used in cloth and wood.
-     */
     @Override
     public int damageDropped(int par1) {
         return par1;
@@ -168,10 +161,10 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
     }
 
     @Override
-    public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
-        Block soil = blocksList[par1World.getBlockId(par2, par3 - 1, par4)];
-        return (par1World.getFullBlockLightValue(par2, par3, par4) >= 8 || par1World.canBlockSeeTheSky(par2, par3, par4)) &&
-                (soil != null && soil.canSustainPlant(par1World, par2, par3 - 1, par4, ForgeDirection.UP, this));
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        Block soil = blocksList[world.getBlockId(x, y - 1, z)];
+        return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z)) &&
+                (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
     }
 
     @Override
@@ -202,5 +195,49 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable {
     @Override
     public int getDefaultSheetNumber() {
         return 2;
+    }
+
+    @Override
+    public int getFertilizableBlockId() {
+        return blockID;
+    }
+
+    @Override
+    public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType) {
+        return true;
+    }
+
+    @Override
+    public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType) {
+        tryGrow(world, x, y, z, rand);
+        return true;
+    }
+
+    @Override
+    public int getSeedId() {
+        return blockID;
+    }
+
+    @Override
+    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
+        return blockID;
+    }
+
+    @Override
+    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
+        return stack.getItemDamage();
+    }
+
+    @Override
+    public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
+        return canBlockStay(world, x, y, z);
+    }
+
+    @Override
+    public void prePlant(World world, int x, int y, int z, ItemStack stack) {
+    }
+
+    @Override
+    public void postPlant(World world, int x, int y, int z, ItemStack stack) {
     }
 }

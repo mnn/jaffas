@@ -12,10 +12,12 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 import java.util.List;
 
-public class ItemFruitSeeds extends ItemBlockTrees {
+public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable {
     public int serialNumber = -1;
     private int subCount;
     private boolean firstInSequence = false;
@@ -72,5 +74,33 @@ public class ItemFruitSeeds extends ItemBlockTrees {
 
     public void setFirstInSequence() {
         this.firstInSequence = true;
+    }
+
+    @Override
+    public int getSeedId() {
+        return itemID;
+    }
+
+    @Override
+    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
+        return getBlockID();
+    }
+
+    @Override
+    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
+        return stack.getItemDamage();
+    }
+
+    @Override
+    public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
+        return getBlock().canBlockStay(world, x, y, z);
+    }
+
+    @Override
+    public void prePlant(World world, int x, int y, int z, ItemStack stack) {
+    }
+
+    @Override
+    public void postPlant(World world, int x, int y, int z, ItemStack stack) {
     }
 }
