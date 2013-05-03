@@ -230,7 +230,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        return canBlockStay(world, x, y, z);
+        return world.getBlockId(x, y, z) == 0 && canBlockStay(world, x, y, z);
     }
 
     @Override

@@ -93,7 +93,7 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        return getBlock().canBlockStay(world, x, y, z);
+        return world.getBlockId(x, y, z) == 0 && getBlock().canBlockStay(world, x, y, z);
     }
 
     @Override
