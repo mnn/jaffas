@@ -59,10 +59,15 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
 import java.security.InvalidParameterException;
@@ -133,6 +138,9 @@ public class JaffasTrees extends jaffasMod {
     private static final int SEEDS_WEIGHT = 20;
     public static ArrayList<ItemStack> seedsList = new ArrayList<ItemStack>();
     public static int leavesRenderID;
+
+    public static final String LEMON = "fruitLemon";
+    public static final String ORANGE = "fruitOrange";
 
     public static fruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
@@ -399,8 +407,10 @@ public class JaffasTrees extends jaffasMod {
         GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
 
         itemLemon = constructFruit(itemLemonID, NotEatable, 68, "lemon", "Lemon");
+        OreDictionary.registerOre(LEMON, itemLemon);
 
         itemOrange = constructFruit(itemOrangeID, EatableNormal, 69, "orange", "Orange");
+        OreDictionary.registerOre(ORANGE, itemOrange);
 
         itemPlum = constructFruit(itemPlumID, EatableNormal, 70, "plum", "Plum");
 
@@ -530,17 +540,15 @@ public class JaffasTrees extends jaffasMod {
         return ItemManager.getItem(item);
     }
 
+    private static void addRecipe(IRecipe recipe) {
+        CraftingManager.getInstance().getRecipeList().add(recipe);
+    }
+
     private void installRecipes() {
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.lemons)),
-                new ItemStack(JaffasTrees.itemLemon),
-                new ItemStack(JaffasTrees.itemLemon),
-                new ItemStack(JaffasTrees.itemLemon),
-                new ItemStack(JaffasTrees.itemLemon));
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.oranges)),
-                new ItemStack(JaffasTrees.itemOrange),
-                new ItemStack(JaffasTrees.itemOrange),
-                new ItemStack(JaffasTrees.itemOrange),
-                new ItemStack(JaffasTrees.itemOrange));
+        addRecipe(new ShapelessOreRecipe(new ItemStack(getJaffaItem(JaffaItem.lemons)), LEMON, LEMON, LEMON, LEMON));
+
+        addRecipe(new ShapelessOreRecipe(new ItemStack(getJaffaItem(JaffaItem.oranges)), ORANGE, ORANGE, ORANGE, ORANGE));
+
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.plums)),
                 new ItemStack(JaffasTrees.itemPlum),
                 new ItemStack(JaffasTrees.itemPlum),
@@ -590,8 +598,8 @@ public class JaffasTrees extends jaffasMod {
         AddPieRecipe(null, pieVanillaRaw, TileEntityPie.PieType.VANILLA, true, getItem(jamV));
         AddPieRecipe(itemPlum, piePlumRaw, TileEntityPie.PieType.PLUM, true, getItem(jamP));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceOrange)), getItem(juiceBottle), itemOrange, itemOrange, itemOrange, itemOrange);
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), itemLemon, itemLemon, itemLemon, Item.sugar);
+        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceOrange)), getItem(juiceBottle), ORANGE, ORANGE, ORANGE, ORANGE));
+        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), LEMON, LEMON, LEMON, LEMON));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceApple)), getItem(juiceBottle), Item.appleRed, Item.appleRed, Item.appleRed, Item.appleRed);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceRaspberry)), getItem(juiceBottle), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry));
 
@@ -612,7 +620,8 @@ public class JaffasTrees extends jaffasMod {
         GameRegistry.addRecipe(getItemStack(beansWithTomatoRaw), "B", "T", "D", 'B', getFruit(bushType.Bean), 'T', getItem(tomatoChopped), 'D', getItem(woodenBowl));
         GameRegistry.addSmelting(getItem(beansWithTomatoRaw).itemID, getItemStack(beansWithTomato), 3f);
 
-        GameRegistry.addRecipe(getItemStack(tinDuckOrangeRaw), "OSO", "ODO", " T ", 'D', getItem(duckRaw), 'O', itemOrange, 'S', Item.sugar, 'T', getItem(cakeTin));
+        addRecipe(new ShapedOreRecipe(getItemStack(tinDuckOrangeRaw), "OSO", "ODO", " T ", 'D', getItem(duckRaw), 'O', ORANGE, 'S', Item.sugar, 'T', getItem(cakeTin)));
+
         GameRegistry.addSmelting(getItem(tinDuckOrangeRaw).itemID, getItemStack(tinDuckOrange), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(plateDuckOrange, 3), getItemStack(tinDuckOrange), getItem(plate), getItem(plate), getItem(plate));
         JaffaCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin).itemID);
