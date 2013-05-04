@@ -31,6 +31,7 @@ import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.block.BlockFruitLeavesDummy;
 import monnef.jaffas.trees.block.BlockFruitSapling;
 import monnef.jaffas.trees.block.BlockJaffaCrops;
 import monnef.jaffas.trees.block.TileEntityFruitCollector;
@@ -131,6 +132,7 @@ public class JaffasTrees extends jaffasMod {
     public static int blockFruitCollectorID;
     private static final int SEEDS_WEIGHT = 20;
     public static ArrayList<ItemStack> seedsList = new ArrayList<ItemStack>();
+    public static int leavesRenderID;
 
     public static fruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
@@ -216,13 +218,13 @@ public class JaffasTrees extends jaffasMod {
     private int itemUnknownSeedsID;
     public static ItemTrees itemUnknownSeeds;
 
+    public static BlockFruitLeavesDummy dummyLeaves;
+
     public static enum bushType {
         Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato, Mustard, Peanuts, Pea, Bean
     }
 
     public static EnumMap<bushType, BushInfo> BushesList = new EnumMap<bushType, BushInfo>(bushType.class);
-
-    public final static String textureFile = "/jaffas_02.png";
 
     public JaffasTrees() {
         instance = this;
@@ -274,6 +276,8 @@ public class JaffasTrees extends jaffasMod {
             itemFruitPickerID = idProvider.getItemIDFromConfig("fruit picker");
             itemFruitPickerHeadID = idProvider.getItemIDFromConfig("fruit picker head");
             itemUnknownSeedsID = idProvider.getItemIDFromConfig("unknownSeeds");
+
+            dummyLeaves = new BlockFruitLeavesDummy(idProvider.getBlockIDFromConfig("dummyLeaves"));
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);

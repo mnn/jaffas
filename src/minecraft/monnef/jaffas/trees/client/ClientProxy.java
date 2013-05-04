@@ -4,6 +4,8 @@
 
 package monnef.jaffas.trees.client;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
 import monnef.jaffas.trees.common.CommonProxy;
 import net.minecraft.client.Minecraft;
@@ -13,6 +15,8 @@ import net.minecraft.world.World;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
+        JaffasTrees.leavesRenderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new LeavesBlockRenderer());
     }
 
     @Override

@@ -7,6 +7,7 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
+import monnef.core.utils.ColorHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.block.BlockLeavesBaseJaffas;
 import monnef.jaffas.trees.JaffasTrees;
@@ -42,6 +43,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     private int subCount;
     private static Random rand = new Random();
     private Icon[] icons;
+    private static Icon plainLeavesIcon;
 
     public BlockFruitLeaves(int par1, int index, int subCount) {
         super(par1, index, Material.leaves, false);
@@ -53,6 +55,10 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         setCreativeTab(JaffasTrees.CreativeTab);
         setSheetNumber(2);
         setBurnProperties(blockID, 30, 60);
+    }
+
+    public Icon getFruitIcon(int meta) {
+        return icons[getLeavesType(meta)];
     }
 
     @Override
@@ -370,7 +376,8 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return icons[getLeavesType(meta)];
+        return plainLeavesIcon;
+        //return icons[getLeavesType(meta)];
     }
 
     @Override
@@ -384,6 +391,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         for (int i = 0; i < subCount; i++) {
             icons[i] = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, i));
         }
+        if (serialNumber == 0) plainLeavesIcon = icons[0];
     }
 
     @SideOnly(Side.CLIENT)
@@ -417,5 +425,38 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
 
     public static int getChangedTypeInMeta(int leavesMeta, int oldMeta) {
         return (oldMeta & 12) | (getLeavesType(leavesMeta));
+    }
+
+    // mostly taken from BlockLeaves
+    @Override
+    public int colorMultiplier(IBlockAccess access, int x, int y, int z) {
+        int red = 0;
+        int green = 0;
+        int blue = 0;
+
+        ColorHelper.IntColor weightedColor = new ColorHelper.IntColor();
+        for (int zShift = -1; zShift <= 1; ++zShift) {
+            for (int xShift = -1; xShift <= 1; ++xShift) {
+                int foliageColor = access.getBiomeGenForCoords(x + xShift, z + zShift).getBiomeFoliageColor();
+                ColorHelper.IntColor currentFoliageColor = ColorHelper.getColor(foliageColor);
+                red += currentFoliageColor.red;
+                green += currentFoliageColor.green;
+                blue += currentFoliageColor.blue;
+            }
+        }
+
+        int div = 9;
+        int shift = 10;
+        //return (red / 9 & 255) << 16 | (green / 9 & 255) << 8 | blue / 9 & 255;
+        return ColorHelper.getInt(red / div + shift, green / div + shift, blue / div + shift);
+    }
+
+    @Override
+    public int getRenderType() {
+        return JaffasTrees.leavesRenderID;
+    }
+
+    public boolean doFruitRendering(int meta) {
+        return !(serialNumber == 0 && getLeavesType(meta) == 0);
     }
 }
