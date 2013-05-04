@@ -77,7 +77,7 @@ core2="$core/monnef"
 mkdir "$core2" &>/dev/null
 cp -r reobf/minecraft/monnef/core "$core2"
 unzip -q jars/coremods/monnefCore_dummy.jar -d "$core"
-cp bin_data/jaffas_mappings.ser "$core"
+cp bin_data/monnef_mappings.ser "$core"
 if [ $? -ne 0 ]; then
 	echo "Cannot unpack meta-inf stuff"
 	exit 3
