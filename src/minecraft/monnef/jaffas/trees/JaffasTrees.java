@@ -286,6 +286,7 @@ public class JaffasTrees extends jaffasMod {
             itemUnknownSeedsID = idProvider.getItemIDFromConfig("unknownSeeds");
 
             dummyLeaves = new BlockFruitLeavesDummy(idProvider.getBlockIDFromConfig("dummyLeaves"));
+            // Block.blocksList[dummyLeaves.blockID] = null; // don't consume block id // TODO don't get from config
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);

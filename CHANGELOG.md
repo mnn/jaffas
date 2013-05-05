@@ -1,3 +1,15 @@
+## 0.4.17
+- customizable duck spawn rate
+- ore dictionary compatility for Better Farming (orange & lemon)
+- leaves tinting depending on a biome
+- fixed path detection in core
+- leaves, saplings, switchgrass and more are now flammable
+- removed seed bag
+- bonemeal-able switchgrass
+- fixed crash on egg throw
+- reworked bonemealing of plants and trees to require multiple usage
+- Mine Factory Reloaded support (plants, switchgrass, saplings/seeds of trees)
+
 ## 0.4.16
 - separated core
 - rewritten tree saplings to support custom titles
