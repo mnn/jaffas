@@ -228,6 +228,10 @@ public class JaffasFood extends jaffasMod {
     public static boolean achievementsDisabled;
     public static Random rand = new Random();
 
+    public static int duckSpawnProbabilityHigh;
+    public static int duckSpawnProbabilityMed;
+    public static int duckSpawnProbabilityLow;
+
     public boolean IsForestryDetected() {
         return this.forestryDetected;
     }
@@ -329,6 +333,9 @@ public class JaffasFood extends jaffasMod {
             genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
             genDisabledForNonStandardDimensions = config.get(Configuration.CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
             achievementsDisabled = config.get(Configuration.CATEGORY_GENERAL, "achievementsDisabled", false).getBoolean(false);
+            duckSpawnProbabilityLow = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityLow", 8).getInt();
+            duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 10).getInt();
+            duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -431,15 +438,15 @@ public class JaffasFood extends jaffasMod {
     }
 
     private void registerDuckSpawns() {
-        EntityRegistry.addSpawn(EntityDuck.class, 7, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills); // low
-        EntityRegistry.addSpawn(EntityDuck.class, 10, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);     // med
-        EntityRegistry.addSpawn(EntityDuck.class, 15, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high
+        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills); // low
+        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityMed, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);     // med
+        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high
 
-        if (extraBiomes) {
+        if (IsExtraBiomesDetected()) {
             // low - med
-            ExtrabiomesHelper.addSpawn(EntityDuck.class, 9, 1, 3, EnumCreatureType.creature, "ALPINE", "FORESTEDHILLS", "MEADOW", "MINIJUNGLE", "PINEFOREST", "SAVANNA");
+            ExtrabiomesHelper.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 3, EnumCreatureType.creature, "ALPINE", "FORESTEDHILLS", "MEADOW", "MINIJUNGLE", "PINEFOREST", "SAVANNA");
             // high
-            ExtrabiomesHelper.addSpawn(EntityDuck.class, 16, 2, 6, EnumCreatureType.creature, "AUTUMNWOODS", "BIRCHFOREST", "FORESTEDISLAND", "GREENHILLS", "GREENSWAMP", "MARSH", "SHRUBLAND", "TEMPORATERAINFOREST", "WOODLANDS");
+            ExtrabiomesHelper.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 2, 6, EnumCreatureType.creature, "AUTUMNWOODS", "BIRCHFOREST", "FORESTEDISLAND", "GREENHILLS", "GREENSWAMP", "MARSH", "SHRUBLAND", "TEMPORATERAINFOREST", "WOODLANDS");
         }
     }
 
