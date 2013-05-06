@@ -18,6 +18,7 @@ import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
@@ -26,6 +27,8 @@ import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
 import monnef.jaffas.technic.client.JaffaCreativeTab;
 import monnef.jaffas.technic.common.CommonProxy;
+import monnef.jaffas.technic.common.EnchantRecipe;
+import monnef.jaffas.technic.common.RepairRecipe;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
@@ -75,6 +78,7 @@ public class JaffasTechnic extends jaffasMod {
     public static CommonProxy proxy;
 
     private static IDProvider idProvider = new IDProvider(3450, 26244);
+    private static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
     public boolean debug;
 
     private int JaffarrolID;
@@ -89,6 +93,8 @@ public class JaffasTechnic extends jaffasMod {
     private int LimsewID;
     public static ItemTechnic limsew;
 
+    public static ItemTechnic jaffarrolDust;
+
     private int BlockJaffarrolID;
     public static BlockTechnic blockJaffarrol;
 
@@ -100,8 +106,6 @@ public class JaffasTechnic extends jaffasMod {
 
     private int FunnelID;
     public static ItemTechnic funnel;
-
-    public static String textureFile = "/jaffas_03.png";
 
     public static JaffaCreativeTab CreativeTab;
 
@@ -148,6 +152,7 @@ public class JaffasTechnic extends jaffasMod {
 
     @Mod.PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
+        CreativeTab = new JaffaCreativeTab("jaffas.technic");
 
         Configuration config = new Configuration(
                 event.getSuggestedConfigurationFile());
@@ -160,6 +165,9 @@ public class JaffasTechnic extends jaffasMod {
             JaffarrolRawID = idProvider.getItemIDFromConfig("jaffarrolRaw");
             JaffarrolRefinedID = idProvider.getItemIDFromConfig("jaffarrolRefined");
             LimsewID = idProvider.getItemIDFromConfig("limsew");
+
+            jaffarrolDust = new ItemTechnic(idProvider.getItemIDFromConfig("jaffarrolDust"), 25);
+            RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
 
             BlockJaffarrolID = idProvider.getBlockIDFromConfig("jaffarrolBlock");
             BlockLimsewID = idProvider.getBlockIDFromConfig("limsewBlock");
@@ -200,8 +208,6 @@ public class JaffasTechnic extends jaffasMod {
 
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic))
             return;
-
-        CreativeTab = new JaffaCreativeTab("jaffas.technic");
 
         createItems();
         installRecipes();
@@ -398,6 +404,16 @@ public class JaffasTechnic extends jaffasMod {
         */
 
         GameRegistry.addRecipe(new ItemStack(itemLocomotive), "I F", "BCB", "III", 'F', funnel, 'I', Item.ingotIron, 'B', Block.blockIron, 'C', itemCasingRefined);
+
+        GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.swordJaffarrol), 256));
+        GameRegistry.addRecipe(new RepairRecipe(1, 1, new ItemStack(JaffasTechnic.axeJaffarrol), 256));
+        GameRegistry.addRecipe(new RepairRecipe(1, 0, new ItemStack(JaffasTechnic.hoeJaffarrol), 256));
+        GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.pickaxeJaffarrol), 256));
+
+        GameRegistry.addRecipe(new EnchantRecipe(new ItemStack(swordJaffarrol, 1, ANY_DMG), new ItemStack(Item.swordGold), 1, 4));
+
+        Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(blockJaffarrolOre));
+        GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0.25f);
     }
 
     private Item getItem(JaffaItem item) {

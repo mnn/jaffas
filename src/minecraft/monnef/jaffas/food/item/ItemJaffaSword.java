@@ -16,6 +16,8 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import java.util.List;
+
 public class ItemJaffaSword extends ItemJaffaBase {
     private int weaponDamage;
     private final EnumToolMaterial toolMaterial;
@@ -29,37 +31,44 @@ public class ItemJaffaSword extends ItemJaffaBase {
         this.setCustomIconIndex(textureOffset);
     }
 
-    // TODO: remove?
-    public int func_82803_g() {
-        return this.toolMaterial.getDamageVsEntity();
-    }
-
     // ---------------
     // mostly from ItemSword
 
     @Override
-    public float getStrVsBlock(ItemStack par1ItemStack, Block par2Block) {
-        if (par2Block.blockID == Block.web.blockID) {
+    public float getStrVsBlock(ItemStack stack, Block block) {
+        if (nearlyDestroyed(stack)) return 1f;
+
+        if (block.blockID == Block.web.blockID) {
             return 15.0F;
         } else {
-            Material material = par2Block.blockMaterial;
+            Material material = block.blockMaterial;
             return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.pumpkin ? 1.0F : 1.5F;
         }
     }
 
+    private boolean nearlyDestroyed(ItemStack stack) {
+        return stack.getMaxDamage() == stack.getItemDamage();
+    }
+
     @Override
-    public boolean hitEntity(ItemStack par1ItemStack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
-        par1ItemStack.damageItem(1, par3EntityLiving);
+    public boolean hitEntity(ItemStack stack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+        damageSword(1, par3EntityLiving, stack);
         return true;
     }
 
     @Override
     public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving) {
         if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
-            par1ItemStack.damageItem(2, par7EntityLiving);
+            damageSword(4, par7EntityLiving, par1ItemStack);
         }
 
         return true;
+    }
+
+    private void damageSword(int dmg, EntityLiving source, ItemStack stack) {
+        int newDmg = stack.getItemDamage() + dmg;
+        if (newDmg > stack.getMaxDamage()) dmg = stack.getMaxDamage() - stack.getItemDamage();
+        stack.damageItem(dmg, source);
     }
 
     @Override
@@ -105,8 +114,21 @@ public class ItemJaffaSword extends ItemJaffaBase {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
-        return this.toolMaterial.getToolCraftingMaterial() == par2ItemStack.itemID ? true : super.getIsRepairable(par1ItemStack, par2ItemStack);
+    public boolean getIsRepairable(ItemStack stack, ItemStack material) {
+        return this.toolMaterial.getToolCraftingMaterial() == material.itemID ? true : super.getIsRepairable(stack, material);
     }
 
+    @Override
+    public int getDamageVsEntity(Entity entity, ItemStack itemStack) {
+        if (nearlyDestroyed(itemStack)) {
+            return 1;
+        }
+        return getDamageVsEntity(entity);
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        super.addInformation(stack, player, list, par4);
+        if (nearlyDestroyed(stack)) list.add("Broken");
+    }
 }

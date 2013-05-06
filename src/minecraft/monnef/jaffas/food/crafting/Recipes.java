@@ -80,7 +80,7 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(pastrySweet).itemID, new ItemStack(
                 getItem(cake)), 5F);
 
-        AddMalletRecipes();
+        addMalletRecipes();
 
         GameRegistry.addRecipe(new ItemStack(getItem(malletHeadDiamond)), "BIS", "IDI", "SIB",
                 'B', new ItemStack(Item.slimeBall), 'I', new ItemStack(Item.ingotIron),
@@ -102,9 +102,9 @@ public class Recipes {
         JaffaCraftingHandler.AddPersistentItem(malletIron, true, -1);
         JaffaCraftingHandler.AddPersistentItem(malletDiamond, true, -1);
 
-        AddMalletShapedRecipe(new ItemStack(getItem(beans)), new ItemStack(Item.dyePowder, 1, 3));
-        AddMalletShapedRecipe(new ItemStack(getItem(butter)), getItemStack(milkBoxFull));
-        AddMalletShapedRecipe(new ItemStack(getItem(cakeTin)), new ItemStack(Item.ingotIron));
+        addMalletShapedRecipe(new ItemStack(getItem(beans)), new ItemStack(Item.dyePowder, 1, 3));
+        addMalletShapedRecipe(new ItemStack(getItem(butter)), getItemStack(milkBoxFull));
+        addMalletShapedRecipe(new ItemStack(getItem(cakeTin)), new ItemStack(Item.ingotIron));
 
         // moved to the trees module because of the peanut
 //        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), new ItemStack(getItem(JaffaItem.peanut)),
@@ -173,7 +173,7 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(waferIcecreamRaw), 2), "PP", "PP", 'P', new ItemStack(getItem(pastrySweet)));
         GameRegistry.addRecipe(new ItemStack(getItem(coneRaw), 1), "P P", " P ", 'P', new ItemStack(getItem(pastrySweet)));
 
-        AddMalletShapedRecipe(new ItemStack(getItem(vanillaPowder)), new ItemStack(getItem(vanillaBeans)));
+        addMalletShapedRecipe(new ItemStack(getItem(vanillaPowder)), new ItemStack(getItem(vanillaBeans)));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(vanillaIcecreamRaw), 4), new ItemStack(getItem(cream)), new ItemStack(getItem(vanillaPowder)), new ItemStack(Item.snowball));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(chocolateIcecreamRaw), 4), new ItemStack(getItem(cream)), new ItemStack(getItem(beans)), new ItemStack(Item.snowball));
@@ -243,7 +243,7 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(kettle)), "XS ", " XX", " XX", 'X', new ItemStack(Item.ingotIron), 'S', new ItemStack(Item.stick));
         GameRegistry.addRecipe(new ItemStack(getItem(cupRaw)), "XXX", "XX ", 'X', new ItemStack(Item.clay));
         GameRegistry.addSmelting(getItem(cupRaw).itemID, new ItemStack(getItem(cup)), 3);
-        AddMalletShapedRecipe(new ItemStack(getItem(coffee)), new ItemStack(getItem(coffeeRoasted)));
+        addMalletShapedRecipe(new ItemStack(getItem(coffee)), new ItemStack(getItem(coffeeRoasted)));
         //GameRegistry.addRecipe(new ItemStack(getItem(kettleWaterCold)), "W", "K", 'W', new ItemStack(Item.bucketWater), 'K', new ItemStack(getItem(kettle)));
         GameRegistry.addSmelting(getItem(kettleWaterCold).itemID, new ItemStack(getItem(kettleWaterHot)), 0);
         GameRegistry.addRecipe(new ItemStack(getItem(cupCoffee)), "K", "C", "U",
@@ -285,7 +285,7 @@ public class Recipes {
 
         GameRegistry.addRecipe(new ItemStack(getItem(hamburgerBunRaw)), " O ", "OOO", 'O', getItem(pastry));
         GameRegistry.addSmelting(getItem(hamburgerBunRaw).itemID, new ItemStack(getItem(hamburgerBun)), 0.5f);
-        AddMalletShapedRecipe(new ItemStack(getItem(cheese)), new ItemStack(getItem(butter)));
+        addMalletShapedRecipe(new ItemStack(getItem(cheese)), new ItemStack(getItem(butter)));
 
         RecipesBoard.addRecipe(cheese, 1, cheeseSlice, 4);
 
@@ -478,7 +478,7 @@ public class Recipes {
         CraftingManager.getInstance().getRecipeList().add(recipe);
     }
 
-    public static void AddMalletShapedRecipe(ItemStack output, ItemStack input) {
+    public static void addMalletShapedRecipe(ItemStack output, ItemStack input) {
         //GameRegistry.addRecipe(output, "M", "O", 'M', new ItemStack(getItem(itemManager.mallets[i]), 1, WILDCARD_VALUE), 'O', input);
         addRecipe(new ShapedOreRecipe(output, "M", "O", 'M', Items.MALLET, 'O', input));
     }
@@ -487,7 +487,7 @@ public class Recipes {
         return JaffasFood.getItem(item);
     }
 
-    private static void AddMalletRecipes() {
+    private static void addMalletRecipes() {
         for (int i = 0; i < ItemManager.mallets.length; i++) {
             GameRegistry.addRecipe(new ItemStack(getItem(ItemManager.mallets[i])), "H", "S", "S", 'H', new ItemStack(getItem(ItemManager.malletHeads[i])), 'S', Item.stick);
         }
