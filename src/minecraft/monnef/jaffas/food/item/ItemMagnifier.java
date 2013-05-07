@@ -15,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemMagnifier extends ItemJaffaTool {
+public class ItemMagnifier extends ItemJaffaRecipeTool {
     private static final int MAXIMAL_IDS_PER_RUN = 32;
     private ItemStack needle;
 

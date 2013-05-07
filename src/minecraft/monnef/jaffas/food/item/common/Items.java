@@ -13,7 +13,7 @@ import monnef.jaffas.food.item.ItemCleaver;
 import monnef.jaffas.food.item.ItemDuckEgg;
 import monnef.jaffas.food.item.ItemJaffaFood;
 import monnef.jaffas.food.item.ItemJaffaPlate;
-import monnef.jaffas.food.item.ItemJaffaTool;
+import monnef.jaffas.food.item.ItemJaffaRecipeTool;
 import monnef.jaffas.food.item.ItemMagnifier;
 import monnef.jaffas.food.item.ItemPizza;
 import monnef.jaffas.food.item.ItemSink;
@@ -76,8 +76,8 @@ public class Items extends ItemManagerAccessor {
         return (ItemJaffaFood) createJaffaFood(jaffaItem).Setup(heal, saturation);
     }
 
-    private ItemJaffaTool createJaffaTool(JaffaItem ji, int durability) {
-        return (ItemJaffaTool) createJaffaTool(ji).Setup(durability);
+    private ItemJaffaRecipeTool createJaffaTool(JaffaItem ji, int durability) {
+        return (ItemJaffaRecipeTool) createJaffaTool(ji).Setup(durability);
     }
 
     @Deprecated

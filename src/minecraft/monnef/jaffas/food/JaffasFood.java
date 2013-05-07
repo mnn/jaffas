@@ -73,8 +73,8 @@ import monnef.jaffas.food.item.ItemJaffaFood;
 import monnef.jaffas.food.item.ItemJaffaPack;
 import monnef.jaffas.food.item.ItemJaffaPainting;
 import monnef.jaffas.food.item.ItemJaffaPlate;
+import monnef.jaffas.food.item.ItemJaffaRecipeTool;
 import monnef.jaffas.food.item.ItemJaffaSword;
-import monnef.jaffas.food.item.ItemJaffaTool;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.item.common.ItemManager;
@@ -251,7 +251,7 @@ public class JaffasFood extends jaffasMod {
         items = new Items();
         items.RegisterItemType(JaffaItemType.basic, ItemJaffaBase.class);
         items.RegisterItemType(JaffaItemType.food, ItemJaffaFood.class);
-        items.RegisterItemType(JaffaItemType.tool, ItemJaffaTool.class);
+        items.RegisterItemType(JaffaItemType.tool, ItemJaffaRecipeTool.class);
         items.RegisterItemType(JaffaItemType.pack, ItemJaffaPack.class);
         ItemManager.mallets = new JaffaItem[]{JaffaItem.mallet, JaffaItem.malletStone, JaffaItem.malletIron, JaffaItem.malletDiamond};
         ItemManager.malletHeads = new JaffaItem[]{JaffaItem.malletHead, JaffaItem.malletHeadStone, JaffaItem.malletHeadIron, JaffaItem.malletHeadDiamond};
