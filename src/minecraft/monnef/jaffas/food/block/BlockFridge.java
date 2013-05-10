@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013 monnef.
+ * Jaffas and more!
+ * author: monnef
  */
 
 package monnef.jaffas.food.block;

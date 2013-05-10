@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2013 monnef.
+ * Jaffas and more!
+ * author: monnef
  */
 
 package monnef.jaffas.food.client;// Date: 25.1.2013 11:52:38
