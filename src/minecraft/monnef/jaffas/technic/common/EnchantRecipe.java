@@ -17,6 +17,8 @@ import java.util.List;
 
 public class EnchantRecipe extends ShapelessRecipes {
     private static final String ENCH_TAG = "ench";
+    private static final String DISPLAY_TAG = "display";
+    private static final String NAME_TAG = "Name";
 
     private final ItemStack toEnchantItem;
     private final ItemStack enchantBy;
@@ -68,9 +70,24 @@ public class EnchantRecipe extends ShapelessRecipes {
 
         ItemStack output = inputItem.copy();
         if (output.getTagCompound() == null) output.setTagCompound(new NBTTagCompound());
+        NBTTagCompound outputTag = output.getTagCompound();
+
+        // copy enchants
         NBTTagList enchantmentTagList = enchantedBy.getEnchantmentTagList();
         if (enchantmentTagList != null) {
-            output.getTagCompound().setTag(ENCH_TAG, enchantmentTagList.copy());
+            outputTag.setTag(ENCH_TAG, enchantmentTagList.copy());
+        }
+
+        // copy name
+        NBTTagCompound enchantedByTag = enchantedBy.getTagCompound();
+        if (enchantedByTag != null && enchantedByTag.hasKey(DISPLAY_TAG)) {
+            NBTTagCompound innerTag = enchantedByTag.getCompoundTag(DISPLAY_TAG);
+            if (innerTag.hasKey(NAME_TAG)) {
+                String name = innerTag.getString(NAME_TAG);
+                NBTTagCompound newNameTag = new NBTTagCompound();
+                newNameTag.setString(NAME_TAG, name);
+                outputTag.setCompoundTag(DISPLAY_TAG, newNameTag);
+            }
         }
         return output;
     }

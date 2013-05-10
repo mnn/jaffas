@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemTechnicTool.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/EnchantRecipe.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/EnchantRecipe.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemAxeTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemAxeTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemPickaxeTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemPickaxeTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemSpadeTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemSpadeTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -408,7 +401,7 @@
     <file path="/BlockFruitLeavesFake.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367699611690" ignored="false" />
     <file path="/BlockFruitLeavesDummy.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367699565328" ignored="false" />
     <file path="/RepairRecipe.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367876371691" ignored="false" />
-    <file path="/EnchantRecipe.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368213534611" ignored="false" />
+    <file path="/EnchantRecipe.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368214928993" ignored="false" />
     <file path="/DumpClass.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367940330865" ignored="false" />
     <file path="/ClassDumper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367941150374" ignored="false" />
     <file path="/jaffas_EventSounds.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368210187118" ignored="false" />
@@ -534,19 +527,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EnchantRecipe.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="EnchantRecipe.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/EnchantRecipe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="0" selection-start="2624" selection-end="2624" vertical-scroll-proportion="0.0">
+            <state line="80" column="27" selection-start="2958" selection-end="2958" vertical-scroll-proportion="0.5604396">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemHoeTechnic.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ItemHoeTechnic.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="53" selection-start="615" selection-end="615" vertical-scroll-proportion="0.46314102">
+            <state line="34" column="52" selection-start="1207" selection-end="1207" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -597,9 +590,9 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemSpadeTechnic.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemAxeTechnic.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/EnchantRecipe.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemTechnicTool.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/EnchantRecipe.java" />
       </list>
     </option>
   </component>
@@ -1301,13 +1294,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="121" column="79" selection-start="5338" selection-end="5338" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemSpadeTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="43" selection-start="311" selection-end="311" vertical-scroll-proportion="0.21350078">
@@ -1332,13 +1318,6 @@
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="431" column="110" selection-start="22725" selection-end="22725" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/EnchantRecipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="0" selection-start="2624" selection-end="2624" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1410,10 +1389,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="53" selection-start="615" selection-end="615" vertical-scroll-proportion="0.46314102">
+        <state line="34" column="52" selection-start="1207" selection-end="1207" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemStack.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="518" column="22" selection-start="15383" selection-end="15383" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/EnchantRecipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="27" selection-start="2958" selection-end="2958" vertical-scroll-proportion="0.5604396">
+          <folding />
         </state>
       </provider>
     </entry>
