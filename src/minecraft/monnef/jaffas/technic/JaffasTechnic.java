@@ -416,23 +416,24 @@ public class JaffasTechnic extends jaffasMod {
         OreDictionary.registerOre("oreJaffarrol", blockJaffarrolOre);
         OreDictionary.registerOre("oreLimsew", blockLimsewOre);
 
-        /*
-        ItemStack hoe = new ItemStack(hoeJaffarrol);
-        hoe.addEnchantment(Enchantment.fortune, 2);
-        hoe.addEnchantment(Enchantment.unbreaking, 2);
-        GameRegistry.addRecipe(hoe, "JJL", "LS ", " S ", 'J', jaffarrol, 'S', Item.stick, 'L', limsew);
-        */
-
         GameRegistry.addRecipe(new ItemStack(itemLocomotive), "I F", "BCB", "III", 'F', funnel, 'I', Item.ingotIron, 'B', Block.blockIron, 'C', itemCasingRefined);
 
-        GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.swordJaffarrol), 256));
-        GameRegistry.addRecipe(new RepairRecipe(1, 1, new ItemStack(JaffasTechnic.axeJaffarrol), 256));
-        GameRegistry.addRecipe(new RepairRecipe(1, 0, new ItemStack(JaffasTechnic.hoeJaffarrol), 256));
-        GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.pickaxeJaffarrol), 256));
+        GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.swordJaffarrol), 333));
+        GameRegistry.addRecipe(new RepairRecipe(3, 1, new ItemStack(JaffasTechnic.axeJaffarrol), 333));
+        GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.hoeJaffarrol), 333));
+        GameRegistry.addRecipe(new RepairRecipe(3, 1, new ItemStack(JaffasTechnic.pickaxeJaffarrol), 333));
+        GameRegistry.addRecipe(new RepairRecipe(1, 1, new ItemStack(JaffasTechnic.spadeJaffarrol), 333));
 
         GameRegistry.addRecipe(new EnchantRecipe(new ItemStack(swordJaffarrol, 1, ANY_DMG), new ItemStack(Item.swordGold), 1, 4));
+        GameRegistry.addRecipe(new EnchantRecipe(new ItemStack(axeJaffarrol, 1, ANY_DMG), new ItemStack(Item.axeGold), 1, 4));
+        GameRegistry.addRecipe(new EnchantRecipe(new ItemStack(hoeJaffarrol, 1, ANY_DMG), new ItemStack(Item.hoeGold), 1, 4));
+        GameRegistry.addRecipe(new EnchantRecipe(new ItemStack(pickaxeJaffarrol, 1, ANY_DMG), new ItemStack(Item.pickaxeGold), 1, 4));
+        GameRegistry.addRecipe(new EnchantRecipe(new ItemStack(spadeJaffarrol, 1, ANY_DMG), new ItemStack(Item.shovelGold), 1, 4));
 
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(blockJaffarrolOre));
+        Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
+        Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRaw));
+        Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRefined));
         GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0);
     }
 

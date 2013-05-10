@@ -5,24 +5,10 @@
 
 package monnef.jaffas.technic.item;
 
-import monnef.core.base.CustomIconHelper;
-import monnef.jaffas.technic.JaffasTechnic;
-import monnef.jaffas.technic.Reference;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.ItemSpade;
 
-public class ItemSpadeTechnic extends ItemSpade {
-    private final int textureOffset;
-
+public class ItemSpadeTechnic extends ItemTechnicTool {
     public ItemSpadeTechnic(int id, int textureOffset, EnumToolMaterial material) {
-        super(id, material);
-        setCreativeTab(JaffasTechnic.CreativeTab);
-        this.textureOffset = textureOffset;
-    }
-
-    @Override
-    public void registerIcons(IconRegister par1IconRegister) {
-        this.itemIcon = par1IconRegister.registerIcon(CustomIconHelper.generateId(Reference.ModName, 3, textureOffset));
+        super(id, textureOffset, material);
     }
 }

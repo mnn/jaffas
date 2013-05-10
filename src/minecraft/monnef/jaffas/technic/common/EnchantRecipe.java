@@ -10,6 +10,7 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +68,10 @@ public class EnchantRecipe extends ShapelessRecipes {
 
         ItemStack output = inputItem.copy();
         if (output.getTagCompound() == null) output.setTagCompound(new NBTTagCompound());
-        output.getTagCompound().setTag(ENCH_TAG, enchantedBy.getEnchantmentTagList().copy());
+        NBTTagList enchantmentTagList = enchantedBy.getEnchantmentTagList();
+        if (enchantmentTagList != null) {
+            output.getTagCompound().setTag(ENCH_TAG, enchantmentTagList.copy());
+        }
         return output;
     }
 }
