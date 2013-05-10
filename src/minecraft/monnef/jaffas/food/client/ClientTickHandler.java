@@ -14,6 +14,7 @@ import monnef.jaffas.food.common.VersionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.common.Configuration;
 
 import java.util.EnumSet;
 
@@ -32,10 +33,9 @@ public class ClientTickHandler implements IScheduledTickHandler {
 
     public static Object lock = new Object();
 
+    private static String cachedVersionString;
+
     public ClientTickHandler() {
-        if (!JaffasFood.instance.checkUpdates) {
-            checked = true;
-        }
     }
 
     @Override
@@ -59,8 +59,6 @@ public class ClientTickHandler implements IScheduledTickHandler {
     @Override
     public EnumSet<TickType> ticks() {
         return EnumSet.of(TickType.RENDER, TickType.CLIENT);
-        // In my testing only RENDER, CLIENT, & PLAYER did anything on the client side.
-        // Read 'cpw.mods.fml.common.TickType.java' for a full list and description of available types
     }
 
     @Override
@@ -109,15 +107,32 @@ public class ClientTickHandler implements IScheduledTickHandler {
                         Integer[] thisVersion = VersionHelper.GetVersionNumbers(clientVersionString);
                         int cmp = VersionHelper.CompareVersions(thisVersion, remoteVersion);
                         if (cmp == -1) {
-                            // TODO check if it hasn't been already shown
-                            player.addChatMessage("New version (" + VersionHelper.VersionToString(remoteVersion) + ") of \"Jaffas and more!\" is available.");
+                            String versionString = VersionHelper.VersionToString(remoteVersion);
+                            if (!JaffasFood.lastVersionShown.equals(versionString)) {
+                                Configuration config = JaffasFood.instance.config;
+                                try {
+                                    config.get(Configuration.CATEGORY_GENERAL, JaffasFood.LAST_VERSION_SHOWN, "").set(versionString);
+                                    config.save();
+                                } catch (Exception e) {
+                                    Log.printSevere("Problem while writing new version to the config.");
+                                    e.printStackTrace();
+                                }
+                                if (JaffasFood.showUpdateMessages) {
+                                    cachedVersionString = versionString;
+                                    showNewVersionMessage(player);
+                                } else {
+                                    Log.printInfo("New version available, but messages are disabled.");
+                                }
+                            } else {
+                                Log.printInfo("New version available, but message was already once shown, skipping.");
+                            }
                         } else if (cmp == 1) {
                             if (name.toLowerCase().equals("monnef")) {
                                 player.addChatMessage("Local version is newer than remote, did you forget to update version file?");
                             }
                             Log.printInfo("Remote version is older than yours, ignoring.");
                         } else {
-                            Log.printInfo("[DEBUG] Version check is OK.");
+                            Log.printInfo("Version check is OK.");
                         }
 
                         checked = true;
@@ -127,11 +142,18 @@ public class ClientTickHandler implements IScheduledTickHandler {
         }
     }
 
+    public boolean isVersionStringReady() {
+        return cachedVersionString != null;
+    }
+
+    private void showNewVersionMessage(EntityClientPlayerMP player) {
+        player.addChatMessage("New version §6" + cachedVersionString + "§r of \"§5Jaffas and more!§r\" is available.");
+    }
 
     @Override
     public int nextTickSpacing() {
         if (first) {
-            first = Minecraft.getMinecraft().currentScreen != null ? true : false;
+            first = Minecraft.getMinecraft().currentScreen != null;
             return 20 * 5;
         }
 

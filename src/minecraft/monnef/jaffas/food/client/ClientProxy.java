@@ -60,7 +60,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerSounds() {
-        MinecraftForge.EVENT_BUS.register(new jaffas_EventSounds());
+        MinecraftForge.EVENT_BUS.register(new Sounds());
     }
 
     @Override

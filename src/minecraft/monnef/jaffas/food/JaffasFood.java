@@ -122,6 +122,7 @@ import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
 public class JaffasFood extends jaffasMod {
+    public static final String LAST_VERSION_SHOWN = "lastVersionShown";
     public static JaffaCreativeTab CreativeTab;
 
     private static MinecraftServer server;
@@ -200,7 +201,8 @@ public class JaffasFood extends jaffasMod {
     public static boolean debug;
     public static String jaffasTitle;
     public static String jaffaTitle;
-    public boolean checkUpdates;
+    public static boolean showUpdateMessages;
+    public static String lastVersionShown;
 
     private static int JaffaPaintingEntityID;
     private static int DuckEntityID;
@@ -233,6 +235,8 @@ public class JaffasFood extends jaffasMod {
     public static int duckSpawnProbabilityHigh;
     public static int duckSpawnProbabilityMed;
     public static int duckSpawnProbabilityLow;
+
+    public Configuration config;
 
     public boolean isForestryDetected() {
         return this.forestryDetected;
@@ -279,7 +283,7 @@ public class JaffasFood extends jaffasMod {
         checkMFR();
         checkTE();
 
-        Configuration config = new Configuration(
+        this.config = new Configuration(
                 event.getSuggestedConfigurationFile());
 
         try {
@@ -312,7 +316,8 @@ public class JaffasFood extends jaffasMod {
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
-            checkUpdates = config.get(Configuration.CATEGORY_GENERAL, "checkUpdates", true).getBoolean(true);
+            showUpdateMessages = config.get(Configuration.CATEGORY_GENERAL, "showUpdateMessages", true).getBoolean(true);
+            lastVersionShown = config.get(Configuration.CATEGORY_GENERAL, LAST_VERSION_SHOWN, "").getString();
 
             blockCrossID = idProvider.getBlockIDFromConfig("cross");
             blockSinkID = idProvider.getBlockIDFromConfig("sink");

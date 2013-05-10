@@ -9,7 +9,7 @@ import monnef.jaffas.food.JaffasFood;
 import net.minecraftforge.client.event.sound.SoundLoadEvent;
 import net.minecraftforge.event.ForgeSubscribe;
 
-public class jaffas_EventSounds {
+public class Sounds {
     @ForgeSubscribe
     public void onSound(SoundLoadEvent event) {
         try {
