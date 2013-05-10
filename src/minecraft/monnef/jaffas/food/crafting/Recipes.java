@@ -276,7 +276,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(gingerbread)), new ItemStack(getItem(pastrySweet)), new ItemStack(getItem(honey)));
 
         //honey recipe
-        if (instance.IsForestryDetected()) {
+        if (instance.isForestryDetected()) {
             ItemStack i = forestry.api.core.ItemInterface.getItem("honeyDrop");
             GameRegistry.addRecipe(new ItemStack(getItem(honey)), "H", "H", "B", 'H', i, 'B', Item.glassBottle);
         } else {

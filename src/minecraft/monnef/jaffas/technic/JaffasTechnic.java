@@ -51,9 +51,11 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
+import thermalexpansion.api.crafting.CraftingHelpers;
 
 import java.util.logging.Level;
 
+import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.cookingPot;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolBoots;
@@ -225,7 +227,24 @@ public class JaffasTechnic extends jaffasMod {
         TechnicWorldGen generator = new TechnicWorldGen();
         GameRegistry.registerWorldGenerator(generator);
 
+        installThermalExpansionSupport();
+
         JaffasFood.PrintInitialized(ModulesEnum.technic);
+    }
+
+    private void installThermalExpansionSupport() {
+        if (JaffasFood.instance.isTEDetected()) {
+            try {
+                CraftingHelpers.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
+                CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrol), new ItemStack(jaffarrolDust));
+                CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrolRefined), new ItemStack(jaffarrolDust));
+                CraftingHelpers.addSmelterDustToIngotsRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
+                CraftingHelpers.addSmelterOreToIngotsRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrol));
+            } catch (Exception e) {
+                Log.printSevere("Thermal Expansion integration failed - the API may have changed.");
+                e.printStackTrace();
+            }
+        }
     }
 
     private void addDrops() {
@@ -413,7 +432,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new EnchantRecipe(new ItemStack(swordJaffarrol, 1, ANY_DMG), new ItemStack(Item.swordGold), 1, 4));
 
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(blockJaffarrolOre));
-        GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0.25f);
+        GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0);
     }
 
     private Item getItem(JaffaItem item) {
