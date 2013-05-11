@@ -137,6 +137,7 @@ public class JaffasTechnic extends jaffasMod {
     public static ItemSwordTechnic swordJaffarrol;
 
     public static boolean generateOres;
+    public static boolean disableOreRecipes;
     public static float switchgrassProbability;
 
     private int LocomotiveEntityID;
@@ -198,6 +199,7 @@ public class JaffasTechnic extends jaffasMod {
 
             generateOres = config.get(Configuration.CATEGORY_GENERAL, "generateOres", true).getBoolean(true);
             switchgrassProbability = (float) config.get(Configuration.CATEGORY_GENERAL, "switchgrassProbability", 0.005, "Do not go too high, or face stack overflow caused by recursive chunk generation").getDouble(0.005);
+            disableOreRecipes = config.get(Configuration.CATEGORY_GENERAL, "disableOreRecipes", true).getBoolean(true);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {
@@ -339,13 +341,15 @@ public class JaffasTechnic extends jaffasMod {
     }
 
     private void installRecipes() {
-        GameRegistry.addShapelessRecipe(new ItemStack(jaffarrolRaw, 4),
-                new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron),
-                new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(Item.ingotGold),
-                new ItemStack(Item.redstone));
+        if (!disableOreRecipes) {
+            GameRegistry.addShapelessRecipe(new ItemStack(jaffarrolRaw, 4),
+                    new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron),
+                    new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(Item.ingotGold),
+                    new ItemStack(Item.redstone));
+        }
 
         GameRegistry.addSmelting(jaffarrolRaw.itemID, new ItemStack(jaffarrol), 1f);
-        GameRegistry.addSmelting(jaffarrol.itemID, new ItemStack(jaffarrolRefined), 1f);
+        GameRegistry.addSmelting(jaffarrol.itemID, new ItemStack(jaffarrolRefined), 0);
 
         GameRegistry.addShapelessRecipe(new ItemStack(blockJaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol),
                 new ItemStack(jaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol),
@@ -355,9 +359,11 @@ public class JaffasTechnic extends jaffasMod {
                 new ItemStack(limsew), new ItemStack(limsew), new ItemStack(limsew), new ItemStack(limsew),
                 new ItemStack(limsew), new ItemStack(limsew), new ItemStack(limsew));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(limsew, 2), new ItemStack(Item.diamond), new ItemStack(Item.lightStoneDust),
-                new ItemStack(Item.lightStoneDust), new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone),
-                new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone));
+        if (!disableOreRecipes) {
+            GameRegistry.addShapelessRecipe(new ItemStack(limsew, 2), new ItemStack(Item.diamond), new ItemStack(Item.lightStoneDust),
+                    new ItemStack(Item.lightStoneDust), new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone),
+                    new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone));
+        }
 
         GameRegistry.addShapelessRecipe(new ItemStack(limsew, 9), new ItemStack(blockLimsew));
         GameRegistry.addShapelessRecipe(new ItemStack(jaffarrol, 9), new ItemStack(blockJaffarrol));
@@ -402,8 +408,8 @@ public class JaffasTechnic extends jaffasMod {
 
         GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', jaffarrol);
 
-        GameRegistry.addSmelting(BlockJaffarrolOreID, new ItemStack(jaffarrol), 1f);
-        GameRegistry.addSmelting(BlockLimsewOreID, new ItemStack(limsew), 1f);
+        GameRegistry.addSmelting(blockJaffarrolOre.blockID, new ItemStack(jaffarrol), 1f);
+        GameRegistry.addSmelting(blockLimsewOre.blockID, new ItemStack(limsew), 1f);
 
         GameRegistry.addRecipe(new ItemStack(swordJaffarrol), "J", "J", "G", 'J', jaffarrol, 'G', Item.ingotGold);
         GameRegistry.addRecipe(new ItemStack(hoeJaffarrol), "JJ", " S", " S", 'J', jaffarrol, 'S', Item.stick);

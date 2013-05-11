@@ -1,3 +1,10 @@
+## 0.4.18
+- update to 1.5.2
+- compatibility with TE (mainly ore → 2x dusts in pulverizer)
+- enchant and repair recipes
+- new version message should appear only once per version
+- ore recipes disabled by default
+
 ## 0.4.17
 - customizable duck spawn rate
 - ore dictionary compatility for Better Farming (orange & lemon)
