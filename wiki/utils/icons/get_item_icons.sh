@@ -1,51 +1,60 @@
 #!/bin/bash
 # uses image magick to crop and resize icon images from sprite sheets
 
+function printDoing {
+    echo -n "$1 ... "
+}
+
+function printDone {
+    echo "done"
+}
+
+echo
+echo "  Icons exporter for jaffas wiki"
+echo "--==============================--"
+echo
+
+printDoing "Preparing directories"
+indir="../../../bin_data/mods"
 output=out
+tmpdir=tmp
+optiPNGbin="../optipng-0.7.4-win32/optipng"
 
 if [ ${#output} -lt 2 ]; then
 	echo "weird string in output directory variable. halting for safety reasons."
 	exit 1
 fi
 
+if [ ${#tmpdir} -lt 2 ]; then
+    echo "weird string in tmp directory variable. halting for safety reasons."
+    exit 1
+fi
+
 mkdir "$output" &> /dev/null
-rm -fr $output/*.png
+rm -fr ./$output/*.png
 
-items_num=255
-n=0
-declare -a sprites=('jaffas_01_a.png' 'jaffas_02.png' 'jaffas_03.png' 'jaffas_04.png' 'jaffas_05.png' 'jaffas_06.png' 'jaffas_01_b.png')
+mkdir "$tmpdir" &> /dev/null
+rm -fr ./$tmpdir/*.png
 
-spritePath='../../../bin_data'
+printDone
 
-while [ $n -le $items_num ]; do
-	echo -n .
-	f=$n
-	if [ "$f" -lt 10 ]; then
-		f=0$f
-	fi
-    
-    if [ "$f" -lt 100 ]; then
-            f=0$f
-    fi
+#---
 
-	i=0
-	for t in "${sprites[@]}" ; do
-		i=$(( i+1 ))
-		ii=$i
-		if [ $ii -lt 10 ]; then
-			ii="0$ii"
-		fi
-		fname="$output/${ii}_$f.png"
-		convert "$spritePath/$t" -crop 16x16+$[$n % 16 * 16]+$[$n / 16 * 16] +repage -scale 32x32 "$fname"
+printDoing "Copying png files"
+find "$indir" -type f | grep -Ei 'mods/.*/textures/.*\.png' | xargs -I {} cp {} "$tmpdir"
+printDone
 
-		# remove blank images
-		colors=`identify -format "%k" "$fname"`
-		if [ $colors == "1" ]; then
-			rm -f $fname
-		fi
-	done
-		
-	n=$[$n + 1]
+#---
+
+printDoing "Converting"
+for file in "$tmpdir"/*.png ; do
+    filename=$(basename "$file")
+    convert  "$file" -scale 32x32 "$output/$filename"
 done
+printDone
 
-echo
+optiPNGlogFile="optipng.log"
+rm -f $optiPNGlogFile
+printDoing "Applying OptiPNG"
+$optiPNGbin -o7 "$output"/*.png >> $optiPNGlogFile 2>&1
+printDone
