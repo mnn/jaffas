@@ -237,17 +237,6 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         bodyIcon = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
     }
 
-    @ForgeSubscribe
-    public void onBonemeal(BonemealEvent event) {
-        if (event.ID != blockID) {
-            return;
-        }
-
-        if (tryBonemeal(event.world, event.X, event.Y, event.Z)) {
-            event.setResult(Event.Result.ALLOW);
-        }
-    }
-
     public boolean tryBonemeal(World w, int x, int y, int z) {
         if (JaffasTrees.bonemealingAllowed) {
             if (!w.isRemote) {

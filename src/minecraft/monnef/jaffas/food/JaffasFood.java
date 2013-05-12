@@ -61,6 +61,7 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.common.Reference;
+import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
 import monnef.jaffas.food.crafting.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
@@ -515,7 +516,7 @@ public class JaffasFood extends jaffasMod {
 
         blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
         RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
-        MinecraftForge.EVENT_BUS.register(blockSwitchgrass);
+        MinecraftForge.EVENT_BUS.register(new SwitchgrassBonemealHandler());
         if (isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizable(blockSwitchgrass);
             FarmingRegistry.registerHarvestable(blockSwitchgrass);
