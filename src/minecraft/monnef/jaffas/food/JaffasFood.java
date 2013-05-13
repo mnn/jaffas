@@ -364,7 +364,6 @@ public class JaffasFood extends jaffasMod {
         super.load(event);
 
         checkCore(); // really necessary?
-        checkJsoup();
 
         CreativeTab = new JaffaCreativeTab("jaffas");
 
@@ -550,15 +549,6 @@ public class JaffasFood extends jaffasMod {
         if (isTEDetected()) list.add("TE");
         if (list.size() == 0) list.add("none");
         return list;
-    }
-
-    private void checkJsoup() {
-        try {
-            Class c = Class.forName("org.jsoup.Jsoup");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new RuntimeException("Jsoup library not found, cannot continue.");
-        }
     }
 
     private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int id) {

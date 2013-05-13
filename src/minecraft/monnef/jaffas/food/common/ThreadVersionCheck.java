@@ -15,7 +15,7 @@ public class ThreadVersionCheck implements Runnable {
     public void run() {
         if (JaffasFood.debug) Log.printInfo("data filling started");
         synchronized (ClientTickHandler.lock) {
-            ClientTickHandler.data = VersionHelper.GetVersionText(ClientTickHandler.name, ClientTickHandler.clientVersionString);
+            ClientTickHandler.data = VersionHelper.getVersionText(ClientTickHandler.name, ClientTickHandler.clientVersionString);
         }
         if (JaffasFood.debug) Log.printInfo("data filled");
     }

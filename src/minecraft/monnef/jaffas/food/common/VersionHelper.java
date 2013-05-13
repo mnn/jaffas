@@ -5,26 +5,24 @@
 
 package monnef.jaffas.food.common;
 
-import org.jsoup.Jsoup;
+import monnef.core.utils.WebHelper;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static monnef.jaffas.food.JaffasFood.Log;
-
 public class VersionHelper {
-    private static Pattern versionPatter = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)");
+    private static Pattern versionPattern = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)");
     //public static final String URL = "http://366.hopto.org/jaffas_version.txt";
     //public static final String URL = "http://jaffas.maweb.eu/jaffas_version.php";
     public static final String URL = "http://jaffas.moxo.cz/jaffas_version.php";
 
     public static Integer[] GetVersionNumbers(String data) {
-        Matcher out = versionPatter.matcher(data);
+        Matcher out = versionPattern.matcher(data);
 
         if (!out.matches()) {
 //            throw new Exception("group count != 3");
@@ -46,19 +44,21 @@ public class VersionHelper {
         return res;
     }
 
-    static String GetVersionText(String name, String version) {
+    static String getVersionText(String name, String version) {
         String data = null;
 
-        try {
-            String web = Jsoup.connect(URL).referrer(getMD5(chopName(name))).data("name", getMD5(name)).data("version", version).get().body().html();
-            String[] lines = web.split("[\r\n]+");
-
-            data = lines[0].trim();
-        } catch (IOException e) {
-            Log.printWarning("Unable to get version info.");
-            e.printStackTrace();
+        ArrayList<String> lines = new ArrayList<String>();
+        if (WebHelper.getLinesTillFooter(prepareURL(URL, getMD5(name), version), getMD5(chopName(name)), lines)) {
+            if (lines.size() > 0) {
+                data = lines.get(0).trim();
+            }
         }
+
         return data;
+    }
+
+    private static String prepareURL(String url, String nameHashed, String version) {
+        return String.format("%s?name=%s&version=%s", url, nameHashed, version);
     }
 
     private static String chopName(String name) {
@@ -66,7 +66,7 @@ public class VersionHelper {
         return name.substring(0, 2) + name.substring(name.length() - 2, name.length());
     }
 
-    public static int CompareVersions(Integer[] ver1, Integer[] ver2) {
+    public static int compareVersions(Integer[] ver1, Integer[] ver2) {
         int ver1i = ver1[0] * 100 * 100 + ver1[1] * 100 + ver1[2];
         int ver2i = ver2[0] * 100 * 100 + ver2[1] * 100 + ver2[2];
 
@@ -77,7 +77,7 @@ public class VersionHelper {
         throw new RuntimeException("eh, what?");
     }
 
-    public static String VersionToString(Integer[] ver) {
+    public static String versionToString(Integer[] ver) {
         return ver[0] + "." + ver[1] + "." + ver[2];
     }
 

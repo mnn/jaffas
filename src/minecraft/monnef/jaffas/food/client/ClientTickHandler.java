@@ -105,9 +105,9 @@ public class ClientTickHandler implements IScheduledTickHandler {
                     data = null; // reset data to signal they're no longer valid
                     if (remoteVersion != null) {
                         Integer[] thisVersion = VersionHelper.GetVersionNumbers(clientVersionString);
-                        int cmp = VersionHelper.CompareVersions(thisVersion, remoteVersion);
+                        int cmp = VersionHelper.compareVersions(thisVersion, remoteVersion);
                         if (cmp == -1) {
-                            String versionString = VersionHelper.VersionToString(remoteVersion);
+                            String versionString = VersionHelper.versionToString(remoteVersion);
                             if (!JaffasFood.lastVersionShown.equals(versionString)) {
                                 Configuration config = JaffasFood.instance.config;
                                 try {
