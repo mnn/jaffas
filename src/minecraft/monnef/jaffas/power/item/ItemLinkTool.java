@@ -6,9 +6,11 @@
 package monnef.jaffas.power.item;
 
 import monnef.core.utils.NBTHelper;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import monnef.jaffas.power.common.PowerNodeCoordinates;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
@@ -34,17 +36,23 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
 
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        MovingObjectPosition obj = player.rayTrace(20, 1);
+        if (world.isRemote) return stack;
+        MovingObjectPosition obj = PlayerHelper.rayTraceBlock(player, 20, player.getLookVec());
         boolean success = false;
+        initNBT(stack);
 
         if (obj.typeOfHit == EnumMovingObjectType.TILE) {
             int blockId = world.getBlockId(obj.blockX, obj.blockY, obj.blockZ);
             if (blockId != 0) {
+                Block block = Block.blocksList[blockId];
+                SendMessage(player, String.format("hit: %d - %s", blockId, block != null ? block.getUnlocalizedName() : "0"));
                 if (stack.getTagCompound().hasKey(SOURCE_TAG_NAME)) {
                     PowerNodeCoordinates source = new PowerNodeCoordinates(NBTHelper.getCoords(stack, SOURCE_TAG_NAME));
                     /*PowerNodeCoordinates target =
                     PowerUtils.connect()*/
                     SendMessage(player, "TODO");
+                } else {
+                    SendMessage(player, "TODO2");
                 }
             }
         }
@@ -58,6 +66,6 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
     }
 
     private void SendMessage(EntityPlayer player, String msg) {
-        player.addChatMessage("[LinkTool] " + msg);
+        player.addChatMessage("[§9LinkTool§r] " + msg);
     }
 }
