@@ -19,7 +19,7 @@ public class VersionHelper {
     private static Pattern versionPattern = Pattern.compile("(\\d+)\\.(\\d+)\\.(\\d+)");
     //public static final String URL = "http://366.hopto.org/jaffas_version.txt";
     //public static final String URL = "http://jaffas.maweb.eu/jaffas_version.php";
-    public static final String URL = "http://jaffas.moxo.cz/jaffas_version.php";
+    public static final String URL = monnef.core.Reference.URL_JAFFAS + "/jaffas_version.php";
 
     public static Integer[] GetVersionNumbers(String data) {
         Matcher out = versionPattern.matcher(data);
