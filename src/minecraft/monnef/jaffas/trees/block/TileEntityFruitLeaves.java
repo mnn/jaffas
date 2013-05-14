@@ -25,7 +25,6 @@ import java.util.Random;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.trees.JaffasTrees.debug;
-import static monnef.jaffas.trees.JaffasTrees.fruitType;
 import static monnef.jaffas.trees.JaffasTrees.getActualLeavesType;
 import static monnef.jaffas.trees.JaffasTrees.itemCoconut;
 import static monnef.jaffas.trees.JaffasTrees.itemLemon;
@@ -49,7 +48,7 @@ public class TileEntityFruitLeaves extends TileEntity {
     private int timer;
     private static Random rand = new Random();
     private boolean checked = false;
-    private fruitType fruit;
+    private JaffasTrees.FruitType fruit;
     private int leavesID;
     private int leavesMeta;
 
@@ -101,7 +100,7 @@ public class TileEntityFruitLeaves extends TileEntity {
             }
 
             checked = true;
-            if (fruit == fruitType.Normal) {
+            if (!fruit.doesGenerateFruitAndSeeds()) {
                 this.invalidate();
                 return;
             }
@@ -116,7 +115,7 @@ public class TileEntityFruitLeaves extends TileEntity {
 
             timer = 0;
             if (this.rand.nextDouble() < this.turnChance * this.turnChanceMultiplier) {
-                if (this.fruit != fruitType.Vanilla || rand.nextInt(3) == 0) {
+                if (this.fruit != JaffasTrees.FruitType.Vanilla || rand.nextInt(3) == 0) {
                     if (this.getBlockType().blockID == JaffasTrees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
                         ChangeBlockAndRespawnMe(this.leavesID, this.leavesMeta);
                     } else {
@@ -234,9 +233,9 @@ public class TileEntityFruitLeaves extends TileEntity {
                 if (stack != null) {
                     EntityItem ent = new EntityItem(world, newX, newY, newZ, stack);
                     ent.setPosition(newX + 0.5, newY + 0.9, newZ + 0.5);
-                    ent.motionX = (rand.nextDouble() - 0.5) / 3;
+                    ent.motionX = (rand.nextDouble() - 0.5D) / 3D;
                     ent.motionY = 0;
-                    ent.motionZ = (rand.nextDouble() - 0.5) / 3;
+                    ent.motionZ = (rand.nextDouble() - 0.5D) / 3D;
                     world.spawnEntityInWorld(ent);
                 } else {
                     if (debug) {
@@ -255,18 +254,10 @@ public class TileEntityFruitLeaves extends TileEntity {
         }
     }
 
-    public static ItemFromFruitResult getItemFromFruit(fruitType fruit) {
+    public static ItemFromFruitResult getItemFromFruit(JaffasTrees.FruitType fruit) {
         ItemFromFruitResult res = new ItemFromFruitResult();
 
         switch (fruit) {
-            case Normal:
-                if (debug) {
-                    res.setMessage("normal tree!");
-                    res.setStack(new ItemStack(Item.porkRaw));
-                } else
-                    res.exception = new RuntimeException("normal tree leaves cannot drop stuff!");
-                break;
-
             case Apple:
                 res.setStack(new ItemStack(Item.appleRed));
                 break;
@@ -306,7 +297,7 @@ public class TileEntityFruitLeaves extends TileEntity {
         return res;
     }
 
-    public ItemStack getItemFromMetadataAndBlockID(fruitType fruit) {
+    public ItemStack getItemFromMetadataAndBlockID(JaffasTrees.FruitType fruit) {
         int metadata = -1, leavesMetadataType = -1;
         if (debug) {
             metadata = this.getBlockMetadata();

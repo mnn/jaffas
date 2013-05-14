@@ -74,6 +74,7 @@ import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.JaffasFood.getItem;
@@ -140,14 +141,14 @@ public class JaffasTrees extends jaffasMod {
     public static final String LEMON = "fruitLemon";
     public static final String ORANGE = "fruitOrange";
 
-    public static fruitType getActualLeavesType(Block block, int blockMetadata) {
+    public static FruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
         return getActualLeavesType(b.serialNumber, blockMetadata);
     }
 
-    public static fruitType getActualLeavesType(int serialNumber, int blockMetadata) {
+    public static FruitType getActualLeavesType(int serialNumber, int blockMetadata) {
         int index = serialNumber * 4 + blockMetadata;
-        fruitType fruitType = JaffasTrees.fruitType.indexToFruitType(index);
+        FruitType fruitType = FruitType.indexToFruitType(index);
         if (fruitType == null) {
             throw new RuntimeException("fruit not found!");
         }
@@ -155,18 +156,22 @@ public class JaffasTrees extends jaffasMod {
         return fruitType;
     }
 
-    public static enum fruitType {
+    public static enum FruitType {
         Normal(0), Apple(1), Cocoa(2), Vanilla(3), Lemon(4), Orange(5), Plum(6), Coconut(7);
         private int value;
         private int blockNumber;
         private int metaNumber;
 
-        fruitType(int value) {
+        static {
+            helper.noSeedsAndFruit.add(Normal);
+        }
+
+        FruitType(int value) {
             this.value = value;
             this.blockNumber = value % 4;
             this.metaNumber = value / 4;
 
-            mapper.indexToFruitMap.put(value, this);
+            helper.indexToFruitMap.put(value, this);
         }
 
         public int getValue() {
@@ -177,15 +182,25 @@ public class JaffasTrees extends jaffasMod {
             return blockNumber;
         }
 
-        public static fruitType indexToFruitType(int index) {
-            return mapper.indexToFruitMap.get(index);
+        public static FruitType indexToFruitType(int index) {
+            return helper.indexToFruitMap.get(index);
         }
 
-        private static class mapper {
-            private static HashMap<Integer, fruitType> indexToFruitMap;
+        public static boolean doesGenerateFruitAndSeeds(FruitType fruit) {
+            return !helper.noSeedsAndFruit.contains(fruit);
+        }
+
+        public boolean doesGenerateFruitAndSeeds() {
+            return doesGenerateFruitAndSeeds(this);
+        }
+
+        private static class helper {
+            private static HashMap<Integer, FruitType> indexToFruitMap;
+            private static HashSet<FruitType> noSeedsAndFruit;
 
             static {
-                indexToFruitMap = new HashMap<Integer, fruitType>();
+                indexToFruitMap = new HashMap<Integer, FruitType>();
+                noSeedsAndFruit = new HashSet<FruitType>();
             }
         }
     }
@@ -658,7 +673,7 @@ public class JaffasTrees extends jaffasMod {
 
             ItemStack seed = new ItemStack(item, 1, meta);
 
-            ItemFromFruitResult info = TileEntityFruitLeaves.getItemFromFruit(fruitType.indexToFruitType(i));
+            ItemFromFruitResult info = TileEntityFruitLeaves.getItemFromFruit(FruitType.indexToFruitType(i));
 
             if (info.exception != null) {
                 throw (RuntimeException) info.exception;

@@ -172,8 +172,8 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         if (!(b instanceof BlockFruitLeaves)) return false;
 
         BlockFruitLeaves leaves = (BlockFruitLeaves) b;
-        JaffasTrees.fruitType fruit = JaffasTrees.getActualLeavesType(leaves, BlockFruitLeaves.getLeavesType(meta));
-        return fruit != JaffasTrees.fruitType.Normal;
+        JaffasTrees.FruitType fruit = JaffasTrees.getActualLeavesType(leaves, BlockFruitLeaves.getLeavesType(meta));
+        return fruit.doesGenerateFruitAndSeeds();
     }
 
     @Override
