@@ -236,7 +236,7 @@ public class JaffasTechnic extends jaffasMod {
     }
 
     private void installThermalExpansionSupport() {
-        if (JaffasFood.instance.isTEDetected()) {
+        if (JaffasFood.otherMods.isTEDetected()) {
             try {
                 CraftingHelpers.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
                 CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrol), new ItemStack(jaffarrolDust));

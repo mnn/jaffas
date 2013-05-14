@@ -338,7 +338,7 @@ public class JaffasTrees extends jaffasMod {
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
             RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
             seeds.setCustomIconIndex(info.seedsTexture);
-            if (JaffasFood.instance.isMineFactoryReloadedDetected()) {
+            if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
                 FarmingRegistry.registerPlantable(seeds);
             }
 
@@ -360,7 +360,7 @@ public class JaffasTrees extends jaffasMod {
                 first = false;
                 MinecraftForge.EVENT_BUS.register(crops);
             }
-            if (JaffasFood.instance.isMineFactoryReloadedDetected()) {
+            if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
                 FarmingRegistry.registerHarvestable(crops);
                 FarmingRegistry.registerFertilizable(crops);
             }
@@ -483,7 +483,7 @@ public class JaffasTrees extends jaffasMod {
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(CreativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
-        if (JaffasFood.instance.isMineFactoryReloadedDetected()) {
+        if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizable(leaves.saplingBlock);
             FarmingRegistry.registerPlantable(leaves.saplingBlock);
         }
@@ -494,7 +494,7 @@ public class JaffasTrees extends jaffasMod {
             String combinedName = leaves.seedsItem.getUnlocalizedName() + "." + j + ".name";
             LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
         }
-        if (JaffasFood.instance.isMineFactoryReloadedDetected()) {
+        if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerPlantable(leaves.seedsItem);
         }
 

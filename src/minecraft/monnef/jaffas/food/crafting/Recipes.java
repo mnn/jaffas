@@ -27,6 +27,7 @@ import static monnef.jaffas.food.JaffasFood.blockJaffaStatue;
 import static monnef.jaffas.food.JaffasFood.blockPie;
 import static monnef.jaffas.food.JaffasFood.blockTable;
 import static monnef.jaffas.food.JaffasFood.instance;
+import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.block.TileEntityPie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
@@ -277,7 +278,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(gingerbread)), new ItemStack(getItem(pastrySweet)), new ItemStack(getItem(honey)));
 
         //honey recipe
-        if (instance.isForestryDetected()) {
+        if (otherMods.isForestryDetected()) {
             ItemStack i = forestry.api.core.ItemInterface.getItem("honeyDrop");
             GameRegistry.addRecipe(new ItemStack(getItem(honey)), "H", "H", "B", 'H', i, 'B', Item.glassBottle);
         } else {

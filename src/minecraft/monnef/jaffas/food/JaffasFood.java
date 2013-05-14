@@ -7,7 +7,6 @@ package monnef.jaffas.food;
 
 import com.google.common.base.Joiner;
 import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.ModMetadata;
@@ -23,8 +22,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
-import extrabiomes.api.Api;
-import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
 import monnef.core.utils.IDProvider;
@@ -59,6 +56,7 @@ import monnef.jaffas.food.common.FuelHandler;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
@@ -102,7 +100,6 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Random;
@@ -213,10 +210,6 @@ public class JaffasFood extends jaffasMod {
     public ModuleManager moduleManager;
     public Items items;
     public static CustomLogger Log = new CustomLogger("Jaffas");
-    boolean forestryDetected;
-    boolean extraBiomes;
-    boolean MFRDetected;
-    boolean TEDetected;
 
     public static boolean spawnStonesEnabled = true;
     public static int spawnStoneLittleCD;
@@ -238,22 +231,7 @@ public class JaffasFood extends jaffasMod {
     public static int duckSpawnProbabilityLow;
 
     public Configuration config;
-
-    public boolean isForestryDetected() {
-        return this.forestryDetected;
-    }
-
-    public boolean isExtraBiomesDetected() {
-        return this.extraBiomes;
-    }
-
-    public boolean isMineFactoryReloadedDetected() {
-        return this.MFRDetected;
-    }
-
-    public boolean isTEDetected() {
-        return TEDetected;
-    }
+    public static OtherModsHelper otherMods;
 
     public JaffasFood() {
         super();
@@ -279,10 +257,7 @@ public class JaffasFood extends jaffasMod {
 
     @PreInit
     public void PreLoad(FMLPreInitializationEvent event) {
-        checkForestry();
-        checkExtrabiomes();
-        checkMFR();
-        checkTE();
+        otherMods = new OtherModsHelper();
 
         this.config = new Configuration(
                 event.getSuggestedConfigurationFile());
@@ -363,7 +338,7 @@ public class JaffasFood extends jaffasMod {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
-        checkCore(); // really necessary?
+        otherMods.checkCore(); // really necessary?
 
         CreativeTab = new JaffaCreativeTab("jaffas");
 
@@ -386,29 +361,6 @@ public class JaffasFood extends jaffasMod {
         GameRegistry.registerPlayerTracker(new PlayerTracker());
 
         printInitializedMessage();
-    }
-
-    private void checkCore() {
-        if (!MonnefCorePlugin.isInitialized()) {
-            throw new RuntimeException("Core is not properly initialized!");
-        }
-    }
-
-    private void checkForestry() {
-        try {
-            Class c = Class.forName("forestry.Forestry");
-            this.forestryDetected = true;
-        } catch (ClassNotFoundException e) {
-            this.forestryDetected = false;
-        }
-    }
-
-    private void checkMFR() {
-        MFRDetected = Loader.isModLoaded("MineFactoryReloaded");
-    }
-
-    private void checkTE() {
-        TEDetected = Loader.isModLoaded("ThermalExpansion");
     }
 
     private void registerHandlers() {
@@ -438,18 +390,9 @@ public class JaffasFood extends jaffasMod {
         EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", DuckEntityID, this, 160, 1, true);
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         EntityRegistry.registerModEntity(EntityDuckEgg.class, "duckEgg", DuckEggEntityID, this, 160, 1, true);
-        if (isMineFactoryReloadedDetected()) {
+        if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerGrindable(new EntityDuck.MFR());
             FarmingRegistry.registerBreederFood(EntityDuck.class, new ItemStack(Item.seeds));
-        }
-    }
-
-    private void checkExtrabiomes() {
-        extraBiomes = false;
-        try {
-            if (Api.isExtrabiomesXLActive())
-                extraBiomes = true;
-        } catch (Exception e) {
         }
     }
 
@@ -458,7 +401,7 @@ public class JaffasFood extends jaffasMod {
         EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityMed, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);     // med
         EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high
 
-        if (isExtraBiomesDetected()) {
+        if (otherMods.isExtraBiomesDetected()) {
             // low - med
             ExtrabiomesHelper.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 3, EnumCreatureType.creature, "ALPINE", "FORESTEDHILLS", "MEADOW", "MINIJUNGLE", "PINEFOREST", "SAVANNA");
             // high
@@ -516,7 +459,7 @@ public class JaffasFood extends jaffasMod {
         blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
         RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
         MinecraftForge.EVENT_BUS.register(new SwitchgrassBonemealHandler());
-        if (isMineFactoryReloadedDetected()) {
+        if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizable(blockSwitchgrass);
             FarmingRegistry.registerHarvestable(blockSwitchgrass);
             FarmingRegistry.registerPlantable(blockSwitchgrass);
@@ -537,18 +480,8 @@ public class JaffasFood extends jaffasMod {
         Log.printInfo("created by monnef and Tiartyos");
         Log.printInfo("version: " + Reference.Version + " ; " + monnef.core.Reference.URL_JAFFAS_WIKI);
 
-        Log.printInfo("enabled modules: " + Joiner.on(", ").join(moduleManager.CompileEnabledModules()));
-        Log.printInfo("detected mods: " + Joiner.on(", ").join(compileDetectedMods()));
-    }
-
-    private Iterable<String> compileDetectedMods() {
-        ArrayList<String> list = new ArrayList<String>();
-        if (isForestryDetected()) list.add("forestry");
-        if (isExtraBiomesDetected()) list.add("extrabiomesxl");
-        if (isMineFactoryReloadedDetected()) list.add("MFR");
-        if (isTEDetected()) list.add("TE");
-        if (list.size() == 0) list.add("none");
-        return list;
+        Log.printInfo("enabled modules: " + Joiner.on(", ").join(ModuleManager.CompileEnabledModules()));
+        Log.printInfo("detected mods: " + Joiner.on(", ").join(otherMods.compileDetectedMods()));
     }
 
     private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int id) {
