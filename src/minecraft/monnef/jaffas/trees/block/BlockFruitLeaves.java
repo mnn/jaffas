@@ -53,7 +53,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         JaffasTrees.proxy.setFancyGraphicsLevel(this, true);
         this.subCount = subCount;
         //this.setGraphicsLevel(true);
-        setCreativeTab(JaffasTrees.instance.CreativeTab);
+        setCreativeTab(JaffasTrees.instance.creativeTab);
         setSheetNumber(2);
         setBurnProperties(blockID, 30, 60);
     }

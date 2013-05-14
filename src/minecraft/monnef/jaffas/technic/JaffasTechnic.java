@@ -217,7 +217,7 @@ public class JaffasTechnic extends jaffasMod {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic))
             return;
 
-        CreativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.technic");
+        creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.technic");
 
         createItems();
         installRecipes();
@@ -229,7 +229,7 @@ public class JaffasTechnic extends jaffasMod {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.technic", "en_US", "Jaffas and more! Ores");
-        CreativeTab.setup(JaffasTechnic.jaffarrolRefined);
+        creativeTab.setup(JaffasTechnic.jaffarrolRefined);
 
         itemCentralUnit.registerNames();
 

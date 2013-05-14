@@ -18,7 +18,7 @@ import java.util.List;
 public class ItemTechnicTool extends ItemJaffaTool {
     public ItemTechnicTool(int id, int textureIndex, EnumToolMaterial material) {
         super(id, textureIndex, material);
-        setCreativeTab(JaffasTechnic.instance.CreativeTab);
+        setCreativeTab(JaffasTechnic.instance.creativeTab);
         setSheetNumber(3);
         durabilityLossOnEntityHit = 2;
     }

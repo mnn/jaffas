@@ -117,7 +117,7 @@ public class JaffasXmas extends jaffasMod {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.xmas))
             return;
 
-        CreativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.xmas");
+        creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.xmas");
 
         GameRegistry.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
         GameRegistry.registerTileEntity(TileEntityPresent.class, "jaffas.present");
@@ -130,7 +130,7 @@ public class JaffasXmas extends jaffasMod {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
-        CreativeTab.setup(JaffasXmas.ItemGiantCandy);
+        creativeTab.setup(JaffasXmas.ItemGiantCandy);
 
         JaffasFood.PrintInitialized(ModulesEnum.xmas);
     }

@@ -18,7 +18,7 @@ import java.util.List;
 public class ItemSwordTechnic extends ItemJaffaSword {
     public ItemSwordTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
-        setCreativeTab(JaffasTechnic.instance.CreativeTab);
+        setCreativeTab(JaffasTechnic.instance.creativeTab);
         setSheetNumber(3);
     }
 

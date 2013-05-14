@@ -12,7 +12,7 @@ import monnef.jaffas.power.common.Reference;
 public class ItemPower extends ItemJaffaBase {
     public ItemPower(int id, int textureIndex) {
         super(id, textureIndex);
-        setCreativeTab(JaffasPower.instance.CreativeTab);
+        setCreativeTab(JaffasPower.instance.creativeTab);
     }
 
     @Override

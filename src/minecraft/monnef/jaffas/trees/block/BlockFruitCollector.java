@@ -28,7 +28,7 @@ public class BlockFruitCollector extends BlockContainerJaffas {
         setHardness(2.0F);
         setResistance(5.0F);
         setUnlocalizedName("blockFruitCollector");
-        setCreativeTab(JaffasTrees.instance.CreativeTab);
+        setCreativeTab(JaffasTrees.instance.creativeTab);
         setSheetNumber(1);
     }
 

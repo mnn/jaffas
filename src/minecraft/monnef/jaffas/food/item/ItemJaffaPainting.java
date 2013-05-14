@@ -9,7 +9,6 @@ import monnef.core.base.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
-import monnef.jaffas.jaffasMod;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,7 +22,7 @@ public class ItemJaffaPainting extends Item {
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setUnlocalizedName("jaffaPainting");
         //this.setIconIndex(1);
-        this.setCreativeTab(JaffasFood.instance.CreativeTab);
+        this.setCreativeTab(JaffasFood.instance.creativeTab);
     }
 
 

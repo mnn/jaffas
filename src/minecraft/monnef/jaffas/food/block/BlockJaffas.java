@@ -14,7 +14,7 @@ import net.minecraft.block.material.Material;
 public abstract class BlockJaffas extends BlockMonnefCore {
     public BlockJaffas(int id, int texture, Material material) {
         super(id, texture, material);
-        setCreativeTab(JaffasFood.instance.CreativeTab);
+        setCreativeTab(JaffasFood.instance.creativeTab);
     }
 
     @Override

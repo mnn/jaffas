@@ -14,7 +14,7 @@ public class BlockTechnic extends BlockJaffas {
 
     public BlockTechnic(int id, int textureID, Material material) {
         super(id, textureID, material);
-        setCreativeTab(JaffasTechnic.instance.CreativeTab);
+        setCreativeTab(JaffasTechnic.instance.creativeTab);
     }
 
     @Override

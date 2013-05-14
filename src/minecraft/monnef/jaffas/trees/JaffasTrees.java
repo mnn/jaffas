@@ -352,7 +352,7 @@ public class JaffasTrees extends jaffasMod {
             }
 
             Item fruit = constructFruit(info.itemFruitID, info.eatable, info.fruitTexture, info.getFruitLanguageName(), info.fruitTitle);
-            fruit.setCreativeTab(CreativeTab);
+            fruit.setCreativeTab(creativeTab);
             info.itemFruit = fruit;
 
             BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, info.product == null ? info.itemFruit : info.product, info.itemSeeds, info.renderer);
@@ -398,7 +398,7 @@ public class JaffasTrees extends jaffasMod {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.trees))
             return;
 
-        CreativeTab = new JaffaCreativeTab("jaffas.trees");
+        creativeTab = new JaffaCreativeTab("jaffas.trees");
         guiHandler = new GuiHandlerTrees();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
@@ -419,7 +419,7 @@ public class JaffasTrees extends jaffasMod {
         //forestry stuff
         CropProviders.cerealCrops.add(new JaffaCropProvider());
 
-        CreativeTab.setup(ItemManager.getItem(JaffaItem.oranges));
+        creativeTab.setup(ItemManager.getItem(JaffaItem.oranges));
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
 
         JaffasFood.PrintInitialized(ModulesEnum.trees);
@@ -483,14 +483,14 @@ public class JaffasTrees extends jaffasMod {
         LeavesInfo leaves = leavesList.get(i);
         leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;
-        leaves.leavesBlock.setUnlocalizedName("fruitLeaves" + i).setCreativeTab(CreativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
+        leaves.leavesBlock.setUnlocalizedName("fruitLeaves" + i).setCreativeTab(creativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
         RegistryUtils.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
         leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15, subCount);
         leaves.saplingBlock.serialNumber = i;
         String saplingBlockName = "fruitSapling" + i;
-        leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(CreativeTab);
+        leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(creativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
         if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizable(leaves.saplingBlock);

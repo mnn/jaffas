@@ -341,7 +341,7 @@ public class JaffasFood extends jaffasMod {
     @Mod.Init
     public void load(FMLInitializationEvent event) {
         super.load(event);
-        CreativeTab = new JaffaCreativeTab("jaffas");
+        creativeTab = new JaffaCreativeTab("jaffas");
 
         otherMods.checkCore(); // really necessary?
 
@@ -359,7 +359,7 @@ public class JaffasFood extends jaffasMod {
         MinecraftForge.EVENT_BUS.register(new CustomDrop());
 
         //creative tab title
-        CreativeTab.setup(JaffaItem.jaffaP);
+        creativeTab.setup(JaffaItem.jaffaP);
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
 
         GameRegistry.registerPlayerTracker(new PlayerTracker());

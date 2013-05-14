@@ -6,7 +6,6 @@
 package monnef.jaffas.food.block;
 
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.jaffasMod;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -19,7 +18,7 @@ public abstract class BlockContainerJaffas extends BlockJaffas implements ITileE
     }
 
     protected void init() {
-        setCreativeTab(JaffasFood.instance.CreativeTab);
+        setCreativeTab(JaffasFood.instance.creativeTab);
         this.isBlockContainer = true;
     }
 

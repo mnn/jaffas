@@ -35,7 +35,7 @@ public class BlockJaffaBomb extends BlockJaffas {
         setUnlocalizedName("Jaffa Cakes BOMB");
         setHardness(0.1F);
         setResistance(0.1F);
-        this.setCreativeTab(JaffasFood.instance.CreativeTab);
+        this.setCreativeTab(JaffasFood.instance.creativeTab);
     }
 
     /**

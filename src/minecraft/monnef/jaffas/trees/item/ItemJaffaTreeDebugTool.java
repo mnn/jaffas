@@ -14,7 +14,7 @@ public class ItemJaffaTreeDebugTool extends ItemTrees {
     public ItemJaffaTreeDebugTool(int par1) {
         super(par1);
         this.setCreativeTab(CreativeTabs.tabTools);
-        setCreativeTab(JaffasTrees.instance.CreativeTab);
+        setCreativeTab(JaffasTrees.instance.creativeTab);
     }
 
     @Override

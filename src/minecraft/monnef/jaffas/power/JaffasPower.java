@@ -133,7 +133,7 @@ public class JaffasPower extends jaffasMod {
         GameRegistry.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
         GameRegistry.registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
 
-        CreativeTab = new JaffaCreativeTab("jaffas.power");
+        creativeTab = new JaffaCreativeTab("jaffas.power");
 
         createItems();
         installRecipes();
@@ -142,7 +142,7 @@ public class JaffasPower extends jaffasMod {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.power", "en_US", "Jaffas and more! Power");
-        CreativeTab.setup(wrench);
+        creativeTab.setup(wrench);
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());

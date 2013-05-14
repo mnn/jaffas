@@ -18,7 +18,7 @@ import net.minecraftforge.common.Configuration;
 import java.util.Arrays;
 
 public abstract class jaffasMod {
-    public JaffaCreativeTab CreativeTab;
+    public JaffaCreativeTab creativeTab;
     protected IDProvider idProvider;
     public Configuration config;
     protected boolean thisIsMainModule = false;
