@@ -24,7 +24,6 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
-import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.block.BlockBoard;
 import monnef.jaffas.food.block.BlockColumn;
@@ -121,7 +120,6 @@ import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
 public class JaffasFood extends jaffasMod {
     public static final String LAST_VERSION_SHOWN = "lastVersionShown";
-    public static JaffaCreativeTab CreativeTab;
 
     private static MinecraftServer server;
 
@@ -194,8 +192,6 @@ public class JaffasFood extends jaffasMod {
     public static ItemJaffaPainting itemPainting;
     private int itemPaintingID;
 
-    private static IDProvider idProvider = new IDProvider(3600, 24744);
-
     public static boolean debug;
     public static String jaffasTitle;
     public static String jaffaTitle;
@@ -230,7 +226,6 @@ public class JaffasFood extends jaffasMod {
     public static int duckSpawnProbabilityMed;
     public static int duckSpawnProbabilityLow;
 
-    public Configuration config;
     public static OtherModsHelper otherMods;
 
     public JaffasFood() {
@@ -256,11 +251,10 @@ public class JaffasFood extends jaffasMod {
     public static CommonProxy proxy;
 
     @PreInit
+    @Override
     public void PreLoad(FMLPreInitializationEvent event) {
+        super.PreLoad(event);
         otherMods = new OtherModsHelper();
-
-        this.config = new Configuration(
-                event.getSuggestedConfigurationFile());
 
         try {
             config.load();
@@ -334,13 +328,22 @@ public class JaffasFood extends jaffasMod {
         PowerManager.InitializeFactory(new PowerManagersFactory());
     }
 
+    @Override
+    protected int getStartOfItemsIdInterval() {
+        return 24744;
+    }
+
+    @Override
+    protected int getStartOfBlocksIdInterval() {
+        return 3600;
+    }
+
     @Mod.Init
     public void load(FMLInitializationEvent event) {
         super.load(event);
+        CreativeTab = new JaffaCreativeTab("jaffas");
 
         otherMods.checkCore(); // really necessary?
-
-        CreativeTab = new JaffaCreativeTab("jaffas");
 
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
@@ -356,6 +359,7 @@ public class JaffasFood extends jaffasMod {
         MinecraftForge.EVENT_BUS.register(new CustomDrop());
 
         //creative tab title
+        CreativeTab.setup(JaffaItem.jaffaP);
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
 
         GameRegistry.registerPlayerTracker(new PlayerTracker());

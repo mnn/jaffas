@@ -10,6 +10,7 @@ import monnef.core.utils.BlockHelper;
 import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
+import monnef.jaffas.jaffasMod;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,7 +43,7 @@ public class BlockBoard extends BlockContainerJaffas {
     public BlockBoard(int par1, int index, Material par3Material) {
         super(par1, index, par3Material);
         //setRequiresSelfNotify();
-        setCreativeTab(JaffasFood.CreativeTab);
+        setCreativeTab(JaffasFood.instance.CreativeTab);
         setHardness(0.2f);
         setUnlocalizedName("blockBoard");
         setBurnProperties(blockID, 5, 5);

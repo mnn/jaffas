@@ -10,7 +10,6 @@ import monnef.jaffas.food.item.ItemJaffaSword;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.Reference;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 
@@ -19,7 +18,7 @@ import java.util.List;
 public class ItemSwordTechnic extends ItemJaffaSword {
     public ItemSwordTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
-        setCreativeTab(JaffasTechnic.CreativeTab);
+        setCreativeTab(JaffasTechnic.instance.CreativeTab);
         setSheetNumber(3);
     }
 

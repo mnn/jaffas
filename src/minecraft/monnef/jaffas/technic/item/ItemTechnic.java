@@ -12,7 +12,7 @@ import monnef.jaffas.technic.Reference;
 public class ItemTechnic extends ItemJaffaBase {
     public ItemTechnic(int id, int textureIndex) {
         super(id, textureIndex);
-        setCreativeTab(JaffasTechnic.CreativeTab);
+        setCreativeTab(JaffasTechnic.instance.CreativeTab);
     }
 
     @Override

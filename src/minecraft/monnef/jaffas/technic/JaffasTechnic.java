@@ -14,7 +14,6 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
@@ -26,7 +25,6 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
-import monnef.jaffas.technic.client.JaffaCreativeTab;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.RepairRecipe;
@@ -80,7 +78,6 @@ public class JaffasTechnic extends jaffasMod {
     @SidedProxy(clientSide = "monnef.jaffas.technic.client.ClientProxy", serverSide = "monnef.jaffas.technic.common.CommonProxy")
     public static CommonProxy proxy;
 
-    private static IDProvider idProvider = new IDProvider(3450, 26244);
     private static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
     public boolean debug;
 
@@ -96,6 +93,7 @@ public class JaffasTechnic extends jaffasMod {
     private int LimsewID;
     public static ItemTechnic limsew;
 
+    private int jaffarrolDustID;
     public static ItemTechnic jaffarrolDust;
 
     private int BlockJaffarrolID;
@@ -109,8 +107,6 @@ public class JaffasTechnic extends jaffasMod {
 
     private int FunnelID;
     public static ItemTechnic funnel;
-
-    public static JaffaCreativeTab CreativeTab;
 
     private int ItemCasingID;
     public static ItemTechnic itemCasing;
@@ -155,11 +151,9 @@ public class JaffasTechnic extends jaffasMod {
     public static EnumToolMaterial EnumToolMaterialJaffarrol = EnumHelper.addToolMaterial("Jaffarrol", 3, 1000, 9.0F, 3, 12);
 
     @Mod.PreInit
+    @Override
     public void PreLoad(FMLPreInitializationEvent event) {
-        CreativeTab = new JaffaCreativeTab("jaffas.technic");
-
-        Configuration config = new Configuration(
-                event.getSuggestedConfigurationFile());
+        super.PreLoad(event);
 
         try {
             config.load();
@@ -170,8 +164,7 @@ public class JaffasTechnic extends jaffasMod {
             JaffarrolRefinedID = idProvider.getItemIDFromConfig("jaffarrolRefined");
             LimsewID = idProvider.getItemIDFromConfig("limsew");
 
-            jaffarrolDust = new ItemTechnic(idProvider.getItemIDFromConfig("jaffarrolDust"), 25);
-            RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
+            jaffarrolDustID = idProvider.getItemIDFromConfig("jaffarrolDust");
 
             BlockJaffarrolID = idProvider.getBlockIDFromConfig("jaffarrolBlock");
             BlockLimsewID = idProvider.getBlockIDFromConfig("limsewBlock");
@@ -207,12 +200,24 @@ public class JaffasTechnic extends jaffasMod {
         }
     }
 
+    @Override
+    protected int getStartOfItemsIdInterval() {
+        return 26244;
+    }
+
+    @Override
+    protected int getStartOfBlocksIdInterval() {
+        return 3450;
+    }
+
     @Mod.Init
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic))
             return;
+
+        CreativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.technic");
 
         createItems();
         installRecipes();
@@ -224,6 +229,7 @@ public class JaffasTechnic extends jaffasMod {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.technic", "en_US", "Jaffas and more! Ores");
+        CreativeTab.setup(JaffasTechnic.jaffarrolRefined);
 
         itemCentralUnit.registerNames();
 
@@ -314,6 +320,9 @@ public class JaffasTechnic extends jaffasMod {
 
         itemLocomotive = new ItemLocomotive(ItemLocomotiveID, 24);
         LanguageRegistry.addName(itemLocomotive, "Mini-Locomotive");
+
+        jaffarrolDust = new ItemTechnic(jaffarrolDustID, 25);
+        RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
 
         createTools();
     }

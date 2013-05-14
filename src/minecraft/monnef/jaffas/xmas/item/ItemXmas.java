@@ -22,7 +22,7 @@ public class ItemXmas extends ItemJaffaBase {
     }
 
     private void init() {
-        setCreativeTab(JaffasXmas.CreativeTab);
+        setCreativeTab(JaffasXmas.instance.CreativeTab);
     }
 
     @Override

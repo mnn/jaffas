@@ -12,7 +12,7 @@ import monnef.jaffas.trees.common.Reference;
 public class ItemTrees extends ItemJaffaBase {
     public ItemTrees(int v) {
         super(v);
-        setCreativeTab(JaffasTrees.CreativeTab);
+        setCreativeTab(JaffasTrees.instance.CreativeTab);
     }
 
     @Override

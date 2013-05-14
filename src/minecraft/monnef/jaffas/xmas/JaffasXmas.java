@@ -13,7 +13,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
@@ -28,7 +27,6 @@ import monnef.jaffas.xmas.block.ItemBlockPresent;
 import monnef.jaffas.xmas.block.TileEntityCandy;
 import monnef.jaffas.xmas.block.TileEntityPresent;
 import monnef.jaffas.xmas.common.CommonProxy;
-import monnef.jaffas.xmas.common.JaffaCreativeTab;
 import monnef.jaffas.xmas.item.ItemGiantCandy;
 import monnef.jaffas.xmas.item.ItemXmas;
 import monnef.jaffas.xmas.item.ItemXmasFood;
@@ -54,7 +52,6 @@ public class JaffasXmas extends jaffasMod {
     @SidedProxy(clientSide = "monnef.jaffas.xmas.client.ClientProxy", serverSide = "monnef.jaffas.xmas.common.CommonProxy")
     public static CommonProxy proxy;
 
-    private static IDProvider idProvider = new IDProvider(3650, 26444);
     private boolean debug;
 
     private int BlockCandyID;
@@ -69,7 +66,6 @@ public class JaffasXmas extends jaffasMod {
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
 
-    public static JaffaCreativeTab CreativeTab;
     private Items items;
 
     public JaffasXmas() {
@@ -80,10 +76,9 @@ public class JaffasXmas extends jaffasMod {
     }
 
     @Mod.PreInit
+    @Override
     public void PreLoad(FMLPreInitializationEvent event) {
-
-        Configuration config = new Configuration(
-                event.getSuggestedConfigurationFile());
+        super.PreLoad(event);
 
         try {
             config.load();
@@ -105,6 +100,16 @@ public class JaffasXmas extends jaffasMod {
         }
     }
 
+    @Override
+    protected int getStartOfItemsIdInterval() {
+        return 26444;
+    }
+
+    @Override
+    protected int getStartOfBlocksIdInterval() {
+        return 3650;
+    }
+
     @Mod.Init
     public void load(FMLInitializationEvent event) {
         super.load(event);
@@ -112,7 +117,7 @@ public class JaffasXmas extends jaffasMod {
         if (!ModuleManager.IsModuleEnabled(ModulesEnum.xmas))
             return;
 
-        CreativeTab = new JaffaCreativeTab("jaffas.xmas");
+        CreativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.xmas");
 
         GameRegistry.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
         GameRegistry.registerTileEntity(TileEntityPresent.class, "jaffas.present");
@@ -125,6 +130,7 @@ public class JaffasXmas extends jaffasMod {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
+        CreativeTab.setup(JaffasXmas.ItemGiantCandy);
 
         JaffasFood.PrintInitialized(ModulesEnum.xmas);
     }

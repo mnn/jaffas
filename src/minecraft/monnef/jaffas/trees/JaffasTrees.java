@@ -17,10 +17,10 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import forestry.api.cultivation.CropProviders;
-import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileEntityPie;
+import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
@@ -39,7 +39,6 @@ import monnef.jaffas.trees.block.TileEntityFruitCollector;
 import monnef.jaffas.trees.block.TileEntityFruitLeaves;
 import monnef.jaffas.trees.block.TileEntityJaffaCrops;
 import monnef.jaffas.trees.client.GuiHandlerTrees;
-import monnef.jaffas.trees.client.JaffaCreativeTab;
 import monnef.jaffas.trees.client.PacketHandler;
 import monnef.jaffas.trees.common.BushInfo;
 import monnef.jaffas.trees.common.CommonProxy;
@@ -123,8 +122,6 @@ import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 public class JaffasTrees extends jaffasMod {
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;
-
-    public static JaffaCreativeTab CreativeTab;
 
     public static final String channel = "jaffas-02";
 
@@ -239,17 +236,14 @@ public class JaffasTrees extends jaffasMod {
         instance = this;
     }
 
-    private static IDProvider idProvider = new IDProvider(3500, 25244);
-
     @SidedProxy(clientSide = "monnef.jaffas.trees.client.ClientProxy", serverSide = "monnef.jaffas.trees.common.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.PreInit
+    @Override
     public void PreLoad(FMLPreInitializationEvent event) {
+        super.PreLoad(event);
         PopulateBushInfo();
-
-        Configuration config = new Configuration(
-                event.getSuggestedConfigurationFile());
 
         try {
             config.load();
@@ -296,6 +290,16 @@ public class JaffasTrees extends jaffasMod {
         } finally {
             config.save();
         }
+    }
+
+    @Override
+    protected int getStartOfItemsIdInterval() {
+        return 25244;
+    }
+
+    @Override
+    protected int getStartOfBlocksIdInterval() {
+        return 3500;
     }
 
     private void PopulateBushInfo() {
@@ -398,15 +402,36 @@ public class JaffasTrees extends jaffasMod {
         guiHandler = new GuiHandlerTrees();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
+        GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
+        GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
+
+        createItems();
+
+        MinecraftForge.addGrassSeed(new ItemStack(itemUnknownSeeds), SEEDS_WEIGHT);
+
+        installRecipes();
+
+        // texture stuff
+        proxy.registerRenderThings();
+
+        //GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+
+        //forestry stuff
+        CropProviders.cerealCrops.add(new JaffaCropProvider());
+
+        CreativeTab.setup(ItemManager.getItem(JaffaItem.oranges));
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
+
+        JaffasFood.PrintInitialized(ModulesEnum.trees);
+    }
+
+    private void createItems() {
         AddFruitTreesSequence(0, 0, 32, 4);
         AddFruitTreesSequence(1, 4, 32 + 4, 4);
 
         for (int i = 1; i < JaffasTrees.leavesTypesCount + 1; i++) {
             seedsList.add(getTreeSeeds(i));
         }
-
-        GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
-        GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
 
         itemLemon = constructFruit(itemLemonID, NotEatable, 68, "lemon", "Lemon");
         OreDictionary.registerOre(LEMON, itemLemon);
@@ -452,22 +477,6 @@ public class JaffasTrees extends jaffasMod {
         itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
         itemUnknownSeeds.setCustomIconIndex(34);
         RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
-
-        MinecraftForge.addGrassSeed(new ItemStack(itemUnknownSeeds), SEEDS_WEIGHT);
-
-        installRecipes();
-
-        // texture stuff
-        proxy.registerRenderThings();
-
-        //GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
-
-        //forestry stuff
-        CropProviders.cerealCrops.add(new JaffaCropProvider());
-
-        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
-
-        JaffasFood.PrintInitialized(ModulesEnum.trees);
     }
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {

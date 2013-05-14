@@ -49,7 +49,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        setCreativeTab(JaffasTrees.CreativeTab);
+        setCreativeTab(JaffasTrees.instance.CreativeTab);
         this.setTickRandomly(true);
         setBurnProperties(blockID, 30, 60);
     }

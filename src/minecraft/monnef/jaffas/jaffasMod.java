@@ -9,11 +9,18 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import monnef.core.utils.IDProvider;
+import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.Reference;
+import net.minecraftforge.common.Configuration;
 
 import java.util.Arrays;
 
 public abstract class jaffasMod {
+    public JaffaCreativeTab CreativeTab;
+    protected IDProvider idProvider;
+    public Configuration config;
     protected boolean thisIsMainModule = false;
 
     protected jaffasMod() {
@@ -47,4 +54,14 @@ public abstract class jaffasMod {
     public void load(FMLInitializationEvent event) {
         handleMetadata();
     }
+
+    public void PreLoad(FMLPreInitializationEvent event) {
+        idProvider = new IDProvider(getStartOfBlocksIdInterval(), getStartOfItemsIdInterval());
+        config = new Configuration(
+                event.getSuggestedConfigurationFile());
+    }
+
+    protected abstract int getStartOfItemsIdInterval();
+
+    protected abstract int getStartOfBlocksIdInterval();
 }

@@ -15,7 +15,7 @@ public class BlockXmas extends BlockJaffas {
     public BlockXmas(int id, int textureID, Material material) {
         super(id, textureID, material);
         setCreativeTab(CreativeTabs.tabBlock);
-        setCreativeTab(JaffasXmas.CreativeTab);
+        setCreativeTab(JaffasXmas.instance.CreativeTab);
     }
 
     @Override

@@ -15,9 +15,9 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
@@ -30,7 +30,6 @@ import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
-import monnef.jaffas.power.common.JaffaCreativeTab;
 import monnef.jaffas.power.common.LightingHandler;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
@@ -58,10 +57,7 @@ public class JaffasPower extends jaffasMod {
     @SidedProxy(clientSide = "monnef.jaffas.power.client.ClientProxy", serverSide = "monnef.jaffas.power.common.CommonProxy")
     public static CommonProxy proxy;
 
-    private static IDProvider idProvider = new IDProvider(3750, 26644);
     private boolean debug;
-
-    public static JaffaCreativeTab CreativeTab;
 
     private int ItemDebugID;
     public static ItemDebug ItemDebug;
@@ -86,10 +82,9 @@ public class JaffasPower extends jaffasMod {
     public static boolean lightningConductorEnabled;
 
     @PreInit
+    @Override
     public void PreLoad(FMLPreInitializationEvent event) {
-
-        Configuration config = new Configuration(
-                event.getSuggestedConfigurationFile());
+        super.PreLoad(event);
 
         try {
             config.load();
@@ -117,6 +112,16 @@ public class JaffasPower extends jaffasMod {
         }
     }
 
+    @Override
+    protected int getStartOfItemsIdInterval() {
+        return 26644;
+    }
+
+    @Override
+    protected int getStartOfBlocksIdInterval() {
+        return 3750;
+    }
+
     @Init
     public void load(FMLInitializationEvent event) {
         super.load(event);
@@ -137,6 +142,7 @@ public class JaffasPower extends jaffasMod {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.power", "en_US", "Jaffas and more! Power");
+        CreativeTab.setup(wrench);
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());

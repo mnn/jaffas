@@ -12,7 +12,7 @@ import monnef.jaffas.xmas.common.Reference;
 public class ItemXmasFood extends ItemJaffaFood {
     public ItemXmasFood(int id) {
         super(id);
-        this.setCreativeTab(JaffasXmas.CreativeTab);
+        this.setCreativeTab(JaffasXmas.instance.CreativeTab);
     }
 
     @Override

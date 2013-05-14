@@ -13,7 +13,7 @@ import net.minecraft.block.material.Material;
 public class BlockPower extends BlockJaffas {
     public BlockPower(int id, int index, Material material) {
         super(id, index, material);
-        setCreativeTab(JaffasPower.CreativeTab);
+        setCreativeTab(JaffasPower.instance.CreativeTab);
     }
 
     @Override

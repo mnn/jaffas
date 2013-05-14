@@ -21,7 +21,7 @@ public class ItemLocomotive extends ItemTechnic {
         super(id, texture);
         this.maxStackSize = 1;
         this.minecartType = 0;
-        this.setCreativeTab(JaffasTechnic.CreativeTab);
+        this.setCreativeTab(JaffasTechnic.instance.CreativeTab);
         this.setUnlocalizedName("locomotive");
     }
 
