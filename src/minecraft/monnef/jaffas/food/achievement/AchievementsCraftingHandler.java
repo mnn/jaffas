@@ -3,7 +3,7 @@
  * author: monnef
  */
 
-package monnef.jaffas.food.crafting;
+package monnef.jaffas.food.achievement;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -13,14 +13,15 @@ import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityEvent;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -120,43 +121,13 @@ public class AchievementsCraftingHandler implements ICraftingHandler {
     @Override
     public void onSmelting(EntityPlayer player, ItemStack item) {
     }
+
+    @ForgeSubscribe
+    public void onEntityConstructing(EntityEvent.EntityConstructing evt) {
+        if (evt.entity instanceof EntityPlayerMP) {
+            evt.entity.registerExtendedProperties(AchievementDataHolder.ACHIEVEMENT_DATA_HOLDER, new AchievementDataHolder());
+        }
+    }
 }
 
 
-class CombinedAchievement {
-    public ArrayList<Integer> required;
-
-    CombinedAchievement(Integer[] achievementsNeeded) {
-        required = new ArrayList<Integer>();
-
-        for (Integer a : achievementsNeeded) {
-            required.add(a);
-        }
-    }
-
-    // TODO achievements
-    public boolean checkPlayer(EntityPlayer player) {
-        NBTTagCompound tag = player.getEntityData();
-        NBTTagCompound myTag = tag.getCompoundTag("jaffasAchievements");
-
-        if (myTag != null) {
-            int[] array = myTag.getIntArray("achievements");
-            boolean[] found = new boolean[required.size()];
-            for (int playersAchievements : array) {
-                int index = required.indexOf(playersAchievements);
-                if (index != -1) {
-                    found[index] = true;
-                }
-            }
-
-            for (int i = 0; i < found.length; i++) {
-                if (!found[i]) return false;
-            }
-
-            // all required items are here, we're ok
-            return true;
-        }
-
-        return false;
-    }
-}

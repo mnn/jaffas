@@ -59,7 +59,7 @@ import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
-import monnef.jaffas.food.crafting.AchievementsCraftingHandler;
+import monnef.jaffas.food.achievement.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityDuck;
@@ -377,7 +377,9 @@ public class JaffasFood extends jaffasMod {
 
         GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
         if (!achievementsDisabled) {
-            GameRegistry.registerCraftingHandler(new AchievementsCraftingHandler());
+            AchievementsCraftingHandler handler = new AchievementsCraftingHandler();
+            GameRegistry.registerCraftingHandler(handler);
+            MinecraftForge.EVENT_BUS.register(handler);
         }
 
         proxy.registerRenderThings();
