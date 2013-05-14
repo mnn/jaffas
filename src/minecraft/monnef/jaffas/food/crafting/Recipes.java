@@ -6,7 +6,10 @@
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import monnef.core.Reference;
+import monnef.core.utils.BookWriter;
 import monnef.core.utils.DyeColor;
+import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -20,6 +23,8 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import java.util.Scanner;
 
 import static monnef.core.utils.DyeHelper.getDye;
 import static monnef.jaffas.food.JaffasFood.blockColumn;
@@ -419,6 +424,44 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(getItemStack(cupCocoa, 5), getItem(cookingPotCocoaHot), getItem(cup), getItem(cup), getItem(cup), getItem(cup), getItem(cup));
 
         GameRegistry.addShapelessRecipe(getItemStack(cookingPot), getItem(cookingPotWater));
+
+        GenerateGuideBook();
+    }
+
+    private static String formatItemStack(ItemStack stack) {
+        if (stack.stackSize == 1) {
+            return String.format("%s", RegistryUtils.getTitle(stack));
+        } else {
+            return String.format("%dx %s", stack.stackSize, RegistryUtils.getTitle(stack));
+        }
+    }
+
+    private static void GenerateGuideBook() {
+        BookWriter bookWriter = new BookWriter(Reference.MONNEF + " & " + Reference.TIARTYOS, monnef.jaffas.food.common.Reference.ModName + " - Basic Guide");
+
+        Scanner scanner = new Scanner(JaffasFood.instance.getClass().getResourceAsStream("/jaffas_guide.txt"));
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            if (line.equals("$$page$$")) {
+                bookWriter.endPage();
+            } else if (line.equals("$$board$$")) {
+                int counter = 2;
+                for (BoardRecipe recipe : RecipesBoard.recipes.values()) {
+                    ItemStack input = recipe.getInput();
+                    ItemStack output = recipe.getOutput();
+                    bookWriter.addLine(String.format("%s -> %s", formatItemStack(input), formatItemStack(output)));
+                    bookWriter.addBlankLine();
+                    if (counter++ > 4) {
+                        counter = 0;
+                        bookWriter.endPage();
+                    }
+                }
+            } else {
+                bookWriter.addLine(line);
+            }
+        }
+
+        JaffasFood.instance.guideBook = bookWriter.finish();
     }
 
     public static void addTableRecipe(ItemStack output, int color) {

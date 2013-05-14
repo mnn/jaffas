@@ -14,7 +14,7 @@ import java.util.HashMap;
 import static monnef.jaffas.food.JaffasFood.getItem;
 
 public class RecipesBoard {
-    private static HashMap<Integer, BoardRecipe> recipes = new HashMap<Integer, BoardRecipe>();
+    public static HashMap<Integer, BoardRecipe> recipes = new HashMap<Integer, BoardRecipe>();
 
     public static void addRecipeSimple(JaffaItem input, JaffaItem output) {
         addRecipe(input, 1, output, 1);

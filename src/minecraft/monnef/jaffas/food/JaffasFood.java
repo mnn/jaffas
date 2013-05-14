@@ -227,6 +227,7 @@ public class JaffasFood extends jaffasMod {
     public static int duckSpawnProbabilityLow;
 
     public static OtherModsHelper otherMods;
+    public ItemStack guideBook;
 
     public JaffasFood() {
         super();
