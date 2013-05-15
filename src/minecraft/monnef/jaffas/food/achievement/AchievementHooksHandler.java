@@ -29,7 +29,7 @@ public class AchievementHooksHandler implements ICraftingHandler {
     @ForgeSubscribe
     public void onEntityConstructing(EntityEvent.EntityConstructing evt) {
         if (evt.entity instanceof EntityPlayer) {
-            evt.entity.registerExtendedProperties(AchievementDataHolder.ACHIEVEMENT_DATA_HOLDER, new AchievementDataHolder());
+            evt.entity.registerExtendedProperties(AchievementDataHolder.ACHIEVEMENT_DATA_HOLDER, new AchievementDataHolder((EntityPlayer) evt.entity));
         }
     }
 }

@@ -8,8 +8,8 @@ package monnef.jaffas.food.server;
 import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import monnef.jaffas.food.common.CoolDownRegistry;
-import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.common.SpawnStonePacketType;
+import monnef.jaffas.food.network.JaffasPacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
@@ -32,7 +32,7 @@ public class SpawnStoneServerPacketSender {
         }
 
         Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = PacketHandler.channelSpawnStone;
+        packet.channel = JaffasPacketHandler.CHANNEL_SpawnStone;
         packet.data = bos.toByteArray();
         packet.length = bos.size();
 

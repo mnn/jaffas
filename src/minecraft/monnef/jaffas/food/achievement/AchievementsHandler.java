@@ -198,20 +198,44 @@ public class AchievementsHandler {
         return (AchievementDataHolder) properties;
     }
 
-    private static void completeAchievement(Achievement ach, EntityPlayer player) {
+    public static Achievement getAchievement(int id) {
+        return allAchievements.get(id);
+    }
+
+    public static void completeAchievement(int id, EntityPlayer player) {
+        Achievement ach = getAchievement(id);
+        if (ach == null) {
+            throw new NullPointerException("achievement not found, server sent corrupted information?");
+        }
+
+        completeAchievement(ach, player);
+    }
+
+    public static void completeAchievement(Achievement ach, EntityPlayer player) {
         player.addStat(ach, 1);
         getAchievementHolder(player).markAchievementCompleted(ach.statId);
 
         Set<CombinedAchievement> suspects = combinedAchievementLookupMap.get(ach.statId);
         for (CombinedAchievement suspect : suspects) {
             if (suspect.checkPlayer(player)) {
-                completeAchievement(allAchievements.get(suspect.getAchievementId()), player);
+                completeAchievement(getAchievement(suspect.getAchievementId()), player);
             }
         }
     }
 
-    private static void removeAchievement(Achievement ach, EntityPlayer player) {
+    public static void removeAchievement(Achievement ach, EntityPlayer player) {
         player.addStat(ach, 0);
         getAchievementHolder(player).markAchievementNotCompleted(ach.statId);
+    }
+
+    public static void removeAllJaffasAchievements(EntityPlayer player) {
+        for (Achievement ach : allAchievements.values()) {
+            removeAchievement(ach, player);
+        }
+    }
+
+    public static void synchronizeAchievements(EntityPlayer player) {
+        //getAchievementHolder(player).sendSyncPackets();
+        getAchievementHolder(player).recreateAchievements();
     }
 }

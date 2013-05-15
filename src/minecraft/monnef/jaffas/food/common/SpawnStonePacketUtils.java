@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.ItemSpawnStone;
+import monnef.jaffas.food.network.JaffasPacketHandler;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -32,7 +33,7 @@ import static monnef.jaffas.food.common.SpawnStonePacketType.SYNC;
 
 public class SpawnStonePacketUtils {
 
-    static void HandleSpawnStone(Packet250CustomPayload packet, Player player) {
+    public static void HandleSpawnStone(Packet250CustomPayload packet, Player player) {
         DataInputStream inputStream = new DataInputStream(new ByteArrayInputStream(packet.data));
 
         // SYNC server -> client [type, timeRemaining, openGUI]
@@ -101,7 +102,7 @@ public class SpawnStonePacketUtils {
         }
 
         Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = PacketHandler.channelSpawnStone;
+        packet.channel = JaffasPacketHandler.CHANNEL_SpawnStone;
         packet.data = bos.toByteArray();
         packet.length = bos.size();
 

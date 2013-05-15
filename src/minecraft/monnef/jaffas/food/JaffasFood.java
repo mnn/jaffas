@@ -51,13 +51,14 @@ import monnef.jaffas.food.block.TileEntitySink;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
+import monnef.jaffas.food.command.CommandJaffas;
+import monnef.jaffas.food.command.CommandJaffasOP;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.FuelHandler;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
-import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
@@ -78,6 +79,7 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
+import monnef.jaffas.food.network.JaffasPacketHandler;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.jaffasMod;
@@ -117,7 +119,7 @@ import static net.minecraft.world.biome.BiomeGenBase.taiga;
 import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {"jaffas-01-sstone"}, packetHandler = PacketHandler.class)
+@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {JaffasPacketHandler.CHANNEL_SpawnStone, JaffasPacketHandler.CHANNEL_Generic}, packetHandler = JaffasPacketHandler.class)
 public class JaffasFood extends jaffasMod {
     public static final String LAST_VERSION_SHOWN = "lastVersionShown";
 
@@ -505,6 +507,8 @@ public class JaffasFood extends jaffasMod {
             manager.registerCommand(new CommandJaffaHunger());
             manager.registerCommand(new CommandFridgeDebug());
         }
+        manager.registerCommand(new CommandJaffas());
+        manager.registerCommand(new CommandJaffasOP());
     }
 
     public static Item getItem(JaffaItem item) {

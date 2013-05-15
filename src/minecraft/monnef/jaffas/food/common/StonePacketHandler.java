@@ -7,16 +7,16 @@ package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
+import monnef.jaffas.food.network.JaffasPacketHandler;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
-public class PacketHandler implements IPacketHandler {
-    public static final String channelSpawnStone = "jaffas-01-sstone";
+public class StonePacketHandler implements IPacketHandler {
 
     @Override
     public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {
         String channel = packet.channel;
-        if (channel.equals(channelSpawnStone)) {
+        if (channel.equals(JaffasPacketHandler.CHANNEL_SpawnStone)) {
             SpawnStonePacketUtils.HandleSpawnStone(packet, player);
         }
     }

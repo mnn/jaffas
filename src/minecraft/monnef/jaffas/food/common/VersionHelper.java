@@ -5,12 +5,9 @@
 
 package monnef.jaffas.food.common;
 
+import monnef.core.utils.StringsHelper;
 import monnef.core.utils.WebHelper;
 
-import java.io.UnsupportedEncodingException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,7 +45,7 @@ public class VersionHelper {
         String data = null;
 
         ArrayList<String> lines = new ArrayList<String>();
-        if (WebHelper.getLinesTillFooter(prepareURL(URL, getMD5(name), version), getMD5(chopName(name)), lines)) {
+        if (WebHelper.getLinesTillFooter(prepareURL(URL, StringsHelper.getMD5(name), version), StringsHelper.getMD5(chopName(name)), lines)) {
             if (lines.size() > 0) {
                 data = lines.get(0).trim();
             }
@@ -79,33 +76,5 @@ public class VersionHelper {
 
     public static String versionToString(Integer[] ver) {
         return ver[0] + "." + ver[1] + "." + ver[2];
-    }
-
-    public static String toHex(byte[] bytes) {
-        BigInteger bi = new BigInteger(1, bytes);
-        return String.format("%0" + (bytes.length << 1) + "X", bi);
-    }
-
-    public static String getMD5(String input) {
-        byte[] bytesOfMessage = new byte[0];
-        try {
-            bytesOfMessage = input.getBytes("UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-
-        MessageDigest md = null;
-        try {
-            md = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-
-        byte[] thedigest = null;
-        if (md != null) {
-            thedigest = md.digest(bytesOfMessage);
-        }
-
-        return md == null ? null : toHex(thedigest);
     }
 }
