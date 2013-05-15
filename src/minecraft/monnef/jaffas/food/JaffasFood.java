@@ -25,6 +25,7 @@ import cpw.mods.fml.relauncher.Side;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.block.BlockBoard;
 import monnef.jaffas.food.block.BlockColumn;
 import monnef.jaffas.food.block.BlockCross;
@@ -59,7 +60,6 @@ import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PacketHandler;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
-import monnef.jaffas.food.achievement.AchievementsCraftingHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityDuck;
@@ -352,7 +352,7 @@ public class JaffasFood extends jaffasMod {
         items.CreateItems();
         createJaffaArmorAndSword();
         registerDuckSpawns();
-        AchievementsCraftingHandler.init();
+        AchievementsHandler.init();
 
         registerHandlers();
 
@@ -376,11 +376,6 @@ public class JaffasFood extends jaffasMod {
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
         GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
-        if (!achievementsDisabled) {
-            AchievementsCraftingHandler handler = new AchievementsCraftingHandler();
-            GameRegistry.registerCraftingHandler(handler);
-            MinecraftForge.EVENT_BUS.register(handler);
-        }
 
         proxy.registerRenderThings();
         GameRegistry.registerFuelHandler(new FuelHandler());
