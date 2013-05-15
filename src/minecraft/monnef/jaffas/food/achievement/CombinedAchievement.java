@@ -8,41 +8,26 @@ package monnef.jaffas.food.achievement;
 import net.minecraft.entity.player.EntityPlayer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 class CombinedAchievement {
+    private final int achievementId;
     public ArrayList<Integer> required;
 
-    CombinedAchievement(Integer[] achievementsNeeded) {
+    CombinedAchievement(int achievementId, Integer... achievementsNeeded) {
+        this.achievementId = achievementId;
         required = new ArrayList<Integer>();
 
-        for (Integer a : achievementsNeeded) {
-            required.add(a);
-        }
+        Collections.addAll(required, achievementsNeeded);
     }
 
-    // TODO achievements
-    /*
     public boolean checkPlayer(EntityPlayer player) {
-        if (player == null) return false;
-
-        int[] array =
-        boolean[] found = new boolean[required.size()];
-        for (int playersAchievements : array) {
-            int index = required.indexOf(playersAchievements);
-            if (index != -1) {
-                found[index] = true;
-            }
-        }
-
-        for (int i = 0; i < found.length; i++) {
-            if (!found[i]) return false;
-        }
-
-
-        // all required items are here, we're ok
+        for (int achivId : required)
+            if (!AchievementsHandler.hasPlayerAchievement(player, achivId)) return false;
         return true;
-
-        return false;
     }
-    */
+
+    public int getAchievementId() {
+        return achievementId;
+    }
 }

@@ -17,14 +17,25 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
     public static final String JAFFAS_ACHIEVEMENTS_TAG = "jaffasAchievements";
     public static final String ACHIEVEMENTS_ARRAY_TAG = "achievements";
 
-    private HashSet<Integer> data;
+    private HashSet<Integer> data = new HashSet<Integer>();
 
     public boolean hasAchievement(int id) {
         return data.contains(id);
     }
 
+    public void markAchievementCompleted(int id) {
+        data.add(id);
+    }
+
+    public void markAchievementNotCompleted(int statId) {
+        data.remove(statId);
+    }
+
     @Override
     public void saveNBTData(NBTTagCompound compound) {
+        if (!compound.hasKey(JAFFAS_ACHIEVEMENTS_TAG)) {
+            compound.setCompoundTag(JAFFAS_ACHIEVEMENTS_TAG, new NBTTagCompound());
+        }
         NBTTagCompound myCompTag = (NBTTagCompound) compound.getTag(JAFFAS_ACHIEVEMENTS_TAG);
 
         int[] tmp = new int[data.size()];
