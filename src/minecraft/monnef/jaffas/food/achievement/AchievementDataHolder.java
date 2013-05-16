@@ -5,9 +5,7 @@
 
 package monnef.jaffas.food.achievement;
 
-import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.StringsHelper;
-import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.network.AchievementPacket;
 import monnef.jaffas.food.network.NetworkHelper;
 import net.minecraft.entity.Entity;
@@ -19,6 +17,9 @@ import net.minecraftforge.common.IExtendedEntityProperties;
 
 import java.util.LinkedHashSet;
 
+import static monnef.jaffas.food.JaffasFood.Log;
+import static monnef.jaffas.food.JaffasFood.rand;
+
 public class AchievementDataHolder implements IExtendedEntityProperties {
     public static final String ACHIEVEMENT_DATA_HOLDER = "jaffas_achievs_holder";
     public static final String JAFFAS_ACHIEVEMENTS_TAG = "jaffasAchievements";
@@ -27,6 +28,7 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
 
     private LinkedHashSet<Integer> data = new LinkedHashSet<Integer>();
     private EntityPlayer player;
+    private boolean corruptHash = false;
 
     public AchievementDataHolder(EntityPlayer player) {
         this.player = player;
@@ -68,10 +70,15 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
             Achievement ach = AchievementsHandler.getAchievement(item);
             if (ach == null) {
                 // unknown achievement => salt the hash
-                sb.append(JaffasFood.rand.nextInt());
+                sb.append(rand.nextInt());
             } else {
-                sb.append(ach.getName());
+                sb.append(ach.toString());
             }
+        }
+
+        if (corruptHash) {
+            Log.printInfo(String.format("Corrupted achievement save hash of player \"%s\".", player.username));
+            sb.append(rand.nextInt());
         }
 
         return StringsHelper.getMD5(sb.toString());
@@ -96,9 +103,9 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
 
                 if (!currentHash.equals(hash)) {
                     String message = String.format("Player \"%s\" has corrupted achievements save, purging.", player.username);
-                    JaffasFood.Log.printWarning(message);
-                    if (MonnefCorePlugin.debugEnv) player.addChatMessage(message);
+                    Log.printWarning(message);
 
+                    // TODO: use event calendar to handle achievements removing on a client side (network stuff isn't ready at this point)
                     for (int item : data) {
                         Achievement ach = AchievementsHandler.getAchievement(item);
                         if (ach != null) {
@@ -125,5 +132,9 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
         for (Integer item : data) {
             AchievementsHandler.completeAchievement(item, player);
         }
+    }
+
+    public void corrupt() {
+        this.corruptHash = true;
     }
 }

@@ -6,13 +6,18 @@
 package monnef.jaffas.food.achievement;
 
 import com.google.common.collect.HashMultimap;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.utils.AchievementsHelper;
 import monnef.core.utils.CallerClassNameFinder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.network.AchievementPacket;
+import monnef.jaffas.food.network.NetworkHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -121,6 +126,7 @@ public class AchievementsHandler {
         if (ach == null) throw new JaffasException("wrong icon object");
 
         if (special) ach.setSpecial();
+        AchievementsHelper.removeAchievementFromStatList(ach.statId);
         ach.registerAchievement();
 
         addAchievementName(name, title);
@@ -223,9 +229,30 @@ public class AchievementsHandler {
         }
     }
 
+    public static void removeAchievement(int id, EntityPlayer player) {
+        Achievement ach = getAchievement(id);
+        if (ach == null) {
+            throw new NullPointerException("achievement not found, server sent corrupted information?");
+        }
+
+        removeAchievement(ach, player);
+    }
+
     public static void removeAchievement(Achievement ach, EntityPlayer player) {
-        player.addStat(ach, 0);
+        if (ach == null) {
+            throw new NullPointerException("achievement");
+        }
+        if (player == null) {
+            throw new NullPointerException("player");
+        }
+
+        //player.addStat(ach, 0);
         getAchievementHolder(player).markAchievementNotCompleted(ach.statId);
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            AchievementsHelper.removeAchievementFromStatsFile(ach);
+        } else {
+            NetworkHelper.sendToClient((new AchievementPacket(ach.statId, AchievementPacket.Operation.Remove)).makePacket(), player);
+        }
     }
 
     public static void removeAllJaffasAchievements(EntityPlayer player) {
@@ -237,5 +264,9 @@ public class AchievementsHandler {
     public static void synchronizeAchievements(EntityPlayer player) {
         //getAchievementHolder(player).sendSyncPackets();
         getAchievementHolder(player).recreateAchievements();
+    }
+
+    public static void corrupt(EntityPlayer player) {
+        getAchievementHolder(player).corrupt();
     }
 }

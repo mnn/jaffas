@@ -17,22 +17,35 @@ import java.net.ProtocolException;
 
 public class AchievementPacket extends JaffasPacket {
     private int achievementId;
+    private Operation operation;
+
+    public enum Operation {
+        Complete,
+        Remove,;
+    }
 
     public AchievementPacket() {
     }
 
     public AchievementPacket(int achievementId) {
+        this(achievementId, Operation.Complete);
+    }
+
+    public AchievementPacket(int achievementId, Operation op) {
         this.achievementId = achievementId;
+        this.operation = op;
     }
 
     @Override
     public void write(ByteArrayDataOutput out) {
         out.writeInt(achievementId);
+        out.writeByte(operation.ordinal());
     }
 
     @Override
     public void read(ByteArrayDataInput in) {
         achievementId = in.readInt();
+        operation = Operation.values()[in.readByte()];
     }
 
     @Override
@@ -42,9 +55,13 @@ public class AchievementPacket extends JaffasPacket {
         if (MonnefCorePlugin.debugEnv) {
             Achievement ach = AchievementsHandler.getAchievement(achievementId);
             String achStr = ach != null ? ach.getName() : "NULL";
-            player.addChatMessage("Received <achievement completed #" + achievementId + ">, achH's record: " + achStr);
+            player.addChatMessage("Received <achievement " + operation + " #" + achievementId + ">, achH's record: " + achStr);
         }
 
-        AchievementsHandler.completeAchievement(achievementId, player);
+        if (operation == Operation.Complete) {
+            AchievementsHandler.completeAchievement(achievementId, player);
+        } else {
+            AchievementsHandler.removeAchievement(achievementId, player);
+        }
     }
 }
