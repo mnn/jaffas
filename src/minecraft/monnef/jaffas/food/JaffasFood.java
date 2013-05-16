@@ -90,6 +90,8 @@ import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -353,7 +355,8 @@ public class JaffasFood extends jaffasMod {
         createBlocks();
         items.CreateItems();
         createJaffaArmorAndSword();
-        registerDuckSpawns();
+        registerDuckInfo();
+        registerCleaverRecords();
         AchievementsHandler.init();
 
         registerHandlers();
@@ -368,6 +371,12 @@ public class JaffasFood extends jaffasMod {
         GameRegistry.registerPlayerTracker(new PlayerTracker());
 
         printInitializedMessage();
+    }
+
+    private void registerCleaverRecords() {
+        ItemCleaverHookContainer.registerMeatFromAnimal(EntityDuck.class, new ItemStack(getItem(JaffaItem.duckRaw)));
+        ItemCleaverHookContainer.registerMeatFromAnimal(EntitySheep.class, new ItemStack(getItem(JaffaItem.muttonRaw)));
+        ItemCleaverHookContainer.registerMeatFromAnimal(EntityWolf.class, new ItemStack(getItem(JaffaItem.wolfMeatRaw)));
     }
 
     private void registerHandlers() {
@@ -400,7 +409,7 @@ public class JaffasFood extends jaffasMod {
         }
     }
 
-    private void registerDuckSpawns() {
+    private void registerDuckInfo() {
         EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills); // low
         EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityMed, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);     // med
         EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high

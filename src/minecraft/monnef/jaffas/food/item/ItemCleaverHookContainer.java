@@ -53,6 +53,14 @@ public class ItemCleaverHookContainer {
         return AnimalToMeat.get(animal.getClass()).copy();
     }
 
+    public static void registerMeatFromAnimal(Class<? extends EntityLiving> animal, ItemStack meat) {
+        if (AnimalToMeat.containsKey(animal)) {
+            throw new RuntimeException("overriding animal to meat record.");
+        }
+
+        AnimalToMeat.put(animal, meat.copy());
+    }
+
     @ForgeSubscribe
     public void entityHurt(LivingHurtEvent event) {
         DamageSource source = event.source;
