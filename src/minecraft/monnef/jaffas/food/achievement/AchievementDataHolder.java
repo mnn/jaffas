@@ -5,6 +5,8 @@
 
 package monnef.jaffas.food.achievement;
 
+import monnef.core.calendar.IEventCalendarAction;
+import monnef.core.utils.EventCalendarWrapper;
 import monnef.core.utils.StringsHelper;
 import monnef.jaffas.food.network.AchievementPacket;
 import monnef.jaffas.food.network.NetworkHelper;
@@ -16,6 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
 import java.util.LinkedHashSet;
+import java.util.Set;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.rand;
@@ -104,15 +107,8 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
                 if (!currentHash.equals(hash)) {
                     String message = String.format("Player \"%s\" has corrupted achievements save, purging.", player.username);
                     Log.printWarning(message);
-
-                    // TODO: use event calendar to handle achievements removing on a client side (network stuff isn't ready at this point)
-                    for (int item : data) {
-                        Achievement ach = AchievementsHandler.getAchievement(item);
-                        if (ach != null) {
-                            AchievementsHandler.removeAchievement(ach, player);
-                        }
-                    }
-                    data.clear();
+                    EventCalendarWrapper.addAction(20, new DelayedAchievementsRemover(player, data, message));
+                    data = new LinkedHashSet<Integer>();
                 }
             }
         }
@@ -136,5 +132,28 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
 
     public void corrupt() {
         this.corruptHash = true;
+    }
+
+    private static class DelayedAchievementsRemover implements IEventCalendarAction {
+        private EntityPlayer player;
+        private Set<Integer> data;
+        private String message;
+
+        private DelayedAchievementsRemover(EntityPlayer player, Set<Integer> data, String message) {
+            this.player = player;
+            this.data = data;
+            this.message = message;
+        }
+
+        @Override
+        public void execute() {
+            for (int item : data) {
+                Achievement ach = AchievementsHandler.getAchievement(item);
+                if (ach != null) {
+                    AchievementsHandler.removeAchievement(ach, player);
+                }
+            }
+            player.addChatMessage(message);
+        }
     }
 }
