@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemCleaverHookContainer.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemCleaverHookContainer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -511,28 +509,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AchievementsHandler.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AchievementsHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="101" selection-start="6284" selection-end="6284" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JaffasFood.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="377" column="111" selection-start="17094" selection-end="17094" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemCleaverHookContainer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemCleaverHookContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="8" selection-start="2259" selection-end="2259" vertical-scroll-proportion="0.833595">
+            <state line="109" column="61" selection-start="6364" selection-end="6364" vertical-scroll-proportion="0.6875">
               <folding />
             </state>
           </provider>
@@ -1760,13 +1740,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="101" selection-start="6284" selection-end="6284" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="99" column="48" selection-start="4619" selection-end="4619" vertical-scroll-proportion="0.33333334">
@@ -1774,16 +1747,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemCleaverHookContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="377" column="111" selection-start="17094" selection-end="17094" vertical-scroll-proportion="0.0">
+        <state line="43" column="33" selection-start="1588" selection-end="1588" vertical-scroll-proportion="0.4065934">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemCleaverHookContainer.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="8" selection-start="2259" selection-end="2259" vertical-scroll-proportion="0.833595">
+        <state line="377" column="111" selection-start="17094" selection-end="17094" vertical-scroll-proportion="0.55128205">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="61" selection-start="6364" selection-end="6364" vertical-scroll-proportion="0.6875">
           <folding />
         </state>
       </provider>

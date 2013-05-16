@@ -10,7 +10,6 @@ import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
-import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.AchievementsHelper;
 import monnef.core.utils.CallerClassNameFinder;
 import monnef.jaffas.food.JaffasFood;
@@ -33,7 +32,10 @@ import java.util.Set;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.achievement.AchievementDataHolder.ACHIEVEMENT_DATA_HOLDER;
+import static monnef.jaffas.food.item.JaffaItem.butter;
 import static monnef.jaffas.food.item.JaffaItem.flour;
+import static monnef.jaffas.food.item.JaffaItem.fryingPan;
+import static monnef.jaffas.food.item.JaffaItem.knifeKitchen;
 import static monnef.jaffas.food.item.JaffaItem.mallet;
 import static monnef.jaffas.food.item.JaffaItem.malletDiamond;
 import static monnef.jaffas.food.item.JaffaItem.malletHead;
@@ -42,6 +44,9 @@ import static monnef.jaffas.food.item.JaffaItem.malletHeadIron;
 import static monnef.jaffas.food.item.JaffaItem.malletHeadStone;
 import static monnef.jaffas.food.item.JaffaItem.malletIron;
 import static monnef.jaffas.food.item.JaffaItem.malletStone;
+import static monnef.jaffas.food.item.JaffaItem.meatCleaver;
+import static monnef.jaffas.food.item.JaffaItem.milkBoxEmpty;
+import static monnef.jaffas.food.item.JaffaItem.milkBoxFull;
 
 public class AchievementsHandler {
     private static AchievementPage page;
@@ -93,8 +98,14 @@ public class AchievementsHandler {
 
         addCombinedAchievement("MalletMasterAch", 5, 0, getItem(malletDiamond), null, true, "Mallet Master", "", getCraftingAchievementIdsFromJaffaItems(mallet, malletStone, malletIron, malletDiamond));
 
-        if (MonnefCorePlugin.debugEnv)
-            addCombinedAchievement("MalletMaster2Ach", 5, -2, getItem(mallet), null, true, "Mallet Master 2", "", getCraftingAchievementIdsFromJaffaItems(malletHead));
+        addAchievement(milkBoxEmpty, "MilkBoxEmptyAch", 0, 3, getItem(milkBoxEmpty), null, false, "Empty Milk Box", "Grab some paper and place it in a rectangular shape.");
+        addAchievement(milkBoxFull, "MilkBoxAch", 2, 3, getItem(milkBoxFull), getAchievementFromJaffaItem(milkBoxEmpty), false, "Milk", "Fill empty milk boxes with a bucket with milk.");
+
+        addAchievement(butter, "ButterAch", 0, 4, getItem(butter), null, false, "Cheap Gold", "Use mallet and milk to churn some butter.");
+
+        addAchievement(knifeKitchen, "KnifeAch", 3, 10, getItem(knifeKitchen), null, false, "Going Sharp", "Combine some iron and a stick.");
+        addAchievement(fryingPan, "PanAch", 3, 11, getItem(fryingPan), null, false, "Frying!", "From one jaffarrol ingot and four iron ones create a frying pan!");
+        addAchievement(meatCleaver, "CleaverAch", 3, 12, getItem(meatCleaver), null, false, "Choppin'", "From one jaffarrol ingot and four iron ones create a meat cleaver.");
     }
 
     private static Integer[] getCraftingAchievementIdsFromJaffaItems(JaffaItem... items) {
@@ -107,11 +118,26 @@ public class AchievementsHandler {
         return craftAchievement.get(getItemID(item));
     }
 
-    private static Achievement addAchievement(JaffaItem item, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
+    public static Achievement addAchievement(int itemId, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
         Achievement ach = generateAndRegisterAchievement(name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
 
-        craftAchievement.put(getItemID(item), ach);
+        if (craftAchievement.containsKey(itemId)) {
+            throw new RuntimeException("overriding crafting achievement with item #" + itemId + ", name \"" + title + "\"");
+        }
+        craftAchievement.put(itemId, ach);
         return ach;
+    }
+
+    public static Achievement addAchievement(Block block, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
+        return addAchievement(block.blockID, name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
+    }
+
+    public static Achievement addAchievement(Item item, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
+        return addAchievement(item.itemID, name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
+    }
+
+    private static Achievement addAchievement(JaffaItem item, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
+        return addAchievement(getItem(item), name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
     }
 
     private static Achievement generateAndRegisterAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
@@ -139,7 +165,7 @@ public class AchievementsHandler {
         return idCounter++;
     }
 
-    private static void addCombinedAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc, Integer[] achievementsNeeded) {
+    public static void addCombinedAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc, Integer[] achievementsNeeded) {
         Achievement ach = generateAndRegisterAchievement(name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
         CombinedAchievement ca = new CombinedAchievement(ach.statId, achievementsNeeded);
         for (int num : achievementsNeeded) {
