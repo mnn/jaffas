@@ -1,19 +1,16 @@
 package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.Loader;
-import extrabiomes.api.Api;
 import monnef.core.MonnefCorePlugin;
 
 import java.util.ArrayList;
 
 public class OtherModsHelper {
     boolean forestryDetected;
-    boolean extraBiomes;
     boolean MFRDetected;
     boolean TEDetected;
 
     public OtherModsHelper() {
-        checkExtrabiomes();
         checkForestry();
         checkMFR();
         checkTE();
@@ -21,10 +18,6 @@ public class OtherModsHelper {
 
     public boolean isForestryDetected() {
         return this.forestryDetected;
-    }
-
-    public boolean isExtraBiomesDetected() {
-        return this.extraBiomes;
     }
 
     public boolean isMineFactoryReloadedDetected() {
@@ -38,7 +31,6 @@ public class OtherModsHelper {
     public Iterable<String> compileDetectedMods() {
         ArrayList<String> list = new ArrayList<String>();
         if (isForestryDetected()) list.add("forestry");
-        if (isExtraBiomesDetected()) list.add("extrabiomesxl");
         if (isMineFactoryReloadedDetected()) list.add("MFR");
         if (isTEDetected()) list.add("TE");
         if (list.size() == 0) list.add("none");
@@ -66,14 +58,5 @@ public class OtherModsHelper {
 
     private void checkTE() {
         TEDetected = Loader.isModLoaded("ThermalExpansion");
-    }
-
-    private void checkExtrabiomes() {
-        extraBiomes = false;
-        try {
-            if (Api.isExtrabiomesXLActive())
-                extraBiomes = true;
-        } catch (Exception e) {
-        }
     }
 }

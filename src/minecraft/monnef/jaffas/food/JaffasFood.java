@@ -22,6 +22,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
 import monnef.core.utils.RegistryUtils;
@@ -98,6 +99,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
@@ -109,16 +111,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.logging.Level;
 
-import static net.minecraft.world.biome.BiomeGenBase.beach;
-import static net.minecraft.world.biome.BiomeGenBase.forest;
-import static net.minecraft.world.biome.BiomeGenBase.forestHills;
-import static net.minecraft.world.biome.BiomeGenBase.jungle;
-import static net.minecraft.world.biome.BiomeGenBase.jungleHills;
-import static net.minecraft.world.biome.BiomeGenBase.plains;
-import static net.minecraft.world.biome.BiomeGenBase.river;
-import static net.minecraft.world.biome.BiomeGenBase.swampland;
-import static net.minecraft.world.biome.BiomeGenBase.taiga;
-import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
+import static net.minecraftforge.common.BiomeDictionary.Type;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {JaffasPacketHandler.CHANNEL_SpawnStone, JaffasPacketHandler.CHANNEL_Generic}, packetHandler = JaffasPacketHandler.class)
@@ -320,8 +313,8 @@ public class JaffasFood extends jaffasMod {
             genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
             genDisabledForNonStandardDimensions = config.get(Configuration.CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
             achievementsDisabled = config.get(Configuration.CATEGORY_GENERAL, "achievementsDisabled", false).getBoolean(false);
-            duckSpawnProbabilityLow = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityLow", 8).getInt();
-            duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 10).getInt();
+            duckSpawnProbabilityLow = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityLow", 10).getInt();
+            duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 12).getInt();
             duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
@@ -355,7 +348,7 @@ public class JaffasFood extends jaffasMod {
         createBlocks();
         items.CreateItems();
         createJaffaArmorAndSword();
-        registerDuckInfo();
+        registerDuckSpawns();
         registerCleaverRecords();
         AchievementsHandler.init();
 
@@ -409,17 +402,15 @@ public class JaffasFood extends jaffasMod {
         }
     }
 
-    private void registerDuckInfo() {
-        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 2, EnumCreatureType.creature, taigaHills, jungle, jungleHills); // low
-        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityMed, 1, 3, EnumCreatureType.creature, plains, taiga, forestHills);     // med
-        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 2, 6, EnumCreatureType.creature, swampland, river, beach, forest);// high
+    private void registerDuckSpawns() {
+        BiomeDictionary.registerAllBiomes();
 
-        if (otherMods.isExtraBiomesDetected()) {
-            // low - med
-            ExtrabiomesHelper.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 3, EnumCreatureType.creature, "ALPINE", "FORESTEDHILLS", "MEADOW", "MINIJUNGLE", "PINEFOREST", "SAVANNA");
-            // high
-            ExtrabiomesHelper.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 2, 6, EnumCreatureType.creature, "AUTUMNWOODS", "BIRCHFOREST", "FORESTEDISLAND", "GREENHILLS", "GREENSWAMP", "MARSH", "SHRUBLAND", "TEMPORATERAINFOREST", "WOODLANDS");
-        }
+        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 4, 6, EnumCreatureType.creature, // high
+                BiomeHelper.compileListOrAsArray(new Type[]{Type.SWAMP, Type.BEACH}));
+        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityMed, 2, 5, EnumCreatureType.creature,  // med
+                BiomeHelper.compileListOrAsArray(new Type[]{Type.PLAINS, Type.FOREST}));
+        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 4, EnumCreatureType.creature,  // low
+                BiomeHelper.compileListOrAsArray(new Type[]{Type.JUNGLE}));
     }
 
     private void createBlocks() {
