@@ -78,7 +78,7 @@ import java.util.HashSet;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.JaffasFood.getItem;
-import static monnef.jaffas.food.crafting.Recipes.AddPieRecipe;
+import static monnef.jaffas.food.crafting.Recipes.addPieRecipe;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.beansWithTomato;
 import static monnef.jaffas.food.item.JaffaItem.beansWithTomatoRaw;
@@ -619,10 +619,10 @@ public class JaffasTrees extends jaffasMod {
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Item.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(bushType.Tomato), getFruitStack(bushType.Tomato));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bottleMustard)), getItem(JaffaItem.bottleEmpty), getFruit(bushType.Mustard), getFruit(bushType.Mustard));
 
-        AddPieRecipe(getFruit(bushType.Strawberry), pieStrawberryRaw, TileEntityPie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
-        AddPieRecipe(getFruit(bushType.Raspberry), pieRaspberryRaw, TileEntityPie.PieType.RASPBERRY, true, getItem(jamRaspberry));
-        AddPieRecipe(null, pieVanillaRaw, TileEntityPie.PieType.VANILLA, true, getItem(jamV));
-        AddPieRecipe(itemPlum, piePlumRaw, TileEntityPie.PieType.PLUM, true, getItem(jamP));
+        addPieRecipe(getFruit(bushType.Strawberry), pieStrawberryRaw, TileEntityPie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
+        addPieRecipe(getFruit(bushType.Raspberry), pieRaspberryRaw, TileEntityPie.PieType.RASPBERRY, true, getItem(jamRaspberry));
+        addPieRecipe(null, pieVanillaRaw, TileEntityPie.PieType.VANILLA, true, getItem(jamV));
+        addPieRecipe(itemPlum, piePlumRaw, TileEntityPie.PieType.PLUM, true, getItem(jamP));
 
         addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceOrange)), getItem(juiceBottle), ORANGE, ORANGE, ORANGE, ORANGE));
         addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), LEMON, LEMON, LEMON, LEMON));
