@@ -289,7 +289,9 @@ public class AchievementsHandler {
 
     public static void synchronizeAchievements(EntityPlayer player) {
         //getAchievementHolder(player).sendSyncPackets();
-        getAchievementHolder(player).recreateAchievements();
+        if (!JaffasFood.achievementsDisabled) {
+            getAchievementHolder(player).recreateAchievements();
+        }
     }
 
     public static void corrupt(EntityPlayer player) {

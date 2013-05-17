@@ -8,6 +8,7 @@ package monnef.jaffas.food.achievement;
 import monnef.core.calendar.IEventCalendarAction;
 import monnef.core.utils.EventCalendarWrapper;
 import monnef.core.utils.StringsHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.network.AchievementPacket;
 import monnef.jaffas.food.network.NetworkHelper;
 import net.minecraft.entity.Entity;
@@ -51,6 +52,8 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
 
     @Override
     public void saveNBTData(NBTTagCompound compound) {
+        if (JaffasFood.achievementsDisabled) return;
+
         if (!compound.hasKey(JAFFAS_ACHIEVEMENTS_TAG)) {
             compound.setCompoundTag(JAFFAS_ACHIEVEMENTS_TAG, new NBTTagCompound());
         }
@@ -89,6 +92,8 @@ public class AchievementDataHolder implements IExtendedEntityProperties {
 
     @Override
     public void loadNBTData(NBTTagCompound compound) {
+        if (JaffasFood.achievementsDisabled) return;
+
         if (compound.hasKey(JAFFAS_ACHIEVEMENTS_TAG)) {
             NBTTagCompound myTag = compound.getCompoundTag(JAFFAS_ACHIEVEMENTS_TAG);
             if (myTag.hasKey(ACHIEVEMENTS_ARRAY_TAG)) {

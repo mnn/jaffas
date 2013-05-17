@@ -1,3 +1,9 @@
+## 0.4.19
+- implemented achievement system (not much content yet)
+- rewritten to not use external libraries (lombok, jsoup)
+- added meat cleaver support for more animals (wolf, sheep, duck)
+- rewritten duck spawning to use biome dictionary (it should be compatible with ExtraBiomesXL and Bimes o' Plenty)
+
 ## 0.4.18
 - update to 1.5.2
 - compatibility with TE (mainly ore → 2x dusts in pulverizer)
