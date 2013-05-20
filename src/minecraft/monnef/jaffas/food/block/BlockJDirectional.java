@@ -9,24 +9,36 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
+import java.util.HashMap;
+
+import static monnef.core.utils.DirectionHelper.applyRotationsInverted;
+
 public class BlockJDirectional extends BlockJaffas {
     private final TextureMappingType type;
     private int texturesCountPerSet;
     private int textureSetsCount;
     private boolean multipleTextureSets;
 
-    private static Integer[][] sidesRotated;
+    private static HashMap<TextureMappingType, Integer[][]> sidesRotated;
 
     static {
-        sidesRotated = new Integer[6][6];
+        sidesRotated = new HashMap<TextureMappingType, Integer[][]>();
 
+        Integer[][] six = new Integer[6][6];
         Integer[] seq = new Integer[]{0, 1, 2, 3, 4, 5};
-        sidesRotated[0] = DirectionHelper.applyRotations(seq, new Integer[]{4, 4});
-        sidesRotated[1] = DirectionHelper.applyRotations(seq, new Integer[]{});
-        sidesRotated[2] = DirectionHelper.applyRotations(seq, new Integer[]{5});
-        sidesRotated[3] = DirectionHelper.applyRotations(seq, new Integer[]{5, 1, 1});
-        sidesRotated[4] = DirectionHelper.applyRotations(seq, new Integer[]{5, 1, 1, 1});
-        sidesRotated[5] = DirectionHelper.applyRotations(seq, new Integer[]{5, 1});
+        six[0] = applyRotationsInverted(seq, 4, 4);
+        six[1] = applyRotationsInverted(seq);
+        six[2] = applyRotationsInverted(seq, 5);
+        six[3] = applyRotationsInverted(seq, 5, 1, 1);
+        six[4] = applyRotationsInverted(seq, 5, 1, 1, 1);
+        six[5] = applyRotationsInverted(seq, 5, 1);
+        sidesRotated.put(TextureMappingType.ALL_SIDES, six);
+
+        Integer[][] log = new Integer[3][6];
+        log[0] = applyRotationsInverted(seq);
+        log[1] = applyRotationsInverted(seq, 4);
+        log[2] = applyRotationsInverted(seq, 4, 1);
+        sidesRotated.put(TextureMappingType.LOG_LIKE, log);
     }
 
     public enum TextureMappingType {
@@ -176,7 +188,7 @@ public class BlockJDirectional extends BlockJaffas {
      * @return Rotated side.
      */
     public static int processRotation(int side, int rotation, TextureMappingType type) {
-        return sidesRotated[rotation][side];
+        return sidesRotated.get(type)[rotation][side];
     }
 
     /**
