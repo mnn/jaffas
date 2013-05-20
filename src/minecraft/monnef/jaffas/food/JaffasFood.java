@@ -22,6 +22,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
@@ -31,6 +32,7 @@ import monnef.jaffas.food.block.BlockBoard;
 import monnef.jaffas.food.block.BlockColumn;
 import monnef.jaffas.food.block.BlockCross;
 import monnef.jaffas.food.block.BlockFridge;
+import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.BlockJaffaBomb;
 import monnef.jaffas.food.block.BlockJaffaStatue;
 import monnef.jaffas.food.block.BlockPie;
@@ -153,6 +155,12 @@ public class JaffasFood extends jaffasMod {
     public static int blockSwitchgrassID;
     public static BlockSwitchgrass blockSwitchgrass;
 
+    public static int blockDirDebug1ID;
+    public static BlockJDirectional blockDir1;
+
+    public static int blockDirDebug2ID;
+    public static BlockJDirectional blockDir2;
+
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
     CHAIN(15, new int[]{2, 5, 4, 1}, 12),
@@ -180,6 +188,7 @@ public class JaffasFood extends jaffasMod {
 
     public static int renderID;
     public static int renderSwitchgrassID;
+    public static int renderDirectionalBlockID;
 
     private static IGuiHandler guiHandler;
 
@@ -296,6 +305,10 @@ public class JaffasFood extends jaffasMod {
             blockPieID = idProvider.getBlockIDFromConfig("pie");
             blockTableID = idProvider.getBlockIDFromConfig("table");
             blockSwitchgrassID = idProvider.getBlockIDFromConfig("switchgrass");
+            if (MonnefCorePlugin.debugEnv) {
+                blockDirDebug1ID = idProvider.getBlockIDFromConfig("blockDir1");
+                blockDirDebug2ID = idProvider.getBlockIDFromConfig("blockDir2");
+            }
 
             JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
             createPainting();
@@ -467,6 +480,14 @@ public class JaffasFood extends jaffasMod {
             FarmingRegistry.registerFertilizable(blockSwitchgrass);
             FarmingRegistry.registerHarvestable(blockSwitchgrass);
             FarmingRegistry.registerPlantable(blockSwitchgrass);
+        }
+
+        if (MonnefCorePlugin.debugEnv) {
+            blockDir1 = new BlockJDirectional(blockDirDebug1ID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.LOG_LIKE);
+            RegistryUtils.registerBlock(blockDir1, "dir1", "Dir 1 - Log like");
+
+            blockDir2 = new BlockJDirectional(blockDirDebug2ID, 35, 6, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
+            RegistryUtils.registerBlock(blockDir2, "dir2", "Dir 2 - All sides");
         }
     }
 
