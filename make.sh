@@ -2,7 +2,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PATH="$PATH:$DIR/utils/"
 
-declare -a Work=('./recompile.sh' './reobfuscate.sh' './pack.sh');
+declare -a Work=('./recompile.sh' './reobfuscate_srg.sh' './pack.sh');
 
 for t in "${Work[@]}"; do
 	echo "Running: $t"
