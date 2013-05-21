@@ -88,6 +88,7 @@ import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.api.PowerManager;
 import monnef.jaffas.power.common.PowerManagersFactory;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -154,6 +155,9 @@ public class JaffasFood extends jaffasMod {
 
     public static int blockSwitchgrassID;
     public static BlockSwitchgrass blockSwitchgrass;
+
+    public static int blockSwitchgrassSolidID;
+    public static BlockJDirectional blockSwitchgrassSolid;
 
     public static int blockDirDebug1ID;
     public static BlockJDirectional blockDir1;
@@ -305,6 +309,7 @@ public class JaffasFood extends jaffasMod {
             blockPieID = idProvider.getBlockIDFromConfig("pie");
             blockTableID = idProvider.getBlockIDFromConfig("table");
             blockSwitchgrassID = idProvider.getBlockIDFromConfig("switchgrass");
+            blockSwitchgrassSolidID = idProvider.getBlockIDFromConfig("switchgrassSolid");
             if (MonnefCorePlugin.debugEnv) {
                 blockDirDebug1ID = idProvider.getBlockIDFromConfig("blockDir1");
                 blockDirDebug2ID = idProvider.getBlockIDFromConfig("blockDir2");
@@ -481,6 +486,10 @@ public class JaffasFood extends jaffasMod {
             FarmingRegistry.registerHarvestable(blockSwitchgrass);
             FarmingRegistry.registerPlantable(blockSwitchgrass);
         }
+
+        blockSwitchgrassSolid = new BlockJDirectional(blockSwitchgrassSolidID, 240, 2, Material.grass, BlockJDirectional.TextureMappingType.LOG_LIKE);
+        Block.setBurnProperties(blockSwitchgrassSolidID, 15, 100);
+        RegistryUtils.registerBlock(blockSwitchgrassSolid, "switchgrassSolid", "Block of Switchgrass");
 
         if (MonnefCorePlugin.debugEnv) {
             blockDir1 = new BlockJDirectional(blockDirDebug1ID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.LOG_LIKE);
