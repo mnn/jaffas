@@ -53,6 +53,8 @@ public class ClientProxy extends CommonProxy {
         JaffasFood.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new SwitchgrassRenderer());
         JaffasFood.renderDirectionalBlockID = RenderingRegistry.getNextAvailableRenderId();
+
+        RenderingRegistry.registerBlockHandler(new DirectionalBlockRenderer());
     }
 
     public int addArmor(String name) {

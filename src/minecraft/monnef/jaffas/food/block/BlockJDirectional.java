@@ -3,6 +3,7 @@ package monnef.jaffas.food.block;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.DirectionHelper;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Icon;
@@ -90,12 +91,10 @@ public class BlockJDirectional extends BlockJaffas {
         return meta >> type.getBitsForRotationInfo();
     }
 
-    /*
     @Override
     public int getRenderType() {
         return JaffasFood.renderDirectionalBlockID;
     }
-    */
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
