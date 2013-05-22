@@ -489,6 +489,9 @@ public class JaffasFood extends jaffasMod {
 
         blockSwitchgrassSolid = new BlockJDirectional(blockSwitchgrassSolidID, 240, 2, Material.grass, BlockJDirectional.TextureMappingType.LOG_LIKE);
         Block.setBurnProperties(blockSwitchgrassSolidID, 15, 100);
+        blockSwitchgrassSolid.setStepSound(Block.soundGrassFootstep);
+        blockSwitchgrassSolid.setResistance(5);
+        blockSwitchgrassSolid.setHardness(0.5f);
         RegistryUtils.registerBlock(blockSwitchgrassSolid, "switchgrassSolid", "Block of Switchgrass");
 
         if (MonnefCorePlugin.debugEnv) {
