@@ -7,6 +7,8 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
+import monnef.core.utils.ItemHelper;
+import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -25,6 +27,8 @@ import static monnef.core.utils.DyeHelper.getDye;
 import static monnef.jaffas.food.JaffasFood.blockColumn;
 import static monnef.jaffas.food.JaffasFood.blockJaffaStatue;
 import static monnef.jaffas.food.JaffasFood.blockPie;
+import static monnef.jaffas.food.JaffasFood.blockSwitchgrass;
+import static monnef.jaffas.food.JaffasFood.blockSwitchgrassSolid;
 import static monnef.jaffas.food.JaffasFood.blockTable;
 import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.JaffasFood.otherMods;
@@ -421,6 +425,8 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(getItemStack(cookingPot), getItem(cookingPotWater));
 
         GuideBookHelper.generateGuideBook();
+
+        RegistryUtils.registerBlockPackingRecipe(ItemHelper.getItemStackAnyDamage(blockSwitchgrass), new ItemStack(blockSwitchgrassSolid));
     }
 
     public static void addTableRecipe(ItemStack output, int color) {

@@ -334,6 +334,7 @@ public class JaffasFood extends jaffasMod {
             duckSpawnProbabilityLow = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityLow", 10).getInt();
             duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 12).getInt();
             duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
+            FuelHandler.SWITCHGRASS_BURN_VALUE = config.get(Configuration.CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
