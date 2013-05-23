@@ -39,6 +39,7 @@ import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockPizza;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.block.BlockSwitchgrass;
+import monnef.jaffas.food.block.BlockSwitchgrassSolid;
 import monnef.jaffas.food.block.BlockTable;
 import monnef.jaffas.food.block.ItemBlockPie;
 import monnef.jaffas.food.block.ItemBlockSwitchgrass;
@@ -88,7 +89,6 @@ import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.api.PowerManager;
 import monnef.jaffas.power.common.PowerManagersFactory;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -488,11 +488,7 @@ public class JaffasFood extends jaffasMod {
             FarmingRegistry.registerPlantable(blockSwitchgrass);
         }
 
-        blockSwitchgrassSolid = new BlockJDirectional(blockSwitchgrassSolidID, 240, 2, Material.grass, BlockJDirectional.TextureMappingType.LOG_LIKE);
-        Block.setBurnProperties(blockSwitchgrassSolidID, 15, 100);
-        blockSwitchgrassSolid.setStepSound(Block.soundGrassFootstep);
-        blockSwitchgrassSolid.setResistance(5);
-        blockSwitchgrassSolid.setHardness(0.5f);
+        blockSwitchgrassSolid = new BlockSwitchgrassSolid(blockSwitchgrassSolidID, 240, 2);
         RegistryUtils.registerBlock(blockSwitchgrassSolid, "switchgrassSolid", "Block of Switchgrass");
 
         if (MonnefCorePlugin.debugEnv) {
