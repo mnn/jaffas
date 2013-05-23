@@ -35,12 +35,20 @@ public class BlockSwitchgrassSolid extends BlockJDirectional {
         if (!MonnefCorePlugin.debugEnv && random.nextFloat() > 0.2) return;
         if (validStructure(world, x, y, z) &&
                 (!world.isDaytime() || world.isRaining()) &&
-                world.getBlockLightValue(x, y + 3, z) <= (5 + random.nextInt(4))) {
+                lightCheck(world, x, y, z)) {
+            boolean isRainingOnMe = world.canLightningStrikeAt(x, y + 3, z);
 
             // failure chance
-            if (world.isRaining() || random.nextFloat() > 0.3) {
-                BlockHelper.setBlock(world, x, y + 1, z, 0);
-                Log.printDebug(String.format("Water gone - %d %d %d", x, y, z));
+            if (!isRainingOnMe && random.nextFloat() > 0.3) {
+                int sx = 0, sz = 0;
+                if (random.nextBoolean()) {
+                    sx = random.nextBoolean() ? -1 : 1;
+                } else {
+                    sz = random.nextBoolean() ? -1 : 1;
+                }
+                BlockHelper.setBlock(world, x + sx, y + 1, z + sz, 0);
+
+                Log.printDebug(String.format("Cube damaged - %d %d %d", x, y, z));
                 return;
             }
 
@@ -65,6 +73,15 @@ public class BlockSwitchgrassSolid extends BlockJDirectional {
             slime.setPosition(x, y + 1, z);
             world.spawnEntityInWorld(slime);
         }
+    }
+
+    private boolean lightCheck(World world, int x, int y, int z) {
+        if (world.getBlockLightValue(x, y + 3, z) > 8) return false;
+        if (world.getBlockLightValue(x + 2, y, z) > 8) return false;
+        if (world.getBlockLightValue(x, y + 2, z) > 8) return false;
+        if (world.getBlockLightValue(x - 2, y, z) > 8) return false;
+        if (world.getBlockLightValue(x, y - 2, z) > 8) return false;
+        return true;
     }
 
     private boolean validStructure(World world, int x, int y, int z) {
