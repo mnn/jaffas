@@ -19,8 +19,8 @@ for file in $src/*.png ; do
         j=0$j
     fi
 
-	convert "$file" -crop 235x156+840+350 +repage "$tar/$j.png"
-    convert "$file" -crop 235x115+840+510 +repage "$tar/${j}b.png"
+	convert "$file" -crop 235x156+840+350 +repage png8:"$tar/$j.png"
+    convert "$file" -crop 235x115+840+510 +repage png8:"$tar/${j}b.png"
 	
 #	convert "$file" -crop 32x32+1016+422 +repage "$tar/furn_$j.png"
 #	convert "$file" -crop 32x32+1033+422 +repage "$tar/craft_$j.png"

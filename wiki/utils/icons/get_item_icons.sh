@@ -49,7 +49,7 @@ printDone
 printDoing "Converting"
 for file in "$tmpdir"/*.png ; do
     filename=$(basename "$file")
-    convert  "$file" -scale 32x32 "$output/$filename"
+    convert  "$file" -scale 32x32 png8:"$output/$filename"
 done
 printDone
 
