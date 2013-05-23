@@ -19,16 +19,19 @@ import java.util.Arrays;
 
 public abstract class jaffasMod {
     public JaffaCreativeTab creativeTab;
-    protected IDProvider idProvider;
     public Configuration config;
+
+    protected IDProvider idProvider;
     protected boolean thisIsMainModule = false;
+
+    private ModMetadata metaData;
 
     protected jaffasMod() {
     }
 
     private void handleMetadata() {
         ModContainer container = FMLCommonHandler.instance().findContainerFor(this);
-        ModMetadata metaData = container.getMetadata();
+        metaData = container.getMetadata();
         fillCommonMetadata(metaData);
         fillModuleSpecificMetadata(metaData);
     }
@@ -52,11 +55,11 @@ public abstract class jaffasMod {
     }
 
     public void load(FMLInitializationEvent event) {
-        handleMetadata();
     }
 
-    public void PreLoad(FMLPreInitializationEvent event) {
-        idProvider = new IDProvider(getStartOfBlocksIdInterval(), getStartOfItemsIdInterval());
+    public void preLoad(FMLPreInitializationEvent event) {
+        handleMetadata();
+        idProvider = new IDProvider(getStartOfBlocksIdInterval(), getStartOfItemsIdInterval(), metaData.name);
         config = new Configuration(
                 event.getSuggestedConfigurationFile());
     }

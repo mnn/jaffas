@@ -77,8 +77,8 @@ public class JaffasXmas extends jaffasMod {
 
     @Mod.PreInit
     @Override
-    public void PreLoad(FMLPreInitializationEvent event) {
-        super.PreLoad(event);
+    public void preLoad(FMLPreInitializationEvent event) {
+        super.preLoad(event);
 
         try {
             config.load();
