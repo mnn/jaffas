@@ -23,6 +23,7 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
+import monnef.jaffas.technic.block.BlockFungiBox;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
 import monnef.jaffas.technic.common.CommonProxy;
@@ -141,6 +142,10 @@ public class JaffasTechnic extends jaffasMod {
     private int ItemLocomotiveID;
     public static ItemLocomotive itemLocomotive;
 
+
+    private int blockFungiBoxID;
+    public static BlockFungiBox fungiBox;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -178,6 +183,8 @@ public class JaffasTechnic extends jaffasMod {
 
             BlockJaffarrolOreID = idProvider.getBlockIDFromConfig("jaffarrolOre");
             BlockLimsewOreID = idProvider.getBlockIDFromConfig("limsewOre");
+
+            blockFungiBoxID = idProvider.getBlockIDFromConfig("fungiBox");
 
             ItemJAxeID = idProvider.getItemIDFromConfig("jaffarrolAxe");
             ItemJPickaxeID = idProvider.getItemIDFromConfig("jaffarrolPickaxe");
@@ -220,6 +227,7 @@ public class JaffasTechnic extends jaffasMod {
         creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.technic");
 
         createItems();
+        createFungiStuff();
         installRecipes();
         addDrops();
 
@@ -239,6 +247,11 @@ public class JaffasTechnic extends jaffasMod {
         installThermalExpansionSupport();
 
         JaffasFood.PrintInitialized(ModulesEnum.technic);
+    }
+
+    private void createFungiStuff() {
+        fungiBox = new BlockFungiBox(blockFungiBoxID, 0, Material.wood);
+        RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
     }
 
     private void installThermalExpansionSupport() {
@@ -454,6 +467,10 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, jaffarrol);
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, jaffarrolDust);
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, limsew);
+
+        // TODO: change output
+        GameRegistry.addRecipe(new ItemStack(Block.stone), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron, 'D', jaffarrolDust);
+        GameRegistry.addRecipe(new ItemStack(Block.glass), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Block.glass, 'D', jaffarrolDust);
     }
 
     private Item getItem(JaffaItem item) {

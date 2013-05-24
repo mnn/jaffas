@@ -1,3 +1,8 @@
+## 0.4.20
+- NEI support for kitchen board
+- switchgrass block
+- custom starts of ID intervals
+
 ## 0.4.19
 - implemented achievement system (not much content yet)
 - rewritten to not use external libraries (lombok, jsoup)
