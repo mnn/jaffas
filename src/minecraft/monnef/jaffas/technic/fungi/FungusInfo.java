@@ -6,6 +6,7 @@
 package monnef.jaffas.technic.fungi;
 
 import monnef.core.utils.Interval;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.item.ItemStack;
 
 public class FungusInfo {
@@ -20,4 +21,17 @@ public class FungusInfo {
     public boolean ordinalItemBind = true;
     public ItemStack specialItemBind = null;
     public Interval dropCount;
+    public int id;
+
+    public ItemStack createLoot() {
+        int count = dropCount.getRandom();
+        if (count == 0) return null;
+        if (ordinalItemBind) {
+            return new ItemStack(JaffasTechnic.fungus, count, id);
+        } else {
+            ItemStack res = specialItemBind.copy();
+            res.stackSize = count;
+            return res;
+        }
+    }
 }

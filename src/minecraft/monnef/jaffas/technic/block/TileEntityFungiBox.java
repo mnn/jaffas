@@ -11,14 +11,16 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.fungi.FungiCatalog;
 import monnef.jaffas.technic.fungi.FungusInfo;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import static monnef.core.utils.PlayerHelper.playerHasEquipped;
 import static monnef.core.utils.RandomHelper.rand;
 
 public class TileEntityFungiBox extends TileEntity {
@@ -100,9 +102,29 @@ public class TileEntityFungiBox extends TileEntity {
         }
     }
 
+    private static int[][] eightNeighbour = new int[][]{
+            new int[]{-1, -1},
+            new int[]{-1, 0},
+            new int[]{-1, 1},
+            new int[]{1, -1},
+            new int[]{1, 0},
+            new int[]{1, 1},
+            new int[]{0, -1},
+            new int[]{0, 1},
+    };
+
     private void doSporage() {
-        // TODO
-        worldObj.setBlock(xCoord, yCoord + 1, zCoord, Block.glass.blockID);
+        if (!worldObj.isRemote) {
+            int randomNeighbour = rand.nextInt(8);
+            int sx = eightNeighbour[randomNeighbour][0];
+            int sz = eightNeighbour[randomNeighbour][1];
+            TileEntity tile = worldObj.getBlockTileEntity(xCoord + sx, yCoord, zCoord + sz);
+            if (tile == null || !(tile instanceof TileEntityFungiBox)) return;
+            TileEntityFungiBox neighbour = (TileEntityFungiBox) tile;
+            if (!neighbour.canPlant()) return;
+            neighbour.plant(fungusTemplate);
+            neighbour.forceUpdate();
+        }
     }
 
     private void setupNextSporeTime() {
@@ -205,15 +227,85 @@ public class TileEntityFungiBox extends TileEntity {
         if (player.isSneaking()) return false;
 
         if (MonnefCorePlugin.debugEnv) {
-            if (PlayerHelper.playerHasEquipped(player, JaffasTechnic.jaffarrolDust.itemID)) {
+            if (playerHasEquipped(player, JaffasTechnic.jaffarrolDust.itemID)) {
                 timeToGrow -= 20 * 60;
-            } else if (PlayerHelper.playerHasEquipped(player, JaffasTechnic.limsew.itemID)) {
+            } else if (playerHasEquipped(player, JaffasTechnic.limsew.itemID)) {
                 timeToDie -= 20 * 60;
-            } else if (PlayerHelper.playerHasEquipped(player, JaffasTechnic.jaffarrol.itemID)) {
+            } else if (playerHasEquipped(player, JaffasTechnic.jaffarrol.itemID)) {
                 timeToSpore -= 20 * 60;
-            } else if (PlayerHelper.playerHasEquipped(player, JaffasTechnic.swordJaffarrol.itemID)) {
+            } else if (playerHasEquipped(player, JaffasTechnic.swordJaffarrol.itemID)) {
                 humusTicksLeft -= 20 * 60;
             }
+        }
+
+        if (playerHasEquipped(player, JaffasTechnic.mushroomKnife.itemID)) {
+            if (harvest(player)) {
+                return true;
+            }
+        }
+
+        if (tryPlant(player)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean tryPlant(EntityPlayer player) {
+        ItemStack hand = player.getCurrentEquippedItem();
+        if (hand == null) return false;
+        if (tryPlant(hand)) {
+            if (!worldObj.isRemote) {
+                hand.stackSize--;
+                if (hand.stackSize <= 0) {
+                    player.setCurrentItemOrArmor(0, null);
+                }
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    private boolean tryPlant(ItemStack stack) {
+        if (!canPlant()) {
+            return false;
+        }
+
+        FungusInfo template = FungiCatalog.findByDrop(stack);
+        if (template == null) {
+            return false;
+        }
+
+        plant(template);
+        return true;
+    }
+
+    private void plant(FungusInfo template) {
+        fungusType = template.id;
+        fungusState = 0;
+        timeToGrow = template.stateLength[0].getRandom();
+        refreshFungusTemplate();
+    }
+
+    private boolean canPlant() {
+        return !mushroomPlanted();
+    }
+
+    private boolean harvest(EntityPlayer player) {
+        if (mushroomPlanted() && isMature()) {
+            if (!worldObj.isRemote) {
+                ItemStack loot = fungusTemplate.createLoot();
+                if (player != null) {
+                    PlayerHelper.giveItemToPlayer(player, loot);
+                } else {
+                    //TODO: machine harvesting
+                    throw new NotImplementedException();
+                }
+                fungusType = 0;
+                forceUpdate();
+            }
+            return true;
         }
 
         return false;
