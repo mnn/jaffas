@@ -218,4 +218,8 @@ public class TileEntityFungiBox extends TileEntity {
 
         return false;
     }
+
+    public boolean isHumusActive() {
+        return humusTicksLeft > 0;
+    }
 }

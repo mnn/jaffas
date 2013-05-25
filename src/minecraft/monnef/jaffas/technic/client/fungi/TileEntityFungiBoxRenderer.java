@@ -42,16 +42,18 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
 
         bindTextureByName("/jaffas_fungi_box.png");
-        box.render(0.0625F);
+        box.render(0.0625F,t.mushroomPlanted(),t.isHumusActive());
 
-        int currentFungusModel = t.getModelIndex();
-        int renderState = t.getRenderState();
+        if (t.mushroomPlanted()) {
+            int currentFungusModel = t.getModelIndex();
+            int renderState = t.getRenderState();
 
-        if (currentFungusModel != -1 && renderState != -1) {
-            ModelFungi toRender = fungi[currentFungusModel][renderState];
-            bindTextureByName(toRender.getTexture());
-            GL11.glRotatef(t.getRenderRotation() * 90, 0, 1, 0);
-            toRender.render(0.0625f);
+            if (currentFungusModel != -1 && renderState != -1) {
+                ModelFungi toRender = fungi[currentFungusModel][renderState];
+                bindTextureByName(toRender.getTexture());
+                GL11.glRotatef(t.getRenderRotation() * 90, 0, 1, 0);
+                toRender.render(0.0625f);
+            }
         }
 
         if (tile.worldObj != null) {

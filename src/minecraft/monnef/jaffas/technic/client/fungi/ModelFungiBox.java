@@ -9,6 +9,7 @@ package monnef.jaffas.technic.client.fungi;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import org.lwjgl.opengl.GL11;
 
 public class ModelFungiBox extends ModelBase {
     //fields
@@ -72,16 +73,27 @@ public class ModelFungiBox extends ModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        render(f5);
+        render(f5, false, false);
     }
 
-    public void render(float f5) {
+    public void render(float f5, boolean planted, boolean humusActive) {
         Shape1.render(f5);
         Shape2.render(f5);
         Shape3.render(f5);
         Shape4.render(f5);
-        Shape5.render(f5);
-        Shape6.render(f5);
+
+        if (!planted) {
+            GL11.glTranslatef(0, 1 / 16f, 0);
+        }
+        if (humusActive) {
+            Shape6.render(f5);
+        } else {
+            Shape5.render(f5);
+        }
+        if (!planted) {
+            GL11.glTranslatef(0, -1 / 16f, 0);
+        }
+
         Shape7.render(f5);
     }
 
