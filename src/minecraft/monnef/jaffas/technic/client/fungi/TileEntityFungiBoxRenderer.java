@@ -18,9 +18,6 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
     private ModelFungiBox box = new ModelFungiBox();
     private ModelFungi[][] fungi;
 
-    private int currentFungus = -1;
-    private int counter = 0;
-
     public TileEntityFungiBoxRenderer() {
         ArrayList<ModelFungi[]> list = new ArrayList<ModelFungi[]>();
         insertModelSeq(list, new ModelFungiOneStageOne(), new ModelFungiOneStageTwo(), new ModelFungiOneStageThree());
@@ -47,17 +44,14 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
         bindTextureByName("/jaffas_fungi_box.png");
         box.render(0.0625F);
 
-        if (currentFungus != -1) {
-            ModelFungi toRender = fungi[0][currentFungus];
+        int currentFungusModel = t.getModelIndex();
+        int renderState = t.getRenderState();
+
+        if (currentFungusModel != -1 && renderState != -1) {
+            ModelFungi toRender = fungi[currentFungusModel][renderState];
             bindTextureByName(toRender.getTexture());
             GL11.glRotatef(t.getRenderRotation() * 90, 0, 1, 0);
             toRender.render(0.0625f);
-        }
-
-        counter++;
-        if (counter % 500 == 0) {
-            currentFungus++;
-            if (currentFungus >= 3) currentFungus = -1;
         }
 
         if (tile.worldObj != null) {

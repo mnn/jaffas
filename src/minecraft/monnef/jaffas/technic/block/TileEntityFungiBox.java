@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.utils.RandomHelper;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -29,12 +30,25 @@ public class TileEntityFungiBox extends TileEntity {
     public void updateEntity() {
         super.updateEntity();
         // TODO
+        if (RandomHelper.rollPercentBooleanDice(5)) {
+            fungusType = 1;
+            fungusState = RandomHelper.generateRandomFromInterval(0, 3);
+            forceUpdate();
+        }
     }
 
     @Override
     public void validate() {
         super.validate();
         init();
+    }
+
+    public int getModelIndex() {
+        return fungusType - 1;
+    }
+
+    public int getRenderState() {
+        return fungusState - 1;
     }
 
     @Override
@@ -77,7 +91,7 @@ public class TileEntityFungiBox extends TileEntity {
         return rotation;
     }
 
-    private void sendUpdate() {
+    private void forceUpdate() {
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
 

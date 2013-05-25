@@ -33,6 +33,7 @@ import monnef.jaffas.technic.common.RepairRecipe;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
+import monnef.jaffas.technic.item.ItemFungus;
 import monnef.jaffas.technic.item.ItemHoeTechnic;
 import monnef.jaffas.technic.item.ItemLocomotive;
 import monnef.jaffas.technic.item.ItemPickaxeTechnic;
@@ -143,9 +144,11 @@ public class JaffasTechnic extends jaffasMod {
     private int ItemLocomotiveID;
     public static ItemLocomotive itemLocomotive;
 
-
     private int blockFungiBoxID;
     public static BlockFungiBox fungiBox;
+
+    private int ItemFungusID;
+    public static ItemFungus fungus;
 
     /*
     WOOD(0, 59, 2.0F, 0, 15),
@@ -195,6 +198,8 @@ public class JaffasTechnic extends jaffasMod {
             ItemLocomotiveID = idProvider.getBlockIDFromConfig("locomotive");
 
             LocomotiveEntityID = idProvider.getEntityIDFromConfig("locomotive");
+
+            ItemFungusID = idProvider.getItemIDFromConfig("fungus");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -254,6 +259,9 @@ public class JaffasTechnic extends jaffasMod {
         fungiBox = new BlockFungiBox(blockFungiBoxID, 0);
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
         GameRegistry.registerTileEntity(TileEntityFungiBox.class, "jaffasFungiBox");
+
+        fungus = new ItemFungus(ItemFungusID, 99);
+        RegistryUtils.registerItem(fungus, "jaffasFungus", "Fungus");
     }
 
     private void installThermalExpansionSupport() {

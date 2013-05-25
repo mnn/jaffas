@@ -10,14 +10,19 @@ import monnef.core.utils.Interval;
 import java.util.HashMap;
 
 public class FungiCatalog {
-    private static HashMap<Integer, FungusInfo> catalog;
-
     private static final int TPS = 20;
+    private static int maxId = 0;
+
+    public static HashMap<Integer, FungusInfo> catalog;
 
     static {
         catalog = new HashMap<Integer, FungusInfo>();
 
         createSpecie(1, 3, 10, 30, 1, 10, 60, 120, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+    }
+
+    public static int getMaxId() {
+        return maxId;
     }
 
     // times are in minutes
@@ -31,6 +36,8 @@ public class FungiCatalog {
         if (states + 1 != stateLens.length) {
             throw new RuntimeException("Number of states doesn't match durations of states.");
         }
+
+        if (maxId < id) maxId = id;
 
         FungusInfo info = new FungusInfo();
         info.timeToDie = new Interval(TPS * 60 * minDie, TPS * 60 * maxDie);

@@ -16,9 +16,12 @@ import net.minecraft.world.World;
 public class BlockFungiBox extends BlockTechnic {
     public static final MaterialFungiBox material = new MaterialFungiBox();
 
+    private static final float U = 1f / 16;
+
     public BlockFungiBox(int id, int textureID) {
         super(id, textureID, material);
         Block.setBurnProperties(id, 5, 20);
+        setBlockBounds(0, 0, 0, 16 * U, 6 * U, 16 * U);
     }
 
     @Override
