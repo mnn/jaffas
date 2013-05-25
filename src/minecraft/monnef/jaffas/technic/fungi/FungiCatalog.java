@@ -21,7 +21,8 @@ public class FungiCatalog {
     static {
         catalog = new HashMap<Integer, FungusInfo>();
 
-        createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 60, 120, 2, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 2, 4, 1, 80, 2, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        createSpecie("Parasol", "Macrolepiota procera", 2, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
     }
 
     public static FungusInfo get(int id) {
@@ -33,7 +34,7 @@ public class FungiCatalog {
     }
 
     // times are in minutes
-    private static void createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minHumus, int maxHumus, int minDrop, int maxDrop, Interval[] stateLens) {
+    private static void createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minDrop, int maxDrop, int humusConsumptionSpeed, int surviveRateInPercent, int sporeTries, Interval[] stateLens) {
         if (id == 0) {
             throw new RuntimeException("Inserting fungus with ZERO id!");
         }
@@ -49,7 +50,7 @@ public class FungiCatalog {
         FungusInfo info = new FungusInfo();
         info.timeToDie = new Interval(TPS * 60 * minDie, TPS * 60 * maxDie);
         info.sporeTime = new Interval(TPS * 60 * minSpore, TPS * 60 * maxSpore);
-        info.humusLastFor = new Interval(TPS * 60 * minHumus, TPS * 60 * maxHumus);
+        info.humusConsumptionSpeed = humusConsumptionSpeed;
         // convert lengths of states from minutes
         for (int i = 0; i < stateLens.length; i++) {
             stateLens[i] = new Interval(stateLens[i].getMin() * TPS * 60, stateLens[i].getMax() * TPS * 60);
@@ -59,6 +60,8 @@ public class FungiCatalog {
         info.subTitle = subTitle;
         info.id = id;
         info.dropCount = new Interval(minDrop, maxDrop);
+        info.surviveRate = surviveRateInPercent;
+        info.sporeTries = sporeTries;
         catalog.put(id, info);
     }
 

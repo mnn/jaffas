@@ -7,6 +7,7 @@ package monnef.jaffas.technic.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
+import monnef.core.utils.RandomHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.fungi.FungiCatalog;
@@ -30,7 +31,9 @@ public class TileEntityFungiBox extends TileEntity {
     private static final String TAG_DIE = "timeToDie";
     private static final String TAG_SPORE = "timeToSpore";
     private static final String TAG_GROW = "timeToGrow";
-    private byte rotation;
+
+    private byte mushroomRotation;
+    private byte boxRotation;
 
     private int fungusType = 0; // zero = nothing here
     private int humusTicksLeft = 0; // zero = no humus
@@ -43,7 +46,9 @@ public class TileEntityFungiBox extends TileEntity {
 
     private FungusInfo fungusTemplate;
 
-    public static int tickQuantum = 20;
+    public static final int DEFAULT_QUANTUM_OF_TICKS = 20;
+    public static int tickQuantum = DEFAULT_QUANTUM_OF_TICKS;
+    private static boolean debugSpeedOverride = false;
 
     @Override
     public void updateEntity() {
@@ -59,7 +64,8 @@ public class TileEntityFungiBox extends TileEntity {
         */
 
         counter++;
-        if (counter % tickQuantum == 0) {
+        boolean compute = (counter % tickQuantum == 0) || debugSpeedOverride;
+        if (compute) {
             boolean update = false;
 
             humusTicksLeft -= tickQuantum;
@@ -70,7 +76,7 @@ public class TileEntityFungiBox extends TileEntity {
                 if (timeToGrow <= 0) {
                     if (!isMature()) {
                         fungusState++;
-                        timeToGrow = fungusTemplate.stateLength[fungusState].getRandom();
+                        setupNextGrowTime();
                         update = true;
                         if (isMature()) {
                             timeToDie = fungusTemplate.timeToDie.getRandom();
@@ -85,7 +91,12 @@ public class TileEntityFungiBox extends TileEntity {
                     timeToDie -= tickQuantum;
                     if (timeToDie <= 0) {
                         update = true;
-                        fungusType = 0;
+                        if (RandomHelper.rollPercentBooleanDice(fungusTemplate.surviveRate)) {
+                            fungusState = 0;
+                            setupNextGrowTime();
+                        } else {
+                            fungusType = 0;
+                        }
                     } else {
                         // not dead
                         timeToSpore -= tickQuantum;
@@ -102,6 +113,10 @@ public class TileEntityFungiBox extends TileEntity {
         }
     }
 
+    private void setupNextGrowTime() {
+        timeToGrow = fungusTemplate.stateLength[fungusState].getRandom();
+    }
+
     private static int[][] eightNeighbour = new int[][]{
             new int[]{-1, -1},
             new int[]{-1, 0},
@@ -115,15 +130,27 @@ public class TileEntityFungiBox extends TileEntity {
 
     private void doSporage() {
         if (!worldObj.isRemote) {
-            int randomNeighbour = rand.nextInt(8);
-            int sx = eightNeighbour[randomNeighbour][0];
-            int sz = eightNeighbour[randomNeighbour][1];
-            TileEntity tile = worldObj.getBlockTileEntity(xCoord + sx, yCoord, zCoord + sz);
-            if (tile == null || !(tile instanceof TileEntityFungiBox)) return;
-            TileEntityFungiBox neighbour = (TileEntityFungiBox) tile;
-            if (!neighbour.canPlant()) return;
-            neighbour.plant(fungusTemplate);
-            neighbour.forceUpdate();
+            boolean found = false;
+            TileEntityFungiBox neighbour = null;
+
+            for (int i = 0; i < fungusTemplate.sporeTries; i++) {
+                int randomNeighbour = rand.nextInt(8);
+                int sx = eightNeighbour[randomNeighbour][0];
+                int sz = eightNeighbour[randomNeighbour][1];
+                TileEntity tile = worldObj.getBlockTileEntity(xCoord + sx, yCoord, zCoord + sz);
+                if (tile == null || !(tile instanceof TileEntityFungiBox)) continue;
+                neighbour = (TileEntityFungiBox) tile;
+                if (!neighbour.canPlant()) continue;
+                found = true;
+                break;
+            }
+
+            if (found) {
+                neighbour.plant(fungusTemplate);
+                neighbour.forceUpdate();
+            } else {
+
+            }
         }
     }
 
@@ -195,8 +222,12 @@ public class TileEntityFungiBox extends TileEntity {
         readFromNBT(tag);
     }
 
-    public byte getRenderRotation() {
-        return rotation;
+    public byte getRenderRotationMushroom() {
+        return mushroomRotation;
+    }
+
+    public byte getRenderRotationBox() {
+        return boxRotation;
     }
 
     private void forceUpdate() {
@@ -204,7 +235,8 @@ public class TileEntityFungiBox extends TileEntity {
     }
 
     private void init() {
-        rotation = (byte) ((22457 + xCoord * 7775213 + yCoord - zCoord * 22177) % 4);
+        mushroomRotation = (byte) ((22457 + xCoord * 7775213 + yCoord - zCoord * 22177) % 4);
+        boxRotation = (byte) ((5778921 + xCoord * 77213 + yCoord * 227144571 - zCoord * 122177) % 4);
         refreshFungusTemplate();
     }
 
@@ -313,5 +345,15 @@ public class TileEntityFungiBox extends TileEntity {
 
     public boolean isHumusActive() {
         return humusTicksLeft > 0;
+    }
+
+    public static void setDebugSpeedOverride(int speed) {
+        tickQuantum = speed;
+        debugSpeedOverride = true;
+    }
+
+    public static void disableDebugSpeedOverride() {
+        debugSpeedOverride = false;
+        tickQuantum = DEFAULT_QUANTUM_OF_TICKS;
     }
 }

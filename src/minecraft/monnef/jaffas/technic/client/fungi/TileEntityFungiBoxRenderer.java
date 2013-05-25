@@ -21,6 +21,7 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
     public TileEntityFungiBoxRenderer() {
         ArrayList<ModelFungi[]> list = new ArrayList<ModelFungi[]>();
         insertModelSeq(list, new ModelFungiOneStageOne(), new ModelFungiOneStageTwo(), new ModelFungiOneStageThree());
+        insertModelSeq(list, new ModelFungiParasolStageOne(), new ModelFungiParasolStageTwo(), new ModelFungiParasolStageThree());
         fungi = list.toArray(new ModelFungi[][]{});
     }
 
@@ -42,7 +43,11 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
 
         bindTextureByName("/jaffas_fungi_box.png");
-        box.render(0.0625F,t.mushroomPlanted(),t.isHumusActive());
+
+        GL11.glPushMatrix();
+        GL11.glRotatef(t.getRenderRotationBox() * 90, 0, 1, 0);
+        box.render(0.0625F, t.mushroomPlanted(), t.isHumusActive());
+        GL11.glPopMatrix();
 
         if (t.mushroomPlanted()) {
             int currentFungusModel = t.getModelIndex();
@@ -51,7 +56,7 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
             if (currentFungusModel != -1 && renderState != -1) {
                 ModelFungi toRender = fungi[currentFungusModel][renderState];
                 bindTextureByName(toRender.getTexture());
-                GL11.glRotatef(t.getRenderRotation() * 90, 0, 1, 0);
+                GL11.glRotatef(t.getRenderRotationMushroom() * 90, 0, 1, 0);
                 toRender.render(0.0625f);
             }
         }

@@ -15,13 +15,15 @@ public class FungusInfo {
     public Interval[] stateLength;
     public Interval timeToDie;
     public Interval sporeTime;
-    public Interval humusLastFor;
+    public int humusConsumptionSpeed;
     public String title;
     public String subTitle;
     public boolean ordinalItemBind = true;
     public ItemStack specialItemBind = null;
     public Interval dropCount;
     public int id;
+    public int surviveRate; // in percent
+    public int sporeTries = 3;
 
     public ItemStack createLoot() {
         int count = dropCount.getRandom();

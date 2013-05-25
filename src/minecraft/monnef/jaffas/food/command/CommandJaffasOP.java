@@ -6,6 +6,7 @@
 package monnef.jaffas.food.command;
 
 import monnef.jaffas.food.achievement.AchievementsHandler;
+import monnef.jaffas.technic.block.TileEntityFungiBox;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -39,6 +40,21 @@ public class CommandJaffasOP extends CommandBase {
             }
             AchievementsHandler.corrupt(player);
             commandsender.sendChatToPlayer(String.format("Achievements of \"%s\" has been corrupted.", player.username));
+        } else if (parameters.length == 2 && parameters[0].equals("fun_speed")) {
+            int speed;
+
+            try {
+                speed = Integer.parseInt(parameters[1]);
+            } catch (NumberFormatException e) {
+                commandsender.sendChatToPlayer("cannot parse number");
+                return;
+            }
+
+            if (speed > 0) {
+                TileEntityFungiBox.setDebugSpeedOverride(speed);
+            } else {
+                TileEntityFungiBox.disableDebugSpeedOverride();
+            }
         }
 
     }
