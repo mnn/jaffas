@@ -5,11 +5,13 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -22,6 +24,17 @@ public class BlockFungiBox extends BlockTechnic {
         super(id, textureID, material);
         Block.setBurnProperties(id, 5, 20);
         setBlockBounds(0, 0, 0, 16 * U, 6 * U, 16 * U);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
+        TileEntityFungiBox te = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        boolean res = te.playerActivatedBox(player);
+        if (MonnefCorePlugin.debugEnv) {
+            te.printDebugInfo(player);
+        }
+
+        return res;
     }
 
     @Override

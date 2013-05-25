@@ -18,7 +18,7 @@ public class FungiCatalog {
     static {
         catalog = new HashMap<Integer, FungusInfo>();
 
-        createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 60, 120, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 60, 120, 2, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
     }
 
     public static FungusInfo get(int id) {
@@ -30,7 +30,7 @@ public class FungiCatalog {
     }
 
     // times are in minutes
-    private static void createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minHumus, int maxHumus, Interval[] stateLens) {
+    private static void createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minHumus, int maxHumus, int minDrop, int maxDrop, Interval[] stateLens) {
         if (id == 0) {
             throw new RuntimeException("Inserting fungus with ZERO id!");
         }

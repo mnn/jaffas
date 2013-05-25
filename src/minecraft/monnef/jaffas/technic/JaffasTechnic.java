@@ -209,6 +209,9 @@ public class JaffasTechnic extends jaffasMod {
             generateOres = config.get(Configuration.CATEGORY_GENERAL, "generateOres", true).getBoolean(true);
             switchgrassProbability = (float) config.get(Configuration.CATEGORY_GENERAL, "switchgrassProbability", 0.005, "Do not go too high, or face stack overflow caused by recursive chunk generation").getDouble(0.005);
             disableOreRecipes = config.get(Configuration.CATEGORY_GENERAL, "disableOreRecipes", true).getBoolean(true);
+            if (config.get(Configuration.CATEGORY_GENERAL, "preciseTikcingOfFungiBox", false).getBoolean(false)) {
+                TileEntityFungiBox.tickQuantum = 1;
+            }
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {

@@ -18,5 +18,6 @@ public class FungusInfo {
     public String title;
     public String subTitle;
     public boolean ordinalItemBind = true;
-    public ItemStack specialItemBind;
+    public ItemStack specialItemBind = null;
+    public Interval dropCount;
 }

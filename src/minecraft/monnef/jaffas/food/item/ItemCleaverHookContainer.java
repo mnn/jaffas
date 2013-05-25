@@ -68,7 +68,7 @@ public class ItemCleaverHookContainer {
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
-            if (PlayerHelper.PlayerHasEquipped(player, getMeatCleaverID())) {
+            if (PlayerHelper.playerHasEquipped(player, getMeatCleaverID())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
                     event.ammount += 10;
                 }
@@ -84,7 +84,7 @@ public class ItemCleaverHookContainer {
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
-            if (PlayerHelper.PlayerHasEquipped(player, getMeatCleaverID())) {
+            if (PlayerHelper.playerHasEquipped(player, getMeatCleaverID())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
                     EntityCreature animal = (EntityCreature) mob;
                     if (EntityHelper.animalIsAdult(animal)) {
