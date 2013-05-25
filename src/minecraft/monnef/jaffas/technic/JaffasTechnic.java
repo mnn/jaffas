@@ -153,6 +153,9 @@ public class JaffasTechnic extends jaffasMod {
     private int ItemFungusID;
     public static ItemFungus fungus;
 
+    private int ItemMushroomKnifeID;
+    public static ItemTechnic mushroomKnife;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -203,6 +206,7 @@ public class JaffasTechnic extends jaffasMod {
             LocomotiveEntityID = idProvider.getEntityIDFromConfig("locomotive");
 
             ItemFungusID = idProvider.getItemIDFromConfig("fungus");
+            ItemMushroomKnifeID = idProvider.getItemIDFromConfig("mushroomKnife");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -273,6 +277,9 @@ public class JaffasTechnic extends jaffasMod {
                 LanguageRegistry.addName(new ItemStack(fungus, 1, item.getKey()), item.getValue().title);
             }
         }
+
+        mushroomKnife = new ItemTechnic(ItemMushroomKnifeID, 26);
+        RegistryUtils.registerItem(mushroomKnife, "knifeMushroom", "Mushroom Knife");
     }
 
     private void installThermalExpansionSupport() {

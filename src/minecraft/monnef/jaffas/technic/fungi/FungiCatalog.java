@@ -6,8 +6,11 @@
 package monnef.jaffas.technic.fungi;
 
 import monnef.core.utils.Interval;
+import monnef.jaffas.technic.JaffasTechnic;
+import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class FungiCatalog {
     private static final int TPS = 20;
@@ -54,7 +57,30 @@ public class FungiCatalog {
         info.stateLength = stateLens;
         info.title = title;
         info.subTitle = subTitle;
+        info.id = id;
+        info.dropCount = new Interval(minDrop, maxDrop);
         catalog.put(id, info);
     }
 
+    // TODO: optimize?
+    public static FungusInfo findByDrop(ItemStack stack) {
+        if (stack == null) {
+            return null;
+        }
+
+        for (Map.Entry<Integer, FungusInfo> item : catalog.entrySet()) {
+            ItemStack toCompare;
+            FungusInfo value = item.getValue();
+            if (value.ordinalItemBind) {
+                toCompare = new ItemStack(JaffasTechnic.fungus, 1, value.id);
+            } else {
+                toCompare = value.specialItemBind.copy();
+            }
+            if (toCompare.itemID == stack.itemID && toCompare.getItemDamage() == stack.getItemDamage()) {
+                return value;
+            }
+        }
+
+        return null;
+    }
 }
