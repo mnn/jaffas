@@ -266,7 +266,7 @@ public class JaffasTechnic extends jaffasMod {
     }
 
     private void createFungiStuff() {
-        fungiBox = new BlockFungiBox(blockFungiBoxID, 0);
+        fungiBox = new BlockFungiBox(blockFungiBoxID, 27);
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
         GameRegistry.registerTileEntity(TileEntityFungiBox.class, "jaffasFungiBox");
 
@@ -278,7 +278,7 @@ public class JaffasTechnic extends jaffasMod {
             }
         }
 
-        mushroomKnife = new ItemTechnic(ItemMushroomKnifeID, 26);
+        mushroomKnife = new ItemTechnic(ItemMushroomKnifeID, 28);
         RegistryUtils.registerItem(mushroomKnife, "knifeMushroom", "Mushroom Knife");
     }
 

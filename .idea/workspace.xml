@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungiCatalog.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungiCatalog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungusInfo.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungusInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -549,10 +546,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="279" column="38" selection-start="10848" selection-end="10848" vertical-scroll-proportion="0.0">
+            <state line="268" column="56" selection-start="10300" selection-end="10300" vertical-scroll-proportion="0.35416666">
               <folding />
             </state>
           </provider>
@@ -567,10 +564,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FungusInfo.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="FungusInfo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungusInfo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="52" selection-start="640" selection-end="640" vertical-scroll-proportion="0.5604396">
+            <state line="24" column="52" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -609,10 +606,10 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/TileEntityFungiBoxRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/ModelFungiBox.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungusInfo.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungiCatalog.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
       </list>
     </option>
   </component>
@@ -1390,14 +1387,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.49786553" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26004463" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26004463" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2890625" sideWeight="0.50053364" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.178762" sideWeight="0.29017857" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1589,13 +1586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="279" column="38" selection-start="10848" selection-end="10848" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungiCatalog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="8" selection-start="2290" selection-end="2290" vertical-scroll-proportion="0.0">
@@ -1614,10 +1604,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/fungi/FungusInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="52" selection-start="640" selection-end="640" vertical-scroll-proportion="0.5604396">
+        <state line="24" column="52" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="268" column="56" selection-start="10300" selection-end="10300" vertical-scroll-proportion="0.35416666">
+          <folding />
         </state>
       </provider>
     </entry>
