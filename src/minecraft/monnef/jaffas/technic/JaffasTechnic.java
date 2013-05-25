@@ -26,6 +26,7 @@ import monnef.jaffas.jaffasMod;
 import monnef.jaffas.technic.block.BlockFungiBox;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
+import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.RepairRecipe;
@@ -250,8 +251,9 @@ public class JaffasTechnic extends jaffasMod {
     }
 
     private void createFungiStuff() {
-        fungiBox = new BlockFungiBox(blockFungiBoxID, 0, Material.wood);
+        fungiBox = new BlockFungiBox(blockFungiBoxID, 0);
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
+        GameRegistry.registerTileEntity(TileEntityFungiBox.class, "jaffasFungiBox");
     }
 
     private void installThermalExpansionSupport() {

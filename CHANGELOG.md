@@ -1,6 +1,7 @@
 ## 0.4.20
 - NEI support for kitchen board
 - switchgrass block
+- rewritten repair recipe (now supports NEI)
 - custom starts of ID intervals
 
 ## 0.4.19
