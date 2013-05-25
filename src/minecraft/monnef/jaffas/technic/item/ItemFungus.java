@@ -8,6 +8,7 @@ package monnef.jaffas.technic.item;
 import monnef.jaffas.technic.fungi.FungiCatalog;
 import monnef.jaffas.technic.fungi.FungusInfo;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 
@@ -24,6 +25,14 @@ public class ItemFungus extends ItemTechnic {
     @Override
     public Icon getIconFromDamage(int meta) {
         return icons[meta];
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        String subTitle = FungiCatalog.get(stack.getItemDamage()).subTitle;
+        if (subTitle != null && !subTitle.isEmpty()) {
+            list.add(subTitle);
+        }
     }
 
     @Override

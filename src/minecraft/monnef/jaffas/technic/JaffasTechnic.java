@@ -31,6 +31,8 @@ import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.RepairRecipe;
 import monnef.jaffas.technic.entity.EntityLocomotive;
+import monnef.jaffas.technic.fungi.FungiCatalog;
+import monnef.jaffas.technic.fungi.FungusInfo;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
 import monnef.jaffas.technic.item.ItemFungus;
@@ -55,6 +57,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import thermalexpansion.api.crafting.CraftingHelpers;
 
+import java.util.Map;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.JaffasFood.Log;
@@ -262,6 +265,11 @@ public class JaffasTechnic extends jaffasMod {
 
         fungus = new ItemFungus(ItemFungusID, 99);
         RegistryUtils.registerItem(fungus, "jaffasFungus", "Fungus");
+        for (Map.Entry<Integer, FungusInfo> item : FungiCatalog.catalog.entrySet()) {
+            if (item.getValue().ordinalItemBind) {
+                LanguageRegistry.addName(new ItemStack(fungus, 1, item.getKey()), item.getValue().title);
+            }
+        }
     }
 
     private void installThermalExpansionSupport() {
