@@ -80,9 +80,11 @@ import java.util.logging.Level;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.crafting.Recipes.addPieRecipe;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
+import static monnef.jaffas.food.item.JaffaItem.bananaInChocolate;
 import static monnef.jaffas.food.item.JaffaItem.beansWithTomato;
 import static monnef.jaffas.food.item.JaffaItem.beansWithTomatoRaw;
 import static monnef.jaffas.food.item.JaffaItem.cakeTin;
+import static monnef.jaffas.food.item.JaffaItem.chocolate;
 import static monnef.jaffas.food.item.JaffaItem.duckRaw;
 import static monnef.jaffas.food.item.JaffaItem.jamP;
 import static monnef.jaffas.food.item.JaffaItem.jamRaspberry;
@@ -126,9 +128,9 @@ public class JaffasTrees extends jaffasMod {
 
     public static final String channel = "jaffas-02";
 
-    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum", "coconut"};
-    public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds", "Coconut Seeds"};
-    public static final String[] saplingNames = new String[]{"[UNUSED]", "Apple Sapling", "Cocoa Sapling", "Vanilla Sapling", "Lemon Sapling", "Orange Sapling", "Plum Sapling", "Coconut Sapling"};
+    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum", "coconut", "banana"};
+    public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds", "Coconut Seeds", "Banana Seeds"};
+    public static final String[] saplingNames = new String[]{"[UNUSED]", "Apple Sapling", "Cocoa Sapling", "Vanilla Sapling", "Lemon Sapling", "Orange Sapling", "Plum Sapling", "Coconut Sapling", "Banana Sapling"};
 
     private static IGuiHandler guiHandler;
 
@@ -157,7 +159,7 @@ public class JaffasTrees extends jaffasMod {
     }
 
     public static enum FruitType {
-        Normal(0), Apple(1), Cocoa(2), Vanilla(3), Lemon(4), Orange(5), Plum(6), Coconut(7);
+        Normal(0), Apple(1), Cocoa(2), Vanilla(3), Lemon(4), Orange(5), Plum(6), Coconut(7), Banana(8);
         private int value;
         private int blockNumber;
         private int metaNumber;
@@ -210,8 +212,8 @@ public class JaffasTrees extends jaffasMod {
 
     public static ArrayList<LeavesInfo> leavesList = new ArrayList<LeavesInfo>();
 
-    public static final int leavesBlocksAllocated = 3;
-    public static final int leavesTypesCount = 7;
+    public static final int leavesBlocksAllocated = 4;
+    public static final int leavesTypesCount = 8;
 
     public static boolean debug;
 
@@ -219,10 +221,12 @@ public class JaffasTrees extends jaffasMod {
     private int itemOrangeID;
     private int itemPlumID;
     private int itemCoconutID;
+    private int itemBananaID;
     public static ItemJaffaBase itemLemon;
     public static ItemJaffaBase itemOrange;
     public static ItemJaffaBase itemPlum;
     public static ItemJaffaBase itemCoconut;
+    public static ItemJaffaBase itemBanana;
 
     private int itemDebugID;
     public static ItemJaffaTreeDebugTool itemDebug;
@@ -268,6 +272,7 @@ public class JaffasTrees extends jaffasMod {
             itemOrangeID = idProvider.getItemIDFromConfig("orange");
             itemPlumID = idProvider.getItemIDFromConfig("plum");
             itemCoconutID = idProvider.getItemIDFromConfig("coconut");
+            itemBananaID = idProvider.getItemIDFromConfig("banana");
 
             blockFruitCollectorID = idProvider.getBlockIDFromConfig("fruit collector");
 
@@ -443,6 +448,7 @@ public class JaffasTrees extends jaffasMod {
     private void createItems() {
         AddFruitTreesSequence(0, 0, 32, 4);
         AddFruitTreesSequence(1, 4, 32 + 4, 4);
+        AddFruitTreesSequence(2, 8, 32 + 4, 1);
 
         for (int i = 1; i < JaffasTrees.leavesTypesCount + 1; i++) {
             seedsList.add(getTreeSeeds(i));
@@ -457,6 +463,8 @@ public class JaffasTrees extends jaffasMod {
         itemPlum = constructFruit(itemPlumID, EatableNormal, 70, "plum", "Plum");
 
         itemCoconut = constructFruit(itemCoconutID, NotEatable, 71, "coconut", "Coconut");
+
+        itemBanana = constructFruit(itemBananaID, EatableNormal, 72, "banana", "Banana");
 
         constructItemsInBushInfo();
 
@@ -651,6 +659,8 @@ public class JaffasTrees extends jaffasMod {
         GameRegistry.addSmelting(getItem(tinDuckOrangeRaw).itemID, getItemStack(tinDuckOrange), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(plateDuckOrange, 3), getItemStack(tinDuckOrange), getItem(plate), getItem(plate), getItem(plate));
         JaffaCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin).itemID);
+
+        GameRegistry.addShapelessRecipe(getItemStack(bananaInChocolate, 2), itemBanana, getItem(chocolate), itemBanana);
     }
 
     public static Item getFruit(bushType type) {

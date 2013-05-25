@@ -22,7 +22,7 @@ public class FungiCatalog {
         catalog = new HashMap<Integer, FungusInfo>();
 
         createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 2, 4, 1, 80, 2, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
-        createSpecie("Parasol", "Macrolepiota procera", 2, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        createSpecie("Parasol", "Macrolepiota Procera", 2, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
     }
 
     public static FungusInfo get(int id) {

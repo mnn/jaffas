@@ -334,7 +334,9 @@ public class TileEntityFungiBox extends TileEntity {
                     //TODO: machine harvesting
                     throw new NotImplementedException();
                 }
-                fungusType = 0;
+
+                fungusState = 0;
+                setupNextGrowTime();
                 forceUpdate();
             }
             return true;

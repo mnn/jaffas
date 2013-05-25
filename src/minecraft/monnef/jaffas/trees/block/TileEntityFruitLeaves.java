@@ -26,6 +26,7 @@ import java.util.Random;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.trees.JaffasTrees.debug;
 import static monnef.jaffas.trees.JaffasTrees.getActualLeavesType;
+import static monnef.jaffas.trees.JaffasTrees.itemBanana;
 import static monnef.jaffas.trees.JaffasTrees.itemCoconut;
 import static monnef.jaffas.trees.JaffasTrees.itemLemon;
 import static monnef.jaffas.trees.JaffasTrees.itemOrange;
@@ -284,6 +285,10 @@ public class TileEntityFruitLeaves extends TileEntity {
 
             case Coconut:
                 res.setStack(new ItemStack(itemCoconut));
+                break;
+
+            case Banana:
+                res.setStack(new ItemStack(itemBanana));
                 break;
 
             default:

@@ -372,6 +372,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.cookingPotWater, "Cooking Pot With Water", 236);
         AddItemInfo(JaffaItem.cookingPotEggsRaw, "Cooking Pot With Raw Eggs", 236);
         AddItemInfo(JaffaItem.cookingPotEggs, "Cooking Pot With Eggs", 236);
+
+        AddItemInfo(JaffaItem.bananaInChocolate, "Chocolate Covered Banana", 238);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -669,6 +671,8 @@ public class Items extends ItemManagerAccessor {
 
         BlockSink.addFillableItem(getItem(kettle), getItem(kettleWaterCold));
         BlockSink.addFillableItem(getItem(cookingPot), getItem(cookingPotWater));
+
+        createJaffaFood(bananaInChocolate, 3, 1.2f).setPotionEffect(Potion.regeneration.id, 4, 0, 0.1f);
 
         createItemsRegistration();
     }
