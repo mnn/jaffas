@@ -16,6 +16,8 @@ public class BlockConstruction extends BlockTechnic {
     public BlockConstruction(int id, int textureID) {
         super(id, textureID, Material.iron);
         setIconsCount(2);
+        setHardness(5);
+        setResistance(15);
     }
 
     @Override
@@ -27,5 +29,10 @@ public class BlockConstruction extends BlockTechnic {
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
         par3List.add(new ItemStack(this, 1, 0));
         par3List.add(new ItemStack(this, 1, 1));
+    }
+
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
     }
 }

@@ -25,15 +25,20 @@ public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
     protected String[] subNames;
     protected boolean useItemName = false;
 
-    public ItemBlockJaffas(int par1) {
-        super(par1);
+    public ItemBlockJaffas(int id) {
+        super(id);
         setHasSubtypes(true);
-        this.blockID = par1 + 256;
+        this.blockID = id + 256;
     }
 
     public ItemBlockJaffas(int id, int blockId) {
         this(id);
         this.blockID = blockId;
+    }
+
+    @Override
+    public void setSubNames(String[] newNames) {
+        subNames = newNames;
     }
 
     @Override
@@ -53,7 +58,7 @@ public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
     // from ItemBlock
     private int blockID;
     @SideOnly(Side.CLIENT)
-    private Icon field_94588_b;
+    private Icon iconOfMyBlock;
 
     public int getBlockID() {
         return this.blockID;
@@ -72,7 +77,7 @@ public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
     @SideOnly(Side.CLIENT)
     @Override
     public Icon getIconFromDamage(int par1) {
-        return this.field_94588_b != null ? this.field_94588_b : Block.blocksList[this.blockID].getIcon(1, par1);
+        return this.iconOfMyBlock != null ? this.iconOfMyBlock : Block.blocksList[this.blockID].getIcon(1, par1);
     }
 
     @Override
@@ -172,7 +177,7 @@ public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
         String s = Block.blocksList[this.blockID].getItemIconName();
 
         if (s != null) {
-            this.field_94588_b = par1IconRegister.registerIcon(s);
+            this.iconOfMyBlock = par1IconRegister.registerIcon(s);
         }
     }
 

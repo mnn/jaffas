@@ -16,6 +16,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
@@ -23,6 +24,7 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
+import monnef.jaffas.technic.block.BlockConstruction;
 import monnef.jaffas.technic.block.BlockFungiBox;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
@@ -55,6 +57,7 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import thermalexpansion.api.crafting.CraftingHelpers;
 
 import java.util.Map;
@@ -156,6 +159,9 @@ public class JaffasTechnic extends jaffasMod {
     private int ItemMushroomKnifeID;
     public static ItemTechnic mushroomKnife;
 
+    private int blockConstructionID;
+    public static BlockConstruction constructionBlock;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -208,6 +214,8 @@ public class JaffasTechnic extends jaffasMod {
             ItemFungusID = idProvider.getItemIDFromConfig("fungus");
             ItemMushroomKnifeID = idProvider.getItemIDFromConfig("mushroomKnife");
 
+            blockConstructionID = idProvider.getBlockIDFromConfig("contructionBlock");
+
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
             generateOres = config.get(Configuration.CATEGORY_GENERAL, "generateOres", true).getBoolean(true);
@@ -242,7 +250,7 @@ public class JaffasTechnic extends jaffasMod {
 
         creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.technic");
 
-        createItems();
+        createItemsAndBlocks();
         createFungiStuff();
         installRecipes();
         addDrops();
@@ -303,7 +311,7 @@ public class JaffasTechnic extends jaffasMod {
         CustomDrop.addDrop(EntityEnderman.class, limsew, 0.25f);
     }
 
-    private void createItems() {
+    private void createItemsAndBlocks() {
         jaffarrol = new ItemTechnic(JaffarrolID, 0);
         jaffarrol.setUnlocalizedName("jaffarrol");
         LanguageRegistry.addName(jaffarrol, "Jaffarrol Ingot");
@@ -364,6 +372,9 @@ public class JaffasTechnic extends jaffasMod {
 
         jaffarrolDust = new ItemTechnic(jaffarrolDustID, 25);
         RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
+
+        constructionBlock = new BlockConstruction(blockConstructionID, 17);
+        RegistryUtils.registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
 
         createTools();
     }
@@ -497,8 +508,10 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, limsew);
 
         // TODO: change output
-        GameRegistry.addRecipe(new ItemStack(Block.stone), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron, 'D', jaffarrolDust);
-        GameRegistry.addRecipe(new ItemStack(Block.glass), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Block.glass, 'D', jaffarrolDust);
+        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron, 'D', jaffarrolDust);
+        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Block.glass, 'D', jaffarrolDust);
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(mushroomKnife), " J", "W ", 'J', jaffarrol, 'W', "plankWood"));
     }
 
     private Item getItem(JaffaItem item) {
