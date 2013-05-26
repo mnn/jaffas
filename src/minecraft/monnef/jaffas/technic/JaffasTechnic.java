@@ -24,17 +24,21 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
+import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
+import monnef.jaffas.technic.block.BlockConstructionDummy;
 import monnef.jaffas.technic.block.BlockFungiBox;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
+import monnef.jaffas.technic.block.TileEntityCompostCore;
+import monnef.jaffas.technic.block.TileEntityConstructionDummy;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
-import monnef.jaffas.technic.common.RepairRecipe;
-import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.FungusInfo;
+import monnef.jaffas.technic.common.RepairRecipe;
+import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
 import monnef.jaffas.technic.item.ItemFungus;
@@ -161,6 +165,10 @@ public class JaffasTechnic extends jaffasMod {
 
     private int blockConstructionID;
     public static BlockConstruction constructionBlock;
+    private int blockConstructionDummyID;
+    public static BlockConstructionDummy dummyConstructionBlock;
+    private int blockCompostCoreID;
+    public static BlockCompostCore compostCore;
 
     /*
     WOOD(0, 59, 2.0F, 0, 15),
@@ -215,6 +223,8 @@ public class JaffasTechnic extends jaffasMod {
             ItemMushroomKnifeID = idProvider.getItemIDFromConfig("mushroomKnife");
 
             blockConstructionID = idProvider.getBlockIDFromConfig("contructionBlock");
+            blockConstructionDummyID = idProvider.getBlockIDFromConfig("dummyContructionBlock");
+            blockCompostCoreID = idProvider.getBlockIDFromConfig("compostCore");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -375,6 +385,15 @@ public class JaffasTechnic extends jaffasMod {
 
         constructionBlock = new BlockConstruction(blockConstructionID, 17);
         RegistryUtils.registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
+
+        GameRegistry.registerTileEntity(TileEntityConstructionDummy.class, "jaffasConstructionDummy");
+        GameRegistry.registerTileEntity(TileEntityCompostCore.class, "jaffasCompostCore");
+
+        dummyConstructionBlock = new BlockConstructionDummy(blockConstructionDummyID, 17);
+        RegistryUtils.registerBlock(dummyConstructionBlock, "dummyConstruction", "Dummy Construction Block - are you a cheater?");
+
+        compostCore = new BlockCompostCore(blockCompostCoreID, 18, Material.iron);
+        RegistryUtils.registerBlock(compostCore, "compostCore", "Compost Core Block");
 
         createTools();
     }
