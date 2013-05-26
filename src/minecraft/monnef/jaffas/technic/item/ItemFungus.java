@@ -5,8 +5,8 @@
 
 package monnef.jaffas.technic.item;
 
-import monnef.jaffas.technic.fungi.FungiCatalog;
-import monnef.jaffas.technic.fungi.FungusInfo;
+import monnef.jaffas.technic.common.FungiCatalog;
+import monnef.jaffas.technic.common.FungusInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -3,7 +3,7 @@
  * author: monnef
  */
 
-package monnef.jaffas.technic.fungi;
+package monnef.jaffas.technic.common;
 
 import monnef.core.utils.Interval;
 import monnef.jaffas.technic.JaffasTechnic;
