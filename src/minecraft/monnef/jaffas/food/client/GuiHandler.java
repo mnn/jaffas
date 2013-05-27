@@ -10,16 +10,17 @@ import monnef.jaffas.food.block.ContainerBoard;
 import monnef.jaffas.food.block.ContainerFridge;
 import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityFridge;
+import monnef.jaffas.technic.block.ContainerCompost;
+import monnef.jaffas.technic.block.TileEntityCompostCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler {
     public enum GuiTypes {
-        FRIDGE, BOARD
+        FRIDGE, BOARD, COMPOST
     }
 
-    //returns an instance of the Container you made earlier
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world,
                                       int x, int y, int z) {
@@ -29,12 +30,13 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerFridge(player.inventory, (TileEntityFridge) tileEntity);
         } else if (tileEntity instanceof TileEntityBoard) {
             return new ContainerBoard(player.inventory, (TileEntityBoard) tileEntity);
+        } else if (tileEntity instanceof TileEntityCompostCore) {
+            return new ContainerCompost(player.inventory, (TileEntityCompostCore) tileEntity);
         }
 
         return null;
     }
 
-    //returns an instance of the Gui you made earlier
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world,
                                       int x, int y, int z) {
@@ -44,6 +46,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiFridge(player.inventory, (TileEntityFridge) tileEntity);
         } else if (tileEntity instanceof TileEntityBoard) {
             return new GuiBoard(player.inventory, (TileEntityBoard) tileEntity);
+        } else if (tileEntity instanceof TileEntityCompostCore) {
+            return new GuiCompost(player.inventory, (TileEntityCompostCore) tileEntity);
         }
 
         return null;

@@ -5,14 +5,23 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.base.CustomIconHelper;
+import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 public class BlockCompostCore extends BlockTechnic {
+    private Icon blankIcon;
+
     public BlockCompostCore(int id, int textureID, Material material) {
         super(id, textureID, material);
+        setHardness(5);
+        setResistance(15);
     }
 
     @Override
@@ -32,8 +41,7 @@ public class BlockCompostCore extends BlockTechnic {
             }
 
             if (tileEntity.getIsValidMultiblock()) {
-                //player.openGui(MultiFurnaceMod.instance, ModConfig.GUIIDs.multiFurnace, world, x, y, z);
-                player.addChatMessage("opening gui...");
+                player.openGui(JaffasFood.instance, GuiHandler.GuiTypes.COMPOST.ordinal(), world, x, y, z);
             }
         }
 
@@ -58,5 +66,26 @@ public class BlockCompostCore extends BlockTechnic {
             tileEntity.invalidateMultiblock();
 
         super.breakBlock(world, x, y, z, par5, par6);
+    }
+
+    @Override
+    public Icon getIcon(int side, int meta) {
+        return meta == 0 ? blockIcon : blankIcon;
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
+        super.registerIcons(iconRegister);
+        blankIcon = iconRegister.registerIcon(CustomIconHelper.generateId(this, 99));
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
     }
 }

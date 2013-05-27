@@ -77,12 +77,10 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     }
 
     private void breakKnife() {
-        //if (rand.nextFloat() < 0.25) {
         ItemStack knife = getStackInSlot(slotKnife);
         if (ItemHelper.DamageItem(knife, 1)) {
             setInventorySlotContents(slotKnife, null);
         }
-        //}
     }
 
     private void chopItem() {

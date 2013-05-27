@@ -41,6 +41,11 @@ public class BlockConstructionDummy extends BlockTechnic {
     }
 
     @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
     public int quantityDropped(Random par1Random) {
         return 0;
     }
