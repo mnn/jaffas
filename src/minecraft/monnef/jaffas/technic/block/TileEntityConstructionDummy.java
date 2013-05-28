@@ -52,76 +52,76 @@ public class TileEntityConstructionDummy extends TileEntity implements IInventor
 
     @Override
     public int getSizeInventory() {
-        return core.getSizeInventory();
+        return getCore().getSizeInventory();
     }
 
     @Override
     public ItemStack getStackInSlot(int slot) {
-        return core.getStackInSlot(slot);
+        return getCore().getStackInSlot(slot);
     }
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack stack) {
-        core.setInventorySlotContents(slot, stack);
+        getCore().setInventorySlotContents(slot, stack);
     }
 
     @Override
     public ItemStack decrStackSize(int slot, int amt) {
-        return core.decrStackSize(slot, amt);
+        return getCore().decrStackSize(slot, amt);
     }
 
     @Override
     public ItemStack getStackInSlotOnClosing(int slot) {
-        return core.getStackInSlotOnClosing(slot);
+        return getCore().getStackInSlotOnClosing(slot);
     }
 
     @Override
     public int getInventoryStackLimit() {
-        return core.getInventoryStackLimit();
+        return getCore().getInventoryStackLimit();
     }
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return core.isUseableByPlayer(player);
+        return getCore().isUseableByPlayer(player);
     }
 
     @Override
     public void openChest() {
-        core.openChest();
+        getCore().openChest();
     }
 
     @Override
     public void closeChest() {
-        core.closeChest();
+        getCore().closeChest();
     }
 
     @Override
     public boolean isStackValidForSlot(int i, ItemStack itemstack) {
-        return core.isStackValidForSlot(i, itemstack);
+        return getCore().isStackValidForSlot(i, itemstack);
     }
 
     @Override
     public String getInvName() {
-        return core.getInvName();
+        return getCore().getInvName();
     }
 
     @Override
     public boolean isInvNameLocalized() {
-        return core.isInvNameLocalized();
+        return getCore().isInvNameLocalized();
     }
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        return core.getAccessibleSlotsFromSide(var1);
+        return getCore().getAccessibleSlotsFromSide(var1);
     }
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemstack, int j) {
-        return core.canInsertItem(i, itemstack, j);
+        return getCore().canInsertItem(i, itemstack, j);
     }
 
     @Override
     public boolean canExtractItem(int i, ItemStack itemstack, int j) {
-        return core.canExtractItem(i, itemstack, j);
+        return getCore().canExtractItem(i, itemstack, j);
     }
 }

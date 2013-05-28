@@ -18,8 +18,8 @@ public class ContainerCompost extends ContainerJaffas {
         super(inventoryPlayer, tile);
         core = tile;
 
-        addSlotToContainer(new Slot(core, SLOT_INPUT, 56, 35));
-        addSlotToContainer(new Slot(core, SLOT_OUTPUT, 116, 35));
+        addSlotToContainer(new Slot(core, SLOT_INPUT, 21, 35));
+        addSlotToContainer(new Slot(core, SLOT_OUTPUT, 136, 35));
     }
 
     @Override

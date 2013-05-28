@@ -12,6 +12,7 @@ import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityFridge;
 import monnef.jaffas.technic.block.ContainerCompost;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
+import monnef.jaffas.technic.client.GuiCompost;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

@@ -14,7 +14,11 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 
 import static monnef.jaffas.technic.block.ContainerCompost.SLOT_INPUT;
@@ -190,7 +194,11 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
             }
         }
 
-        isValid = tagCompound.getBoolean("IsValid");
+        readFromNBTIsValid(tagCompound);
+    }
+
+    public void readFromNBTIsValid(NBTTagCompound tag) {
+        isValid = tag.getBoolean("IsValid");
     }
 
     @Override
@@ -209,7 +217,11 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
         }
         tagCompound.setTag("Inventory", itemList);
 
-        tagCompound.setBoolean("IsValid", isValid);
+        writeToNBTIsValid(tagCompound);
+    }
+
+    public void writeToNBTIsValid(NBTTagCompound tag) {
+        tag.setBoolean("IsValid", isValid);
     }
 
     @Override
@@ -251,5 +263,24 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
         }
 
         return false;
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return AxisAlignedBB.getAABBPool().getAABB(xCoord - 2, yCoord, zCoord - 2, xCoord + 3, yCoord + 3, zCoord + 3);
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        writeToNBTIsValid(tag);
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+        super.onDataPacket(net, pkt);
+        NBTTagCompound tag = pkt.customParam1;
+        readFromNBTIsValid(tag);
     }
 }
