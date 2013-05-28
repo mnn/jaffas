@@ -35,8 +35,6 @@ public class BlockCompostCore extends BlockTechnic {
             if (!tileEntity.getIsValidMultiblock()) {
                 if (tileEntity.checkIfProperlyFormed()) {
                     tileEntity.convertDummies();
-                    if (world.isRemote)
-                        player.sendChatToPlayer("Multi-Block Furnace Created!");
                 }
             }
 

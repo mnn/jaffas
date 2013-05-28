@@ -10,18 +10,22 @@ import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.common.MultiBlockHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
+import static monnef.jaffas.technic.block.ContainerCompost.SLOT_INPUT;
+import static monnef.jaffas.technic.block.ContainerCompost.SLOT_OUTPUT;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.AIR;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.CON_ALLOY;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.CON_GLASS;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.ME;
 
-public class TileEntityCompostCore extends TileEntity implements IInventory {
+public class TileEntityCompostCore extends TileEntity implements IInventory, ISidedInventory {
     private ItemStack[] inv;
 
     private static final TemplateMark[][] level0 = new TemplateMark[][]{
@@ -215,6 +219,37 @@ public class TileEntityCompostCore extends TileEntity implements IInventory {
 
     @Override
     public boolean isInvNameLocalized() {
+        return false;
+    }
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(int side) {
+        if (side == ForgeDirection.DOWN.ordinal()) {
+            return new int[]{SLOT_OUTPUT};
+        } else {
+            return new int[]{SLOT_INPUT};
+        }
+    }
+
+    @Override
+    public boolean canInsertItem(int slot, ItemStack stack, int side) {
+        if (slot == SLOT_INPUT) {
+            return side != ForgeDirection.DOWN.ordinal();
+        } else if (slot == SLOT_OUTPUT) {
+            return false; // don't allow inserintg to the output slot
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int slot, ItemStack stack, int side) {
+        if (slot == SLOT_INPUT) {
+            return side != ForgeDirection.DOWN.ordinal();
+        } else if (slot == SLOT_OUTPUT) {
+            return side == ForgeDirection.DOWN.ordinal();
+        }
+
         return false;
     }
 }

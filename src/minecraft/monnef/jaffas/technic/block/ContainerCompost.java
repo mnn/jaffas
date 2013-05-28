@@ -7,7 +7,6 @@ package monnef.jaffas.technic.block;
 
 import monnef.jaffas.food.block.ContainerJaffas;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ContainerCompost extends ContainerJaffas {
@@ -19,8 +18,8 @@ public class ContainerCompost extends ContainerJaffas {
         super(inventoryPlayer, tile);
         core = tile;
 
-        addSlotToContainer(new Slot((IInventory) core, SLOT_INPUT, 56, 35)); //  input
-        addSlotToContainer(new Slot((IInventory) core, SLOT_OUTPUT, 116, 35)); // output
+        addSlotToContainer(new Slot(core, SLOT_INPUT, 56, 35));
+        addSlotToContainer(new Slot(core, SLOT_OUTPUT, 116, 35));
     }
 
     @Override
