@@ -78,7 +78,7 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
 
     private void breakKnife() {
         ItemStack knife = getStackInSlot(slotKnife);
-        if (ItemHelper.DamageItem(knife, 1)) {
+        if (ItemHelper.damageItem(knife, 1)) {
             setInventorySlotContents(slotKnife, null);
         }
     }

@@ -49,7 +49,7 @@ public class GuiCompost extends GuiContainer {
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-        if (JaffasFood.rand.nextFloat() < 0.01) n = JaffasFood.rand.nextInt(TANK_METER_HEIGHT_MAX);
+        if (JaffasFood.rand.nextFloat() < 0.01) n = JaffasFood.rand.nextInt(TANK_METER_HEIGHT_MAX + 1);
         GuiHelper.drawModalRectFromDown(this, x + 76, y + 20, 176, 31, 16, n, TANK_METER_HEIGHT_MAX);
         //drawTexturedModalRect(x + 76, y + 20 + (46 - n) /*+ n*/, 176, 31 + (46 - n), 16, n);
 
