@@ -30,6 +30,7 @@ import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.jaffasMod;
+import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
 import monnef.jaffas.trees.block.BlockFruitLeavesDummy;
@@ -78,6 +79,8 @@ import java.util.HashSet;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.JaffasFood.getItem;
+import static monnef.jaffas.food.JaffasFood.otherMods;
+import static monnef.jaffas.food.common.ModulesEnum.technic;
 import static monnef.jaffas.food.crafting.Recipes.addPieRecipe;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.bananaInChocolate;
@@ -112,6 +115,8 @@ import static monnef.jaffas.food.item.JaffaItem.tinDuckOrange;
 import static monnef.jaffas.food.item.JaffaItem.tinDuckOrangeRaw;
 import static monnef.jaffas.food.item.JaffaItem.tomatoChopped;
 import static monnef.jaffas.food.item.JaffaItem.woodenBowl;
+import static monnef.jaffas.technic.common.CompostRegister.DEFAULT_BLOCK_COMPOSTING_VALUE;
+import static monnef.jaffas.technic.common.CompostRegister.DEFAULT_FRUIT_COMPOSTING_VALUE;
 import static monnef.jaffas.trees.common.DropType.DropsFromGrass;
 import static monnef.jaffas.trees.common.EatableType.EatableNormal;
 import static monnef.jaffas.trees.common.EatableType.NotEatable;
@@ -362,7 +367,7 @@ public class JaffasTrees extends jaffasMod {
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
             RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
             seeds.setCustomIconIndex(info.seedsTexture);
-            if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
+            if (otherMods.isMineFactoryReloadedDetected()) {
                 FarmingRegistry.registerPlantable(seeds);
             }
 
@@ -375,7 +380,8 @@ public class JaffasTrees extends jaffasMod {
             fruit.setCreativeTab(creativeTab);
             info.itemFruit = fruit;
 
-            BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, info.product == null ? info.itemFruit : info.product, info.itemSeeds, info.renderer);
+            Item dropFromPlant = info.product == null ? info.itemFruit : info.product;
+            BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, dropFromPlant, info.itemSeeds, info.renderer);
             crops.setUnlocalizedName(info.getPlantLanguageName());
             GameRegistry.registerBlock(crops, info.name);
             LanguageRegistry.addName(crops, info.plantTitle);
@@ -384,9 +390,12 @@ public class JaffasTrees extends jaffasMod {
                 first = false;
                 MinecraftForge.EVENT_BUS.register(crops);
             }
-            if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
+            if (otherMods.isMineFactoryReloadedDetected()) {
                 FarmingRegistry.registerHarvestable(crops);
                 FarmingRegistry.registerFertilizable(crops);
+            }
+            if (ModuleManager.isModuleEnabled(technic)) {
+                CompostRegister.addStack(dropFromPlant, DEFAULT_FRUIT_COMPOSTING_VALUE);
             }
         }
     }
@@ -415,7 +424,7 @@ public class JaffasTrees extends jaffasMod {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.trees))
+        if (!ModuleManager.isModuleEnabled(ModulesEnum.trees))
             return;
 
         creativeTab = new JaffaCreativeTab("jaffas.trees");
@@ -466,6 +475,14 @@ public class JaffasTrees extends jaffasMod {
 
         itemBanana = constructFruit(itemBananaID, EatableNormal, 72, "banana", "Banana");
 
+        if (ModuleManager.isModuleEnabled(technic)) {
+            CompostRegister.addStack(itemLemon, DEFAULT_FRUIT_COMPOSTING_VALUE);
+            CompostRegister.addStack(itemOrange, DEFAULT_FRUIT_COMPOSTING_VALUE);
+            CompostRegister.addStack(itemPlum, DEFAULT_FRUIT_COMPOSTING_VALUE);
+            CompostRegister.addStack(itemCoconut, DEFAULT_FRUIT_COMPOSTING_VALUE);
+            CompostRegister.addStack(itemBanana, DEFAULT_FRUIT_COMPOSTING_VALUE);
+        }
+
         constructItemsInBushInfo();
 
         blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
@@ -515,7 +532,7 @@ public class JaffasTrees extends jaffasMod {
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(creativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
-        if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
+        if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizable(leaves.saplingBlock);
             FarmingRegistry.registerPlantable(leaves.saplingBlock);
         }
@@ -526,7 +543,7 @@ public class JaffasTrees extends jaffasMod {
             String combinedName = leaves.seedsItem.getUnlocalizedName() + "." + j + ".name";
             LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
         }
-        if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
+        if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerPlantable(leaves.seedsItem);
         }
 
@@ -534,6 +551,11 @@ public class JaffasTrees extends jaffasMod {
         MinecraftForge.EVENT_BUS.register(leaves.saplingBlock);
         if (i == 0) {
             leaves.seedsItem.setFirstInSequence();
+        }
+
+        if (ModuleManager.isModuleEnabled(technic)) {
+            CompostRegister.addStack(leaves.leavesBlock, DEFAULT_BLOCK_COMPOSTING_VALUE);
+            CompostRegister.addStack(leaves.saplingBlock, DEFAULT_FRUIT_COMPOSTING_VALUE);
         }
     }
 
@@ -606,7 +628,7 @@ public class JaffasTrees extends jaffasMod {
         RecipesBoard.addRecipe(getFruitStack(bushType.Tomato), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
 
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
+        if (!ModuleManager.isModuleEnabled(technic)) {
             GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",
                     'I', new ItemStack(Block.blockIron), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
         }

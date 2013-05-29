@@ -126,7 +126,7 @@ public class JaffasPower extends jaffasMod {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.power))
+        if (!ModuleManager.isModuleEnabled(ModulesEnum.power))
             return;
 
         GameRegistry.registerTileEntity(TileEntityGenerator.class, "jp.generator");
@@ -176,7 +176,7 @@ public class JaffasPower extends jaffasMod {
     }
 
     private void installRecipes() {
-        if (lightningConductorEnabled && ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
+        if (lightningConductorEnabled && ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
             GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockIron);
         }
     }

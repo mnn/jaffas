@@ -31,7 +31,7 @@ public class ItemMagnifier extends ItemJaffaRecipeTool {
         if (world.isRemote) return stack;
 
         if (needle == null) {
-            if (ModuleManager.IsModuleEnabled(ModulesEnum.trees)) {
+            if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
                 needle = new ItemStack(JaffasTrees.itemUnknownSeeds);
             } else {
                 return stack;

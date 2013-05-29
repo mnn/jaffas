@@ -193,7 +193,7 @@ public class Recipes {
         RecipesFridge.AddRecipe(getItem(vanillaIcecreamRaw).itemID, new ItemStack(getItem(vanillaIcecreamFrozen)));
         RecipesFridge.AddRecipe(getItem(chocolateIcecreamRaw).itemID, new ItemStack(getItem(chocolateIcecreamFrozen)));
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic)) {
+        if (!ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
             GameRegistry.addRecipe(new ItemStack(instance.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockIron), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
         }
 

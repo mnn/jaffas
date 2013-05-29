@@ -16,7 +16,7 @@ public class SeedsHelper {
 
     public static ItemStack getRandomSeed() {
         ItemStack seed;
-        if (rand.nextInt(2) == 0 || !ModuleManager.IsModuleEnabled(ModulesEnum.trees)) {
+        if (rand.nextInt(2) == 0 || !ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
             seed = new ItemStack(Item.seeds);
         } else {
             seed = getRandomJaffaSeed();

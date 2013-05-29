@@ -25,6 +25,7 @@ public class ContainerBoard extends ContainerJaffas {
         addSlotToContainer(new Slot(board, 2, 22, 35)); //  knife
     }
 
+    @Override
     public void addCraftingToCrafters(ICrafting par1ICrafting) {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.board.chopTime);

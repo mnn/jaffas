@@ -255,7 +255,7 @@ public class JaffasTechnic extends jaffasMod {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.technic))
+        if (!ModuleManager.isModuleEnabled(ModulesEnum.technic))
             return;
 
         creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.technic");

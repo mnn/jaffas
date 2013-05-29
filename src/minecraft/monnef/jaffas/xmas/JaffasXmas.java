@@ -114,7 +114,7 @@ public class JaffasXmas extends jaffasMod {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
-        if (!ModuleManager.IsModuleEnabled(ModulesEnum.xmas))
+        if (!ModuleManager.isModuleEnabled(ModulesEnum.xmas))
             return;
 
         creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.xmas");

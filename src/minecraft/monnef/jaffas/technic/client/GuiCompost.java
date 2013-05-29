@@ -6,7 +6,6 @@
 package monnef.jaffas.technic.client;
 
 import monnef.core.utils.GuiHelper;
-import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.block.ContainerCompost;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -30,14 +29,7 @@ public class GuiCompost extends GuiContainer {
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         fontRenderer.drawString("Compost", 8, 6, 4210752);
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
-
-        if (JaffasFood.debug) {
-            //String s = String.valueOf(core.getChopTimeScaled(core.chopTime));
-            //fontRenderer.drawString(s, 100, 10, 4210752);
-        }
     }
-
-    static int n;
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2,
@@ -49,15 +41,16 @@ public class GuiCompost extends GuiContainer {
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-        if (JaffasFood.rand.nextFloat() < 0.01) n = JaffasFood.rand.nextInt(TANK_METER_HEIGHT_MAX + 1);
+        int n = (TANK_METER_HEIGHT_MAX * core.getTankMeter()) / core.getMaxTankValue();
         GuiHelper.drawModalRectFromDown(this, x + 76, y + 20, 176, 31, 16, n, TANK_METER_HEIGHT_MAX);
-        //drawTexturedModalRect(x + 76, y + 20 + (46 - n) /*+ n*/, 176, 31 + (46 - n), 16, n);
 
         // 176 77 - 191 122, scale
         drawTexturedModalRect(x + 76, y + 20, 176, 77, 16, TANK_METER_HEIGHT_MAX);
 
         //int var7 = this.core.getChopTimeScaled(24);
         //this.drawTexturedModalRect(x + 79, y + 34, 176, 14, var7 + 1, 16);
+        int m = (core.getWorkMeter() * 24) / core.getMaxWork();
+        drawTexturedModalRect(x + 100, y + 34, 176, 14, m + 1, 16);
     }
 
     // x, y, u, v, width, height

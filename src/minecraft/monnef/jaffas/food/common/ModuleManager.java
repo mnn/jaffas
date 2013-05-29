@@ -20,7 +20,7 @@ public class ModuleManager {
         instance = this;
     }
 
-    public static boolean IsModuleEnabled(ModulesEnum module) {
+    public static boolean isModuleEnabled(ModulesEnum module) {
         return ModulesEnabled.contains(module);
     }
 
