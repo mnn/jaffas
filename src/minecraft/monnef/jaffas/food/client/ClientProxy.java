@@ -30,6 +30,7 @@ import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
