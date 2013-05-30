@@ -8,6 +8,7 @@ package monnef.jaffas.technic.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.block.ContainerJaffas;
+import monnef.jaffas.technic.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
@@ -24,7 +25,7 @@ public class ContainerCompost extends ContainerJaffas {
         core = tile;
 
         addSlotToContainer(new Slot(core, SLOT_INPUT, 21, 35));
-        addSlotToContainer(new Slot(core, SLOT_OUTPUT, 136, 35));
+        addSlotToContainer(new SlotOutput(core, SLOT_OUTPUT, 136, 35));
     }
 
     @Override

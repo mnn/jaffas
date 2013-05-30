@@ -9,14 +9,17 @@ import monnef.core.Reference;
 import monnef.core.utils.BookWriter;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.technic.common.CompostRegister;
 import net.minecraft.item.ItemStack;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class GuideBookHelper {
 
     public static final String PAGE_BREAK_LINE = "$$page$$";
     public static final String BOARD_RECIPES_LINE = "$$board$$";
+    public static final String COMPOST_RECIPES_LINE = "$$compost$$";
     public static final String TITLE_LINE_STARTER = "$$--";
 
     private static String formatItemStack(ItemStack stack) {
@@ -41,6 +44,17 @@ public class GuideBookHelper {
                     ItemStack input = recipe.getInput();
                     ItemStack output = recipe.getOutput();
                     bookWriter.addLine(String.format("%s -> %s", formatItemStack(input), formatItemStack(output)));
+                    bookWriter.addBlankLine();
+                    if (counter++ > 4) {
+                        counter = 0;
+                        bookWriter.endPage();
+                    }
+                }
+            } else if (line.equals(COMPOST_RECIPES_LINE)) {
+                List<String> list = CompostRegister.generateTextForGuide();
+                int counter = 1;
+                for (String item : list) {
+                    bookWriter.addLine(item);
                     bookWriter.addBlankLine();
                     if (counter++ > 4) {
                         counter = 0;

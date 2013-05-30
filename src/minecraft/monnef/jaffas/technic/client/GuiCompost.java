@@ -5,19 +5,28 @@
 
 package monnef.jaffas.technic.client;
 
+import codechicken.nei.forge.GuiContainerManager;
+import codechicken.nei.forge.IContainerTooltipHandler;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCompost;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
+
+import java.util.List;
 
 public class GuiCompost extends GuiContainer {
     public static final String GUI_TEXTURE = "/guicompost.png";
     public static final int TANK_METER_HEIGHT_MAX = 46;
 
-    TileEntityCompostCore core;
+    public TileEntityCompostCore core;
+
+    static {
+        GuiContainerManager.addTooltipHandler(new TankTooltip());
+    }
 
     public GuiCompost(InventoryPlayer inventoryPlayer,
                       TileEntityCompostCore tileEntity) {
@@ -47,11 +56,25 @@ public class GuiCompost extends GuiContainer {
         // 176 77 - 191 122, scale
         drawTexturedModalRect(x + 76, y + 20, 176, 77, 16, TANK_METER_HEIGHT_MAX);
 
-        //int var7 = this.core.getChopTimeScaled(24);
-        //this.drawTexturedModalRect(x + 79, y + 34, 176, 14, var7 + 1, 16);
         int m = (core.getWorkMeter() * 24) / core.getMaxWork();
         drawTexturedModalRect(x + 100, y + 34, 176, 14, m + 1, 16);
     }
-
     // x, y, u, v, width, height
+
+    private static class TankTooltip implements IContainerTooltipHandler {
+        @Override
+        public List<String> handleTooltipFirst(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
+            if (!(gui instanceof GuiCompost)) return currenttip;
+            if (GuiHelper.isMouseInRect(gui, mousex, mousey, 76, 20, 16, TANK_METER_HEIGHT_MAX)) {
+                GuiCompost compostGui = (GuiCompost) gui;
+                currenttip.add(String.format("Tank: %d/%d", compostGui.core.getTankMeter(), compostGui.core.getMaxTankValue()));
+            }
+            return currenttip;
+        }
+
+        @Override
+        public List<String> handleItemTooltip(GuiContainer gui, ItemStack itemstack, List<String> currenttip) {
+            return currenttip;
+        }
+    }
 }

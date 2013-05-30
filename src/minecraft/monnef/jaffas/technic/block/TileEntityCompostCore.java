@@ -336,8 +336,8 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
                 workMeter = 1;
             } else {
                 // try pull only when not full
-                if (tankMeter < getMaxTankValue()) {
-                    ItemStack inputStack = inv[SLOT_INPUT];
+                ItemStack inputStack = inv[SLOT_INPUT];
+                if (tankMeter < getMaxTankValue() && inputStack != null) {
                     int value = CompostRegister.getCompostValue(inputStack);
                     if (value != 0) {
                         tankMeter += value;
@@ -358,7 +358,7 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
     }
 
     public int getMaxWork() {
-        return 10;
+        return 5 * 60;
     }
 
     public boolean isWorking() {
