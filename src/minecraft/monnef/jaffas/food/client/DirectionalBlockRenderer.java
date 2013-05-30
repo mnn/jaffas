@@ -6,7 +6,7 @@
 package monnef.jaffas.food.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import monnef.core.client.InventoryBlockRenderer;
+import monnef.core.client.CustomBlockRenderingHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
 import net.minecraft.block.Block;
@@ -59,7 +59,7 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
     private void renderAllSidesBlock(int rotation, RenderBlocks renderer, BlockJDirectional block, int x, int y, int z) {
-        doRendering(renderer, block, x, y, z);
+        doOurRendering(renderer, block, x, y, z, renderingInventory);
     }
 
     private void renderLogBlock(int rotation, RenderBlocks renderer, BlockJDirectional block, int x, int y, int z) {
@@ -73,17 +73,16 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
             renderer.uvRotateWest = 1;
         }
 
-        doRendering(renderer, block, x, y, z);
+        doOurRendering(renderer, block, x, y, z, renderingInventory);
 
         resetRotations(renderer);
     }
 
-    private void doRendering(RenderBlocks renderer, BlockJDirectional block, int x, int y, int z) {
+    public static void doOurRendering(RenderBlocks renderer, Block block, int x, int y, int z, boolean renderingInventory) {
         if (renderingInventory) {
-            //renderer.renderStandardBlockWithColorMultiplier(block, 0, 0, 0, 1, 1, 1);
-            InventoryBlockRenderer.Render(block, 0, 1, renderer);
+            CustomBlockRenderingHelper.doRendering(renderer, block);
         } else {
-            renderer.renderStandardBlock(block, x, y, z);
+            CustomBlockRenderingHelper.doRendering(renderer, block, x, y, z);
         }
     }
 

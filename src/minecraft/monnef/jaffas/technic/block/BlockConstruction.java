@@ -5,10 +5,12 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -34,5 +36,25 @@ public class BlockConstruction extends BlockTechnic {
     @Override
     public int damageDropped(int meta) {
         return meta;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public int getLightOpacity(World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        return isGlassy(meta) ? 1 : 255;
+    }
+
+    public static boolean isGlassy(int meta) {
+        return meta == 1;
+    }
+
+    @Override
+    public int getRenderType() {
+        return JaffasFood.renderBlockID;
     }
 }

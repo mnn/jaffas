@@ -9,7 +9,6 @@ import monnef.core.utils.BlockHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.technic.common.MultiBlockHelper;
-import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -325,7 +324,7 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
             workMeter++;
             if (workMeter >= getMaxWork()) {
                 if (inv[SLOT_OUTPUT] == null) {
-                    setInventorySlotContents(SLOT_OUTPUT, new ItemStack(Block.dirt, NUMBER_OF_HUMUS_PRODUCED));
+                    setInventorySlotContents(SLOT_OUTPUT, new ItemStack(JaffasTechnic.compost, NUMBER_OF_HUMUS_PRODUCED));
                 }
                 workMeter = 0;
                 tankMeter = 0;

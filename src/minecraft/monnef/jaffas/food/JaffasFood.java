@@ -193,6 +193,7 @@ public class JaffasFood extends jaffasMod {
     public static int renderID;
     public static int renderSwitchgrassID;
     public static int renderDirectionalBlockID;
+    public static int renderBlockID;
 
     private static IGuiHandler guiHandler;
 

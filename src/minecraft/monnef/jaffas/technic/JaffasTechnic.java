@@ -133,6 +133,9 @@ public class JaffasTechnic extends jaffasMod {
     private int BlockLimsewOreID;
     public static BlockOre blockLimsewOre;
 
+    private int itemCompostID;
+    public static ItemTechnic compost;
+
     private int ItemJAxeID;
     private int ItemJSpadeID;
     private int ItemJPickaxeID;
@@ -225,6 +228,8 @@ public class JaffasTechnic extends jaffasMod {
             blockConstructionID = idProvider.getBlockIDFromConfig("contructionBlock");
             blockConstructionDummyID = idProvider.getBlockIDFromConfig("dummyContructionBlock");
             blockCompostCoreID = idProvider.getBlockIDFromConfig("compostCore");
+
+            itemCompostID = idProvider.getItemIDFromConfig("compost");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -383,7 +388,7 @@ public class JaffasTechnic extends jaffasMod {
         jaffarrolDust = new ItemTechnic(jaffarrolDustID, 25);
         RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
 
-        constructionBlock = new BlockConstruction(blockConstructionID, 17);
+        constructionBlock = new BlockConstruction(blockConstructionID, 30);
         RegistryUtils.registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
 
         GameRegistry.registerTileEntity(TileEntityConstructionDummy.class, "jaffasConstructionDummy");
@@ -394,6 +399,9 @@ public class JaffasTechnic extends jaffasMod {
 
         compostCore = new BlockCompostCore(blockCompostCoreID, 18, Material.iron);
         RegistryUtils.registerBlock(compostCore, "compostCore", "Compost Core Block");
+
+        compost = new ItemTechnic(itemCompostID, 29);
+        RegistryUtils.registerItem(compost, "compost", "Compost");
 
         createTools();
     }
@@ -526,7 +534,6 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, jaffarrolDust);
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, limsew);
 
-        // TODO: change output
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron, 'D', jaffarrolDust);
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Block.glass, 'D', jaffarrolDust);
 
