@@ -9,7 +9,6 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.item.ItemBagOfSeeds;
 import monnef.jaffas.food.item.ItemCleaver;
 import monnef.jaffas.food.item.ItemDuckEgg;
 import monnef.jaffas.food.item.ItemJaffaFood;
@@ -176,8 +175,6 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(oranges, "Oranges", 83, "Oranges");
         AddItemInfo(plums, "Plums", 84, "Plums");
         AddItemInfo(sprinkles, "Sprinkles", 87, "Sprinkles");
-        AddItemInfo(bagOfSeeds, "Bag Of Seeds Unidentified", 89, "Bag Of Seeds [Unidentified]");
-        AddItemInfo(bagOfSeedsIdentified, "Bag Of Seeds", 89, "Bag Of Seeds");
         AddItemInfo(magnifier, "Magnifier", 91, "Magnifier");
         AddItemInfo(jaffaP, "Jaffa Plum", 86, getJaffaTitle("Plum"));
         AddItemInfo(jamMix, "Jam Mix", 110, "Mix of Jams");
@@ -462,9 +459,6 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(oranges);
         createJaffaItem(plums);
         createJaffaItem(sprinkles);
-        createJaffaItem(bagOfSeeds);
-        //createJaffaItem(JaffaItem.bagOfSeedsIdentified);
-        //createJaffaItem(magnifier);
         createJaffaItemManual(magnifier, ItemMagnifier.class);
 
         createJaffaFood(jaffaP, 3, 0.7F).setPotionEffect(Potion.regeneration.id, 2, 1, 0.4F);
@@ -475,9 +469,6 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(donutPink, 2, 0.3F).setPotionEffect(Potion.digSpeed.id, 60, 0, 0.15F);
         createJaffaFood(donutSugar, 2, 0.3F).setPotionEffect(Potion.damageBoost.id, 60, 0, 0.15F);
         createJaffaFood(donutSprinkled, 2, 0.9F).setPotionEffect(Potion.damageBoost.id, 45, 1, 0.20F);
-
-        //createBagOfSeed(JaffaItem.bagOfSeedsIdentified);
-        this.createJaffaItemManual(bagOfSeedsIdentified, ItemBagOfSeeds.class);
 
         createJaffaItem(jamMix);
 

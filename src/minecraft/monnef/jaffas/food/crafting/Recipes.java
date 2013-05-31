@@ -222,9 +222,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(sprinkles), 16), new ItemStack(Item.sugar), new ItemStack(Item.sugar), new ItemStack(Item.sugar),
                 new ItemStack(getItem(jamMix)), new ItemStack(Item.egg));
 
-        //GameRegistry.addRecipe(new ItemStack(getItem(bagOfSeeds)), "SXS", "SLS", "SSS", 'S', new ItemStack(Item.seeds), 'X', new ItemStack(Item.silk), 'L', new ItemStack(Item.leather));
         GameRegistry.addRecipe(new ItemStack(getItem(magnifier)), "GG ", "GG ", "  I", 'G', new ItemStack(Block.glass), 'I', new ItemStack(Item.ingotIron));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(bagOfSeedsIdentified)), new ItemStack(getItem(magnifier)), new ItemStack(getItem(bagOfSeeds)));
 
         GameRegistry.addRecipe(new ItemStack(instance.itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(jaffa)));
 
