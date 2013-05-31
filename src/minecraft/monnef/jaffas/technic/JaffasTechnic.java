@@ -14,6 +14,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import forestry.api.cultivation.CropProviders;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ItemBlockJaffas;
@@ -37,6 +38,7 @@ import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.FungusInfo;
+import monnef.jaffas.technic.common.MushroomCropProvider;
 import monnef.jaffas.technic.common.RepairRecipe;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
@@ -64,12 +66,14 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import thermalexpansion.api.crafting.CraftingHelpers;
 
 import java.util.Map;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.JaffasFood.Log;
+import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.cookingPot;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolBoots;
@@ -296,6 +300,12 @@ public class JaffasTechnic extends jaffasMod {
         fungiBox = new BlockFungiBox(blockFungiBoxID, 27);
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
         GameRegistry.registerTileEntity(TileEntityFungiBox.class, "jaffasFungiBox");
+        if (otherMods.isMineFactoryReloadedDetected()) {
+            FarmingRegistry.registerHarvestable(fungiBox);
+        }
+        if (otherMods.isForestryDetected()) {
+            CropProviders.fungalCrops.add(new MushroomCropProvider());
+        }
 
         fungus = new ItemFungus(ItemFungusID, 99);
         RegistryUtils.registerItem(fungus, "jaffasFungus", "Fungus");
@@ -407,6 +417,9 @@ public class JaffasTechnic extends jaffasMod {
 
         compost = new ItemCompost(itemCompostID, 29);
         RegistryUtils.registerItem(compost, "compost", "Compost");
+        if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
+            FarmingRegistry.registerFertilizer(compost);
+        }
 
         createTools();
     }

@@ -4,8 +4,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.FertilizerType;
+import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 
-public class ItemCompost extends ItemTechnic {
+public class ItemCompost extends ItemTechnic implements IFactoryFertilizer {
     public ItemCompost(int id, int textureIndex) {
         super(id, textureIndex);
     }
@@ -25,5 +27,25 @@ public class ItemCompost extends ItemTechnic {
         }
 
         return false;
+    }
+
+    @Override
+    public int getFertilizerId() {
+        return itemID;
+    }
+
+    @Override
+    public int getFertilizerMeta() {
+        return 0;
+    }
+
+    @Override
+    public FertilizerType getFertilizerType() {
+        return FertilizerType.GrowPlant;
+    }
+
+    @Override
+    public void consume(ItemStack fertilizer) {
+        fertilizer.stackSize--;
     }
 }

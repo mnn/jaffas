@@ -13,10 +13,18 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.HarvestType;
+import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
-public class BlockFungiBox extends BlockTechnic {
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
     public static final MaterialFungiBox material = new MaterialFungiBox();
 
     private static final float U = 1f / 16;
@@ -113,5 +121,43 @@ public class BlockFungiBox extends BlockTechnic {
             TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
             tile.onFallUpon();
         }
+    }
+
+    // MFR support
+    @Override
+    public int getPlantId() {
+        return blockID;
+    }
+
+    @Override
+    public HarvestType getHarvestType() {
+        return HarvestType.Normal;
+    }
+
+    @Override
+    public boolean breakBlock() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
+        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        return tile.canBeHarvested();
+    }
+
+    @Override
+    public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
+        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        return Arrays.asList(tile.getLastLoot());
+    }
+
+    @Override
+    public void preHarvest(World world, int x, int y, int z) {
+        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        tile.harvest(null);
+    }
+
+    @Override
+    public void postHarvest(World world, int x, int y, int z) {
     }
 }

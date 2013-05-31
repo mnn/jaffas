@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import forestry.api.cultivation.ICropEntity;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.RandomHelper;
@@ -19,12 +20,13 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.util.ArrayList;
 
 import static monnef.core.utils.PlayerHelper.playerHasEquipped;
 import static monnef.core.utils.RandomHelper.rand;
 
-public class TileEntityFungiBox extends TileEntity {
+public class TileEntityFungiBox extends TileEntity implements ICropEntity {
     private static final String TAG_FUNGUS_TYPE = "fungusType";
     private static final String TAG_FUNGUS_STATE = "fungusState";
     private static final String TAG_COMPOST_LEFT = "compostLeft";
@@ -47,6 +49,8 @@ public class TileEntityFungiBox extends TileEntity {
     private int counter = rand.nextInt(20 * 60);
 
     private FungusInfo fungusTemplate;
+
+    private ItemStack lastLoot;
 
     public static final int DEFAULT_QUANTUM_OF_TICKS = 20;
     public static int tickQuantum = DEFAULT_QUANTUM_OF_TICKS;
@@ -367,15 +371,14 @@ public class TileEntityFungiBox extends TileEntity {
         return !mushroomPlanted();
     }
 
-    private boolean harvest(EntityPlayer player) {
-        if (mushroomPlanted() && isMature()) {
+    public boolean harvest(EntityPlayer player) {
+        if (canBeHarvested()) {
             if (!worldObj.isRemote) {
-                ItemStack loot = fungusTemplate.createLoot();
+                lastLoot = fungusTemplate.createLoot();
                 if (player != null) {
-                    PlayerHelper.giveItemToPlayer(player, loot);
+                    PlayerHelper.giveItemToPlayer(player, lastLoot);
                 } else {
-                    //TODO: machine harvesting
-                    throw new NotImplementedException();
+                    // machine will get it itself
                 }
 
                 fungusState = 0;
@@ -388,6 +391,10 @@ public class TileEntityFungiBox extends TileEntity {
         return false;
     }
 
+    public boolean canBeHarvested() {
+        return mushroomPlanted() && isMature();
+    }
+
     public static void setDebugSpeedOverride(int speed) {
         tickQuantum = speed;
         debugSpeedOverride = true;
@@ -396,5 +403,31 @@ public class TileEntityFungiBox extends TileEntity {
     public static void disableDebugSpeedOverride() {
         debugSpeedOverride = false;
         tickQuantum = DEFAULT_QUANTUM_OF_TICKS;
+    }
+
+    public ItemStack getLastLoot() {
+        return lastLoot;
+    }
+
+    // Forestry compatibility
+    @Override
+    public boolean isHarvestable() {
+        return canBeHarvested();
+    }
+
+    @Override
+    public int[] getNextPosition() {
+        return new int[0];
+    }
+
+    @Override
+    public ArrayList<ItemStack> doHarvest() {
+        if (!harvest(null)) {
+            throw new RuntimeException("broken forestry integration of fungi harvesting");
+        }
+
+        ArrayList<ItemStack> res = new ArrayList<ItemStack>();
+        res.add(getLastLoot());
+        return res;
     }
 }
