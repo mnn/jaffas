@@ -12,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
+import static monnef.jaffas.technic.common.FungusInfo.NeedCompostEnum.NEVER;
+
 public class FungiCatalog {
     private static final int TPS = 20;
     private static int maxId = 0;
@@ -34,7 +36,7 @@ public class FungiCatalog {
     }
 
     // times are in minutes
-    private static void createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minDrop, int maxDrop, int humusConsumptionSpeed, int surviveRateInPercent, int sporeTries, Interval[] stateLens) {
+    private static FungusInfo createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minDrop, int maxDrop, int compostConsumptionSpeed, int surviveRateInPercent, int sporeTries, Interval[] stateLens) {
         if (id == 0) {
             throw new RuntimeException("Inserting fungus with ZERO id!");
         }
@@ -50,7 +52,7 @@ public class FungiCatalog {
         FungusInfo info = new FungusInfo();
         info.timeToDie = new Interval(TPS * 60 * minDie, TPS * 60 * maxDie);
         info.sporeTime = new Interval(TPS * 60 * minSpore, TPS * 60 * maxSpore);
-        info.humusConsumptionSpeed = humusConsumptionSpeed;
+        info.compostConsumptionSpeed = compostConsumptionSpeed;
         // convert lengths of states from minutes
         for (int i = 0; i < stateLens.length; i++) {
             stateLens[i] = new Interval(stateLens[i].getMin() * TPS * 60, stateLens[i].getMax() * TPS * 60);
@@ -62,7 +64,10 @@ public class FungiCatalog {
         info.dropCount = new Interval(minDrop, maxDrop);
         info.surviveRate = surviveRateInPercent;
         info.sporeTries = sporeTries;
+        info.revertsWithoutCompost = false;
+        info.setStateNeedCompostToGrow(NEVER, states);
         catalog.put(id, info);
+        return info;
     }
 
     // TODO: optimize?
