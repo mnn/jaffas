@@ -2,6 +2,7 @@ package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.Loader;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.utils.ClassHelper;
 
 import java.util.ArrayList;
 
@@ -44,12 +45,7 @@ public class OtherModsHelper {
     }
 
     private void checkForestry() {
-        try {
-            Class c = Class.forName("forestry.Forestry");
-            this.forestryDetected = true;
-        } catch (ClassNotFoundException e) {
-            this.forestryDetected = false;
-        }
+        forestryDetected = ClassHelper.isClassPresent("forestry.Forestry");
     }
 
     private void checkMFR() {

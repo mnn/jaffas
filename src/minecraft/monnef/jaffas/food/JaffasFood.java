@@ -24,6 +24,7 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BiomeHelper;
+import monnef.core.utils.ClassHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
 import monnef.core.utils.RegistryUtils;
@@ -267,6 +268,10 @@ public class JaffasFood extends jaffasMod {
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
         otherMods = new OtherModsHelper();
+        if (ClassHelper.isClassPresent("sharose.mods.idresolver.IDResolverMod")) {
+            Log.printSevere("ID Resolver detected, do *not* use ID moving or face consequences.");
+            Log.printSevere("I warned you.");
+        }
 
         try {
             config.load();
