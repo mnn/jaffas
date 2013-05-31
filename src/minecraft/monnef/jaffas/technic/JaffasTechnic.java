@@ -399,7 +399,7 @@ public class JaffasTechnic extends jaffasMod {
         dummyConstructionBlock = new BlockConstructionDummy(blockConstructionDummyID, 17);
         RegistryUtils.registerBlock(dummyConstructionBlock, "dummyConstruction", "Dummy Construction Block - are you a cheater?");
 
-        compostCore = new BlockCompostCore(blockCompostCoreID, 18, Material.iron);
+        compostCore = new BlockCompostCore(blockCompostCoreID, 35, Material.iron);
         RegistryUtils.registerBlock(compostCore, "compostCore", "Compost Core Block");
 
         compost = new ItemCompost(itemCompostID, 29);

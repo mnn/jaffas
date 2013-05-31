@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemCompost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/GuideBookHelper.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/GuideBookHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/textures/other/construction.xcf" afterPath="$PROJECT_DIR$/textures/other/construction.xcf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockCompostCore.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockCompostCore.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin_data/jaffas_guide.txt" afterPath="$PROJECT_DIR$/bin_data/jaffas_guide.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -446,8 +445,8 @@
     <file path="/BoardRecipeHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369313170813" ignored="false" />
     <file path="/BlockSwitchgrassSolid.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369341132885" ignored="false" />
     <file path="/RandomHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369476502246" ignored="false" />
-    <file path="/BlockConstruction.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369950309395" ignored="false" />
-    <file path="/BlockCompostCore.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369672857599" ignored="false" />
+    <file path="/BlockConstruction.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370000630842" ignored="false" />
+    <file path="/BlockCompostCore.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370000271416" ignored="false" />
     <file path="/FungiInfo.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369424446962" ignored="false" />
     <file path="/BlockFungiBox.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369490175472" ignored="false" />
     <file path="/TileEntityFungiBox.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369520129952" ignored="false" />
@@ -556,16 +555,25 @@
       <file leaf-file-name="JaffasTechnic.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="406" column="20" selection-start="17906" selection-end="17906" vertical-scroll-proportion="0.0">
+            <state line="401" column="65" selection-start="17679" selection-end="17679" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuideBookHelper.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="GuideBookHelper.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/GuideBookHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="72" selection-start="2881" selection-end="2881" vertical-scroll-proportion="0.8854003">
+            <state line="73" column="72" selection-start="2881" selection-end="2881" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlockCompostCore.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockCompostCore.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="8" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -582,48 +590,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemDye.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemDye.java">
+      <file leaf-file-name="BlockConstruction.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="81" column="7" selection-start="3475" selection-end="3796" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientProxy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="3262" selection-end="3262" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomBlockRenderer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/CustomBlockRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="49" column="40" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IItemRenderer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/IItemRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="16" selection-start="2387" selection-end="2387" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomBlockRenderingHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/CustomBlockRenderingHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="73" column="0" selection-start="2914" selection-end="3084" vertical-scroll-proportion="0.0">
+            <state line="26" column="41" selection-start="782" selection-end="782" vertical-scroll-proportion="0.32025117">
               <folding />
             </state>
           </provider>
@@ -648,22 +618,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiCompost.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/CompostRegister.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityCompostCore.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/RegistryUtils.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/InventoryBlockRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/CustomBlockRenderer.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/CustomBlockRenderingHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/DirectionalBlockRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/ClientProxy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/CustomBlockRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemCompost.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/GuideBookHelper.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockCompostCore.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java" />
       </list>
     </option>
   </component>
@@ -1597,93 +1567,95 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/MinecraftForgeClient.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/IItemRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="61" selection-start="849" selection-end="849" vertical-scroll-proportion="0.41721854">
+        <state line="61" column="16" selection-start="2387" selection-end="2387" vertical-scroll-proportion="0.026687598">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="3262" selection-end="3262" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/DirectionalBlockRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="21" selection-start="2382" selection-end="2382" vertical-scroll-proportion="0.053375196" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/CustomBlockRenderingHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="0" selection-start="2914" selection-end="3084" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/IItemRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="16" selection-start="2387" selection-end="2387" vertical-scroll-proportion="0.0">
+        <state line="73" column="0" selection-start="2914" selection-end="3084" vertical-scroll-proportion="0.6530612">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/CustomBlockRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="40" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.0">
+        <state line="49" column="40" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.95133436">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/ClientProxy.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="89" selection-start="1165" selection-end="1165" vertical-scroll-proportion="0.2735632">
+        <state line="60" column="0" selection-start="3262" selection-end="3262" vertical-scroll-proportion="0.06593407">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="33" selection-start="1209" selection-end="1209" vertical-scroll-proportion="0.64827585">
+        <state line="3399" column="48" selection-start="110634" selection-end="110634" vertical-scroll-proportion="0.4084014">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/RenderBlocks.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="493" column="45" selection-start="23111" selection-end="23111" vertical-scroll-proportion="0.01983664">
+        <state line="4254" column="0" selection-start="203984" selection-end="203984" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemBed.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/IBlockAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="138" selection-start="785" selection-end="785" vertical-scroll-proportion="0.31738624">
+        <state line="54" column="12" selection-start="1498" selection-end="1498" vertical-scroll-proportion="0.33281004">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockPortal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="306" column="0" selection-start="24192" selection-end="24192" vertical-scroll-proportion="0.33333334">
+        <state line="12" column="33" selection-start="410" selection-end="410" vertical-scroll-proportion="0.11505922">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/player/EntityPlayer.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockIce.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2176" column="19" selection-start="69897" selection-end="69897" vertical-scroll-proportion="0.0">
+        <state line="24" column="37" selection-start="779" selection-end="779" vertical-scroll-proportion="0.36589405">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemDye.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/multiplayer/PlayerControllerMP.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="7" selection-start="3475" selection-end="3796" vertical-scroll-proportion="0.0">
+        <state line="278" column="55" selection-start="10286" selection-end="10286" vertical-scroll-proportion="0.3488915">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="364" column="16" selection-start="33788" selection-end="33788" vertical-scroll-proportion="0.4562427">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockGlass.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="33" selection-start="623" selection-end="623" vertical-scroll-proportion="0.17931035">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockBreakable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="42" selection-start="1456" selection-end="1456" vertical-scroll-proportion="0.74252874">
           <folding />
         </state>
       </provider>
@@ -1697,16 +1669,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockCompostCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="406" column="20" selection-start="17906" selection-end="17906" vertical-scroll-proportion="0.0">
+        <state line="26" column="8" selection-start="799" selection-end="799" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/GuideBookHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="72" selection-start="2881" selection-end="2881" vertical-scroll-proportion="0.8854003">
+        <state line="26" column="41" selection-start="782" selection-end="782" vertical-scroll-proportion="0.32025117">
           <folding />
         </state>
       </provider>

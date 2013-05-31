@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockCompostCore extends BlockTechnic {
     private Icon blankIcon;
@@ -22,6 +23,7 @@ public class BlockCompostCore extends BlockTechnic {
         super(id, textureID, material);
         setHardness(5);
         setResistance(15);
+        setIconsCount(2);
     }
 
     @Override
@@ -68,7 +70,12 @@ public class BlockCompostCore extends BlockTechnic {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return meta == 0 ? blockIcon : blankIcon;
+        if (!isCompostTankFormed(meta)) {
+            if (side == ForgeDirection.UP.ordinal()) return icons[0];
+            return icons[1];
+        }
+
+        return blankIcon;
     }
 
     @Override
@@ -85,5 +92,15 @@ public class BlockCompostCore extends BlockTechnic {
     @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }
+
+    @Override
+    public int getLightOpacity(World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        return isCompostTankFormed(meta) ? 0 : 255;
+    }
+
+    public static boolean isCompostTankFormed(int meta) {
+        return meta == 1;
     }
 }
