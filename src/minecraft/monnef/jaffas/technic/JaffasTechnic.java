@@ -303,6 +303,7 @@ public class JaffasTechnic extends jaffasMod {
         }
 
         mushroomKnife = new ItemTechnic(ItemMushroomKnifeID, 28);
+        mushroomKnife.setMaxStackSize(1);
         RegistryUtils.registerItem(mushroomKnife, "knifeMushroom", "Mushroom Knife");
     }
 
@@ -536,10 +537,13 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, jaffarrolDust);
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, limsew);
 
-        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron, 'D', jaffarrolDust);
-        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "IDI", "JIJ", 'J', jaffarrol, 'I', Block.glass, 'D', jaffarrolDust);
+        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IJI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron);
+        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "I I", "JIJ", 'J', jaffarrol, 'I', Block.glass);
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(mushroomKnife), " J", "W ", 'J', jaffarrol, 'W', "plankWood"));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fungiBox), " W ", "PDP", "PPP", 'W', Item.bucketWater, 'D', Block.dirt, 'P', "plankWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compostCore), "JPJ", "PCP", "JPJ", 'J', jaffarrol, 'P', "plankWood", 'C', new ItemStack(itemCentralUnit, 1, 1)));
     }
 
     private Item getItem(JaffaItem item) {

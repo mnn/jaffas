@@ -11,6 +11,7 @@ import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -99,6 +100,18 @@ public class BlockFungiBox extends BlockTechnic {
         @Override
         public boolean isSolid() {
             return false;
+        }
+    }
+
+    @Override
+    public void onFallenUpon(World world, int x, int y, int z, Entity entity, float par6) {
+        if (!world.isRemote && world.rand.nextFloat() < par6 - 0.5F) {
+            if (!(entity instanceof EntityPlayer) && !world.getGameRules().getGameRuleBooleanValue("mobGriefing")) {
+                return;
+            }
+
+            TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+            tile.onFallUpon();
         }
     }
 }
