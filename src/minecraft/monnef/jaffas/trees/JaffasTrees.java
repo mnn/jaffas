@@ -305,8 +305,13 @@ public class JaffasTrees extends jaffasMod {
             itemFruitPickerHeadID = idProvider.getItemIDFromConfig("fruit picker head");
             itemUnknownSeedsID = idProvider.getItemIDFromConfig("unknownSeeds");
 
-            dummyLeaves = new BlockFruitLeavesDummy(idProvider.getBlockIDFromConfig("dummyLeaves"));
-            // Block.blocksList[dummyLeaves.blockID] = null; // don't consume block id // TODO don't get from config
+            int tempBlockId = idProvider.getTempBlockId();
+            dummyLeaves = new BlockFruitLeavesDummy(tempBlockId);
+            if (!(Block.blocksList[tempBlockId] instanceof BlockFruitLeavesDummy)) {
+                throw new RuntimeException(String.format("What trickery is going on here? Block registered with ID %d but now it's not there (new ID is %d), halting. This behaviour will break other things.", tempBlockId, dummyLeaves.blockID));
+            }
+            Block.blocksList[tempBlockId] = null; // don't consume block id
+            JaffasFood.Log.printFinest(String.format("dummyLeaves used ID %d, successfully released record in Block class.", tempBlockId));
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);
