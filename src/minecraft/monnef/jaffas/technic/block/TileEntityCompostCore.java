@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.common.CompostRegister;
@@ -22,6 +23,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 
+import static monnef.jaffas.technic.JaffasTechnic.compost;
 import static monnef.jaffas.technic.block.ContainerCompost.SLOT_INPUT;
 import static monnef.jaffas.technic.block.ContainerCompost.SLOT_OUTPUT;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark;
@@ -31,7 +33,7 @@ import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.CON_GLA
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.ME;
 
 public class TileEntityCompostCore extends TileEntity implements IInventory, ISidedInventory {
-    public static final int NUMBER_OF_HUMUS_PRODUCED = 32;
+    public static final int NUMBER_OF_COMPOST_PRODUCED = 32;
     public static final String TAG_WORK_METER = "workMeter";
     public static final String TAG_TANK_METER = "tankMeter";
     private ItemStack[] inv;
@@ -323,11 +325,22 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
         if (isWorking()) {
             workMeter++;
             if (workMeter >= getMaxWork()) {
-                if (inv[SLOT_OUTPUT] == null) {
-                    setInventorySlotContents(SLOT_OUTPUT, new ItemStack(JaffasTechnic.compost, NUMBER_OF_HUMUS_PRODUCED));
+                ItemStack outputStack = inv[SLOT_OUTPUT];
+                boolean compostCreated = true;
+                if (outputStack == null) {
+                    setInventorySlotContents(SLOT_OUTPUT, new ItemStack(compost, NUMBER_OF_COMPOST_PRODUCED));
+                } else if (canProduceCompost()) {
+                    outputStack.stackSize += NUMBER_OF_COMPOST_PRODUCED;
+                } else {
+                    compostCreated = false;
                 }
-                workMeter = 0;
-                tankMeter = 0;
+
+                if (compostCreated) {
+                    workMeter = 0;
+                    tankMeter = 0;
+                } else {
+                    workMeter -= 15;
+                }
             }
         } else {
             if (canWork()) {
@@ -352,11 +365,19 @@ public class TileEntityCompostCore extends TileEntity implements IInventory, ISi
     }
 
     private boolean canWork() {
-        if (tankMeter >= getMaxTankValue() && inv[SLOT_OUTPUT] == null) return true;
+        if (tankMeter >= getMaxTankValue() && canProduceCompost())
+            return true;
         return false;
     }
 
+    public boolean canProduceCompost() {
+        ItemStack outputStack = inv[SLOT_OUTPUT];
+        if (outputStack == null) return true;
+        return outputStack.itemID == compost.itemID && outputStack.stackSize + NUMBER_OF_COMPOST_PRODUCED <= outputStack.getMaxStackSize();
+    }
+
     public int getMaxWork() {
+        if (MonnefCorePlugin.debugEnv) return 10;
         return 5 * 60;
     }
 
