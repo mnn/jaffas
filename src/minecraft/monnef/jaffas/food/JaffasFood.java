@@ -238,6 +238,8 @@ public class JaffasFood extends jaffasMod {
     public static int duckSpawnProbabilityMed;
     public static int duckSpawnProbabilityLow;
 
+    public static boolean slimeSpawningEnabled;
+
     public static OtherModsHelper otherMods;
     public ItemStack guideBook;
 
@@ -341,6 +343,7 @@ public class JaffasFood extends jaffasMod {
             duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 12).getInt();
             duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
             FuelHandler.SWITCHGRASS_BURN_VALUE = config.get(Configuration.CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
+            slimeSpawningEnabled = config.get(Configuration.CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {

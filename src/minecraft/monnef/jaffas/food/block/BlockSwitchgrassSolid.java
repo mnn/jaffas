@@ -8,6 +8,7 @@ package monnef.jaffas.food.block;
 import cpw.mods.fml.relauncher.ReflectionHelper;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BlockHelper;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntitySlime;
@@ -32,6 +33,7 @@ public class BlockSwitchgrassSolid extends BlockJDirectional {
         super.updateTick(world, x, y, z, random);
 
         if (world.isRemote) return;
+        if (!JaffasFood.slimeSpawningEnabled) return;
         if (!MonnefCorePlugin.debugEnv && random.nextFloat() > 0.2) return;
         if (validStructure(world, x, y, z) &&
                 (!world.isDaytime() || world.isRaining()) &&

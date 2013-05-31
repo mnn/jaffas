@@ -1,8 +1,12 @@
 ## 0.4.20
+- mushrooms
+- banana tree
+- compost and composting tank
 - NEI support for kitchen board
-- switchgrass block
+- switchgrass block (and slime spawning)
 - rewritten repair recipe (now supports NEI)
 - custom starts of ID intervals
+- fixed pickaxe to be able to mine same blocks as diamond pickaxe
 
 ## 0.4.19
 - implemented achievement system (not much content yet)
