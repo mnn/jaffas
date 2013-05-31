@@ -33,7 +33,7 @@ public class TileEntityFungiBox extends TileEntity implements ICropEntity {
     private static final String TAG_DIE = "timeToDie";
     private static final String TAG_SPORE = "timeToSpore";
     private static final String TAG_GROW = "timeToGrow";
-    private static final int COMPOST_TICKS_CAN_FERTILIZE_THRESHOLD = 15 * 60 * 20;
+    private static final int COMPOST_TICKS_MAX = 15 * 60 * 20;
     public static final int COMPOST_TICKS_PER_ONE_USE = 5 * 60 * 20;
 
     private byte mushroomRotation;
@@ -309,22 +309,27 @@ public class TileEntityFungiBox extends TileEntity implements ICropEntity {
     }
 
     private boolean fertilize(EntityPlayer player) {
-        if (player != null) {
-            ItemStack hand = player.getCurrentEquippedItem();
-            if (hand == null || hand.itemID != JaffasTechnic.compost.itemID) return false;
-            hand.stackSize--;
-            if (hand.stackSize <= 0) player.setCurrentItemOrArmor(0, null);
-        }
         boolean canFertilize = canFertilize();
-        if (!worldObj.isRemote) {
-            compostTicksLeft += COMPOST_TICKS_PER_ONE_USE;
-            forceUpdate();
+        if (canFertilize) {
+            if (player != null) {
+                ItemStack hand = player.getCurrentEquippedItem();
+                if (hand == null || hand.itemID != JaffasTechnic.compost.itemID) return false;
+                hand.stackSize--;
+                if (hand.stackSize <= 0) player.setCurrentItemOrArmor(0, null);
+            }
+            if (!worldObj.isRemote) {
+                compostTicksLeft += COMPOST_TICKS_PER_ONE_USE;
+                if (compostTicksLeft > COMPOST_TICKS_MAX) {
+                    compostTicksLeft = COMPOST_TICKS_MAX;
+                }
+                forceUpdate();
+            }
         }
         return canFertilize;
     }
 
     private boolean canFertilize() {
-        return compostTicksLeft < COMPOST_TICKS_CAN_FERTILIZE_THRESHOLD;
+        return compostTicksLeft < COMPOST_TICKS_MAX;
     }
 
     private boolean tryPlant(EntityPlayer player) {
@@ -405,7 +410,9 @@ public class TileEntityFungiBox extends TileEntity implements ICropEntity {
         tickQuantum = DEFAULT_QUANTUM_OF_TICKS;
     }
 
-    public ItemStack getLastLoot() {
+    public ItemStack collectLastLoot() {
+        ItemStack tmp = lastLoot;
+        lastLoot = null;
         return lastLoot;
     }
 
@@ -427,7 +434,7 @@ public class TileEntityFungiBox extends TileEntity implements ICropEntity {
         }
 
         ArrayList<ItemStack> res = new ArrayList<ItemStack>();
-        res.add(getLastLoot());
+        res.add(collectLastLoot());
         return res;
     }
 }

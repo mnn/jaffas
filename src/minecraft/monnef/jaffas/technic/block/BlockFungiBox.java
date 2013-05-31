@@ -148,13 +148,15 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
     @Override
     public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
         TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
-        return Arrays.asList(tile.getLastLoot());
+        return Arrays.asList(tile.collectLastLoot());
     }
 
     @Override
     public void preHarvest(World world, int x, int y, int z) {
         TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
-        tile.harvest(null);
+        if (!tile.harvest(null)) {
+            throw new RuntimeException("Error in MFR integration.");
+        }
     }
 
     @Override

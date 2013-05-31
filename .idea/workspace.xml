@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/MushroomCropProvider.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemCompost.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemCompost.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -450,8 +447,8 @@
     <file path="/BlockConstruction.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370000630842" ignored="false" />
     <file path="/BlockCompostCore.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370000271416" ignored="false" />
     <file path="/FungiInfo.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369424446962" ignored="false" />
-    <file path="/BlockFungiBox.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370032284423" ignored="false" />
-    <file path="/TileEntityFungiBox.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370032837454" ignored="false" />
+    <file path="/BlockFungiBox.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370038203911" ignored="false" />
+    <file path="/TileEntityFungiBox.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370038586125" ignored="false" />
     <file path="/TileEntityFungiBoxRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370020307537" ignored="false" />
     <file path="/ModelFungiBox.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369492692214" ignored="false" />
     <file path="/ModelFungiOneStageOne.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369417223389" ignored="false" />
@@ -557,10 +554,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="308" column="51" selection-start="12269" selection-end="12269" vertical-scroll-proportion="0.6057692">
+            <state line="316" column="85" selection-start="12658" selection-end="12658" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -571,7 +568,7 @@
       <file leaf-file-name="BlockFungiBox.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="149" column="22" selection-start="4188" selection-end="4278" vertical-scroll-proportion="0.0">
+            <state line="156" column="23" selection-start="4529" selection-end="4529" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -597,13 +594,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileEntityFungiBox.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TileEntityFungiBox.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="427" column="0" selection-start="13522" selection-end="13522" vertical-scroll-proportion="0.0">
+            <state line="411" column="44" selection-start="13229" selection-end="13229" vertical-scroll-proportion="0.5860927">
               <folding>
-                <element signature="e#13571#13582#0" expanded="true" />
+                <element signature="e#13808#13819#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FungusInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/FungusInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="33" column="40" selection-start="968" selection-end="968" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -611,7 +617,7 @@
       <file leaf-file-name="IFactoryHarvestable.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/powercrystals/minefactoryreloaded/api/IFactoryHarvestable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="19" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
+            <state line="51" column="27" selection-start="1756" selection-end="1756" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -659,10 +665,10 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSwitchgrassSolid.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemCompost.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemFungus.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/MushroomCropProvider.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" />
       </list>
     </option>
   </component>
@@ -1389,15 +1395,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.49786553" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.296875" sideWeight="0.49786553" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26004463" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26004463" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2890625" sideWeight="0.50053364" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1405,11 +1411,11 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35044643" sideWeight="0.4850587" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575893" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17075774" sideWeight="0.22433035" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17075774" sideWeight="0.21316965" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17075774" sideWeight="0.5078125" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17075774" sideWeight="0.48214287" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.49573106" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1498,13 +1504,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/powercrystals/minefactoryreloaded/api/FarmingRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="370" selection-end="370" vertical-scroll-proportion="0.21494253">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemCompost.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="45" column="36" selection-start="1246" selection-end="1246" vertical-scroll-proportion="0.0">
@@ -1524,13 +1523,6 @@
     <entry file="file://$PROJECT_DIR$/src/minecraft/powercrystals/minefactoryreloaded/api/IFactoryFertilizable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="17" selection-start="348" selection-end="348" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/powercrystals/minefactoryreloaded/api/IFactoryHarvestable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="19" selection-start="717" selection-end="717" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1570,18 +1562,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/powercrystals/minefactoryreloaded/api/FertilizerType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="427" column="0" selection-start="13522" selection-end="13522" vertical-scroll-proportion="0.0">
+        <state line="17" column="9" selection-start="412" selection-end="412" vertical-scroll-proportion="0.45368916">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="316" column="85" selection-start="12658" selection-end="12658" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#13571#13582#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/powercrystals/minefactoryreloaded/api/IFactoryHarvestable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="149" column="22" selection-start="4188" selection-end="4278" vertical-scroll-proportion="0.0">
+        <state line="51" column="27" selection-start="1756" selection-end="1756" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1602,18 +1601,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/powercrystals/minefactoryreloaded/api/FertilizerType.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFungiBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="9" selection-start="412" selection-end="412" vertical-scroll-proportion="0.45368916">
+        <state line="156" column="23" selection-start="4529" selection-end="4529" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/FungusInfo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="308" column="51" selection-start="12269" selection-end="12269" vertical-scroll-proportion="0.6057692">
+        <state line="33" column="40" selection-start="968" selection-end="968" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="411" column="44" selection-start="13229" selection-end="13229" vertical-scroll-proportion="0.5860927">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#13808#13819#0" expanded="true" />
           </folding>
         </state>
       </provider>
