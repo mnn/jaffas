@@ -51,13 +51,13 @@ public class ModelFungiBox extends ModelBase {
         setRotation(Shape4, 0F, 0F, 0F);
         Shape5 = new ModelRenderer(this, 71, 0);
         Shape5.addBox(0F, 0F, 0F, 14, 1, 14);
-        Shape5.setRotationPoint(-7F, 18.5F, -7F);
+        Shape5.setRotationPoint(-7F, 18.5F, -7F); // 18.5 - 19
         Shape5.setTextureSize(128, 64);
         Shape5.mirror = true;
         setRotation(Shape5, 0F, 0F, 0F);
         Shape6 = new ModelRenderer(this, 70, 16);
         Shape6.addBox(0F, 0F, 0F, 14, 1, 14);
-        Shape6.setRotationPoint(-7F, 19F, -7F);
+        Shape6.setRotationPoint(-7F, 18.5F, -7F);
         Shape6.setTextureSize(128, 64);
         Shape6.mirror = true;
         setRotation(Shape6, 0F, 0F, 0F);
@@ -76,7 +76,7 @@ public class ModelFungiBox extends ModelBase {
         render(f5, false, false);
     }
 
-    public void render(float f5, boolean planted, boolean humusActive) {
+    public void render(float f5, boolean planted, boolean compostPresent) {
         Shape1.render(f5);
         Shape2.render(f5);
         Shape3.render(f5);
@@ -85,10 +85,10 @@ public class ModelFungiBox extends ModelBase {
         if (!planted) {
             GL11.glTranslatef(0, 1 / 16f, 0);
         }
-        if (humusActive) {
-            Shape6.render(f5);
-        } else {
+        if (compostPresent) {
             Shape5.render(f5);
+        } else {
+            Shape6.render(f5);
         }
         if (!planted) {
             GL11.glTranslatef(0, -1 / 16f, 0);

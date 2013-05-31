@@ -46,7 +46,7 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
 
         GL11.glPushMatrix();
         GL11.glRotatef(t.getRenderRotationBox() * 90, 0, 1, 0);
-        box.render(0.0625F, t.mushroomPlanted(), t.isHumusActive());
+        box.render(0.0625F, t.mushroomPlanted(), t.compostPresent());
         GL11.glPopMatrix();
 
         if (t.mushroomPlanted()) {

@@ -26,17 +26,26 @@ public class FungusInfo {
     public int sporeTries = 3;
     public Boolean[] stateNeedCompostToGrow;
     public boolean revertsWithoutCompost;
+    public int growMultiplierOfCompost = 4;
 
     public ItemStack createLoot() {
         int count = dropCount.getRandom();
         if (count == 0) return null;
+
+        ItemStack res;
+        res = createLootOneItem();
+        res.stackSize = count;
+        return res;
+    }
+
+    public ItemStack createLootOneItem() {
+        ItemStack res;
         if (ordinalItemBind) {
-            return new ItemStack(JaffasTechnic.fungus, count, id);
+            res = new ItemStack(JaffasTechnic.fungus, 1, id);
         } else {
-            ItemStack res = specialItemBind.copy();
-            res.stackSize = count;
-            return res;
+            res = specialItemBind.copy();
         }
+        return res;
     }
 
     public FungusInfo setReverseWithoutCompost() {

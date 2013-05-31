@@ -45,6 +45,7 @@ import monnef.jaffas.technic.item.ItemCompost;
 import monnef.jaffas.technic.item.ItemFungus;
 import monnef.jaffas.technic.item.ItemHoeTechnic;
 import monnef.jaffas.technic.item.ItemLocomotive;
+import monnef.jaffas.technic.item.ItemMushroomKnife;
 import monnef.jaffas.technic.item.ItemPickaxeTechnic;
 import monnef.jaffas.technic.item.ItemSpadeTechnic;
 import monnef.jaffas.technic.item.ItemSwordTechnic;
@@ -165,7 +166,7 @@ public class JaffasTechnic extends jaffasMod {
     public static ItemFungus fungus;
 
     private int ItemMushroomKnifeID;
-    public static ItemTechnic mushroomKnife;
+    public static ItemMushroomKnife mushroomKnife;
 
     private int blockConstructionID;
     public static BlockConstruction constructionBlock;
@@ -302,8 +303,7 @@ public class JaffasTechnic extends jaffasMod {
             }
         }
 
-        mushroomKnife = new ItemTechnic(ItemMushroomKnifeID, 28);
-        mushroomKnife.setMaxStackSize(1);
+        mushroomKnife = new ItemMushroomKnife(ItemMushroomKnifeID, 28);
         RegistryUtils.registerItem(mushroomKnife, "knifeMushroom", "Mushroom Knife");
     }
 

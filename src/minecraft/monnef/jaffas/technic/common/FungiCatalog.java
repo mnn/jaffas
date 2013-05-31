@@ -5,8 +5,12 @@
 
 package monnef.jaffas.technic.common;
 
+import com.google.common.collect.HashMultiset;
+import com.google.common.collect.Multiset;
 import monnef.core.utils.Interval;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
@@ -17,14 +21,39 @@ import static monnef.jaffas.technic.common.FungusInfo.NeedCompostEnum.NEVER;
 public class FungiCatalog {
     private static final int TPS = 20;
     private static int maxId = 0;
+    private static HashMap<Integer, Multiset<Integer>> blockIdToMushroom;
 
     public static HashMap<Integer, FungusInfo> catalog;
 
+
     static {
         catalog = new HashMap<Integer, FungusInfo>();
+        createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 2, 4, 1, 80, 2, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        createSpecie("Parasol", "Macrolepiota Procera", 2, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
 
-        createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 2, 4, 1, 80, 2, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
-        createSpecie("Parasol", "Macrolepiota Procera", 2, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        blockIdToMushroom = new HashMap<Integer, Multiset<Integer>>();
+        addMushroomDropFromBlock(Block.mushroomBrown.blockID, 1, 3);
+        addMushroomDropFromBlock(Block.mushroomBrown.blockID, 2, 2);
+    }
+
+    public static void addMushroomDropFromBlock(int blockId, int mushroomId) {
+        addMushroomDropFromBlock(blockId, mushroomId, 1);
+    }
+
+    public static void addMushroomDropFromBlock(int blockId, int mushroomId, int times) {
+        if (!blockIdToMushroom.containsKey(blockId)) {
+            blockIdToMushroom.put(blockId, HashMultiset.<Integer>create());
+        }
+        Multiset<Integer> recordForBlock = blockIdToMushroom.get(blockId);
+        recordForBlock.add(mushroomId, times);
+    }
+
+    public static ItemStack getRandomDropFromBlock(int blockId) {
+        // TODO: optimize?
+        Multiset<Integer> found = blockIdToMushroom.get(blockId);
+        if (found == null || found.size() == 0) return null;
+        int i = JaffasFood.rand.nextInt(found.size());
+        return get(found.toArray(new Integer[]{})[i]).createLootOneItem();
     }
 
     public static FungusInfo get(int id) {
@@ -36,7 +65,7 @@ public class FungiCatalog {
     }
 
     // times are in minutes
-    private static FungusInfo createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minDrop, int maxDrop, int compostConsumptionSpeed, int surviveRateInPercent, int sporeTries, Interval[] stateLens) {
+    private static FungusInfo createSpecie(String title, String subTitle, int id, int states, int minDie, int maxDie, int minSpore, int maxSpore, int minDrop, int maxDrop, int compostConsumptionSpeed, int surviveRateInPercent, int sporeTries, int compostGrowMultiplier, Interval[] stateLens) {
         if (id == 0) {
             throw new RuntimeException("Inserting fungus with ZERO id!");
         }
@@ -53,9 +82,9 @@ public class FungiCatalog {
         info.timeToDie = new Interval(TPS * 60 * minDie, TPS * 60 * maxDie);
         info.sporeTime = new Interval(TPS * 60 * minSpore, TPS * 60 * maxSpore);
         info.compostConsumptionSpeed = compostConsumptionSpeed;
-        // convert lengths of states from minutes
+        // convert lengths of states from minutes and apply compost grow multiplier
         for (int i = 0; i < stateLens.length; i++) {
-            stateLens[i] = new Interval(stateLens[i].getMin() * TPS * 60, stateLens[i].getMax() * TPS * 60);
+            stateLens[i] = new Interval(stateLens[i].getMin() * TPS * 60 * compostGrowMultiplier, stateLens[i].getMax() * TPS * 60 * compostGrowMultiplier);
         }
         info.stateLength = stateLens;
         info.title = title;

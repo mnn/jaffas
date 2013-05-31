@@ -31,6 +31,8 @@ public class TileEntityFungiBox extends TileEntity {
     private static final String TAG_DIE = "timeToDie";
     private static final String TAG_SPORE = "timeToSpore";
     private static final String TAG_GROW = "timeToGrow";
+    private static final int COMPOST_TICKS_CAN_FERTILIZE_THRESHOLD = 15 * 60 * 20;
+    public static final int COMPOST_TICKS_PER_ONE_USE = 5 * 60 * 20;
 
     private byte mushroomRotation;
     private byte boxRotation;
@@ -64,7 +66,7 @@ public class TileEntityFungiBox extends TileEntity {
 
             if (mushroomPlanted()) {
                 if (canGrow()) {
-                    timeToGrow -= tickQuantum;
+                    timeToGrow -= (compostPresent() ? fungusTemplate.growMultiplierOfCompost : 1) * tickQuantum;
                     if (timeToGrow <= 0) {
                         if (!isMature()) {
                             update = true;
@@ -126,7 +128,7 @@ public class TileEntityFungiBox extends TileEntity {
         return !isMature() && (!fungusTemplate.stateNeedCompostToGrow[fungusState] || compostPresent());
     }
 
-    private boolean compostPresent() {
+    public boolean compostPresent() {
         return compostTicksLeft > 0;
     }
 
@@ -291,13 +293,34 @@ public class TileEntityFungiBox extends TileEntity {
             if (harvest(player)) {
                 return true;
             }
-        }
-
-        if (tryPlant(player)) {
+        } else if (playerHasEquipped(player, JaffasTechnic.compost.itemID)) {
+            if (fertilize(player)) {
+                return true;
+            }
+        } else if (tryPlant(player)) {
             return true;
         }
 
         return false;
+    }
+
+    private boolean fertilize(EntityPlayer player) {
+        if (player != null) {
+            ItemStack hand = player.getCurrentEquippedItem();
+            if (hand == null || hand.itemID != JaffasTechnic.compost.itemID) return false;
+            hand.stackSize--;
+            if (hand.stackSize <= 0) player.setCurrentItemOrArmor(0, null);
+        }
+        boolean canFertilize = canFertilize();
+        if (!worldObj.isRemote) {
+            compostTicksLeft += COMPOST_TICKS_PER_ONE_USE;
+            forceUpdate();
+        }
+        return canFertilize;
+    }
+
+    private boolean canFertilize() {
+        return compostTicksLeft < COMPOST_TICKS_CAN_FERTILIZE_THRESHOLD;
     }
 
     private boolean tryPlant(EntityPlayer player) {
@@ -326,7 +349,10 @@ public class TileEntityFungiBox extends TileEntity {
             return false;
         }
 
-        plant(template);
+        if (!worldObj.isRemote) {
+            plant(template);
+            forceUpdate();
+        }
         return true;
     }
 
@@ -360,10 +386,6 @@ public class TileEntityFungiBox extends TileEntity {
         }
 
         return false;
-    }
-
-    public boolean isHumusActive() {
-        return compostTicksLeft > 0;
     }
 
     public static void setDebugSpeedOverride(int speed) {
