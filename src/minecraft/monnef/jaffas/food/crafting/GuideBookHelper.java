@@ -34,10 +34,15 @@ public class GuideBookHelper {
         BookWriter bookWriter = new BookWriter(Reference.MONNEF + " & " + Reference.TIARTYOS, monnef.jaffas.food.common.Reference.ModName + " - Basic Guide");
 
         Scanner scanner = new Scanner(JaffasFood.instance.getClass().getResourceAsStream("/jaffas_guide.txt"), "UTF-8");
+        boolean skipNextLine = false;
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             if (line.equals(PAGE_BREAK_LINE)) {
-                bookWriter.endPage();
+                if (!skipNextLine) {
+                    bookWriter.endPage();
+                } else {
+                    skipNextLine = false;
+                }
             } else if (line.equals(BOARD_RECIPES_LINE)) {
                 int counter = 2;
                 for (BoardRecipe recipe : RecipesBoard.recipes.values()) {
@@ -50,9 +55,12 @@ public class GuideBookHelper {
                         bookWriter.endPage();
                     }
                 }
+                if (counter == 0) {
+                    skipNextLine = true;
+                }
             } else if (line.equals(COMPOST_RECIPES_LINE)) {
                 List<String> list = CompostRegister.generateTextForGuide();
-                int counter = 1;
+                int counter = 2;
                 for (String item : list) {
                     bookWriter.addLine(item);
                     bookWriter.addBlankLine();
@@ -60,6 +68,9 @@ public class GuideBookHelper {
                         counter = 0;
                         bookWriter.endPage();
                     }
+                }
+                if (counter == 0) {
+                    skipNextLine = true;
                 }
             } else {
                 if (line.startsWith(TITLE_LINE_STARTER)) {

@@ -25,7 +25,32 @@ $$--The ore and dust
 The new ore is called jaffarrol. It occurs in similar levels as gold does. It's used for tools (e.g. shovel, axe), crafting tools (kitchen knife), jarmor and some technical contraptions.
 
 $$page$$
-$$--Compost - valid items
+$$--Compost
+
+Can be used to fertilizing trees and plants (same way as bone meal). Its main function is to help mushrooms grow faster. Some species of mushrooms even need compost to grow.
+
+$$page$$
+Here you can see a list of items which can be converted into compost in a composting tank.
 
 $$compost$$
+$$page$$
+$$--Composting tank
+
+It is used for making a compost. When it reaches required volume of organic material it starts the process of composting.
+
+On a next page you can find a scheme for constructing it.
+
+$$page$$
+lvl 1   lvl 2
+X X X  X G X
+X C X  G _ G
+X X X  X G X
+
+X = construction block
+G = constr. b. glassy
+_ = nothing
+C = core block
+
+Tank is finished by clicking on its core block.
+$$page$$
 $$page$$

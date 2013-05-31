@@ -41,6 +41,7 @@ import monnef.jaffas.technic.common.RepairRecipe;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
+import monnef.jaffas.technic.item.ItemCompost;
 import monnef.jaffas.technic.item.ItemFungus;
 import monnef.jaffas.technic.item.ItemHoeTechnic;
 import monnef.jaffas.technic.item.ItemLocomotive;
@@ -134,7 +135,7 @@ public class JaffasTechnic extends jaffasMod {
     public static BlockOre blockLimsewOre;
 
     private int itemCompostID;
-    public static ItemTechnic compost;
+    public static ItemCompost compost;
 
     private int ItemJAxeID;
     private int ItemJSpadeID;
@@ -401,7 +402,7 @@ public class JaffasTechnic extends jaffasMod {
         compostCore = new BlockCompostCore(blockCompostCoreID, 18, Material.iron);
         RegistryUtils.registerBlock(compostCore, "compostCore", "Compost Core Block");
 
-        compost = new ItemTechnic(itemCompostID, 29);
+        compost = new ItemCompost(itemCompostID, 29);
         RegistryUtils.registerItem(compost, "compost", "Compost");
 
         createTools();
