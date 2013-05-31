@@ -25,15 +25,17 @@ public class FungiCatalog {
 
     public static HashMap<Integer, FungusInfo> catalog;
 
+    public static final int PORCINO_ID = 1;
+    public static final int PARASOL_ID = 2;
 
     static {
         catalog = new HashMap<Integer, FungusInfo>();
-        createSpecie("Porcino", "Boletus Edulis", 1, 3, 10, 30, 1, 10, 2, 4, 1, 80, 2, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
-        createSpecie("Parasol", "Macrolepiota Procera", 2, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        createSpecie("Porcino", "Boletus Edulis", PORCINO_ID, 3, 10, 30, 1, 10, 2, 4, 1, 80, 2, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
+        createSpecie("Parasol", "Macrolepiota Procera", PARASOL_ID, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5));
 
         blockIdToMushroom = new HashMap<Integer, Multiset<Integer>>();
-        addMushroomDropFromBlock(Block.mushroomBrown.blockID, 1, 3);
-        addMushroomDropFromBlock(Block.mushroomBrown.blockID, 2, 2);
+        addMushroomDropFromBlock(Block.mushroomBrown.blockID, PORCINO_ID, 3);
+        addMushroomDropFromBlock(Block.mushroomBrown.blockID, PARASOL_ID, 2);
     }
 
     public static void addMushroomDropFromBlock(int blockId, int mushroomId) {

@@ -83,6 +83,8 @@ import static monnef.jaffas.food.item.JaffaItem.spawnStoneMedium;
 import static monnef.jaffas.technic.Reference.ModId;
 import static monnef.jaffas.technic.Reference.ModName;
 import static monnef.jaffas.technic.Reference.Version;
+import static monnef.jaffas.technic.common.FungiCatalog.PARASOL_ID;
+import static monnef.jaffas.technic.common.FungiCatalog.PORCINO_ID;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
@@ -544,6 +546,12 @@ public class JaffasTechnic extends jaffasMod {
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fungiBox), " W ", "PDP", "PPP", 'W', Item.bucketWater, 'D', Block.dirt, 'P', "plankWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compostCore), "JPJ", "PCP", "JPJ", 'J', jaffarrol, 'P', "plankWood", 'C', new ItemStack(itemCentralUnit, 1, 1)));
+
+        // temporal recipes
+        GameRegistry.addShapelessRecipe(new ItemStack(Block.mushroomBrown),
+                new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID));
+        GameRegistry.addShapelessRecipe(new ItemStack(Block.mushroomBrown),
+                new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID));
     }
 
     private Item getItem(JaffaItem item) {
