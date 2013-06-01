@@ -1,8 +1,11 @@
 package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.Loader;
+import forestry.api.farming.Farmables;
+import forestry.api.farming.IFarmable;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.ClassHelper;
+import monnef.jaffas.food.JaffasFood;
 
 import java.util.ArrayList;
 
@@ -15,6 +18,15 @@ public class OtherModsHelper {
         checkForestry();
         checkMFR();
         checkTE();
+    }
+
+    public static void dumpForestryRegister(String category) {
+        String msg = "Registered items for " + category + ": ";
+        for (IFarmable item : Farmables.farmables.get(category)) {
+            msg += (item == null ? "NULL" : item.getClass().getSimpleName()) + ", ";
+        }
+        if (msg.length() > 2) msg = msg.substring(0, msg.length() - 2);
+        JaffasFood.Log.printFinest(msg);
     }
 
     public boolean isForestryDetected() {

@@ -14,12 +14,13 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import forestry.api.cultivation.CropProviders;
+import forestry.api.farming.Farmables;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
@@ -100,6 +101,7 @@ public class JaffasTechnic extends jaffasMod {
     public static CommonProxy proxy;
 
     private static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
+    private static final String FORESTRY_FARM_FUNGAL = "farmShroom";
     public boolean debug;
 
     private int JaffarrolID;
@@ -304,7 +306,12 @@ public class JaffasTechnic extends jaffasMod {
             FarmingRegistry.registerHarvestable(fungiBox);
         }
         if (otherMods.isForestryDetected()) {
-            CropProviders.fungalCrops.add(new MushroomCropProvider());
+            if (!Farmables.farmables.containsKey(FORESTRY_FARM_FUNGAL)) {
+                Log.printWarning("Forestry integration is broken.");
+            } else {
+                Farmables.farmables.get(FORESTRY_FARM_FUNGAL).add(new MushroomCropProvider());
+                OtherModsHelper.dumpForestryRegister(FORESTRY_FARM_FUNGAL);
+            }
         }
 
         fungus = new ItemFungus(ItemFungusID, 99);

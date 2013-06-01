@@ -5,7 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
-import forestry.api.cultivation.ICropEntity;
+import forestry.api.farming.ICrop;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.RandomHelper;
@@ -22,11 +22,12 @@ import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static monnef.core.utils.PlayerHelper.playerHasEquipped;
 import static monnef.core.utils.RandomHelper.rand;
 
-public class TileEntityFungiBox extends TileEntity implements ICropEntity {
+public class TileEntityFungiBox extends TileEntity implements ICrop {
     private static final String TAG_FUNGUS_TYPE = "fungusType";
     private static final String TAG_FUNGUS_STATE = "fungusState";
     private static final String TAG_COMPOST_LEFT = "compostLeft";
@@ -111,6 +112,7 @@ public class TileEntityFungiBox extends TileEntity implements ICropEntity {
     }
 
     private void revertWithDeathChance() {
+        if (!mushroomPlanted()) return;
         if (RandomHelper.rollPercentBooleanDice(fungusTemplate.surviveRate)) {
             fungusState = 0;
             setupNextGrowTime();
@@ -348,7 +350,7 @@ public class TileEntityFungiBox extends TileEntity implements ICropEntity {
         return false;
     }
 
-    private boolean tryPlant(ItemStack stack) {
+    public boolean tryPlant(ItemStack stack) {
         if (!canPlant()) {
             return false;
         }
@@ -413,28 +415,22 @@ public class TileEntityFungiBox extends TileEntity implements ICropEntity {
     public ItemStack collectLastLoot() {
         ItemStack tmp = lastLoot;
         lastLoot = null;
-        return lastLoot;
+        return tmp;
     }
 
     // Forestry compatibility
     @Override
-    public boolean isHarvestable() {
-        return canBeHarvested();
-    }
-
-    @Override
-    public int[] getNextPosition() {
-        return new int[0];
-    }
-
-    @Override
-    public ArrayList<ItemStack> doHarvest() {
+    public Collection<ItemStack> harvest() {
         if (!harvest(null)) {
             throw new RuntimeException("broken forestry integration of fungi harvesting");
         }
 
         ArrayList<ItemStack> res = new ArrayList<ItemStack>();
-        res.add(collectLastLoot());
+        ItemStack loot = collectLastLoot();
+        if (loot == null) {
+            throw new RuntimeException("null in shroom loot generation");
+        }
+        res.add(loot);
         return res;
     }
 }

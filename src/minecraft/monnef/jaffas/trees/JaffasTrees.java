@@ -24,6 +24,7 @@ import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.crafting.RecipesBoard;
@@ -461,10 +462,14 @@ public class JaffasTrees extends jaffasMod {
     }
 
     private void registerForestryStuff() {
+        if (!otherMods.isForestryDetected()) return;
+
         if (!Farmables.farmables.containsKey(FORESTRY_FARM_WHEAT)) {
             Farmables.farmables.put(FORESTRY_FARM_WHEAT, new ArrayList<IFarmable>());
         }
         Farmables.farmables.get(FORESTRY_FARM_WHEAT).add(new JaffaCropProvider());
+
+        OtherModsHelper.dumpForestryRegister(FORESTRY_FARM_WHEAT);
     }
 
     private void createItems() {
