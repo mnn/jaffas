@@ -9,6 +9,8 @@ import monnef.jaffas.food.JaffasFood;
 
 import java.util.ArrayList;
 
+import static monnef.jaffas.food.JaffasFood.Log;
+
 public class OtherModsHelper {
     boolean forestryDetected;
     boolean MFRDetected;
@@ -66,5 +68,15 @@ public class OtherModsHelper {
 
     private void checkTE() {
         TEDetected = Loader.isModLoaded("ThermalExpansion");
+    }
+
+    public boolean insertFarmable(String category, IFarmable farmable) {
+        if (!Farmables.farmables.containsKey(category)) {
+            Log.printWarning("Forestry integration is broken.");
+            return false;
+        }
+
+        Farmables.farmables.get(category).add(farmable);
+        return true;
     }
 }

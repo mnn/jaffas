@@ -56,26 +56,4 @@ public class MushroomCropProvider implements IFarmable {
             return false;
         }
     }
-
-    /*
-    @Override
-    public boolean isCrop(World world, int x, int y, int z) {
-        return world.getBlockId(x, y, z) == JaffasTechnic.fungiBox.blockID;
-    }
-
-    @Override
-    public ItemStack[] getWindfall() {
-        return new ItemStack[]{};
-    }
-
-    @Override
-    public boolean doPlant(ItemStack germling, World world, int x, int y, int z) {
-        return false;
-    }
-
-    @Override
-    public ICropEntity getCrop(World world, int x, int y, int z) {
-        return (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
-    }
-    */
 }

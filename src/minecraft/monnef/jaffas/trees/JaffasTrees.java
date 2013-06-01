@@ -16,15 +16,12 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import forestry.api.farming.Farmables;
-import forestry.api.farming.IFarmable;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.crafting.RecipesBoard;
@@ -130,7 +127,7 @@ import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = JaffasTrees.channel, packetHandler = PacketHandler.class)
 public class JaffasTrees extends jaffasMod {
-    public static final String FORESTRY_FARM_WHEAT = "farmWheat";
+    public static final String FORESTRY_FARM_VEGETABLES = "farmVegetables";
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;
 
@@ -464,12 +461,11 @@ public class JaffasTrees extends jaffasMod {
     private void registerForestryStuff() {
         if (!otherMods.isForestryDetected()) return;
 
-        if (!Farmables.farmables.containsKey(FORESTRY_FARM_WHEAT)) {
-            Farmables.farmables.put(FORESTRY_FARM_WHEAT, new ArrayList<IFarmable>());
+        if (otherMods.isForestryDetected()) {
+            otherMods.insertFarmable(FORESTRY_FARM_VEGETABLES, new JaffaCropProvider());
         }
-        Farmables.farmables.get(FORESTRY_FARM_WHEAT).add(new JaffaCropProvider());
 
-        OtherModsHelper.dumpForestryRegister(FORESTRY_FARM_WHEAT);
+        //OtherModsHelper.dumpForestryRegister(FORESTRY_FARM_VEGETABLES);
     }
 
     private void createItems() {

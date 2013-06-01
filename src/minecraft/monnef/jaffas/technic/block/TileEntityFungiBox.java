@@ -427,10 +427,9 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
 
         ArrayList<ItemStack> res = new ArrayList<ItemStack>();
         ItemStack loot = collectLastLoot();
-        if (loot == null) {
-            throw new RuntimeException("null in shroom loot generation");
+        if (loot != null) {
+            res.add(loot);
         }
-        res.add(loot);
         return res;
     }
 }
