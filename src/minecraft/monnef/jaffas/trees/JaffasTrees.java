@@ -16,7 +16,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import forestry.api.cultivation.CropProviders;
+import forestry.api.farming.Farmables;
+import forestry.api.farming.IFarmable;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileEntityPie;
@@ -128,6 +129,7 @@ import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = JaffasTrees.channel, packetHandler = PacketHandler.class)
 public class JaffasTrees extends jaffasMod {
+    public static final String FORESTRY_FARM_WHEAT = "farmWheat";
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;
 
@@ -450,13 +452,19 @@ public class JaffasTrees extends jaffasMod {
 
         //GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
 
-        //forestry stuff
-        CropProviders.cerealCrops.add(new JaffaCropProvider());
+        registerForestryStuff();
 
         creativeTab.setup(ItemManager.getItem(JaffaItem.oranges));
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
 
         JaffasFood.PrintInitialized(ModulesEnum.trees);
+    }
+
+    private void registerForestryStuff() {
+        if (!Farmables.farmables.containsKey(FORESTRY_FARM_WHEAT)) {
+            Farmables.farmables.put(FORESTRY_FARM_WHEAT, new ArrayList<IFarmable>());
+        }
+        Farmables.farmables.get(FORESTRY_FARM_WHEAT).add(new JaffaCropProvider());
     }
 
     private void createItems() {
