@@ -2,6 +2,11 @@ package forestry.api.genetics;
 
 import forestry.api.core.INBTTagable;
 
+/**
+ * Container to hold some temporary data for bee, tree and butterfly effects.
+ * 
+ * @author SirSengir
+ */
 public interface IEffectData extends INBTTagable {
 	void setInteger(int index, int val);
 

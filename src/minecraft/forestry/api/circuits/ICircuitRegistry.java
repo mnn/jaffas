@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 
 public interface ICircuitRegistry {
 
+	/* CIRCUITS */
 	HashMap<String, ICircuit> getRegisteredCircuits();
 
 	void registerCircuit(ICircuit circuit);
@@ -17,5 +18,14 @@ public interface ICircuitRegistry {
 	void registerLegacyMapping(int id, String uid);
 
 	ICircuit getFromLegacyMap(int id);
+
+	/* LAYOUTS */
+	HashMap<String, ICircuitLayout> getRegisteredLayouts();
+
+	void registerLayout(ICircuitLayout layout);
+
+	ICircuitLayout getLayout(String uid);
+
+	ICircuitLayout getDefaultLayout();
 
 }

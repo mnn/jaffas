@@ -1,14 +1,21 @@
 package forestry.api.genetics;
 
+import java.util.Collection;
+
 /**
- * Bees can be seeded either as hive drops or as mutation results.
+ * Individuals can be seeded either as hive drops or as mutation results.
  * 
- * Add mutations to BeeManager.beeMutations
+ * {@link IAlleleRegistry} manages these.
  * 
  * @author SirSengir
  */
 public interface IMutation {
 
+	/**
+	 * @return {@link ISpeciesRoot} this mutation is associated with.
+	 */
+	ISpeciesRoot getRoot();
+	
 	/**
 	 * @return first of the alleles implementing IAlleleSpecies required for this mutation.
 	 */
@@ -20,28 +27,22 @@ public interface IMutation {
 	IAllele getAllele1();
 
 	/**
-	 * @return Array of {@link IAllele} representing the full default genome of the mutated side. The array _must_ implement this format:
+	 * @return Array of {@link IAllele} representing the full default genome of the mutated side.
 	 * 
-	 *         Chromosome Must implement Customizable Note ----------- --------------- ------------- ------------ 0 : SPECIES IAlleleSpecies X 1 : SPEED
-	 *         AlleleFloat 2 : LIFESPAN AlleleInteger 3 : FERTILITY AlleleInteger 4 : TEMPERATURE_TOLERANCE AlleleTolerance 5 : NOCTURNAL AlleleBoolean 6 :
-	 *         (HUMIDITY) (AlleleHumidity) Not used. Anything passed into here will be nulled. 7 : HUMIDITY_TOLERANCE AlleleTolerance 8 : TOLERANT_FLYER
-	 *         AlleleBoolean 9 : CAVE_DWELLING AlleleBoolean 10: FLOWER_PROVIDER IAlleleFlowers X 11: FLOWERING AlleleInteger 12: TERRITORY AlleleArea 13:
-	 *         EFFECT IAlleleEffect X
-	 * 
-	 *         Make sure to return a proper array. Returning an allele of the wrong type will cause cast errors on runtime.
-	 * 
-	 *         Alleles marked as customizable can be populated with your own custom alleles. Make sure to register them correctly in alleleList!
-	 * 
-	 *         Other alleles must be populated with any matching pre-defined allele. Retrieve those via BeeManager.getAllele
-	 * 
+	 *         Make sure to return a proper array for the species class. Returning an allele of the wrong type will cause cast errors on runtime.
 	 */
 	IAllele[] getTemplate();
 
 	/**
 	 * @return Unmodified base chance for mutation to fire.
 	 */
-	int getBaseChance();
+	float getBaseChance();
 
+	/**
+	 * @return Collection of localized, human-readable strings describing special mutation conditions, if any. 
+	 */
+	Collection<String> getSpecialConditions();
+	
 	/**
 	 * @param allele
 	 * @return true if the passed allele is one of the alleles participating in this mutation.

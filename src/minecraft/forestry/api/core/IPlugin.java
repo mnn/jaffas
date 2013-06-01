@@ -1,43 +1,32 @@
 package forestry.api.core;
 
-import java.util.Random;
-
-import net.minecraft.command.ICommand;
-import net.minecraft.world.World;
-import cpw.mods.fml.common.network.IGuiHandler;
-
 /**
- * Plugins get loaded at the beginning of Forestry's ModsLoaded() if isAvailable() returns true.
+ * Optional way to hook into Forestry.
+ * 
+ * Plugin classes can reside in any package, their class name however has to start with 'Plugin', i.e. 'PluginMyStuff'.
  * 
  * @author SirSengir
  */
 public interface IPlugin {
+	
+	/**
+	 * @return true if the plugin is to be loaded.
+	 */
 	public boolean isAvailable();
 
+	/**
+	 * Called during Forestry's @PreInit.
+	 */
 	public void preInit();
 
+	/**
+	 * Called at the start of Forestry's @PostInit.
+	 */
 	public void doInit();
 
+	/**
+	 * Called at the end of Forestry's @PostInit.
+	 */
 	public void postInit();
 
-	/**
-	 * Use @PluginInfo!
-	 */
-	public String getDescription();
-
-	public void generateSurface(World world, Random rand, int chunkX, int chunkZ);
-
-	public IGuiHandler getGuiHandler();
-
-	public IPacketHandler getPacketHandler();
-
-	public IPickupHandler getPickupHandler();
-
-	public IResupplyHandler getResupplyHandler();
-
-	public ISaveEventHandler getSaveEventHandler();
-
-	public IOreDictionaryHandler getDictionaryHandler();
-
-	public ICommand[] getConsoleCommands();
 }

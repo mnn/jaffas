@@ -1,12 +1,13 @@
 package forestry.api.arboriculture;
 
+import net.minecraftforge.common.EnumPlantType;
+import forestry.api.genetics.IFruitFamily;
+
 public enum EnumTreeChromosome {
 
 	/**
-	 *  Determines the following:
-	 *  - WorldGen, including the used wood blocks
-	 *  - {@link IFruitFamily}s supported. Limits which {@IFruitProvider} will actually yield fruit with this species.
-	 *  - Native {@link EnumPlantType} for this tree. Combines with the PLANT chromosome.
+	 * Determines the following: - WorldGen, including the used wood blocks - {@link IFruitFamily}s supported. Limits which {@link IFruitProvider}
+	 * will actually yield fruit with this species. - Native {@link EnumPlantType} for this tree. Combines with the PLANT chromosome.
 	 */
 	SPECIES,
 	/**
@@ -46,8 +47,10 @@ public enum EnumTreeChromosome {
 	 */
 	EFFECT,
 	/**
-	 * Amount of random ticks that need to elapse before a sapling will grow into a tree.
+	 * Amount of random ticks which need to elapse before a sapling will grow into a tree.
 	 */
-	MATURATION
+	MATURATION,
+
+	GIRTH
 
 }

@@ -15,13 +15,13 @@ public interface ICircuit {
 
 	boolean isCircuitable(TileEntity tile);
 
-	void onInsertion(TileEntity tile);
+	void onInsertion(int slot, TileEntity tile);
 
-	void onLoad(TileEntity tile);
+	void onLoad(int slot, TileEntity tile);
 
-	void onRemoval(TileEntity tile);
+	void onRemoval(int slot, TileEntity tile);
 
-	void onTick(TileEntity tile);
+	void onTick(int slot, TileEntity tile);
 
 	void addTooltip(List<String> list);
 }

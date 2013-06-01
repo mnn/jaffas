@@ -3,41 +3,22 @@ package forestry.api.genetics;
 import java.util.HashMap;
 
 import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.FMLLog;
 
+/**
+ * Holds a static reference to the {@link IAlleleRegistry}. 
+ */
 public class AlleleManager {
-
-	public static IAlleleRegistry alleleRegistry;
-
-	public static HashMap<ItemStack, IIndividual> ersatzSpecimen = new HashMap<ItemStack, IIndividual>();
-	public static HashMap<ItemStack, IIndividual> ersatzSaplings = new HashMap<ItemStack, IIndividual>();
-	
 	/**
-	 * Access Forestry's default alleles via reflection.
-	 * 
-	 * @param ident
-	 * @return IAllele for the passed identifier or null if none was found.
-	 * 
-	 * @deprecated
-	 * Use IAlleleRegistry.getAllele instead!
+	 * Main access point for all things related to genetics. See {@link IAlleleRegistry} for details.
 	 */
-	@Deprecated
-	public static IAllele getAllele(String ident) {
-		IAllele allele = null;
-
-		try {
-
-			String alleleClass = "forestry.core.genetics.Allele";
-
-			Object obj = Class.forName(alleleClass).getField(ident).get(null);
-			if (obj instanceof IAllele) {
-				allele = (IAllele) obj;
-			}
-		} catch (Exception ex) {
-			FMLLog.warning("Could not retrieve bee allele identified by: " + ident);
-		}
-
-		return allele;
-	}
+	public static IAlleleRegistry alleleRegistry;
+	/**
+	 * Translates plain leaf blocks into genetic data. Used by bees and butterflies to convert and pollinate foreign leaf blocks.
+	 */
+	public static HashMap<ItemStack, IIndividual> ersatzSpecimen = new HashMap<ItemStack, IIndividual>();
+	/**
+	 * Translates plain saplings into genetic data. Used by the treealyzer and the farm to convert foreign saplings.
+	 */
+	public static HashMap<ItemStack, IIndividual> ersatzSaplings = new HashMap<ItemStack, IIndividual>();
 
 }

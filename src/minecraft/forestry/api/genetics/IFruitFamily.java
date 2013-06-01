@@ -1,7 +1,7 @@
 package forestry.api.genetics;
 
 public interface IFruitFamily {
-	
+
 	/**
 	 * @return Unique String identifier.
 	 */

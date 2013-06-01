@@ -23,14 +23,14 @@ public interface ITree extends IIndividual {
 
 	EnumSet<EnumPlantType> getPlantTypes();
 
-	ITree[] getSaplings(World world, int x, int y, int z);
+	ITree[] getSaplings(World world, int x, int y, int z, float modifier);
 
 	ItemStack[] getProduceList();
 
 	ItemStack[] getSpecialtyList();
 
 	ItemStack[] produceStacks(World world, int x, int y, int z, int ripeningTime);
-	
+
 	/**
 	 * 
 	 * @param world
@@ -55,8 +55,22 @@ public interface ITree extends IIndividual {
 	 * @return Integer denoting the maturity (block ticks) required for a sapling to attempt to grow into a tree.
 	 */
 	int getRequiredMaturity();
+
+	/**
+	 * @return Integer denoting how resilient leaf blocks are against adverse influences (i.e. caterpillars).
+	 */
+	int getResilience();
 	
+	/**
+	 * @param world
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return Integer denoting the size of the tree trunk.
+	 */
 	int getGirth(World world, int x, int y, int z);
+
+	
 	
 	/**
 	 * 
@@ -69,7 +83,7 @@ public interface ITree extends IIndividual {
 	EnumGrowthConditions getGrowthCondition(World world, int x, int y, int z);
 
 	WorldGenerator getTreeGenerator(World world, int x, int y, int z, boolean wasBonemealed);
-	
+
 	ITree copy();
 
 	boolean isPureBred(EnumTreeChromosome chromosome);

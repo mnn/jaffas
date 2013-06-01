@@ -3,7 +3,6 @@ package forestry.api.storage;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
 import net.minecraft.item.ItemStack;
 
 public class BackpackManager {
@@ -13,11 +12,11 @@ public class BackpackManager {
 	 * Use IMC messages to achieve the same effect!
 	 */
 	public static ArrayList<ItemStack>[] backpackItems;
-	
+
 	public static IBackpackInterface backpackInterface;
-	
+
 	/**
-	 * Only use this if you know what you are doing. Prefer backpackInterface. 
+	 * Only use this if you know what you are doing. Prefer backpackInterface.
 	 */
 	public static HashMap<String, IBackpackDefinition> definitions = new HashMap<String, IBackpackDefinition>();
 }

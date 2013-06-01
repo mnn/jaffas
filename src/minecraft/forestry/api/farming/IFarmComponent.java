@@ -6,4 +6,7 @@ public interface IFarmComponent extends ITileStructure {
 
 	boolean hasFunction();
 
+	void registerListener(IFarmListener listener);
+
+	void removeListener(IFarmListener listener);
 }

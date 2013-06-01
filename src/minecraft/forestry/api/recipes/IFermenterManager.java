@@ -9,7 +9,7 @@ import net.minecraftforge.liquids.LiquidStack;
  * The manager is initialized at the beginning of Forestry's BaseMod.load() cycle. Begin adding recipes in BaseMod.ModsLoaded() and this shouldn't be null even
  * if your mod loads before Forestry.
  * 
- * Accessible via {@link RecipeManagers.fermenterManager}
+ * Accessible via {@link RecipeManagers}
  * 
  * @author SirSengir
  */

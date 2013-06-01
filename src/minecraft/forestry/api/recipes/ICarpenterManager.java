@@ -10,7 +10,7 @@ import net.minecraftforge.liquids.LiquidStack;
  * The manager is initialized at the beginning of Forestry's BaseMod.load() cycle. Begin adding recipes in BaseMod.ModsLoaded() and this shouldn't be null even
  * if your mod loads before Forestry.
  * 
- * Accessible via {@link RecipeManagers.carpenterManager}
+ * Accessible via {@link RecipeManagers}
  * 
  * Only shaped recipes can be added currently.
  * 
@@ -48,10 +48,8 @@ public interface ICarpenterManager extends ICraftingProvider {
 	 * 
 	 * @param packagingTime
 	 *            Number of work cycles required to craft the recipe once.
-	 * @param liquidId
-	 *            Id of liquid required in tank. Anything other than Block.waterStill.blockId is untested!
-	 * @param liquidAmount
-	 *            Amount of liquid required to craft the recipe once. One bucket of water = one unit on the carpenter's tank = 1000.
+	 * @param liquid
+	 *            Liquid required in carpenter's tank.
 	 * @param box
 	 *            ItemStack of one item representing the required box (carton, crate) for this recipe. May be null.
 	 * @param product

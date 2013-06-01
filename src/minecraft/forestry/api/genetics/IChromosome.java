@@ -3,7 +3,7 @@ package forestry.api.genetics;
 import forestry.api.core.INBTTagable;
 
 /**
- * Other implementations than Forestry's default one are not supported.
+ * Implementations other than Forestry's default one are not supported!
  * 
  * @author SirSengir
  */

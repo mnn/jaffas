@@ -1,20 +1,41 @@
 package forestry.api.apiculture;
 
-import java.util.HashMap;
+import java.util.Map;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.genetics.IAlleleSpecies;
 
 public interface IAlleleBeeSpecies extends IAlleleSpecies {
 
-	// / Products, Chance
-	HashMap<ItemStack, Integer> getProducts();
+	/**
+	 * @return the IBeeRoot
+	 */
+	IBeeRoot getRoot();
 
-	// / Specialty, Chance
-	HashMap<ItemStack, Integer> getSpecialty();
+	/**
+	 * @return true if this species is only active at night.
+	 */
+	boolean isNocturnal();
+	
+	/**
+	 * @return Map of possible products with the chance for drop each bee cycle. (0 - 100)
+	 */
+	Map<ItemStack, Integer> getProducts();
 
-	// / Only jubilant bees give their specialty product
-	boolean isJubilant(World world, int biomeid, int x, int y, int z);
+	/**
+	 * @return Map of possible specialities with the chance for drop each bee cycle. (0 - 100)
+	 */
+	Map<ItemStack, Integer> getSpecialty();
 
+	/**
+	 * Only jubilant bees produce specialities.
+	 * @return true if the bee is jubilant, false otherwise.
+	 */
+	boolean isJubilant(IBeeGenome genome, IBeeHousing housing);
+
+	@SideOnly(Side.CLIENT)
+	Icon getIcon(EnumBeeType type, int renderPass);
 }

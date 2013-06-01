@@ -1,12 +1,16 @@
 package forestry.api.apiculture;
 
+import java.util.Locale;
+
 public enum EnumBeeType {
-	PRINCESS("bees.princess"), QUEEN("bees.queen"), DRONE("bees.drone");
+	DRONE, PRINCESS, QUEEN, NONE;
+
+	public static final EnumBeeType[] VALUES = values();
 
 	String name;
 
-	private EnumBeeType(String name) {
-		this.name = name;
+	private EnumBeeType() {
+		this.name = "bees." + this.toString().toLowerCase(Locale.ENGLISH);
 	}
 
 	public String getName() {

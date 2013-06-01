@@ -3,20 +3,21 @@ package forestry.api.arboriculture;
 import net.minecraft.world.World;
 
 public interface IGrowthProvider {
-	
+
 	/**
-	 * Check to see whether a sapling at the given location with the given genome can grow into a tree. 
-	 * @param genome
-	 * @param world
-	 * @param xPos
-	 * @param yPos
-	 * @param zPos
-	 * @param expectedGirth
-	 * @param expectedHeight
-	 * @return
+	 * Check to see whether a sapling at the given location with the given genome can grow into a tree.
+	 * 
+	 * @param genome Genome of the tree this is called for.
+	 * @param world Minecraft world the tree will inhabit.
+	 * @param xPos x-Coordinate to attempt growth at.
+	 * @param yPos y-Coordinate to attempt growth at.
+	 * @param zPos z-Coordinate to attempt growth at.
+	 * @param expectedGirth Trunk size of the tree to generate.
+	 * @param expectedHeight Height of the tree to generate.
+	 * @return true if the tree can grow at the given coordinates, false otherwise.
 	 */
 	boolean canGrow(ITreeGenome genome, World world, int xPos, int yPos, int zPos, int expectedGirth, int expectedHeight);
-	
+
 	EnumGrowthConditions getGrowthConditions(ITreeGenome genome, World world, int xPos, int yPos, int zPos);
 
 	/**
@@ -28,6 +29,5 @@ public interface IGrowthProvider {
 	 * @return Detailed description of growth behaviour used in the treealyzer.
 	 */
 	String[] getInfo();
-
 
 }

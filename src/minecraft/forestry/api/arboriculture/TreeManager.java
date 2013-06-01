@@ -1,15 +1,11 @@
 package forestry.api.arboriculture;
 
-import java.util.ArrayList;
-
 public class TreeManager {
 	public static int treeSpeciesCount = 0;
-	public static ITreeInterface treeInterface;
-	public static ITreeBreedingManager breedingManager;
 	
 	/**
-	 * List of possible mutations on fruit alleles.
+	 * Get your own reference to this via AlleleManager.alleleRegistry.getSpeciesRoot("rootTrees") and save it somewhere.
 	 */
-	public static ArrayList<ITreeMutation> treeMutations = new ArrayList<ITreeMutation>();
-
+	@Deprecated
+	public static ITreeRoot treeInterface;
 }

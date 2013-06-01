@@ -11,6 +11,10 @@ public interface IAlvearyComponent extends ITileStructure {
 
 	void removeBeeModifier(IBeeModifier modifier);
 
+	void registerBeeListener(IBeeListener event);
+
+	void removeBeeListener(IBeeListener event);
+
 	void addTemperatureChange(float change, float boundaryDown, float boundaryUp);
 
 	void addHumidityChange(float change, float boundaryDown, float boundaryUp);

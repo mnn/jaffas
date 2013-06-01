@@ -9,10 +9,28 @@ package forestry.api.genetics;
  */
 public interface IAlleleHandler {
 
+	/**
+	 * Called when an allele is registered with {@link IAlleleRegistry}.
+	 * 
+	 * @param allele
+	 *            Allele which was registered.
+	 */
 	public void onRegisterAllele(IAllele allele);
 
-	public void onRegisterClassification(IClassification branch);
-	
+	/**
+	 * Called when a classification is registered with {@link IAlleleRegistry}.
+	 * 
+	 * @param classification
+	 *            Classification which was registered.
+	 */
+	public void onRegisterClassification(IClassification classification);
+
+	/**
+	 * Called when a fruit family is registered with {@link IAlleleRegistry}.
+	 * 
+	 * @param family
+	 *            Fruit family which was registered.
+	 */
 	public void onRegisterFruitFamily(IFruitFamily family);
 
 }
