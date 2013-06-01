@@ -117,7 +117,7 @@ import java.util.logging.Level;
 
 import static net.minecraftforge.common.BiomeDictionary.Type;
 
-@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:" + monnef.core.Reference.ModId)
+@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {JaffasPacketHandler.CHANNEL_SpawnStone, JaffasPacketHandler.CHANNEL_Generic}, packetHandler = JaffasPacketHandler.class)
 public class JaffasFood extends jaffasMod {
     public static final String LAST_VERSION_SHOWN = "lastVersionShown";

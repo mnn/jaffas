@@ -5,17 +5,21 @@
 
 package monnef.jaffas.technic.item;
 
+import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.FungusInfo;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.World;
+import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
 import java.util.List;
 import java.util.Map;
 
-public class ItemFungus extends ItemTechnic {
+public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
     public ItemFungus(int id, int textureIndex) {
         super(id, textureIndex);
         setIconsCount(FungiCatalog.getMaxId() + 1); // maximal id to count
@@ -42,5 +46,43 @@ public class ItemFungus extends ItemTechnic {
                 list.add(new ItemStack(this, 1, fungus.getKey()));
             }
         }
+    }
+
+
+    // MFR
+    @Override
+    public int getSeedId() {
+        return itemID;
+    }
+
+    @Override
+    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
+        int id = world.getBlockId(x, y - 1, z);
+        if (id != JaffasTechnic.fungiBox.blockID) return false;
+        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y - 1, z);
+        return !tile.mushroomPlanted();
+    }
+
+    @Override
+    public void prePlant(World world, int x, int y, int z, ItemStack stack) {
+    }
+
+    @Override
+    public void postPlant(World world, int x, int y, int z, ItemStack stack) {
+        int id = world.getBlockId(x, y - 1, z);
+        world.setBlock(x, y, z, 0);
+        if (id != JaffasTechnic.fungiBox.blockID) return;
+        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y - 1, z);
+        tile.tryPlant(stack);
     }
 }

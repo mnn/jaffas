@@ -381,9 +381,9 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
     public boolean harvest(EntityPlayer player) {
         if (canBeHarvested()) {
             if (!worldObj.isRemote) {
-                lastLoot = fungusTemplate.createLoot();
+                generateDrop();
                 if (player != null) {
-                    PlayerHelper.giveItemToPlayer(player, lastLoot);
+                    PlayerHelper.giveItemToPlayer(player, collectLastLoot());
                 } else {
                     // machine will get it itself
                 }
@@ -396,6 +396,10 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
         }
 
         return false;
+    }
+
+    public void generateDrop() {
+        lastLoot = fungusTemplate.createLoot();
     }
 
     public boolean canBeHarvested() {
@@ -422,7 +426,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
     @Override
     public Collection<ItemStack> harvest() {
         if (!harvest(null)) {
-            throw new RuntimeException("broken forestry integration of fungi harvesting");
+            return new ArrayList<ItemStack>();
         }
 
         ArrayList<ItemStack> res = new ArrayList<ItemStack>();

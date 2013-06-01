@@ -548,9 +548,9 @@ public class JaffasTechnic extends jaffasMod {
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRefined));
         GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0);
 
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, jaffarrol);
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, jaffarrolDust);
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.book, limsew);
+        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrol);
+        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrolDust);
+        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, limsew);
 
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IJI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron);
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "I I", "JIJ", 'J', jaffarrol, 'I', Block.glass);
