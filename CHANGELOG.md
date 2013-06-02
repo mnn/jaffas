@@ -7,6 +7,7 @@
 - rewritten repair recipe (now supports NEI)
 - custom starts of ID intervals
 - fixed pickaxe to be able to mine same blocks as diamond pickaxe
+- more work on a guide book (mostly composting tank item values)
 
 ## 0.4.19
 - implemented achievement system (not much content yet)
