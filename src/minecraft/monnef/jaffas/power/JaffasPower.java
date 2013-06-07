@@ -18,6 +18,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.JaffaCreativeTab;
+import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
@@ -129,9 +130,9 @@ public class JaffasPower extends jaffasMod {
         if (!ModuleManager.isModuleEnabled(ModulesEnum.power))
             return;
 
-        GameRegistry.registerTileEntity(TileEntityGenerator.class, "jp.generator");
-        GameRegistry.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
-        GameRegistry.registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
+        JaffasRegistryHelper.registerTileEntity(TileEntityGenerator.class, "jp.generator");
+        JaffasRegistryHelper.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
+        JaffasRegistryHelper.registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
 
         creativeTab = new JaffaCreativeTab("jaffas.power");
 

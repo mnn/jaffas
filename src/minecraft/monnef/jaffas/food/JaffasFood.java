@@ -61,6 +61,7 @@ import monnef.jaffas.food.command.CommandJaffasOP;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.FuelHandler;
 import monnef.jaffas.food.common.JaffaCreativeTab;
+import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
@@ -344,6 +345,7 @@ public class JaffasFood extends jaffasMod {
             duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
             FuelHandler.SWITCHGRASS_BURN_VALUE = config.get(Configuration.CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
             slimeSpawningEnabled = config.get(Configuration.CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
+            JaffasRegistryHelper.compatibilityMode = config.get(Configuration.CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -445,7 +447,7 @@ public class JaffasFood extends jaffasMod {
         blockFridge = new BlockFridge(blockFridgeID);
         GameRegistry.registerBlock(blockFridge, "blockFridge");
         LanguageRegistry.addName(blockFridge, "Fridge");
-        GameRegistry.registerTileEntity(TileEntityFridge.class, "Fridge");
+        JaffasRegistryHelper.registerTileEntity(TileEntityFridge.class, "Fridge");
 
         blockJaffaBomb = new BlockJaffaBomb(blockJaffaBombID, 35, Material.rock);
         GameRegistry.registerBlock(blockJaffaBomb, "blockJaffaBomb");
@@ -454,35 +456,35 @@ public class JaffasFood extends jaffasMod {
         blockCross = new BlockCross(blockCrossID, 5, Material.rock);
         GameRegistry.registerBlock(blockCross, "blockCross");
         LanguageRegistry.addName(blockCross, "Cross");
-        GameRegistry.registerTileEntity(TileEntityCross.class, "cross");
+        JaffasRegistryHelper.registerTileEntity(TileEntityCross.class, "cross");
 
         blockSink = new BlockSink(blockSinkID, 141);
         GameRegistry.registerBlock(blockSink, "blockSink");
         LanguageRegistry.addName(blockSink, "Faucet");
-        GameRegistry.registerTileEntity(TileEntitySink.class, "sink");
+        JaffasRegistryHelper.registerTileEntity(TileEntitySink.class, "sink");
 
         blockBoard = new BlockBoard(blockBoardID, 142, Material.wood);
         RegistryUtils.registerBlock(blockBoard, "Kitchen Board");
-        GameRegistry.registerTileEntity(TileEntityBoard.class, "kitchenBoard");
+        JaffasRegistryHelper.registerTileEntity(TileEntityBoard.class, "kitchenBoard");
 
         blockPizza = new BlockPizza(blockPizzaID, 149, Material.cake);
         RegistryUtils.registerBlock(blockPizza);
         LanguageRegistry.addName(blockPizza, "Block of Pizza");
-        GameRegistry.registerTileEntity(TileEntityPizza.class, "pizza");
+        JaffasRegistryHelper.registerTileEntity(TileEntityPizza.class, "pizza");
 
         blockColumn = new BlockColumn(blockColumnID, 160, Material.rock);
         RegistryUtils.registerBlock(blockColumn);
         LanguageRegistry.addName(blockColumn, "Column");
-        GameRegistry.registerTileEntity(TileEntityColumn.class, "column");
+        JaffasRegistryHelper.registerTileEntity(TileEntityColumn.class, "column");
 
         blockJaffaStatue = new BlockJaffaStatue(blockJaffaStatueID, 6, Material.iron);
         RegistryUtils.registerBlock(blockJaffaStatue);
         LanguageRegistry.addName(blockJaffaStatue, "Jaffa Statue");
-        GameRegistry.registerTileEntity(TileEntityJaffaStatue.class, "jaffaStatue");
+        JaffasRegistryHelper.registerTileEntity(TileEntityJaffaStatue.class, "jaffaStatue");
 
         blockPie = new BlockPie(blockPieID, 156);
         RegistryUtils.registerMultiBlock(blockPie, ItemBlockPie.class, BlockPie.multiBlockNames);
-        GameRegistry.registerTileEntity(TileEntityPie.class, "jaffaPie");
+        JaffasRegistryHelper.registerTileEntity(TileEntityPie.class, "jaffaPie");
 
         blockTable = new BlockTable(blockTableID, 0, Material.wood);
         RegistryUtils.registerMultiBlock(blockTable, ItemBlockTable.class, BlockTable.multiBlockNames);

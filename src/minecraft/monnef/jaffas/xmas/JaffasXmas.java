@@ -15,6 +15,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
@@ -119,8 +120,8 @@ public class JaffasXmas extends jaffasMod {
 
         creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.xmas");
 
-        GameRegistry.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
-        GameRegistry.registerTileEntity(TileEntityPresent.class, "jaffas.present");
+        JaffasRegistryHelper.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
+        JaffasRegistryHelper.registerTileEntity(TileEntityPresent.class, "jaffas.present");
 
         createItems();
         items.CreateItems();

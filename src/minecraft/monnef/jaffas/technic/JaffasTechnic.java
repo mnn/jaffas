@@ -17,6 +17,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ItemBlockJaffas;
+import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
@@ -299,7 +300,7 @@ public class JaffasTechnic extends jaffasMod {
     private void createFungiStuff() {
         fungiBox = new BlockFungiBox(blockFungiBoxID, 27);
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
-        GameRegistry.registerTileEntity(TileEntityFungiBox.class, "jaffasFungiBox");
+        JaffasRegistryHelper.registerTileEntity(TileEntityFungiBox.class, "jaffasFungiBox");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerHarvestable(fungiBox);
         }
@@ -406,8 +407,8 @@ public class JaffasTechnic extends jaffasMod {
         RegistryUtils.registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
         Item.itemsList[constructionBlock.blockID].setFull3D();
 
-        GameRegistry.registerTileEntity(TileEntityConstructionDummy.class, "jaffasConstructionDummy");
-        GameRegistry.registerTileEntity(TileEntityCompostCore.class, "jaffasCompostCore");
+        JaffasRegistryHelper.registerTileEntity(TileEntityConstructionDummy.class, "jaffasConstructionDummy");
+        JaffasRegistryHelper.registerTileEntity(TileEntityCompostCore.class, "jaffasCompostCore");
 
         dummyConstructionBlock = new BlockConstructionDummy(blockConstructionDummyID, 17);
         RegistryUtils.registerBlock(dummyConstructionBlock, "dummyConstruction", "Dummy Construction Block - are you a cheater?");

@@ -20,6 +20,7 @@ import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.common.JaffaCreativeTab;
+import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
@@ -436,8 +437,8 @@ public class JaffasTrees extends jaffasMod {
         guiHandler = new GuiHandlerTrees();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
-        GameRegistry.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
-        GameRegistry.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
+        JaffasRegistryHelper.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
+        JaffasRegistryHelper.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
 
         createItems();
 
@@ -502,7 +503,7 @@ public class JaffasTrees extends jaffasMod {
         blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
         GameRegistry.registerBlock(blockFruitCollector, "blockFruitCollector");
         LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
-        GameRegistry.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
+        JaffasRegistryHelper.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
 
         itemDebug = new ItemJaffaTreeDebugTool(itemDebugID);
         itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");
