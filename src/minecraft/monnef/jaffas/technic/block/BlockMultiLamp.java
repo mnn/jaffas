@@ -82,9 +82,13 @@ public class BlockMultiLamp extends BlockTechnic {
     private void refreshMetadata(World world, int x, int y, int z) {
         int power = getPower(world, x, y, z);
         int bId = world.getBlockId(x, y, z);
-        if (bId == blockID) BlockHelper.setBlockMetadata(world, x, y, z, power);
+        if (bId == blockID) {
+            BlockHelper.setBlockMetadata(world, x, y, z, power);
+            // some magic is happening down here...
+            world.markBlockForUpdate(x, y, z);
+            world.updateAllLightTypes(x, y, z);
+        }
     }
-
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
@@ -92,7 +96,8 @@ public class BlockMultiLamp extends BlockTechnic {
         int currBlockId = world.getBlockId(x, y, z);
         if (currBlockId != blockID) {
             // not lamp
-            return super.getLightValue(world, x, y, z);
+            return 0;
+            //return super.getLightValue(world, x, y, z);
         }
         return meta == 0 ? 0 : 15;
     }
