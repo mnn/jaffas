@@ -29,6 +29,8 @@ import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
 import monnef.jaffas.technic.block.BlockConstructionDummy;
 import monnef.jaffas.technic.block.BlockFungiBox;
+import monnef.jaffas.technic.block.BlockMultiLamp;
+import monnef.jaffas.technic.block.BlockMultiLampDummy;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
@@ -182,6 +184,10 @@ public class JaffasTechnic extends jaffasMod {
     private int blockCompostCoreID;
     public static BlockCompostCore compostCore;
 
+    private int blockMultiLampID;
+    public static BlockMultiLamp lamp;
+    public static BlockMultiLampDummy lampDummy;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -190,6 +196,8 @@ public class JaffasTechnic extends jaffasMod {
     GOLD(0, 32, 12.0F, 0, 22);
     */
     public static EnumToolMaterial EnumToolMaterialJaffarrol = EnumHelper.addToolMaterial("Jaffarrol", 3, 1000, 9.0F, 3, 12);
+
+    public static int lampRenderID;
 
     @Mod.PreInit
     @Override
@@ -237,6 +245,12 @@ public class JaffasTechnic extends jaffasMod {
             blockConstructionID = idProvider.getBlockIDFromConfig("contructionBlock");
             blockConstructionDummyID = idProvider.getBlockIDFromConfig("dummyContructionBlock");
             blockCompostCoreID = idProvider.getBlockIDFromConfig("compostCore");
+
+            // multi lamp
+            blockMultiLampID = idProvider.getBlockIDFromConfig("multiLamp");
+            int lampDummyId = idProvider.getTempBlockId();
+            lampDummy = new BlockMultiLampDummy(lampDummyId, 38);
+            idProvider.safelyRemoveTempBlock(lampDummyId, lampDummy);
 
             itemCompostID = idProvider.getItemIDFromConfig("compost");
 
@@ -421,6 +435,9 @@ public class JaffasTechnic extends jaffasMod {
         if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizer(compost);
         }
+
+        lamp = new BlockMultiLamp(blockMultiLampID, 37, 38);
+        RegistryUtils.registerBlock(lamp, "multiLamp", "Multi-Lamp");
 
         createTools();
     }

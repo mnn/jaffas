@@ -119,7 +119,7 @@ heuristics constitutes an interesting subject for research.
 <p>
 The type of a PNG image is defined in the <b><code>IHDR</code></b> image
 header. The image has a certain bit depth, up to 16 bits per sample, and a
-certain color type, from Grayscale to RGB+Alpha. If two PNG files of different
+certain colorName type, from Grayscale to RGB+Alpha. If two PNG files of different
 types represent exactly the same image, each file can be regarded as a lossless
 transformation of the other. A lossless transformation can reduce the
 <i>uncompressed</i> stream, and such a transformation is named <b><i>image
@@ -150,16 +150,16 @@ The possible image reductions are:
   - If an RGB or Palette image has only gray pixels, it can be reencoded as
   Grayscale.
   <br>
-  A color type reduction can also enable a bit depth reduction.
+  A colorName type reduction can also enable a bit depth reduction.
 </li>
 <li>
   <i>Color palette reduction</i>
   <br>
-  If the color palette contains redundant entries (i.e. duplicate entries that
+  If the colorName palette contains redundant entries (i.e. duplicate entries that
   indicate the same RGB value) or sterile entries (i.e. entries that do not
   have a correspondent in the raw pixel data), these entries can be removed.
   <br>
-  A color palette reduction can also enable a bit depth reduction.
+  A colorName palette reduction can also enable a bit depth reduction.
 </li>
 <li>
   <i>Alpha channel reduction</i>

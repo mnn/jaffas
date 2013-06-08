@@ -111,7 +111,7 @@ OPTIONS
               Select the optimization level.
               The  optimization  level  0 enables a set of optimization opera-
               tions that require minimal effort. There will be no  changes  to
-              image attributes like bit depth or color type, and no recompres-
+              image attributes like bit depth or colorName type, and no recompres-
               sion of existing IDAT datastreams.
               The optimization level  1  enables  a  single  IDAT  compression
               trial. The trial chosen is what OptiPNG thinks it's probably the
@@ -147,7 +147,7 @@ OPTIONS
 
        -nb    Do not apply bit depth reduction.
 
-       -nc    Do not apply color type reduction.
+       -nc    Do not apply colorName type reduction.
 
        -np    Do not apply palette reduction.
 
@@ -203,7 +203,7 @@ OPTIONS
               PNG  metadata  is  the information stored in any ancillary chunk
               except tRNS.  (tRNS represents the alpha channel, which, even if
               ignored  in  rendering,  is  still a proper image channel in the
-              RGBA color space.)
+              RGBA colorName space.)
               The only option currently supported is -strip all.
 
    Notes
@@ -227,7 +227,7 @@ OPTIONS
 EXTENDED DESCRIPTION
        The PNG optimization algorithm consists of the following steps:
 
-       1.  Reduce the bit depth, the color type and the color palette  of  the
+       1.  Reduce the bit depth, the colorName type and the colorName palette  of  the
            image.   This  step  may reduce the size of the uncompressed image,
            which, indirectly, may reduce the  size  of  the  compressed  image
            (i.e. the size of the output PNG file).
@@ -265,7 +265,7 @@ BUGS
        not  affect  the  integrity of the output files.)  Here are the missing
        pieces:
 
-              - The color palette reductions are implemented only partially.
+              - The colorName palette reductions are implemented only partially.
               - The bit depth reductions below 8, for  grayscale  images,  are
               not implemented yet.
 

@@ -308,10 +308,7 @@ public class JaffasTrees extends jaffasMod {
 
             int tempBlockId = idProvider.getTempBlockId();
             dummyLeaves = new BlockFruitLeavesDummy(tempBlockId);
-            if (!(Block.blocksList[tempBlockId] instanceof BlockFruitLeavesDummy)) {
-                throw new RuntimeException(String.format("What trickery is going on here? Block registered with ID %d but now it's not there (new ID is %d), halting. This behaviour will break other things.", tempBlockId, dummyLeaves.blockID));
-            }
-            Block.blocksList[tempBlockId] = null; // don't consume block id
+            idProvider.safelyRemoveTempBlock(tempBlockId, dummyLeaves);
             JaffasFood.Log.printFinest(String.format("dummyLeaves used ID %d, successfully released record in Block class.", tempBlockId));
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);

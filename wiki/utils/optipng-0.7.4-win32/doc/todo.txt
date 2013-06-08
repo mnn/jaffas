@@ -27,7 +27,7 @@ OptiPNG - TO-DO list
     optipng dir/
     optipng -recursive dir/
 
-- Support for conversion to a desired bit depth and color type:
+- Support for conversion to a desired bit depth and colorName type:
     optipng -b16 -c6 files ...
 
 - Support for handling metadata, e.g.:

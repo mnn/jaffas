@@ -25,5 +25,10 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCompostCore.class, new TileEntityCompostTankRenderer());
 
         MinecraftForgeClient.registerItemRenderer(JaffasTechnic.constructionBlock.blockID, new CustomBlockRenderer());
+
+        JaffasTechnic.lampRenderID = RenderingRegistry.getNextAvailableRenderId();
+        LampBlockRenderer lampBlockRenderer = new LampBlockRenderer();
+        RenderingRegistry.registerBlockHandler(lampBlockRenderer);
+        MinecraftForgeClient.registerItemRenderer(JaffasTechnic.lamp.blockID, lampBlockRenderer);
     }
 }
