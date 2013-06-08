@@ -20,6 +20,7 @@ import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
@@ -68,6 +69,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import thermalexpansion.api.crafting.CraftingHelpers;
 
@@ -77,15 +79,34 @@ import java.util.logging.Level;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
+import static monnef.jaffas.food.item.JaffaItem.bottleKetchup;
+import static monnef.jaffas.food.item.JaffaItem.bottleMustard;
+import static monnef.jaffas.food.item.JaffaItem.cakeTin;
+import static monnef.jaffas.food.item.JaffaItem.cheeseSlice;
+import static monnef.jaffas.food.item.JaffaItem.cookedMushroomsRaw;
 import static monnef.jaffas.food.item.JaffaItem.cookingPot;
+import static monnef.jaffas.food.item.JaffaItem.friedMushrooms;
+import static monnef.jaffas.food.item.JaffaItem.friedMushroomsInTinCooked;
+import static monnef.jaffas.food.item.JaffaItem.friedMushroomsInTinRaw;
+import static monnef.jaffas.food.item.JaffaItem.grinderMeat;
+import static monnef.jaffas.food.item.JaffaItem.hamburgerBun;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolBoots;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolChest;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolHelmet;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolLeggins;
 import static monnef.jaffas.food.item.JaffaItem.juiceBottle;
+import static monnef.jaffas.food.item.JaffaItem.mincedMushrooms;
+import static monnef.jaffas.food.item.JaffaItem.onionSliced;
+import static monnef.jaffas.food.item.JaffaItem.plate;
+import static monnef.jaffas.food.item.JaffaItem.sausage;
+import static monnef.jaffas.food.item.JaffaItem.shroomburger;
+import static monnef.jaffas.food.item.JaffaItem.shroomburgerInBun;
+import static monnef.jaffas.food.item.JaffaItem.shroomburgerInBunWithCheese;
+import static monnef.jaffas.food.item.JaffaItem.shroomburgerRaw;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneBig;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneLittle;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneMedium;
+import static monnef.jaffas.food.item.JaffaItem.woodenBowl;
 import static monnef.jaffas.technic.Reference.ModId;
 import static monnef.jaffas.technic.Reference.ModName;
 import static monnef.jaffas.technic.Reference.Version;
@@ -103,6 +124,7 @@ public class JaffasTechnic extends jaffasMod {
 
     private static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
     private static final String FORESTRY_FARM_FUNGAL = "farmShroom";
+    public static final String MUSHROOMS_EATABLE = "jaffasMushroomEatable";
     public boolean debug;
 
     private int JaffarrolID;
@@ -329,6 +351,7 @@ public class JaffasTechnic extends jaffasMod {
                 LanguageRegistry.addName(new ItemStack(fungus, 1, item.getKey()), item.getValue().title);
             }
         }
+        FungiCatalog.registerShroomGroups();
 
         mushroomKnife = new ItemMushroomKnife(ItemMushroomKnifeID, 28);
         RegistryUtils.registerItem(mushroomKnife, "knifeMushroom", "Mushroom Knife");
@@ -583,6 +606,19 @@ public class JaffasTechnic extends jaffasMod {
                 new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID));
         GameRegistry.addShapelessRecipe(new ItemStack(Block.mushroomBrown),
                 new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID));
+
+        Recipes.addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE));
+        Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(cookedMushroomsRaw), 3), getItem(woodenBowl), getItem(woodenBowl), getItem(woodenBowl), MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE));
+
+        Recipes.addRecipe(new ShapedOreRecipe(getItem(friedMushroomsInTinRaw), "MSM", "PPP", " T ", 'M', MUSHROOMS_EATABLE, 'S', getItem(sausage), 'P', JaffasTrees.getFruit(JaffasTrees.bushType.Pea), 'T', getItem(cakeTin)));
+        GameRegistry.addSmelting(getItem(friedMushroomsInTinRaw).itemID, getItemStack(friedMushroomsInTinCooked), 2f);
+        JaffaCraftingHandler.AddPersistentItem(friedMushroomsInTinCooked, false, cakeTin);
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(friedMushrooms), 3), getItem(plate), getItem(plate), getItem(plate), getItem(friedMushroomsInTinCooked));
+        Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMushrooms), 2), MUSHROOMS_EATABLE, getItem(grinderMeat)));
+        GameRegistry.addRecipe(getItemStack(shroomburgerRaw), "PPP", "PPP", 'P', getItem(mincedMushrooms));
+        Recipes.addFryingPanRecipe(shroomburgerRaw, JaffaItem.fryingPanShroomburgerRaw, JaffaItem.fryingPanShroomburger, shroomburger);
+        GameRegistry.addShapelessRecipe(getItemStack(shroomburgerInBun, 5), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(shroomburger), getItem(onionSliced));
+        GameRegistry.addShapelessRecipe(getItemStack(shroomburgerInBunWithCheese, 6), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(shroomburger), getItem(onionSliced), getItem(cheeseSlice));
     }
 
     private Item getItem(JaffaItem item) {

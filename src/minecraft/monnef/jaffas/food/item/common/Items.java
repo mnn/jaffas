@@ -371,6 +371,19 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.cookingPotEggs, "Cooking Pot With Eggs", 236);
 
         AddItemInfo(JaffaItem.bananaInChocolate, "Chocolate Covered Banana", 238);
+
+        AddItemInfo(JaffaItem.fruitSalad, "Fruit Salad", 245);
+        AddItemInfo(JaffaItem.friedMushroomsInTinRaw, "Raw Mushrooms In Tin", 244);
+        AddItemInfo(JaffaItem.friedMushroomsInTinCooked, "Fried Mushrooms In Tin", 243);
+        AddItemInfo(JaffaItem.friedMushrooms, "Fried Mushrooms", 246);
+
+        AddItemInfo(JaffaItem.shroomburger, "Shroomburger Incomplete", 242, "Shroomburger");
+        AddItemInfo(JaffaItem.shroomburgerInBun, "Shroomburger", 240);
+        AddItemInfo(JaffaItem.shroomburgerInBunWithCheese, "Shroomburger With Cheese", 239);
+        AddItemInfo(JaffaItem.mincedMushrooms, "Minced Mushrooms", 241);
+        AddItemInfo(JaffaItem.shroomburgerRaw, "Shroomburger Raw", 247);
+        AddItemInfo(fryingPanShroomburgerRaw, "Frying Pan Shroomburger Raw", 123, "Raw Shroomburger in Frying Pan");
+        AddItemInfo(fryingPanShroomburger, "Frying Pan Shroomburger", 123, "Shroomburger in Frying Pan");
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -664,6 +677,21 @@ public class Items extends ItemManagerAccessor {
         BlockSink.addFillableItem(getItem(cookingPot), getItem(cookingPotWater));
 
         createJaffaFood(bananaInChocolate, 3, 1.2f).setPotionEffect(Potion.regeneration.id, 4, 0, 0.1f);
+
+        createJaffaFood(fruitSalad, 4, 0.6f).setPotionEffect(Potion.moveSpeed.id, 30, 0, 0.33f).setReturnItem(getItemStack(woodenBowl));
+        createJaffaItem(friedMushroomsInTinRaw);
+        createJaffaItem(friedMushroomsInTinCooked);
+        createJaffaFood(friedMushrooms, 6, 0.95f).setPotionEffect(Potion.regeneration.id, 6, 0, 1f).setReturnItem(getItemStack(plate)).setMaxStackSize(24);
+
+        createJaffaItem(mincedMushrooms);
+        createJaffaItem(shroomburger);
+        createJaffaItem(shroomburgerRaw);
+
+        createJaffaFood(shroomburgerInBunWithCheese, 6, 0.7f).setPotionEffect(Potion.nightVision.id, 80, 0, 0.15f);
+        createJaffaFood(shroomburgerInBun, 5, 0.85f).setPotionEffect(Potion.nightVision.id, 60, 0, 0.15f);
+
+        createJaffaItem(fryingPanShroomburgerRaw);
+        createJaffaItem(fryingPanShroomburger);
 
         createItemsRegistration();
     }

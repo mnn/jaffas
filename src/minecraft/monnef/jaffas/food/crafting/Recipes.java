@@ -358,7 +358,8 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(getItemStack(glassMilk, 2), getItem(milkBoxFull), getItem(glassEmpty), getItem(glassEmpty));
 
         addRecipe(new ShapedOreRecipe(getItemStack(woodenBowl, 2), "W W", " S ", 'W', WOOD_PLANK, 'S', WOOD_SLAB));
-        addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), Items.MUSHROOM, Items.MUSHROOM));
+        addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM));
+        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(cookedMushroomsRaw), 3), getItem(woodenBowl), getItem(woodenBowl), getItem(woodenBowl), Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM));
         GameRegistry.addSmelting(getItem(cookedMushroomsRaw).itemID, getItemStack(cookedMushrooms), 0.3f);
 
         GameRegistry.addSmelting(getItem(pepperStuffedRaw).itemID, getItemStack(pepperStuffed), 0.2f);
@@ -425,6 +426,8 @@ public class Recipes {
         GuideBookHelper.generateGuideBook();
 
         RegistryUtils.registerBlockPackingRecipe(ItemHelper.getItemStackAnyDamage(blockSwitchgrass), new ItemStack(blockSwitchgrassSolid));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), getItemStack(duckEgg), getItemStack(duckEgg), new ItemStack(Item.sugar), getItem(milkBoxFull));
     }
 
     public static void addTableRecipe(ItemStack output, int color) {
@@ -464,7 +467,7 @@ public class Recipes {
         JaffaCraftingHandler.AddPersistentItem(coupled, false, fryingPan);
     }
 
-    private static void addFryingPanRecipe(JaffaItem input, JaffaItem coupledRaw, JaffaItem coupled, JaffaItem output) {
+    public static void addFryingPanRecipe(JaffaItem input, JaffaItem coupledRaw, JaffaItem coupled, JaffaItem output) {
         addFryingPanRecipe(getItem(input), coupledRaw, coupled, output);
     }
 

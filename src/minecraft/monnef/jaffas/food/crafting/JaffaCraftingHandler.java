@@ -110,7 +110,11 @@ public class JaffaCraftingHandler implements ICraftingHandler {
 
             int slot = getFreeSlot(matrix);
             if (slot < 0 || slot >= matrix.getSizeInventory()) {
-                throw new RuntimeException("No space for recipe output - corrupt recipe?");
+                if (player != null) {
+                    // no space in crafting matrix, give item directly to a player
+                    PlayerHelper.giveItemToPlayer(player, new ItemStack(info.substituteItemID, info.substituteItemsCount, 0));
+                }
+                return;
             }
 
             if (debug) {

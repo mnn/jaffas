@@ -33,7 +33,8 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
-        String subTitle = FungiCatalog.get(stack.getItemDamage()).subTitle;
+        FungusInfo info = FungiCatalog.get(stack.getItemDamage());
+        String subTitle = info.subTitle;
         if (subTitle != null && !subTitle.isEmpty()) {
             list.add(subTitle);
         }
@@ -48,6 +49,13 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
         }
     }
 
+    @Override
+    public String getUnlocalizedName(ItemStack itemstack) {
+        FungusInfo info = FungiCatalog.get(itemstack.getItemDamage());
+        if (info == null) return getUnlocalizedName();
+        String subName = info.title.toLowerCase();
+        return getUnlocalizedName() + "." + subName;
+    }
 
     // MFR
     @Override

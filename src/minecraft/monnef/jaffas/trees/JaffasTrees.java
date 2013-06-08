@@ -89,6 +89,7 @@ import static monnef.jaffas.food.item.JaffaItem.beansWithTomatoRaw;
 import static monnef.jaffas.food.item.JaffaItem.cakeTin;
 import static monnef.jaffas.food.item.JaffaItem.chocolate;
 import static monnef.jaffas.food.item.JaffaItem.duckRaw;
+import static monnef.jaffas.food.item.JaffaItem.fruitSalad;
 import static monnef.jaffas.food.item.JaffaItem.jamP;
 import static monnef.jaffas.food.item.JaffaItem.jamRaspberry;
 import static monnef.jaffas.food.item.JaffaItem.jamStrawberry;
@@ -148,6 +149,7 @@ public class JaffasTrees extends jaffasMod {
 
     public static final String LEMON = "fruitLemon";
     public static final String ORANGE = "fruitOrange";
+    private static final String FRUIT = "jaffasFruit";
 
     public static FruitType getActualLeavesType(Block block, int blockMetadata) {
         BlockFruitLeaves b = (BlockFruitLeaves) block;
@@ -252,7 +254,16 @@ public class JaffasTrees extends jaffasMod {
     public static BlockFruitLeavesDummy dummyLeaves;
 
     public static enum bushType {
-        Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato, Mustard, Peanuts, Pea, Bean
+        Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato, Mustard, Peanuts, Pea, Bean;
+
+        public static boolean isFruit(bushType type) {
+            switch (type) {
+                case Strawberry:
+                case Raspberry:
+                    return true;
+            }
+            return false;
+        }
     }
 
     public static EnumMap<bushType, BushInfo> BushesList = new EnumMap<bushType, BushInfo>(bushType.class);
@@ -382,6 +393,9 @@ public class JaffasTrees extends jaffasMod {
             Item fruit = constructFruit(info.itemFruitID, info.eatable, info.fruitTexture, info.getFruitLanguageName(), info.fruitTitle);
             fruit.setCreativeTab(creativeTab);
             info.itemFruit = fruit;
+            if (bushType.isFruit(entry.getKey())) {
+                registerFruitItem(fruit);
+            }
 
             Item dropFromPlant = info.product == null ? info.itemFruit : info.product;
             BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, dropFromPlant, info.itemSeeds, info.renderer);
@@ -401,6 +415,10 @@ public class JaffasTrees extends jaffasMod {
                 CompostRegister.addStack(dropFromPlant, DEFAULT_FRUIT_COMPOSTING_VALUE);
             }
         }
+    }
+
+    public static void registerFruitItem(Item fruit) {
+        OreDictionary.registerOre(FRUIT, fruit);
     }
 
     private void AddBushInfo(bushType type, String name, String seedsTitle, int seedsTexture, String plantTitle, int plantTexture, String fruitTitle, int fruitTexture, Item product, int phases, int renderer, EatableType eatable, DropType drop) {
@@ -477,15 +495,22 @@ public class JaffasTrees extends jaffasMod {
 
         itemLemon = constructFruit(itemLemonID, NotEatable, 68, "lemon", "Lemon");
         OreDictionary.registerOre(LEMON, itemLemon);
+        registerFruitItem(itemLemon);
 
         itemOrange = constructFruit(itemOrangeID, EatableNormal, 69, "orange", "Orange");
         OreDictionary.registerOre(ORANGE, itemOrange);
+        registerFruitItem(itemOrange);
 
         itemPlum = constructFruit(itemPlumID, EatableNormal, 70, "plum", "Plum");
+        registerFruitItem(itemPlum);
 
         itemCoconut = constructFruit(itemCoconutID, NotEatable, 71, "coconut", "Coconut");
+        registerFruitItem(itemCoconut);
 
         itemBanana = constructFruit(itemBananaID, EatableNormal, 72, "banana", "Banana");
+        registerFruitItem(itemBanana);
+
+        registerFruitItem(Item.appleRed);
 
         if (ModuleManager.isModuleEnabled(technic)) {
             CompostRegister.addStack(itemLemon, DEFAULT_FRUIT_COMPOSTING_VALUE);
@@ -695,6 +720,9 @@ public class JaffasTrees extends jaffasMod {
         JaffaCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin).itemID);
 
         GameRegistry.addShapelessRecipe(getItemStack(bananaInChocolate, 2), itemBanana, getItem(chocolate), itemBanana);
+
+        addRecipe(new ShapedOreRecipe(getItemStack(fruitSalad), "FFF", " B ", 'B', getItem(woodenBowl), 'F', FRUIT));
+        addRecipe(new ShapedOreRecipe(getItemStack(fruitSalad, 3), "FFF", "FFF", "BBB", 'B', getItem(woodenBowl), 'F', FRUIT));
     }
 
     public static Item getFruit(bushType type) {

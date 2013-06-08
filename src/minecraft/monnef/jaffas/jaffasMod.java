@@ -26,6 +26,11 @@ public abstract class jaffasMod {
 
     private ModMetadata metaData;
 
+    /* Loading constrains of modules ("->" denotes relation "is loaded before")
+        food -> trees -> technic -> power
+        food -> xmas
+   */
+
     protected jaffasMod() {
     }
 

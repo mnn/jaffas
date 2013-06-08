@@ -27,6 +27,7 @@ public class FungusInfo {
     public Boolean[] stateNeedCompostToGrow;
     public boolean revertsWithoutCompost;
     public int growMultiplierOfCompost = 4;
+    public boolean markedEatableForRecipes;
 
     public ItemStack createLoot() {
         int count = dropCount.getRandom();
@@ -97,5 +98,10 @@ public class FungusInfo {
         ONLY_ZERO_STATE,
         ONLY_LAST_STATE,
         ALL_STATES,
+    }
+
+    public FungusInfo markEatableForRecipes() {
+        markedEatableForRecipes = true;
+        return this;
     }
 }
