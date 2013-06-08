@@ -36,7 +36,7 @@ public class GuiCompost extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-        fontRenderer.drawString("Compost", 8, 6, 4210752);
+        fontRenderer.drawString("Composting tank", 8, 6, 4210752);
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
@@ -65,9 +65,11 @@ public class GuiCompost extends GuiContainer {
         @Override
         public List<String> handleTooltipFirst(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
             if (!(gui instanceof GuiCompost)) return currenttip;
+            GuiCompost compostGui = (GuiCompost) gui;
             if (GuiHelper.isMouseInRect(gui, mousex, mousey, 76, 20, 16, TANK_METER_HEIGHT_MAX)) {
-                GuiCompost compostGui = (GuiCompost) gui;
-                currenttip.add(String.format("Tank: %d/%d", compostGui.core.getTankMeter(), compostGui.core.getMaxTankValue()));
+                currenttip.add(String.format("§2Compost §8(§7%d§8/§7%d§8)§r", compostGui.core.getTankMeter(), compostGui.core.getMaxTankValue()));
+            } else if (GuiHelper.isMouseInRect(gui, mousex, mousey, 102, 32, 22, 17)) {
+                currenttip.add(String.format("§7%d%%§r", (compostGui.core.getWorkMeter() * 100) / compostGui.core.getMaxWork()));
             }
             return currenttip;
         }
