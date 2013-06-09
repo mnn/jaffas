@@ -28,17 +28,21 @@ public class FungiCatalog {
 
     public static final int PORCINO_ID = 1;
     public static final int PARASOL_ID = 2;
+    public static final int FLYAGARIC_ID = 3;
 
     private static boolean groupsRegistered;
 
+
     static {
         catalog = new HashMap<Integer, FungusInfo>();
-        createSpecie("Porcino", "Boletus Edulis", PORCINO_ID, 3, 10, 30, 1, 10, 2, 4, 1, 80, 2, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5)).markEatableForRecipes();
-        createSpecie("Parasol", "Macrolepiota Procera", PARASOL_ID, 3, 10, 30, 1, 10, 1, 3, 1, 80, 3, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5)).markEatableForRecipes();
+        createSpecie("Porcino", "Boletus Edulis", PORCINO_ID, 3, 5, 30, 1, 10, 2, 4, 1, 90, 2, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5)).markEatableForRecipes();
+        createSpecie("Parasol", "Macrolepiota Procera", PARASOL_ID, 3, 10, 35, 1, 10, 1, 3, 1, 80, 3, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5)).markEatableForRecipes();
+        createSpecie("Fly Agaric", "Amanita Muscaria", FLYAGARIC_ID, 3, 15, 25, 3, 15, 1, 2, 2, 70, 2, 4, Interval.fromArray(2, 3, 1, 5, 1, 7, 1, 2));
 
         blockIdToMushroom = new HashMap<Integer, Multiset<Integer>>();
         addMushroomDropFromBlock(Block.mushroomBrown.blockID, PORCINO_ID, 3);
         addMushroomDropFromBlock(Block.mushroomBrown.blockID, PARASOL_ID, 2);
+        addMushroomDropFromBlock(Block.mushroomRed.blockID, FLYAGARIC_ID, 2);
     }
 
     public static void registerShroomGroups() {

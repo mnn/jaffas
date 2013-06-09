@@ -22,6 +22,7 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
         ArrayList<ModelFungi[]> list = new ArrayList<ModelFungi[]>();
         insertModelSeq(list, new ModelFungiOneStageOne(), new ModelFungiOneStageTwo(), new ModelFungiOneStageThree());
         insertModelSeq(list, new ModelFungiParasolStageOne(), new ModelFungiParasolStageTwo(), new ModelFungiParasolStageThree());
+        insertModelSeq(list, new ModelFlyAgaricStageOne(), new ModelFlyAgaricStageTwo(), new ModelFlyAgaricStageThree());
         fungi = list.toArray(new ModelFungi[][]{});
     }
 
