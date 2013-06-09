@@ -384,6 +384,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.shroomburgerRaw, "Shroomburger Raw", 247);
         AddItemInfo(fryingPanShroomburgerRaw, "Frying Pan Shroomburger Raw", 123, "Raw Shroomburger in Frying Pan");
         AddItemInfo(fryingPanShroomburger, "Frying Pan Shroomburger", 123, "Shroomburger in Frying Pan");
+
+        AddItemInfo(JaffaItem.flyAgaricChopped, "Chopped Fly Agaric", 248);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -692,6 +694,8 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(fryingPanShroomburgerRaw);
         createJaffaItem(fryingPanShroomburger);
+
+        createJaffaItem(flyAgaricChopped);
 
         createItemsRegistration();
     }

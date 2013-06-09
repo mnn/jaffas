@@ -1,3 +1,9 @@
+## 0.4.21
+- changed naming of TEs (read more at wiki - ignoring this change can lead to a damaged world save!)
+- new mushroom - fly agaric
+- multi-lamp
+- new foods - shroomburger and fruit salad
+
 ## 0.4.20
 - mushrooms
 - banana tree

@@ -14,6 +14,8 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.core.utils.DyeColor;
+import monnef.core.utils.DyeHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ItemBlockJaffas;
@@ -22,6 +24,7 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
+import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
@@ -85,6 +88,7 @@ import static monnef.jaffas.food.item.JaffaItem.cakeTin;
 import static monnef.jaffas.food.item.JaffaItem.cheeseSlice;
 import static monnef.jaffas.food.item.JaffaItem.cookedMushroomsRaw;
 import static monnef.jaffas.food.item.JaffaItem.cookingPot;
+import static monnef.jaffas.food.item.JaffaItem.flyAgaricChopped;
 import static monnef.jaffas.food.item.JaffaItem.friedMushrooms;
 import static monnef.jaffas.food.item.JaffaItem.friedMushroomsInTinCooked;
 import static monnef.jaffas.food.item.JaffaItem.friedMushroomsInTinRaw;
@@ -619,6 +623,9 @@ public class JaffasTechnic extends jaffasMod {
         Recipes.addFryingPanRecipe(shroomburgerRaw, JaffaItem.fryingPanShroomburgerRaw, JaffaItem.fryingPanShroomburger, shroomburger);
         GameRegistry.addShapelessRecipe(getItemStack(shroomburgerInBun, 5), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(shroomburger), getItem(onionSliced));
         GameRegistry.addShapelessRecipe(getItemStack(shroomburgerInBunWithCheese, 6), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(shroomburger), getItem(onionSliced), getItem(cheeseSlice));
+
+        RecipesBoard.addRecipe(new ItemStack(JaffasTechnic.fungus, 1, FungiCatalog.FLYAGARIC_ID), getItemStack(flyAgaricChopped, 1));
+        GameRegistry.addShapelessRecipe(DyeHelper.getDye(DyeColor.RED), new ItemStack(fungus, 1, FungiCatalog.FLYAGARIC_ID), new ItemStack(fungus, 1, FungiCatalog.FLYAGARIC_ID));
     }
 
     private Item getItem(JaffaItem item) {

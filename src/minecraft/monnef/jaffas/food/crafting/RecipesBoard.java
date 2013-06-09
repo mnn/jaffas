@@ -8,6 +8,7 @@ package monnef.jaffas.food.crafting;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.HashMap;
 
@@ -20,8 +21,12 @@ public class RecipesBoard {
         addRecipe(input, 1, output, 1);
     }
 
+    public static void addRecipe(JaffaItem input, int inputCount, int inputDamage, JaffaItem output, int outputCount, int outputDamage) {
+        addRecipe(new ItemStack(getItem(input), inputCount, inputDamage), new ItemStack(getItem(output), outputCount, outputDamage));
+    }
+
     public static void addRecipe(JaffaItem input, int inputCount, JaffaItem output, int outputCount) {
-        addRecipe(new ItemStack(getItem(input), inputCount), new ItemStack(getItem(output), outputCount));
+        addRecipe(new ItemStack(getItem(input), inputCount, OreDictionary.WILDCARD_VALUE), new ItemStack(getItem(output), outputCount));
     }
 
     public static void addRecipe(ItemStack input, ItemStack output) {
@@ -53,6 +58,9 @@ public class RecipesBoard {
         BoardRecipe recipe = recipes.get(input.itemID);
 
         if (recipe == null) return null;
+        int recipeItemInputDamage = recipe.getInput().getItemDamage();
+        if (recipeItemInputDamage != OreDictionary.WILDCARD_VALUE && recipeItemInputDamage != input.getItemDamage())
+            return null;
         if (recipe.getInput().stackSize > input.stackSize) return null;
 
         if (decreaseOutput) {
