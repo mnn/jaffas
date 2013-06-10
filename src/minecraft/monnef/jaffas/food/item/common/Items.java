@@ -15,6 +15,7 @@ import monnef.jaffas.food.item.ItemJaffaFood;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.ItemJaffaRecipeTool;
 import monnef.jaffas.food.item.ItemMagnifier;
+import monnef.jaffas.food.item.ItemMeatDryer;
 import monnef.jaffas.food.item.ItemPizza;
 import monnef.jaffas.food.item.ItemSink;
 import monnef.jaffas.food.item.ItemSpawnStone;
@@ -386,6 +387,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(fryingPanShroomburger, "Frying Pan Shroomburger", 123, "Shroomburger in Frying Pan");
 
         AddItemInfo(JaffaItem.flyAgaricChopped, "Chopped Fly Agaric", 248);
+
+        AddItemInfo(JaffaItem.meatDryer, "Meat Dryer", 249);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -696,6 +699,8 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(fryingPanShroomburger);
 
         createJaffaItem(flyAgaricChopped);
+
+        createJaffaItemManual(meatDryer, ItemMeatDryer.class);
 
         createItemsRegistration();
     }

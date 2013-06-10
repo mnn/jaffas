@@ -36,6 +36,7 @@ import monnef.jaffas.food.block.BlockFridge;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.BlockJaffaBomb;
 import monnef.jaffas.food.block.BlockJaffaStatue;
+import monnef.jaffas.food.block.BlockMeatDryer;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockPizza;
 import monnef.jaffas.food.block.BlockSink;
@@ -50,6 +51,7 @@ import monnef.jaffas.food.block.TileEntityColumn;
 import monnef.jaffas.food.block.TileEntityCross;
 import monnef.jaffas.food.block.TileEntityFridge;
 import monnef.jaffas.food.block.TileEntityJaffaStatue;
+import monnef.jaffas.food.block.TileEntityMeatDryer;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.block.TileEntityPizza;
 import monnef.jaffas.food.block.TileEntitySink;
@@ -166,6 +168,9 @@ public class JaffasFood extends jaffasMod {
 
     public static int blockDirDebug2ID;
     public static BlockJDirectional blockDir2;
+
+    public static int blockMeatDryerID;
+    public static BlockMeatDryer blockMeatDryer;
 
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -319,6 +324,7 @@ public class JaffasFood extends jaffasMod {
             blockTableID = idProvider.getBlockIDFromConfig("table");
             blockSwitchgrassID = idProvider.getBlockIDFromConfig("switchgrass");
             blockSwitchgrassSolidID = idProvider.getBlockIDFromConfig("switchgrassSolid");
+            blockMeatDryerID = idProvider.getBlockIDFromConfig("meatDryer");
             if (MonnefCorePlugin.debugEnv) {
                 blockDirDebug1ID = idProvider.getBlockIDFromConfig("blockDir1");
                 blockDirDebug2ID = idProvider.getBlockIDFromConfig("blockDir2");
@@ -501,6 +507,10 @@ public class JaffasFood extends jaffasMod {
 
         blockSwitchgrassSolid = new BlockSwitchgrassSolid(blockSwitchgrassSolidID, 240, 2);
         RegistryUtils.registerBlock(blockSwitchgrassSolid, "switchgrassSolid", "Block of Switchgrass");
+
+        blockMeatDryer = new BlockMeatDryer(blockMeatDryerID, 0);
+        RegistryUtils.registerBlock(blockMeatDryer, "meatDryer", "Meat Dryer");
+        JaffasRegistryHelper.registerTileEntity(TileEntityMeatDryer.class, "MeatDryer");
 
         if (MonnefCorePlugin.debugEnv) {
             blockDir1 = new BlockJDirectional(blockDirDebug1ID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.LOG_LIKE);

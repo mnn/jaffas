@@ -106,6 +106,8 @@ public class AchievementsHandler {
         addAchievement(knifeKitchen, "KnifeAch", 3, 10, getItem(knifeKitchen), null, false, "Going Sharp", "Combine some iron and a stick.");
         addAchievement(fryingPan, "PanAch", 3, 11, getItem(fryingPan), null, false, "Frying!", "From one jaffarrol ingot and four iron ones create a frying pan!");
         addAchievement(meatCleaver, "CleaverAch", 3, 12, getItem(meatCleaver), null, false, "Choppin'", "From one jaffarrol ingot and four iron ones create a meat cleaver.");
+
+        addCombinedAchievement("LordOfToolsAch", 5, 11, getItem(knifeKitchen), null, true, "Lord Of Tools", "", getCraftingAchievementIdsFromJaffaItems(knifeKitchen, fryingPan, meatCleaver));
     }
 
     private static Integer[] getCraftingAchievementIdsFromJaffaItems(JaffaItem... items) {
@@ -287,6 +289,7 @@ public class AchievementsHandler {
         }
     }
 
+    // called from server side
     public static void synchronizeAchievements(EntityPlayer player) {
         //getAchievementHolder(player).sendSyncPackets();
         if (!JaffasFood.achievementsDisabled) {

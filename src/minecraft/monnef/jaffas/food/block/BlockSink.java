@@ -16,6 +16,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.liquids.LiquidContainerRegistry;
+import net.minecraftforge.liquids.LiquidDictionary;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -23,6 +25,7 @@ import java.util.Random;
 public class BlockSink extends BlockJaffas {
     public static final int waterBit = 2;
     private static final boolean debug = false;
+    public static final String LIQUID_WATER = "Water";
 
     public BlockSink(int id, int texture) {
         super(id, texture, Material.iron);
@@ -83,7 +86,7 @@ public class BlockSink extends BlockJaffas {
 
     static {
         fillableItems = new HashMap<Integer, Integer>();
-        fillableItems.put(Item.bucketEmpty.itemID, Item.bucketWater.itemID);
+        //fillableItems.put(Item.bucketEmpty.itemID, Item.bucketWater.itemID);
     }
 
     public static void addFillableItem(Item empty, Item full) {
@@ -91,37 +94,52 @@ public class BlockSink extends BlockJaffas {
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        if (debug && JaffasFood.debug && !par1World.isRemote) {
-            int m = par1World.getBlockMetadata(par2, par3, par4);
-            par5EntityPlayer.sendChatToPlayer("meta: " + m);
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+        if (debug && JaffasFood.debug && !world.isRemote) {
+            int m = world.getBlockMetadata(x, y, z);
+            player.sendChatToPlayer("meta: " + m);
         }
 
-        if (par5EntityPlayer.isSneaking()) {
+        if (player.isSneaking()) {
             return false;
         }
 
-        int meta = par1World.getBlockMetadata(par2, par3, par4);
+        int meta = world.getBlockMetadata(x, y, z);
         if (!WaterIsReady(meta)) {
             return false;
         }
 
-        ItemStack currentItem = par5EntityPlayer.getCurrentEquippedItem();
+        // TODO: support LiquidContainerRegistry
+        ItemStack currentItem = player.getCurrentEquippedItem();
         if (currentItem != null) {
             Integer filledItem = fillableItems.get(currentItem.itemID);
             if (filledItem != null) {
-                par1World.setBlockMetadataWithNotify(par2, par3, par4, BitHelper.unsetBit(meta, waterBit), BlockHelper.NOTIFY_ALL);
+                changeStateToNoWater(world, x, y, z, meta);
                 currentItem.stackSize--;
-                if (!par1World.isRemote) {
-                    PlayerHelper.giveItemToPlayer(par5EntityPlayer, new ItemStack(filledItem, 1, 0));
+                if (!world.isRemote) {
+                    PlayerHelper.giveItemToPlayer(player, new ItemStack(filledItem, 1, 0));
                 }
                 return true;
             } else {
-                return false;
+                if (LiquidContainerRegistry.isEmptyContainer(currentItem)) {
+                    currentItem.stackSize--;
+                    changeStateToNoWater(world, x, y, z, meta);
+                    if (!world.isRemote) {
+                        ItemStack filledContainer = LiquidContainerRegistry.fillLiquidContainer(LiquidDictionary.getCanonicalLiquid(LIQUID_WATER), currentItem);
+                        PlayerHelper.giveItemToPlayer(player, filledContainer);
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
             }
         } else {
             return false;
         }
+    }
+
+    private void changeStateToNoWater(World world, int x, int y, int z, int meta) {
+        world.setBlockMetadataWithNotify(x, y, z, BitHelper.unsetBit(meta, waterBit), BlockHelper.NOTIFY_ALL);
     }
 
     public static boolean WaterIsReady(int meta) {
