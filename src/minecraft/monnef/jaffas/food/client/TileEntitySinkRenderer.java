@@ -59,7 +59,7 @@ public class TileEntitySinkRenderer extends TileEntitySpecialRenderer {
         bindTextureByName("/jaffas_faucet.png");
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
-        sink.render(0.0625F, BlockSink.WaterIsReady(meta));
+        sink.render(0.0625F, BlockSink.isWaterReady(meta));
 
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();

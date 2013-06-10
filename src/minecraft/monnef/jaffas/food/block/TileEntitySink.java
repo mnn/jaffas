@@ -35,7 +35,7 @@ public class TileEntitySink extends TileEntity {
 
         if (!worldObj.isRemote) {
             int meta = getBlockMetadata();
-            if (!BlockSink.WaterIsReady(meta)) {
+            if (!BlockSink.isWaterReady(meta)) {
                 delay--;
                 if (delay == 20) {
                     queueSound("water", 0.7f);

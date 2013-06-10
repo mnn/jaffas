@@ -105,30 +105,28 @@ public class BlockSink extends BlockJaffas {
         }
 
         int meta = world.getBlockMetadata(x, y, z);
-        if (!WaterIsReady(meta)) {
+        if (!isWaterReady(meta)) {
             return false;
         }
 
-        // TODO: support LiquidContainerRegistry
         ItemStack currentItem = player.getCurrentEquippedItem();
         if (currentItem != null) {
             Integer filledItem = fillableItems.get(currentItem.itemID);
             if (filledItem != null) {
                 changeStateToNoWater(world, x, y, z, meta);
-                currentItem.stackSize--;
-                if (!world.isRemote) {
-                    PlayerHelper.giveItemToPlayer(player, new ItemStack(filledItem, 1, 0));
-                }
+                doItemSwap(world, player, currentItem, new ItemStack(filledItem, 1, 0));
                 return true;
             } else {
                 if (LiquidContainerRegistry.isEmptyContainer(currentItem)) {
-                    currentItem.stackSize--;
-                    changeStateToNoWater(world, x, y, z, meta);
-                    if (!world.isRemote) {
-                        ItemStack filledContainer = LiquidContainerRegistry.fillLiquidContainer(LiquidDictionary.getCanonicalLiquid(LIQUID_WATER), currentItem);
-                        PlayerHelper.giveItemToPlayer(player, filledContainer);
+                    ItemStack filledContainer = LiquidContainerRegistry.fillLiquidContainer(LiquidDictionary.getCanonicalLiquid(LIQUID_WATER), currentItem);
+                    if (filledContainer != null) {
+                        changeStateToNoWater(world, x, y, z, meta);
+                        doItemSwap(world, player, currentItem, filledContainer);
+                        return true;
+                    } else {
+                        // incompatible container?
+                        return false;
                     }
-                    return true;
                 } else {
                     return false;
                 }
@@ -138,11 +136,18 @@ public class BlockSink extends BlockJaffas {
         }
     }
 
+    private void doItemSwap(World world, EntityPlayer player, ItemStack currentItem, ItemStack filledItem) {
+        currentItem.stackSize--;
+        if (!world.isRemote) {
+            PlayerHelper.giveItemToPlayer(player, filledItem);
+        }
+    }
+
     private void changeStateToNoWater(World world, int x, int y, int z, int meta) {
         world.setBlockMetadataWithNotify(x, y, z, BitHelper.unsetBit(meta, waterBit), BlockHelper.NOTIFY_ALL);
     }
 
-    public static boolean WaterIsReady(int meta) {
+    public static boolean isWaterReady(int meta) {
         return BitHelper.isBitSet(meta, waterBit);
     }
 
