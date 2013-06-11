@@ -60,7 +60,8 @@ public class BlockMultiLamp extends BlockTechnic {
         //JaffasFood.Log.printDebug(String.format("myMeta=%d, power=%d, strIndPower=%d, inputPower=%d", myMeta, power, world.getStrongestIndirectPower(x, y, z), world.getBlockPowerInput(x, y, z)));
         if (power != myMeta) {
             if (myMeta != 0) {
-                world.scheduleBlockUpdate(x, y, z, this.blockID, 4);
+                //world.scheduleBlockUpdate(x, y, z, this.blockID, 4);
+                refreshMetadata(world, x, y, z);
             } else {
                 refreshMetadata(world, x, y, z);
             }

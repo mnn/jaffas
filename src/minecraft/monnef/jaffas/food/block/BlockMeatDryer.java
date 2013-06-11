@@ -22,8 +22,8 @@ public class BlockMeatDryer extends BlockJaffas {
         super(id, texture, Material.wood);
         setBurnProperties(id, 15, 100);
         setHardness(0.25f);
+        setCreativeTab(null);
     }
-
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {

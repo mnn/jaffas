@@ -33,6 +33,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
         super(id, textureID, material);
         Block.setBurnProperties(id, 5, 20);
         setBlockBounds(0, 0, 0, 16 * U, 6 * U, 16 * U);
+        setHardness(0.25f);
     }
 
     @Override
