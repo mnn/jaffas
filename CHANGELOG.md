@@ -3,6 +3,7 @@
 - new mushroom - fly agaric
 - multi-lamp
 - new foods - shroomburger and fruit salad
+- sink supports containers from other mods
 
 ## 0.4.20
 - mushrooms
