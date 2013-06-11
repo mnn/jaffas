@@ -214,6 +214,12 @@ public class JaffasTechnic extends jaffasMod {
     public static BlockMultiLamp lamp;
     public static BlockMultiLampDummy lampDummy;
 
+    private int itemRainbowDustID;
+    public static ItemTechnic rainbowDust;
+
+    private int itemGemsID;
+    public static ItemTechnic gems;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -224,6 +230,7 @@ public class JaffasTechnic extends jaffasMod {
     public static EnumToolMaterial EnumToolMaterialJaffarrol = EnumHelper.addToolMaterial("Jaffarrol", 3, 1000, 9.0F, 3, 12);
 
     public static int lampRenderID;
+    private boolean disableRedstoneGadgets;
 
     @Mod.PreInit
     @Override
@@ -272,11 +279,17 @@ public class JaffasTechnic extends jaffasMod {
             blockConstructionDummyID = idProvider.getBlockIDFromConfig("dummyContructionBlock");
             blockCompostCoreID = idProvider.getBlockIDFromConfig("compostCore");
 
-            // multi lamp
-            blockMultiLampID = idProvider.getBlockIDFromConfig("multiLamp");
-            int lampDummyId = idProvider.getTempBlockId();
-            lampDummy = new BlockMultiLampDummy(lampDummyId, 38);
-            idProvider.safelyRemoveTempBlock(lampDummyId, lampDummy);
+            disableRedstoneGadgets = config.get(Configuration.CATEGORY_GENERAL, "disableRedstoneGadgets", false).getBoolean(false);
+
+            if (!disableRedstoneGadgets) {
+                // multi lamp
+                blockMultiLampID = idProvider.getBlockIDFromConfig("multiLamp");
+                int lampDummyId = idProvider.getTempBlockId();
+                lampDummy = new BlockMultiLampDummy(lampDummyId, 38);
+                idProvider.safelyRemoveTempBlock(lampDummyId, lampDummy);
+                itemRainbowDustID = idProvider.getItemIDFromConfig("rainbowDust");
+                itemGemsID = idProvider.getItemIDFromConfig("gems");
+            }
 
             itemCompostID = idProvider.getItemIDFromConfig("compost");
 
@@ -463,8 +476,18 @@ public class JaffasTechnic extends jaffasMod {
             FarmingRegistry.registerFertilizer(compost);
         }
 
-        lamp = new BlockMultiLamp(blockMultiLampID, 37, 38);
-        RegistryUtils.registerBlock(lamp, "multiLamp", "Multi-Lamp");
+        if (!disableRedstoneGadgets) {
+            lamp = new BlockMultiLamp(blockMultiLampID, 37, 38);
+            RegistryUtils.registerBlock(lamp, "multiLamp", "Multi-Lamp");
+
+            gems = new ItemTechnic(itemGemsID, 40);
+            RegistryUtils.registerItem(gems, "colourfulGems", "Colourful Gems");
+            gems.setMaxStackSize(16);
+
+            rainbowDust = new ItemTechnic(itemRainbowDustID, 39);
+            RegistryUtils.registerItem(rainbowDust, "rainbowDust", "Rainbow Dust");
+            rainbowDust.setInfo("Maybe a key to the secret cow level?");
+        }
 
         createTools();
     }
@@ -626,6 +649,23 @@ public class JaffasTechnic extends jaffasMod {
 
         RecipesBoard.addRecipe(new ItemStack(JaffasTechnic.fungus, 1, FungiCatalog.FLYAGARIC_ID), getItemStack(flyAgaricChopped, 1));
         GameRegistry.addShapelessRecipe(DyeHelper.getDye(DyeColor.RED), new ItemStack(fungus, 1, FungiCatalog.FLYAGARIC_ID), new ItemStack(fungus, 1, FungiCatalog.FLYAGARIC_ID));
+
+        if (!disableRedstoneGadgets) {
+            GameRegistry.addShapelessRecipe(new ItemStack(rainbowDust, 4),
+                    DyeHelper.getDye(DyeColor.RED),
+                    DyeHelper.getDye(DyeColor.YELLOW),
+                    DyeHelper.getDye(DyeColor.BLUE),
+                    DyeHelper.getDye(DyeColor.GREEN),
+                    DyeHelper.getDye(DyeColor.BLACK),
+                    DyeHelper.getDye(DyeColor.WHITE),
+                    DyeHelper.getDye(DyeColor.BROWN),
+                    JaffasTechnic.limsew,
+                    JaffasTechnic.jaffarrolDust
+            );
+            GameRegistry.addSmelting(rainbowDust.itemID, new ItemStack(gems), 7f);
+
+            GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBR", "IRI", 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
+        }
     }
 
     private Item getItem(JaffaItem item) {

@@ -4,6 +4,7 @@
 - multi-lamp
 - new foods - shroomburger and fruit salad
 - sink supports containers from other mods
+- meat drying
 
 ## 0.4.20
 - mushrooms

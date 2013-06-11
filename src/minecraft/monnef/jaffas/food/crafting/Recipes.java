@@ -132,6 +132,7 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(sweetRollRaw).itemID, new ItemStack(getItem(sweetRoll)), 0.2F);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), getItem(milkBoxFull));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), getItemStack(duckEgg), getItemStack(duckEgg), new ItemStack(Item.sugar), getItem(milkBoxFull));
 
         GameRegistry.addRecipe(new ItemStack(getItem(creamRoll)), "RC", 'R', new ItemStack(getItem(sweetRoll)), 'C', new ItemStack(getItem(cream)));
 
@@ -427,7 +428,7 @@ public class Recipes {
 
         RegistryUtils.registerBlockPackingRecipe(ItemHelper.getItemStackAnyDamage(blockSwitchgrass), new ItemStack(blockSwitchgrassSolid));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), getItemStack(duckEgg), getItemStack(duckEgg), new ItemStack(Item.sugar), getItem(milkBoxFull));
+        GameRegistry.addShapedRecipe(getItemStack(meatDryer), "SSS", "SIS", "S S", 'S', Item.stick, 'I', Item.silk);
     }
 
     public static void addTableRecipe(ItemStack output, int color) {

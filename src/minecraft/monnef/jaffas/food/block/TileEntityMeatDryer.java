@@ -74,11 +74,11 @@ public class TileEntityMeatDryer extends TileEntity {
     }
 
     public enum MeatState {
-        ZOMBIE_RAW(2, 3),
-        ZOMBIE_HALF_DONE(1, 5),
+        ZOMBIE_RAW(7, 10),
+        ZOMBIE_HALF_DONE(5, 10),
         ZOMBIE_DONE,
-        NORMAL_RAW(1, 2),
-        NORMAL_HALF_DONE(1, 3),
+        NORMAL_RAW(3, 6),
+        NORMAL_HALF_DONE(4, 6),
         NORMAL_DONE,
         NO_MEAT;
 

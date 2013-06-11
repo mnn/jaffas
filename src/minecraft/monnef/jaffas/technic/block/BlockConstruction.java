@@ -19,6 +19,9 @@ import net.minecraftforge.common.ForgeDirection;
 import java.util.List;
 
 public class BlockConstruction extends BlockTechnic {
+    public static final int META_ALLOY = 0;
+    public static final int META_GLASSY = 1;
+
     public BlockConstruction(int id, int textureID) {
         super(id, textureID, Material.iron);
         setIconsCount(2);
@@ -34,8 +37,8 @@ public class BlockConstruction extends BlockTechnic {
 
     @Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
-        par3List.add(new ItemStack(this, 1, 0));
-        par3List.add(new ItemStack(this, 1, 1));
+        par3List.add(new ItemStack(this, 1, META_ALLOY));
+        par3List.add(new ItemStack(this, 1, META_GLASSY));
     }
 
     @Override
@@ -55,7 +58,7 @@ public class BlockConstruction extends BlockTechnic {
     }
 
     public static boolean isGlassy(int meta) {
-        return meta == 1;
+        return meta == META_GLASSY;
     }
 
     @Override
