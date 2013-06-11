@@ -508,7 +508,7 @@ public class JaffasFood extends jaffasMod {
         blockSwitchgrassSolid = new BlockSwitchgrassSolid(blockSwitchgrassSolidID, 240, 2);
         RegistryUtils.registerBlock(blockSwitchgrassSolid, "switchgrassSolid", "Block of Switchgrass");
 
-        blockMeatDryer = new BlockMeatDryer(blockMeatDryerID, 0);
+        blockMeatDryer = new BlockMeatDryer(blockMeatDryerID, 250);
         RegistryUtils.registerBlock(blockMeatDryer, "meatDryer", "Meat Dryer");
         JaffasRegistryHelper.registerTileEntity(TileEntityMeatDryer.class, "MeatDryer");
 

@@ -17,6 +17,7 @@ import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityColumn;
 import monnef.jaffas.food.block.TileEntityCross;
 import monnef.jaffas.food.block.TileEntityJaffaStatue;
+import monnef.jaffas.food.block.TileEntityMeatDryer;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.block.TileEntityPizza;
 import monnef.jaffas.food.block.TileEntitySink;
@@ -30,7 +31,6 @@ import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
@@ -49,6 +49,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityColumn.class, new TileEntityColumnRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityJaffaStatue.class, new TileEntityJaffaStatueRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPie.class, new TileEntityPieRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMeatDryer.class, new TileEntityMeatDryerRenderer());
 
         JaffasFood.renderID = RenderingRegistry.getNextAvailableRenderId();
         JaffasFood.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();

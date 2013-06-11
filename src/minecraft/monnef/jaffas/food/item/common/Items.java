@@ -388,7 +388,8 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.flyAgaricChopped, "Chopped Fly Agaric", 248);
 
-        AddItemInfo(JaffaItem.meatDryer, "Meat Dryer", 249);
+        AddItemInfo(JaffaItem.meatDryer, "Meat Drying Rack", 250);
+        AddItemInfo(JaffaItem.driedMeat, "Dried Meat", 249);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -701,6 +702,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(flyAgaricChopped);
 
         createJaffaItemManual(meatDryer, ItemMeatDryer.class);
+        createJaffaFood(driedMeat, 5, 1f);
 
         createItemsRegistration();
     }

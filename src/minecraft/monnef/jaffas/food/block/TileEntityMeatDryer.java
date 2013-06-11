@@ -30,7 +30,7 @@ public class TileEntityMeatDryer extends TileEntity {
         return (seconds * TPS) / tickQuantum;
     }
 
-    private enum MeatState {
+    public enum MeatState {
         ZOMBIE_RAW(2, 3),
         ZOMBIE_HALF_DONE(1, 5),
         ZOMBIE_DONE,
