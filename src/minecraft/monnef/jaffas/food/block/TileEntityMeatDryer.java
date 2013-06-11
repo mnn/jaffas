@@ -6,8 +6,13 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.Interval;
+import monnef.jaffas.food.JaffasFood;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+
+import java.util.HashMap;
 
 public class TileEntityMeatDryer extends TileEntity {
     public static final int MEAT_COUNT = 4;
@@ -19,6 +24,34 @@ public class TileEntityMeatDryer extends TileEntity {
 
     private int counter = 0;
     private MeatStatus[] meats = new MeatStatus[MEAT_COUNT];
+    private static final HashMap<Integer, MeatState> itemIdToMeatType = new HashMap<Integer, MeatState>();
+
+    static {
+        addNormalMeat(Item.beefRaw);
+        addNormalMeat(Item.fishRaw);
+        addNormalMeat(Item.porkRaw);
+        addNormalMeat(Item.chickenRaw);
+        addZombieMeat(Item.rottenFlesh);
+    }
+
+    private static void addItemIdToMeatTypeMapping(Item item, MeatState state) {
+        if (item == null) {
+            throw new RuntimeException("Item cannot be null, error occurred during meat registration in a drying rack TE.");
+        }
+        if (state == null) {
+            throw new RuntimeException("State cannot be null, error occurred during meat registration in a drying rack TE.");
+        }
+
+        itemIdToMeatType.put(item.itemID, state);
+    }
+
+    public static void addNormalMeat(Item item) {
+        addItemIdToMeatTypeMapping(item, MeatState.NORMAL_RAW);
+    }
+
+    public static void addZombieMeat(Item item) {
+        addItemIdToMeatTypeMapping(item, MeatState.ZOMBIE_RAW);
+    }
 
     public TileEntityMeatDryer() {
         for (int i = 0; i < meats.length; i++) {
@@ -123,6 +156,14 @@ public class TileEntityMeatDryer extends TileEntity {
             state = MeatState.values()[tag.getByte(MEAT_STATE_TAG)];
             ticksLeft = tag.getInteger(TICKS_LEFT_TAG);
         }
+
+        public boolean isFree() {
+            return state == MeatState.NO_MEAT;
+        }
+
+        public boolean isOccupied() {
+            return !isFree();
+        }
     }
 
     @Override
@@ -164,5 +205,45 @@ public class TileEntityMeatDryer extends TileEntity {
         }
     }
 
-    // TODO: placing and harvesting of meat
+    public boolean tryPlaceMeat(ItemStack input, boolean decreaseStackSize) {
+        if (!hasFreeSpace()) return false;
+        MeatState newMeat = getMeatStateFromStack(input);
+        if (newMeat == null) return false; // wrong item
+        int pos = getRandomFreePosition();
+        meats[pos].setNewMeat(newMeat);
+        return true;
+    }
+
+    private int getRandomFreePosition() {
+        int r = JaffasFood.rand.nextInt(MEAT_COUNT);
+        int current = getIndexOfNextMeat(JaffasFood.rand.nextInt(MEAT_COUNT), true);
+        for (int i = 0; i < r; i++) {
+            current++;
+            if (current >= meats.length) current = 0;
+            current = getIndexOfNextMeat(current, true);
+        }
+        return current;
+    }
+
+    // only call when there is at least one valid result!
+    private int getIndexOfNextMeat(int index, boolean lookForFreeSpot) {
+        while (meats[index].isOccupied() == lookForFreeSpot) {
+            index++;
+            if (index >= meats.length) index = 0;
+        }
+        return index;
+    }
+
+    private MeatState getMeatStateFromStack(ItemStack stack) {
+        return itemIdToMeatType.get(stack.itemID);
+    }
+
+    public boolean hasFreeSpace() {
+        for (int i = 0; i < meats.length; i++) {
+            if (meats[i].isFree()) return true;
+        }
+        return false;
+    }
+
+    // TODO: harvesting of meat
 }

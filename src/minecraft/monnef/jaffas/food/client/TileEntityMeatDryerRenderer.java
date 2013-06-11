@@ -11,17 +11,19 @@ import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import static monnef.jaffas.food.block.TileEntityMeatDryer.MeatState;
+
 public class TileEntityMeatDryerRenderer extends TileEntitySpecialRenderer {
     public static final float U = 0.0625F;
     private ModelMeatRack rack;
     private ModelMeat meat;
-    public static final int X_SHIFT = -11;
-    public static final int Y_SHIFT = 6;
-    private static final int[][] meatShifts = new int[][]{
-            new int[]{0, 0},
-            new int[]{X_SHIFT, 0},
-            new int[]{0, Y_SHIFT},
-            new int[]{X_SHIFT, Y_SHIFT},
+    public static final float X_SHIFT = -11 * U;
+    public static final float Y_SHIFT = 6 * U;
+    private static final float[][] meatShifts = new float[][]{
+            new float[]{0, 0},
+            new float[]{X_SHIFT, 0},
+            new float[]{0, Y_SHIFT},
+            new float[]{X_SHIFT, Y_SHIFT},
     };
 
     public TileEntityMeatDryerRenderer() {
@@ -73,14 +75,17 @@ public class TileEntityMeatDryerRenderer extends TileEntitySpecialRenderer {
 
         GL11.glTranslatef(6 * U, -4 * U, -4 * U);
         for (int i = 0; i < 4; i++) {
-            GL11.glPushMatrix();
+            MeatState currentMeat = tile.getCurrentMeatState(i);
+            if (currentMeat != MeatState.NO_MEAT) {
+                GL11.glPushMatrix();
 
-            int[] shift = meatShifts[i];
-            GL11.glTranslatef(shift[0] * U, 0, shift[1] * U);
-            bindMeatTexture(TileEntityMeatDryer.MeatState.values()[i]);
-            meat.render(U);
+                float[] shift = meatShifts[i];
+                GL11.glTranslatef(shift[0], 0, shift[1]);
+                bindMeatTexture(currentMeat);
+                meat.render(U);
 
-            GL11.glPopMatrix();
+                GL11.glPopMatrix();
+            }
         }
 
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
@@ -88,7 +93,7 @@ public class TileEntityMeatDryerRenderer extends TileEntitySpecialRenderer {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    private void bindMeatTexture(TileEntityMeatDryer.MeatState state) {
+    private void bindMeatTexture(MeatState state) {
         String texture;
         switch (state) {
             case ZOMBIE_RAW:

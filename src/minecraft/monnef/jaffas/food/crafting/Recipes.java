@@ -494,7 +494,7 @@ public class Recipes {
         addRecipe(new ShapedOreRecipe(output, "M", "O", 'M', Items.MALLET, 'O', input));
     }
 
-    private static Item getItem(JaffaItem item) {
+    public static Item getItem(JaffaItem item) {
         return JaffasFood.getItem(item);
     }
 
