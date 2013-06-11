@@ -7,9 +7,15 @@ package monnef.jaffas.food.block;
 
 import monnef.core.utils.Interval;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.crafting.Recipes;
+import monnef.jaffas.food.item.JaffaItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.INetworkManager;
+import net.minecraft.network.packet.Packet;
+import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.HashMap;
@@ -25,6 +31,7 @@ public class TileEntityMeatDryer extends TileEntity {
     private int counter = 0;
     private MeatStatus[] meats = new MeatStatus[MEAT_COUNT];
     private static final HashMap<Integer, MeatState> itemIdToMeatType = new HashMap<Integer, MeatState>();
+    private static final HashMap<MeatState, ItemStack> finishedMeatToItemStack = new HashMap<MeatState, ItemStack>();
 
     static {
         addNormalMeat(Item.beefRaw);
@@ -32,6 +39,9 @@ public class TileEntityMeatDryer extends TileEntity {
         addNormalMeat(Item.porkRaw);
         addNormalMeat(Item.chickenRaw);
         addZombieMeat(Item.rottenFlesh);
+
+        finishedMeatToItemStack.put(MeatState.NORMAL_DONE, Recipes.getItemStack(JaffaItem.driedMeat));
+        finishedMeatToItemStack.put(MeatState.ZOMBIE_DONE, Recipes.getItemStack(JaffaItem.driedMeat));
     }
 
     private static void addItemIdToMeatTypeMapping(Item item, MeatState state) {
@@ -60,7 +70,7 @@ public class TileEntityMeatDryer extends TileEntity {
     }
 
     private static int calcTicks(int seconds) {
-        return (seconds * TPS) / tickQuantum;
+        return seconds * TPS;
     }
 
     public enum MeatState {
@@ -138,13 +148,16 @@ public class TileEntityMeatDryer extends TileEntity {
         }
 
         // only on a server side
-        public void tick() {
+        public boolean tick() {
             ticksLeft -= tickQuantum;
             if (ticksLeft <= 0) {
                 ticksLeft = 0;
                 state = state.getNextStage();
                 computeNewTicksLeft();
+
+                return true;
             }
+            return false;
         }
 
         public void saveToNBT(NBTTagCompound tag) {
@@ -164,6 +177,26 @@ public class TileEntityMeatDryer extends TileEntity {
         public boolean isOccupied() {
             return !isFree();
         }
+
+        public boolean isFinished() {
+            return state == MeatState.NORMAL_DONE || state == MeatState.ZOMBIE_DONE;
+        }
+
+        public ItemStack harvest() {
+            if (!isFinished()) {
+                throw new RuntimeException("harvesting not finished meat");
+            }
+
+            MeatState oldState = state;
+            state = MeatState.NO_MEAT;
+            computeNewTicksLeft();
+            return finishedMeatToItemStack.get(oldState).copy();
+        }
+
+        @Override
+        public String toString() {
+            return state.toString() + "(" + ticksLeft + ")";
+        }
     }
 
     @Override
@@ -177,8 +210,13 @@ public class TileEntityMeatDryer extends TileEntity {
     }
 
     private void tickMeats() {
+        boolean dirty = false;
         for (MeatStatus meat : meats) {
-            meat.tick();
+            dirty |= meat.tick();
+        }
+
+        if (dirty) {
+            forceUpdate();
         }
     }
 
@@ -211,23 +249,25 @@ public class TileEntityMeatDryer extends TileEntity {
         if (newMeat == null) return false; // wrong item
         int pos = getRandomFreePosition();
         meats[pos].setNewMeat(newMeat);
+        forceUpdate();
+        if (decreaseStackSize) input.stackSize--;
         return true;
     }
 
     private int getRandomFreePosition() {
         int r = JaffasFood.rand.nextInt(MEAT_COUNT);
-        int current = getIndexOfNextMeat(JaffasFood.rand.nextInt(MEAT_COUNT), true);
+        int current = getIndexOfNextFreeSpot(JaffasFood.rand.nextInt(MEAT_COUNT));
         for (int i = 0; i < r; i++) {
             current++;
             if (current >= meats.length) current = 0;
-            current = getIndexOfNextMeat(current, true);
+            current = getIndexOfNextFreeSpot(current);
         }
         return current;
     }
 
     // only call when there is at least one valid result!
-    private int getIndexOfNextMeat(int index, boolean lookForFreeSpot) {
-        while (meats[index].isOccupied() == lookForFreeSpot) {
+    private int getIndexOfNextFreeSpot(int index) {
+        while (meats[index].isOccupied()) {
             index++;
             if (index >= meats.length) index = 0;
         }
@@ -245,5 +285,65 @@ public class TileEntityMeatDryer extends TileEntity {
         return false;
     }
 
-    // TODO: harvesting of meat
+    public boolean hasFinishedMeat() {
+        for (int i = 0; i < meats.length; i++) {
+            if (meats[i].isFinished()) return true;
+        }
+        return false;
+    }
+
+    public ItemStack harvestMeat() {
+        if (!hasFinishedMeat()) return null;
+        int toHarvest = getRandomFinishedMeatPosition();
+        ItemStack result = meats[toHarvest].harvest();
+        forceUpdate();
+        return result;
+    }
+
+    private int getRandomFinishedMeatPosition() {
+        int r = JaffasFood.rand.nextInt(MEAT_COUNT);
+        int current = getIndexOfNextFinishedMeat(JaffasFood.rand.nextInt(MEAT_COUNT));
+        for (int i = 0; i < r; i++) {
+            current++;
+            if (current >= meats.length) current = 0;
+            current = getIndexOfNextFinishedMeat(current);
+        }
+        return current;
+    }
+
+    // only call when there is at least one valid result!
+    private int getIndexOfNextFinishedMeat(int index) {
+        while (!meats[index].isFinished()) {
+            index++;
+            if (index >= meats.length) index = 0;
+        }
+        return index;
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+        writeToNBT(tag);
+        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+    }
+
+    @Override
+    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+        super.onDataPacket(net, pkt);
+        NBTTagCompound tag = pkt.customParam1;
+        readFromNBT(tag);
+    }
+
+    public void forceUpdate() {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+    }
+
+    public void printDebugInfo(EntityPlayer player) {
+        String m = "";
+        for (int i = 0; i < meats.length; i++) {
+            m += meats[i].toString() + " ";
+        }
+        player.addChatMessage(m);
+    }
 }

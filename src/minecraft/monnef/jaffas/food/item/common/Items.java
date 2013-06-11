@@ -390,7 +390,7 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.flyAgaricChopped, "Chopped Fly Agaric", 248);
 
-        AddItemInfo(JaffaItem.meatDryer, "Meat Drying Rack", 250);
+        AddItemInfo(JaffaItem.meatDryer, "Drying Rack", 250);
         AddItemInfo(JaffaItem.driedMeat, "Dried Meat", 249);
     }
 

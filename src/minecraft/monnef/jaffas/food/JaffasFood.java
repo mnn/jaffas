@@ -554,7 +554,7 @@ public class JaffasFood extends jaffasMod {
     }
 
     private void addCommands(ServerCommandManager manager) {
-        if (debug) {
+        if (debug || MonnefCorePlugin.debugEnv) {
             manager.registerCommand(new CommandJaffaHunger());
             manager.registerCommand(new CommandFridgeDebug());
         }
