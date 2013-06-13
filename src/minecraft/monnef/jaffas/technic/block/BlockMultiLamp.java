@@ -5,9 +5,14 @@
 
 package monnef.jaffas.technic.block;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.BlockHelper;
+import monnef.core.utils.RandomHelper;
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.client.EntityLampLightFX;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
@@ -101,5 +106,20 @@ public class BlockMultiLamp extends BlockTechnic {
             //return super.getLightValue(world, x, y, z);
         }
         return meta == 0 ? 0 : 15;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == 0 || JaffasTechnic.disableLampParticles) return;
+
+        float speed = 0.5f;
+        float mx = RandomHelper.generateRandomFromSymmetricInterval(speed);
+        float my = RandomHelper.generateRandomFromSymmetricInterval(speed);
+        float mz = RandomHelper.generateRandomFromSymmetricInterval(speed);
+        EntityLampLightFX fx = new EntityLampLightFX(world, x + .5, y + .5, z + .5, mx, my, mz, 30);
+        BlockMultiLampDummy.configureColor(fx, meta);
+        FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
     }
 }

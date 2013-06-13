@@ -7,19 +7,30 @@ package monnef.jaffas.technic.block;
 
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.DyeHelper;
+import monnef.jaffas.technic.client.EntityLampLightFX;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockMultiLampDummy extends BlockTechnic {
     private static int colors[];
+    private static float particleColors[][];
 
     static {
         colors = new int[16];
+
         for (int i = 0; i < 16; i++) {
             int c = DyeHelper.getIntColor(i);
             if (i > 0 && i <= 9) c = ColorHelper.addContrast(c, 1.33f);
             colors[i] = c;
+        }
+
+        particleColors = new float[16][3];
+        for (int i = 0; i < 16; i++) {
+            ColorHelper.IntColor c = ColorHelper.getColor(colors[i]);
+            particleColors[i][0] = c.getFloatRed();
+            particleColors[i][1] = c.getFloatGreen();
+            particleColors[i][2] = c.getFloatBlue();
         }
     }
 
@@ -40,5 +51,10 @@ public class BlockMultiLampDummy extends BlockTechnic {
     @Override
     public int getRenderColor(int meta) {
         return colors[meta];
+    }
+
+    public static void configureColor(EntityLampLightFX light, int meta) {
+        float[] color = particleColors[meta];
+        light.configureColor(color[0], color[1], color[2]);
     }
 }

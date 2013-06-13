@@ -10,6 +10,7 @@ import monnef.core.client.CustomBlockRenderingHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
@@ -28,7 +29,28 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+        // orig:
+        // renderer.renderStandardBlock(JaffasTechnic.lampDummy, x, y, z); // colored core
+
         renderer.renderStandardBlock(JaffasTechnic.lampDummy, x, y, z); // colored core
+
+        /*
+        GL11.glPushMatrix();
+        Tessellator tes = Tessellator.instance;
+        boolean fix = false;
+        if (tes.isDrawing) {
+            tes.draw();
+            fix = true;
+        }
+        GL11.glColor4f(1, 1, 1, .5f);
+        CustomBlockRenderingHelper.Render(block, 1, 1, renderer);
+        if (fix) {
+            tes.startDrawingQuads();
+        }
+        GL11.glColor4f(1, 1, 1, 1);
+        GL11.glPopMatrix();
+        */
+
         renderer.renderStandardBlock(JaffasTechnic.lamp, x, y, z);      // frame
         return true;
     }

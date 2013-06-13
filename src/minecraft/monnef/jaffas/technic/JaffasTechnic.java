@@ -231,6 +231,7 @@ public class JaffasTechnic extends jaffasMod {
 
     public static int lampRenderID;
     private boolean disableRedstoneGadgets;
+    public static boolean disableLampParticles;
 
     @Mod.PreInit
     @Override
@@ -285,7 +286,7 @@ public class JaffasTechnic extends jaffasMod {
                 // multi lamp
                 blockMultiLampID = idProvider.getBlockIDFromConfig("multiLamp");
                 int lampDummyId = idProvider.getTempBlockId();
-                lampDummy = new BlockMultiLampDummy(lampDummyId, 38);
+                lampDummy = new BlockMultiLampDummy(lampDummyId, 41);
                 idProvider.safelyRemoveTempBlock(lampDummyId, lampDummy);
                 itemRainbowDustID = idProvider.getItemIDFromConfig("rainbowDust");
                 itemGemsID = idProvider.getItemIDFromConfig("gems");
@@ -301,6 +302,7 @@ public class JaffasTechnic extends jaffasMod {
             if (config.get(Configuration.CATEGORY_GENERAL, "preciseTikcingOfFungiBox", false).getBoolean(false)) {
                 TileEntityFungiBox.tickQuantum = 1;
             }
+            disableLampParticles = config.get(Configuration.CATEGORY_GENERAL, "disableLampParticles", false).getBoolean(false);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {

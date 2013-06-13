@@ -5,12 +5,14 @@
 
 package monnef.jaffas.technic.block;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import forestry.api.farming.ICrop;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.client.EntityLampLightFX;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.FungusInfo;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,6 +38,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
     private static final String TAG_GROW = "timeToGrow";
     private static final int COMPOST_TICKS_MAX = 15 * 60 * 20;
     public static final int COMPOST_TICKS_PER_ONE_USE = 5 * 60 * 20;
+    public static final String TAG_SHOW_SPORES = "showSpores";
 
     private byte mushroomRotation;
     private byte boxRotation;
@@ -56,6 +59,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
     public static final int DEFAULT_QUANTUM_OF_TICKS = 20;
     public static int tickQuantum = DEFAULT_QUANTUM_OF_TICKS;
     private static boolean debugSpeedOverride = false;
+    private boolean showSporeEffect;
 
     @Override
     public void updateEntity() {
@@ -68,6 +72,11 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
 
             compostTicksLeft -= (mushroomPlanted() ? fungusTemplate.compostConsumptionSpeed : 1) * tickQuantum;
             if (compostTicksLeft < 0) compostTicksLeft = 0;
+
+            if (showSporeEffect && worldObj.isRemote) {
+                createSporeParticles();
+                showSporeEffect = false;
+            }
 
             if (mushroomPlanted()) {
                 if (canGrow()) {
@@ -95,6 +104,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
                             if (timeToSpore <= 0) {
                                 doSporage();
                                 setupNextSporeTime();
+                                update = true;
                             }
                         }
                     }
@@ -103,6 +113,23 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
             if (update) {
                 forceUpdate();
             }
+        }
+    }
+
+    private void createSporeParticles() {
+        for (int i = 0; i < 20; i++) {
+            float speed = 0.33f;
+            float mx = RandomHelper.generateRandomFromSymmetricInterval(speed);
+            float my = RandomHelper.generateRandomFromSymmetricInterval(speed / 10f);
+            float mz = RandomHelper.generateRandomFromSymmetricInterval(speed);
+            EntityLampLightFX fx = new EntityLampLightFX(worldObj,
+                    xCoord + .5 + RandomHelper.generateRandomFromSymmetricInterval(0.5f),
+                    yCoord + .8 + RandomHelper.generateRandomFromSymmetricInterval(0.3f),
+                    zCoord + .5 + RandomHelper.generateRandomFromSymmetricInterval(0.5f),
+                    mx, my, mz,
+                    60);
+            BlockMultiLampDummy.configureColor(fx, 15);
+            FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
         }
     }
 
@@ -157,6 +184,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
         if (!worldObj.isRemote) {
             boolean found = false;
             TileEntityFungiBox neighbour = null;
+            showSporeEffect = true;
 
             for (int i = 0; i < fungusTemplate.sporeTries; i++) {
                 int randomNeighbour = rand.nextInt(8);
@@ -237,6 +265,8 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
         NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
         writeToNBT(tag);
+        tag.setBoolean(TAG_SHOW_SPORES, showSporeEffect);
+        if (showSporeEffect) showSporeEffect = false;
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
     }
 
@@ -245,6 +275,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
         super.onDataPacket(net, pkt);
         NBTTagCompound tag = pkt.customParam1;
         readFromNBT(tag);
+        showSporeEffect = tag.getBoolean(TAG_SHOW_SPORES);
     }
 
     public byte getRenderRotationMushroom() {
