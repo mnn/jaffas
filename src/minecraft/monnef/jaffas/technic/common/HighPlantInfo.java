@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class HighPlantInfo {
     public int id = -1;
-    public int totalPlantHeight = 3;
+    public int totalPlantHeight = 2;
     public ItemStack seed;
     public ItemStack fruit;
     public Interval fruitCount;

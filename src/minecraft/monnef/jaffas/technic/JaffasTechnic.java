@@ -41,6 +41,7 @@ import monnef.jaffas.technic.block.BlockTechnic;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
 import monnef.jaffas.technic.block.TileEntityConstructionDummy;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
+import monnef.jaffas.technic.block.TileEntityHighPlant;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
@@ -52,6 +53,7 @@ import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
 import monnef.jaffas.technic.item.ItemCompost;
 import monnef.jaffas.technic.item.ItemFungus;
+import monnef.jaffas.technic.item.ItemHightPlantPost;
 import monnef.jaffas.technic.item.ItemHoeTechnic;
 import monnef.jaffas.technic.item.ItemLocomotive;
 import monnef.jaffas.technic.item.ItemMushroomKnife;
@@ -224,6 +226,9 @@ public class JaffasTechnic extends jaffasMod {
     private int blockHighPlantID;
     public static BlockHighPlant highPlant;
 
+    private int itemHighPlantPostID;
+    public static ItemHightPlantPost highPlantPost;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -299,6 +304,7 @@ public class JaffasTechnic extends jaffasMod {
             itemCompostID = idProvider.getItemIDFromConfig("compost");
 
             blockHighPlantID = idProvider.getBlockIDFromConfig("highPlant");
+            itemHighPlantPostID = idProvider.getItemIDFromConfig("highPlantPost");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -499,6 +505,10 @@ public class JaffasTechnic extends jaffasMod {
 
         highPlant = new BlockHighPlant(blockHighPlantID, 0);
         RegistryUtils.registerBlock(highPlant, "highPlant", "High Plant");
+
+        highPlantPost = new ItemHightPlantPost(itemHighPlantPostID, 0);
+        RegistryUtils.registerItem(highPlantPost, "highPlantPost", "Plant Post");
+        JaffasRegistryHelper.registerTileEntity(TileEntityHighPlant.class, "highPlantPost");
 
         createTools();
     }
