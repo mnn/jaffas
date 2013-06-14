@@ -33,6 +33,7 @@ import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
 import monnef.jaffas.technic.block.BlockConstructionDummy;
 import monnef.jaffas.technic.block.BlockFungiBox;
+import monnef.jaffas.technic.block.BlockHighPlant;
 import monnef.jaffas.technic.block.BlockMultiLamp;
 import monnef.jaffas.technic.block.BlockMultiLampDummy;
 import monnef.jaffas.technic.block.BlockOre;
@@ -220,6 +221,9 @@ public class JaffasTechnic extends jaffasMod {
     private int itemGemsID;
     public static ItemTechnic gems;
 
+    private int blockHighPlantID;
+    public static BlockHighPlant highPlant;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -293,6 +297,8 @@ public class JaffasTechnic extends jaffasMod {
             }
 
             itemCompostID = idProvider.getItemIDFromConfig("compost");
+
+            blockHighPlantID = idProvider.getBlockIDFromConfig("highPlant");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -490,6 +496,9 @@ public class JaffasTechnic extends jaffasMod {
             RegistryUtils.registerItem(rainbowDust, "rainbowDust", "Rainbow Dust");
             rainbowDust.setInfo("Maybe a key to the secret cow level?");
         }
+
+        highPlant = new BlockHighPlant(blockHighPlantID, 0);
+        RegistryUtils.registerBlock(highPlant, "highPlant", "High Plant");
 
         createTools();
     }
