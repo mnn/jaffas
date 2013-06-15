@@ -42,6 +42,11 @@ public class HighPlantLifeCycleDescriptor implements IHighPlantLifeCycleDescript
         );
     }
 
+    @Override
+    public boolean isFinalStage(int stage) {
+        return stage == stagesCount - 1;
+    }
+
     public enum LifeCycleType {
         ORDINAL
     }

@@ -1,10 +1,12 @@
 package monnef.jaffas.technic.block;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class BlockHighPlant extends BlockTechnic implements IPlantable {
     private static final int SLAVE_BIT = 3;
     private static final int INTEGRITY_CHECK_RADIUS = 5;
+    private static final int BLOCK_ACTIVATION_RADIUS = 3;
 
     public BlockHighPlant(int id, int textureID) {
         super(id, textureID, Material.plants);
@@ -45,6 +48,26 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
                 ((TileEntityHighPlant) tile).planIntegrityCheck();
             }
         }
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
+        TileEntityHighPlant te = null;
+
+        int ny = y;
+        int tested = 0;
+        while (te == null && tested < BLOCK_ACTIVATION_RADIUS) {
+            te = (TileEntityHighPlant) world.getBlockTileEntity(x, ny, z);
+            ny--;
+            tested++;
+        }
+
+        boolean res = te.playerActivatedBox(player);
+        if (MonnefCorePlugin.debugEnv) {
+            te.printDebugInfo(player);
+        }
+
+        return res;
     }
 
     @Override

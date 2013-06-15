@@ -9,4 +9,6 @@ public interface IHighPlantLifeCycleDescriptor {
     int getStagesCount();
 
     int generateStageLength(int stageNumber);
+
+    boolean isFinalStage(int stage);
 }
