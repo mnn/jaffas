@@ -3,6 +3,7 @@ package monnef.jaffas.food.block;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.DirectionHelper;
+import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -75,7 +76,7 @@ public class BlockJDirectional extends BlockJaffas {
         this(id, textureStart, texturesCountPerSet, material, type);
         this.texturesCountPerSet = texturesCountPerSet;
         this.textureSetsCount = textureSetsCount;
-        this.multipleTextureSets = true;
+        this.multipleTextureSets = textureSetsCount > 1;
         setIconsCount(textureSetsCount * texturesCountPerSet);
     }
 
@@ -234,5 +235,11 @@ public class BlockJDirectional extends BlockJaffas {
         }
 
         return textureIndex + multiTextureOffset;
+    }
+
+    public IntegerCoordinates calculateFacingBlock(World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        ForgeDirection dir = ForgeDirection.getOrientation(getRotation(meta));
+        return new IntegerCoordinates(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ, world);
     }
 }
