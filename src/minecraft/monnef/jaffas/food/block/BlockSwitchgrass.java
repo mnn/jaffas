@@ -20,9 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.player.BonemealEvent;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
@@ -144,6 +141,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
         int myMeta = world.getBlockMetadata(x, y, z);
+        int myId = world.getBlockMetadata(x, y, z);
         int topBlock = world.getBlockId(x, y + 1, z);
         int bottomBlock = world.getBlockId(x, y - 1, z);
 
@@ -163,6 +161,9 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         if (bottomBlock == blockID || floorCanSustainPlant(world, x, y, z)) {
             bottom = true;
         }
+
+        // fix for Forge grass planting (it calls this method on an air block)
+        if (bottom && myId == 0) return true;
 
         return top && bottom;
     }

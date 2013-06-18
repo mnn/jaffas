@@ -399,6 +399,8 @@ public class JaffasFood extends jaffasMod {
 
         GameRegistry.registerPlayerTracker(new PlayerTracker());
 
+        MinecraftForge.addGrassPlant(blockSwitchgrass, BlockSwitchgrass.VALUE_TOP, 5);
+
         printInitializedMessage();
     }
 

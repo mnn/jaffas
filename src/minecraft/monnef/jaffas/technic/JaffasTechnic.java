@@ -229,6 +229,18 @@ public class JaffasTechnic extends jaffasMod {
     private int itemHighPlantPostID;
     public static ItemHightPlantPost highPlantPost;
 
+    private int itemHopID;
+    public static ItemTechnic hop;
+
+    private int itemProcessedHopID;
+    public static ItemTechnic processedHop;
+
+    private int itemProcessedHopInBucketID;
+    public static ItemTechnic processedHopInBucket;
+
+    private int itemBrewedHopInBucketID;
+    public static ItemTechnic brewedHopInBucket;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -305,6 +317,11 @@ public class JaffasTechnic extends jaffasMod {
 
             blockHighPlantID = idProvider.getBlockIDFromConfig("highPlant");
             itemHighPlantPostID = idProvider.getItemIDFromConfig("highPlantPost");
+
+            itemHopID = idProvider.getItemIDFromConfig("hop");
+            itemProcessedHopID = idProvider.getItemIDFromConfig("processedHop");
+            itemProcessedHopInBucketID = idProvider.getItemIDFromConfig("processedHopBucket");
+            itemBrewedHopInBucketID = idProvider.getItemIDFromConfig("brewedHopBucket");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -510,6 +527,20 @@ public class JaffasTechnic extends jaffasMod {
         RegistryUtils.registerItem(highPlantPost, "highPlantPost", "Plant Post");
         JaffasRegistryHelper.registerTileEntity(TileEntityHighPlant.class, "highPlantPost");
 
+        hop = new ItemTechnic(itemHopID, 0);
+        RegistryUtils.registerItem(hop, "hop", "Hop");
+
+        processedHop = new ItemTechnic(itemProcessedHopID, 0);
+        RegistryUtils.registerItem(processedHop, "hopProcessed", "Milled Hop");
+
+        processedHopInBucket = new ItemTechnic(itemProcessedHopInBucketID, 0);
+        RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket", "Milled Hop With Water");
+        processedHopInBucket.setContainerItem(Item.bucketEmpty);
+
+        brewedHopInBucket = new ItemTechnic(itemBrewedHopInBucketID, 0);
+        RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Brewed Hop");
+        brewedHopInBucket.setContainerItem(Item.bucketEmpty);
+
         createTools();
     }
 
@@ -687,6 +718,10 @@ public class JaffasTechnic extends jaffasMod {
 
             GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBR", "IRI", 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
         }
+
+        GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop);
+        GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
+        GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);
     }
 
     private Item getItem(JaffaItem item) {
