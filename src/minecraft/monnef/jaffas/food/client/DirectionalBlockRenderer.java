@@ -36,33 +36,35 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         activateDummyBlockAccess(renderer);
-        render((BlockJDirectional) block, 0, renderer, 0, 0, 0);
+        BlockJDirectional dirBlock = (BlockJDirectional) block;
+        render(dirBlock, dirBlock.getInventoryRenderRotation(), renderer, 0, 0, 0);
         deactivateDummyBlockAccess(renderer);
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
         BlockJDirectional b = (BlockJDirectional) block;
-        render(b, b.getRotation(world.getBlockMetadata(x, y, z)), renderer, x, y, z);
+        render(b, world.getBlockMetadata(x, y, z), renderer, x, y, z);
         return true;
     }
 
-    private void render(BlockJDirectional block, int rotation, RenderBlocks renderer, int x, int y, int z) {
+    private void render(BlockJDirectional block, int meta, RenderBlocks renderer, int x, int y, int z) {
         switch (block.getType()) {
             case LOG_LIKE:
-                renderLogBlock(rotation, renderer, block, x, y, z);
+                renderLogBlock(meta, renderer, block, x, y, z);
                 break;
 
             case ALL_SIDES:
-                renderAllSidesBlock(rotation, renderer, block, x, y, z);
+                renderAllSidesBlock(meta, renderer, block, x, y, z);
         }
     }
 
-    private void renderAllSidesBlock(int rotation, RenderBlocks renderer, BlockJDirectional block, int x, int y, int z) {
-        doOurRendering(renderer, block, x, y, z, renderingInventory);
+    private void renderAllSidesBlock(int meta, RenderBlocks renderer, BlockJDirectional block, int x, int y, int z) {
+        doOurRendering(renderer, block, x, y, z, renderingInventory, meta);
     }
 
-    private void renderLogBlock(int rotation, RenderBlocks renderer, BlockJDirectional block, int x, int y, int z) {
+    private void renderLogBlock(int meta, RenderBlocks renderer, BlockJDirectional block, int x, int y, int z) {
+        int rotation = block.getRotation(meta);
         if (rotation == 1) {
             renderer.uvRotateSouth = 1;
             renderer.uvRotateNorth = 1;
@@ -73,14 +75,14 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
             renderer.uvRotateWest = 1;
         }
 
-        doOurRendering(renderer, block, x, y, z, renderingInventory);
+        doOurRendering(renderer, block, x, y, z, renderingInventory, meta);
 
         resetRotations(renderer);
     }
 
-    public static void doOurRendering(RenderBlocks renderer, Block block, int x, int y, int z, boolean renderingInventory) {
+    public static void doOurRendering(RenderBlocks renderer, Block block, int x, int y, int z, boolean renderingInventory, int meta) {
         if (renderingInventory) {
-            CustomBlockRenderingHelper.doRendering(renderer, block);
+            CustomBlockRenderingHelper.doRendering(renderer, block, meta);
         } else {
             CustomBlockRenderingHelper.doRendering(renderer, block, x, y, z);
         }

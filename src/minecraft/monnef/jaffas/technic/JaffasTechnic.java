@@ -340,6 +340,7 @@ public class JaffasTechnic extends jaffasMod {
                 TileEntityFungiBox.tickQuantum = 1;
             }
             disableLampParticles = config.get(Configuration.CATEGORY_GENERAL, "disableLampParticles", false).getBoolean(false);
+            TileEntityCobbleBreaker.setTimer(config.get(Configuration.CATEGORY_GENERAL, "cobbleBreakerTimer", 12).getInt());
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {
@@ -734,6 +735,8 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop);
         GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
         GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);
+
+        GameRegistry.addShapedRecipe(new ItemStack(cobbleBreaker), "SSS", "JLJ", "TFT", 'S', Item.stick, 'J', jaffarrolRefined, 'L', Item.slimeBall, 'T', Block.stone, 'F', Block.furnaceIdle);
     }
 
     private Item getItem(JaffaItem item) {

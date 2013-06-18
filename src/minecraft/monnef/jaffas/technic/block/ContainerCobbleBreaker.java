@@ -20,8 +20,8 @@ public class ContainerCobbleBreaker extends ContainerJaffas {
         super(inventoryPlayer, tile);
         this.tile = tile;
 
-        addSlotToContainer(new Slot(tile, SLOT_INPUT, 21, 35));
-        addSlotToContainer(new SlotOutput(tile, SLOT_OUTPUT, 136, 35));
+        addSlotToContainer(new Slot(tile, SLOT_INPUT, 53, 35));
+        addSlotToContainer(new SlotOutput(tile, SLOT_OUTPUT, 106, 35));
     }
 
     @Override

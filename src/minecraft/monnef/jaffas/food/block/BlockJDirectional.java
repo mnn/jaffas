@@ -43,6 +43,10 @@ public class BlockJDirectional extends BlockJaffas {
         sidesRotated.put(TextureMappingType.LOG_LIKE, log);
     }
 
+    public int getInventoryRenderRotation() {
+        return 0;
+    }
+
     public enum TextureMappingType {
         ALL_SIDES(3),  // 8 rotations
         LOG_LIKE(2),   // 3 rotations

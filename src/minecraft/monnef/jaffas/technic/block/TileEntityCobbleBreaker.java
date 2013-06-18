@@ -35,7 +35,9 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
     private static final String TAG_SHOW_EFFECT = "showBreakEffect";
     private ItemStack[] inv;
     private int workCounter = 0;
-    private static final int WORK_EVERY_N_TICKS = 20 * 5;
+    private static int timerInSeconds = 10;
+    private static boolean timerSet = false;
+    private static int WORK_EVERY_N_TICKS = 20 * timerInSeconds;
     private static HashSet<Integer> validToolIDs;
 
     static {
@@ -48,6 +50,14 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
 
     private boolean showBreakEffect;
     private IntegerCoordinates cachedFacingBlockCoords;
+
+    public static void setTimer(int seconds) {
+        if (timerSet) {
+            throw new RuntimeException("timer already set");
+        }
+        timerSet = true;
+        timerInSeconds = seconds;
+    }
 
     /**
      * Register valid tool for cobble mining. Only itemID sensitive.

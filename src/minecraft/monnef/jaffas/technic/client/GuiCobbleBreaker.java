@@ -13,7 +13,7 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiCobbleBreaker extends GuiContainer {
-    public static final String GUI_TEXTURE = "/guicompost.png";
+    public static final String GUI_TEXTURE = "/guibreaker.png";
     public static final int TANK_METER_HEIGHT_MAX = 46;
 
     public TileEntityCobbleBreaker tile;

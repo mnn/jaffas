@@ -48,4 +48,9 @@ public class BlockCobbleBreaker extends BlockDirectionalTechnic {
                 return 0;
         }
     }
+
+    @Override
+    public int getInventoryRenderRotation() {
+        return 1;
+    }
 }
