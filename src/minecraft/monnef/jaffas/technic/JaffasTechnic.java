@@ -545,39 +545,39 @@ public class JaffasTechnic extends jaffasMod {
             rainbowDust.setInfo("Maybe a key to the secret cow level?");
         }
 
-        highPlant = new BlockHighPlant(blockHighPlantID, 0);
+        highPlant = new BlockHighPlant(blockHighPlantID, 44);
         RegistryUtils.registerBlock(highPlant, "highPlant", "High Plant");
 
-        highPlantPost = new ItemHightPlantPost(itemHighPlantPostID, 0);
+        highPlantPost = new ItemHightPlantPost(itemHighPlantPostID, 44);
         RegistryUtils.registerItem(highPlantPost, "highPlantPost", "Plant Post");
         JaffasRegistryHelper.registerTileEntity(TileEntityHighPlant.class, "highPlantPost");
 
-        hop = new ItemTechnic(itemHopID, 0);
+        hop = new ItemTechnic(itemHopID, 45);
         RegistryUtils.registerItem(hop, "hop", "Hop");
 
-        processedHop = new ItemTechnic(itemProcessedHopID, 0);
+        processedHop = new ItemTechnic(itemProcessedHopID, 47);
         RegistryUtils.registerItem(processedHop, "hopProcessed", "Milled Hop");
 
-        processedHopInBucket = new ItemTechnic(itemProcessedHopInBucketID, 0);
+        processedHopInBucket = new ItemTechnic(itemProcessedHopInBucketID, 48);
         RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket", "Milled Hop With Water");
         processedHopInBucket.setContainerItem(Item.bucketEmpty);
 
-        brewedHopInBucket = new ItemTechnic(itemBrewedHopInBucketID, 0);
+        brewedHopInBucket = new ItemTechnic(itemBrewedHopInBucketID, 49);
         RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Brewed Hop");
         brewedHopInBucket.setContainerItem(Item.bucketEmpty);
 
-        hopSeeds = new ItemTechnic(itemHopSeedsID, 0);
+        hopSeeds = new ItemTechnic(itemHopSeedsID, 46);
         RegistryUtils.registerItem(hopSeeds, "hopSeeds", "Hop Seeds");
 
         cobbleBreaker = new BlockCobbleBreaker(itemCobbleBreakerID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
         RegistryUtils.registerBlock(cobbleBreaker, "cobbleBreaker", "Cobble Breaker");
         JaffasRegistryHelper.registerTileEntity(TileEntityCobbleBreaker.class, "cobbleBreaker");
 
-        itemKeg = new ItemKeg(itemKegID, 0);
+        itemKeg = new ItemKeg(itemKegID, 42);
         RegistryUtils.registerItem(itemKeg, "itemKeg", "Keg");
         itemKeg.registerTexts();
 
-        keg = new BlockKeg(blockKegID, 0);
+        keg = new BlockKeg(blockKegID, 42);
         RegistryUtils.registerBlock(keg, "keg", "Keg");
         JaffasRegistryHelper.registerTileEntity(TileEntityKeg.class, "keg");
 
