@@ -36,6 +36,7 @@ import monnef.jaffas.technic.block.BlockConstruction;
 import monnef.jaffas.technic.block.BlockConstructionDummy;
 import monnef.jaffas.technic.block.BlockFungiBox;
 import monnef.jaffas.technic.block.BlockHighPlant;
+import monnef.jaffas.technic.block.BlockKeg;
 import monnef.jaffas.technic.block.BlockMultiLamp;
 import monnef.jaffas.technic.block.BlockMultiLampDummy;
 import monnef.jaffas.technic.block.BlockOre;
@@ -45,6 +46,7 @@ import monnef.jaffas.technic.block.TileEntityCompostCore;
 import monnef.jaffas.technic.block.TileEntityConstructionDummy;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.block.TileEntityHighPlant;
+import monnef.jaffas.technic.block.TileEntityKeg;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
@@ -58,6 +60,7 @@ import monnef.jaffas.technic.item.ItemCompost;
 import monnef.jaffas.technic.item.ItemFungus;
 import monnef.jaffas.technic.item.ItemHightPlantPost;
 import monnef.jaffas.technic.item.ItemHoeTechnic;
+import monnef.jaffas.technic.item.ItemKeg;
 import monnef.jaffas.technic.item.ItemLocomotive;
 import monnef.jaffas.technic.item.ItemMushroomKnife;
 import monnef.jaffas.technic.item.ItemPickaxeTechnic;
@@ -247,6 +250,15 @@ public class JaffasTechnic extends jaffasMod {
     private int itemCobbleBreakerID;
     public static BlockCobbleBreaker cobbleBreaker;
 
+    private int itemHopSeedsID;
+    public static ItemTechnic hopSeeds;
+
+    private int itemKegID;
+    public static ItemKeg itemKeg;
+
+    private int blockKegID;
+    public static BlockKeg keg;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -328,8 +340,12 @@ public class JaffasTechnic extends jaffasMod {
             itemProcessedHopID = idProvider.getItemIDFromConfig("processedHop");
             itemProcessedHopInBucketID = idProvider.getItemIDFromConfig("processedHopBucket");
             itemBrewedHopInBucketID = idProvider.getItemIDFromConfig("brewedHopBucket");
+            itemHopSeedsID = idProvider.getItemIDFromConfig("hopSeeds");
 
             itemCobbleBreakerID = idProvider.getBlockIDFromConfig("cobbleBreaker");
+
+            itemKegID = idProvider.getItemIDFromConfig("itemKeg");
+            blockKegID = idProvider.getBlockIDFromConfig("keg");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -550,9 +566,20 @@ public class JaffasTechnic extends jaffasMod {
         RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Brewed Hop");
         brewedHopInBucket.setContainerItem(Item.bucketEmpty);
 
+        hopSeeds = new ItemTechnic(itemHopSeedsID, 0);
+        RegistryUtils.registerItem(hopSeeds, "hopSeeds", "Hop Seeds");
+
         cobbleBreaker = new BlockCobbleBreaker(itemCobbleBreakerID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
         RegistryUtils.registerBlock(cobbleBreaker, "cobbleBreaker", "Cobble Breaker");
         JaffasRegistryHelper.registerTileEntity(TileEntityCobbleBreaker.class, "cobbleBreaker");
+
+        itemKeg = new ItemKeg(itemKegID, 0);
+        RegistryUtils.registerItem(itemKeg, "itemKeg", "Keg");
+        itemKeg.registerTexts();
+
+        keg = new BlockKeg(blockKegID, 0);
+        RegistryUtils.registerBlock(keg, "keg", "Keg");
+        JaffasRegistryHelper.registerTileEntity(TileEntityKeg.class, "keg");
 
         createTools();
     }
@@ -737,6 +764,8 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);
 
         GameRegistry.addShapedRecipe(new ItemStack(cobbleBreaker), "SSS", "JLJ", "TFT", 'S', Item.stick, 'J', jaffarrolRefined, 'L', Item.slimeBall, 'T', Block.stone, 'F', Block.furnaceIdle);
+
+        GameRegistry.addShapedRecipe(new ItemStack(Item.shears), " J", "J ", 'J', jaffarrol);
     }
 
     private Item getItem(JaffaItem item) {
