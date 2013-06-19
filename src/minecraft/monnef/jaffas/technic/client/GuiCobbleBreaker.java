@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.client;
 
+import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.TileEntityCobbleBreaker;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -14,7 +15,6 @@ import org.lwjgl.opengl.GL11;
 
 public class GuiCobbleBreaker extends GuiContainer {
     public static final String GUI_TEXTURE = "/guibreaker.png";
-    public static final int TANK_METER_HEIGHT_MAX = 46;
 
     public TileEntityCobbleBreaker tile;
 
@@ -39,6 +39,14 @@ public class GuiCobbleBreaker extends GuiContainer {
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+
+        // arrow
+        int m = (tile.getWorkMeter() * 24) / tile.getMaxWorkMeter();
+        drawTexturedModalRect(x + 84, y + 34, 176, 14, m + 1, 16);
+
+        // flame
+        int burn = (tile.getBurnTime() * 14) / (tile.getBurnItemTime() == 0 ? 1 : tile.getBurnItemTime());
+        GuiHelper.drawModalRectFromDown(this, x + 23, y + 18, 176, 0, 16, burn, 14);
     }
     // x, y, u, v, width, height
 }
