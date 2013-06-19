@@ -24,20 +24,31 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
 import java.util.HashSet;
 
-import static monnef.jaffas.technic.block.ContainerCompost.SLOT_INPUT;
-import static monnef.jaffas.technic.block.ContainerCompost.SLOT_OUTPUT;
+import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_FUEL;
+import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_INPUT;
+import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_OUTPUT;
 
 public class TileEntityCobbleBreaker extends TileEntity implements IInventory, ISidedInventory {
-    private static final String TAG_SHOW_EFFECT = "showBreakEffect";
+    private static final String SHOW_EFFECT_TAG = "showBreakEffect";
+    private static final String BURN_TIME_TAG = "burnTime";
+    private static final String BURN_ITEM_TIME_TAG = "burnItemTime";
+    private static final String WORK_TIME_TAG = "burnTime";
+
     private ItemStack[] inv;
     private int workCounter = 0;
+    private int burnTime = 0;
+    private int burnItemTime = 1;
+    private int tickCounter = 0;
     private static int timerInSeconds = 10;
     private static boolean timerSet = false;
+    private static final int TICK_QUANTUM = 20;
     private static int WORK_EVERY_N_TICKS = 20 * timerInSeconds;
+    private static int BURN_EVERY_N_TICKS = 10;
     private static HashSet<Integer> validToolIDs;
 
     static {
@@ -46,6 +57,10 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
         registerTool(Item.pickaxeStone);
         registerTool(Item.pickaxeGold);
         registerTool(Item.pickaxeDiamond);
+
+        if (TICK_QUANTUM % BURN_EVERY_N_TICKS != 0) {
+            throw new RuntimeException("TICK_QUANTUM must be dividable by BURN_EVERY_N_TICKS!");
+        }
     }
 
     private boolean showBreakEffect;
@@ -69,7 +84,7 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
     }
 
     public TileEntityCobbleBreaker() {
-        inv = new ItemStack[2];
+        inv = new ItemStack[3];
     }
 
     @Override
@@ -85,27 +100,93 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
             return;
         }
 
-        workCounter++;
-        if (workCounter >= WORK_EVERY_N_TICKS) {
-            workCounter = 0;
-            if (isToolValid() && cobblePresent() && spaceInOutputSlot()) {
-                mineCobble();
-                damageTool();
+        tickCounter++;
+        if (tickCounter % TICK_QUANTUM == 0) {
+            if (isBurning() && tickCounter % BURN_EVERY_N_TICKS == 0) {
+                burnTime--;
+            }
+            if (isWorking()) {
+                if (canWork()) {
+                    if (isBurning()) {
+                        workCounter += TICK_QUANTUM;
+                        if (workCounter >= WORK_EVERY_N_TICKS) {
+                            workCounter = 0;
+                            mineCobble();
+                            damageToolIfValid();
+                        }
+                    } else {
+                        tryGetFuel();
+                        if (!isBurning()) {
+                            // cancel current work - no more fuel
+                            workCounter = 0;
+                            damageToolIfValid();
+                        }
+                    }
+                } else {
+                    // cancel work, something has changed
+                    workCounter = 0;
+                    damageToolIfValid();
+                }
             } else {
-                workCounter = -20 * 10;
+                boolean canWorkNow = canWork();
+                if (!isBurning() && canWorkNow) {
+                    tryGetFuel();
+                }
+                if (isBurning() && canWorkNow) {
+                    // start working
+                    workCounter = 1;
+                }
             }
         }
     }
 
+    private void damageToolIfValid() {
+        if (isToolValid()) {
+            damageTool();
+        }
+    }
+
+    private boolean isWorking() {
+        return workCounter > 0;
+    }
+
+    private boolean canWork() {
+        return isToolValid() && cobblePresent() && spaceInOutputSlot();
+    }
+
+    private void tryGetFuel() {
+        ItemStack fuelStack = inv[SLOT_FUEL];
+        if (fuelStack != null) {
+            int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
+            if (fuelBurnTime > 0) {
+                fuelStack.stackSize--;
+                if (fuelStack.stackSize <= 0) {
+                    setInventorySlotContents(SLOT_FUEL, null);
+                }
+
+                burnTime = fuelBurnTime;
+                burnItemTime = fuelBurnTime;
+            }
+        }
+    }
+
+    private boolean isBurning() {
+        return burnTime > 0;
+    }
+
     private void createDigParticles() {
         IntegerCoordinates pos = getFacingBlockCachedCoordinates();
-
-        for (int i = 0; i < 5; i++) {
+        int partCount = RandomHelper.generateRandomFromInterval(4, 10);
+        for (int i = 0; i < partCount; i++) {
             float speed = 0.33f;
             float mx = RandomHelper.generateRandomFromSymmetricInterval(speed);
             float my = RandomHelper.generateRandomFromSymmetricInterval(speed);
             float mz = RandomHelper.generateRandomFromSymmetricInterval(speed);
-            EntityFX fx = new EntityDiggingFX(worldObj, pos.getX() + .5, pos.getY() + .5, pos.getZ() + .5, mx, my, mz, Block.cobblestone, 0, 0, FMLClientHandler.instance().getClient().renderEngine);
+            float radius = 0.4f;
+            float sx = RandomHelper.generateRandomFromSymmetricInterval(radius);
+            float sy = RandomHelper.generateRandomFromSymmetricInterval(radius);
+            float sz = RandomHelper.generateRandomFromSymmetricInterval(radius);
+            EntityFX fx = new EntityDiggingFX(worldObj, pos.getX() + .5 + sx, pos.getY() + .5 + sy, pos.getZ() + .5 + sz, mx, my, mz, Block.cobblestone, 0, 0, FMLClientHandler.instance().getClient().renderEngine);
             FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
         }
     }
@@ -226,34 +307,41 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound tagCompound) {
-        super.readFromNBT(tagCompound);
+    public void readFromNBT(NBTTagCompound tag) {
+        super.readFromNBT(tag);
 
-        NBTTagList tagList = tagCompound.getTagList("Inventory");
+        NBTTagList tagList = tag.getTagList("Inventory");
         for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
-            byte slot = tag.getByte("Slot");
+            NBTTagCompound innerTag = (NBTTagCompound) tagList.tagAt(i);
+            byte slot = innerTag.getByte("Slot");
             if (slot >= 0 && slot < inv.length) {
-                inv[slot] = ItemStack.loadItemStackFromNBT(tag);
+                inv[slot] = ItemStack.loadItemStackFromNBT(innerTag);
             }
         }
+
+        setBurnTime(tag.getInteger(BURN_TIME_TAG));
+        setBurnItemTime(tag.getInteger(BURN_ITEM_TIME_TAG));
+        setWorkCounter(tag.getInteger(WORK_TIME_TAG));
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound tagCompound) {
-        super.writeToNBT(tagCompound);
+    public void writeToNBT(NBTTagCompound tag) {
+        super.writeToNBT(tag);
 
         NBTTagList itemList = new NBTTagList();
         for (int i = 0; i < inv.length; i++) {
             ItemStack stack = inv[i];
             if (stack != null) {
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setByte("Slot", (byte) i);
-                stack.writeToNBT(tag);
-                itemList.appendTag(tag);
+                NBTTagCompound innterTag = new NBTTagCompound();
+                innterTag.setByte("Slot", (byte) i);
+                stack.writeToNBT(innterTag);
+                itemList.appendTag(innterTag);
             }
         }
-        tagCompound.setTag("Inventory", itemList);
+        tag.setTag("Inventory", itemList);
+        tag.setInteger(BURN_TIME_TAG, getBurnTime());
+        tag.setInteger(BURN_ITEM_TIME_TAG, getBurnItemTime());
+        tag.setInteger(WORK_TIME_TAG, getWorkMeter());
     }
 
     @Override
@@ -261,7 +349,7 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
         NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
         writeToNBT(tag);
-        tag.setBoolean(TAG_SHOW_EFFECT, showBreakEffect);
+        tag.setBoolean(SHOW_EFFECT_TAG, showBreakEffect);
         if (showBreakEffect) showBreakEffect = false;
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
     }
@@ -271,7 +359,7 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
         super.onDataPacket(net, pkt);
         NBTTagCompound tag = pkt.customParam1;
         readFromNBT(tag);
-        showBreakEffect = tag.getBoolean(TAG_SHOW_EFFECT);
+        showBreakEffect = tag.getBoolean(SHOW_EFFECT_TAG);
     }
 
     @Override
@@ -313,5 +401,33 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
         }
 
         return false;
+    }
+
+    public int getWorkMeter() {
+        return workCounter;
+    }
+
+    public int getMaxWorkMeter() {
+        return WORK_EVERY_N_TICKS;
+    }
+
+    public int getBurnTime() {
+        return burnTime;
+    }
+
+    public int getBurnItemTime() {
+        return burnItemTime;
+    }
+
+    public void setBurnTime(int burnTime) {
+        this.burnTime = burnTime;
+    }
+
+    public void setBurnItemTime(int burnItemTime) {
+        this.burnItemTime = burnItemTime;
+    }
+
+    public void setWorkCounter(int workCounter) {
+        this.workCounter = workCounter;
     }
 }
