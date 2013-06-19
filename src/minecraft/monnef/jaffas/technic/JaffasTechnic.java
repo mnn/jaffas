@@ -569,7 +569,7 @@ public class JaffasTechnic extends jaffasMod {
         hopSeeds = new ItemTechnic(itemHopSeedsID, 46);
         RegistryUtils.registerItem(hopSeeds, "hopSeeds", "Hop Seeds");
 
-        cobbleBreaker = new BlockCobbleBreaker(itemCobbleBreakerID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
+        cobbleBreaker = new BlockCobbleBreaker(itemCobbleBreakerID, 50, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
         RegistryUtils.registerBlock(cobbleBreaker, "cobbleBreaker", "Cobble Breaker");
         JaffasRegistryHelper.registerTileEntity(TileEntityCobbleBreaker.class, "cobbleBreaker");
 
@@ -763,7 +763,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
         GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);
 
-        GameRegistry.addShapedRecipe(new ItemStack(cobbleBreaker), "SSS", "JLJ", "TFT", 'S', Item.stick, 'J', jaffarrolRefined, 'L', Item.slimeBall, 'T', Block.stone, 'F', Block.furnaceIdle);
+        GameRegistry.addShapedRecipe(new ItemStack(cobbleBreaker), "SSS", "JLJ", "TFT", 'S', Item.stick, 'J', jaffarrolRefined, 'L', Item.slimeBall, 'T', DyeHelper.getDye(DyeColor.YELLOW), 'F', Block.furnaceIdle);
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.shears), " J", "J ", 'J', jaffarrol);
     }

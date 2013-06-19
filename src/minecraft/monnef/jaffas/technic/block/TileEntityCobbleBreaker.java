@@ -376,15 +376,19 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
     public int[] getAccessibleSlotsFromSide(int side) {
         if (side == ForgeDirection.DOWN.ordinal()) {
             return new int[]{SLOT_OUTPUT};
-        } else {
+        } else if (side == ForgeDirection.UP.ordinal()) {
             return new int[]{SLOT_INPUT};
+        } else {
+            return new int[]{SLOT_FUEL};
         }
     }
 
     @Override
     public boolean canInsertItem(int slot, ItemStack stack, int side) {
         if (slot == SLOT_INPUT) {
-            return side != ForgeDirection.DOWN.ordinal();
+            return side == ForgeDirection.UP.ordinal();
+        } else if (slot == SLOT_FUEL) {
+            return side != ForgeDirection.UP.ordinal() && side != ForgeDirection.DOWN.ordinal();
         } else if (slot == SLOT_OUTPUT) {
             return false; // don't allow inserintg to the output slot
         }
@@ -395,9 +399,11 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
     @Override
     public boolean canExtractItem(int slot, ItemStack stack, int side) {
         if (slot == SLOT_INPUT) {
-            return side != ForgeDirection.DOWN.ordinal();
+            return side == ForgeDirection.UP.ordinal();
         } else if (slot == SLOT_OUTPUT) {
             return side == ForgeDirection.DOWN.ordinal();
+        } else if (slot == SLOT_FUEL) {
+            return side != ForgeDirection.UP.ordinal() && side != ForgeDirection.DOWN.ordinal();
         }
 
         return false;
