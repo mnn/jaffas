@@ -19,7 +19,7 @@ public class HighPlantLifeCycleDescriptor implements IHighPlantLifeCycleDescript
                 HighPlantLifeCycleDescriptor r = new HighPlantLifeCycleDescriptor();
                 r.stagesCount = 4; // 0..3
                 r.stageLenInMinutes = 5;
-                r.lengthMayDifferMaximallyByNPercent = 10; //%
+                r.lengthMayDifferMaximallyByNPercent = 20; //%
                 return r;
 
             default:

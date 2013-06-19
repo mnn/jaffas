@@ -40,6 +40,7 @@ public class TileEntityHighPlant extends TileEntity {
 
     private HighPlantInfo cachedInfo;
     private ItemStack cachedLoot;
+    private byte renderRotation;
 
     @Override
     public void updateEntity() {
@@ -154,6 +155,7 @@ public class TileEntityHighPlant extends TileEntity {
         plantId = tag.getByte(PLANT_ID_TAG);
         stage = tag.getByte(STAGE_TAG);
         growTimer = tag.getInteger(GROW_TIMER_TAG);
+        init();
     }
 
     @Override
@@ -231,6 +233,7 @@ public class TileEntityHighPlant extends TileEntity {
         generateLoot();
         stage = 0;
         plantId = 0;
+        invalidatePlantInfoCache();
         forceUpdate();
         return collectLoot();
     }
@@ -266,5 +269,23 @@ public class TileEntityHighPlant extends TileEntity {
 
     public boolean readyForHarvest() {
         return containsPlant() && isMature();
+    }
+
+    public int getRenderRotation() {
+        return renderRotation;
+    }
+
+    @Override
+    public void validate() {
+        super.validate();
+        init();
+    }
+
+    public int getStage() {
+        return stage;
+    }
+
+    private void init() {
+        renderRotation = (byte) ((271 + xCoord * 221546 + yCoord - zCoord * 11075) % 4);
     }
 }

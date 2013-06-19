@@ -7,13 +7,15 @@ package monnef.jaffas.technic.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
+import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.HashMap;
+
+import static monnef.jaffas.food.JaffasFood.getItem;
 
 public class TileEntityKeg extends TileEntity {
     public static final int KEG_CAPACITY = 10;
@@ -29,8 +31,7 @@ public class TileEntityKeg extends TileEntity {
     static {
         vessel = new HashMap<Integer, KegVesselEntry>();
 
-        // TODO change tmp vessel record
-        addVessel(KegType.BEER, Item.bucketEmpty.itemID, new ItemStack(Item.bucketMilk));
+        addVessel(KegType.BEER, getItem(JaffaItem.beerMugEmpty).itemID, new ItemStack(getItem(JaffaItem.beerMugFull)));
     }
 
     public static KegVesselEntry addVessel(KegType validFor, int itemID, ItemStack filledItem) {

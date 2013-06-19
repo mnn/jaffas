@@ -9,4 +9,6 @@ import monnef.jaffas.technic.block.TileEntityHighPlant;
 
 public interface IHighPlantModel {
     void render(TileEntityHighPlant tile, float scale);
+
+    String getTextureFile();
 }

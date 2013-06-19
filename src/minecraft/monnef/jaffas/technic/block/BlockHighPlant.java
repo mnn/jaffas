@@ -3,6 +3,7 @@ package monnef.jaffas.technic.block;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -80,7 +81,6 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
         return new TileEntityHighPlant();
     }
 
-    /*
     @Override
     public boolean isOpaqueCube() {
         return false;
@@ -95,7 +95,6 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
     public int getRenderType() {
         return JaffasFood.renderID;
     }
-    */
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {

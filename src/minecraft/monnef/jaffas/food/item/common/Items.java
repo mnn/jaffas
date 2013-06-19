@@ -392,6 +392,9 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.meatDryer, "Drying Rack", 250);
         AddItemInfo(JaffaItem.driedMeat, "Dried Meat", 249);
+
+        AddItemInfo(JaffaItem.beerMugEmpty, "Empty Beer Mug", 251);
+        AddItemInfo(JaffaItem.beerMugFull, "Full Beer Mug", 252);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -705,6 +708,9 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItemManual(meatDryer, ItemMeatDryer.class);
         createJaffaFood(driedMeat, 5, 1f);
+
+        createJaffaItem(beerMugEmpty).setMaxStackSize(16);
+        createJaffaFood(beerMugFull, 3, 1.5f).setIsDrink().setAlwaysEdible().setReturnItem(getItemStack(beerMugEmpty)).setPotionEffect(Potion.damageBoost.id, 30, 0, 0.35f).setMaxStackSize(1);
 
         createItemsRegistration();
 

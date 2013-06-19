@@ -7,9 +7,10 @@ package monnef.jaffas.technic.common;
 
 import monnef.core.utils.Interval;
 import monnef.core.utils.ItemHelper;
-import net.minecraft.item.Item;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.item.ItemStack;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 import static monnef.jaffas.technic.common.HighPlantLifeCycleDescriptor.LifeCycleType.ORDINAL;
@@ -23,7 +24,7 @@ public class HighPlantCatalog {
     static {
         catalog = new HashMap<Integer, HighPlantInfo>();
 
-        addPlant(HOP_ID, new ItemStack(Item.appleRed), new ItemStack(Item.appleGold), 1, 5, HopRenderer.class, HighPlantLifeCycleDescriptor.create(ORDINAL));
+        addPlant(HOP_ID, new ItemStack(JaffasTechnic.hopSeeds), new ItemStack(JaffasTechnic.hop), 1, 2, HopRenderer.class, HighPlantLifeCycleDescriptor.create(ORDINAL));
     }
 
     private static HighPlantInfo addPlant(int id, ItemStack seed, ItemStack fruit, int fruitCountMin, int fruitCountMax, Class<? extends IHighPlantModel> modelClass, IHighPlantLifeCycleDescriptor lifeCycle) {
@@ -44,6 +45,10 @@ public class HighPlantCatalog {
 
     public static HighPlantInfo getPlant(int id) {
         return catalog.get(id);
+    }
+
+    public static Collection<HighPlantInfo> getPlants() {
+        return catalog.values();
     }
 
     public static boolean isBlank(int id) {
