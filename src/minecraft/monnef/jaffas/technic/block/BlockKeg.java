@@ -10,9 +10,13 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockKeg extends BlockTechnic {
+    private static final float border = 3f * 1f / 16f;
+    private static final float borderComplement = 1f - border;
+
     public BlockKeg(int id, int textureID) {
         super(id, textureID, Material.wood);
         setCreativeTab(null);
+        setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
     }
 
     public TileEntityKeg getTile(World world, int x, int y, int z) {
