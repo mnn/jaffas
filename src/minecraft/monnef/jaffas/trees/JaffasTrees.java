@@ -569,6 +569,7 @@ public class JaffasTrees extends jaffasMod {
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(creativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
+        OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, OreDictionary.WILDCARD_VALUE));
         if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizable(leaves.saplingBlock);
             FarmingRegistry.registerPlantable(leaves.saplingBlock);

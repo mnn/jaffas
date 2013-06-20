@@ -429,6 +429,10 @@ public class Recipes {
         RegistryUtils.registerBlockPackingRecipe(ItemHelper.getItemStackAnyDamage(blockSwitchgrass), new ItemStack(blockSwitchgrassSolid));
 
         GameRegistry.addShapedRecipe(getItemStack(meatDryer), "SSS", "SIS", "S S", 'S', Item.stick, 'I', Item.silk);
+
+        if (JaffasFood.vanillaRecipesEnabled) {
+            registerVanillaLikeRecipes();
+        }
     }
 
     public static void addTableRecipe(ItemStack output, int color) {
@@ -453,6 +457,21 @@ public class Recipes {
         }
 
         GameRegistry.addSmelting(getItem(rawPie).itemID, new ItemStack(blockPie, 1, type.ordinal()), 5f);
+    }
+
+    private static void registerVanillaLikeRecipes() {
+        GameRegistry.addShapedRecipe(new ItemStack(Block.grass), "GGG", "SSS", "SSS", 'S', Block.dirt, 'G', new ItemStack(Block.tallGrass, 1, 1));
+        addRecipe(new ShapelessOreRecipe(new ItemStack(Block.dirt),
+                "treeSapling", "treeSapling", "treeSapling",
+                "treeSapling", "treeSapling", "treeSapling",
+                "treeSapling", "treeSapling", "treeSapling"));
+        addRecipe(new ShapelessOreRecipe(new ItemStack(Block.dirt),
+                "treeLeaves", "treeLeaves", "treeLeaves",
+                "treeLeaves", "treeLeaves", "treeLeaves",
+                "treeLeaves", "treeLeaves", "treeLeaves"));
+        GameRegistry.addShapedRecipe(new ItemStack(Block.gravel, 3), "SCS", "CSC", "SCS", 'S', Block.stone, 'C', Block.cobblestone);
+        GameRegistry.addShapedRecipe(new ItemStack(Block.sand, 3), "GGG", "GWG", "GGG", 'W', Item.bucketWater, 'G', Block.gravel);
+        GameRegistry.addShapedRecipe(new ItemStack(Item.bucketWater), "C", "C", "B", 'C', Block.cactus, 'B', Item.bucketEmpty);
     }
 
     private static void addJamBreadSliceRecipe(JaffaItem jam) {
