@@ -471,7 +471,7 @@ public class Recipes {
                 "treeLeaves", "treeLeaves", "treeLeaves"));
         GameRegistry.addShapedRecipe(new ItemStack(Block.gravel, 3), "SCS", "CSC", "SCS", 'S', Block.stone, 'C', Block.cobblestone);
         GameRegistry.addShapedRecipe(new ItemStack(Block.sand, 3), "GGG", "GWG", "GGG", 'W', Item.bucketWater, 'G', Block.gravel);
-        GameRegistry.addShapedRecipe(new ItemStack(Item.bucketWater), "C", "C", "B", 'C', Block.cactus, 'B', Item.bucketEmpty);
+        GameRegistry.addShapedRecipe(new ItemStack(Item.bucketWater), "CCC", "CCC", "B", 'C', Block.cactus, 'B', Item.bucketEmpty);
     }
 
     private static void addJamBreadSliceRecipe(JaffaItem jam) {

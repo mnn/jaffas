@@ -34,6 +34,7 @@ import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
 import monnef.jaffas.technic.block.BlockConstructionDummy;
+import monnef.jaffas.technic.block.BlockFermenter;
 import monnef.jaffas.technic.block.BlockFungiBox;
 import monnef.jaffas.technic.block.BlockHighPlant;
 import monnef.jaffas.technic.block.BlockKeg;
@@ -44,6 +45,7 @@ import monnef.jaffas.technic.block.BlockTechnic;
 import monnef.jaffas.technic.block.TileEntityCobbleBreaker;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
 import monnef.jaffas.technic.block.TileEntityConstructionDummy;
+import monnef.jaffas.technic.block.TileEntityFermenter;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.block.TileEntityHighPlant;
 import monnef.jaffas.technic.block.TileEntityKeg;
@@ -57,6 +59,7 @@ import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
 import monnef.jaffas.technic.item.ItemCompost;
+import monnef.jaffas.technic.item.ItemFermenter;
 import monnef.jaffas.technic.item.ItemFungus;
 import monnef.jaffas.technic.item.ItemHightPlantPost;
 import monnef.jaffas.technic.item.ItemHoeTechnic;
@@ -259,6 +262,12 @@ public class JaffasTechnic extends jaffasMod {
     private int blockKegID;
     public static BlockKeg keg;
 
+    private int itemFermenterID;
+    public static ItemFermenter itemFermenter;
+
+    private int blockFermenterID;
+    public static BlockFermenter fermenter;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -346,6 +355,9 @@ public class JaffasTechnic extends jaffasMod {
 
             itemKegID = idProvider.getItemIDFromConfig("itemKeg");
             blockKegID = idProvider.getBlockIDFromConfig("keg");
+
+            itemFermenterID = idProvider.getItemIDFromConfig("itemFermenter");
+            blockFermenterID = idProvider.getBlockIDFromConfig("fermenter");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -580,6 +592,13 @@ public class JaffasTechnic extends jaffasMod {
         keg = new BlockKeg(blockKegID, 42);
         RegistryUtils.registerBlock(keg, "keg", "Keg");
         JaffasRegistryHelper.registerTileEntity(TileEntityKeg.class, "keg");
+
+        itemFermenter = new ItemFermenter(itemFermenterID, 43);
+        RegistryUtils.registerItem(itemFermenter, "itemFermenter", "Fermenter");
+
+        fermenter = new BlockFermenter(blockFermenterID, 43);
+        RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
+        JaffasRegistryHelper.registerTileEntity(TileEntityFermenter.class, "fermenter");
 
         createTools();
     }
