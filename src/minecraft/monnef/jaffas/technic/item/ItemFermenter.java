@@ -38,7 +38,7 @@ public class ItemFermenter extends ItemTechnic {
 
             Block blockToPlace = fermenter;
             int direction = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-            direction = (direction + 2) % 4;
+            direction = (direction + 1) % 4;
 
             if (player.canPlayerEdit(x, y, z, side, item) &&
                     player.canPlayerEdit(x, y + 1, z, side, item)) {

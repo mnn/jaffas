@@ -5,41 +5,25 @@
 
 package monnef.jaffas.technic.client;
 
-import monnef.jaffas.technic.block.TileEntityHighPlant;
-import monnef.jaffas.technic.common.HighPlantCatalog;
-import monnef.jaffas.technic.common.HighPlantInfo;
-import monnef.jaffas.technic.common.IHighPlantModel;
+import monnef.jaffas.technic.block.TileEntityFermenter;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import java.util.Collection;
-import java.util.HashMap;
-
 public class TileEntityFermenterRenderer extends TileEntitySpecialRenderer {
     public static final float U = 0.0625F;
-    private ModelStake stake;
-    private static HashMap<Integer, IHighPlantModel> plantModel;
-
-    static {
-        plantModel = new HashMap<Integer, IHighPlantModel>();
-
-        Collection<HighPlantInfo> tmp = HighPlantCatalog.getPlants();
-        for (HighPlantInfo plant : tmp) {
-            plantModel.put(plant.id, plant.createRenderer());
-        }
-    }
+    private ModelFermenter fermenter;
 
     public TileEntityFermenterRenderer() {
-        stake = new ModelStake();
+        fermenter = new ModelFermenter();
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
-        renderModelAt((TileEntityHighPlant) tile, par2, par4, par6, par8);
+        renderModelAt((TileEntityFermenter) tile, par2, par4, par6, par8);
     }
 
-    public void renderModelAt(TileEntityHighPlant tile, double par2, double par4, double par6, float par8) {
+    public void renderModelAt(TileEntityFermenter tile, double par2, double par4, double par6, float par8) {
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
@@ -71,20 +55,9 @@ public class TileEntityFermenterRenderer extends TileEntitySpecialRenderer {
                 break;
         }
 
-        GL11.glPushMatrix();
         GL11.glRotatef(angle, 0, 1.0f, 0);
-        bindTextureByName("/jaffas_hop_plant.png");
-        stake.render(U);
-        GL11.glPopMatrix();
-
-        int rot = tile.getRenderRotation();
-        GL11.glRotatef(rot * 90, 0, 1.0f, 0);
-        HighPlantInfo info = tile.getPlantInfo();
-        if (info != null) {
-            IHighPlantModel renderer = plantModel.get(info.id);
-            bindTextureByName(renderer.getTextureFile());
-            renderer.render(tile, U);
-        }
+        bindTextureByName("/jaffas_fermenter.png");
+        fermenter.render(U);
 
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();

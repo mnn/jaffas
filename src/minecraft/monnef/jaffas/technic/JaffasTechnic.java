@@ -599,6 +599,7 @@ public class JaffasTechnic extends jaffasMod {
         fermenter = new BlockFermenter(blockFermenterID, 43);
         RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
         JaffasRegistryHelper.registerTileEntity(TileEntityFermenter.class, "fermenter");
+        MinecraftForge.setBlockHarvestLevel(fermenter, "pickaxe", 0);
 
         createTools();
     }

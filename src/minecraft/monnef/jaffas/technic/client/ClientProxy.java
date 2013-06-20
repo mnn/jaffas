@@ -10,6 +10,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
+import monnef.jaffas.technic.block.TileEntityFermenter;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.block.TileEntityHighPlant;
 import monnef.jaffas.technic.block.TileEntityKeg;
@@ -27,6 +28,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCompostCore.class, new TileEntityCompostTankRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKeg.class, new TileEntityKegRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHighPlant.class, new TileEntityHighPlantRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFermenter.class, new TileEntityFermenterRenderer());
 
         MinecraftForgeClient.registerItemRenderer(JaffasTechnic.constructionBlock.blockID, new CustomBlockRenderer());
 

@@ -9,6 +9,7 @@ import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,9 +22,11 @@ public class BlockFermenter extends BlockTechnic {
     private static final int SLAVE_BIT = 3;
     private static final int BLOCK_ACTIVATION_RADIUS = 2;
 
+    public static final Material fermenterMaterial = new Material(MapColor.ironColor);
+
     public BlockFermenter(int id, int textureID) {
-        super(id, textureID, Material.iron);
-        setHardness(10f);
+        super(id, textureID, fermenterMaterial);
+        setHardness(3f);
     }
 
     public boolean isMaster(int meta) {
