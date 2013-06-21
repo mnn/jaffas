@@ -413,6 +413,10 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
         return workCounter;
     }
 
+    public void setWorkCounter(int workCounter) {
+        this.workCounter = workCounter;
+    }
+
     public int getMaxWorkMeter() {
         return WORK_EVERY_N_TICKS;
     }
@@ -431,9 +435,5 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
 
     public void setBurnItemTime(int burnItemTime) {
         this.burnItemTime = burnItemTime;
-    }
-
-    public void setWorkCounter(int workCounter) {
-        this.workCounter = workCounter;
     }
 }

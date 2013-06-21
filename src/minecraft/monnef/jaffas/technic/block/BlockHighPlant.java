@@ -10,6 +10,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
@@ -21,10 +22,24 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
     private static final int SLAVE_BIT = 3;
     private static final int INTEGRITY_CHECK_RADIUS = 5;
     private static final int BLOCK_ACTIVATION_RADIUS = 3;
+    private static final float border = 4f * 1f / 16f;
+    private static final float borderComplement = 1f - border;
+    private static final float U = 1 / 16f;
+    private static final float topComplement = 1f - 4 * U;
 
     public BlockHighPlant(int id, int textureID) {
         super(id, textureID, Material.plants);
         setHardness(0.33f);
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (isSlave(meta)) {
+            setBlockBounds(border, 0, border, borderComplement, topComplement, borderComplement);
+        } else {
+            setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
+        }
     }
 
     public boolean isMaster(int meta) {

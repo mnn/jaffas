@@ -34,7 +34,7 @@ public class BlockCobbleBreaker extends BlockDirectionalTechnic {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
         if (player.isSneaking()) return false;
 
-        player.openGui(JaffasFood.instance, GuiHandler.GuiTypes.COMPOST.ordinal(), world, x, y, z);
+        player.openGui(JaffasFood.instance, GuiHandler.GuiTypes.COBBLE_BREAKER.ordinal(), world, x, y, z);
         return true;
     }
 

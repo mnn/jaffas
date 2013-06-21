@@ -12,17 +12,20 @@ import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityFridge;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.ContainerCompost;
+import monnef.jaffas.technic.block.ContainerFermenter;
 import monnef.jaffas.technic.block.TileEntityCobbleBreaker;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
+import monnef.jaffas.technic.block.TileEntityFermenter;
 import monnef.jaffas.technic.client.GuiCobbleBreaker;
 import monnef.jaffas.technic.client.GuiCompost;
+import monnef.jaffas.technic.client.GuiFermenter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler {
     public enum GuiTypes {
-        FRIDGE, BOARD, COMPOST
+        FRIDGE, BOARD, COMPOST, COBBLE_BREAKER, FERMENTER
     }
 
     @Override
@@ -38,6 +41,8 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerCompost(player.inventory, (TileEntityCompostCore) tileEntity);
         } else if (tileEntity instanceof TileEntityCobbleBreaker) {
             return new ContainerCobbleBreaker(player.inventory, (TileEntityCobbleBreaker) tileEntity);
+        } else if (tileEntity instanceof TileEntityFermenter) {
+            return new ContainerFermenter(player.inventory, (TileEntityFermenter) tileEntity);
         }
 
         return null;
@@ -56,6 +61,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiCompost(player.inventory, (TileEntityCompostCore) tileEntity);
         } else if (tileEntity instanceof TileEntityCobbleBreaker) {
             return new GuiCobbleBreaker(player.inventory, (TileEntityCobbleBreaker) tileEntity);
+        } else if (tileEntity instanceof TileEntityFermenter) {
+            return new GuiFermenter(player.inventory, (TileEntityFermenter) tileEntity);
         }
 
         return null;

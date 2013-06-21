@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
@@ -21,12 +22,28 @@ import java.util.ArrayList;
 public class BlockFermenter extends BlockTechnic {
     private static final int SLAVE_BIT = 3;
     private static final int BLOCK_ACTIVATION_RADIUS = 2;
+    private static final float border = 2f * 1f / 16f;
+    private static final float borderComplement = 1f - border;
+    private static final float topBorder = 8f * 1f / 16f;
+    private static final float topBorderComplement = 1f - topBorder;
 
     public static final Material fermenterMaterial = new Material(MapColor.ironColor);
 
     public BlockFermenter(int id, int textureID) {
         super(id, textureID, fermenterMaterial);
         setHardness(3f);
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (isSlave(meta)) {
+            setBlockBounds(border, 0, border, borderComplement, topBorderComplement, borderComplement);
+        } else if (isMaster(meta)) {
+            setBlockBounds(border, topBorder, border, borderComplement, 1, borderComplement);
+        } else {
+            throw new RuntimeException("invalid block state");
+        }
     }
 
     public boolean isMaster(int meta) {

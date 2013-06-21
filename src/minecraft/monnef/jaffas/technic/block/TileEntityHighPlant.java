@@ -19,6 +19,7 @@ import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.technic.JaffasTechnic.highPlant;
@@ -52,6 +53,11 @@ public class TileEntityHighPlant extends TileEntity {
 
             onQuantumTick();
         }
+    }
+
+    @Override
+    public AxisAlignedBB getRenderBoundingBox() {
+        return AxisAlignedBB.getAABBPool().getAABB(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 2, zCoord + 1);
     }
 
     public void setStructureHeight(int newHeight) {
