@@ -5,9 +5,12 @@
 
 package monnef.jaffas.technic.block;
 
+import com.google.common.collect.HashMultimap;
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -18,17 +21,28 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.ForgeDirection;
 
+import java.util.HashMap;
+import java.util.Set;
+
 import static monnef.jaffas.technic.JaffasTechnic.fermenter;
 import static monnef.jaffas.technic.block.ContainerFermenter.SLOT_INPUT;
 import static monnef.jaffas.technic.block.ContainerFermenter.SLOT_KEG;
 import static monnef.jaffas.technic.block.ContainerFermenter.SLOT_OUTPUT;
+import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.BEER;
+import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.BEER_RAW;
 import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.NOTHING;
+import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.WINE;
+import static monnef.jaffas.technic.block.TileEntityKeg.KegType;
 
 public class TileEntityFermenter extends TileEntity implements IInventory, ISidedInventory {
     private static final String WORK_TIME_TAG = "workCounter";
     private static final String LIQUID_AMOUNT_TAG = "liquidAmount";
     private static final String LIQUID_TYPE_TAG = "liquidType";
-    private static final int FERMENTER_CAPACITY = 2;
+
+    public static final int FERMENTER_CAPACITY = 100;
+    public static final int FERMENTER_HALF_CAPACITY = FERMENTER_CAPACITY / 2 + 1;
+
+    private static final int TICK_QUANTUM = 20;
     private boolean integrityCheckScheduled = true;
     private ItemStack[] inv;
     private int workCounter = 0;
@@ -43,11 +57,17 @@ public class TileEntityFermenter extends TileEntity implements IInventory, ISide
         BEER,
         WINE;
 
-        // ticks
-        private int fermentationLength;
+        private int fermentationLength; // ticks
+        private static HashMap<FermentedLiquid, FermentedLiquid> transform;
+
+        static {
+            transform = new HashMap<FermentedLiquid, FermentedLiquid>();
+            transform.put(BEER_RAW, BEER);
+            transform.put(WINE_RAW, WINE);
+        }
 
         private FermentedLiquid(int fermentationLengthInMinutes) {
-            this.fermentationLength = fermentationLengthInMinutes * 20 * 60;
+            this.fermentationLength = fermentationLengthInMinutes * 20 * (MonnefCorePlugin.debugEnv ? 1 : 60);
         }
 
         FermentedLiquid() {
@@ -60,6 +80,50 @@ public class TileEntityFermenter extends TileEntity implements IInventory, ISide
         public boolean canBeFermented() {
             return fermentationLength > 0;
         }
+
+        public FermentedLiquid getFermentationProduct() {
+            return transform.get(this);
+        }
+    }
+
+    public static class InputLiquidEntry {
+        public int itemID;
+        public FermentedLiquid liquid;
+        public int amount;
+
+        public InputLiquidEntry(int itemID, FermentedLiquid liquid, int amount) {
+            this.liquid = liquid;
+            this.amount = amount;
+            this.itemID = itemID;
+        }
+    }
+
+    public static class OutputLiquidEntry {
+        public int containerItemID;
+        public FermentedLiquid liquid;
+        public int amount;
+        public ItemStack output;
+
+        public OutputLiquidEntry(int containerItemID, FermentedLiquid liquid, int amount, ItemStack output) {
+            this.containerItemID = containerItemID;
+            this.liquid = liquid;
+            this.amount = amount;
+            this.output = output;
+        }
+    }
+
+    private static HashMap<Integer, InputLiquidEntry> inputDatabase;
+    private static HashMultimap<Integer, OutputLiquidEntry> outputDatabase;
+
+    static {
+        inputDatabase = new HashMap<Integer, InputLiquidEntry>();
+        int brewedHopId = JaffasTechnic.brewedHopInBucket.itemID;
+        inputDatabase.put(brewedHopId, new InputLiquidEntry(brewedHopId, BEER_RAW, FERMENTER_HALF_CAPACITY));
+
+        outputDatabase = HashMultimap.create();
+        int kegId = JaffasTechnic.itemKeg.itemID;
+        outputDatabase.put(kegId, new OutputLiquidEntry(kegId, BEER, FERMENTER_CAPACITY, new ItemStack(kegId, 1, KegType.BEER.ordinal())));
+        outputDatabase.put(kegId, new OutputLiquidEntry(kegId, WINE, FERMENTER_CAPACITY, new ItemStack(kegId, 1, KegType.WINE.ordinal())));
     }
 
     public TileEntityFermenter() {
@@ -80,7 +144,84 @@ public class TileEntityFermenter extends TileEntity implements IInventory, ISide
     public void updateEntity() {
         // 2x bucket of brewed hops -> 1x keg
 
+        super.updateEntity();
         checkBlockIntegrity();
+        if (worldObj.isRemote) return;
+        tickCounter++;
+        if (tickCounter % TICK_QUANTUM == 0) {
+            onTickQuantum();
+        }
+    }
+
+    private void onTickQuantum() {
+        if (isWorking()) {
+            workCounter += TICK_QUANTUM;
+            if (workCounter >= liquid.getFermentationLength()) {
+                workCounter = 0;
+                FermentedLiquid newLiquid = liquid.getFermentationProduct();
+                if (newLiquid == null) {
+                    throw new RuntimeException("null in liquid");
+                }
+                liquid = newLiquid;
+            }
+        } else {
+            if (canWork()) {
+                workCounter = 1;
+            } else {
+                if (!tryProcessInput()) {
+                    tryProcessOutput();
+                }
+            }
+        }
+    }
+
+    private boolean tryProcessOutput() {
+        ItemStack kegStack = inv[SLOT_KEG];
+        ItemStack outStack = inv[SLOT_OUTPUT];
+        if (kegStack == null) return false;
+        if (outStack != null) return false;
+        Set<OutputLiquidEntry> found = outputDatabase.get(kegStack.itemID);
+        for (OutputLiquidEntry item : found) {
+            if (item.liquid == liquid) {
+                if (item.amount > liquidAmount) continue;
+
+                liquidAmount -= item.amount;
+                refreshLiquidAmount();
+
+                ItemStack output = item.output.copy();
+                setInventorySlotContents(SLOT_OUTPUT, output);
+
+                kegStack.stackSize--;
+                if (kegStack.stackSize <= 0) setInventorySlotContents(SLOT_KEG, null);
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean tryProcessInput() {
+        ItemStack stack = inv[SLOT_INPUT];
+        if (stack == null) return false;
+        if (isFull()) return false;
+        InputLiquidEntry found = inputDatabase.get(stack.itemID);
+        if (found == null) return false;
+        if (!isEmpty() && liquid != found.liquid) return false;
+
+        stack.stackSize--;
+        if (stack.stackSize <= 0) {
+            setInventorySlotContents(SLOT_INPUT, null);
+        }
+
+        if (isEmpty()) {
+            liquid = found.liquid;
+            liquidAmount = 0;
+        }
+        liquidAmount += found.amount;
+        if (liquidAmount > FERMENTER_CAPACITY) {
+            liquidAmount = FERMENTER_CAPACITY;
+        }
+        return true;
     }
 
     private void checkBlockIntegrity() {
@@ -322,13 +463,13 @@ public class TileEntityFermenter extends TileEntity implements IInventory, ISide
         return liquid.canBeFermented();
     }
 
-    private boolean isFull() {
+    public boolean isFull() {
         refreshLiquidAmount();
         if (liquid == NOTHING) return false;
         return liquidAmount == FERMENTER_CAPACITY;
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         refreshLiquidAmount();
         return liquid == NOTHING;
     }
