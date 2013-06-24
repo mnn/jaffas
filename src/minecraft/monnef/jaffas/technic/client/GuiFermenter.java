@@ -23,7 +23,7 @@ import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.WI
 import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.WINE_RAW;
 
 public class GuiFermenter extends GuiContainer {
-    public static final String GUI_TEXTURE = "/guibreaker.png";
+    public static final String GUI_TEXTURE = "/guifermenter.png";
 
     public TileEntityFermenter tile;
 

@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/BlockFruitLeaves.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/BlockFruitLeaves.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371821828526" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371889386071" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372064583686" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364127931688" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364060299348" ignored="false" />
@@ -168,7 +169,7 @@
     <file path="/GuiContainerMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360334824560" ignored="false" />
     <file path="/GuiContainerGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360335152617" ignored="false" />
     <file path="/EntityDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367347663862" ignored="false" />
-    <file path="/ColorHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371131687234" ignored="false" />
+    <file path="/ColorHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372065734001" ignored="false" />
     <file path="/RenderDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359924517538" ignored="false" />
     <file path="/ItemJaffaBase.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365106977916" ignored="false" />
     <file path="/ItemJaffaPainting.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993874418" ignored="false" />
@@ -521,8 +522,8 @@
     <file path="/ModelFermenter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371765511477" ignored="false" />
     <file path="/TileEntityFermenterRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371765595689" ignored="false" />
     <file path="/ContainerFermenter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371821524997" ignored="false" />
-    <file path="/GuiFermenter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371890628110" ignored="false" />
-    <file path="/DrawingHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371890225977" ignored="false" />
+    <file path="/GuiFermenter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372064937104" ignored="false" />
+    <file path="/DrawingHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372065255328" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -543,6 +544,40 @@
   </component>
   <component name="DebuggerManager">
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+    </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/CompostRegister.java" line="66" class="monnef.jaffas.technic.common.CompostRegister" package="monnef.jaffas.technic.common">
         <option name="ENABLED" value="true" />
@@ -587,40 +622,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-    </breakpoint_any>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -631,10 +632,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TileEntityFermenter.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TileEntityFermenter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="202" column="20" selection-start="6966" selection-end="6966" vertical-scroll-proportion="0.3322884">
+            <state line="255" column="25" selection-start="8795" selection-end="8795" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -676,24 +677,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileEntityCobbleBreaker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityCobbleBreaker.java">
+      <file leaf-file-name="GuiFermenter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="0" selection-start="8440" selection-end="13673" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#14237#0" expanded="true" />
-              </folding>
+            <state line="37" column="124" selection-start="1417" selection-end="1417" vertical-scroll-proportion="0.46708465">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiFermenter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java">
+      <file leaf-file-name="Gui.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/gui/Gui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="27" selection-start="2569" selection-end="2569" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="40" column="78" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ColorHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/ColorHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="53" column="49" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -707,22 +713,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LabelRenderer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/LabelRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="51" selection-start="1966" selection-end="2760" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DrawingHelper.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/DrawingHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="14" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -746,7 +741,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/ModelFermenter.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileEntityFermenterRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/ClientProxy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemFermenter.java" />
@@ -759,9 +753,10 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockHighPlant.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFermenter.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityHighPlant.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/client/DrawingHelper.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/client/DrawingHelper.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ColorHelper.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java" />
       </list>
     </option>
   </component>
@@ -823,7 +818,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1260,6 +1254,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1583,13 +1578,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.49786553" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25892857" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25892857" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2890625" sideWeight="0.50053364" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1597,16 +1593,15 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35044643" sideWeight="0.4850587" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575893" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456777" sideWeight="0.31361607" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456777" sideWeight="0.42857143" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456777" sideWeight="0.41964287" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456777" sideWeight="0.3046875" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.49573106" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.49786553" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1691,20 +1686,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockHighPlant.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="52" selection-start="1134" selection-end="1135" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFermenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="4" selection-start="1703" selection-end="1703" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/tileentity/TileEntity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="386" column="52" selection-start="12275" selection-end="12389" vertical-scroll-proportion="0.0">
@@ -1729,32 +1710,19 @@
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityCobbleBreaker.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="241" column="0" selection-start="8440" selection-end="13673" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#14237#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityCompostCore.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="13" selection-start="1464" selection-end="1464" vertical-scroll-proportion="0.11724138">
-          <folding />
-        </state>
+        <state line="34" column="13" selection-start="1464" selection-end="1464" vertical-scroll-proportion="0.11724138" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/LabelRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="67" column="51" selection-start="1966" selection-end="2760" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/DrawingHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="779" selection-end="779" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1769,15 +1737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="70" selection-start="1987" selection-end="1987" vertical-scroll-proportion="0.0">
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="27" selection-start="2569" selection-end="2569" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1804,7 +1763,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="202" column="20" selection-start="6966" selection-end="6966" vertical-scroll-proportion="0.3322884">
+        <state line="255" column="25" selection-start="8795" selection-end="8795" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/gui/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="78" selection-start="1036" selection-end="1036" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/DrawingHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="334" selection-end="334" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/ColorHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="49" selection-start="1617" selection-end="1617" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/GuiFermenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="124" selection-start="1417" selection-end="1417" vertical-scroll-proportion="0.46708465">
           <folding />
         </state>
       </provider>

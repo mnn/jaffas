@@ -440,9 +440,9 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
             for (int xShift = -1; xShift <= 1; ++xShift) {
                 int foliageColor = access.getBiomeGenForCoords(x + xShift, z + zShift).getBiomeFoliageColor();
                 ColorHelper.IntColor currentFoliageColor = ColorHelper.getColor(foliageColor);
-                red += currentFoliageColor.red;
-                green += currentFoliageColor.green;
-                blue += currentFoliageColor.blue;
+                red += currentFoliageColor.getRed();
+                green += currentFoliageColor.getGreen();
+                blue += currentFoliageColor.getBlue();
             }
         }
 
