@@ -6,6 +6,7 @@
 package monnef.jaffas.technic.client;
 
 import monnef.core.client.DrawingHelper;
+import monnef.core.utils.ColorHelper;
 import monnef.jaffas.technic.block.ContainerFermenter;
 import monnef.jaffas.technic.block.TileEntityFermenter;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -15,6 +16,8 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 
+import static monnef.core.client.DrawingHelper.EnumFillRotation.LEFT_RIGHT;
+import static monnef.core.client.DrawingHelper.EnumFillRotation.TOP_DOWN;
 import static monnef.core.utils.ColorHelper.IntColor;
 import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid;
 import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.BEER;
@@ -23,20 +26,43 @@ import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.WI
 import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.WINE_RAW;
 
 public class GuiFermenter extends GuiContainer {
-    public static final String GUI_TEXTURE = "/guifermenter.png";
+    private static final String GUI_TEXTURE = "/guifermenter.png";
+    public static final int TANK_POS_X = 24;
+    public static final int TANK_POS_Y = 20;
+    public static final int TANK_WIDTH = 16;
+    public static final int WORK_WIDTH = 4;
+    public static final int WORK_X = 14;
+    public static int TANK_HEIGHT = 46;
 
     public TileEntityFermenter tile;
 
-    private static HashMap<FermentedLiquid, IntColor> liquidToColor;
+    private static HashMap<FermentedLiquid, ColorPair> liquidToColors;
+    private static IntColor WORK_BOTTOM_COLOR = new IntColor(255, 150, 150);
+    private static IntColor WORK_TOP_COLOR = new IntColor(255, 100, 100);
 
     static {
-        liquidToColor = new HashMap<FermentedLiquid, IntColor>();
+        liquidToColors = new HashMap<FermentedLiquid, ColorPair>();
 
-        liquidToColor.put(BEER, new IntColor(220, 220, 90));
-        liquidToColor.put(BEER_RAW, new IntColor(225, 175, 70));
+        addLiquidToColorsMapping(BEER, new IntColor(220, 220, 90));
+        addLiquidToColorsMapping(BEER_RAW, new IntColor(225, 175, 70));
 
-        liquidToColor.put(WINE_RAW, new IntColor(200, 70, 125));
-        liquidToColor.put(WINE, new IntColor(190, 35, 90));
+        addLiquidToColorsMapping(WINE_RAW, new IntColor(200, 70, 125));
+        addLiquidToColorsMapping(WINE, new IntColor(190, 35, 90));
+    }
+
+    private static void addLiquidToColorsMapping(FermentedLiquid liquid, IntColor color) {
+        int second = ColorHelper.addBrightness(color.toInt(), -33);
+        liquidToColors.put(liquid, new ColorPair(color, ColorHelper.getColor(second)));
+    }
+
+    private static class ColorPair {
+        public IntColor first;
+        public IntColor second;
+
+        private ColorPair(IntColor first, IntColor second) {
+            this.first = first;
+            this.second = second;
+        }
     }
 
     public GuiFermenter(InventoryPlayer inventoryPlayer,
@@ -60,15 +86,16 @@ public class GuiFermenter extends GuiContainer {
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
-        // arrow
         if (tile.isWorking()) {
-            int m = (tile.getWorkMeter() * 24) / tile.getMaxWorkMeter();
-            drawTexturedModalRect(x + 84, y + 34, 176, 14, m + 1, 16);
+            int m = (tile.getWorkMeter() * TANK_HEIGHT) / tile.getMaxWorkMeter();
+            DrawingHelper.drawGradientRectFromDown(this, x + WORK_X, y + TANK_POS_Y, WORK_WIDTH, m, WORK_BOTTOM_COLOR, WORK_TOP_COLOR, TOP_DOWN, TANK_HEIGHT);
         }
 
         if (!tile.isEmpty()) {
-            int m = (tile.getLiquidAmount() * 46) / TileEntityFermenter.FERMENTER_CAPACITY;
-            DrawingHelper.drawRect(x + 76, y + 20, 16, m, liquidToColor.get(tile.getLiquid()));
+            int m = (tile.getLiquidAmount() * TANK_HEIGHT) / TileEntityFermenter.FERMENTER_CAPACITY;
+            //DrawingHelper.drawRect(x + 24, y + 20, 16, m, liquidToColors.get(tile.getLiquid()));
+            ColorPair pair = liquidToColors.get(tile.getLiquid());
+            DrawingHelper.drawGradientRectFromDown(this, x + TANK_POS_X, y + TANK_POS_Y, TANK_WIDTH, m, pair.first, pair.second, LEFT_RIGHT, TANK_HEIGHT);
         }
     }
     // x, y, u, v, width, height

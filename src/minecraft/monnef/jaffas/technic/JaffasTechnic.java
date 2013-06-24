@@ -46,6 +46,7 @@ import monnef.jaffas.technic.block.TileEntityCobbleBreaker;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
 import monnef.jaffas.technic.block.TileEntityConstructionDummy;
 import monnef.jaffas.technic.block.TileEntityFermenter;
+import monnef.jaffas.technic.block.TileEntityFermenterInventoryRouter;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.block.TileEntityHighPlant;
 import monnef.jaffas.technic.block.TileEntityKeg;
@@ -599,6 +600,7 @@ public class JaffasTechnic extends jaffasMod {
         fermenter = new BlockFermenter(blockFermenterID, 43);
         RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
         JaffasRegistryHelper.registerTileEntity(TileEntityFermenter.class, "fermenter");
+        JaffasRegistryHelper.registerTileEntity(TileEntityFermenterInventoryRouter.class, "fermenterInvRouter");
         MinecraftForge.setBlockHarvestLevel(fermenter, "pickaxe", 0);
 
         createTools();

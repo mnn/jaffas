@@ -8,7 +8,6 @@ package monnef.jaffas.technic.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.block.ContainerJaffas;
-import monnef.jaffas.technic.block.TileEntityFermenter;
 import monnef.jaffas.technic.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -29,9 +28,9 @@ public class ContainerFermenter extends ContainerJaffas {
         super(inventoryPlayer, tile);
         this.tile = tile;
 
-        addSlotToContainer(new Slot(tile, SLOT_INPUT, 57, 35));
-        addSlotToContainer(new SlotOutput(tile, SLOT_OUTPUT, 124, 35));
-        addSlotToContainer(new Slot(tile, SLOT_KEG, 23, 35));
+        addSlotToContainer(new Slot(tile, SLOT_INPUT, 78, 48));
+        addSlotToContainer(new SlotOutput(tile, SLOT_OUTPUT, 137, 18));
+        addSlotToContainer(new Slot(tile, SLOT_KEG, 78, 20));
     }
 
     @Override

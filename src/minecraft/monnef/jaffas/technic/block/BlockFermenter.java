@@ -14,6 +14,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -46,6 +47,12 @@ public class BlockFermenter extends BlockTechnic {
         }
     }
 
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        setBlockBoundsBasedOnState(world, x, y, z);
+        return super.getCollisionBoundingBoxFromPool(world, x, y, z);
+    }
+
     public boolean isMaster(int meta) {
         return !isSlave(meta);
     }
@@ -70,32 +77,32 @@ public class BlockFermenter extends BlockTechnic {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        TileEntityFermenter te = null;
+        TileEntity te = null;
 
         int ny = y;
         int tested = 0;
-        while (te == null && tested < BLOCK_ACTIVATION_RADIUS) {
-            te = (TileEntityFermenter) world.getBlockTileEntity(x, ny, z);
+        while (!(te instanceof TileEntityFermenter) && tested < BLOCK_ACTIVATION_RADIUS) {
+            te = world.getBlockTileEntity(x, ny, z);
             ny--;
             tested++;
         }
 
-        if (te == null) {
+        if (!(te instanceof TileEntityFermenter)) {
             JaffasFood.Log.printWarning("Fermenter: block activation problem, cannot find my TE");
             return false;
         }
 
-        return te.playerActivatedBox(player);
+        return ((TileEntityFermenter) te).playerActivatedBox(player);
     }
 
     @Override
     public boolean hasTileEntity(int meta) {
-        return isMaster(meta);
+        return true;
     }
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityFermenter();
+        return isMaster(metadata) ? new TileEntityFermenter() : new TileEntityFermenterInventoryRouter();
     }
 
     @Override
