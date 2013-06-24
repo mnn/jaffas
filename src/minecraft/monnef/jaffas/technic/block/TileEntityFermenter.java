@@ -72,8 +72,8 @@ public class TileEntityFermenter extends TileEntity implements IInventory, ISide
 
     public enum FermentedLiquid {
         NOTHING("empty"),
-        BEER_RAW("raw beer", 10),
-        WINE_RAW("raw wine", 15),
+        BEER_RAW("raw beer", 5),
+        WINE_RAW("raw wine", 10),
         BEER("beer"),
         WINE("wine");
 

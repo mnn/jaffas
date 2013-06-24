@@ -95,6 +95,7 @@ import java.util.logging.Level;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
+import static monnef.jaffas.food.item.JaffaItem.beerMugEmpty;
 import static monnef.jaffas.food.item.JaffaItem.bottleKetchup;
 import static monnef.jaffas.food.item.JaffaItem.bottleMustard;
 import static monnef.jaffas.food.item.JaffaItem.cakeTin;
@@ -569,14 +570,14 @@ public class JaffasTechnic extends jaffasMod {
         RegistryUtils.registerItem(hop, "hop", "Hop");
 
         processedHop = new ItemTechnic(itemProcessedHopID, 47);
-        RegistryUtils.registerItem(processedHop, "hopProcessed", "Milled Hop");
+        RegistryUtils.registerItem(processedHop, "hopProcessed", "Beer Mixture");
 
         processedHopInBucket = new ItemTechnic(itemProcessedHopInBucketID, 48);
-        RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket", "Milled Hop With Water");
+        RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket", "Beer Mixture In Bucket");
         processedHopInBucket.setContainerItem(Item.bucketEmpty);
 
         brewedHopInBucket = new ItemTechnic(itemBrewedHopInBucketID, 49);
-        RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Brewed Hop");
+        RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Hopped Wort");
         brewedHopInBucket.setContainerItem(Item.bucketEmpty);
 
         hopSeeds = new ItemTechnic(itemHopSeedsID, 46);
@@ -781,15 +782,20 @@ public class JaffasTechnic extends jaffasMod {
             GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBR", "IRI", 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
         }
 
-        GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop);
+        GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);
         GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
         GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);
         GameRegistry.addShapelessRecipe(new ItemStack(hopSeeds), hop);
         Recipes.addRecipe(new ShapedOreRecipe(itemKeg, "PSP", "PJP", "PSP", 'P', "plankWood", 'S', "slabWood", 'J', jaffarrol));
+        GameRegistry.addShapedRecipe(new ItemStack(getItem(beerMugEmpty), 2), "GG ", "GGG", "GG ", 'G', Block.glass);
 
         GameRegistry.addShapedRecipe(new ItemStack(cobbleBreaker), "SSS", "JLJ", "TFT", 'S', Item.stick, 'J', jaffarrolRefined, 'L', Item.slimeBall, 'T', DyeHelper.getDye(DyeColor.YELLOW), 'F', Block.furnaceIdle);
+        GameRegistry.addShapedRecipe(new ItemStack(itemFermenter), "BFB", "CAC", "BBB",
+                'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_ALLOY), 'C', new ItemStack(itemCentralUnit, 1, 0),
+                'F', funnel, 'A', itemCasingRefined);
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.shears), " J", "J ", 'J', jaffarrol);
+        GameRegistry.addShapedRecipe(new ItemStack(highPlantPost), "SSS", " S ", " S ", 'S', Item.stick);
     }
 
     private Item getItem(JaffaItem item) {

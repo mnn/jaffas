@@ -395,6 +395,11 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.beerMugEmpty, "Empty Beer Mug", 251);
         AddItemInfo(JaffaItem.beerMugFull, "Full Beer Mug", 252);
+
+        AddItemInfo(JaffaItem.potatesSliced, "Sliced Potatoes", 253);
+        AddItemInfo(JaffaItem.potatesSlicedInTinRaw, "Raw Crisps", 254);
+        AddItemInfo(JaffaItem.potatesSlicedInTin, "Crisps In Tin", 255);
+        AddItemInfo(JaffaItem.crisps, "Crisps", 256);
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {
@@ -710,7 +715,19 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(driedMeat, 5, 1f);
 
         createJaffaItem(beerMugEmpty).setMaxStackSize(16);
-        createJaffaFood(beerMugFull, 3, 1.5f).setIsDrink().setAlwaysEdible().setReturnItem(getItemStack(beerMugEmpty)).setPotionEffect(Potion.damageBoost.id, 30, 0, 0.35f).setMaxStackSize(1);
+        createJaffaFood(beerMugFull, 4, 1.5f).setIsDrink().setAlwaysEdible().setReturnItem(getItemStack(beerMugEmpty)).setPotionEffect(Potion.damageBoost.id, 30, 0, 0.35f).setMaxStackSize(1);
+
+        /*
+                AddItemInfo(JaffaItem.potatesSliced, "Sliced Potatoes", 253);
+        AddItemInfo(JaffaItem.potatesSlicedInTinRaw, "Raw Crisps", 254);
+        AddItemInfo(JaffaItem.potatesSlicedInTin, "Crisps In Tin", 255);
+        AddItemInfo(JaffaItem.crisps, "Crisps", 256);
+
+         */
+        createJaffaItem(potatesSliced);
+        createJaffaItem(potatesSlicedInTinRaw);
+        createJaffaItem(potatesSlicedInTin);
+        createJaffaFood(crisps, 3, 0.8f).setReturnItem(getItemStack(woodenBowl));
 
         createItemsRegistration();
 

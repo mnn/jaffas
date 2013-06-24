@@ -40,6 +40,8 @@ public class Recipes {
     public static final String WOOD_PLANK = "plankWood";
     public static final String WOOD_LOG = "logWood";
     public static final String WOOD_SLAB = "slabWood";
+    public static final String TREE_SAPLING = "treeSapling";
+    public static final String TREE_LEAVES = "treeLeaves";
 
     public static void install() {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(pastrySweet)), new ItemStack(Item.sugar),
@@ -335,8 +337,8 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(getItemStack(hamburger, 5), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(burger), getItem(onionSliced));
         GameRegistry.addShapelessRecipe(getItemStack(cheeseburger, 6), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(burger), getItem(onionSliced), getItem(cheeseSlice));
         addFryingPanRecipe(Item.egg, fryingPanEggRaw, fryingPanEgg, eggFried);
+        addFryingPanRecipe(duckEgg, fryingPanEggRaw, fryingPanEgg, eggFried);
         addFryingPanRecipe(chipsRaw, fryingPanChipsRaw, fryingPanChips, chips);
-        RecipesBoard.addRecipe(new ItemStack(Item.potato), getItemStack(chipsRaw));
 
         addJamBreadSliceRecipe(jamStrawberry);
         addJamBreadSliceRecipe(jamRaspberry);
@@ -433,6 +435,13 @@ public class Recipes {
         if (JaffasFood.vanillaRecipesEnabled) {
             registerVanillaLikeRecipes();
         }
+
+        RecipesBoard.addRecipe(new ItemStack(Item.potato), getItemStack(potatesSliced));
+        RecipesBoard.addRecipe(potatesSliced, 1, chipsRaw, 1);
+        GameRegistry.addShapedRecipe(getItemStack(potatesSlicedInTinRaw), " P ", "P P", " T ", 'P', getItem(potatesSliced), 'T', getItem(cakeTin));
+        GameRegistry.addSmelting(getItem(potatesSlicedInTinRaw).itemID, new ItemStack(getItem(potatesSlicedInTin)), 1F);
+        GameRegistry.addShapelessRecipe(getItemStack(crisps, 2), getItem(woodenBowl), getItem(woodenBowl), getItem(potatesSlicedInTin));
+        JaffaCraftingHandler.AddPersistentItem(potatesSlicedInTin, false, cakeTin);
     }
 
     public static void addTableRecipe(ItemStack output, int color) {
@@ -462,13 +471,13 @@ public class Recipes {
     private static void registerVanillaLikeRecipes() {
         GameRegistry.addShapedRecipe(new ItemStack(Block.grass), "GGG", "SSS", "SSS", 'S', Block.dirt, 'G', new ItemStack(Block.tallGrass, 1, 1));
         addRecipe(new ShapelessOreRecipe(new ItemStack(Block.dirt),
-                "treeSapling", "treeSapling", "treeSapling",
-                "treeSapling", "treeSapling", "treeSapling",
-                "treeSapling", "treeSapling", "treeSapling"));
+                TREE_SAPLING, TREE_SAPLING, TREE_SAPLING,
+                TREE_SAPLING, TREE_SAPLING, TREE_SAPLING,
+                TREE_SAPLING, TREE_SAPLING, TREE_SAPLING));
         addRecipe(new ShapelessOreRecipe(new ItemStack(Block.dirt),
-                "treeLeaves", "treeLeaves", "treeLeaves",
-                "treeLeaves", "treeLeaves", "treeLeaves",
-                "treeLeaves", "treeLeaves", "treeLeaves"));
+                TREE_LEAVES, TREE_LEAVES, TREE_LEAVES,
+                TREE_LEAVES, TREE_LEAVES, TREE_LEAVES,
+                TREE_LEAVES, TREE_LEAVES, TREE_LEAVES));
         GameRegistry.addShapedRecipe(new ItemStack(Block.gravel, 3), "SCS", "CSC", "SCS", 'S', Block.stone, 'C', Block.cobblestone);
         GameRegistry.addShapedRecipe(new ItemStack(Block.sand, 3), "GGG", "GWG", "GGG", 'W', Item.bucketWater, 'G', Block.gravel);
         GameRegistry.addShapedRecipe(new ItemStack(Item.bucketWater), "CCC", "CCC", "B", 'C', Block.cactus, 'B', Item.bucketEmpty);
@@ -510,7 +519,6 @@ public class Recipes {
     }
 
     public static void addMalletShapedRecipe(ItemStack output, ItemStack input) {
-        //GameRegistry.addRecipe(output, "M", "O", 'M', new ItemStack(getItem(itemManager.mallets[i]), 1, WILDCARD_VALUE), 'O', input);
         addRecipe(new ShapedOreRecipe(output, "M", "O", 'M', Items.MALLET, 'O', input));
     }
 
