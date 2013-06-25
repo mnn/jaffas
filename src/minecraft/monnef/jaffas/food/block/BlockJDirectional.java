@@ -123,7 +123,7 @@ public class BlockJDirectional extends BlockJaffas {
         }
 
         int dirNumber = convertDirectionToMappingDirection(realDirection, type);
-        return meta << type.getBitsForRotationInfo() | dirNumber;
+        return (meta << type.getBitsForRotationInfo()) | dirNumber;
     }
 
     protected static int convertDirectionToMappingDirection(ForgeDirection direction, TextureMappingType type) {
