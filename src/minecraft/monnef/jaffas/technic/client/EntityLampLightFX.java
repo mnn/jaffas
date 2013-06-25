@@ -5,9 +5,12 @@
 
 package monnef.jaffas.technic.client;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.world.World;
 
+@SideOnly(Side.CLIENT)
 public class EntityLampLightFX extends EntityFX {
     public EntityLampLightFX(World world, double x, double y, double z, double motionX, double motionY, double motionZ, double lifeConstant) {
         super(world, x, y, z, motionX, motionY, motionZ);

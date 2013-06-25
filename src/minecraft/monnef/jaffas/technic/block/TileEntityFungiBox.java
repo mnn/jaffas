@@ -6,6 +6,8 @@
 package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.farming.ICrop;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;

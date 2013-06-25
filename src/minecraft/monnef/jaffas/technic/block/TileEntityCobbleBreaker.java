@@ -6,6 +6,8 @@
 package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.RandomHelper;
@@ -174,6 +176,7 @@ public class TileEntityCobbleBreaker extends TileEntity implements IInventory, I
         return burnTime > 0;
     }
 
+    @SideOnly(Side.CLIENT)
     private void createDigParticles() {
         IntegerCoordinates pos = getFacingBlockCachedCoordinates();
         int partCount = RandomHelper.generateRandomFromInterval(4, 10);

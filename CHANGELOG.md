@@ -1,3 +1,9 @@
+## 0.4.22
+- beer brewing
+- cobble breaker
+- crisps
+- "vanilla" recipes
+
 ## 0.4.21
 - changed naming of TEs (read more at wiki - ignoring this change can lead to a damaged world save!)
 - new mushroom - fly agaric
