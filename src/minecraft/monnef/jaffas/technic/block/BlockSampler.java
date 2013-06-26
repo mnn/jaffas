@@ -6,7 +6,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
+import java.util.Random;
+
 public class BlockSampler extends BlockDirectionalTechnic {
+
+    public static final int WAIT_TICKS = 2;
+
     public BlockSampler(int id, int textureStart, int texturesCountPerSet, Material material) {
         super(id, textureStart, texturesCountPerSet, material, TextureMappingType.ALL_SIDES);
     }
@@ -42,12 +47,22 @@ public class BlockSampler extends BlockDirectionalTechnic {
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourBlockID) {
         super.onNeighborBlockChange(world, x, y, z, neighbourBlockID);
-        recalculatePower(world, x, y, z);
+        recalculatePowerInNextTick(world, x, y, z);
     }
 
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
+        recalculatePowerInNextTick(world, x, y, z);
+    }
+
+    private void recalculatePowerInNextTick(World world, int x, int y, int z) {
+        world.scheduleBlockUpdate(x, y, z, blockID, WAIT_TICKS);
+    }
+
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random random) {
+        super.updateTick(world, x, y, z, random);
         recalculatePower(world, x, y, z);
     }
 

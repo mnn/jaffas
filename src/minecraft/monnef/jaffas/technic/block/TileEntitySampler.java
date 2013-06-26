@@ -19,6 +19,7 @@ public class TileEntitySampler extends TileEntity {
     private int cachedPower = 0;
     private boolean initialized = false;
     private boolean recalculatePowerInNextTick;
+    private int myBlockId;
 
     public int getOutputSide() {
         if (outputSide == -1) {
@@ -55,31 +56,42 @@ public class TileEntitySampler extends TileEntity {
             if (inputBlock == null) {
                 cachedPower = 0;
             } else {
-                //cachedPower = worldObj.getStrongestIndirectPower(xCoord + inputDir.offsetX, yCoord + inputDir.offsetY, zCoord + inputDir.offsetZ);
                 cachedPower = worldObj.getIndirectPowerLevelTo(sourceX, sourceY, sourceZ, getInputSide()); // orig. getOutputSide()
                 int redStoneWirePower = worldObj.getBlockId(sourceX, sourceY, sourceZ) == Block.redstoneWire.blockID ? worldObj.getBlockMetadata(sourceX, sourceY, sourceZ) : 0;
                 if (redStoneWirePower > cachedPower) {
                     cachedPower = redStoneWirePower;
                 }
-                //         return l1 >= 15 ? l1 : Math.max(l1, par1World.getBlockId(j1, par3, k1) == Block.redstoneWire.blockID ? par1World.getBlockMetadata(j1, par3, k1) : 0);
             }
         }
 
         if (oldPower != cachedPower) {
-            forceUpdateNeighbours();
+            //forceUpdateNeighbours();
+            //notifyOutputNeighbour();
+            notifyBlocksOfMyChange();
         }
     }
 
     public void forceUpdateNeighbours() {
-        int myBlockId = JaffasTechnic.sampler.blockID;
-        worldObj.notifyBlocksOfNeighborChange(xCoord + 1, yCoord, zCoord, myBlockId);
-        worldObj.notifyBlocksOfNeighborChange(xCoord - 1, yCoord, zCoord, myBlockId);
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord + 1, myBlockId);
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord - 1, myBlockId);
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord - 1, zCoord, myBlockId);
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord + 1, zCoord, myBlockId);
+        worldObj.notifyBlocksOfNeighborChange(xCoord + 1, yCoord, zCoord, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord - 1, yCoord, zCoord, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord + 1, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord - 1, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord - 1, zCoord, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord + 1, zCoord, getMyBlockId());
 
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, myBlockId);
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getMyBlockId());
+    }
+
+    public void notifyOutputNeighbour() {
+        ForgeDirection outDir = ForgeDirection.getOrientation(getOutputSide());
+        int nx = xCoord + outDir.offsetX;
+        int ny = yCoord + outDir.offsetY;
+        int nz = zCoord + outDir.offsetZ;
+        worldObj.notifyBlocksOfNeighborChange(nx, ny, nz, getMyBlockId());
+    }
+
+    public void notifyBlocksOfMyChange() {
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getMyBlockId());
     }
 
     @Override
@@ -113,5 +125,13 @@ public class TileEntitySampler extends TileEntity {
             initialized = true;
             recalculatePowerInNextTick = true;
         }
+    }
+
+    public int getMyBlockId() {
+        if (myBlockId == -1) {
+            myBlockId = JaffasTechnic.sampler.blockID;
+        }
+
+        return myBlockId;
     }
 }
