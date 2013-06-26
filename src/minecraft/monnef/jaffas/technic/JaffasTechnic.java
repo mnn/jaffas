@@ -42,6 +42,7 @@ import monnef.jaffas.technic.block.BlockKeg;
 import monnef.jaffas.technic.block.BlockMultiLamp;
 import monnef.jaffas.technic.block.BlockMultiLampDummy;
 import monnef.jaffas.technic.block.BlockOre;
+import monnef.jaffas.technic.block.BlockSampler;
 import monnef.jaffas.technic.block.BlockTechnic;
 import monnef.jaffas.technic.block.TileEntityAnalogRepeater;
 import monnef.jaffas.technic.block.TileEntityCobbleBreaker;
@@ -52,6 +53,7 @@ import monnef.jaffas.technic.block.TileEntityFermenterInventoryRouter;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.block.TileEntityHighPlant;
 import monnef.jaffas.technic.block.TileEntityKeg;
+import monnef.jaffas.technic.block.TileEntitySampler;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
@@ -275,6 +277,9 @@ public class JaffasTechnic extends jaffasMod {
     private int blockRepeaterID;
     public static BlockAnalogRepeater repeater;
 
+    private int blockSamplerID;
+    public static BlockSampler sampler;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -346,6 +351,7 @@ public class JaffasTechnic extends jaffasMod {
                 itemRainbowDustID = idProvider.getItemIDFromConfig("rainbowDust");
                 itemGemsID = idProvider.getItemIDFromConfig("gems");
                 blockRepeaterID = idProvider.getBlockIDFromConfig("repeater");
+                blockSamplerID = idProvider.getBlockIDFromConfig("sampler");
             }
 
             itemCompostID = idProvider.getItemIDFromConfig("compost");
@@ -567,6 +573,10 @@ public class JaffasTechnic extends jaffasMod {
             repeater = new BlockAnalogRepeater(blockRepeaterID, 4, 3, Material.circuits);
             RegistryUtils.registerBlock(repeater, "repeater", "Analog Repeater");
             JaffasRegistryHelper.registerTileEntity(TileEntityAnalogRepeater.class, "repeater");
+
+            sampler = new BlockSampler(blockSamplerID, 4, 3, Material.circuits);
+            RegistryUtils.registerBlock(repeater, "sampler", "Sample-and-hold");
+            JaffasRegistryHelper.registerTileEntity(TileEntitySampler.class, "sampler");
         }
 
         highPlant = new BlockHighPlant(blockHighPlantID, 44);

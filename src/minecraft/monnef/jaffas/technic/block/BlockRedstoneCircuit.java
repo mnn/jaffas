@@ -5,7 +5,6 @@
 
 package monnef.jaffas.technic.block;
 
-import monnef.jaffas.food.block.BlockJDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -14,7 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import java.util.Random;
 
-public class BlockRedstoneCircuit extends BlockDirectionalTechnic {
+public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     public static final int WAIT_TICKS = 2;
 
     public BlockRedstoneCircuit(int id, int textureStart, int texturesCountPerSet, Material material, TextureMappingType type) {
@@ -37,12 +36,10 @@ public class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     }
 
     @Override
-    public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityAnalogRepeater();
-    }
+    public abstract TileEntity createTileEntity(World world, int metadata);
 
-    public TileEntityAnalogRepeater getTile(IBlockAccess world, int x, int y, int z) {
-        return (TileEntityAnalogRepeater) world.getBlockTileEntity(x, y, z);
+    public TileEntityRedstoneCircuit getTile(IBlockAccess world, int x, int y, int z) {
+        return (TileEntityRedstoneCircuit) world.getBlockTileEntity(x, y, z);
     }
 
     public void recalculatePower(IBlockAccess world, int x, int y, int z) {
