@@ -5,8 +5,8 @@
 
 package monnef.jaffas.technic.client;
 
-import monnef.core.client.DrawingHelper;
 import monnef.core.utils.ColorHelper;
+import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerFermenter;
 import monnef.jaffas.technic.block.TileEntityFermenter;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -16,8 +16,8 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 
-import static monnef.core.client.DrawingHelper.EnumFillRotation.LEFT_RIGHT;
-import static monnef.core.client.DrawingHelper.EnumFillRotation.TOP_DOWN;
+import static monnef.core.utils.GuiHelper.EnumFillRotation.LEFT_RIGHT;
+import static monnef.core.utils.GuiHelper.EnumFillRotation.TOP_DOWN;
 import static monnef.core.utils.ColorHelper.IntColor;
 import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid;
 import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.BEER;
@@ -88,14 +88,14 @@ public class GuiFermenter extends GuiContainer {
 
         if (tile.isWorking()) {
             int m = (tile.getWorkMeter() * TANK_HEIGHT) / tile.getMaxWorkMeter();
-            DrawingHelper.drawGradientRectFromDown(this, x + WORK_X, y + TANK_POS_Y, WORK_WIDTH, m, WORK_BOTTOM_COLOR, WORK_TOP_COLOR, TOP_DOWN, TANK_HEIGHT);
+            GuiHelper.drawGradientRectFromDown(this, x + WORK_X, y + TANK_POS_Y, WORK_WIDTH, m, WORK_BOTTOM_COLOR, WORK_TOP_COLOR, TOP_DOWN, TANK_HEIGHT);
         }
 
         if (!tile.isEmpty()) {
             int m = (tile.getLiquidAmount() * TANK_HEIGHT) / TileEntityFermenter.FERMENTER_CAPACITY;
             //DrawingHelper.drawRect(x + 24, y + 20, 16, m, liquidToColors.get(tile.getLiquid()));
             ColorPair pair = liquidToColors.get(tile.getLiquid());
-            DrawingHelper.drawGradientRectFromDown(this, x + TANK_POS_X, y + TANK_POS_Y, TANK_WIDTH, m, pair.first, pair.second, LEFT_RIGHT, TANK_HEIGHT);
+            GuiHelper.drawGradientRectFromDown(this, x + TANK_POS_X, y + TANK_POS_Y, TANK_WIDTH, m, pair.first, pair.second, LEFT_RIGHT, TANK_HEIGHT);
         }
     }
     // x, y, u, v, width, height
