@@ -1,5 +1,11 @@
+/*
+ * Jaffas and more!
+ * author: monnef
+ */
+
 package monnef.jaffas.technic.block;
 
+import monnef.jaffas.food.block.BlockJDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -8,12 +14,11 @@ import net.minecraftforge.common.ForgeDirection;
 
 import java.util.Random;
 
-public class BlockSampler extends BlockDirectionalTechnic {
-
+public class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     public static final int WAIT_TICKS = 2;
 
-    public BlockSampler(int id, int textureStart, int texturesCountPerSet, Material material) {
-        super(id, textureStart, texturesCountPerSet, material, TextureMappingType.ALL_SIDES);
+    public BlockRedstoneCircuit(int id, int textureStart, int texturesCountPerSet, Material material, TextureMappingType type) {
+        super(id, textureStart, texturesCountPerSet, material, type);
     }
 
     @Override
@@ -33,11 +38,11 @@ public class BlockSampler extends BlockDirectionalTechnic {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntitySampler();
+        return new TileEntityAnalogRepeater();
     }
 
-    public TileEntitySampler getTile(IBlockAccess world, int x, int y, int z) {
-        return (TileEntitySampler) world.getBlockTileEntity(x, y, z);
+    public TileEntityAnalogRepeater getTile(IBlockAccess world, int x, int y, int z) {
+        return (TileEntityAnalogRepeater) world.getBlockTileEntity(x, y, z);
     }
 
     public void recalculatePower(IBlockAccess world, int x, int y, int z) {
