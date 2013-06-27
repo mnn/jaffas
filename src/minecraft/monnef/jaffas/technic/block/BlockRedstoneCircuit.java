@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -15,9 +16,12 @@ import java.util.Random;
 
 public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     public static final int WAIT_TICKS = 2;
+    public static final Material circuitBlock = new Material(MapColor.airColor);
 
-    public BlockRedstoneCircuit(int id, int textureStart, int texturesCountPerSet, Material material, TextureMappingType type) {
-        super(id, textureStart, texturesCountPerSet, material, type);
+    public BlockRedstoneCircuit(int id, int textureStart, int texturesCountPerSet, TextureMappingType type) {
+        super(id, textureStart, texturesCountPerSet, circuitBlock, type);
+        setHardness(0.5f);
+        setStepSound(soundStoneFootstep);
     }
 
     @Override

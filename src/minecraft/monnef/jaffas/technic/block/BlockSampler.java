@@ -10,8 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockSampler extends BlockRedstoneCircuit {
-    public BlockSampler(int id, int textureStart, int texturesCountPerSet, Material material) {
-        super(id, textureStart, texturesCountPerSet, material, TextureMappingType.ALL_SIDES);
+    public BlockSampler(int id, int textureStart, int texturesCountPerSet) {
+        super(id, textureStart, texturesCountPerSet, TextureMappingType.ALL_SIDES);
     }
 
     @Override

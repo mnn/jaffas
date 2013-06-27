@@ -570,11 +570,11 @@ public class JaffasTechnic extends jaffasMod {
             RegistryUtils.registerItem(rainbowDust, "rainbowDust", "Rainbow Dust");
             rainbowDust.setInfo("Maybe a key to the secret cow level?");
 
-            repeater = new BlockAnalogRepeater(blockRepeaterID, 52, 3, Material.circuits);
+            repeater = new BlockAnalogRepeater(blockRepeaterID, 52, 3);
             RegistryUtils.registerBlock(repeater, "repeater", "Analog Repeater");
             JaffasRegistryHelper.registerTileEntity(TileEntityAnalogRepeater.class, "repeater");
 
-            sampler = new BlockSampler(blockSamplerID, 60, 3, Material.circuits);
+            sampler = new BlockSampler(blockSamplerID, 60, 3);
             RegistryUtils.registerBlock(sampler, "sampler", "Sample-and-hold");
             JaffasRegistryHelper.registerTileEntity(TileEntitySampler.class, "sampler");
         }
@@ -800,6 +800,9 @@ public class JaffasTechnic extends jaffasMod {
             GameRegistry.addSmelting(rainbowDust.itemID, new ItemStack(gems), 7f);
 
             GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBR", "IRI", 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
+
+            GameRegistry.addShapedRecipe(new ItemStack(repeater, 2), " R ", "JCJ", 'C', Item.redstoneRepeater, 'R', Item.redstone, 'J', jaffarrolRefined);
+            GameRegistry.addShapedRecipe(new ItemStack(sampler), " R ", "JCJ", 'C', Item.comparator, 'R', Item.netherQuartz, 'J', jaffarrolRefined);
         }
 
         GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);
