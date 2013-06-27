@@ -570,12 +570,12 @@ public class JaffasTechnic extends jaffasMod {
             RegistryUtils.registerItem(rainbowDust, "rainbowDust", "Rainbow Dust");
             rainbowDust.setInfo("Maybe a key to the secret cow level?");
 
-            repeater = new BlockAnalogRepeater(blockRepeaterID, 4, 3, Material.circuits);
+            repeater = new BlockAnalogRepeater(blockRepeaterID, 52, 3, Material.circuits);
             RegistryUtils.registerBlock(repeater, "repeater", "Analog Repeater");
             JaffasRegistryHelper.registerTileEntity(TileEntityAnalogRepeater.class, "repeater");
 
-            sampler = new BlockSampler(blockSamplerID, 4, 3, Material.circuits);
-            RegistryUtils.registerBlock(repeater, "sampler", "Sample-and-hold");
+            sampler = new BlockSampler(blockSamplerID, 60, 3, Material.circuits);
+            RegistryUtils.registerBlock(sampler, "sampler", "Sample-and-hold");
             JaffasRegistryHelper.registerTileEntity(TileEntitySampler.class, "sampler");
         }
 

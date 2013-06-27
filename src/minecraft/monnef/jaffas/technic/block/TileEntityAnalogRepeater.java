@@ -25,8 +25,8 @@ public class TileEntityAnalogRepeater extends TileEntityRedstoneCircuit {
             if (inputBlock == null) {
                 cachedPower = 0;
             } else {
-                cachedPower = worldObj.getIndirectPowerLevelTo(sourceX, sourceY, sourceZ, getInputSide());
-                int redStoneWirePower = worldObj.getBlockId(sourceX, sourceY, sourceZ) == Block.redstoneWire.blockID ? worldObj.getBlockMetadata(sourceX, sourceY, sourceZ) : 0;
+                cachedPower = getIndirectPowerFromSide(sourceX, sourceY, sourceZ, getInputSide());
+                int redStoneWirePower = getRedstoneWirePowerLevel(sourceX, sourceY, sourceZ);
                 if (redStoneWirePower > cachedPower) {
                     cachedPower = redStoneWirePower;
                 }

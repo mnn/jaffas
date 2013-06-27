@@ -108,4 +108,12 @@ public abstract class TileEntityRedstoneCircuit extends TileEntity {
             recalculatePower();
         }
     }
+
+    public int getRedstoneWirePowerLevel(int x, int y, int z) {
+        return worldObj.getBlockId(x, y, z) == Block.redstoneWire.blockID ? worldObj.getBlockMetadata(x, y, z) : 0;
+    }
+
+    protected int getIndirectPowerFromSide(int x, int y, int z, int side) {
+        return worldObj.getIndirectPowerLevelTo(x, y, z, side);
+    }
 }
