@@ -15,8 +15,6 @@ public class TileEntitySampler extends TileEntityRedstoneCircuit {
 
     @Override
     public void recalculatePower() {
-        // TODO: rewrite from repeater
-
         ForgeDirection inputDir = ForgeDirection.getOrientation(getInputSide());
         int sourceX = xCoord + inputDir.offsetX;
         int sourceY = yCoord + inputDir.offsetY;
@@ -45,7 +43,13 @@ public class TileEntitySampler extends TileEntityRedstoneCircuit {
 
         if (oldPower != cachedPower) {
             notifyBlocksOfMyChange();
+            notifyOutputNeighbour();
         }
+    }
+
+    @Override
+    public boolean canConnectRedstone(int side) {
+        return side == getInputSide() || side == getOutputSide();
     }
 
     private int getMaximumPowerFromSides() {
@@ -79,4 +83,6 @@ public class TileEntitySampler extends TileEntityRedstoneCircuit {
         super.writeToNBT(tag);
         tag.setByte(POWER_TAG, (byte) cachedPower);
     }
+
+
 }

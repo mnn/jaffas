@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.utils.DirectionHelper;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
@@ -88,5 +89,10 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     public void breakBlock(World world, int x, int y, int z, int par5, int meta) {
         getTile(world, x, y, z).forceUpdateNeighbours();
         super.breakBlock(world, x, y, z, par5, meta);
+    }
+
+    @Override
+    public boolean canConnectRedstone(IBlockAccess world, int x, int y, int z, int side) {
+        return getTile(world, x, y, z).canConnectRedstone(DirectionHelper.translateFromRedstoneToClassicSideRepresentation(side));
     }
 }

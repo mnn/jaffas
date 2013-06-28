@@ -116,4 +116,6 @@ public abstract class TileEntityRedstoneCircuit extends TileEntity {
     protected int getIndirectPowerFromSide(int x, int y, int z, int side) {
         return worldObj.getIndirectPowerLevelTo(x, y, z, side);
     }
+
+    public abstract boolean canConnectRedstone(int side);
 }

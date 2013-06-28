@@ -35,6 +35,7 @@ public class TileEntityAnalogRepeater extends TileEntityRedstoneCircuit {
 
         if (oldPower != cachedPower) {
             notifyBlocksOfMyChange();
+            notifyOutputNeighbour();
         }
     }
 
@@ -43,4 +44,8 @@ public class TileEntityAnalogRepeater extends TileEntityRedstoneCircuit {
         return JaffasTechnic.repeater;
     }
 
+    @Override
+    public boolean canConnectRedstone(int side) {
+        return side == getInputSide() || side == getOutputSide();
+    }
 }
