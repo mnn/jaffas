@@ -13,6 +13,7 @@ import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -111,49 +112,48 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
 
         if (tickCounter % tickEach == 0) {
             if (!worldObj.isRemote) {
-                GeneratorState newState;
+                onServerTick();
+            }
+        }
+    }
 
-                if (burnTime > 0) {
-                    burnTime -= tickEach;
-//                    manager.storeEnergy(tickEach);
-                    IIntegerCoordinates pos = (new IntegerCoordinates(this)).shiftInDirectionBy(ForgeDirection.UP, 1);
-                    TileEntity consumerTile = worldObj.getBlockTileEntity(pos.getX(), pos.getY(), pos.getZ());
-                    if (isPowerTile(consumerTile)) {
-                        float energy = tickEach * ENERGY_PER_TICK * getSwitchgrassCoef();
-                        ((IPowerReceptor) consumerTile).getPowerProvider().receiveEnergy(energy, ForgeDirection.DOWN);
-                    }
-                }
-
-                /*&& manager.getFreeSpaceInBuffer() > 0*/
-                if (burnTime <= 0 && gotSpaceInEnergyBuffer()) {
-                    burnTime = 0;
-                    tryGetFuel();
-                }
-
-                newState = isBurning() ? GeneratorState.BURNING : GeneratorState.IDLE;
-                if (newState != state) {
-                    sendUpdate();
-                }
-                state = newState;
+    private void onServerTick() {
+        if (burnTime > 0) {
+            burnTime -= tickEach;
+            TileEntity consumerTile = getConsumerTile();
+            if (BuildCraftHelper.isPowerTile(consumerTile)) {
+                float energy = tickEach * ENERGY_PER_TICK * getSwitchgrassCoef();
+                ((IPowerReceptor) consumerTile).getPowerProvider().receiveEnergy(energy, ForgeDirection.DOWN);
             }
         }
 
-//        manager.tick();
-    }
-
-    private boolean isPowerTile(TileEntity tile) {
-        if (tile instanceof IPowerReceptor) {
-            IPowerProvider receptor = ((IPowerReceptor) tile).getPowerProvider();
-
-            return receptor != null;
+        if (burnTime <= 0 && gotCustomer()) {
+            burnTime = 0;
+            tryGetFuel();
         }
 
-        return false;
+        refreshState();
     }
 
-    private boolean gotSpaceInEnergyBuffer() {
-        // TODO: rewrite
-        return powerProvider.getEnergyStored() < powerProvider.getMaxEnergyStored();
+    private void refreshState() {
+        GeneratorState newState;
+        newState = isBurning() ? GeneratorState.BURNING : GeneratorState.IDLE;
+        if (newState != state) {
+            sendUpdate();
+        }
+        state = newState;
+    }
+
+    private TileEntity getConsumerTile() {
+        IIntegerCoordinates pos = (new IntegerCoordinates(this)).shiftInDirectionBy(ForgeDirection.UP, 1);
+        return worldObj.getBlockTileEntity(pos.getX(), pos.getY(), pos.getZ());
+    }
+
+    private boolean gotCustomer() {
+        TileEntity customer = getConsumerTile();
+        if (!BuildCraftHelper.isPowerTile(customer)) return false;
+        IPowerProvider customerProvider = ((IPowerReceptor) customer).getPowerProvider();
+        return BuildCraftHelper.gotFreeSpaceInEnergyStorage(customerProvider);
     }
 
     private float getSwitchgrassCoef() {
