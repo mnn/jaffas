@@ -41,6 +41,8 @@ import buildcraft.api.core.BuildCraftAPI;
  * search through the block list, and upon matching signature, it will translate all blocks ids of the blueprint to the installation ones. If no such block id
  * is found, BuildCraft will assume that the block is not installed and will not load the blueprint.
  */
+
+@Deprecated
 public class BptBlock {
 
 	public final int blockId;
@@ -131,8 +133,8 @@ public class BptBlock {
 	 */
 	public void buildBlock(BptSlotInfo slot, IBptContext context) {
 		// Meta needs to be specified twice, depending on the block behavior
-		context.world().setBlock(slot.x, slot.y, slot.z, slot.blockId, slot.meta,1);
-		context.world().setBlockMetadataWithNotify(slot.x, slot.y, slot.z, slot.meta,1);
+		context.world().setBlock(slot.x, slot.y, slot.z, slot.blockId, slot.meta,3);
+		context.world().setBlockMetadataWithNotify(slot.x, slot.y, slot.z, slot.meta,3);
 
 		if (Block.blocksList[slot.blockId] instanceof BlockContainer) {
 			TileEntity tile = context.world().getBlockTileEntity(slot.x, slot.y, slot.z);
