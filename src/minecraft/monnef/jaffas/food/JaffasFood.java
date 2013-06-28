@@ -91,8 +91,6 @@ import monnef.jaffas.food.network.JaffasPacketHandler;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.jaffasMod;
-import monnef.jaffas.power.api.PowerManager;
-import monnef.jaffas.power.common.PowerManagersFactory;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -361,7 +359,6 @@ public class JaffasFood extends jaffasMod {
         }
 
         proxy.registerSounds();
-        PowerManager.InitializeFactory(new PowerManagersFactory());
     }
 
     @Override

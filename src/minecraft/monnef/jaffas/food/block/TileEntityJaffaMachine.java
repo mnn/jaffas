@@ -212,4 +212,9 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
                 return fuelSlot;
         }
     }
+
+    @Override
+    public int powerRequest(ForgeDirection from) {
+        return powerNeeded - (int) powerProvider.getEnergyStored();
+    }
 }

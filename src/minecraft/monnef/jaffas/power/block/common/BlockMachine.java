@@ -11,7 +11,6 @@ import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.api.IPipeWrench;
 import monnef.jaffas.power.block.TileEntityAntenna;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -81,38 +80,6 @@ public abstract class BlockMachine extends BlockPower {
     @Override
     public boolean renderAsNormalBlock() {
         return customRenderer ? false : super.renderAsNormalBlock();
-    }
-
-    @Override
-    public void onBlockAdded(World world, int x, int y, int z) {
-        super.onBlockAdded(world, x, y, z);
-        TileEntityMachine newTile = (TileEntityMachine) createTileEntity(world, world.getBlockMetadata(x, y, z));
-        newTile.markForDirectConnectionTry();
-        world.setBlockTileEntity(x, y, z, newTile);
-
-        for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
-            int nx = x + dir.offsetX;
-            int ny = y + dir.offsetY;
-            int nz = z + dir.offsetZ;
-            Block block = Block.blocksList[world.getBlockId(nx, ny, nz)];
-            if (block instanceof BlockMachine) {
-                TileEntity tile = world.getBlockTileEntity(nx, ny, nz);
-                if (tile instanceof TileEntityMachine) {
-                    // TODO more tests?
-                    ((TileEntityMachine) tile).markForDirectConnectionTry();
-                }
-            }
-        }
-    }
-
-    @Override
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
-        TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
-        if (tile instanceof TileEntityMachine) {
-            ((TileEntityMachine) tile).disconnectAll();
-        }
-
-        super.breakBlock(par1World, par2, par3, par4, par5, par6);
     }
 
     @Override

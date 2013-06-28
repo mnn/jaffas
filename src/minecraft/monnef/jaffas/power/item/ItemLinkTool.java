@@ -9,7 +9,6 @@ import monnef.core.utils.NBTHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
-import monnef.jaffas.power.common.PowerNodeCoordinates;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -47,7 +46,7 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
                 Block block = Block.blocksList[blockId];
                 SendMessage(player, String.format("hit: %d - %s", blockId, block != null ? block.getUnlocalizedName() : "0"));
                 if (stack.getTagCompound().hasKey(SOURCE_TAG_NAME)) {
-                    PowerNodeCoordinates source = new PowerNodeCoordinates(NBTHelper.getCoords(stack, SOURCE_TAG_NAME));
+                    //PowerNodeCoordinates source = new PowerNodeCoordinates(NBTHelper.getCoords(stack, SOURCE_TAG_NAME));
                     /*PowerNodeCoordinates target =
                     PowerUtils.connect()*/
                     SendMessage(player, "TODO");

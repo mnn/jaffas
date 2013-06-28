@@ -7,17 +7,12 @@ package monnef.jaffas.power.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.power.api.IPowerProvider;
-import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
-import monnef.jaffas.power.common.PowerProviderManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraftforge.common.ForgeDirection;
 
-public class TileEntityGenerator extends TileEntityMachineWithInventory implements IPowerProvider {
-    private final PowerProviderManager manager;
+public class TileEntityGenerator extends TileEntityMachineWithInventory {
     private static final String BURN_TIME_TAG_NAME = "burnTime";
     private static final String BURN_ITEM_TIME_TAG_NAME = "burnItemTime";
     public int burnTime = 0;
@@ -35,28 +30,11 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
 
     public TileEntityGenerator() {
         super();
-
-        manager = new PowerProviderManager();
-    }
-
-    @Override
-    public IPowerProviderManager getPowerProviderManager() {
-        return manager;
     }
 
     @Override
     public String getMachineTitle() {
         return "Generator";
-    }
-
-    @Override
-    protected void onTick(int number) {
-        super.onTick(number);
-        if (number == 1) {
-            boolean[] sidesMask = new boolean[6];
-            sidesMask[ForgeDirection.UP.ordinal()] = true;
-            manager.initialize(20, 500, this, false, sidesMask);
-        }
     }
 
     public int getSizeInventory() {
@@ -113,10 +91,10 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
 
                 if (burnTime > 0) {
                     burnTime -= tickEach;
-                    manager.storeEnergy(tickEach);
+//                    manager.storeEnergy(tickEach);
                 }
 
-                if (burnTime <= 0 && manager.getFreeSpaceInBuffer() > 0) {
+                if (burnTime <= 0 /*&& manager.getFreeSpaceInBuffer() > 0*/) {
                     burnTime = 0;
                     tryGetFuel();
                 }
@@ -129,7 +107,7 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
             }
         }
 
-        manager.tick();
+//        manager.tick();
     }
 
     private void tryGetFuel() {
@@ -165,7 +143,6 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
     public void readFromNBT(NBTTagCompound tag) {
         boolean lastIsBurning = isBurning();
         super.readFromNBT(tag);
-        manager.readFromNBT(tag);
         this.burnTime = tag.getInteger(BURN_TIME_TAG_NAME);
         this.burnItemTime = tag.getInteger(BURN_ITEM_TIME_TAG_NAME);
 
@@ -181,6 +158,5 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory implemen
         super.writeToNBT(tag);
         tag.setInteger(BURN_TIME_TAG_NAME, this.burnTime);
         tag.setInteger(BURN_ITEM_TIME_TAG_NAME, this.burnItemTime);
-        manager.writeToNBT(tag);
     }
 }

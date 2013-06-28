@@ -5,15 +5,10 @@
 
 package monnef.jaffas.power.client;
 
+import buildcraft.api.power.IPowerProvider;
 import cpw.mods.fml.client.FMLClientHandler;
 import monnef.jaffas.power.api.IMachineTool;
-import monnef.jaffas.power.api.IPowerConsumer;
-import monnef.jaffas.power.api.IPowerConsumerManager;
-import monnef.jaffas.power.api.IPowerNodeManager;
-import monnef.jaffas.power.api.IPowerProvider;
-import monnef.jaffas.power.api.IPowerProviderManager;
 import monnef.jaffas.power.block.common.TileEntityMachine;
-import monnef.jaffas.power.utils.StringPowerFormatter;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -62,7 +57,7 @@ public class PowerLabels {
 
         text.append(tile.getMachineTitle());
         text.append("\n");
-        boolean isProvider = tile instanceof IPowerProvider;
+/*        boolean isProvider = tile instanceof IPowerProvider;
         boolean isConsumer = tile instanceof IPowerConsumer;
 
         IPowerProviderManager providerManager = null;
@@ -82,20 +77,20 @@ public class PowerLabels {
             text.append(StringPowerFormatter.getConnectionInfo(powerNode, debug));
         } else {
             text.append("** not initialized! **\n** not initialized! **");
-        }
+        }*/
 
         return text.toString();
     }
 
     private boolean isFullyInitialized(TileEntityMachine tile, boolean provider, boolean consumer) {
-        if (provider && !((IPowerProvider) tile).getPowerProviderManager().isInitialized()) {
+/*        if (provider && !((IPowerProvider) tile).getPowerProviderManager().isInitialized()) {
             return false;
         }
 
         if (consumer && !((IPowerConsumer) tile).getPowerConsumerManager().isInitialized()) {
             return false;
         }
-
+  */
         return true;
     }
 
