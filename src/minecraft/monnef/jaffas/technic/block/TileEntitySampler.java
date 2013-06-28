@@ -49,7 +49,7 @@ public class TileEntitySampler extends TileEntityRedstoneCircuit {
 
     @Override
     public boolean canConnectRedstone(int side) {
-        return side == getInputSide() || side == getOutputSide();
+        return true;
     }
 
     private int getMaximumPowerFromSides() {

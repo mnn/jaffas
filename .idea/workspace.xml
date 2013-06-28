@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -530,7 +526,7 @@
     <file path="/Block.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372086455311" ignored="false" />
     <file path="/TileEntityFermenterInventoryRouter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372088369591" ignored="false" />
     <file path="/BlockSampler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372270860795" ignored="false" />
-    <file path="/TileEntitySampler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372413839232" ignored="false" />
+    <file path="/TileEntitySampler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372416521190" ignored="false" />
     <file path="/TileEntityRedstoneCircuit.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372413827464" ignored="false" />
     <file path="/TileEntityAnalogRepeater.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372413002853" ignored="false" />
     <file path="/BlockRedstoneCircuit.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372414404336" ignored="false" />
@@ -660,10 +656,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileEntitySampler.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TileEntitySampler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="40" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.0">
+            <state line="53" column="45" selection-start="1766" selection-end="1766" vertical-scroll-proportion="0.4144427">
               <folding />
             </state>
           </provider>
@@ -678,10 +674,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockRedstoneCircuit.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="BlockRedstoneCircuit.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="20" selection-start="2821" selection-end="2821" vertical-scroll-proportion="0.8854003">
+            <state line="86" column="20" selection-start="2821" selection-end="2821" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -736,10 +732,10 @@
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/IDProvider.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/DirectionHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java" />
       </list>
     </option>
   </component>
@@ -1577,13 +1573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="40" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockComparator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="131" column="38" selection-start="4150" selection-end="4150" vertical-scroll-proportion="0.33333334">
@@ -1614,7 +1603,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="20" selection-start="2821" selection-end="2821" vertical-scroll-proportion="0.8854003">
+        <state line="86" column="20" selection-start="2821" selection-end="2821" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="45" selection-start="1766" selection-end="1766" vertical-scroll-proportion="0.4144427">
           <folding />
         </state>
       </provider>
