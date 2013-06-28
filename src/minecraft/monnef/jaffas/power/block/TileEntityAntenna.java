@@ -61,4 +61,8 @@ public class TileEntityAntenna extends TileEntityMachine {
     public void invalidate() {
         super.invalidate();
     }
+
+    @Override
+    public void doWork() {
+    }
 }

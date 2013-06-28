@@ -5,24 +5,42 @@
 
 package monnef.jaffas.power.block;
 
+import buildcraft.api.power.IPowerProvider;
+import buildcraft.api.power.IPowerReceptor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.api.IIntegerCoordinates;
+import monnef.core.utils.IntegerCoordinates;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityGenerator extends TileEntityMachineWithInventory {
     private static final String BURN_TIME_TAG_NAME = "burnTime";
     private static final String BURN_ITEM_TIME_TAG_NAME = "burnItemTime";
+    private static final float ENERGY_PER_TICK = 1.05f;
     public int burnTime = 0;
     public int burnItemTime = 1;
     private int SLOT_FUEL = 0;
 
     private static final int tickEach = 20;
     private int tickCounter = 0;
+    private boolean isSwitchgrass;
 
     private GeneratorState state = GeneratorState.IDLE;
+
+    @Override
+    public void doWork() {
+    }
+
+    @Override
+    public int powerRequest(ForgeDirection from) {
+        return 0;
+    }
 
     private enum GeneratorState {
         IDLE, BURNING
@@ -30,6 +48,12 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
 
     public TileEntityGenerator() {
         super();
+    }
+
+    @Override
+    protected void configurePowerParameters() {
+        super.configurePowerParameters();
+        powerNeeded = 0;
     }
 
     @Override
@@ -92,9 +116,16 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
                 if (burnTime > 0) {
                     burnTime -= tickEach;
 //                    manager.storeEnergy(tickEach);
+                    IIntegerCoordinates pos = (new IntegerCoordinates(this)).shiftInDirectionBy(ForgeDirection.UP, 1);
+                    TileEntity consumerTile = worldObj.getBlockTileEntity(pos.getX(), pos.getY(), pos.getZ());
+                    if (isPowerTile(consumerTile)) {
+                        float energy = tickEach * ENERGY_PER_TICK * getSwitchgrassCoef();
+                        ((IPowerReceptor) consumerTile).getPowerProvider().receiveEnergy(energy, ForgeDirection.DOWN);
+                    }
                 }
 
-                if (burnTime <= 0 /*&& manager.getFreeSpaceInBuffer() > 0*/) {
+                /*&& manager.getFreeSpaceInBuffer() > 0*/
+                if (burnTime <= 0 && gotSpaceInEnergyBuffer()) {
                     burnTime = 0;
                     tryGetFuel();
                 }
@@ -110,12 +141,32 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
 //        manager.tick();
     }
 
+    private boolean isPowerTile(TileEntity tile) {
+        if (tile instanceof IPowerReceptor) {
+            IPowerProvider receptor = ((IPowerReceptor) tile).getPowerProvider();
+
+            return receptor != null;
+        }
+
+        return false;
+    }
+
+    private boolean gotSpaceInEnergyBuffer() {
+        // TODO: rewrite
+        return powerProvider.getEnergyStored() < powerProvider.getMaxEnergyStored();
+    }
+
+    private float getSwitchgrassCoef() {
+        return isSwitchgrass ? 1.1f : 1;
+    }
+
     private void tryGetFuel() {
         ItemStack fuelStack = inventory[SLOT_FUEL];
         if (fuelStack != null) {
             int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
             if (fuelBurnTime > 0) {
                 fuelStack.stackSize--;
+                isSwitchgrass = fuelStack.itemID == JaffasFood.blockSwitchgrass.blockID || fuelStack.itemID == JaffasFood.blockSwitchgrassSolid.blockID;
                 if (fuelStack.stackSize <= 0) {
                     setInventorySlotContents(SLOT_FUEL, null);
                 }

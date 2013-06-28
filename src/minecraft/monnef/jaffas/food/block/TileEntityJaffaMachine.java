@@ -124,10 +124,6 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     public void doWork() {
     }
 
-    public int powerRequest() {
-        return powerProvider.getMaxEnergyReceived();
-    }
-
     //@return How many items we added
     protected int addItemToInventory(ItemStack stack, boolean doAdd) {
         int free = -1;
@@ -217,4 +213,10 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     public int powerRequest(ForgeDirection from) {
         return powerNeeded - (int) powerProvider.getEnergyStored();
     }
+
+    /*
+    public int powerRequest() {
+        return powerProvider.getMaxEnergyReceived();
+    }
+    */
 }

@@ -5,6 +5,9 @@
 
 package monnef.jaffas.power.block.common;
 
+import buildcraft.api.power.IPowerProvider;
+import buildcraft.api.power.IPowerReceptor;
+import buildcraft.api.power.PowerFramework;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -14,17 +17,32 @@ import net.minecraftforge.common.ForgeDirection;
 
 import java.util.Random;
 
-public abstract class TileEntityMachine extends TileEntity {
+public abstract class TileEntityMachine extends TileEntity implements IPowerReceptor {
     public static final String ROTATION_TAG_NAME = "rotation";
-    private static final int WORK_EVERY_XTH_TICK = 10;
     public static final Random rand = new Random();
 
     private ForgeDirection rotation;
+    protected IPowerProvider powerProvider;
+
+    protected int powerNeeded;
+    protected int powerStorage;
+    protected int maxEnergyReceived;
 
     public abstract String getMachineTitle();
 
     protected TileEntityMachine() {
         setRotation(ForgeDirection.UNKNOWN);
+        if (PowerFramework.currentFramework != null) {
+            powerProvider = PowerFramework.currentFramework.createPowerProvider();
+            configurePowerParameters();
+            powerProvider.configure(20, 2, maxEnergyReceived, powerNeeded, powerStorage);
+        }
+    }
+
+    protected void configurePowerParameters() {
+        powerNeeded = 20;
+        maxEnergyReceived = 20;
+        powerStorage = 10 * powerNeeded;
     }
 
     public BlockMachine getMachineBlock() {
@@ -74,6 +92,21 @@ public abstract class TileEntityMachine extends TileEntity {
 
     public void setRotation(int direction) {
         this.setRotation(ForgeDirection.getOrientation(direction));
+    }
+
+    @Override
+    public void setPowerProvider(IPowerProvider provider) {
+        powerProvider = provider;
+    }
+
+    @Override
+    public IPowerProvider getPowerProvider() {
+        return powerProvider;
+    }
+
+    @Override
+    public int powerRequest(ForgeDirection from) {
+        return maxEnergyReceived;
     }
 }
 
