@@ -15,12 +15,15 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.core.utils.DyeColor;
+import monnef.core.utils.DyeHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
@@ -37,9 +40,11 @@ import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.logging.Level;
 
@@ -177,8 +182,14 @@ public class JaffasPower extends jaffasMod {
     }
 
     private void installRecipes() {
-        if (lightningConductorEnabled && ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
-            GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockIron);
+        if (ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
+            if (lightningConductorEnabled) {
+                GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockIron);
+            }
+            Recipes.addRecipe(new ShapedOreRecipe(wrench, "JJ ", "BJR", "  J", 'J', JaffasTechnic.jaffarrol, 'B', DyeHelper.getDye(DyeColor.BLACK), 'R', DyeHelper.getDye(DyeColor.RED)));
+            GameRegistry.addShapedRecipe(new ItemStack(generator, 2), " I ", "IFI", " C ", 'I', Item.ingotIron, 'F', Block.furnaceIdle, 'C', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 0));
         }
+
+
     }
 }

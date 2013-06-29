@@ -13,6 +13,7 @@ public class ItemPipeWrench extends ItemPower implements IPipeWrench {
     public ItemPipeWrench(int id, int textureIndex) {
         super(id, textureIndex);
         setUnlocalizedName("pipeWrench");
+        setMaxStackSize(1);
     }
 
     @Override

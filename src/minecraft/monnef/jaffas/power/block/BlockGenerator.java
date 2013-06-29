@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.common.BlockMachineWithInventory;
-import net.minecraft.block.material.Material;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -17,10 +17,9 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockGenerator extends BlockMachineWithInventory {
-    public static final int BURN_BIT = 3;
 
     public BlockGenerator(int id, int texture) {
-        super(id, texture, Material.iron, true);
+        super(id, texture, JaffasTechnic.breakableIronMaterial, true);
         setCreativeTab(JaffasPower.instance.creativeTab);
         setUnlocalizedName("generator");
         setHardness(1.5f);

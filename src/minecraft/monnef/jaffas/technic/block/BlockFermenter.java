@@ -9,8 +9,6 @@ import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -28,10 +26,8 @@ public class BlockFermenter extends BlockTechnic {
     private static final float topBorder = 8f * 1f / 16f;
     private static final float topBorderComplement = 1f - topBorder;
 
-    public static final Material fermenterMaterial = new Material(MapColor.ironColor);
-
     public BlockFermenter(int id, int textureID) {
-        super(id, textureID, fermenterMaterial);
+        super(id, textureID, JaffasTechnic.breakableIronMaterial);
         setHardness(3f);
     }
 

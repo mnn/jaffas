@@ -9,6 +9,7 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -77,6 +78,7 @@ import monnef.jaffas.technic.item.ItemSwordTechnic;
 import monnef.jaffas.technic.item.ItemTechnic;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -293,6 +295,8 @@ public class JaffasTechnic extends jaffasMod {
     private boolean disableRedstoneGadgets;
     public static boolean disableLampParticles;
 
+    public static final Material breakableIronMaterial = new Material(MapColor.ironColor);
+
     @Mod.PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -430,6 +434,22 @@ public class JaffasTechnic extends jaffasMod {
         installThermalExpansionSupport();
 
         JaffasFood.PrintInitialized(ModulesEnum.technic);
+    }
+
+    @Mod.PostInit
+    public void postLoad(FMLPostInitializationEvent event) {
+        int marked = 0;
+        for (int i = 0; i < Block.blocksList.length; i++) {
+            Block b = Block.blocksList[i];
+            if (b != null && b.blockMaterial == breakableIronMaterial) {
+                MinecraftForge.setBlockHarvestLevel(b, "pickaxe", 0);
+                marked++;
+            }
+        }
+        Log.printFine("Registered " + marked + " blocks as mine-able by pickaxe.");
+        if (marked <= 0) {
+            Log.printWarning("No block registered as mine-able by pickaxe, possible error!");
+        }
     }
 
     private void createFungiStuff() {
@@ -622,7 +642,6 @@ public class JaffasTechnic extends jaffasMod {
         RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
         JaffasRegistryHelper.registerTileEntity(TileEntityFermenter.class, "fermenter");
         JaffasRegistryHelper.registerTileEntity(TileEntityFermenterInventoryRouter.class, "fermenterInvRouter");
-        MinecraftForge.setBlockHarvestLevel(fermenter, "pickaxe", 0);
 
         createTools();
     }
