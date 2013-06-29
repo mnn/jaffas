@@ -5,11 +5,13 @@
 
 package monnef.jaffas.power;
 
+import buildcraft.api.power.PowerFramework;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -35,6 +37,7 @@ import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
+import monnef.jaffas.power.common.SimplePowerFramework;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
@@ -49,6 +52,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import java.util.logging.Level;
 
 import static cpw.mods.fml.common.Mod.Init;
+import static cpw.mods.fml.common.Mod.PostInit;
 import static cpw.mods.fml.common.Mod.PreInit;
 import static monnef.jaffas.power.common.Reference.ModId;
 import static monnef.jaffas.power.common.Reference.ModName;
@@ -157,6 +161,14 @@ public class JaffasPower extends jaffasMod {
         }
 
         JaffasFood.PrintInitialized(ModulesEnum.power);
+    }
+
+    @PostInit
+    public void postLoad(FMLPostInitializationEvent event) {
+        if (PowerFramework.currentFramework == null) {
+            JaffasFood.Log.printInfo("No BC power framework detected, using my simple one.");
+            PowerFramework.currentFramework = new SimplePowerFramework();
+        }
     }
 
     private void createItems() {

@@ -7,5 +7,5 @@ package monnef.jaffas.power.common;
 
 import buildcraft.api.power.PowerProvider;
 
-public class JaffasPowerProvider extends PowerProvider {
+public class SimplePowerProvider extends PowerProvider {
 }
