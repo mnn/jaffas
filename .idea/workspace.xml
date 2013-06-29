@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimplePowerFramework.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimplePowerProvider.java" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.5.0\jaffas\mcp\src\minecraft\monnef\jaffas\power\common\JaffasPowerProvider.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,7 +92,7 @@
     <file path="/BlockGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372499770078" ignored="false" />
     <file path="/ModelGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358622633246" ignored="false" />
     <file path="/BlockRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360515305069" ignored="false" />
-    <file path="/TileEntityGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372449800431" ignored="false" />
+    <file path="/TileEntityGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372508809057" ignored="false" />
     <file path="/TileEntityGeneratorRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1360515937427" ignored="false" />
     <file path="/BlockAntenna.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364126541010" ignored="false" />
     <file path="/TileEntityAntennaRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365110531334" ignored="false" />
@@ -646,10 +642,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TileEntityGenerator.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TileEntityGenerator.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="39" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.0">
+            <state line="136" column="23" selection-start="3713" selection-end="3713" vertical-scroll-proportion="0.6530612">
               <folding />
             </state>
           </provider>
@@ -682,62 +678,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PowerFramework.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerFramework.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="22" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PowerProvider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="22" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimplePowerFramework.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimplePowerFramework.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="171" selection-end="171" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JaffasPower.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="169" column="0" selection-start="6303" selection-end="6303" vertical-scroll-proportion="0.72056514">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SimplePowerProvider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimplePowerProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="43" selection-start="186" selection-end="186" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MinecraftForge.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/MinecraftForge.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="132" column="22" selection-start="5621" selection-end="5621" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FindManager">
@@ -765,7 +705,6 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/IntegerCoordinates.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/BuildCraftHelper.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemPipeWrench.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFermenter.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockGenerator.java" />
@@ -773,6 +712,7 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimplePowerProvider.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimplePowerFramework.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" />
       </list>
     </option>
   </component>
@@ -1490,14 +1430,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.49786553" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26004463" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26004463" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2890625" sideWeight="0.50053364" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1619,13 +1559,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="39" selection-start="1392" selection-end="1392" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="63" selection-start="521" selection-end="521" vertical-scroll-proportion="0.0">
@@ -1640,30 +1573,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="453" column="31" selection-start="18834" selection-end="18834" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerFramework.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="22" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachineWithInventory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="63" selection-start="360" selection-end="360" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="22" selection-start="509" selection-end="509" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1701,6 +1613,34 @@
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="169" column="0" selection-start="6303" selection-end="6303" vertical-scroll-proportion="0.72056514">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="22" selection-start="509" selection-end="509" vertical-scroll-proportion="0.16012558">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerFramework.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="22" selection-start="372" selection-end="372" vertical-scroll-proportion="0.16012558">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="453" column="31" selection-start="18834" selection-end="18834" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="136" column="23" selection-start="3713" selection-end="3713" vertical-scroll-proportion="0.6530612">
           <folding />
         </state>
       </provider>
