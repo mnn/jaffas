@@ -16,6 +16,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import static monnef.jaffas.food.block.TileEntityBoard.SLOT_INPUT;
+import static monnef.jaffas.food.block.TileEntityBoard.SLOT_KNIFE;
+import static monnef.jaffas.food.block.TileEntityBoard.SLOT_OUTPUT;
+
 public class ContainerBoard extends ContainerJaffas {
     protected TileEntityBoard board;
     private int lastChopTime;
@@ -66,9 +70,9 @@ public class ContainerBoard extends ContainerJaffas {
 
     @Override
     public void constructSlots(IInventory inv) {
-        addSlotToContainer(new Slot(inv, 0, 56, 35)); //  input
-        addSlotToContainer(new Slot(inv, 1, 116, 35)); // output
-        addSlotToContainer(new Slot(inv, 2, 22, 35)); //  knife
+        addSlotToContainer(new Slot(inv, SLOT_INPUT, 56, 35)); //  input
+        addSlotToContainer(new Slot(inv, SLOT_KNIFE, 22, 35)); //  knife
+        addSlotToContainer(new Slot(inv, SLOT_OUTPUT, 116, 35)); // output
     }
 
     // knife...
@@ -93,10 +97,10 @@ public class ContainerBoard extends ContainerJaffas {
             //places it into the tileEntity is possible since its in the player inventory
             else {
                 if (stackInSlot.itemID == JaffasFood.getItem(JaffaItem.knifeKitchen).itemID) {
-                    if (!this.mergeItemStack(stackInSlot, 0, slots, true)) {
+                    if (!this.mergeItemStack(stackInSlot, 0, getInputSlotsCount(), true)) {
                         return null;
                     }
-                } else if (!this.mergeItemStack(stackInSlot, 0, slots, false)) {
+                } else if (!this.mergeItemStack(stackInSlot, 0, getInputSlotsCount(), false)) {
                     return null;
                 }
             }
@@ -113,5 +117,10 @@ public class ContainerBoard extends ContainerJaffas {
             slotObject.onPickupFromSlot(player, stackInSlot);
         }
         return stack;
+    }
+
+    @Override
+    protected int getOutputSlotsCount() {
+        return 1;
     }
 }

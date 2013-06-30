@@ -8,6 +8,7 @@ package monnef.jaffas.power.block;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ContainerGenerator extends ContainerMachine {
@@ -16,7 +17,17 @@ public class ContainerGenerator extends ContainerMachine {
     }
 
     @Override
-    public void constructSlots() {
-        addSlotToContainer(new Slot(tileEntity, 0, 80, 25)); // 0 is ID
+    protected int getSlotsCount() {
+        return 1;
+    }
+
+    @Override
+    public void constructSlots(IInventory inv) {
+        addSlotToContainer(new Slot(inv, 0, 80, 25)); // 0 is ID
+    }
+
+    @Override
+    protected int getOutputSlotsCount() {
+        return 0;
     }
 }

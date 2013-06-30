@@ -180,10 +180,12 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
 
         while (tested < CUSTOMER_DIRECTIONS.length) {
             ForgeDirection currentDirection = CUSTOMER_DIRECTIONS[startDirNumber];
-            IPowerReceptor consumer = (IPowerReceptor) getConsumerTileInDirection(currentDirection);
-            if (isCustomerInDirection(currentDirection) && BuildCraftHelper.gotFreeSpaceInEnergyStorage(consumer.getPowerProvider())) {
-                customerDirection = currentDirection;
-                return;
+            if (isCustomerInDirection(currentDirection)) {
+                IPowerReceptor consumer = (IPowerReceptor) getConsumerTileInDirection(currentDirection);
+                if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(consumer.getPowerProvider())) {
+                    customerDirection = currentDirection;
+                    return;
+                }
             }
             tested++;
             setNextCustomerDirection();

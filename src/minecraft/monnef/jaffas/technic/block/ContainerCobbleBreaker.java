@@ -16,8 +16,8 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerCobbleBreaker extends ContainerJaffas {
     public final static int SLOT_INPUT = 0;
-    public final static int SLOT_OUTPUT = 1;
-    public final static int SLOT_FUEL = 2;
+    public final static int SLOT_OUTPUT = 2;
+    public final static int SLOT_FUEL = 1;
 
     private final TileEntityCobbleBreaker tile;
 
@@ -33,8 +33,8 @@ public class ContainerCobbleBreaker extends ContainerJaffas {
     @Override
     public void constructSlots(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 57, 35));
-        addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 124, 35));
         addSlotToContainer(new Slot(inv, SLOT_FUEL, 23, 35));
+        addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 124, 35));
     }
 
     @Override
@@ -87,5 +87,10 @@ public class ContainerCobbleBreaker extends ContainerJaffas {
                 this.tile.setBurnItemTime(value);
                 break;
         }
+    }
+
+    @Override
+    protected int getOutputSlotsCount() {
+        return 1;
     }
 }

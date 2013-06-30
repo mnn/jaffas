@@ -73,4 +73,9 @@ public class ContainerCompost extends ContainerJaffas {
             this.core.setWorkMeter(value);
         }
     }
+
+    @Override
+    protected int getOutputSlotsCount() {
+        return 1;
+    }
 }

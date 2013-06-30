@@ -31,9 +31,9 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     private static final int startingChopSpeed = 5;
     private static final int maximalChopSpeed = 100;
 
-    public final static int slotInput = 0;
-    public final static int slotOutput = 1;
-    public final static int slotKnife = 2;
+    public final static int SLOT_INPUT = 0;
+    public final static int SLOT_OUTPUT = 2;
+    public final static int SLOT_KNIFE = 1;
 
     private static Random rand = new Random();
 
@@ -77,39 +77,39 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     }
 
     private void breakKnife() {
-        ItemStack knife = getStackInSlot(slotKnife);
+        ItemStack knife = getStackInSlot(SLOT_KNIFE);
         if (ItemHelper.damageItem(knife, 1)) {
-            setInventorySlotContents(slotKnife, null);
+            setInventorySlotContents(SLOT_KNIFE, null);
         }
     }
 
     private void chopItem() {
-        ItemStack itemInInputSlot = getStackInSlot(slotInput);
+        ItemStack itemInInputSlot = getStackInSlot(SLOT_INPUT);
         ItemStack recipeOutput = RecipesBoard.getRecipeOutputAndDecreaseInputStack(itemInInputSlot);
 
-        ItemStack itemInOutputSlot = getStackInSlot(slotOutput);
+        ItemStack itemInOutputSlot = getStackInSlot(SLOT_OUTPUT);
 
         if (itemInOutputSlot == null) {
-            setInventorySlotContents(slotOutput, recipeOutput);
+            setInventorySlotContents(SLOT_OUTPUT, recipeOutput);
         } else {
             itemInOutputSlot.stackSize += recipeOutput.stackSize;
         }
 
         if (itemInInputSlot.stackSize <= 0) {
-            setInventorySlotContents(slotInput, null);
+            setInventorySlotContents(SLOT_INPUT, null);
         }
 
         onInventoryChanged();
     }
 
     private boolean canSmelt() {
-        ItemStack itemInInputSlot = getStackInSlot(slotInput);
+        ItemStack itemInInputSlot = getStackInSlot(SLOT_INPUT);
         ItemStack recipeOutput = RecipesBoard.getRecipeOutput(itemInInputSlot);
 
         // recipe not found
         if (recipeOutput == null) return false;
 
-        ItemStack itemInOutputSlot = getStackInSlot(slotOutput);
+        ItemStack itemInOutputSlot = getStackInSlot(SLOT_OUTPUT);
         // nothing in output slot => ok
         if (itemInOutputSlot == null) return true;
 
@@ -123,7 +123,7 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     }
 
     private boolean knifePresent() {
-        ItemStack item = getStackInSlot(slotKnife);
+        ItemStack item = getStackInSlot(SLOT_KNIFE);
         if (item == null) {
             return false;
         }
@@ -253,7 +253,7 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
 
     public void checkKnife() {
         boolean isKnifePresent = false;
-        ItemStack slotItem = getStackInSlot(slotKnife);
+        ItemStack slotItem = getStackInSlot(SLOT_KNIFE);
         if (slotItem != null && slotItem.itemID == getItem(JaffaItem.knifeKitchen).itemID) {
             isKnifePresent = true;
         }
@@ -268,13 +268,13 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     public int getStartInventorySide(ForgeDirection side) {
         switch (side) {
             case UP:
-                return slotInput;
+                return SLOT_INPUT;
 
             case DOWN:
-                return slotKnife;
+                return SLOT_KNIFE;
 
             default:
-                return slotOutput;
+                return SLOT_OUTPUT;
         }
     }
 

@@ -16,8 +16,8 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerFermenter extends ContainerJaffas {
     public final static int SLOT_INPUT = 0;
-    public final static int SLOT_OUTPUT = 1;
-    public final static int SLOT_KEG = 2;
+    public final static int SLOT_OUTPUT = 2;
+    public final static int SLOT_KEG = 1;
 
     private final TileEntityFermenter tile;
 
@@ -36,10 +36,15 @@ public class ContainerFermenter extends ContainerJaffas {
     }
 
     @Override
+    protected int getOutputSlotsCount() {
+        return 1;
+    }
+
+    @Override
     public void constructSlots(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 78, 48));
-        addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 137, 18));
         addSlotToContainer(new Slot(inv, SLOT_KEG, 78, 20));
+        addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 137, 18));
     }
 
     @Override

@@ -65,8 +65,10 @@ public abstract class ContainerJaffas extends Container {
                 }
             }
             //places it into the tileEntity is possible since its in the player inventory
-            else if (!this.mergeItemStack(stackInSlot, 0, slots, false)) {
-                return null;
+            else {
+                if (!this.mergeItemStack(stackInSlot, 0, getInputSlotsCount(), false)) {
+                    return null;
+                }
             }
 
             if (stackInSlot.stackSize == 0) {
@@ -85,10 +87,26 @@ public abstract class ContainerJaffas extends Container {
 
     protected abstract int getSlotsCount();
 
+    protected abstract int getOutputSlotsCount();
+
+    protected int getInputSlotsCount() {
+        return getSlotsCount() - getOutputSlotsCount();
+    }
+
     @Override
     public boolean canInteractWith(EntityPlayer player) {
         return ((IInventory) tile).isUseableByPlayer(player);
     }
 
+    /**
+     * Creates slots via addSlotToContainer.
+     * Output slots *must* be creates last!
+     *
+     * @param inv The inventory.
+     */
     public abstract void constructSlots(IInventory inv);
+
+    protected boolean mergeItemStack(ItemStack stack, int startingIndex, int endingIndex, boolean fromEnd) {
+        return super.mergeItemStack(stack, startingIndex, endingIndex, fromEnd);
+    }
 }
