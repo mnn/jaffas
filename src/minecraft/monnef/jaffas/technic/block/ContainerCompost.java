@@ -11,6 +11,7 @@ import monnef.jaffas.food.block.ContainerJaffas;
 import monnef.jaffas.technic.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ContainerCompost extends ContainerJaffas {
@@ -23,9 +24,12 @@ public class ContainerCompost extends ContainerJaffas {
     public ContainerCompost(InventoryPlayer inventoryPlayer, TileEntityCompostCore tile) {
         super(inventoryPlayer, tile);
         core = tile;
+    }
 
-        addSlotToContainer(new Slot(core, SLOT_INPUT, 21, 35));
-        addSlotToContainer(new SlotOutput(core, SLOT_OUTPUT, 136, 35));
+    @Override
+    public void constructSlots(IInventory inv) {
+        addSlotToContainer(new Slot(inv, SLOT_INPUT, 21, 35));
+        addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 136, 35));
     }
 
     @Override

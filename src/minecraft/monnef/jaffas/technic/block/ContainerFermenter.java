@@ -11,6 +11,7 @@ import monnef.jaffas.food.block.ContainerJaffas;
 import monnef.jaffas.technic.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ContainerFermenter extends ContainerJaffas {
@@ -27,15 +28,18 @@ public class ContainerFermenter extends ContainerJaffas {
     public ContainerFermenter(InventoryPlayer inventoryPlayer, TileEntityFermenter tile) {
         super(inventoryPlayer, tile);
         this.tile = tile;
-
-        addSlotToContainer(new Slot(tile, SLOT_INPUT, 78, 48));
-        addSlotToContainer(new SlotOutput(tile, SLOT_OUTPUT, 137, 18));
-        addSlotToContainer(new Slot(tile, SLOT_KEG, 78, 20));
     }
 
     @Override
     protected int getSlotsCount() {
         return 3;
+    }
+
+    @Override
+    public void constructSlots(IInventory inv) {
+        addSlotToContainer(new Slot(inv, SLOT_INPUT, 78, 48));
+        addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 137, 18));
+        addSlotToContainer(new Slot(inv, SLOT_KEG, 78, 20));
     }
 
     @Override

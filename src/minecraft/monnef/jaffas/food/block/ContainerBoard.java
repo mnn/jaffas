@@ -7,10 +7,14 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
 
 public class ContainerBoard extends ContainerJaffas {
     protected TileEntityBoard board;
@@ -19,10 +23,6 @@ public class ContainerBoard extends ContainerJaffas {
     public ContainerBoard(InventoryPlayer inventoryPlayer, TileEntityBoard te) {
         super(inventoryPlayer, te);
         board = te;
-
-        addSlotToContainer(new Slot(board, 0, 56, 35)); //  input
-        addSlotToContainer(new Slot(board, 1, 116, 35)); // output
-        addSlotToContainer(new Slot(board, 2, 22, 35)); //  knife
     }
 
     @Override
@@ -62,5 +62,56 @@ public class ContainerBoard extends ContainerJaffas {
     @Override
     protected int getSlotsCount() {
         return 3;
+    }
+
+    @Override
+    public void constructSlots(IInventory inv) {
+        addSlotToContainer(new Slot(inv, 0, 56, 35)); //  input
+        addSlotToContainer(new Slot(inv, 1, 116, 35)); // output
+        addSlotToContainer(new Slot(inv, 2, 22, 35)); //  knife
+    }
+
+    // knife...
+    @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+        ItemStack stack = null;
+        Slot slotObject = (Slot) inventorySlots.get(slot);
+
+        int slots = getSlotsCount();
+
+        //null checks and checks if the item can be stacked (maxStackSize > 1)
+        if (slotObject != null && slotObject.getHasStack()) {
+            ItemStack stackInSlot = slotObject.getStack();
+            stack = stackInSlot.copy();
+
+            //merges the item into player inventory since its in the tileEntity
+            if (slot < slots) {
+                if (!this.mergeItemStack(stackInSlot, slots, 36 + slots, true)) {
+                    return null;
+                }
+            }
+            //places it into the tileEntity is possible since its in the player inventory
+            else {
+                if (stackInSlot.itemID == JaffasFood.getItem(JaffaItem.knifeKitchen).itemID) {
+                    if (!this.mergeItemStack(stackInSlot, 0, slots, true)) {
+                        return null;
+                    }
+                } else if (!this.mergeItemStack(stackInSlot, 0, slots, false)) {
+                    return null;
+                }
+            }
+
+            if (stackInSlot.stackSize == 0) {
+                slotObject.putStack(null);
+            } else {
+                slotObject.onSlotChanged();
+            }
+
+            if (stackInSlot.stackSize == stack.stackSize) {
+                return null;
+            }
+            slotObject.onPickupFromSlot(player, stackInSlot);
+        }
+        return stack;
     }
 }

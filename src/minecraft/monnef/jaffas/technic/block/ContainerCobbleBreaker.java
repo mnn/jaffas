@@ -11,6 +11,7 @@ import monnef.jaffas.food.block.ContainerJaffas;
 import monnef.jaffas.technic.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ContainerCobbleBreaker extends ContainerJaffas {
@@ -27,10 +28,13 @@ public class ContainerCobbleBreaker extends ContainerJaffas {
     public ContainerCobbleBreaker(InventoryPlayer inventoryPlayer, TileEntityCobbleBreaker tile) {
         super(inventoryPlayer, tile);
         this.tile = tile;
+    }
 
-        addSlotToContainer(new Slot(tile, SLOT_INPUT, 57, 35));
-        addSlotToContainer(new SlotOutput(tile, SLOT_OUTPUT, 124, 35));
-        addSlotToContainer(new Slot(tile, SLOT_FUEL, 23, 35));
+    @Override
+    public void constructSlots(IInventory inv) {
+        addSlotToContainer(new Slot(inv, SLOT_INPUT, 57, 35));
+        addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 124, 35));
+        addSlotToContainer(new Slot(inv, SLOT_FUEL, 23, 35));
     }
 
     @Override

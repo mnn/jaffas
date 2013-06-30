@@ -17,6 +17,7 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
+// TODO: inherit from ContainerJaffas?
 public abstract class ContainerMachine extends Container {
     protected TileEntityMachineWithInventory tileEntity;
 
