@@ -35,8 +35,14 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
         if (PowerFramework.currentFramework != null) {
             powerProvider = PowerFramework.currentFramework.createPowerProvider();
             configurePowerParameters();
-            powerProvider.configure(20, 2, maxEnergyReceived, powerNeeded, powerStorage);
+            powerProvider.configure(0, 2, maxEnergyReceived, powerNeeded, powerStorage);
         }
+    }
+
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+        getPowerProvider().update(this);
     }
 
     protected void configurePowerParameters() {

@@ -27,7 +27,8 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
     private static final ForgeDirection[] CUSTOMER_DIRECTIONS = new ForgeDirection[]{ForgeDirection.UP, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.WEST, ForgeDirection.EAST};
     public int burnTime = 0;
     public int burnItemTime = 1;
-    private int SLOT_FUEL = 0;
+
+    public static final int SLOT_FUEL = 0;
 
     private static final int tickEach = 20;
     private int tickCounter = 0;

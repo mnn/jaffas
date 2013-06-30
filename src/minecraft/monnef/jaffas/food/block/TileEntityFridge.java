@@ -13,7 +13,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.ForgeDirection;
 
 import java.util.Random;
 
@@ -38,6 +37,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
     }
 
     public void updateEntity() {
+        super.updateEntity();
         tickCounter++;
 
         if (tickCounter % tickDivider == 0) {

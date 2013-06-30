@@ -23,7 +23,7 @@ public class ContainerGenerator extends ContainerMachine {
 
     @Override
     public void constructSlots(IInventory inv) {
-        addSlotToContainer(new Slot(inv, 0, 80, 25)); // 0 is ID
+        addSlotToContainer(new Slot(inv, TileEntityGenerator.SLOT_FUEL, 80, 25));
     }
 
     @Override

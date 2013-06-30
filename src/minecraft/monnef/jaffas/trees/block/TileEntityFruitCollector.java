@@ -136,6 +136,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
     }
 
     public void updateEntity() {
+        super.updateEntity();
         tickCounter++;
         playQueuedSound();
 

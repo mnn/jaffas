@@ -39,6 +39,12 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
         }
     }
 
+    @Override
+    public void updateEntity() {
+        super.updateEntity();
+        getPowerProvider().update(this);
+    }
+
     public static boolean isItemFuel(ItemStack par0ItemStack) {
         return TileEntityFurnace.isItemFuel(par0ItemStack);
     }

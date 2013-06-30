@@ -26,13 +26,14 @@ import net.minecraftforge.common.ForgeDirection;
 
 public abstract class BlockMachine extends BlockPower {
     private boolean customRenderer;
-    protected WrenchAction onWrench = WrenchAction.DROP;
+    protected WrenchAction onWrench = WrenchAction.ROTATE;
+    protected WrenchAction onWrenchSneaking = WrenchAction.DROP;
     protected int renderID;
     protected boolean useDefaultDirection = false;
     protected ForgeDirection defaultDirection = ForgeDirection.NORTH;
 
-    public BlockMachine(int par1, int index, Material par3Material, boolean customRenderer) {
-        super(par1, index, par3Material);
+    public BlockMachine(int id, int index, Material material, boolean customRenderer) {
+        super(id, index, material);
         this.customRenderer = customRenderer;
         if (useOwnRenderId()) {
             renderID = RenderingRegistry.getNextAvailableRenderId();
@@ -93,17 +94,17 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);
-        ItemStack stack = par5EntityPlayer.getCurrentEquippedItem();
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+        super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
+        ItemStack stack = player.getCurrentEquippedItem();
         if (stack != null) {
             Item item = stack.getItem();
             if (item instanceof IPipeWrench) {
-                return this.onPipeWrenchClickDefault(par1World, par2, par3, par4, par5EntityPlayer, par6);
+                return this.onPipeWrenchClickDefault(world, x, y, z, player, par6);
             } else if (item instanceof IMachineTool) {
                 IMachineTool tool = (IMachineTool) item;
-                TileEntityMachine machineTile = (TileEntityMachine) par1World.getBlockTileEntity(par2, par3, par4);
-                return tool.onMachineClick(machineTile, par5EntityPlayer, par6);
+                TileEntityMachine machineTile = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+                return tool.onMachineClick(machineTile, player, par6);
             }
         }
 
@@ -111,7 +112,8 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     private boolean onPipeWrenchClickDefault(World world, int x, int y, int z, EntityPlayer player, int side) {
-        switch (onWrench) {
+        WrenchAction action = player.isSneaking() ? onWrenchSneaking : onWrench;
+        switch (action) {
             case DROP:
                 if (!world.isRemote) {
                     world.setBlock(x, y, z, 0);

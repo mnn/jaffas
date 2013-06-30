@@ -18,14 +18,14 @@ public abstract class BlockMachineWithInventory extends BlockMachine {
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        if (!super.onBlockActivated(par1World, x, y, z, player, side, par7, par8, par9)) {
-            TileEntity tileEntity = par1World.getBlockTileEntity(x, y, z);
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
+        if (!super.onBlockActivated(world, x, y, z, player, side, par7, par8, par9)) {
+            TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
             if (tileEntity == null || player.isSneaking()) {
                 return false;
             }
 
-            player.openGui(JaffasPower.instance, getGuiId(), par1World, x, y, z);
+            player.openGui(JaffasPower.instance, getGuiId(), world, x, y, z);
             return true;
         } else {
             return true;

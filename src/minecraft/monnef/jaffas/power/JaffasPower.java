@@ -30,9 +30,11 @@ import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
+import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.block.TileEntityKitchenUnit;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
@@ -91,6 +93,9 @@ public class JaffasPower extends jaffasMod {
     public static int lightningConductorRadius = 30;
     public static boolean lightningConductorEnabled;
 
+    public static BlockKitchenUnit kitchenUnit;
+    private int blockKitchenUnitID;
+
     @PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -107,6 +112,8 @@ public class JaffasPower extends jaffasMod {
 
             blockGeneratorID = idProvider.getBlockIDFromConfig("generator");
             blockAntennaID = idProvider.getBlockIDFromConfig("antenna");
+
+            blockKitchenUnitID = idProvider.getBlockIDFromConfig("kitchenUnit");
 
             lightningConductorEnabled = config.get(Configuration.CATEGORY_GENERAL, "lightningConductorEnabled", true).getBoolean(true);
             if (lightningConductorEnabled) {
@@ -139,10 +146,6 @@ public class JaffasPower extends jaffasMod {
         if (!ModuleManager.isModuleEnabled(ModulesEnum.power))
             return;
 
-        JaffasRegistryHelper.registerTileEntity(TileEntityGenerator.class, "jp.generator");
-        JaffasRegistryHelper.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
-        JaffasRegistryHelper.registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
-
         creativeTab = new JaffaCreativeTab("jaffas.power");
 
         createItems();
@@ -174,12 +177,14 @@ public class JaffasPower extends jaffasMod {
     private void createItems() {
         generator = new BlockGenerator(blockGeneratorID, 5);
         RegistryUtils.registerBlock(generator, "Generator");
+        JaffasRegistryHelper.registerTileEntity(TileEntityGenerator.class, "jp.generator");
 
         ItemDebug = new ItemDebug(ItemDebugID, 1);
         LanguageRegistry.addName(ItemDebug, "Power Debug Tool");
 
         antenna = new BlockAntenna(blockAntennaID, 5);
         RegistryUtils.registerBlock(antenna, "Small Antenna");
+        JaffasRegistryHelper.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
 
         wrench = new ItemPipeWrench(ItemWrenchID, 1);
         LanguageRegistry.addName(wrench, "Pipe Wrench");
@@ -190,7 +195,12 @@ public class JaffasPower extends jaffasMod {
         if (lightningConductorEnabled) {
             lightningConductor = new BlockLightningConductor(blockLightningConductorID, 5);
             RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
+            JaffasRegistryHelper.registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
         }
+
+        kitchenUnit = new BlockKitchenUnit(blockKitchenUnitID, 0);
+        RegistryUtils.registerBlock(kitchenUnit, "kitchenUnit", "Kitchen Unit");
+        JaffasRegistryHelper.registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
     }
 
     private void installRecipes() {
