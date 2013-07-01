@@ -22,7 +22,6 @@ import monnef.core.utils.DyeHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.JaffaCreativeTab;
-import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
@@ -30,10 +29,12 @@ import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
+import monnef.jaffas.power.block.BlockGrinder;
 import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.power.block.TileEntityKitchenUnit;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.client.GuiHandler;
@@ -56,6 +57,7 @@ import java.util.logging.Level;
 import static cpw.mods.fml.common.Mod.Init;
 import static cpw.mods.fml.common.Mod.PostInit;
 import static cpw.mods.fml.common.Mod.PreInit;
+import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
 import static monnef.jaffas.power.common.Reference.ModId;
 import static monnef.jaffas.power.common.Reference.ModName;
 import static monnef.jaffas.power.common.Reference.Version;
@@ -96,6 +98,9 @@ public class JaffasPower extends jaffasMod {
     public static BlockKitchenUnit kitchenUnit;
     private int blockKitchenUnitID;
 
+    public static BlockGrinder grinder;
+    private int blockGrinderID;
+
     @PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -113,12 +118,14 @@ public class JaffasPower extends jaffasMod {
             blockGeneratorID = idProvider.getBlockIDFromConfig("generator");
             blockAntennaID = idProvider.getBlockIDFromConfig("antenna");
 
-            blockKitchenUnitID = idProvider.getBlockIDFromConfig("kitchenUnit");
-
             lightningConductorEnabled = config.get(Configuration.CATEGORY_GENERAL, "lightningConductorEnabled", true).getBoolean(true);
             if (lightningConductorEnabled) {
                 blockLightningConductorID = idProvider.getBlockIDFromConfig("lightningConductor");
             }
+
+            blockKitchenUnitID = idProvider.getBlockIDFromConfig("kitchenUnit");
+
+            blockGrinderID = idProvider.getBlockIDFromConfig("grinder");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -177,14 +184,14 @@ public class JaffasPower extends jaffasMod {
     private void createItems() {
         generator = new BlockGenerator(blockGeneratorID, 5);
         RegistryUtils.registerBlock(generator, "Generator");
-        JaffasRegistryHelper.registerTileEntity(TileEntityGenerator.class, "jp.generator");
+        registerTileEntity(TileEntityGenerator.class, "jp.generator");
 
         ItemDebug = new ItemDebug(ItemDebugID, 1);
         LanguageRegistry.addName(ItemDebug, "Power Debug Tool");
 
         antenna = new BlockAntenna(blockAntennaID, 5);
         RegistryUtils.registerBlock(antenna, "Small Antenna");
-        JaffasRegistryHelper.registerTileEntity(TileEntityAntenna.class, "jp.antenna");
+        registerTileEntity(TileEntityAntenna.class, "jp.antenna");
 
         wrench = new ItemPipeWrench(ItemWrenchID, 1);
         LanguageRegistry.addName(wrench, "Pipe Wrench");
@@ -195,12 +202,17 @@ public class JaffasPower extends jaffasMod {
         if (lightningConductorEnabled) {
             lightningConductor = new BlockLightningConductor(blockLightningConductorID, 5);
             RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
-            JaffasRegistryHelper.registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
+            registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
         }
 
         kitchenUnit = new BlockKitchenUnit(blockKitchenUnitID, 0);
         RegistryUtils.registerBlock(kitchenUnit, "kitchenUnit", "Kitchen Unit");
-        JaffasRegistryHelper.registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
+        registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
+
+        grinder = new BlockGrinder(blockGrinderID, 1);
+        RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
+        registerTileEntity(TileEntityGrinder.class, "grinder");
+        TileEntityGrinder.addRecipe(new ItemStack(Block.stone, 2), new ItemStack(Block.dirt, 5), 5 * 20); // TODO: real recipes
     }
 
     private void installRecipes() {

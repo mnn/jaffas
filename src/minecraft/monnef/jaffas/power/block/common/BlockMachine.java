@@ -11,6 +11,7 @@ import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.api.IPipeWrench;
 import monnef.jaffas.power.block.TileEntityAntenna;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -94,20 +95,26 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     @Override
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
-        super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
+        super.onBlockActivated(world, x, y, z, player, side, par7, par8, par9);
         ItemStack stack = player.getCurrentEquippedItem();
         if (stack != null) {
             Item item = stack.getItem();
-            if (item instanceof IPipeWrench) {
-                return this.onPipeWrenchClickDefault(world, x, y, z, player, par6);
+            if (isPipeWrenchOrCompatible(item)) {
+                return this.onPipeWrenchClickDefault(world, x, y, z, player, side);
             } else if (item instanceof IMachineTool) {
                 IMachineTool tool = (IMachineTool) item;
                 TileEntityMachine machineTile = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
-                return tool.onMachineClick(machineTile, player, par6);
+                return tool.onMachineClick(machineTile, player, side);
             }
         }
 
+        return false;
+    }
+
+    private boolean isPipeWrenchOrCompatible(Item item) {
+        if (item instanceof IPipeWrench) return true;
+        if (JaffasTechnic.omniWrenchId == item.itemID) return true;
         return false;
     }
 

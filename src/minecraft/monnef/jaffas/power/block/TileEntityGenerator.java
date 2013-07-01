@@ -51,10 +51,6 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
         IDLE, BURNING
     }
 
-    public TileEntityGenerator() {
-        super();
-    }
-
     @Override
     protected void configurePowerParameters() {
         super.configurePowerParameters();

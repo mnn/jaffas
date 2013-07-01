@@ -17,6 +17,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
+import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
@@ -296,6 +297,7 @@ public class JaffasTechnic extends jaffasMod {
     public static boolean disableLampParticles;
 
     public static final Material breakableIronMaterial = new Material(MapColor.ironColor);
+    public static int omniWrenchId;
 
     @Mod.PreInit
     @Override
@@ -449,6 +451,11 @@ public class JaffasTechnic extends jaffasMod {
         Log.printFine("Registered " + marked + " blocks as mine-able by pickaxe.");
         if (marked <= 0) {
             Log.printWarning("No block registered as mine-able by pickaxe, possible error!");
+        }
+
+        omniWrenchId = ItemHelper.findItemIdByName("omniwrench");
+        if (omniWrenchId != 0) {
+            Log.printInfo("Omni wrench detected (" + omniWrenchId + "), compatibility with pipe wrench engaged.");
         }
     }
 

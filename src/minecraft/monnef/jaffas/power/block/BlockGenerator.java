@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.common.BlockMachineWithInventory;
+import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
@@ -42,7 +43,7 @@ public class BlockGenerator extends BlockMachineWithInventory {
 
     @Override
     public int getGuiId() {
-        return 0;
+        return GuiHandler.GuiId.GENERATOR.ordinal();
     }
 
     @Override
