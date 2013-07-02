@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Random;
 
@@ -88,6 +89,9 @@ public class TechnicWorldGen implements IWorldGenerator {
     }
 
     private void generateSwitchgrass(int shots, float chance) {
+        if (BiomeDictionary.isBiomeOfType(world.getBiomeGenForCoords(posX + 8, posZ + 8), BiomeDictionary.Type.FROZEN))
+            return;
+
         int toGen = 0;
         for (int i = 0; i < shots; i++) {
             if (rand.nextFloat() < chance) {
