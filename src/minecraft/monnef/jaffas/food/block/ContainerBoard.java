@@ -64,7 +64,7 @@ public class ContainerBoard extends ContainerJaffas {
     }
 
     @Override
-    protected int getSlotsCount() {
+    public int getSlotsCount() {
         return 3;
     }
 
@@ -120,7 +120,7 @@ public class ContainerBoard extends ContainerJaffas {
     }
 
     @Override
-    protected int getOutputSlotsCount() {
+    public int getOutputSlotsCount() {
         return 1;
     }
 }

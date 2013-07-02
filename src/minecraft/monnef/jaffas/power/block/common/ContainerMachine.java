@@ -19,6 +19,10 @@ public abstract class ContainerMachine extends ContainerJaffas {
 
     protected ArrayList<Integer> lastValue;
 
+    // dummy constructor
+    protected ContainerMachine() {
+    }
+
     public ContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory te) {
         super(inventoryPlayer, te);
         machine = te;

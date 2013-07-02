@@ -31,12 +31,12 @@ public class ContainerFermenter extends ContainerJaffas {
     }
 
     @Override
-    protected int getSlotsCount() {
+    public int getSlotsCount() {
         return 3;
     }
 
     @Override
-    protected int getOutputSlotsCount() {
+    public int getOutputSlotsCount() {
         return 1;
     }
 

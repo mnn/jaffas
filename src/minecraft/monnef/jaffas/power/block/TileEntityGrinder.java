@@ -14,7 +14,7 @@ public class TileEntityGrinder extends TileEntityBasicProcessingMachine {
     private static SimpleProcessingRecipeHandler recipes = new SimpleProcessingRecipeHandler();
 
     public static void addRecipe(ItemStack input, ItemStack output, int duration) {
-        recipes.addRecipe(input, output, duration);
+        recipes.addRecipe(new ItemStack[]{input}, new ItemStack[]{output}, duration);
     }
 
     @Override

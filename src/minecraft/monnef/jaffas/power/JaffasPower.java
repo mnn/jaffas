@@ -32,11 +32,13 @@ import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.BlockGrinder;
 import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
+import monnef.jaffas.power.block.ContainerGrinder;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.power.block.TileEntityKitchenUnit;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
+import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
@@ -209,10 +211,12 @@ public class JaffasPower extends jaffasMod {
         RegistryUtils.registerBlock(kitchenUnit, "kitchenUnit", "Kitchen Unit");
         registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
 
+        TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerGrinder.class);
         grinder = new BlockGrinder(blockGrinderID, 1);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileEntityGrinder.class, "grinder");
         TileEntityGrinder.addRecipe(new ItemStack(Block.stone, 2), new ItemStack(Block.dirt, 5), 5 * 20); // TODO: real recipes
+
     }
 
     private void installRecipes() {

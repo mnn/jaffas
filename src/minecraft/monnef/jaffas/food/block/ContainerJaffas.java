@@ -17,6 +17,15 @@ import net.minecraft.tileentity.TileEntity;
 
 public abstract class ContainerJaffas extends Container {
     protected TileEntity tile;
+    private boolean dummy;
+
+    protected ContainerJaffas() {
+        dummy = true;
+    }
+
+    private void haltIfDummy() {
+        if (dummy) throw new RuntimeException("invalid operation called on dummy jaffas container");
+    }
 
     protected ContainerJaffas(InventoryPlayer inventoryPlayer, TileEntity tile) {
         this.tile = tile;
@@ -30,6 +39,8 @@ public abstract class ContainerJaffas extends Container {
     }
 
     protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
+        haltIfDummy();
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
                 addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9,
@@ -44,6 +55,8 @@ public abstract class ContainerJaffas extends Container {
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slot) {
+        haltIfDummy();
+
         ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
 
@@ -85,16 +98,21 @@ public abstract class ContainerJaffas extends Container {
         return stack;
     }
 
-    protected abstract int getSlotsCount();
+    public abstract int getSlotsCount();
 
-    protected abstract int getOutputSlotsCount();
+    public abstract int getOutputSlotsCount();
 
-    protected int getInputSlotsCount() {
+    public int getInputSlotsCount() {
+        return getSlotsCount() - getOutputSlotsCount();
+    }
+
+    public int getStartIndexOfOutput() {
         return getSlotsCount() - getOutputSlotsCount();
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
+        haltIfDummy();
         return ((IInventory) tile).isUseableByPlayer(player);
     }
 
@@ -107,6 +125,7 @@ public abstract class ContainerJaffas extends Container {
     public abstract void constructSlots(IInventory inv);
 
     protected boolean mergeItemStack(ItemStack stack, int startingIndex, int endingIndex, boolean fromEnd) {
+        haltIfDummy();
         return super.mergeItemStack(stack, startingIndex, endingIndex, fromEnd);
     }
 }

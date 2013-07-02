@@ -9,29 +9,38 @@ import monnef.core.utils.ItemHelper;
 import net.minecraft.item.ItemStack;
 
 public class SimpleProcessingRecipe implements IProcessingRecipe {
-    private ItemStack input;
-    private ItemStack output;
+    private ItemStack[] input;
+    private ItemStack[] output;
     private int duration;
 
-    public SimpleProcessingRecipe(ItemStack input, ItemStack output, int duration) {
+    public SimpleProcessingRecipe(ItemStack[] input, ItemStack[] output, int duration) {
         this.input = input;
         this.output = output;
         this.duration = duration;
     }
 
     @Override
-    public ItemStack getInput() {
+    public ItemStack[] getInput() {
         return input;
     }
 
     @Override
-    public ItemStack getOutput() {
+    public ItemStack[] getOutput() {
         return output;
     }
 
     @Override
-    public boolean doesInputMatch(ItemStack input) {
-        return ItemHelper.haveStacksSameIdDamageAndProperSize(this.input, input);
+    public boolean doesInputMatch(ItemStack[] testedInv) {
+        if (testedInv == null || testedInv.length != input.length) return false;
+
+        for (int i = 0; i < input.length; i++) {
+            ItemStack template = input[i];
+            ItemStack testedStack = testedInv[i];
+            if (template == null && testedStack == null) continue;
+            if (!ItemHelper.haveStacksSameIdDamageAndProperSize(template, testedStack)) return false;
+        }
+
+        return true;
     }
 
     @Override

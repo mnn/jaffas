@@ -17,7 +17,7 @@ public class ContainerGenerator extends ContainerMachine {
     }
 
     @Override
-    protected int getSlotsCount() {
+    public int getSlotsCount() {
         return 1;
     }
 
@@ -27,7 +27,7 @@ public class ContainerGenerator extends ContainerMachine {
     }
 
     @Override
-    protected int getOutputSlotsCount() {
+    public int getOutputSlotsCount() {
         return 0;
     }
 }

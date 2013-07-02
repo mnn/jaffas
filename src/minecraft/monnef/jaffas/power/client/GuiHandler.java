@@ -28,7 +28,7 @@ public class GuiHandler implements IGuiHandler {
         if (tileEntity instanceof TileEntityGenerator) {
             return new ContainerGenerator(player.inventory, (TileEntityGenerator) tileEntity);
         } else if (tileEntity instanceof TileEntityGrinder) {
-            return new ContainerGrinder(player.inventory, (TileEntityMachineWithInventory) tileEntity);
+            return new ContainerGrinder(player.inventory, (TileEntityBasicProcessingMachine) tileEntity);
         }
         return null;
     }
@@ -41,7 +41,7 @@ public class GuiHandler implements IGuiHandler {
         if (tileEntity instanceof TileEntityGenerator) {
             return new GuiContainerGenerator(player.inventory, (TileEntityGenerator) tileEntity, new ContainerGenerator(player.inventory, (TileEntityMachineWithInventory) tileEntity));
         } else if (tileEntity instanceof TileEntityGrinder) {
-            return new GuiContainerGrinder(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerGrinder(player.inventory, (TileEntityMachineWithInventory) tileEntity));
+            return new GuiContainerGrinder(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerGrinder(player.inventory, (TileEntityBasicProcessingMachine) tileEntity));
         }
         return null;
     }

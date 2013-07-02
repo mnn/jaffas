@@ -5,28 +5,37 @@
 
 package monnef.jaffas.power.common;
 
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
 import net.minecraft.item.ItemStack;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static monnef.core.utils.ItemHelper.copyStackArray;
+
 public class SimpleProcessingRecipeHandler implements IProcessingRecipeHandler {
-    // item id, meta, recipe
-    private Table<Integer, Integer, IProcessingRecipe> recipes;
+    // could be rewritten to use e.g. trie,
+    // but so far it doesn't seem to be a performance issue
+    // (it's only called when processing is starting and ending)
+
+    private List<IProcessingRecipe> recipes;
 
     public SimpleProcessingRecipeHandler() {
-        recipes = HashBasedTable.create();
-    }
-
-    public void addRecipe(ItemStack input, ItemStack output, int duration) {
-        SimpleProcessingRecipe recipe = new SimpleProcessingRecipe(input.copy(), output.copy(), duration);
-        recipes.put(input.itemID, input.getItemDamage(), recipe);
+        recipes = new ArrayList<IProcessingRecipe>();
     }
 
     @Override
-    public IProcessingRecipe findByInput(ItemStack stack) {
-        if (stack == null) return null;
-        IProcessingRecipe found = recipes.get(stack.itemID, stack.getItemDamage());
-        if (found.doesInputMatch(stack)) return found;
+    public void addRecipe(ItemStack[] input, ItemStack[] output, int duration) {
+        SimpleProcessingRecipe recipe = new SimpleProcessingRecipe(copyStackArray(input), copyStackArray(output), duration);
+        recipes.add(recipe);
+    }
+
+    @Override
+    public IProcessingRecipe findByInput(ItemStack[] inv) {
+        if (inv == null) return null;
+
+        for (IProcessingRecipe found : recipes) {
+            if (found.doesInputMatch(inv)) return found;
+        }
         return null;
     }
 }

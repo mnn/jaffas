@@ -33,7 +33,7 @@ public class ContainerCompost extends ContainerJaffas {
     }
 
     @Override
-    protected int getSlotsCount() {
+    public int getSlotsCount() {
         return 2;
     }
 
@@ -75,7 +75,7 @@ public class ContainerCompost extends ContainerJaffas {
     }
 
     @Override
-    protected int getOutputSlotsCount() {
+    public int getOutputSlotsCount() {
         return 1;
     }
 }
