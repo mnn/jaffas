@@ -15,6 +15,7 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
     protected ItemStack[] inventory;
 
     protected TileEntityMachineWithInventory() {
+        super();
         inventory = new ItemStack[getSizeInventory()];
     }
 

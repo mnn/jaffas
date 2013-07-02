@@ -8,6 +8,7 @@ package monnef.jaffas.power.block.common;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerFramework;
+import monnef.jaffas.food.JaffasFood;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -36,6 +37,8 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
             powerProvider = PowerFramework.currentFramework.createPowerProvider();
             configurePowerParameters();
             powerProvider.configure(0, 2, maxEnergyReceived, powerNeeded, powerStorage);
+        } else {
+            JaffasFood.Log.printWarning("Got null in power framework, this should never happen!");
         }
     }
 

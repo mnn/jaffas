@@ -28,6 +28,8 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     public int processTime = 0;
     public int processItemTime = 1;
     private ItemStack[] processingInv;
+    public int powerMax;
+    public int powerStored;
 
     private static HashMap<Class, ContainerBasicProcessingMachine> containerPrototype = new HashMap<Class, ContainerBasicProcessingMachine>();
 
@@ -49,6 +51,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     }
 
     protected TileEntityBasicProcessingMachine() {
+        super();
         processingInv = new ItemStack[getMyContainerPrototype().getInputSlotsCount()];
     }
 
@@ -72,17 +75,18 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
         if (isWorking()) {
             processTime++;
             float power = getPowerProvider().useEnergy(powerNeeded, powerNeeded, true);
-            if (power != powerNeeded) {
+            if (power < powerNeeded) {
                 JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
-            }
-            if (processTime >= processItemTime) {
-                processTime = 0;
-                produceOutput(getRecipeHandler().findByInput(processingInv));
+            } else {
+                if (processTime >= processItemTime) {
+                    processTime = 0;
+                    produceOutput(getRecipeHandler().findByInput(processingInv));
+                }
             }
         } else {
             IProcessingRecipe recipe = getRecipeHandler().findByInput(createInputInv());
             if (recipe != null) {
-                if (isOutputFreeFor(recipe.getOutput())) {
+                if (isOutputSlotFreeFor(recipe.getOutput())) {
                     processTime = 1;
                     processItemTime = recipe.getDuration();
                     processingInv = createProcessingInvAndConsume(recipe.getInput());
@@ -118,7 +122,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
     private void produceOutput(IProcessingRecipe recipe) {
         ItemStack[] output = recipe.getOutput();
-        if (!isOutputFreeFor(output)) {
+        if (!isOutputSlotFreeFor(output)) {
             throw new RuntimeException("Cannot produce output.");
         }
 
@@ -136,11 +140,11 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
         }
     }
 
-    private boolean isOutputFreeFor(ItemStack[] recipeOutput) {
+    private boolean isOutputSlotFreeFor(ItemStack[] recipeOutput) {
         int start = getMyContainerPrototype().getStartIndexOfOutput();
         for (int i = start; i < getMyContainerPrototype().getSlotsCount(); i++) {
             int recipeOutputIndex = i - start;
-            if (!ItemHelper.isOutputFreeFor(recipeOutput[recipeOutputIndex], i, this)) return false;
+            if (!ItemHelper.isOutputSlotFreeFor(recipeOutput[recipeOutputIndex], i, this)) return false;
         }
 
         return true;
@@ -152,7 +156,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
     @Override
     public int getIntegersToSyncCount() {
-        return 2;
+        return 4;
     }
 
     @Override
@@ -163,6 +167,12 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
             case 1:
                 return processItemTime;
+
+            case 2:
+                return (int) getPowerProvider().getEnergyStored();
+
+            case 3:
+                return getPowerProvider().getMaxEnergyStored();
         }
 
         return -1;
@@ -178,6 +188,13 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
             case 1:
                 processItemTime = value;
                 break;
+
+            case 2:
+                powerStored = value;
+                break;
+
+            case 3:
+                powerMax = value;
 
             default:
                 return;
@@ -198,6 +215,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
                 processingInv[slot] = ItemStack.loadItemStackFromNBT(innerTag);
             }
         }
+        getPowerProvider().readFromNBT(tag);
     }
 
     @Override
@@ -217,6 +235,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
             }
         }
         tag.setTag(PROCESSING_INV_TAG, itemList);
+        getPowerProvider().writeToNBT(tag);
     }
 
     public ContainerBasicProcessingMachine getMyContainerPrototype() {
