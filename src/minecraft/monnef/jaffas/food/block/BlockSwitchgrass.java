@@ -7,8 +7,10 @@ package monnef.jaffas.food.block;
 
 import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.BitHelper;
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.trees.JaffasTrees;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -62,6 +64,23 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     public void updateTick(World world, int x, int y, int z, Random rand) {
         if (world.isRemote) return;
         tryGrow(world, x, y, z, rand);
+        if (rand.nextInt(5) == 1) checkNeighboursForWinter(world, x, y, z);
+    }
+
+    private void checkNeighboursForWinter(World world, int x, int y, int z) {
+        for (int xx = x - 1; xx <= x + 1; xx++) {
+            for (int yy = y - 1; yy <= y + 1; yy++) {
+                for (int zz = z - 1; zz <= z + 1; zz++) {
+                    int bId = world.getBlockId(xx, yy, zz);
+                    if (BlockHelper.isWinterBlock(bId)) {
+                        destroyWithDrop(world, x, y, z);
+                        if (JaffasFood.rand.nextInt(3) == 0) {
+                            world.setBlock(x, y, z, Block.snow.blockID);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private void tryGrow(World world, int x, int y, int z, Random rand) {
@@ -131,17 +150,21 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
      * their own) Args: x, y, z, neighbor blockID
      */
     @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-        if (!this.canBlockStay(par1World, par2, par3, par4)) {
-            this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), par5);
-            setBlock(par1World, par2, par3, par4, 0);
+    public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
+        if (!this.canBlockStay(world, x, y, z)) {
+            destroyWithDrop(world, x, y, z);
         }
+    }
+
+    private void destroyWithDrop(World world, int x, int y, int z) {
+        this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+        setBlock(world, x, y, z, 0);
     }
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
         int myMeta = world.getBlockMetadata(x, y, z);
-        int myId = world.getBlockMetadata(x, y, z);
+        int myId = world.getBlockId(x, y, z);
         int topBlock = world.getBlockId(x, y + 1, z);
         int bottomBlock = world.getBlockId(x, y - 1, z);
 
