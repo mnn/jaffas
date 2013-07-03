@@ -5,16 +5,19 @@
 
 package monnef.jaffas.technic.item;
 
-import monnef.core.MonnefCorePlugin;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.block.Block;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class ItemAxeTechnic extends ItemTechnicTool {
     public ItemAxeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
+    }
+
+    @Override
+    protected float getCustomStrVsBlock(ItemStack stack, Block block, int meta) {
+        return Item.axeDiamond.getStrVsBlock(stack, block, meta);
     }
 }
 
