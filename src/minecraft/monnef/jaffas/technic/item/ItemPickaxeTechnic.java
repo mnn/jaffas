@@ -16,7 +16,7 @@ public class ItemPickaxeTechnic extends ItemTechnicTool {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int metadata) {
+    public float getCustomStrVsBlock(ItemStack stack, Block block, int metadata) {
         return Item.pickaxeDiamond.getStrVsBlock(stack, block, metadata);
     }
 

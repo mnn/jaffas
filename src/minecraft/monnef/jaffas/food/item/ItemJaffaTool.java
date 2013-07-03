@@ -65,16 +65,21 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+    public final float getStrVsBlock(ItemStack stack, Block block, int meta) {
         if (nearlyDestroyed(stack)) {
-            return 0.5f;
+            return 0;
         }
 
         if (ForgeHooks.isToolEffective(stack, block, meta)) {
             return efficiencyOnProperMaterial;
         }
-        return getStrVsBlock(stack, block);
+        return getCustomStrVsBlock(stack, block, meta);
     }
+
+    protected float getCustomStrVsBlock(ItemStack stack, Block block, int meta) {
+        return super.getStrVsBlock(stack, block, meta);
+    }
+
 
     protected boolean nearlyDestroyed(ItemStack stack) {
         return stack.getMaxDamage() == stack.getItemDamage();
