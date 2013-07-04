@@ -402,6 +402,8 @@ public class TileEntityFermenter extends TileEntity implements IInventory, ISide
         }
         tag.setTag("Inventory", itemList);
         tag.setInteger(WORK_TIME_TAG, getWorkMeter());
+        tag.setInteger(LIQUID_TYPE_TAG, getLiquid().ordinal());
+        tag.setInteger(LIQUID_AMOUNT_TAG, getLiquidAmount());
     }
 
     /*
