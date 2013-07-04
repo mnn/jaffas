@@ -275,7 +275,12 @@ public class TileEntityMeatDryer extends TileEntity {
     }
 
     private MeatState getMeatStateFromStack(ItemStack stack) {
+        if (stack == null) return null;
         return itemIdToMeatType.get(stack.itemID);
+    }
+
+    public boolean isStackValidInput(ItemStack stack) {
+        return getMeatStateFromStack(stack) != null;
     }
 
     public boolean hasFreeSpace() {

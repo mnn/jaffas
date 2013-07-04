@@ -57,7 +57,7 @@ public class BlockMeatDryer extends BlockJaffas {
 
         if (!world.isRemote && MonnefCorePlugin.debugEnv) tile.printDebugInfo(player);
 
-        if (hand == null) {
+        if (!tile.isStackValidInput(hand)) {
             // collect meat
             if (!tile.hasFinishedMeat()) {
                 return false;
@@ -81,6 +81,11 @@ public class BlockMeatDryer extends BlockJaffas {
 
     @Override
     public int idDropped(int par1, Random par2Random, int par3) {
+        return JaffasFood.getItem(JaffaItem.meatDryer).itemID;
+    }
+
+    @Override
+    public int idPicked(World par1World, int par2, int par3, int par4) {
         return JaffasFood.getItem(JaffaItem.meatDryer).itemID;
     }
 }
