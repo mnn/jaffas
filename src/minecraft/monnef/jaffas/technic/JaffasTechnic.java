@@ -441,11 +441,11 @@ public class JaffasTechnic extends jaffasMod {
 
     private void addDungeonLoot() {
         if (!JaffasFood.dungeonLootEnabled) return;
-        JaffasFood.addToDungeonsAndPyramids(jaffarrolRaw, 100, 2, 10);
-        JaffasFood.addToDungeonsAndPyramids(limsew, 10, 2, 5);
-        JaffasFood.addToDungeonsAndPyramids(hopSeeds, 5, 2, 10);
+        JaffasFood.addToDungeons(jaffarrolRaw, 30, 2, 10);
+        JaffasFood.addToDungeons(limsew, 10, 2, 5);
+        JaffasFood.addToDungeons(hopSeeds, 5, 2, 10);
         if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
-            JaffasFood.addToDungeonsAndPyramids(JaffasTrees.itemUnknownSeeds, 100, 3, 20);
+            JaffasFood.addToDungeons(JaffasTrees.itemUnknownSeeds, 100, 3, 20);
         }
     }
 

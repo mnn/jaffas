@@ -411,27 +411,47 @@ public class JaffasFood extends jaffasMod {
 
     private void addDungeonLoot() {
         if (!JaffasFood.dungeonLootEnabled) return;
-        addToDungeonsAndPyramids(JaffaItem.malletIron, 50, 1, 1);
-        addToDungeonsAndPyramids(JaffaItem.kettle, 40, 1, 1);
-        addToDungeonsAndPyramids(new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP), 100, 5, 64);
-        addToDungeonsAndPyramids(JaffaItem.magnifier, 100, 1, 1);
+
+        // 100 ~ trash, 5 ~ treasure
+        addToDungeons(JaffaItem.malletIron, 25, 1, 1);
+        addToDungeons(JaffaItem.honey, 90, 5, 15);
+        addToDungeons(JaffaItem.kettle, 30, 1, 1);
+        addToDungeons(new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP), 90, 5, 64);
+        addToDungeons(JaffaItem.magnifier, 30, 1, 1);
+        addToDungeons(JaffaItem.spawnStoneLittle, 10, 1, 1);
+        addToDungeons(JaffaItem.spawnStoneMedium, 5, 1, 1);
+        addToDungeons(JaffaItem.jaffa, 20, 5, 15);
+        addToDungeons(JaffaItem.scrap, 40, 1, 64);
+
         ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(Recipes.getItemStack(JaffaItem.mallet), 1, 1, 4));
+
+        // 20 ~ trash, 3 ~ treasure
+        addToPyramids(JaffaItem.spawnStoneBig, 3, 1, 1);
+        addToPyramids(JaffaItem.malletHeadDiamond, 3, 1, 1);
+        addToPyramids(JaffaItem.spiderLegRaw, 7, 1, 4);
     }
 
-    public static void addToDungeonsAndPyramids(JaffaItem item, int weight, int min, int max) {
-        addToDungeonsAndPyramids(Recipes.getItem(item), weight, min, max);
+    public static void addToDungeons(JaffaItem item, int weight, int min, int max) {
+        addToDungeons(Recipes.getItem(item), weight, min, max);
     }
 
-    public static void addToDungeonsAndPyramids(Item item, int weight, int min, int max) {
-        addToDungeonsAndPyramids(new ItemStack(item), weight, min, max);
+    public static void addToDungeons(Item item, int weight, int min, int max) {
+        addToDungeons(new ItemStack(item), weight, min, max);
     }
 
-    public static void addToDungeonsAndPyramids(Block block, int weight, int min, int max) {
-        addToDungeonsAndPyramids(new ItemStack(block), weight, min, max);
+    public static void addToDungeons(Block block, int weight, int min, int max) {
+        addToDungeons(new ItemStack(block), weight, min, max);
     }
 
-    public static void addToDungeonsAndPyramids(ItemStack stack, int weight, int min, int max) {
+    public static void addToDungeons(ItemStack stack, int weight, int min, int max) {
         ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
+    }
+
+    public static void addToPyramids(JaffaItem item, int weight, int min, int max) {
+        addToPyramids(Recipes.getItemStack(item), weight, min, max);
+    }
+
+    public static void addToPyramids(ItemStack stack, int weight, int min, int max) {
         ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
         ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
     }
