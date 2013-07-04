@@ -91,6 +91,7 @@ import monnef.jaffas.food.network.JaffasPacketHandler;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.jaffasMod;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
@@ -104,7 +105,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
+import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
@@ -244,6 +247,7 @@ public class JaffasFood extends jaffasMod {
 
     public static boolean slimeSpawningEnabled;
     public static boolean vanillaRecipesEnabled;
+    public static boolean dungeonLootEnabled;
 
     public static OtherModsHelper otherMods;
     public ItemStack guideBook;
@@ -352,6 +356,7 @@ public class JaffasFood extends jaffasMod {
             slimeSpawningEnabled = config.get(Configuration.CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
             JaffasRegistryHelper.compatibilityMode = config.get(Configuration.CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
             vanillaRecipesEnabled = config.get(Configuration.CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
+            dungeonLootEnabled = config.get(Configuration.CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -386,6 +391,7 @@ public class JaffasFood extends jaffasMod {
         registerDuckSpawns();
         registerCleaverRecords();
         AchievementsHandler.init();
+        addDungeonLoot();
 
         registerHandlers();
 
@@ -401,6 +407,33 @@ public class JaffasFood extends jaffasMod {
         MinecraftForge.addGrassPlant(blockSwitchgrass, BlockSwitchgrass.VALUE_TOP, 5);
 
         printInitializedMessage();
+    }
+
+    private void addDungeonLoot() {
+        if (!JaffasFood.dungeonLootEnabled) return;
+        addToDungeonsAndPyramids(JaffaItem.malletIron, 50, 1, 1);
+        addToDungeonsAndPyramids(JaffaItem.kettle, 40, 1, 1);
+        addToDungeonsAndPyramids(new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP), 100, 5, 64);
+        addToDungeonsAndPyramids(JaffaItem.magnifier, 100, 1, 1);
+        ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(Recipes.getItemStack(JaffaItem.mallet), 1, 1, 4));
+    }
+
+    public static void addToDungeonsAndPyramids(JaffaItem item, int weight, int min, int max) {
+        addToDungeonsAndPyramids(Recipes.getItem(item), weight, min, max);
+    }
+
+    public static void addToDungeonsAndPyramids(Item item, int weight, int min, int max) {
+        addToDungeonsAndPyramids(new ItemStack(item), weight, min, max);
+    }
+
+    public static void addToDungeonsAndPyramids(Block block, int weight, int min, int max) {
+        addToDungeonsAndPyramids(new ItemStack(block), weight, min, max);
+    }
+
+    public static void addToDungeonsAndPyramids(ItemStack stack, int weight, int min, int max) {
+        ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
+        ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
+        ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
     }
 
     private void registerCleaverRecords() {

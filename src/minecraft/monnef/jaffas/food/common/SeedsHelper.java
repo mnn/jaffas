@@ -27,7 +27,7 @@ public class SeedsHelper {
 
     public static ItemStack getRandomJaffaSeed() {
         ItemStack seed;// choosing from our seeds (tree, bush)
-        if (rand.nextInt(30) == 0) {
+        if (rand.nextInt(30) == 0 && ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
             seed = new ItemStack(JaffasTechnic.hopSeeds);
         } else {
             if (rand.nextBoolean()) {

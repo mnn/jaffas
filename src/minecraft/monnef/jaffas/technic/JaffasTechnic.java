@@ -419,6 +419,7 @@ public class JaffasTechnic extends jaffasMod {
         createFungiStuff();
         installRecipes();
         addDrops();
+        addDungeonLoot();
 
         EntityRegistry.registerModEntity(EntityLocomotive.class, "locomotive", LocomotiveEntityID, this, 100, 5, false);
 
@@ -436,6 +437,16 @@ public class JaffasTechnic extends jaffasMod {
         installThermalExpansionSupport();
 
         JaffasFood.PrintInitialized(ModulesEnum.technic);
+    }
+
+    private void addDungeonLoot() {
+        if (!JaffasFood.dungeonLootEnabled) return;
+        JaffasFood.addToDungeonsAndPyramids(jaffarrolRaw, 100, 2, 10);
+        JaffasFood.addToDungeonsAndPyramids(limsew, 10, 2, 5);
+        JaffasFood.addToDungeonsAndPyramids(hopSeeds, 5, 2, 10);
+        if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
+            JaffasFood.addToDungeonsAndPyramids(JaffasTrees.itemUnknownSeeds, 100, 3, 20);
+        }
     }
 
     @Mod.PostInit

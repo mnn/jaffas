@@ -24,11 +24,7 @@ public class LabelRenderer {
         return this.renderManager.getFontRenderer();
     }
 
-    /**
-     * Draws the debug or playername text above a living
-     */
     protected void renderLabel(TileEntity tileEntity, String text, int visibleDistance, double x, double y, double z, int textWidth, int lines) {
-        //double sqDistanceToEntity = tileEntity.getDistanceSqToEntity(this.renderManager.livingPlayer);
         EntityLiving player = this.renderManager.livingPlayer;
         double distanceToEntity = tileEntity.getDistanceFrom(player.posX, player.posY, player.posZ);
 
@@ -53,7 +49,6 @@ public class LabelRenderer {
 
             GL11.glDisable(GL11.GL_TEXTURE_2D);
             var15.startDrawingQuads();
-            //int textWidth = fontRenderer.splitStringWidth(text, mysteryNumber);
             int var17 = textWidth;
             var15.setColorRGBA_F(0.0F, 0.0F, 0.0F, 0.33F); //orig: 0.25
 
