@@ -848,6 +848,12 @@ public class JaffasTechnic extends jaffasMod {
 
             GameRegistry.addShapedRecipe(new ItemStack(repeater, 2), " R ", "JCJ", 'C', Item.redstoneRepeater, 'R', Item.redstone, 'J', jaffarrolRefined);
             GameRegistry.addShapedRecipe(new ItemStack(sampler), " R ", "JCJ", 'C', Item.comparator, 'R', Item.netherQuartz, 'J', jaffarrolRefined);
+
+            for (int i = 0; i <= 15; i++) {
+                GameRegistry.addShapedRecipe(new ItemStack(lampDeco, 1, i), "IGI", "RBR", "IDI",
+                        'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY),
+                        'D', DyeHelper.getDye(i));
+            }
         }
 
         GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);
