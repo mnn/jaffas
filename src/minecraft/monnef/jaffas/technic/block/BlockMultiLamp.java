@@ -5,44 +5,16 @@
 
 package monnef.jaffas.technic.block;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.BlockHelper;
-import monnef.core.utils.RandomHelper;
-import monnef.jaffas.technic.JaffasTechnic;
-import monnef.jaffas.technic.client.EntityLampLightFX;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
-public class BlockMultiLamp extends BlockTechnic {
-    public static Icon shadeIcon;
-    private int shadeTextureID;
+public class BlockMultiLamp extends BlockLamp {
 
-    public BlockMultiLamp(int id, int textureID, int shadeTextureID) {
-        super(id, textureID, Material.rock);
-        this.shadeTextureID = shadeTextureID;
-        setHardness(1f);
-        setResistance(1);
-        stepSound = soundGlassFootstep;
-        setLightValue(0);
-    }
-
-    @Override
-    public int getRenderType() {
-        return JaffasTechnic.lampRenderID;
-    }
-
-    @Override
-    public void registerIcons(IconRegister iconRegister) {
-        super.registerIcons(iconRegister);
-        shadeIcon = iconRegister.registerIcon(CustomIconHelper.generateId(this, shadeTextureID));
+    public BlockMultiLamp(int id, int textureID) {
+        super(id, textureID);
     }
 
     @Override
@@ -58,7 +30,7 @@ public class BlockMultiLamp extends BlockTechnic {
         onChange(world, x, y, z);
     }
 
-    private void onChange(World world, int x, int y, int z) {
+    protected void onChange(World world, int x, int y, int z) {
         if (world.isRemote) return;
         int myMeta = world.getBlockMetadata(x, y, z);
         int power = getPower(world, x, y, z);
@@ -81,11 +53,11 @@ public class BlockMultiLamp extends BlockTechnic {
         }
     }
 
-    private int getPower(World world, int x, int y, int z) {
+    protected int getPower(World world, int x, int y, int z) {
         return world.getStrongestIndirectPower(x, y, z);
     }
 
-    private void refreshMetadata(World world, int x, int y, int z) {
+    protected void refreshMetadata(World world, int x, int y, int z) {
         int power = getPower(world, x, y, z);
         int bId = world.getBlockId(x, y, z);
         if (bId == blockID) {
@@ -109,17 +81,12 @@ public class BlockMultiLamp extends BlockTechnic {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta == 0 || JaffasTechnic.disableLampParticles) return;
+    public boolean shouldForceInventoryColoring() {
+        return false;
+    }
 
-        float speed = 0.5f;
-        float mx = RandomHelper.generateRandomFromSymmetricInterval(speed);
-        float my = RandomHelper.generateRandomFromSymmetricInterval(speed);
-        float mz = RandomHelper.generateRandomFromSymmetricInterval(speed);
-        EntityLampLightFX fx = new EntityLampLightFX(world, x + .5, y + .5, z + .5, mx, my, mz, 30);
-        BlockMultiLampDummy.configureColor(fx, meta);
-        FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
+    @Override
+    protected boolean getShowParticles(World world, int x, int y, int z, int meta) {
+        return meta != 0;
     }
 }

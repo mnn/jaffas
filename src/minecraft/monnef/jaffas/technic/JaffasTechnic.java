@@ -41,8 +41,9 @@ import monnef.jaffas.technic.block.BlockFermenter;
 import monnef.jaffas.technic.block.BlockFungiBox;
 import monnef.jaffas.technic.block.BlockHighPlant;
 import monnef.jaffas.technic.block.BlockKeg;
+import monnef.jaffas.technic.block.BlockLamp;
+import monnef.jaffas.technic.block.BlockLampDummy;
 import monnef.jaffas.technic.block.BlockMultiLamp;
-import monnef.jaffas.technic.block.BlockMultiLampDummy;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockSampler;
 import monnef.jaffas.technic.block.BlockTechnic;
@@ -232,8 +233,10 @@ public class JaffasTechnic extends jaffasMod {
     public static BlockCompostCore compostCore;
 
     private int blockMultiLampID;
+    private int blockDecoLampID;
     public static BlockMultiLamp lamp;
-    public static BlockMultiLampDummy lampDummy;
+    public static BlockLampDummy lampDummy;
+    public static BlockLamp lampDeco;
 
     private int itemRainbowDustID;
     public static ItemTechnic rainbowDust;
@@ -351,8 +354,9 @@ public class JaffasTechnic extends jaffasMod {
             if (!disableRedstoneGadgets) {
                 // multi lamp
                 blockMultiLampID = idProvider.getBlockIDFromConfig("multiLamp");
+                blockDecoLampID = idProvider.getBlockIDFromConfig("decoLamp");
                 int lampDummyId = idProvider.getTempBlockId();
-                lampDummy = new BlockMultiLampDummy(lampDummyId, 41);
+                lampDummy = new BlockLampDummy(lampDummyId, 41);
                 idProvider.safelyRemoveTempBlock(lampDummyId, lampDummy);
                 itemRainbowDustID = idProvider.getItemIDFromConfig("rainbowDust");
                 itemGemsID = idProvider.getItemIDFromConfig("gems");
@@ -597,7 +601,11 @@ public class JaffasTechnic extends jaffasMod {
         }
 
         if (!disableRedstoneGadgets) {
-            lamp = new BlockMultiLamp(blockMultiLampID, 37, 38);
+            lampDeco = new BlockLamp(blockDecoLampID, 37, 38);
+            RegistryUtils.registerMultiBlock(lampDeco, ItemBlockJaffas.class, lampDeco.generateTitles(), lampDeco.generateSubNames());
+            Item.itemsList[lampDeco.blockID].setFull3D();
+
+            lamp = new BlockMultiLamp(blockMultiLampID, 37);
             RegistryUtils.registerBlock(lamp, "multiLamp", "Multi-Lamp");
 
             gems = new ItemTechnic(itemGemsID, 40);

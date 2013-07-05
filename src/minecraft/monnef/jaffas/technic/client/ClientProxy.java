@@ -35,6 +35,8 @@ public class ClientProxy extends CommonProxy {
         JaffasTechnic.lampRenderID = RenderingRegistry.getNextAvailableRenderId();
         LampBlockRenderer lampBlockRenderer = new LampBlockRenderer();
         RenderingRegistry.registerBlockHandler(lampBlockRenderer);
+
         MinecraftForgeClient.registerItemRenderer(JaffasTechnic.lamp.blockID, lampBlockRenderer);
+        MinecraftForgeClient.registerItemRenderer(JaffasTechnic.lampDeco.blockID, lampBlockRenderer);
     }
 }

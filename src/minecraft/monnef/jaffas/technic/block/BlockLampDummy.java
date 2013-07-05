@@ -5,14 +5,16 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.DyeHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.client.EntityLampLightFX;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockMultiLampDummy extends BlockTechnic {
+public class BlockLampDummy extends BlockTechnic {
     private static int colors[];
     private static float particleColors[][];
 
@@ -32,9 +34,16 @@ public class BlockMultiLampDummy extends BlockTechnic {
             particleColors[i][1] = c.getFloatGreen();
             particleColors[i][2] = c.getFloatBlue();
         }
+
+        if (MonnefCorePlugin.debugEnv) {
+            JaffasFood.Log.printFinest("Dumping lamp colors:");
+            for (int i = 0; i < colors.length; i++) {
+                JaffasFood.Log.printFinest(String.format("%d - %s", i, ColorHelper.getColor(colors[i])));
+            }
+        }
     }
 
-    public BlockMultiLampDummy(int id, int textureID) {
+    public BlockLampDummy(int id, int textureID) {
         super(id, textureID, Material.air);
     }
 

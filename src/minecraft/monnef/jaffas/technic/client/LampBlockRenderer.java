@@ -8,9 +8,9 @@ package monnef.jaffas.technic.client;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.core.client.CustomBlockRenderingHelper;
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.block.BlockLamp;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
@@ -22,9 +22,9 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-        CustomBlockRenderingHelper.Render(JaffasTechnic.lampDummy, 0, 1, renderer);
+        CustomBlockRenderingHelper.render(JaffasTechnic.lampDummy, metadata, 1, renderer, ((BlockLamp) block).shouldForceInventoryColoring());
         GL11.glScalef(slightlyBigger, slightlyBigger, slightlyBigger);
-        CustomBlockRenderingHelper.Render(JaffasTechnic.lamp, 0, 1, renderer);
+        CustomBlockRenderingHelper.render(JaffasTechnic.lamp, 0, 1, renderer);
     }
 
     @Override
@@ -81,9 +81,13 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
             RenderBlocks render = (RenderBlocks) data[0];
             EntityLiving entity = (EntityLiving) data[1];
             GL11.glTranslatef(0.5f, 0.5f, 0.5f);
-            CustomBlockRenderingHelper.Render(JaffasTechnic.lampDummy, 0, 1, render);
+            CustomBlockRenderingHelper.render(JaffasTechnic.lampDummy, item.getItemDamage(), 1, render, getBlock(item).shouldForceInventoryColoring());
             GL11.glScalef(slightlyBigger, slightlyBigger, slightlyBigger);
-            CustomBlockRenderingHelper.Render(JaffasTechnic.lamp, 0, 1, render);
+            CustomBlockRenderingHelper.render(JaffasTechnic.lamp, 0, 1, render);
         }
+    }
+
+    private BlockLamp getBlock(ItemStack stack) {
+        return (BlockLamp) Block.blocksList[stack.itemID];
     }
 }

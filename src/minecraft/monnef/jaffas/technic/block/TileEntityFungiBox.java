@@ -6,8 +6,6 @@
 package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.farming.ICrop;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
@@ -130,7 +128,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
                     zCoord + .5 + RandomHelper.generateRandomFromSymmetricInterval(0.5f),
                     mx, my, mz,
                     60);
-            BlockMultiLampDummy.configureColor(fx, 15);
+            BlockLampDummy.configureColor(fx, 15);
             FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
         }
     }
