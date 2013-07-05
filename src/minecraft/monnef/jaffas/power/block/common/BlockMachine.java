@@ -97,9 +97,9 @@ public abstract class BlockMachine extends BlockPower {
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
         super.onBlockActivated(world, x, y, z, player, side, par7, par8, par9);
-        ItemStack stack = player.getCurrentEquippedItem();
-        if (stack != null) {
-            Item item = stack.getItem();
+        ItemStack hand = player.getCurrentEquippedItem();
+        if (hand != null) {
+            Item item = hand.getItem();
             if (isPipeWrenchOrCompatible(item)) {
                 return this.onPipeWrenchClickDefault(world, x, y, z, player, side);
             } else if (item instanceof IMachineTool) {
@@ -134,6 +134,7 @@ public abstract class BlockMachine extends BlockPower {
             case CUSTOM:
                 return onPipeWrenchClick(world, x, y, z, player, side);
 
+            case NO_ACTION:
             default:
                 return false;
         }

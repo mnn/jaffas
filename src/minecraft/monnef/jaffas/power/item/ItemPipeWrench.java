@@ -8,6 +8,7 @@ package monnef.jaffas.power.item;
 import monnef.jaffas.power.api.IPipeWrench;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
 
 public class ItemPipeWrench extends ItemPower implements IPipeWrench {
     public ItemPipeWrench(int id, int textureIndex) {
@@ -23,6 +24,11 @@ public class ItemPipeWrench extends ItemPower implements IPipeWrench {
 
     @Override
     public boolean renderPowerLabels() {
+        return true;
+    }
+
+    @Override
+    public boolean shouldPassSneakingClickToBlock(World world, int x, int y, int z) {
         return true;
     }
 }
