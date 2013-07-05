@@ -60,6 +60,14 @@ public abstract class TileEntityRedstoneCircuit extends TileEntity {
         worldObj.notifyBlocksOfNeighborChange(nx, ny, nz, getMyBlockId());
     }
 
+    public void notifyOutputNeighbourTwo() {
+        ForgeDirection outDir = ForgeDirection.getOrientation(getOutputSide());
+        int nx = xCoord + 2 * outDir.offsetX;
+        int ny = yCoord + 2 * outDir.offsetY;
+        int nz = zCoord + 2 * outDir.offsetZ;
+        worldObj.notifyBlocksOfNeighborChange(nx, ny, nz, getMyBlockId());
+    }
+
     public void notifyBlocksOfMyChange() {
         worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getMyBlockId());
     }
@@ -98,7 +106,7 @@ public abstract class TileEntityRedstoneCircuit extends TileEntity {
 
     protected abstract Block getMyBlockUncached();
 
-    public abstract void recalculatePower();
+    public abstract boolean recalculatePower();
 
     @Override
     public void updateEntity() {

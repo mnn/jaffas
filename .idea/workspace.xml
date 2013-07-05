@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Boosted ore generation.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -528,10 +529,10 @@
     <file path="/Block.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372086455311" ignored="false" />
     <file path="/TileEntityFermenterInventoryRouter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372088369591" ignored="false" />
     <file path="/BlockSampler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372270860795" ignored="false" />
-    <file path="/TileEntitySampler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372416521190" ignored="false" />
-    <file path="/TileEntityRedstoneCircuit.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372413827464" ignored="false" />
-    <file path="/TileEntityAnalogRepeater.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372413002853" ignored="false" />
-    <file path="/BlockRedstoneCircuit.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372414404336" ignored="false" />
+    <file path="/TileEntitySampler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373035553976" ignored="false" />
+    <file path="/TileEntityRedstoneCircuit.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373036760303" ignored="false" />
+    <file path="/TileEntityAnalogRepeater.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373035518219" ignored="false" />
+    <file path="/BlockRedstoneCircuit.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373036784370" ignored="false" />
     <file path="/JaffasPowerProvider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372435201270" ignored="false" />
     <file path="/BuildCraftHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372447955246" ignored="false" />
     <file path="/SimplePowerFramework.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372500651656" ignored="false" />
@@ -683,84 +684,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientProxy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/ClientProxy.java">
+      <file leaf-file-name="BlockAnalogRepeater.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockAnalogRepeater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="72" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.0">
+            <state line="5" column="51" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockMultiLamp.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockMultiLamp.java">
+      <file leaf-file-name="BlockRedstoneCircuit.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="25" selection-start="2908" selection-end="2908" vertical-scroll-proportion="0.0">
+            <state line="31" column="22" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockLamp.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java">
+      <file leaf-file-name="TileEntityAnalogRepeater.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="42" selection-start="3181" selection-end="3181" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StringsHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="50" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0">
+            <state line="36" column="0" selection-start="1297" selection-end="1297" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileEntityFermenter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java">
+      <file leaf-file-name="TileEntityRedstoneCircuit.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="0" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.0">
+            <state line="36" column="15" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockConstructionDummy.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java">
+      <file leaf-file-name="TileEntitySampler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="85" selection-start="484" selection-end="484" vertical-scroll-proportion="0.21283256">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DyeHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/DyeHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="40" selection-start="1444" selection-end="1444" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CustomBlockRenderingHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/CustomBlockRenderingHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="19" selection-start="858" selection-end="858" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuiHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/GuiHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="70" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.0">
+            <state line="44" column="0" selection-start="1587" selection-end="1587" vertical-scroll-proportion="0.771518">
               <folding />
             </state>
           </provider>
@@ -785,10 +748,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemPipeWrench.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ColorHelper.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockMultiLampDummy.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLampDummy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/ClientProxy.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/LampBlockRenderer.java" />
@@ -801,6 +760,10 @@
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java" />
       </list>
     </option>
   </component>
@@ -1502,83 +1465,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/api/IItemBlock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.19701986">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockJaffas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="17" selection-start="793" selection-end="793" vertical-scroll-proportion="0.71854305">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="23" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/CustomBlockRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="30" selection-start="829" selection-end="829" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/ClientProxy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="72" selection-start="2086" selection-end="2086" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/GuiHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="70" selection-start="1867" selection-end="1867" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/CustomBlockRenderingHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="19" selection-start="858" selection-end="858" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/RegistryUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="40" selection-start="3375" selection-end="3375" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/LampBlockRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="0" selection-start="2865" selection-end="2865" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/DyeHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="40" selection-start="1444" selection-end="1444" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="851" column="32" selection-start="45044" selection-end="45044" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockMultiLamp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="25" selection-start="2908" selection-end="2908" vertical-scroll-proportion="0.0">
@@ -1611,7 +1497,84 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="85" selection-start="484" selection-end="484" vertical-scroll-proportion="0.21283256">
+        <state line="32" column="47" selection-start="802" selection-end="802" vertical-scroll-proportion="0.6118936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/apps/Java/jdk1.6.0_35/src.zip!/java/lang/Object.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="277" column="29" selection-start="13236" selection-end="13236" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockTorch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="175" column="22" selection-start="5771" selection-end="5771" vertical-scroll-proportion="4.363067">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockRedstoneTorch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="181" column="23" selection-start="7270" selection-end="7270" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockDoor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="611" selection-end="611" vertical-scroll-proportion="-9.568075">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="851" column="32" selection-start="45044" selection-end="45044" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/apps/Java/jdk1.6.0_35/src.zip!/java/net/HttpURLConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="378" column="0" selection-start="13080" selection-end="13080" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockAnalogRepeater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="51" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockRedstoneCircuit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="22" selection-start="1068" selection-end="1068" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityAnalogRepeater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="1297" selection-end="1297" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityRedstoneCircuit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="15" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntitySampler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1587" selection-end="1587" vertical-scroll-proportion="0.771518">
           <folding />
         </state>
       </provider>

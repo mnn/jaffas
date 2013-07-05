@@ -11,7 +11,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class TileEntityAnalogRepeater extends TileEntityRedstoneCircuit {
     @Override
-    public void recalculatePower() {
+    public boolean recalculatePower() {
         ForgeDirection inputDir = ForgeDirection.getOrientation(getInputSide());
         int sourceX = xCoord + inputDir.offsetX;
         int sourceY = yCoord + inputDir.offsetY;
@@ -33,10 +33,7 @@ public class TileEntityAnalogRepeater extends TileEntityRedstoneCircuit {
             }
         }
 
-        if (oldPower != cachedPower) {
-            notifyBlocksOfMyChange();
-            notifyOutputNeighbour();
-        }
+        return oldPower != cachedPower;
     }
 
     @Override

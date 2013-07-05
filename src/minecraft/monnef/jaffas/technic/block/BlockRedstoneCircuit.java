@@ -26,8 +26,8 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     }
 
     @Override
-    public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
-        return isProvidingWeakPower(par1IBlockAccess, par2, par3, par4, par5);
+    public int isProvidingStrongPower(IBlockAccess par1IBlockAccess, int x, int y, int z, int side) {
+        return isProvidingWeakPower(par1IBlockAccess, x, y, z, side);
     }
 
     @Override
@@ -47,30 +47,36 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
         return (TileEntityRedstoneCircuit) world.getBlockTileEntity(x, y, z);
     }
 
-    public void recalculatePower(IBlockAccess world, int x, int y, int z) {
-        getTile(world, x, y, z).recalculatePower();
+    public void recalculatePower(World world, int x, int y, int z) {
+        if (getTile(world, x, y, z).recalculatePower()) {
+            scheduleNeighboursUpdate(world, x, y, z);
+        }
     }
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourBlockID) {
         super.onNeighborBlockChange(world, x, y, z, neighbourBlockID);
-        recalculatePowerInNextTick(world, x, y, z);
+        recalculatePower(world, x, y, z);
     }
 
     @Override
     public void onBlockAdded(World world, int x, int y, int z) {
         super.onBlockAdded(world, x, y, z);
-        recalculatePowerInNextTick(world, x, y, z);
+        recalculatePower(world, x, y, z);
     }
 
-    private void recalculatePowerInNextTick(World world, int x, int y, int z) {
+    private void scheduleNeighboursUpdate(World world, int x, int y, int z) {
         world.scheduleBlockUpdate(x, y, z, blockID, WAIT_TICKS);
     }
 
     @Override
     public void updateTick(World world, int x, int y, int z, Random random) {
         super.updateTick(world, x, y, z, random);
-        recalculatePower(world, x, y, z);
+        //recalculatePower(world, x, y, z);
+        TileEntityRedstoneCircuit tile = getTile(world, x, y, z);
+        tile.notifyBlocksOfMyChange();
+        tile.notifyOutputNeighbour();
+        //tile.notifyOutputNeighbourTwo();
     }
 
     @Override

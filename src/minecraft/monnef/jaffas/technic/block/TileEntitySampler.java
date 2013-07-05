@@ -14,7 +14,7 @@ public class TileEntitySampler extends TileEntityRedstoneCircuit {
     private static final String POWER_TAG = "power";
 
     @Override
-    public void recalculatePower() {
+    public boolean recalculatePower() {
         ForgeDirection inputDir = ForgeDirection.getOrientation(getInputSide());
         int sourceX = xCoord + inputDir.offsetX;
         int sourceY = yCoord + inputDir.offsetY;
@@ -41,10 +41,7 @@ public class TileEntitySampler extends TileEntityRedstoneCircuit {
             }
         }
 
-        if (oldPower != cachedPower) {
-            notifyBlocksOfMyChange();
-            notifyOutputNeighbour();
-        }
+        return oldPower != cachedPower;
     }
 
     @Override
