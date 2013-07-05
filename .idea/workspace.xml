@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Boosted ore generation.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -454,7 +457,7 @@
     <file path="/FungiCatalog.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370783970959" ignored="false" />
     <file path="/ItemFungus.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370713702133" ignored="false" />
     <file path="/Interval.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369488024363" ignored="false" />
-    <file path="/BlockConstructionDummy.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369746446067" ignored="false" />
+    <file path="/BlockConstructionDummy.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373029589320" ignored="false" />
     <file path="/TileEntityConstructionDummy.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370635924757" ignored="false" />
     <file path="/TileEntityCompostCore.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371647963122" ignored="false" />
     <file path="/MultiBlockHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369586103167" ignored="false" />
@@ -503,7 +506,7 @@
     <file path="/BlockKeg.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371637049767" ignored="false" />
     <file path="/TileEntityKeg.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371660500224" ignored="false" />
     <file path="/ItemKeg.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371638626166" ignored="false" />
-    <file path="/StringsHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371636330020" ignored="false" />
+    <file path="/StringsHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373029391484" ignored="false" />
     <file path="/ModelBarrel.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371654860876" ignored="false" />
     <file path="/TileEntityKegRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371654932241" ignored="false" />
     <file path="/ModelHops.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1371656188671" ignored="false" />
@@ -548,7 +551,7 @@
     <file path="/GuiContainerGrinder.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372694898438" ignored="false" />
     <file path="/ContainerGrinder.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372694977872" ignored="false" />
     <file path="/WorldGenTrees.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372962950153" ignored="false" />
-    <file path="/BlockLamp.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373023151425" ignored="false" />
+    <file path="/BlockLamp.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373029034093" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -671,10 +674,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="851" column="32" selection-start="45044" selection-end="45044" vertical-scroll-proportion="0.7060703">
+            <state line="851" column="32" selection-start="45044" selection-end="45044" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -701,10 +704,37 @@
       <file leaf-file-name="BlockLamp.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="25" selection-start="2370" selection-end="2370" vertical-scroll-proportion="0.0">
+            <state line="97" column="42" selection-start="3181" selection-end="3181" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StringsHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="46" column="50" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TileEntityFermenter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="76" column="0" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlockConstructionDummy.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="85" selection-start="484" selection-end="484" vertical-scroll-proportion="0.21283256">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -755,9 +785,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/WrenchAction.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/BlockMachine.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/BlockMachineWithInventory.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemPipeWrench.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ColorHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockMultiLampDummy.java" />
@@ -767,10 +794,13 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/LampBlockRenderer.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/GuiHelper.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/CustomBlockRenderingHelper.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockMultiLamp.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/DyeHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java" />
       </list>
     </option>
   </component>
@@ -1472,27 +1502,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/ItemBlockPie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="39" selection-start="269" selection-end="269" vertical-scroll-proportion="0.11724138">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemDye.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="33" selection-start="1193" selection-end="1193" vertical-scroll-proportion="0.13885647">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/ItemBlockJaffas.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="18" selection-start="5200" selection-end="5200" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/api/IItemBlock.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="10" column="0" selection-start="131" selection-end="131" vertical-scroll-proportion="0.19701986">
@@ -1556,22 +1565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockMultiLamp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="25" selection-start="2908" selection-end="2908" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="25" selection-start="2370" selection-end="2370" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/DyeHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="46" column="40" selection-start="1444" selection-end="1444" vertical-scroll-proportion="0.0">
@@ -1581,7 +1574,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="851" column="32" selection-start="45044" selection-end="45044" vertical-scroll-proportion="0.7060703">
+        <state line="851" column="32" selection-start="45044" selection-end="45044" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockMultiLamp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="25" selection-start="2908" selection-end="2908" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockLamp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="97" column="42" selection-start="3181" selection-end="3181" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="50" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFermenter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="0" selection-start="2913" selection-end="2913" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstructionDummy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="85" selection-start="484" selection-end="484" vertical-scroll-proportion="0.21283256">
           <folding />
         </state>
       </provider>

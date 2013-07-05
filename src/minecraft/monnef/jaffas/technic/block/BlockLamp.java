@@ -95,7 +95,7 @@ public class BlockLamp extends BlockTechnic {
     public String[] generateTitles() {
         String[] ret = new String[16];
         for (int i = 0; i < 16; i++) {
-            ret[i] = StringsHelper.makeFirstCapital(DyeHelper.getDyeColorName(i)) + " Decorative Lamp";
+            ret[i] = StringsHelper.insertSpaceOnLowerUpperCaseChange(StringsHelper.makeFirstCapital(DyeHelper.getDyeColorName(i))) + " Decorative Lamp";
         }
         return ret;
     }

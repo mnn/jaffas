@@ -18,6 +18,7 @@ public class BlockConstructionDummy extends BlockTechnic {
         super(id, textureID, Material.iron);
         setHardness(5);
         setResistance(15);
+        setCreativeTab(null);
     }
 
     @Override
