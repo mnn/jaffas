@@ -178,7 +178,6 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(tomatoChopped, "Tomato Chopped", 99, "Chopped Tomatos");
         AddItemInfo(paprikaChopped, "Pepper Chopped", 100, "Chopped Peppers");
 
-        AddItemInfo(grinderMeat, "Meat Grinder", 101, "Meat Grinder");
         AddItemInfo(wienerCocktail, "Cocktail Wiener", 102, "Cocktail Wiener");
         AddItemInfoForJaffa(jaffaStrawberry, "Jaffa Strawberry", 103);
         AddItemInfoForJaffa(jaffaRaspberry, "Jaffa Raspberry", 104);
@@ -499,7 +498,6 @@ public class Items extends ItemManagerAccessor {
         createJaffaFood(omelette, 3, 0.5F).setPotionEffect(Potion.regeneration.id, 4, 0, 0.2F).setMaxStackSize(16);
         createJaffaItem(tomatoChopped);
         createJaffaItem(paprikaChopped);
-        createJaffaItem(grinderMeat);
         createJaffaItem(wienerCocktail);
         createJaffaItem(jamRaspberry);
         createJaffaItem(jamStrawberry);

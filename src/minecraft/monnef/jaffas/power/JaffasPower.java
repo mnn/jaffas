@@ -212,7 +212,7 @@ public class JaffasPower extends jaffasMod {
         registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
 
         TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerGrinder.class);
-        grinder = new BlockGrinder(blockGrinderID, 1);
+        grinder = new BlockGrinder(blockGrinderID, 101);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileEntityGrinder.class, "grinder");
     }
@@ -224,6 +224,8 @@ public class JaffasPower extends jaffasMod {
             }
             Recipes.addRecipe(new ShapedOreRecipe(wrench, "JJ ", "BJR", "  J", 'J', JaffasTechnic.jaffarrol, 'B', DyeHelper.getDye(DyeColor.BLACK), 'R', DyeHelper.getDye(DyeColor.RED)));
             GameRegistry.addShapedRecipe(new ItemStack(generator, 2), " I ", "IFI", " C ", 'I', Item.ingotIron, 'F', Block.furnaceIdle, 'C', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 0));
+
+            GameRegistry.addRecipe(new ItemStack(grinder), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
         }
 
 

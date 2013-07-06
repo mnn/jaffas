@@ -296,9 +296,6 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(coneRaw).itemID, new ItemStack(getItem(cone)), 1f);
         GameRegistry.addSmelting(getItem(waferIcecreamRaw).itemID, new ItemStack(getItem(waferIcecream)), 1f);
 
-        //addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMeat), 2), Items.MINCEABLEMEAT, getItem(grinderMeat)));
-        //JaffaCraftingHandler.AddPersistentItem(grinderMeat);
-
         JaffaCraftingHandler.AddPersistentItem(grater);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(cheeseGrated)), getItem(grater), getItem(cheese));
         RecipesBoard.addRecipe(salami, 1, salamiSliced, 1);

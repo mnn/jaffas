@@ -32,6 +32,7 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
+import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.technic.block.BlockAnalogRepeater;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
@@ -114,7 +115,6 @@ import static monnef.jaffas.food.item.JaffaItem.flyAgaricChopped;
 import static monnef.jaffas.food.item.JaffaItem.friedMushrooms;
 import static monnef.jaffas.food.item.JaffaItem.friedMushroomsInTinCooked;
 import static monnef.jaffas.food.item.JaffaItem.friedMushroomsInTinRaw;
-import static monnef.jaffas.food.item.JaffaItem.grinderMeat;
 import static monnef.jaffas.food.item.JaffaItem.hamburgerBun;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolBoots;
 import static monnef.jaffas.food.item.JaffaItem.jaffarrolChest;
@@ -262,6 +262,9 @@ public class JaffasTechnic extends jaffasMod {
     private int itemBrewedHopInBucketID;
     public static ItemTechnic brewedHopInBucket;
 
+    private int itemHopWeatMixtureID;
+    public static ItemTechnic hopWeatMixture;
+
     private int itemCobbleBreakerID;
     public static BlockCobbleBreaker cobbleBreaker;
 
@@ -382,6 +385,8 @@ public class JaffasTechnic extends jaffasMod {
 
             itemFermenterID = idProvider.getItemIDFromConfig("itemFermenter");
             blockFermenterID = idProvider.getBlockIDFromConfig("fermenter");
+
+            itemHopWeatMixtureID = idProvider.getItemIDFromConfig("hopWheatMixture");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -649,6 +654,9 @@ public class JaffasTechnic extends jaffasMod {
         hopSeeds = new ItemTechnic(itemHopSeedsID, 46);
         RegistryUtils.registerItem(hopSeeds, "hopSeeds", "Hop Seeds");
 
+        hopWeatMixture = new ItemTechnic(itemHopWeatMixtureID, 50);
+        RegistryUtils.registerItem(hopWeatMixture, "hopWeatMixture", "Mixture of Hop and Wheat");
+
         cobbleBreaker = new BlockCobbleBreaker(itemCobbleBreakerID, 50, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
         RegistryUtils.registerBlock(cobbleBreaker, "cobbleBreaker", "Cobble Breaker");
         JaffasRegistryHelper.registerTileEntity(TileEntityCobbleBreaker.class, "cobbleBreaker");
@@ -737,7 +745,6 @@ public class JaffasTechnic extends jaffasMod {
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grinderMeat)), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', JaffasTechnic.jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockIron);
 
@@ -821,7 +828,8 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addSmelting(getItem(friedMushroomsInTinRaw).itemID, getItemStack(friedMushroomsInTinCooked), 2f);
         JaffaCraftingHandler.AddPersistentItem(friedMushroomsInTinCooked, false, cakeTin);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(friedMushrooms), 3), getItem(plate), getItem(plate), getItem(plate), getItem(friedMushroomsInTinCooked));
-        Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMushrooms), 2), MUSHROOMS_EATABLE, getItem(grinderMeat)));
+        //Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMushrooms), 2), MUSHROOMS_EATABLE, getItem(grinderMeat)));
+        TileEntityGrinder.addOreDictRecipe(MUSHROOMS_EATABLE, new ItemStack(getItem(mincedMushrooms), 2), 120);
         GameRegistry.addRecipe(getItemStack(shroomburgerRaw), "PPP", "PPP", 'P', getItem(mincedMushrooms));
         Recipes.addFryingPanRecipe(shroomburgerRaw, JaffaItem.fryingPanShroomburgerRaw, JaffaItem.fryingPanShroomburger, shroomburger);
         GameRegistry.addShapelessRecipe(getItemStack(shroomburgerInBun, 5), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(shroomburger), getItem(onionSliced));
@@ -856,7 +864,9 @@ public class JaffasTechnic extends jaffasMod {
             }
         }
 
-        GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);
+        //GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);
+        TileEntityGrinder.addRecipe(new ItemStack(hopWeatMixture), new ItemStack(processedHop), 400);
+
         GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
         GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);
         GameRegistry.addShapelessRecipe(new ItemStack(hopSeeds), hop);
