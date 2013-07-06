@@ -12,6 +12,7 @@ import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.item.common.IItemJaffa;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     private String info = null;
     private CreativeTabs secondCreativeTab;
+    private EnumRarity rarity = EnumRarity.common;
 
     public ItemJaffaBase(int id) {
         super(id);
@@ -78,5 +80,15 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     @Override
     public Item setUnlocalizedName(String par1Str) {
         return super.setUnlocalizedName("jaffas." + par1Str);
+    }
+
+    @Override
+    public void setRarity(EnumRarity rarity) {
+        this.rarity = rarity;
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return rarity;
     }
 }

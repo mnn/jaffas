@@ -7,6 +7,6 @@ package monnef.jaffas.food.item.common;
 
 import net.minecraft.item.Item;
 
-public interface IItemFood {
+public interface IItemFood extends IItemJaffa {
     Item Setup(int healAmount, float saturation);
 }

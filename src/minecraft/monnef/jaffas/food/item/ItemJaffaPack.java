@@ -5,41 +5,44 @@
 
 package monnef.jaffas.food.item;
 
-import monnef.jaffas.food.item.common.IItemPack;
+import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.crafting.Recipes;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
-public class ItemJaffaPack extends ItemJaffaBase implements IItemPack {
-    private ItemStack content;
+import java.util.List;
+
+public class ItemJaffaPack extends ItemPack {
 
     public ItemJaffaPack(int id) {
         super(id);
     }
 
-    public ItemJaffaPack(int v, ItemStack content) {
-        super(v);
-        this.setContent(content);
-    }
-
-    /**
-     * Called whenever this item is equipped and the right mouse button is pressed. Args: itemStack, world, entityPlayer
-     */
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer) {
-        par3EntityPlayer.inventory.addItemStackToInventory(content.copy());
-
-        par1ItemStack.stackSize--;
-        return par1ItemStack;
-    }
-
-    protected void setContent(ItemStack content) {
-        this.content = content;
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        if (properNBT(stack)) {
+            int contentId = getContent(stack).itemID;
+            JaffaItem jaffaItem = JaffasFood.instance.items.getJaffaItem(contentId);
+            String title = JaffasHelper.getTitle(jaffaItem);
+            list.add("§f  " + title + "§r");
+        }
     }
 
     @Override
-    public Item Setup(ItemStack contents) {
-        this.setContent(contents);
-        return this;
+    public void getSubItems(int id, CreativeTabs tab, List list) {
+        for (JaffaItem jaffaItem : JaffasHelper.getJaffas()) {
+            Item item = JaffasFood.getItem(jaffaItem);
+            ItemStack stack = new ItemStack(id, 1, 0);
+            setContent(stack, item.itemID, Recipes.JAFFAS_PACK_CONTENT_SIZE, 0);
+            list.add(stack);
+        }
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.epic;
     }
 }

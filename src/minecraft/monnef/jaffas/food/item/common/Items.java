@@ -14,6 +14,7 @@ import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.ItemCleaver;
 import monnef.jaffas.food.item.ItemDuckEgg;
 import monnef.jaffas.food.item.ItemJaffaFood;
+import monnef.jaffas.food.item.ItemJaffaPack;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.ItemJaffaRecipeTool;
 import monnef.jaffas.food.item.ItemMagnifier;
@@ -23,8 +24,10 @@ import monnef.jaffas.food.item.ItemSink;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemInfo;
+import monnef.jaffas.food.item.JaffasHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -81,11 +84,6 @@ public class Items extends ItemManagerAccessor {
 
     private ItemJaffaRecipeTool createJaffaTool(JaffaItem ji, int durability) {
         return (ItemJaffaRecipeTool) createJaffaTool(ji).Setup(durability);
-    }
-
-    @Deprecated
-    private Item createJaffaPack(JaffaItem ji, ItemStack stack) {
-        return createJaffaPack(ji).Setup(stack);
     }
 
     private Item getItem(JaffaItem jaffaItem) {
@@ -148,8 +146,6 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(chocolateBar, "Chocolate Bar", 34, "Chocolate Bar");
         AddItemInfo(wrapperJaffas, "Wrapper Jaffas", 50, JaffasFood.jaffasTitle + " Wrapper");
         AddItemInfo(jaffasPack, "Jaffa Cakes Pack", 51, JaffasFood.jaffasTitle + " Pack");
-        AddItemInfo(jaffasPackO, "Orange Jaffa Cakes Pack", 51, "Orange " + JaffasFood.jaffasTitle + " Pack");
-        AddItemInfo(jaffasPackR, "Red Jaffa Cakes Pack", 51, "Apple " + JaffasFood.jaffasTitle + " Pack");
         AddItemInfo(vanillaBeans, "Vanilla Beans", 52, "Vanilla Beans");
         AddItemInfo(waferIcecream, "Wafer Ice-cream", 53, "Wafer");
         AddItemInfo(cone, "Icecream Cone", 54, "Cone");
@@ -461,9 +457,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(wrapperJaffas);
 
-        createJaffaPack(jaffasPack, new ItemStack(getItem(jaffa), 8)).setMaxStackSize(16);
-        createJaffaPack(jaffasPackR, new ItemStack(getItem(jaffaR), 8)).setMaxStackSize(16);
-        createJaffaPack(jaffasPackO, new ItemStack(getItem(jaffaO), 8)).setMaxStackSize(16);
+        ((IItemJaffa) createJaffaItemManual(jaffasPack, ItemJaffaPack.class)).setRarity(EnumRarity.epic);
 
         createJaffaItem(vanillaBeans);
         createJaffaItem(waferIcecream);
@@ -732,6 +726,14 @@ public class Items extends ItemManagerAccessor {
         createItemsRegistration();
 
         addMeatsToDryerDatabase();
+
+        markJaffasRare();
+    }
+
+    private void markJaffasRare() {
+        for (JaffaItem ji : JaffasHelper.getJaffas()) {
+            ((IItemJaffa) getItem(ji)).setRarity(EnumRarity.uncommon);
+        }
     }
 
     private void addMeatsToDryerDatabase() {

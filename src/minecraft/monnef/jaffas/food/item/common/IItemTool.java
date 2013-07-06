@@ -7,7 +7,7 @@ package monnef.jaffas.food.item.common;
 
 import net.minecraft.item.Item;
 
-public interface IItemTool {
+public interface IItemTool extends IItemJaffa {
     Item Setup(int durability);
 }
 

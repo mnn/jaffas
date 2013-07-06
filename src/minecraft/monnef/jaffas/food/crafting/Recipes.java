@@ -12,6 +12,7 @@ import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.item.ItemJaffaPack;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
@@ -42,6 +43,7 @@ public class Recipes {
     public static final String WOOD_SLAB = "slabWood";
     public static final String TREE_SAPLING = "treeSapling";
     public static final String TREE_LEAVES = "treeLeaves";
+    public static final int JAFFAS_PACK_CONTENT_SIZE = 8;
 
     public static void install() {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(pastrySweet)), new ItemStack(Item.sugar),
@@ -156,29 +158,23 @@ public class Recipes {
 
         GameRegistry.addRecipe(new ItemStack(getItem(wrapperJaffas), 8), "PPP", "PCP", "PPP", 'P', new ItemStack(Item.paper), 'C', new ItemStack(Item.dyePowder, 1, 12));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(jaffasPack)), new ItemStack(getItem(wrapperJaffas)),
-                new ItemStack(getItem(jaffa)), new ItemStack(getItem(jaffa)),
-                new ItemStack(getItem(jaffa)), new ItemStack(getItem(jaffa)), new ItemStack(getItem(jaffa)),
-                new ItemStack(getItem(jaffa)), new ItemStack(getItem(jaffa)), new ItemStack(getItem(jaffa)));
+        addPackRecipe(jaffa);
+        addPackRecipe(jaffaO);
+        addPackRecipe(jaffaL);
+        addPackRecipe(jaffaP);
+        addPackRecipe(jaffaR);
+        addPackRecipe(jaffaRaspberry);
+        addPackRecipe(jaffaV);
+        addPackRecipe(jaffaStrawberry);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(jaffasPackR)), new ItemStack(getItem(wrapperJaffas)),
-                new ItemStack(getItem(jaffaR)), new ItemStack(getItem(jaffaR)),
-                new ItemStack(getItem(jaffaR)), new ItemStack(getItem(jaffaR)), new ItemStack(getItem(jaffaR)),
-                new ItemStack(getItem(jaffaR)), new ItemStack(getItem(jaffaR)), new ItemStack(getItem(jaffaR)));
-
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(jaffasPackO)), new ItemStack(getItem(wrapperJaffas)),
-                new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)),
-                new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)),
-                new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)), new ItemStack(getItem(jaffaO)));
-
+        // TODO: bomb
+        /*
         GameRegistry.addRecipe(new ItemStack(instance.blockJaffaBomb), "J", "R", "T", 'J', new ItemStack(getItem(jaffasPack)),
                 'R', new ItemStack(getItem(jaffasPackR)), 'T', new ItemStack(Block.tnt));
         GameRegistry.addRecipe(new ItemStack(instance.blockJaffaBomb), "J", "O", "T", 'J', new ItemStack(getItem(jaffasPack)),
                 'O', new ItemStack(getItem(jaffasPackO)), 'T', new ItemStack(Block.tnt));
+        */
 
-        //RecipesFridge.AddRecipe(Block.dirt.blockID, new ItemStack(Block.gravel));
-
-        //GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.vanillaBeans)), new ItemStack(Item.dyePowder, 1, 3), new ItemStack(Item.dyePowder, 1, 11));
         GameRegistry.addRecipe(new ItemStack(getItem(waferIcecreamRaw), 2), "PP", "PP", 'P', new ItemStack(getItem(pastrySweet)));
         GameRegistry.addRecipe(new ItemStack(getItem(coneRaw), 1), "P P", " P ", 'P', new ItemStack(getItem(pastrySweet)));
 
@@ -443,6 +439,16 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(getItemStack(crisps, 2), getItem(woodenBowl), getItem(woodenBowl), getItem(potatesSlicedInTin));
         JaffaCraftingHandler.AddPersistentItem(potatesSlicedInTin, false, cakeTin);
     }
+
+    public static void addPackRecipe(JaffaItem item) {
+        ItemStack output = new ItemStack(getItem(jaffasPack));
+        ((ItemJaffaPack) getItem(jaffasPack)).setContent(output, getItem(item).itemID, JAFFAS_PACK_CONTENT_SIZE, 0);
+        GameRegistry.addShapelessRecipe(output, new ItemStack(getItem(wrapperJaffas)),
+                new ItemStack(getItem(item)), new ItemStack(getItem(item)),
+                new ItemStack(getItem(item)), new ItemStack(getItem(item)), new ItemStack(getItem(item)),
+                new ItemStack(getItem(item)), new ItemStack(getItem(item)), new ItemStack(getItem(item)));
+    }
+
 
     public static void addTableRecipe(ItemStack output, int color) {
         addRecipe(new ShapedOreRecipe(output, "CWC", "PPP", "PPP", 'C', new ItemStack(Block.cloth, 1, color), 'W', new ItemStack(Block.cloth, 1, 0), 'P', WOOD_PLANK));

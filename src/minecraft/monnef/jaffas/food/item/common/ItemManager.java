@@ -16,26 +16,30 @@ import monnef.jaffas.food.item.JaffaItemType;
 import net.minecraft.item.Item;
 
 import java.lang.reflect.Constructor;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
 
 public class ItemManager {
-    public static LinkedHashMap<JaffaItem, JaffaItemInfo> ItemsInfo;
+    protected static LinkedHashMap<JaffaItem, JaffaItemInfo> itemsInfo;
+    protected static HashMap<Integer, JaffaItem> idToJaffaItem;
+
     public static JaffaItem[] mallets;
     public static JaffaItem[] malletHeads;
 
     private static Hashtable<ModulesEnum, Hashtable<JaffaItemType, Class<? extends ItemMonnefCore>>> ClassMapping;
 
     static {
-        ItemsInfo = new LinkedHashMap<JaffaItem, JaffaItemInfo>();
+        itemsInfo = new LinkedHashMap<JaffaItem, JaffaItemInfo>();
         ClassMapping = new Hashtable<ModulesEnum, Hashtable<JaffaItemType, Class<? extends ItemMonnefCore>>>();
+        idToJaffaItem = new HashMap<Integer, JaffaItem>();
     }
 
     public static void LoadItemsFromConfig(ModulesEnum module, IDProvider idProvider) {
         for (JaffaItem item : JaffaItem.values()) {
             if (item == JaffaItem._last) continue;
 
-            JaffaItemInfo info = ItemManager.ItemsInfo.get(item);
+            JaffaItemInfo info = ItemManager.itemsInfo.get(item);
             if (info == null) {
                 throw new RuntimeException("got null in item list - " + item);
             }
@@ -60,10 +64,6 @@ public class ItemManager {
             throw new RuntimeException("food has to implement expected interface");
         }
 
-        if (type == JaffaItemType.pack && !IItemPack.class.isAssignableFrom(clazz)) {
-            throw new RuntimeException("pack has to implement expected interface");
-        }
-
         if (type == JaffaItemType.tool && !IItemTool.class.isAssignableFrom(clazz)) {
             throw new RuntimeException("tool has to implement expected interface");
         }
@@ -74,20 +74,24 @@ public class ItemManager {
     }
 
     public static JaffaItemInfo getItemInfo(JaffaItem item) {
-        return ItemsInfo.get(item);
+        return itemsInfo.get(item);
     }
 
-    public static void AddItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
+    public static JaffaItem getJaffaItem(int itemId) {
+        return idToJaffaItem.get(itemId);
+    }
+
+    public static void addItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
         JaffaItemInfo newItem = new JaffaItemInfo(name);
         newItem.setIconIndex(iconIndex);
         if (title.isEmpty()) title = name;
         newItem.setTitle(title);
         newItem.setModule(module);
         newItem.setSheetNumber(sheetNumber);
-        ItemsInfo.put(item, newItem);
+        itemsInfo.put(item, newItem);
     }
 
-    private static void finalizeItemSetup(JaffaItemInfo info, Item item) {
+    private static void finalizeItemSetup(JaffaItemInfo info, Item item, JaffaItem ji) {
         item.setUnlocalizedName(info.getTitle());
         if (ICustomIcon.class.isAssignableFrom(item.getClass())) {
             ICustomIcon itemWithIcon = (ICustomIcon) item;
@@ -96,10 +100,11 @@ public class ItemManager {
         }
         info.setItem(item);
         LanguageRegistry.addName(item, info.getTitle());
+        idToJaffaItem.put(item.itemID, ji);
     }
 
     public static Item createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {
-        JaffaItemInfo info = ItemsInfo.get(ji);
+        JaffaItemInfo info = itemsInfo.get(ji);
 
         Item newJaffaItem = null;
         try {
@@ -111,7 +116,7 @@ public class ItemManager {
             throw new RuntimeException(e);
         }
 
-        finalizeItemSetup(info, newJaffaItem);
+        finalizeItemSetup(info, newJaffaItem, ji);
         return newJaffaItem;
     }
 
@@ -123,13 +128,8 @@ public class ItemManager {
         return (IItemTool) createJaffaItem(ji, JaffaItemType.tool, module);
     }
 
-    @Deprecated
-    public static IItemPack createJaffaPack(JaffaItem ji, ModulesEnum module) {
-        return (IItemPack) createJaffaItem(ji, JaffaItemType.pack, module);
-    }
-
     public static <T extends Item> T createJaffaItemManual(JaffaItem ji, Class<T> item) {
-        JaffaItemInfo info = ItemsInfo.get(ji);
+        JaffaItemInfo info = itemsInfo.get(ji);
         T newJaffaItem = null;
         try {
             newJaffaItem = item.getConstructor(int.class).newInstance(info.getId());
@@ -138,13 +138,13 @@ public class ItemManager {
             throw new RuntimeException(e);
         }
 
-        finalizeItemSetup(info, newJaffaItem);
+        finalizeItemSetup(info, newJaffaItem, ji);
         return newJaffaItem;
     }
 
     public static <T extends Item> T createJaffaItemManual(JaffaItem ji, T item) {
-        JaffaItemInfo info = ItemsInfo.get(ji);
-        finalizeItemSetup(info, item);
+        JaffaItemInfo info = itemsInfo.get(ji);
+        finalizeItemSetup(info, item, ji);
         return item;
     }
 }

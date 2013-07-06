@@ -22,7 +22,7 @@ public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
     protected abstract void CreateItems();
 
     protected void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
-        ItemManager.AddItemInfo(item, name, iconIndex, title, this.getMyModule(), currentSheetNumber);
+        ItemManager.addItemInfo(item, name, iconIndex, title, this.getMyModule(), currentSheetNumber);
     }
 
     protected Item createJaffaItem(JaffaItem ji) {
@@ -35,11 +35,6 @@ public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
 
     protected IItemFood createJaffaFood(JaffaItem ji) {
         return ItemManager.createJaffaFood(ji, this.getMyModule());
-    }
-
-    @Deprecated
-    protected IItemPack createJaffaPack(JaffaItem ji) {
-        return ItemManager.createJaffaPack(ji, this.getMyModule());
     }
 
     protected <T extends Item> T createJaffaItemManual(JaffaItem ji, Class<T> itemClass) {
@@ -64,5 +59,9 @@ public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
 
     public void setCurrentSheetNumber(int currentSheetNumber) {
         this.currentSheetNumber = currentSheetNumber;
+    }
+
+    public JaffaItem getJaffaItem(int itemId) {
+        return ItemManager.getJaffaItem(itemId);
     }
 }
