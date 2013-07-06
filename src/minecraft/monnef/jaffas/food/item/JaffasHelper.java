@@ -5,11 +5,14 @@
 
 package monnef.jaffas.food.item;
 
+import monnef.jaffas.food.JaffasFood;
+
 import java.util.Collection;
 import java.util.HashMap;
 
 public class JaffasHelper {
     private static final HashMap<JaffaItem, String> titles;
+    private static final JaffaItem[] jaffas;
 
     static {
         titles = new HashMap<JaffaItem, String>();
@@ -21,6 +24,8 @@ public class JaffasHelper {
         titles.put(JaffaItem.jaffaRaspberry, "Raspberry");
         titles.put(JaffaItem.jaffaStrawberry, "Strawberry");
         titles.put(JaffaItem.jaffaV, "Vanilla");
+
+        jaffas = titles.keySet().toArray(new JaffaItem[]{});
     }
 
     public static String getTitle(JaffaItem jaffa) {
@@ -29,5 +34,9 @@ public class JaffasHelper {
 
     public static Collection<JaffaItem> getJaffas() {
         return titles.keySet();
+    }
+
+    public static JaffaItem getRandomJaffa() {
+        return jaffas[JaffasFood.rand.nextInt(jaffas.length)];
     }
 }

@@ -167,13 +167,9 @@ public class Recipes {
         addPackRecipe(jaffaV);
         addPackRecipe(jaffaStrawberry);
 
-        // TODO: bomb
-        /*
-        GameRegistry.addRecipe(new ItemStack(instance.blockJaffaBomb), "J", "R", "T", 'J', new ItemStack(getItem(jaffasPack)),
-                'R', new ItemStack(getItem(jaffasPackR)), 'T', new ItemStack(Block.tnt));
-        GameRegistry.addRecipe(new ItemStack(instance.blockJaffaBomb), "J", "O", "T", 'J', new ItemStack(getItem(jaffasPack)),
-                'O', new ItemStack(getItem(jaffasPackO)), 'T', new ItemStack(Block.tnt));
-        */
+        GameRegistry.addRecipe(new ItemStack(JaffasFood.blockJaffaBomb), "JJJ", "RLG", " T ", 'J', new ItemStack(getItem(jaffasPack)),
+                'R', Item.redstone, 'L', Item.goldNugget, 'G', Item.lightStoneDust,
+                'T', new ItemStack(Block.tnt));
 
         GameRegistry.addRecipe(new ItemStack(getItem(waferIcecreamRaw), 2), "PP", "PP", 'P', new ItemStack(getItem(pastrySweet)));
         GameRegistry.addRecipe(new ItemStack(getItem(coneRaw), 1), "P P", " P ", 'P', new ItemStack(getItem(pastrySweet)));

@@ -13,9 +13,29 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 public class ItemJaffaPack extends ItemPack {
+    private static LinkedHashMap<JaffaItem, ItemStack> packs;
+
+    public static void initPacks() {
+        if (packs != null) {
+            throw new RuntimeException("re-initializing!");
+        }
+
+        packs = new LinkedHashMap<JaffaItem, ItemStack>();
+        for (JaffaItem ji : JaffasHelper.getJaffas()) {
+            ItemStack stack = new ItemStack(JaffasFood.getItem(JaffaItem.jaffasPack).itemID, 1, 0);
+            setContent(stack, JaffasFood.getItem(ji).itemID, Recipes.JAFFAS_PACK_CONTENT_SIZE, 0);
+            packs.put(ji, stack);
+        }
+    }
+
+    public static ItemStack getPackOfJaffas(JaffaItem jaffa) {
+        ItemStack tmp = packs.get(jaffa);
+        return tmp == null ? null : tmp.copy();
+    }
 
     public ItemJaffaPack(int id) {
         super(id);
