@@ -90,18 +90,6 @@ public class Items extends ItemManagerAccessor {
         return ItemManager.getItem(jaffaItem);
     }
 
-    private String getJaffaTitle(String type) {
-        String title = JaffasFood.jaffaTitle;
-
-        if (type == null || type.isEmpty()) {
-            return title;
-        }
-        StringBuilder s = new StringBuilder(type);
-        s.append(" ");
-        s.append(title);
-        return s.toString();
-    }
-
     @Override
     public void InitializeItemInfos() {
         setCurrentSheetNumber(1);
@@ -109,9 +97,9 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(cake, "Cake", 1, "Sponge Cake");
         AddItemInfo(jamO, "Jam Orange", 2, "Orange Jam");
         AddItemInfo(jamR, "Jam Red", 3, "Apple Jam");
-        AddItemInfo(jaffaO, "Jaffa Orange", 4, getJaffaTitle("Orange"));
-        AddItemInfo(jaffaR, "Jaffa Red", 5, getJaffaTitle("Apple"));
-        AddItemInfo(jaffa, "Jaffa", 6, getJaffaTitle(""));
+        AddItemInfoForJaffa(jaffaO, "Jaffa Orange", 4);
+        AddItemInfoForJaffa(jaffaR, "Jaffa Red", 5);
+        AddItemInfoForJaffa(jaffa, "Jaffa", 6);
         AddItemInfo(chocolate, "Chocolate", 7, "Chocolate");
         AddItemInfo(apples, "Apples", 10, "Apples");
         AddItemInfo(beans, "Beans", 8, "Cocoa Powder");
@@ -165,8 +153,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(donutPink, "Donut Apple", 74, "Apple Donut");
         AddItemInfo(donutSugar, "Donut Sugar", 75, "Powdered Donut");
         AddItemInfo(donutSprinkled, "Donut Sprinkled", 76, "Sprinkled Donut");
-        AddItemInfo(jaffaV, "Jaffa Vanilla", 77, getJaffaTitle("Vanilla"));
-        AddItemInfo(jaffaL, "Jaffa Lemon", 78, getJaffaTitle("Lemon"));
+        AddItemInfoForJaffa(jaffaV, "Jaffa Vanilla", 77);
+        AddItemInfoForJaffa(jaffaL, "Jaffa Lemon", 78);
         AddItemInfo(jamP, "Jam Plum", 79, "Plum Jam");
         AddItemInfo(jamL, "Jam Lemon", 80, "Lemon Jam");
         AddItemInfo(jamV, "Vanilla Jam", 81, "Vanilla Jam");
@@ -175,7 +163,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(plums, "Plums", 84, "Plums");
         AddItemInfo(sprinkles, "Sprinkles", 87, "Sprinkles");
         AddItemInfo(magnifier, "Magnifier", 91, "Magnifier");
-        AddItemInfo(jaffaP, "Jaffa Plum", 86, getJaffaTitle("Plum"));
+        AddItemInfoForJaffa(jaffaP, "Jaffa Plum", 86);
         AddItemInfo(jamMix, "Jam Mix", 110, "Mix of Jams");
 
         AddItemInfo(kettle, "Kettle", 92, "Empty Kettle");
@@ -192,8 +180,8 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(grinderMeat, "Meat Grinder", 101, "Meat Grinder");
         AddItemInfo(wienerCocktail, "Cocktail Wiener", 102, "Cocktail Wiener");
-        AddItemInfo(jaffaStrawberry, "Jaffa Strawberry", 103, getJaffaTitle("Strawberry"));
-        AddItemInfo(jaffaRaspberry, "Jaffa Raspberry", 104, getJaffaTitle("Raspberry"));
+        AddItemInfoForJaffa(jaffaStrawberry, "Jaffa Strawberry", 103);
+        AddItemInfoForJaffa(jaffaRaspberry, "Jaffa Raspberry", 104);
         AddItemInfo(raspberries, "Raspberries", 105, "Raspberries");
         AddItemInfo(strawberries, "Strawberries", 106, "Strawberries");
         AddItemInfo(jamRaspberry, "Jam Raspberry", 107, "Raspberry Jam");
@@ -396,6 +384,10 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.potatesSlicedInTinRaw, "Raw Crisps", 254);
         AddItemInfo(JaffaItem.potatesSlicedInTin, "Crisps In Tin", 255);
         AddItemInfo(JaffaItem.crisps, "Crisps", 256);
+    }
+
+    private void AddItemInfoForJaffa(JaffaItem ji, String name, int textureId) {
+        AddItemInfo(ji, name, textureId, JaffasHelper.getJaffaTitleForItem(ji));
     }
 
     private void AddItemInfo(JaffaItem item, String name, int id) {

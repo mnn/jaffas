@@ -39,4 +39,16 @@ public class JaffasHelper {
     public static JaffaItem getRandomJaffa() {
         return jaffas[JaffasFood.rand.nextInt(jaffas.length)];
     }
+
+    public static String getJaffaTitleForItem(JaffaItem ji) {
+        String cakeTitle = JaffasFood.jaffaTitle;
+
+        if (ji == JaffaItem.jaffa) {
+            return cakeTitle;
+        }
+        StringBuilder s = new StringBuilder(getTitle(ji));
+        s.append(" ");
+        s.append(cakeTitle);
+        return s.toString();
+    }
 }
