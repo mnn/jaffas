@@ -12,20 +12,20 @@ import java.util.List;
 
 import static monnef.core.utils.ItemHelper.copyStackArray;
 
-public class SimpleProcessingRecipeHandler implements IProcessingRecipeHandler {
+public class ProcessingRecipeHandler implements IProcessingRecipeHandler {
     // could be rewritten to use e.g. trie,
     // but so far it doesn't seem to be a performance issue
     // (it's only called when processing is starting and ending)
 
     private List<IProcessingRecipe> recipes;
 
-    public SimpleProcessingRecipeHandler() {
+    public ProcessingRecipeHandler() {
         recipes = new ArrayList<IProcessingRecipe>();
     }
 
     @Override
     public void addRecipe(ItemStack[] input, ItemStack[] output, int duration) {
-        SimpleProcessingRecipe recipe = new SimpleProcessingRecipe(copyStackArray(input), copyStackArray(output), duration);
+        ProcessingRecipe recipe = new ProcessingRecipe(copyStackArray(input), copyStackArray(output), duration);
         recipes.add(recipe);
     }
 

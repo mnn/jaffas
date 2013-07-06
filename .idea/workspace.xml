@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Boosted ore generation.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/BlockRenderingHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/BlockRenderingHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGrinder.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGrinder.java" />
+      <change type="MOVED" beforePath="D:\workspace\mc\env\1.5.0\jaffas\mcp\src\minecraft\monnef\jaffas\power\common\SimpleProcessingRecipe.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipe.java" />
+      <change type="MOVED" beforePath="D:\workspace\mc\env\1.5.0\jaffas\mcp\src\minecraft\monnef\jaffas\power\common\SimpleProcessingRecipeHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipeHandler.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -690,38 +691,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JaffasPower.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
+      <file leaf-file-name="ProcessingRecipe.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="68" column="13" selection-start="2990" selection-end="2990" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="9" column="19" selection-start="157" selection-end="157" vertical-scroll-proportion="0.09770115">
+              <folding>
+                <marker date="1373118417418" expanded="true" signature="390:489" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientProxy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/ClientProxy.java">
+      <file leaf-file-name="ProcessingRecipeHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipeHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="51" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockRenderingHandler.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/BlockRenderingHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="14" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.45696402">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TileEntityMachine.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="0" selection-start="4395" selection-end="4395" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="14" column="21" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+              <folding>
+                <marker date="1373118417409" expanded="true" signature="561:622" placeholder="{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -745,10 +732,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManager.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManagerAccessor.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/IItemFood.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/IItemTool.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/IItemJaffa.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemJaffaFood.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemJaffaBase.java" />
@@ -761,6 +744,10 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffasHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/BlockRenderingHandler.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimpleProcessingRecipeHandler.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipeHandler.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/SimpleProcessingRecipe.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipe.java" />
       </list>
     </option>
   </component>
@@ -987,7 +974,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
+              <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1353,15 +1340,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="7" />
-    <editor active="false" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.296875" sideWeight="0.49786553" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2578125" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2578125" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2890625" sideWeight="0.50053364" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1369,11 +1356,11 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35044643" sideWeight="0.4850587" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575893" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14514408" sideWeight="0.24107143" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14514408" sideWeight="0.32589287" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14514408" sideWeight="0.49330357" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14514408" sideWeight="0.66629463" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.49573106" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1462,20 +1449,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManagerAccessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="38" selection-start="884" selection-end="884" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2044" column="8" selection-start="89823" selection-end="89823" vertical-scroll-proportion="0.678511">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="683" column="52" selection-start="23430" selection-end="23430" vertical-scroll-proportion="0.39086294">
@@ -1546,13 +1519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="68" column="13" selection-start="2990" selection-end="2990" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileEntityGeneratorRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="11" selection-start="444" selection-end="444" vertical-scroll-proportion="-0.27011493">
@@ -1560,24 +1526,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/ClientProxy.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/BlockRenderingHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="51" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.0">
+        <state line="46" column="25" selection-start="2004" selection-end="2004" vertical-scroll-proportion="0.570115">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="0" selection-start="4395" selection-end="4395" vertical-scroll-proportion="0.0">
+        <state line="148" column="0" selection-start="4395" selection-end="4395" vertical-scroll-proportion="0.745977">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/BlockRenderingHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/ClientProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="14" selection-start="1240" selection-end="1240" vertical-scroll-proportion="0.45696402">
+        <state line="24" column="51" selection-start="1095" selection-end="1095" vertical-scroll-proportion="0.2735632">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="13" selection-start="2990" selection-end="2990" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipeHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="21" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+          <folding>
+            <marker date="1373118417409" expanded="true" signature="561:622" placeholder="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="19" selection-start="157" selection-end="157" vertical-scroll-proportion="0.09770115">
+          <folding>
+            <marker date="1373118417418" expanded="true" signature="390:489" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>

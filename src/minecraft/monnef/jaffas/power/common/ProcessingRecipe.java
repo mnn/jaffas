@@ -8,12 +8,12 @@ package monnef.jaffas.power.common;
 import monnef.core.utils.ItemHelper;
 import net.minecraft.item.ItemStack;
 
-public class SimpleProcessingRecipe implements IProcessingRecipe {
+public class ProcessingRecipe implements IProcessingRecipe {
     private ItemStack[] input;
     private ItemStack[] output;
     private int duration;
 
-    public SimpleProcessingRecipe(ItemStack[] input, ItemStack[] output, int duration) {
+    public ProcessingRecipe(ItemStack[] input, ItemStack[] output, int duration) {
         this.input = input;
         this.output = output;
         this.duration = duration;
