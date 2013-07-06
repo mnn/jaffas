@@ -6,9 +6,14 @@
 package monnef.jaffas.food.item;
 
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.item.common.Items;
+import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Collection;
 import java.util.HashMap;
+
+import static monnef.jaffas.food.item.JaffaItem.jaffa;
 
 public class JaffasHelper {
     private static final HashMap<JaffaItem, String> titles;
@@ -40,15 +45,29 @@ public class JaffasHelper {
         return jaffas[JaffasFood.rand.nextInt(jaffas.length)];
     }
 
+    public static boolean isFilled(JaffaItem ji) {
+        return ji != jaffa;
+    }
+
     public static String getJaffaTitleForItem(JaffaItem ji) {
         String cakeTitle = JaffasFood.jaffaTitle;
 
-        if (ji == JaffaItem.jaffa) {
+        if (!isFilled(ji)) {
             return cakeTitle;
         }
         StringBuilder s = new StringBuilder(getTitle(ji));
         s.append(" ");
         s.append(cakeTitle);
         return s.toString();
+    }
+
+    public static void registerJaffasInOreDict() {
+        for (JaffaItem ji : titles.keySet()) {
+            Item item = JaffasFood.getItem(ji);
+            if (isFilled(ji)) {
+                OreDictionary.registerOre(Items.JAFFA_FILLED, item);
+            }
+            OreDictionary.registerOre(Items.JAFFA, item);
+        }
     }
 }

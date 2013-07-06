@@ -215,8 +215,6 @@ public class JaffasPower extends jaffasMod {
         grinder = new BlockGrinder(blockGrinderID, 1);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileEntityGrinder.class, "grinder");
-        TileEntityGrinder.addRecipe(new ItemStack(Block.stone, 2), new ItemStack(Block.dirt, 5), 5 * 20); // TODO: real recipes
-
     }
 
     private void installRecipes() {

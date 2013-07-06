@@ -16,6 +16,7 @@ import monnef.jaffas.food.item.ItemJaffaPack;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
+import monnef.jaffas.power.block.TileEntityGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -45,7 +46,11 @@ public class Recipes {
     public static final String TREE_LEAVES = "treeLeaves";
     public static final int JAFFAS_PACK_CONTENT_SIZE = 8;
 
-    public static void install() {
+    public static void postLoadInstallRecipes() {
+        TileEntityGrinder.addOreDictRecipe(Items.MINCEABLEMEAT, getItemStack(mincedMeat, 2), 100);
+    }
+
+    public static void installRecipes() {
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(pastrySweet)), new ItemStack(Item.sugar),
                 new ItemStack(Item.egg), new ItemStack(getItem(butter)), new ItemStack(getItem(flour)), new ItemStack(getItem(flour)));
 
@@ -291,10 +296,8 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(coneRaw).itemID, new ItemStack(getItem(cone)), 1f);
         GameRegistry.addSmelting(getItem(waferIcecreamRaw).itemID, new ItemStack(getItem(waferIcecream)), 1f);
 
-        //GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.mincedMeat),2),);
-        //addOreRecipe(new ShapedOreRecipe(new ItemStack(getItem(JaffaItem.mincedMeat), 2), true, new Object[]{""}));
-        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMeat), 2), Items.MINCEABLEMEAT, getItem(grinderMeat)));
-        JaffaCraftingHandler.AddPersistentItem(grinderMeat);
+        //addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMeat), 2), Items.MINCEABLEMEAT, getItem(grinderMeat)));
+        //JaffaCraftingHandler.AddPersistentItem(grinderMeat);
 
         JaffaCraftingHandler.AddPersistentItem(grater);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(cheeseGrated)), getItem(grater), getItem(cheese));

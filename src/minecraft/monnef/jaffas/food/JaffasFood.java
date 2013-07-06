@@ -12,6 +12,7 @@ import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -393,7 +394,7 @@ public class JaffasFood extends jaffasMod {
 
         registerHandlers();
 
-        Recipes.install();
+        Recipes.installRecipes();
         MinecraftForge.EVENT_BUS.register(new CustomDrop());
 
         //creative tab title
@@ -405,6 +406,11 @@ public class JaffasFood extends jaffasMod {
         MinecraftForge.addGrassPlant(blockSwitchgrass, BlockSwitchgrass.VALUE_TOP, 5);
 
         printInitializedMessage();
+    }
+
+    @Mod.PostInit
+    public void postLoad(FMLPostInitializationEvent event) {
+        Recipes.postLoadInstallRecipes();
     }
 
     private void addDungeonLoot() {

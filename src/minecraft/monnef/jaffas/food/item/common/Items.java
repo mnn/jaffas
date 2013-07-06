@@ -715,7 +715,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(potatesSlicedInTin);
         createJaffaFood(crisps, 3, 0.8f).setReturnItem(getItemStack(woodenBowl));
 
-        createItemsRegistration();
+        createItemsOreDictRegistration();
 
         addMeatsToDryerDatabase();
 
@@ -753,22 +753,15 @@ public class Items extends ItemManagerAccessor {
         createJaffaArmor(pieces[3], material, renderIndex, ItemJaffaPlate.ArmorType.boots, file1, repairItem);
     }
 
-    private void createItemsRegistration() {
+    private void createItemsOreDictRegistration() {
         OreDictionary.registerOre(MINCEABLEMEAT, Item.porkRaw);
         OreDictionary.registerOre(MINCEABLEMEAT, Item.fishRaw);
         OreDictionary.registerOre(MINCEABLEMEAT, Item.beefRaw);
         OreDictionary.registerOre(MINCEABLEMEAT, Item.chickenRaw);
         OreDictionary.registerOre(MINCEABLEMEAT, getItem(muttonRaw));
-        OreDictionary.registerOre(MINCEABLEMEAT, getItem(wolfMeat));
+        OreDictionary.registerOre(MINCEABLEMEAT, getItem(wolfMeatRaw));
 
-        JaffaItem jaffas[] = new JaffaItem[]{jaffa, jaffaR, jaffaO, jaffaP, jaffaL, jaffaV, jaffaStrawberry, jaffaRaspberry};
-        for (int i = 0; i < jaffas.length; i++) {
-            Item item = getItem(jaffas[i]);
-            if (i != 0) {
-                OreDictionary.registerOre(JAFFA_FILLED, item);
-            }
-            OreDictionary.registerOre(JAFFA, item);
-        }
+        JaffasHelper.registerJaffasInOreDict();
 
         OreDictionary.registerOre(MUSHROOM, Block.mushroomBrown);
         OreDictionary.registerOre(MUSHROOM, Block.mushroomRed);
