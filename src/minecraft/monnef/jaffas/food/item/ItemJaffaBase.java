@@ -6,6 +6,8 @@
 package monnef.jaffas.food.item;
 
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.ItemMonnefCore;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
@@ -21,13 +23,15 @@ import java.util.List;
 public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     private String info = null;
     private CreativeTabs secondCreativeTab;
-    private EnumRarity rarity = EnumRarity.common;
+
+    private int rarity;
 
     public ItemJaffaBase(int id) {
         super(id);
         maxStackSize = 64;
         this.setCreativeTab(JaffasFood.instance.creativeTab);
         setCustomIconIndex(-1);
+        rarity = JaffasFood.proxy.getCommonRarity();
     }
 
     public ItemJaffaBase(int id, int textureIndex) {
@@ -83,12 +87,13 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     }
 
     @Override
-    public void setRarity(EnumRarity rarity) {
+    public void setRarity(int rarity) {
         this.rarity = rarity;
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack stack) {
-        return rarity;
+        return EnumRarity.values()[rarity];
     }
 }

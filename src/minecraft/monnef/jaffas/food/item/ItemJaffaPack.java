@@ -5,6 +5,8 @@
 
 package monnef.jaffas.food.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.crafting.Recipes;
 import net.minecraft.creativetab.CreativeTabs;
@@ -62,6 +64,7 @@ public class ItemJaffaPack extends ItemPack {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public EnumRarity getRarity(ItemStack stack) {
         return EnumRarity.epic;
     }

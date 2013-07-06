@@ -24,5 +24,18 @@ public class CommonProxy {
     public void handleSyncPacket(Player player, int secondsRemaining, boolean openGUI) {
     }
 
-    public void registerEggRendering(){}
+    public void registerEggRendering() {
+    }
+
+    public int getCommonRarity() {
+        return 0;
+    }
+
+    public int getEpicRarity() {
+        return 0;
+    }
+
+    public int getUncommonRarity() {
+        return 0;
+    }
 }

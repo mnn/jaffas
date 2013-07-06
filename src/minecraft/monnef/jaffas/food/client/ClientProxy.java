@@ -31,6 +31,7 @@ import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
+import net.minecraft.item.EnumRarity;
 import net.minecraftforge.common.MinecraftForge;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
@@ -86,5 +87,20 @@ public class ClientProxy extends CommonProxy {
                 FMLCommonHandler.instance().showGuiScreen(gui);
             }
         }
+    }
+
+    @Override
+    public int getCommonRarity() {
+        return EnumRarity.common.ordinal();
+    }
+
+    @Override
+    public int getEpicRarity() {
+        return EnumRarity.epic.ordinal();
+    }
+
+    @Override
+    public int getUncommonRarity() {
+        return EnumRarity.uncommon.ordinal();
     }
 }

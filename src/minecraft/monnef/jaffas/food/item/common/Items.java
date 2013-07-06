@@ -27,12 +27,12 @@ import monnef.jaffas.food.item.JaffaItemInfo;
 import monnef.jaffas.food.item.JaffasHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.oredict.OreDictionary;
 
+import static monnef.jaffas.food.JaffasFood.proxy;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.crafting.Recipes.getItemStackAnyDamage;
 import static monnef.jaffas.food.item.JaffaItem.*;
@@ -448,7 +448,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(wrapperJaffas);
 
-        ((IItemJaffa) createJaffaItemManual(jaffasPack, ItemJaffaPack.class)).setRarity(EnumRarity.epic);
+        ((IItemJaffa) createJaffaItemManual(jaffasPack, ItemJaffaPack.class)).setRarity(proxy.getEpicRarity());
 
         createJaffaItem(vanillaBeans);
         createJaffaItem(waferIcecream);
@@ -722,7 +722,7 @@ public class Items extends ItemManagerAccessor {
 
     private void markJaffasRare() {
         for (JaffaItem ji : JaffasHelper.getJaffas()) {
-            ((IItemJaffa) getItem(ji)).setRarity(EnumRarity.uncommon);
+            ((IItemJaffa) getItem(ji)).setRarity(proxy.getUncommonRarity());
         }
     }
 
@@ -744,7 +744,7 @@ public class Items extends ItemManagerAccessor {
 
     // helm, chest, leggings, boots
     public void createJaffaArmorSet(String renderName, EnumArmorMaterial material, String file1, String file2, Item repairItem, JaffaItem[] pieces) {
-        int renderIndex = JaffasFood.proxy.addArmor(renderName);
+        int renderIndex = proxy.addArmor(renderName);
         createJaffaArmor(pieces[0], material, renderIndex, ItemJaffaPlate.ArmorType.helm, file1, repairItem);
         createJaffaArmor(pieces[1], material, renderIndex, ItemJaffaPlate.ArmorType.chest, file1, repairItem);
         createJaffaArmor(pieces[2], material, renderIndex, ItemJaffaPlate.ArmorType.leggings, file2, repairItem);
