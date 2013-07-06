@@ -31,4 +31,9 @@ public class ItemPipeWrench extends ItemPower implements IPipeWrench {
     public boolean shouldPassSneakingClickToBlock(World world, int x, int y, int z) {
         return true;
     }
+
+    @Override
+    public boolean isFull3D() {
+        return true;
+    }
 }
