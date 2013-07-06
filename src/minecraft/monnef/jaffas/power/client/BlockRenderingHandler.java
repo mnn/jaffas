@@ -10,6 +10,7 @@ import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
+import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
@@ -19,9 +20,18 @@ import static monnef.jaffas.power.JaffasPower.lightningConductor;
 
 public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     public static final double POSITION_FIX = -0.5D;
-    private static TileEntityGenerator generator = new TileEntityGenerator();
-    private static TileEntityAntenna antenna = new TileEntityAntenna();
-    private static TileEntityLightningConductor conductor = new TileEntityLightningConductor();
+
+    private static TileEntityGenerator generator;
+    private static TileEntityLightningConductor conductor;
+    private static TileEntityAntenna antenna;
+
+    static {
+        TileEntityMachine.enableDummyCreationPhase();
+        generator = new TileEntityGenerator();
+        antenna = new TileEntityAntenna();
+        conductor = new TileEntityLightningConductor();
+        TileEntityMachine.disableDummyCreationPhase();
+    }
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {

@@ -21,6 +21,7 @@ import java.util.Random;
 public abstract class TileEntityMachine extends TileEntity implements IPowerReceptor {
     public static final String ROTATION_TAG_NAME = "rotation";
     public static final Random rand = new Random();
+    private static final int DUMMY_CREATION_PHASE_INSTANCE_COUNTER_LIMIT = 5;
 
     private ForgeDirection rotation;
     protected IPowerProvider powerProvider;
@@ -32,13 +33,16 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     public abstract String getMachineTitle();
 
     protected TileEntityMachine() {
+        onNewInstance(this);
         setRotation(ForgeDirection.UNKNOWN);
         if (PowerFramework.currentFramework != null) {
             powerProvider = PowerFramework.currentFramework.createPowerProvider();
             configurePowerParameters();
             powerProvider.configure(0, 2, maxEnergyReceived, powerNeeded, powerStorage);
         } else {
-            JaffasFood.Log.printWarning("Got null in power framework, this should never happen!");
+            if (!dummyCreationPhase) {
+                JaffasFood.Log.printWarning("Got null in power framework, this should never happen!");
+            }
         }
     }
 
@@ -116,6 +120,36 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     @Override
     public int powerRequest(ForgeDirection from) {
         return maxEnergyReceived;
+    }
+
+    private static boolean dummyCreationPhase = false;
+    private static int dummyCreationPhaseCounter;
+
+    public static void enableDummyCreationPhase() {
+        if (dummyCreationPhase) {
+            throw new RuntimeException("Already in dummy creation phase.");
+        }
+
+        dummyCreationPhase = true;
+        dummyCreationPhaseCounter = 0;
+    }
+
+    public static void disableDummyCreationPhase() {
+        if (!dummyCreationPhase) {
+            throw new RuntimeException("Not in dummy creation phase.");
+        }
+
+        dummyCreationPhase = false;
+    }
+
+    private static void onNewInstance(TileEntityMachine instance) {
+        if (dummyCreationPhase) {
+            dummyCreationPhaseCounter++;
+        }
+
+        if (dummyCreationPhaseCounter >= DUMMY_CREATION_PHASE_INSTANCE_COUNTER_LIMIT) {
+            JaffasFood.Log.printSevere(instance.getClass().getSimpleName() + ": limit of dummy creation has been exceeded!");
+        }
     }
 }
 
