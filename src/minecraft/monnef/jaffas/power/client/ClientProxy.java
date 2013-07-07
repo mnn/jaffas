@@ -7,6 +7,7 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
@@ -28,5 +29,7 @@ public class ClientProxy extends CommonProxy {
         if (JaffasPower.lightningConductorEnabled) {
             RenderingRegistry.registerBlockHandler(JaffasPower.lightningConductor.getRenderType(), handler);
         }
+
+        MinecraftForgeClient.registerItemRenderer(JaffasPower.kitchenUnit.blockID, new CustomBlockRenderer());
     }
 }

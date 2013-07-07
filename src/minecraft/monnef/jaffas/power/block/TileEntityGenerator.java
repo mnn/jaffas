@@ -9,7 +9,6 @@ import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
@@ -154,8 +153,7 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
     }
 
     private TileEntity getConsumerTileInDirection(ForgeDirection dir) {
-        IIntegerCoordinates pos = (new IntegerCoordinates(this)).shiftInDirectionBy(dir, 1);
-        return worldObj.getBlockTileEntity(pos.getX(), pos.getY(), pos.getZ());
+        return (new IntegerCoordinates(this)).shiftInDirectionBy(dir, 1).getBlockTileEntity();
     }
 
     private boolean gotCustomer() {
@@ -166,8 +164,7 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
         TileEntity customer = getConsumerTileInDirection(dir);
         if (!BuildCraftHelper.isPowerTile(customer)) return false;
         IPowerProvider customerProvider = ((IPowerReceptor) customer).getPowerProvider();
-        return BuildCraftHelper.gotFreeSpaceInEnergyStorage(customerProvider);
-
+        return BuildCraftHelper.gotFreeSpaceInEnergyStorage(customerProvider) && BuildCraftHelper.doesWantEnergy((IPowerReceptor) customer, dir.getOpposite());
     }
 
     private void refreshCustomer() {

@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.block;
 
+import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
 import monnef.jaffas.power.common.ProcessingRecipeHandler;
@@ -13,7 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 
-public class TileEntityGrinder extends TileEntityBasicProcessingMachine {
+public class TileEntityGrinder extends TileEntityBasicProcessingMachine implements IKitchenUnitAppliance {
     private static ProcessingRecipeHandler recipes = new ProcessingRecipeHandler();
 
     public static void addRecipe(ItemStack input, ItemStack output, int duration) {

@@ -21,6 +21,7 @@ import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -207,8 +208,8 @@ public class JaffasPower extends jaffasMod {
             registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
         }
 
-        kitchenUnit = new BlockKitchenUnit(blockKitchenUnitID, 0);
-        RegistryUtils.registerBlock(kitchenUnit, "kitchenUnit", "Kitchen Unit");
+        kitchenUnit = new BlockKitchenUnit(blockKitchenUnitID, 10, 3);
+        RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
         registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
 
         TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerGrinder.class);

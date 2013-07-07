@@ -758,6 +758,7 @@ public class Items extends ItemManagerAccessor {
         OreDictionary.registerOre(MINCEABLEMEAT, Item.chickenRaw);
         OreDictionary.registerOre(MINCEABLEMEAT, getItem(muttonRaw));
         OreDictionary.registerOre(MINCEABLEMEAT, getItem(wolfMeatRaw));
+        OreDictionary.registerOre(MINCEABLEMEAT, getItem(duckRaw));
 
         JaffasHelper.registerJaffasInOreDict();
 

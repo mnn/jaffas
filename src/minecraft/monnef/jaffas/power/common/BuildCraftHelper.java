@@ -8,6 +8,7 @@ package monnef.jaffas.power.common;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BuildCraftHelper {
     public static boolean gotFreeSpaceInEnergyStorage(IPowerProvider provider) {
@@ -21,5 +22,9 @@ public class BuildCraftHelper {
         }
 
         return false;
+    }
+
+    public static boolean doesWantEnergy(IPowerReceptor receptor, ForgeDirection fromSide) {
+        return receptor.powerRequest(fromSide) > 0;
     }
 }

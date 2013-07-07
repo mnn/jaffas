@@ -7,6 +7,8 @@ package monnef.jaffas.power.block;
 
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
+import monnef.core.utils.TileEntityHelper;
+import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.tileentity.TileEntity;
@@ -28,9 +30,13 @@ public class TileEntityKitchenUnit extends TileEntityMachine {
             skipCounter = 0;
 
             TileEntity te = worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
-            if (BuildCraftHelper.isPowerTile(te)) {
-                IPowerProvider provider = ((IPowerReceptor) te).getPowerProvider();
-                if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(provider)) {
+            if (te != null && te instanceof IKitchenUnitAppliance) {
+                if (!BuildCraftHelper.isPowerTile(te)) {
+                    throw new RuntimeException("is KUAppliance but doesn't accept power? my pos: " + TileEntityHelper.getFormattedCoordinates(this));
+                }
+                IPowerReceptor teReceptor = (IPowerReceptor) te;
+                IPowerProvider provider = teReceptor.getPowerProvider();
+                if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(provider) && BuildCraftHelper.doesWantEnergy(teReceptor, ForgeDirection.DOWN)) {
                     float extracted = powerProvider.useEnergy(5, powerNeeded, true);
                     provider.receiveEnergy(extracted, ForgeDirection.DOWN);
                 } else {

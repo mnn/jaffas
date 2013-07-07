@@ -93,6 +93,7 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         addToFruitList(Item.appleRed);
         addToFruitList(JaffasTrees.itemLemon);
         addToFruitList(Item.dyePowder, 3); // cocoa beans
+        addToFruitList(JaffasTrees.itemCoconut);
 
         OrdinalToState = new CollectorStates[CollectorStates.values().length];
         for (CollectorStates state : CollectorStates.values()) {
@@ -124,15 +125,6 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         this.state = OrdinalToState[newState];
 
         ((BlockFruitCollector) this.getBlockType()).spawnParticlesOfTargetedItem(worldObj, this.rand, xCoord, yCoord, zCoord, true);
- /*
-        if (this.state == CollectorStates.idle && oldState == CollectorStates.targeted)
-            this.soundToRun = "suck";
-//            worldObj.playSoundEffect(xCoord, yCoord, zCoord, "suck", 1, 1);
-
-        if (this.state == CollectorStates.targeted && oldState == CollectorStates.idle)
-            this.soundToRun = "sharpener";
-//            worldObj.playSoundEffect(xCoord, yCoord, zCoord, "sharpener", 1, 1);
-*/
     }
 
     public void updateEntity() {
@@ -423,62 +415,4 @@ public class TileEntityFruitCollector extends TileEntityJaffaMachine implements 
         tagCompound.setTag("Inventory", itemList);
         tagCompound.setInteger("eventTime", eventTime);
     }
-
-    /*
-    @Override
-    public int addItem(ItemStack stack, boolean doAdd, Orientations from) {
-        if (from == Orientations.YNeg) {
-            if (this.inv[fuelSlot] == null) {
-                if (doAdd) setInventorySlotContents(fuelSlot, stack);
-                return stack.stackSize;
-            } else {
-                if (this.inv[fuelSlot].itemID != stack.itemID) {
-                    return 0;
-                } else {
-                    int newStackSize = stack.stackSize + inv[fuelSlot].stackSize;
-                    if (doAdd) inv[fuelSlot].stackSize += stack.stackSize;
-
-                    if (newStackSize > stack.getMaxStackSize()) {
-                        if (doAdd) inv[fuelSlot].stackSize = stack.getMaxStackSize();
-                        return stack.stackSize - (newStackSize % stack.getMaxStackSize());
-                    } else {
-                        return stack.stackSize;
-                    }
-                }
-            }
-        } else {
-            return this.addItemToInventory(stack, doAdd);
-        }
-    }
-
-    @Override
-    public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
-        int itemSlot = -1;
-
-        for (int i = 0; i < fuelSlot; i++) {
-            if (this.inv[i] != null) {
-                itemSlot = i;
-                i = fuelSlot;
-            }
-        }
-
-        if (itemSlot == -1) {
-            return null;
-        }
-
-        ItemStack stack = this.inv[itemSlot];
-        ItemStack output = stack.copy();
-        int newStackCount = stack.stackSize - maxItemCount;
-        int outputStackCount = maxItemCount;
-        if (newStackCount <= 0) {
-            if (doRemove) setInventorySlotContents(itemSlot, null);
-            outputStackCount = stack.stackSize;
-        } else {
-            if (doRemove) stack.stackSize = newStackCount;
-        }
-
-        output.stackSize = outputStackCount;
-        return new ItemStack[]{output};
-    }
-    */
 }

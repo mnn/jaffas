@@ -588,7 +588,6 @@ public class JaffasTechnic extends jaffasMod {
 
         constructionBlock = new BlockConstruction(blockConstructionID, 30);
         RegistryUtils.registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
-        Item.itemsList[constructionBlock.blockID].setFull3D();
 
         JaffasRegistryHelper.registerTileEntity(TileEntityConstructionDummy.class, "jaffasConstructionDummy");
         JaffasRegistryHelper.registerTileEntity(TileEntityCompostCore.class, "jaffasCompostCore");
