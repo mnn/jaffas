@@ -141,8 +141,8 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     @Override
-    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-        return super.canPlaceBlockAt(par1World, par2, par3, par4) && this.floorCanSustainPlant(par1World, par2, par3, par4);
+    public boolean canPlaceBlockAt(World par1World, int x, int y, int z) {
+        return super.canPlaceBlockAt(par1World, x, y, z) && this.floorCanSustainPlant(par1World, x, y, z);
     }
 
     /**
@@ -192,8 +192,8 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     public boolean floorCanSustainPlant(World world, int x, int y, int z) {
-        int var5 = world.getBlockId(x, y - 1, z);
-        return blocksList[var5] != null && blocksList[var5].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
+        int blockId = world.getBlockId(x, y - 1, z);
+        return blocksList[blockId] != null && blocksList[blockId].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
     }
 
     @Override
