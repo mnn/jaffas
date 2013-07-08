@@ -37,6 +37,10 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
     private ForgeDirection customerDirection = ForgeDirection.UNKNOWN;
     private int startDirNumber;
 
+    public TileEntityGenerator() {
+        setIsRedstoneSensitive();
+    }
+
     @Override
     public void doWork() {
     }
@@ -131,7 +135,7 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
             }
         }
 
-        if (burnTime <= 0 && gotCustomer()) {
+        if (burnTime <= 0 && gotCustomer() && !isBeingPoweredByRedstone()) {
             burnTime = 0;
             tryGetFuel();
         }

@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 public class ItemAxeTechnic extends ItemTechnicTool {
     public ItemAxeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
+        this.damageVsEntity += 3;
     }
 
     @Override

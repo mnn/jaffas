@@ -871,6 +871,8 @@ public class JaffasTechnic extends jaffasMod {
                         'I', Item.ingotIron, 'R', Item.lightStoneDust, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY),
                         'D', DyeHelper.getDye(i));
             }
+
+            GameRegistry.addShapedRecipe(new ItemStack(randomizer), "SQS", "RJT", "SSS", 'S', Block.stone, 'Q', Item.netherQuartz, 'R', Item.redstone, 'J', jaffarrolRefined, 'T', Block.torchRedstoneActive);
         }
 
         //GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);

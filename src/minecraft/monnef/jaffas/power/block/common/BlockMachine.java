@@ -64,6 +64,8 @@ public abstract class BlockMachine extends BlockPower {
             direction = (direction + 2) % 4; // rotation fix
             tile.setRotation(direction);
         }
+
+        tile.refreshCachedRedstoneStatus();
     }
 
     public boolean useOwnRenderId() {
@@ -154,6 +156,7 @@ public abstract class BlockMachine extends BlockPower {
         return false;
     }
 
+    // ?
     @Override
     public boolean onBlockEventReceived(World par1World, int par2, int par3, int par4, int par5, int par6) {
         super.onBlockEventReceived(par1World, par2, par3, par4, par5, par6);
@@ -166,4 +169,10 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     public abstract boolean supportRotation();
+
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourId) {
+        super.onNeighborBlockChange(world, x, y, z, neighbourId);
+        getTile(world, x, y, z).refreshCachedRedstoneStatus();
+    }
 }

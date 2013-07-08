@@ -29,8 +29,8 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     protected int powerNeeded;
     protected int powerStorage;
     protected int maxEnergyReceived;
-
-    public abstract String getMachineTitle();
+    private boolean isRedstoneSensitive = false;
+    private boolean cachedRedstoneStatus;
 
     protected TileEntityMachine() {
         onNewInstance(this);
@@ -45,6 +45,16 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
             }
         }
     }
+
+    public boolean isRedstoneSensitive() {
+        return isRedstoneSensitive;
+    }
+
+    public void setIsRedstoneSensitive() {
+        isRedstoneSensitive = true;
+    }
+
+    public abstract String getMachineTitle();
 
     @Override
     public void updateEntity() {
@@ -150,6 +160,21 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
         if (dummyCreationPhaseCounter >= DUMMY_CREATION_PHASE_INSTANCE_COUNTER_LIMIT) {
             JaffasFood.Log.printSevere(instance.getClass().getSimpleName() + ": limit of dummy creation has been exceeded!");
         }
+    }
+
+    public void refreshCachedRedstoneStatus() {
+        if (!isRedstoneSensitive()) return;
+        cachedRedstoneStatus = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
+    }
+
+    /**
+     * Returns if machine is getting any redstone power.
+     * Cached!
+     *
+     * @return True if so.
+     */
+    public boolean isBeingPoweredByRedstone() {
+        return cachedRedstoneStatus;
     }
 }
 
