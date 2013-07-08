@@ -3,9 +3,10 @@
  * author: monnef
  */
 
-package monnef.jaffas.technic.block;
+package monnef.jaffas.technic.block.redstone;
 
 import monnef.core.utils.DirectionHelper;
+import monnef.jaffas.technic.block.BlockDirectionalTechnic;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;

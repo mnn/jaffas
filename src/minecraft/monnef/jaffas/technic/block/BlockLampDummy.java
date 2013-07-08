@@ -9,6 +9,7 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.DyeHelper;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.technic.block.redstone.BlockMultiLamp;
 import monnef.jaffas.technic.client.EntityLampLightFX;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.Icon;

@@ -33,7 +33,6 @@ import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.TileEntityGrinder;
-import monnef.jaffas.technic.block.BlockAnalogRepeater;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
@@ -44,11 +43,8 @@ import monnef.jaffas.technic.block.BlockHighPlant;
 import monnef.jaffas.technic.block.BlockKeg;
 import monnef.jaffas.technic.block.BlockLamp;
 import monnef.jaffas.technic.block.BlockLampDummy;
-import monnef.jaffas.technic.block.BlockMultiLamp;
 import monnef.jaffas.technic.block.BlockOre;
-import monnef.jaffas.technic.block.BlockSampler;
 import monnef.jaffas.technic.block.BlockTechnic;
-import monnef.jaffas.technic.block.TileEntityAnalogRepeater;
 import monnef.jaffas.technic.block.TileEntityCobbleBreaker;
 import monnef.jaffas.technic.block.TileEntityCompostCore;
 import monnef.jaffas.technic.block.TileEntityConstructionDummy;
@@ -57,7 +53,13 @@ import monnef.jaffas.technic.block.TileEntityFermenterInventoryRouter;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import monnef.jaffas.technic.block.TileEntityHighPlant;
 import monnef.jaffas.technic.block.TileEntityKeg;
-import monnef.jaffas.technic.block.TileEntitySampler;
+import monnef.jaffas.technic.block.redstone.BlockAnalogRepeater;
+import monnef.jaffas.technic.block.redstone.BlockMultiLamp;
+import monnef.jaffas.technic.block.redstone.BlockRandomizer;
+import monnef.jaffas.technic.block.redstone.BlockSampler;
+import monnef.jaffas.technic.block.redstone.TileEntityAnalogRepeater;
+import monnef.jaffas.technic.block.redstone.TileEntityRandomizer;
+import monnef.jaffas.technic.block.redstone.TileEntitySampler;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
@@ -289,6 +291,9 @@ public class JaffasTechnic extends jaffasMod {
     private int blockSamplerID;
     public static BlockSampler sampler;
 
+    private int blockRandomizerID;
+    public static BlockRandomizer randomizer;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -365,6 +370,7 @@ public class JaffasTechnic extends jaffasMod {
                 itemGemsID = idProvider.getItemIDFromConfig("gems");
                 blockRepeaterID = idProvider.getBlockIDFromConfig("repeater");
                 blockSamplerID = idProvider.getBlockIDFromConfig("sampler");
+                blockRandomizerID = idProvider.getBlockIDFromConfig("randomizer");
             }
 
             itemCompostID = idProvider.getItemIDFromConfig("compost");
@@ -627,6 +633,10 @@ public class JaffasTechnic extends jaffasMod {
             sampler = new BlockSampler(blockSamplerID, 60, 3);
             RegistryUtils.registerBlock(sampler, "sampler", "Sample-and-hold");
             JaffasRegistryHelper.registerTileEntity(TileEntitySampler.class, "sampler");
+
+            randomizer = new BlockRandomizer(blockRandomizerID, 63, 3);
+            RegistryUtils.registerBlock(randomizer, "randomizer", "Randomizer");
+            JaffasRegistryHelper.registerTileEntity(TileEntityRandomizer.class, "randomizer");
         }
 
         highPlant = new BlockHighPlant(blockHighPlantID, 44);

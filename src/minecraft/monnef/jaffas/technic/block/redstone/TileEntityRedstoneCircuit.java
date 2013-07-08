@@ -3,8 +3,11 @@
  * author: monnef
  */
 
-package monnef.jaffas.technic.block;
+package monnef.jaffas.technic.block.redstone;
 
+import monnef.core.api.IIntegerCoordinates;
+import monnef.core.utils.IntegerCoordinates;
+import monnef.jaffas.technic.block.BlockDirectionalTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -13,7 +16,7 @@ import net.minecraftforge.common.ForgeDirection;
 import static monnef.core.utils.DirectionHelper.opposite;
 
 public abstract class TileEntityRedstoneCircuit extends TileEntity {
-    protected int cachedPower = 0;
+    protected int cachedOutputPower = 0;
     private int outputSide = -1;
     private int inputSide = -1;
     private int myBlockId;
@@ -36,7 +39,7 @@ public abstract class TileEntityRedstoneCircuit extends TileEntity {
 
     public int getCurrentPowerFromSide(int side) {
         if (opposite(side) == getOutputSide()) {
-            return cachedPower;
+            return cachedOutputPower;
         }
         return 0;
     }
@@ -117,13 +120,19 @@ public abstract class TileEntityRedstoneCircuit extends TileEntity {
         }
     }
 
-    public int getRedstoneWirePowerLevel(int x, int y, int z) {
-        return worldObj.getBlockId(x, y, z) == Block.redstoneWire.blockID ? worldObj.getBlockMetadata(x, y, z) : 0;
-    }
-
-    protected int getIndirectPowerFromSide(int x, int y, int z, int side) {
-        return worldObj.getIndirectPowerLevelTo(x, y, z, side);
-    }
-
     public abstract boolean canConnectRedstone(int side);
+
+    protected int getMaximumPowerFromSides() {
+        int max = 0;
+        for (ForgeDirection dir : ForgeDirection.VALID_DIRECTIONS) {
+            int dirOrd = dir.ordinal();
+            if (dirOrd != getInputSide() && dirOrd != getOutputSide()) {
+                IIntegerCoordinates pos = (new IntegerCoordinates(this)).shiftInDirectionBy(dir, 1);
+                int curr = pos.getIndirectPowerFromSide(dirOrd);
+
+                if (curr > max) max = curr;
+            }
+        }
+        return max;
+    }
 }

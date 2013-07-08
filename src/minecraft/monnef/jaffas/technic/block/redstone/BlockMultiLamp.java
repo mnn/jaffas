@@ -3,9 +3,10 @@
  * author: monnef
  */
 
-package monnef.jaffas.technic.block;
+package monnef.jaffas.technic.block.redstone;
 
 import monnef.core.utils.BlockHelper;
+import monnef.jaffas.technic.block.BlockLamp;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 

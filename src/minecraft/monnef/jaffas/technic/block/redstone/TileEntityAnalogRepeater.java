@@ -3,8 +3,10 @@
  * author: monnef
  */
 
-package monnef.jaffas.technic.block;
+package monnef.jaffas.technic.block.redstone;
 
+import monnef.core.api.IIntegerCoordinates;
+import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.ForgeDirection;
@@ -13,27 +15,26 @@ public class TileEntityAnalogRepeater extends TileEntityRedstoneCircuit {
     @Override
     public boolean recalculatePower() {
         ForgeDirection inputDir = ForgeDirection.getOrientation(getInputSide());
-        int sourceX = xCoord + inputDir.offsetX;
-        int sourceY = yCoord + inputDir.offsetY;
-        int sourceZ = zCoord + inputDir.offsetZ;
-        int inputBlockId = worldObj.getBlockId(sourceX, sourceY, sourceZ);
-        int oldPower = cachedPower;
+        IIntegerCoordinates pos = (new IntegerCoordinates(this)).shiftInDirectionBy(inputDir, 1);
+        int inputBlockId = pos.getBlockId();
+
+        int oldPower = cachedOutputPower;
         if (inputBlockId == 0) {
-            cachedPower = 0;
+            cachedOutputPower = 0;
         } else {
             Block inputBlock = Block.blocksList[inputBlockId];
             if (inputBlock == null) {
-                cachedPower = 0;
+                cachedOutputPower = 0;
             } else {
-                cachedPower = getIndirectPowerFromSide(sourceX, sourceY, sourceZ, getInputSide());
-                int redStoneWirePower = getRedstoneWirePowerLevel(sourceX, sourceY, sourceZ);
-                if (redStoneWirePower > cachedPower) {
-                    cachedPower = redStoneWirePower;
+                cachedOutputPower = pos.getIndirectPowerFromSide(getInputSide());
+                int redStoneWirePower = pos.getRedstoneWirePowerLevel();
+                if (redStoneWirePower > cachedOutputPower) {
+                    cachedOutputPower = redStoneWirePower;
                 }
             }
         }
 
-        return oldPower != cachedPower;
+        return oldPower != cachedOutputPower;
     }
 
     @Override

@@ -3,9 +3,8 @@
  * author: monnef
  */
 
-package monnef.jaffas.technic.block;
+package monnef.jaffas.technic.block.redstone;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
