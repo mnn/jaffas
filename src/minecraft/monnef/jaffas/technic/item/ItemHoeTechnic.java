@@ -23,6 +23,7 @@ public class ItemHoeTechnic extends ItemTechnicTool {
 
     private static final int HOE_HARVEST_RADIUS = 3;
     private static final int HOE_SWITCHGRASS_PLANT_RADIUS = 1;
+    private static final int HOE_SWITCHGRASS_PLANT_RADIUS_BIG = 4;
 
     public ItemHoeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
@@ -32,6 +33,10 @@ public class ItemHoeTechnic extends ItemTechnicTool {
         if (!player.canPlayerEdit(x, y, z, direction, stack)) {
             return false;
         } else {
+            if (nearlyDestroyed(stack)) {
+                return false;
+            }
+
             UseHoeEvent event = new UseHoeEvent(player, stack, world, x, y, z);
             if (MinecraftForge.EVENT_BUS.post(event)) {
                 return false;
@@ -61,7 +66,12 @@ public class ItemHoeTechnic extends ItemTechnicTool {
             } else if (canBeMassHarvested(block)) {
                 for (int xx = x - HOE_HARVEST_RADIUS; xx <= x + HOE_HARVEST_RADIUS; xx++) {
                     for (int zz = z - HOE_HARVEST_RADIUS; zz <= z + HOE_HARVEST_RADIUS; zz++) {
-                        if (world.getBlockId(xx, y, zz) == blockId) {
+                        int currBlockId = world.getBlockId(xx, y, zz);
+                        boolean harvest = currBlockId == blockId;
+                        if (!harvest && player.isSneaking()) {
+                            harvest = canBeMassHarvested(Block.blocksList[currBlockId]);
+                        }
+                        if (harvest) {
                             if (!world.isRemote) {
                                 world.destroyBlock(xx, y, zz, true);
                             }
@@ -73,8 +83,21 @@ public class ItemHoeTechnic extends ItemTechnicTool {
             } else if (blockId == JaffasFood.blockSwitchgrassSolid.blockID) {
                 if (!world.isRemote) world.setBlockToAir(x, y, z);
                 BlockSwitchgrass switchgrass = JaffasFood.blockSwitchgrass;
-                for (int xx = x - HOE_SWITCHGRASS_PLANT_RADIUS; xx <= x + HOE_SWITCHGRASS_PLANT_RADIUS; xx++) {
-                    for (int zz = z - HOE_SWITCHGRASS_PLANT_RADIUS; zz <= z + HOE_SWITCHGRASS_PLANT_RADIUS; zz++) {
+                int dmgCoef = 1;
+
+                int plantSize = HOE_SWITCHGRASS_PLANT_RADIUS;
+                if (allNeighboursAreSwitchgrass(world, x, y, z)) {
+                    plantSize = HOE_SWITCHGRASS_PLANT_RADIUS_BIG;
+                    for (int xx = x - 1; xx <= x + 1; xx++) {
+                        for (int zz = z - 1; zz <= z + 1; zz++) {
+                            if (!world.isRemote) world.setBlockToAir(xx, y, zz);
+                        }
+                    }
+                    dmgCoef = 3;
+                }
+
+                for (int xx = x - plantSize; xx <= x + plantSize; xx++) {
+                    for (int zz = z - plantSize; zz <= z + plantSize; zz++) {
                         if (switchgrass.canPlaceBlockAt(world, xx, y, zz)) {
                             if (!world.isRemote) {
                                 BlockHelper.setBlock(world, xx, y, zz, switchgrass.blockID, BlockSwitchgrass.VALUE_TOP);
@@ -84,12 +107,22 @@ public class ItemHoeTechnic extends ItemTechnicTool {
                         }
                     }
                 }
-                damageTool(2, player, stack);
+                damageTool(2 * dmgCoef, player, stack);
                 return true;
             } else {
                 return false;
             }
         }
+    }
+
+    private boolean allNeighboursAreSwitchgrass(World world, int x, int y, int z) {
+        for (int xx = x - 1; xx <= x + 1; xx++) {
+            for (int zz = z - 1; zz <= z + 1; zz++) {
+                if (xx == x && zz == z) continue; // skip already destroyed block
+                if (world.getBlockId(xx, y, zz) != JaffasFood.blockSwitchgrassSolid.blockID) return false;
+            }
+        }
+        return true;
     }
 
     private boolean canBeMassHarvested(Block block) {
