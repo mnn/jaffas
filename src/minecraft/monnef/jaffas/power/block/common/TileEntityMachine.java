@@ -31,6 +31,7 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     protected int maxEnergyReceived;
     private boolean isRedstoneSensitive = false;
     private boolean cachedRedstoneStatus;
+    private boolean isRedstoneStatusDirty;
 
     protected TileEntityMachine() {
         onNewInstance(this);
@@ -59,6 +60,10 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (isRedstoneStatusDirty) {
+            isRedstoneStatusDirty = false;
+            refreshCachedRedstoneStatus();
+        }
         getPowerProvider().update(this);
     }
 
@@ -90,6 +95,16 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
         tag.setByte(ROTATION_TAG_NAME, (byte) this.rotation.ordinal());
+    }
+
+    @Override
+    public void validate() {
+        super.validate();
+        markRedstoneStatusDirty();
+    }
+
+    public void markRedstoneStatusDirty() {
+        isRedstoneStatusDirty = true;
     }
 
     @Override
@@ -162,7 +177,7 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
         }
     }
 
-    public void refreshCachedRedstoneStatus() {
+    protected void refreshCachedRedstoneStatus() {
         if (!isRedstoneSensitive()) return;
         cachedRedstoneStatus = worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord);
     }

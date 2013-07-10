@@ -65,7 +65,7 @@ public abstract class BlockMachine extends BlockPower {
             tile.setRotation(direction);
         }
 
-        tile.refreshCachedRedstoneStatus();
+        tile.markRedstoneStatusDirty();
     }
 
     public boolean useOwnRenderId() {
@@ -173,6 +173,6 @@ public abstract class BlockMachine extends BlockPower {
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourId) {
         super.onNeighborBlockChange(world, x, y, z, neighbourId);
-        getTile(world, x, y, z).refreshCachedRedstoneStatus();
+        getTile(world, x, y, z).markRedstoneStatusDirty();
     }
 }
