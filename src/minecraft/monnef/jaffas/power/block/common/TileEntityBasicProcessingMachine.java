@@ -30,6 +30,9 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     private ItemStack[] processingInv;
     public int powerMax;
     public int powerStored;
+    public int slowingCoefficient = 1;
+
+    protected int doWorkCounter;
 
     private static HashMap<Class, ContainerBasicProcessingMachine> containerPrototype = new HashMap<Class, ContainerBasicProcessingMachine>();
 
@@ -73,14 +76,18 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
         if (worldObj.isRemote) return;
 
         if (isWorking()) {
-            processTime++;
-            float power = getPowerProvider().useEnergy(powerNeeded, powerNeeded, true);
-            if (power < powerNeeded) {
-                JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
-            } else {
-                if (processTime >= processItemTime) {
-                    processTime = 0;
-                    produceOutput(getRecipeHandler().findByInput(processingInv));
+            doWorkCounter++;
+            if (doWorkCounter >= slowingCoefficient) {
+                doWorkCounter = 0;
+                processTime++;
+                float power = getPowerProvider().useEnergy(powerNeeded, powerNeeded, true);
+                if (power < powerNeeded) {
+                    JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
+                } else {
+                    if (processTime >= processItemTime) {
+                        processTime = 0;
+                        produceOutput(getRecipeHandler().findByInput(processingInv));
+                    }
                 }
             }
         } else {

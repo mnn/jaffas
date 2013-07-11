@@ -3,17 +3,16 @@
  * author: monnef
  */
 
-package monnef.jaffas.power.client;
+package monnef.jaffas.power.client.common;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
-import monnef.jaffas.power.client.common.GuiContainerMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 
-public abstract class GuiContainerBasicProcessingMachine extends GuiContainerMachine {
+public class GuiContainerBasicProcessingMachine extends GuiContainerMachine {
     public static final int ENERGY_BAR_X = 146;
     public static final int ENERGY_BAR_Y = 15;
     private static final int ENERGY_BAR_WIDTH = 18;
@@ -76,5 +75,15 @@ public abstract class GuiContainerBasicProcessingMachine extends GuiContainerMac
     @Override
     protected void drawVerticalLine(int x, int y, int height, int color) {
         super.drawVerticalLine(x, y, y + height, color);
+    }
+
+    @Override
+    protected String getBackgroundTexture() {
+        return "/guipmachine.png";
+    }
+
+    @Override
+    protected String getTitle() {
+        return bpMachine.getMachineTitle();
     }
 }

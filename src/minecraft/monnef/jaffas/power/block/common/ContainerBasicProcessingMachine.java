@@ -10,7 +10,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
-public abstract class ContainerBasicProcessingMachine extends ContainerMachine {
+public class ContainerBasicProcessingMachine extends ContainerMachine {
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 1;
 
@@ -26,5 +26,15 @@ public abstract class ContainerBasicProcessingMachine extends ContainerMachine {
     public void constructSlots(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 42, 35));
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 111, 35));
+    }
+
+    @Override
+    public int getSlotsCount() {
+        return 2;
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 1;
     }
 }

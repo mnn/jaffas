@@ -27,18 +27,20 @@ import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
+import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
-import monnef.jaffas.power.block.BlockGrinder;
 import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
-import monnef.jaffas.power.block.ContainerGrinder;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.power.block.TileEntityKitchenUnit;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
+import monnef.jaffas.power.block.TileEntityToaster;
+import monnef.jaffas.power.block.common.BlockBasicProcessingMachine;
+import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
@@ -101,8 +103,11 @@ public class JaffasPower extends jaffasMod {
     public static BlockKitchenUnit kitchenUnit;
     private int blockKitchenUnitID;
 
-    public static BlockGrinder grinder;
+    public static BlockBasicProcessingMachine grinder;
     private int blockGrinderID;
+
+    public static BlockBasicProcessingMachine toaster;
+    private int blockToasterID;
 
     @PreInit
     @Override
@@ -113,7 +118,6 @@ public class JaffasPower extends jaffasMod {
             config.load();
             idProvider.linkWithConfig(config);
 
-            //JaffarrolID = idProvider.getItemIDFromConfig("jaffarrol");
             ItemDebugID = idProvider.getItemIDFromConfig("debug");
             ItemWrenchID = idProvider.getItemIDFromConfig("pipeWrench");
             ItemLinkToolID = idProvider.getItemIDFromConfig("linkTool");
@@ -129,6 +133,7 @@ public class JaffasPower extends jaffasMod {
             blockKitchenUnitID = idProvider.getBlockIDFromConfig("kitchenUnit");
 
             blockGrinderID = idProvider.getBlockIDFromConfig("grinder");
+            blockToasterID = idProvider.getBlockIDFromConfig("toaster");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -212,10 +217,15 @@ public class JaffasPower extends jaffasMod {
         RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
         registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
 
-        TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerGrinder.class);
-        grinder = new BlockGrinder(blockGrinderID, 101);
+        TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerBasicProcessingMachine.class);
+        grinder = new BlockBasicProcessingMachine(blockGrinderID, 101, TileEntityGrinder.class, GuiHandler.GuiId.GRINDER);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileEntityGrinder.class, "grinder");
+
+        TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityToaster.class, ContainerBasicProcessingMachine.class);
+        toaster = new BlockBasicProcessingMachine(blockToasterID, 101, TileEntityToaster.class, GuiHandler.GuiId.TOASTER);
+        RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
+        registerTileEntity(TileEntityToaster.class, "toaster");
     }
 
     private void installRecipes() {
@@ -229,6 +239,6 @@ public class JaffasPower extends jaffasMod {
             GameRegistry.addRecipe(new ItemStack(grinder), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
         }
 
-
+        TileEntityToaster.addRecipe(TileEntityToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
     }
 }

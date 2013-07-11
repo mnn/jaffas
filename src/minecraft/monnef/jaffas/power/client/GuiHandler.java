@@ -7,11 +7,13 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import monnef.jaffas.power.block.ContainerGenerator;
-import monnef.jaffas.power.block.ContainerGrinder;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityGrinder;
+import monnef.jaffas.power.block.TileEntityToaster;
+import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -19,7 +21,8 @@ import net.minecraft.world.World;
 public class GuiHandler implements IGuiHandler {
     public enum GuiId {
         GENERATOR,
-        GRINDER
+        GRINDER,
+        TOASTER
     }
 
     @Override
@@ -28,7 +31,9 @@ public class GuiHandler implements IGuiHandler {
         if (tileEntity instanceof TileEntityGenerator) {
             return new ContainerGenerator(player.inventory, (TileEntityGenerator) tileEntity);
         } else if (tileEntity instanceof TileEntityGrinder) {
-            return new ContainerGrinder(player.inventory, (TileEntityBasicProcessingMachine) tileEntity);
+            return new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity);
+        } else if (tileEntity instanceof TileEntityToaster) {
+            return new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity);
         }
         return null;
     }
@@ -41,7 +46,9 @@ public class GuiHandler implements IGuiHandler {
         if (tileEntity instanceof TileEntityGenerator) {
             return new GuiContainerGenerator(player.inventory, (TileEntityGenerator) tileEntity, new ContainerGenerator(player.inventory, (TileEntityMachineWithInventory) tileEntity));
         } else if (tileEntity instanceof TileEntityGrinder) {
-            return new GuiContainerGrinder(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerGrinder(player.inventory, (TileEntityBasicProcessingMachine) tileEntity));
+            return new GuiContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity));
+        } else if (tileEntity instanceof TileEntityToaster) {
+            return new GuiContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity));
         }
         return null;
     }

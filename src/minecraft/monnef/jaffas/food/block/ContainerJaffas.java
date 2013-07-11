@@ -16,6 +16,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
 public abstract class ContainerJaffas extends Container {
+    private static final boolean PRINT_DEBUG_TRANSFER_MESSAGES = false;
+
     protected TileEntity tile;
     private boolean dummy;
 
@@ -62,7 +64,7 @@ public abstract class ContainerJaffas extends Container {
 
         int slots = getSlotsCount();
 
-        if (MonnefCorePlugin.debugEnv) {
+        if (PRINT_DEBUG_TRANSFER_MESSAGES && MonnefCorePlugin.debugEnv) {
             JaffasFood.Log.printDebug(this.getClass().getSimpleName() + ": transferStackInSlot - slot#=" + slot);
         }
 

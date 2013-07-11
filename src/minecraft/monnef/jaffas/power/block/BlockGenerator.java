@@ -42,8 +42,8 @@ public class BlockGenerator extends BlockMachineWithInventory {
     }
 
     @Override
-    public int getGuiId() {
-        return GuiHandler.GuiId.GENERATOR.ordinal();
+    public GuiHandler.GuiId getGuiId() {
+        return GuiHandler.GuiId.GENERATOR;
     }
 
     @Override
