@@ -20,7 +20,7 @@ import java.util.Random;
 public class BlockGenerator extends BlockMachineWithInventory {
 
     public BlockGenerator(int id, int texture) {
-        super(id, texture, JaffasTechnic.breakableIronMaterial, true);
+        super(id, texture, JaffasTechnic.breakableIronMaterial, true, true);
         setCreativeTab(JaffasPower.instance.creativeTab);
         setUnlocalizedName("generator");
         setHardness(1.5f);
@@ -44,11 +44,6 @@ public class BlockGenerator extends BlockMachineWithInventory {
     @Override
     public GuiHandler.GuiId getGuiId() {
         return GuiHandler.GuiId.GENERATOR;
-    }
-
-    @Override
-    public boolean useOwnRenderId() {
-        return true;
     }
 
     /**

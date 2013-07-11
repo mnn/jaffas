@@ -24,7 +24,7 @@ public class BlockKitchenUnit extends BlockMachine {
     private final int typesCount;
 
     public BlockKitchenUnit(int id, int textureID, int typesCount) {
-        super(id, textureID, Material.wood, false);
+        super(id, textureID, Material.wood, false, false);
         this.typesCount = typesCount;
         setHardness(0.5f);
         setIconsCount(ICONS_PER_TYPE * typesCount);

@@ -8,14 +8,15 @@ package monnef.jaffas.power.block.common;
 import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.client.GuiHandler;
+import monnef.jaffas.power.common.WrenchHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public abstract class BlockMachineWithInventory extends BlockMachine {
-    public BlockMachineWithInventory(int id, int index, Material material, boolean customRenderer) {
-        super(id, index, material, customRenderer);
+    public BlockMachineWithInventory(int id, int index, Material material, boolean customRenderer, boolean useCustomRenderingId) {
+        super(id, index, material, customRenderer, useCustomRenderingId);
     }
 
     @Override

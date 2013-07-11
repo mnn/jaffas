@@ -12,6 +12,7 @@ import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
+import monnef.jaffas.power.block.TileEntityToaster;
 import monnef.jaffas.power.common.CommonProxy;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -22,6 +23,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGenerator.class, new TileEntityGeneratorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new TileEntityAntennaRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightningConductor.class, new TileEntityLightningConductorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityToaster.class, new TileEntityToasterRenderer());
 
         BlockRenderingHandler handler = new BlockRenderingHandler();
         RenderingRegistry.registerBlockHandler(handler);

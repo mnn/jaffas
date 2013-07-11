@@ -5,7 +5,6 @@
 
 package monnef.jaffas.power.block;
 
-import buildcraft.api.power.IPowerProvider;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
@@ -64,5 +63,11 @@ public class TileEntityAntenna extends TileEntityMachine {
 
     @Override
     public void doWork() {
+    }
+
+    @Override
+    public boolean toggleRotation() {
+        this.changeRotation();
+        return true;
     }
 }

@@ -14,7 +14,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 public class BlockAntenna extends BlockMachine {
     public BlockAntenna(int par1, int par2) {
-        super(par1, par2, Material.rock, true);
+        super(par1, par2, Material.rock, true, true);
         setUnlocalizedName("antenna");
         onWrench = WrenchAction.ROTATE;
         useDefaultDirection = true;
@@ -30,11 +30,6 @@ public class BlockAntenna extends BlockMachine {
 
     @Override
     public boolean supportRotation() {
-        return true;
-    }
-
-    @Override
-    public boolean useOwnRenderId() {
         return true;
     }
 }

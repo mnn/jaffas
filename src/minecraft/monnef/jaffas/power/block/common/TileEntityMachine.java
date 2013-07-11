@@ -191,5 +191,10 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     public boolean isBeingPoweredByRedstone() {
         return cachedRedstoneStatus;
     }
+
+    public boolean toggleRotation() {
+        rotation = ForgeDirection.VALID_DIRECTIONS[(rotation.ordinal() + 1) % 4];
+        return true;
+    }
 }
 

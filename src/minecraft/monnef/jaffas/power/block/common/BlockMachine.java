@@ -9,9 +9,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.api.IMachineTool;
-import monnef.jaffas.power.api.IPipeWrench;
-import monnef.jaffas.power.block.TileEntityAntenna;
-import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.power.common.WrenchHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,11 +30,13 @@ public abstract class BlockMachine extends BlockPower {
     protected int renderID;
     protected boolean useDefaultDirection = false;
     protected ForgeDirection defaultDirection = ForgeDirection.NORTH;
+    private boolean useOwnRenderId;
 
-    public BlockMachine(int id, int index, Material material, boolean customRenderer) {
+    public BlockMachine(int id, int index, Material material, boolean customRenderer, boolean useOwnRenderingId) {
         super(id, index, material);
         this.customRenderer = customRenderer;
-        if (useOwnRenderId()) {
+        this.useOwnRenderId = useOwnRenderingId;
+        if (getUseOwnRenderId()) {
             renderID = RenderingRegistry.getNextAvailableRenderId();
         }
     }
@@ -68,14 +68,14 @@ public abstract class BlockMachine extends BlockPower {
         tile.markRedstoneStatusDirty();
     }
 
-    public boolean useOwnRenderId() {
-        return false;
+    public boolean getUseOwnRenderId() {
+        return useOwnRenderId;
     }
 
     @Override
     public int getRenderType() {
         if (customRenderer) {
-            return useOwnRenderId() ? this.renderID : JaffasPower.renderID;
+            return getUseOwnRenderId() ? this.renderID : JaffasPower.renderID;
         } else {
             return super.getRenderType();
         }
@@ -102,7 +102,7 @@ public abstract class BlockMachine extends BlockPower {
         ItemStack hand = player.getCurrentEquippedItem();
         if (hand != null) {
             Item item = hand.getItem();
-            if (isPipeWrenchOrCompatible(item)) {
+            if (WrenchHelper.isPipeWrenchOrCompatible(item)) {
                 return this.onPipeWrenchClickDefault(world, x, y, z, player, side);
             } else if (item instanceof IMachineTool) {
                 IMachineTool tool = (IMachineTool) item;
@@ -111,12 +111,6 @@ public abstract class BlockMachine extends BlockPower {
             }
         }
 
-        return false;
-    }
-
-    private boolean isPipeWrenchOrCompatible(Item item) {
-        if (item instanceof IPipeWrench) return true;
-        if (JaffasTechnic.omniWrenchId == item.itemID) return true;
         return false;
     }
 
@@ -144,12 +138,9 @@ public abstract class BlockMachine extends BlockPower {
 
     private boolean doRotation(World world, int x, int y, int z, EntityPlayer player, int side) {
         TileEntityMachine machine = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
-        if (machine instanceof TileEntityAntenna) {
-            TileEntityAntenna ant = (TileEntityAntenna) machine;
-            ant.changeRotation();
-            return true;
-        }
-        return false;
+        boolean res = machine.toggleRotation();
+        machine.sendUpdate();
+        return res;
     }
 
     protected boolean onPipeWrenchClick(World world, int x, int y, int z, EntityPlayer player, int side) {

@@ -6,11 +6,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockBasicProcessingMachine extends BlockMachineWithInventory {
-    private final Class<? extends TileEntityBasicProcessingMachine> tileClass;
-    private final GuiHandler.GuiId guiId;
+    private Class<? extends TileEntityBasicProcessingMachine> tileClass;
+    private GuiHandler.GuiId guiId;
 
     public BlockBasicProcessingMachine(int id, int index, Class<? extends TileEntityBasicProcessingMachine> tileClass, GuiHandler.GuiId guiId) {
-        super(id, index, JaffasTechnic.breakableIronMaterial, false);
+        this(id, index, tileClass, guiId, false, false);
+    }
+
+    public BlockBasicProcessingMachine(int id, int index, Class<? extends TileEntityBasicProcessingMachine> tileClass, GuiHandler.GuiId guiId, boolean customRenderer, boolean customRenderingId) {
+        super(id, index, JaffasTechnic.breakableIronMaterial, customRenderer, customRenderingId);
         this.tileClass = tileClass;
         this.guiId = guiId;
     }
