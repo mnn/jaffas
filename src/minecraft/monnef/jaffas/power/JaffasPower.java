@@ -31,6 +31,7 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
+import monnef.jaffas.power.block.BlockGrinder;
 import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.BlockToaster;
@@ -40,7 +41,6 @@ import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.power.block.TileEntityKitchenUnit;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.block.TileEntityToaster;
-import monnef.jaffas.power.block.common.BlockBasicProcessingMachine;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.client.GuiHandler;
@@ -104,7 +104,7 @@ public class JaffasPower extends jaffasMod {
     public static BlockKitchenUnit kitchenUnit;
     private int blockKitchenUnitID;
 
-    public static BlockBasicProcessingMachine grinder;
+    public static BlockGrinder grinder;
     private int blockGrinderID;
 
     public static BlockToaster toaster;
@@ -219,7 +219,7 @@ public class JaffasPower extends jaffasMod {
         registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
 
         TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerBasicProcessingMachine.class);
-        grinder = new BlockBasicProcessingMachine(blockGrinderID, 101, TileEntityGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
+        grinder = new BlockGrinder(blockGrinderID, 101, TileEntityGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileEntityGrinder.class, "grinder");
         grinder.setRotationShiftInPlacing(1);
@@ -239,6 +239,8 @@ public class JaffasPower extends jaffasMod {
             GameRegistry.addShapedRecipe(new ItemStack(generator, 2), " I ", "IFI", " C ", 'I', Item.ingotIron, 'F', Block.furnaceIdle, 'C', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 0));
 
             GameRegistry.addRecipe(new ItemStack(grinder), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
+
+            GameRegistry.addShapedRecipe(new ItemStack(toaster), "CJ", "H ", 'C', JaffasTechnic.itemCasingRefined, 'J', JaffasTechnic.jaffarrol, 'H', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 0));
         }
 
         TileEntityToaster.addRecipe(TileEntityToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);

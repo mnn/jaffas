@@ -891,6 +891,8 @@ public class JaffasTechnic extends jaffasMod {
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.shears), " J", "J ", 'J', jaffarrol);
         GameRegistry.addShapedRecipe(new ItemStack(highPlantPost), "SSS", " S ", " S ", 'S', Item.stick);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(hopWeatMixture), hop, Item.wheat);
     }
 
     private Item getItem(JaffaItem item) {
