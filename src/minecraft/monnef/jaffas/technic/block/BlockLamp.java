@@ -50,7 +50,9 @@ public class BlockLamp extends BlockTechnic {
     @Override
     public void registerIcons(IconRegister iconRegister) {
         super.registerIcons(iconRegister);
-        shadeIcon = iconRegister.registerIcon(CustomIconHelper.generateId(this, shadeTextureID));
+        if (getClass() == BlockLamp.class) {
+            shadeIcon = iconRegister.registerIcon(CustomIconHelper.generateId(this, shadeTextureID));
+        }
     }
 
     @Override

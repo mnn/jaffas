@@ -12,6 +12,7 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.block.redstone.BlockMultiLamp;
 import monnef.jaffas.technic.client.EntityLampLightFX;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 
@@ -66,5 +67,9 @@ public class BlockLampDummy extends BlockTechnic {
     public static void configureColor(EntityLampLightFX light, int meta) {
         float[] color = particleColors[meta];
         light.configureColor(color[0], color[1], color[2]);
+    }
+
+    @Override
+    public void registerIcons(IconRegister iconRegister) {
     }
 }
