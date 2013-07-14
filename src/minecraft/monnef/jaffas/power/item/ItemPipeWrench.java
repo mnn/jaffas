@@ -23,8 +23,8 @@ public class ItemPipeWrench extends ItemPower implements IPipeWrench {
     }
 
     @Override
-    public boolean renderPowerLabels() {
-        return true;
+    public boolean renderPowerLabels(EntityPlayer player) {
+        return player.isSneaking();
     }
 
     @Override

@@ -33,6 +33,7 @@ import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
+import monnef.jaffas.power.block.BlockToaster;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityGrinder;
@@ -106,7 +107,7 @@ public class JaffasPower extends jaffasMod {
     public static BlockBasicProcessingMachine grinder;
     private int blockGrinderID;
 
-    public static BlockBasicProcessingMachine toaster;
+    public static BlockToaster toaster;
     private int blockToasterID;
 
     @PreInit
@@ -224,7 +225,7 @@ public class JaffasPower extends jaffasMod {
         grinder.setRotationShiftInPlacing(1);
 
         TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityToaster.class, ContainerBasicProcessingMachine.class);
-        toaster = new BlockBasicProcessingMachine(blockToasterID, 101, TileEntityToaster.class, GuiHandler.GuiId.TOASTER, true, false);
+        toaster = new BlockToaster(blockToasterID, 101, TileEntityToaster.class, GuiHandler.GuiId.TOASTER, true, false);
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileEntityToaster.class, "toaster");
     }

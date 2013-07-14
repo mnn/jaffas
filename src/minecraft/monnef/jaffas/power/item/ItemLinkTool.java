@@ -5,7 +5,6 @@
 
 package monnef.jaffas.power.item;
 
-import monnef.core.utils.NBTHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
@@ -29,7 +28,7 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
     }
 
     @Override
-    public boolean renderPowerLabels() {
+    public boolean renderPowerLabels(EntityPlayer p) {
         return true;
     }
 

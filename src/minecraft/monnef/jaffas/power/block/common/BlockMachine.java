@@ -6,6 +6,8 @@
 package monnef.jaffas.power.block.common;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.core.utils.BlockHelper;
+import monnef.core.utils.BoundingBoxSize;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.api.IMachineTool;
@@ -16,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.EnumMovingObjectType;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
@@ -33,6 +36,8 @@ public abstract class BlockMachine extends BlockPower {
     protected ForgeDirection defaultDirection = ForgeDirection.NORTH;
     private boolean useOwnRenderId;
     protected int rotationShiftInPlacing = 2;
+    private boolean useRotatedBoundingBox = false;
+    private BoundingBoxSize customBoundingBox;
 
     public BlockMachine(int id, int index, Material material, boolean customRenderer, boolean useOwnRenderingId) {
         super(id, index, material);
@@ -51,6 +56,26 @@ public abstract class BlockMachine extends BlockPower {
 
     public void setRotationShiftInPlacing(int rotationShiftInPlacing) {
         this.rotationShiftInPlacing = rotationShiftInPlacing % ROTATIONS_COUNT;
+    }
+
+    public void setCustomRotationSensitiveBoundingBox(float x1, float y1, float z1, float x2, float y2, float z2) {
+        customBoundingBox = new BoundingBoxSize(x1, x2, y1, y2, z1, z2);
+        useRotatedBoundingBox = true;
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        return getSelectedBoundingBoxFromPool(world, x, y, z);
+    }
+
+    @Override
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+        if (!useRotatedBoundingBox) return;
+        setBlockBounds(BlockHelper.rotateBoundingBoxCoordinates(customBoundingBox, getTile(world, x, y, z).getRotation().ordinal(), x, y, z, false));
+    }
+
+    public void setBlockBounds(AxisAlignedBB bb) {
+        setBlockBounds((float) bb.minX, (float) bb.minY, (float) bb.minZ, (float) bb.maxX, (float) bb.maxY, (float) bb.maxZ);
     }
 
     @Override

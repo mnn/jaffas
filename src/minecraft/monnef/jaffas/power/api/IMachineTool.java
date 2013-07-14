@@ -11,5 +11,5 @@ import net.minecraft.entity.player.EntityPlayer;
 public interface IMachineTool {
     public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side);
 
-    public boolean renderPowerLabels();
+    public boolean renderPowerLabels(EntityPlayer player);
 }

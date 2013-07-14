@@ -5,7 +5,6 @@
 
 package monnef.jaffas.power.client;
 
-import buildcraft.api.power.IPowerProvider;
 import cpw.mods.fml.client.FMLClientHandler;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
@@ -106,7 +105,7 @@ public class PowerLabels {
                 Item item = stack.getItem();
 
                 if (item instanceof IMachineTool) {
-                    ret = ((IMachineTool) item).renderPowerLabels();
+                    ret = ((IMachineTool) item).renderPowerLabels(player);
                 } else {
                     ret = false;
                 }

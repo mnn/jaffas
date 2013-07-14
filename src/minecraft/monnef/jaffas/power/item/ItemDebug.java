@@ -40,14 +40,14 @@ public class ItemDebug extends ItemPower implements IMachineTool {
         */
 
         if (machine.getMachineBlock().supportRotation()) {
-            print("dir: " + machine.getRotation().toString());
+            print("dir: [" + machine.getRotation().ordinal() + "] " + machine.getRotation().toString());
         }
 
         return true;
     }
 
     @Override
-    public boolean renderPowerLabels() {
+    public boolean renderPowerLabels(EntityPlayer p) {
         return true;
     }
 
