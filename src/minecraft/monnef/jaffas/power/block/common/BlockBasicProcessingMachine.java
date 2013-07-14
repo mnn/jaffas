@@ -30,7 +30,9 @@ public class BlockBasicProcessingMachine extends BlockMachineWithInventory {
 
     public TileEntityBasicProcessingMachine createBasicProcessingMachineTileEntity(World world, int meta) {
         try {
-            return tileClass.newInstance();
+            TileEntityBasicProcessingMachine tile = tileClass.newInstance();
+            if (getUseRotatedBoundingBox()) tile.setForceFullCubeRenderBoundingBox(true);
+            return tile;
         } catch (InstantiationException e) {
             throw new RuntimeException(e);
         } catch (IllegalAccessException e) {

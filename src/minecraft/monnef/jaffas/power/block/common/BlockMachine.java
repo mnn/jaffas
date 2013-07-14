@@ -63,6 +63,10 @@ public abstract class BlockMachine extends BlockPower {
         useRotatedBoundingBox = true;
     }
 
+    public boolean getUseRotatedBoundingBox() {
+        return useRotatedBoundingBox;
+    }
+
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         return getSelectedBoundingBoxFromPool(world, x, y, z);
