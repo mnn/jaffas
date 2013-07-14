@@ -60,7 +60,7 @@ public class AchievementsHandler {
     // one of needed achievements -> combined achievement
     private static HashMultimap<Integer, CombinedAchievement> combinedAchievementLookupMap = HashMultimap.create();
 
-    private static int idCounter = 9790;
+    private static int idCounter = -1;
     private static boolean initialized = false;
 
     public static void init() {
@@ -70,6 +70,9 @@ public class AchievementsHandler {
         }
         if (initialized) {
             Log.printSevere("AchievementsHandler reinitialization by " + CallerClassNameFinder.getCallerClassName(1));
+        }
+        if (idCounter == -1) {
+            throw new RuntimeException("Counter not initialized.");
         }
 
         AchievementHooksHandler handler = new AchievementHooksHandler();
@@ -299,5 +302,9 @@ public class AchievementsHandler {
 
     public static void corrupt(EntityPlayer player) {
         getAchievementHolder(player).corrupt();
+    }
+
+    public static void setStartingId(int offset) {
+        idCounter = offset;
     }
 }

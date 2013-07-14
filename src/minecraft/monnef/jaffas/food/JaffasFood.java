@@ -356,6 +356,7 @@ public class JaffasFood extends jaffasMod {
             JaffasRegistryHelper.compatibilityMode = config.get(Configuration.CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
             vanillaRecipesEnabled = config.get(Configuration.CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
             dungeonLootEnabled = config.get(Configuration.CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
+            AchievementsHandler.setStartingId(config.get(Configuration.CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
