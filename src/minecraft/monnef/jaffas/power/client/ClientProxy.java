@@ -11,6 +11,7 @@ import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.block.TileEntityToaster;
 import monnef.jaffas.power.common.CommonProxy;
@@ -24,6 +25,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new TileEntityAntennaRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightningConductor.class, new TileEntityLightningConductorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityToaster.class, new TileEntityToasterRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrinder.class, new TileEntityGrinderRenderer());
 
         BlockRenderingHandler handler = new BlockRenderingHandler();
         RenderingRegistry.registerBlockHandler(handler);

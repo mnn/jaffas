@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 public abstract class BlockMachine extends BlockPower {
+    public static final int ROTATIONS_COUNT = 4;
     private boolean customRenderer;
     protected WrenchAction onWrench = WrenchAction.ROTATE;
     protected WrenchAction onWrenchSneaking = WrenchAction.DROP;
@@ -31,6 +32,7 @@ public abstract class BlockMachine extends BlockPower {
     protected boolean useDefaultDirection = false;
     protected ForgeDirection defaultDirection = ForgeDirection.NORTH;
     private boolean useOwnRenderId;
+    protected int rotationShiftInPlacing = 2;
 
     public BlockMachine(int id, int index, Material material, boolean customRenderer, boolean useOwnRenderingId) {
         super(id, index, material);
@@ -47,6 +49,10 @@ public abstract class BlockMachine extends BlockPower {
         return (TileEntityMachine) world.getBlockTileEntity(x, y, z);
     }
 
+    public void setRotationShiftInPlacing(int rotationShiftInPlacing) {
+        this.rotationShiftInPlacing = rotationShiftInPlacing % ROTATIONS_COUNT;
+    }
+
     @Override
     public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity, ItemStack stack) {
         TileEntityMachine tile = getTile(w, x, y, z);
@@ -61,7 +67,7 @@ public abstract class BlockMachine extends BlockPower {
             }
         } else {
             int direction = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-            direction = (direction + 2) % 4; // rotation fix
+            direction = (direction + rotationShiftInPlacing) % ROTATIONS_COUNT; // rotation fix
             tile.setRotation(direction);
         }
 

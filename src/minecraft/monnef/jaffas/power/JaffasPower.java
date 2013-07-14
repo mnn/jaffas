@@ -218,9 +218,10 @@ public class JaffasPower extends jaffasMod {
         registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
 
         TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerBasicProcessingMachine.class);
-        grinder = new BlockBasicProcessingMachine(blockGrinderID, 101, TileEntityGrinder.class, GuiHandler.GuiId.GRINDER);
+        grinder = new BlockBasicProcessingMachine(blockGrinderID, 101, TileEntityGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileEntityGrinder.class, "grinder");
+        grinder.setRotationShiftInPlacing(1);
 
         TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityToaster.class, ContainerBasicProcessingMachine.class);
         toaster = new BlockBasicProcessingMachine(blockToasterID, 101, TileEntityToaster.class, GuiHandler.GuiId.TOASTER, true, false);
