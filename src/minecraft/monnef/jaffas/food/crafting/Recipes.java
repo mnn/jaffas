@@ -339,7 +339,6 @@ public class Recipes {
                 getItem(breadSliceToasted), getItem(breadSliceToasted), getItem(breadSliceToasted),
                 getItem(breadSliceToasted), getItem(breadSliceToasted), getItem(breadSliceToasted));
         GameRegistry.addRecipe(getItemStack(breadSliceEgg), "E", "T", 'E', getItem(eggFried), 'T', getItem(breadSliceToasted));
-        //GameRegistry.addSmelting(getItem(breadSlice).itemID, getItemStack(breadSliceToasted), 0.1f);
 
         // 15 ~ white
         GameRegistry.addRecipe(new ItemStack(blockColumn), "SSS", "DSD", "SSS", 'S', Block.stone, 'D', new ItemStack(Item.dyePowder, 1, 15));

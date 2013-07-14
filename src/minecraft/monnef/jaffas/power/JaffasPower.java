@@ -236,13 +236,29 @@ public class JaffasPower extends jaffasMod {
                 GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockIron);
             }
             Recipes.addRecipe(new ShapedOreRecipe(wrench, "JJ ", "BJR", "  J", 'J', JaffasTechnic.jaffarrol, 'B', DyeHelper.getDye(DyeColor.BLACK), 'R', DyeHelper.getDye(DyeColor.RED)));
-            GameRegistry.addShapedRecipe(new ItemStack(generator, 2), " I ", "IFI", " C ", 'I', Item.ingotIron, 'F', Block.furnaceIdle, 'C', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 0));
+            GameRegistry.addShapedRecipe(new ItemStack(generator, 2), " I ", "IFI", " C ", 'I', Item.ingotIron, 'F', Block.furnaceIdle, 'C', getSimpleCentralUnitStack());
 
             GameRegistry.addRecipe(new ItemStack(grinder), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
 
-            GameRegistry.addShapedRecipe(new ItemStack(toaster), "CJ", "H ", 'C', JaffasTechnic.itemCasingRefined, 'J', JaffasTechnic.jaffarrol, 'H', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 0));
+            GameRegistry.addShapedRecipe(new ItemStack(toaster), "CJ", "H ", 'C', JaffasTechnic.itemCasingRefined, 'J', JaffasTechnic.jaffarrol, 'H', getSimpleCentralUnitStack());
+
+            addKitchenUnitRecipe(0, new ItemStack(Block.planks, 1, 2));
+            addKitchenUnitRecipe(0, new ItemStack(Block.planks, 1, 0));
+            addKitchenUnitRecipe(1, new ItemStack(Block.planks, 1, 3));
+            addKitchenUnitRecipe(2, new ItemStack(Block.planks, 1, 1));
         }
 
         TileEntityToaster.addRecipe(TileEntityToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
+    }
+
+    private ItemStack getSimpleCentralUnitStack() {
+        return new ItemStack(JaffasTechnic.itemCentralUnit, 1, 0);
+    }
+
+    private void addKitchenUnitRecipe(int unitId, ItemStack planks) {
+        GameRegistry.addShapedRecipe(new ItemStack(kitchenUnit, 3, unitId), "QQQ", "PCP", "PSP",
+                'S', Block.stone, 'Q', new ItemStack(Block.stoneSingleSlab, 1, 7), 'P', planks,
+                'C', getSimpleCentralUnitStack()
+        );
     }
 }

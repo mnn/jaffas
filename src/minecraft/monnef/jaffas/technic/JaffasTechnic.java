@@ -770,10 +770,9 @@ public class JaffasTechnic extends jaffasMod {
 
         // spawn stones
         if (JaffasFood.spawnStonesEnabled) {
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Item.ingotIron, 'J', jaffarrol);
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "GRG", "LJL", "GRG", 'G', Item.ingotGold, 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew);
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "GLG", "LJR", "GRG", 'G', Item.ingotGold, 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew);
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "LJB", "JDJ", "BJL", 'L', limsew, 'J', jaffarrolRefined, 'B', Item.blazeRod, 'D', Item.diamond);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Item.ingotIron, 'J', blockJaffarrol);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "LGR", "GSG", "RGL", 'G', Item.ingotGold, 'S', getItem(spawnStoneLittle), 'R', Item.redstone, 'L', limsew);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "DLB", "GSL", "BGD", 'L', limsew, 'B', Item.blazePowder, 'D', Item.diamond, 'G', Item.lightStoneDust, 'S', getItem(spawnStoneMedium));
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', jaffarrol);
