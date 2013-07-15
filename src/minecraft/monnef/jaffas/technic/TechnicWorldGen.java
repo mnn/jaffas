@@ -7,6 +7,7 @@ package monnef.jaffas.technic;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.technic.block.BlockOre;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -34,8 +35,8 @@ public class TechnicWorldGen implements IWorldGenerator {
     private IChunkProvider generator;
 
     public TechnicWorldGen() {
-        jaffarrolGenRich = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre.blockID, 10);
-        jaffarrolGenSmall = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre.blockID, 4);
+        jaffarrolGenRich = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre.blockID, BlockOre.NATURAL_META, 10, Block.stone.blockID);
+        jaffarrolGenSmall = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre.blockID, BlockOre.NATURAL_META, 4, Block.stone.blockID);
         limsewGenSmall = new WorldGenMinable(JaffasTechnic.blockLimsewOre.blockID, 2);
         limsewGenRich = new WorldGenMinable(JaffasTechnic.blockLimsewOre.blockID, 5);
     }
