@@ -43,8 +43,9 @@ public class BlockOre extends BlockTechnic {
         return super.idDropped(id, random, fortune);
     }
 
-    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float par6, int fortune) {
-        super.dropBlockAsItemWithChance(world, x, y, z, meta, par6, fortune);
+    @Override
+    public void dropBlockAsItemWithChance(World world, int x, int y, int z, int meta, float chance, int fortune) {
+        super.dropBlockAsItemWithChance(world, x, y, z, meta, chance, fortune);
 
         int xpAmount = 0;
 
