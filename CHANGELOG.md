@@ -1,3 +1,28 @@
+## 0.5.0
+- added machines using/producing BuildCraft power: generator, grinder (replaces item meat grinder), toaster, kitchen unit
+- added decorative lamps
+- added redstone blocks: analog repeater, sample-and-hold, randomuizer
+- reworked cake packages, now supports all kinds of jaffas!
+- upgraded our hoe - mass-harvest and mass-plant of switchgrass (1x1 and 3x3 mode), also supports harvesting of any IPlantable blocks (flowers, wheat)
+- added pipe wrench
+- added omni wrench compatibility
+- added our items to dungeon loot tables
+- rewritten jaffa bomb (spawns random jaffas and the recipe got a bit more difficult)
+- added option to change an offset of an achievement IDs
+- changed home stone recipes (first one is more expensive, better ones are created by upgrading worse one(s))
+- added xp from jaffarrol ores (only naturally occurring ones)
+- fixed mining with jaffarrol tools in broken state
+- fixed snow harvesting with jaffarrol shovel and wooden material detection of jaffarrol axe
+- fixed shift-clicking in most containers
+- fixed bug in custom starts of ID intervals
+- switchgrass now won't spawn in frozen biomes and "dies" when frozen block is around
+- fixed switchgrass not breaking in certain cases
+- fixed liquid saving in fermenter
+- changed drying rack to be harvestable not only by bare hand
+- fixed collector - now accepts coconuts
+- fixed axe damage against entities
+- minor change of beer chain - before grinding one must combine hop and wheat
+
 ## 0.4.22
 - beer brewing
 - cobble breaker
