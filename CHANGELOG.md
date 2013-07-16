@@ -1,7 +1,7 @@
 ## 0.5.0
 - added machines using/producing BuildCraft power: generator, grinder (replaces item meat grinder), toaster, kitchen unit
 - added decorative lamps
-- added redstone blocks: analog repeater, sample-and-hold, randomuizer
+- added redstone blocks: analog repeater, sample-and-hold, randomizer
 - reworked cake packages, now supports all kinds of jaffas!
 - upgraded our hoe - mass-harvest and mass-plant of switchgrass (1x1 and 3x3 mode), also supports harvesting of any IPlantable blocks (flowers, wheat)
 - added pipe wrench
@@ -9,7 +9,7 @@
 - added our items to dungeon loot tables
 - rewritten jaffa bomb (spawns random jaffas and the recipe got a bit more difficult)
 - added option to change an offset of an achievement IDs
-- changed home stone recipes (first one is more expensive, better ones are created by upgrading worse one(s))
+- changed home stone recipes (first one is more expensive, better ones are created by upgrading worse ones)
 - added xp from jaffarrol ores (only naturally occurring ones)
 - fixed mining with jaffarrol tools in broken state
 - fixed snow harvesting with jaffarrol shovel and wooden material detection of jaffarrol axe
