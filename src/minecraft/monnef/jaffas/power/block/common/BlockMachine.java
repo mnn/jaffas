@@ -73,9 +73,19 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     @Override
+    public AxisAlignedBB getSelectedBoundingBoxFromPool(World world, int x, int y, int z) {
+        if (useRotatedBoundingBox) setBlockBoundsBasedOnState(world, x, y, z);
+        return AxisAlignedBB.getAABBPool().getAABB((double) x + this.minX, (double) y + this.minY, (double) z + this.minZ, (double) x + this.maxX, (double) y + this.maxY, (double) z + this.maxZ);
+    }
+
+    @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         if (!useRotatedBoundingBox) return;
-        setBlockBounds(BlockHelper.rotateBoundingBoxCoordinates(customBoundingBox, getTile(world, x, y, z).getRotation().ordinal(), x, y, z, false));
+        TileEntityMachine tile = getTile(world, x, y, z);
+        if (tile == null) return;
+        ForgeDirection rotation = tile.getRotation();
+        if (rotation == null) return;
+        setBlockBounds(BlockHelper.rotateBoundingBoxCoordinates(customBoundingBox, rotation.ordinal(), x, y, z, false));
     }
 
     public void setBlockBounds(AxisAlignedBB bb) {
