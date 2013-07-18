@@ -10,13 +10,13 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerFramework;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ISidedInventory;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 
@@ -194,35 +194,42 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     }
 
     @Override
-    public int getStartInventorySide(ForgeDirection side) {
-        switch (side) {
-            case UP:
-            case DOWN:
-                return fuelSlot;
-            default:
-                return 0;
+    public int[] getAccessibleSlotsFromSide(int side) {
+        return constructAllSlots();
+    }
+
+    protected int[] constructNonFuelSlots() {
+        int[] ret = new int[fuelSlot];
+        for (int i = 0; i < fuelSlot; i++) {
+            ret[i] = i;
         }
+        return ret;
+    }
+
+    protected int[] constructAllSlots() {
+        int[] ret = new int[fuelSlot + 1];
+        for (int i = 0; i <= fuelSlot; i++) {
+            ret[i] = i;
+        }
+        return ret;
     }
 
     @Override
-    public int getSizeInventorySide(ForgeDirection side) {
-        switch (side) {
-            case UP:
-            case DOWN:
-                return 1;
-            default:
-                return fuelSlot;
-        }
+    public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
+        ForgeDirection dir = ForgeDirection.getOrientation(side);
+        if (slot == fuelSlot && (dir == ForgeDirection.UP || dir == ForgeDirection.DOWN)) return true;
+        if (slot != fuelSlot && (dir != ForgeDirection.UP && dir != ForgeDirection.DOWN)) return true;
+        return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int slot, ItemStack itemstack, int side) {
+        if (slot == fuelSlot) return false;
+        return true;
     }
 
     @Override
     public int powerRequest(ForgeDirection from) {
         return powerNeeded - (int) powerProvider.getEnergyStored();
     }
-
-    /*
-    public int powerRequest() {
-        return powerProvider.getMaxEnergyReceived();
-    }
-    */
 }

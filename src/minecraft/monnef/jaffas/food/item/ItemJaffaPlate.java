@@ -9,13 +9,13 @@ import monnef.core.base.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.IArmorTextureProvider;
 
-public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
+public class ItemJaffaPlate extends ItemArmor {
     private String armorTexture;
     private Item repairItem;
     private final int customIconIndex;
@@ -35,7 +35,8 @@ public class ItemJaffaPlate extends ItemArmor implements IArmorTextureProvider {
         setUnlocalizedName("armor." + par2EnumArmorMaterial.name());
     }
 
-    public String getArmorTextureFile(ItemStack par1) {
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
         return armorTexture;
     }
 

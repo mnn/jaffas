@@ -12,14 +12,12 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.common.ISidedInventory;
-
-import java.util.Random;
 
 import static monnef.jaffas.food.JaffasFood.blockBoard;
 import static monnef.jaffas.food.JaffasFood.getItem;
@@ -34,8 +32,6 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     public final static int SLOT_INPUT = 0;
     public final static int SLOT_OUTPUT = 2;
     public final static int SLOT_KNIFE = 1;
-
-    private static Random rand = new Random();
 
     private boolean knifeInitialized = false;
     private boolean knifePresent = false;
@@ -265,21 +261,24 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
     }
 
     @Override
-    public int getStartInventorySide(ForgeDirection side) {
-        switch (side) {
+    public int[] getAccessibleSlotsFromSide(int side) {
+        ForgeDirection dir = ForgeDirection.getOrientation(side);
+        switch (dir) {
             case UP:
-                return SLOT_INPUT;
-
-            case DOWN:
-                return SLOT_KNIFE;
+                return new int[]{SLOT_INPUT};
 
             default:
-                return SLOT_OUTPUT;
+                return new int[]{SLOT_KNIFE, SLOT_OUTPUT};
         }
     }
 
     @Override
-    public int getSizeInventorySide(ForgeDirection side) {
-        return 1;
+    public boolean canInsertItem(int slot, ItemStack itemstack, int side) {
+        return slot != SLOT_OUTPUT;
+    }
+
+    @Override
+    public boolean canExtractItem(int slot, ItemStack itemstack, int side) {
+        return slot == SLOT_OUTPUT;
     }
 }
