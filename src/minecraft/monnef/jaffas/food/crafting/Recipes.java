@@ -262,6 +262,8 @@ public class Recipes {
         RecipesBoard.addRecipe(new ItemStack(Item.beefRaw), new ItemStack(getItem(meatChopped)));
         RecipesBoard.addRecipe(new ItemStack(Item.chickenRaw), new ItemStack(getItem(meatChopped)));
         RecipesBoard.addRecipe(new ItemStack(Item.fishRaw), new ItemStack(getItem(meatChopped)));
+        RecipesBoard.addRecipeSimple(duckRaw, meatChopped);
+        RecipesBoard.addRecipeSimple(wolfMeatRaw, meatChopped);
 
         GameRegistry.addRecipe(new ItemStack(getItem(ironSkewer)), "  I", " I ", "I  ", 'I', new ItemStack(Item.ingotIron));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(skewerRaw)), new ItemStack(getItem(ironSkewer)), new ItemStack(getItem(rollChopped)), new ItemStack(getItem(meatChopped)));

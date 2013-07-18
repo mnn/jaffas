@@ -50,7 +50,7 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
         if (!worldObj.isRemote) {
 
             boolean updateInventory = false;
-            if (this.knifePresent() && this.canSmelt()) {
+            if (this.knifePresent() && this.canChop()) {
                 chopTime += chopSpeed;
 
                 if (chopTime >= 200) {
@@ -98,7 +98,7 @@ public class TileEntityBoard extends TileEntity implements IInventory, ISidedInv
         onInventoryChanged();
     }
 
-    private boolean canSmelt() {
+    private boolean canChop() {
         ItemStack itemInInputSlot = getStackInSlot(SLOT_INPUT);
         ItemStack recipeOutput = RecipesBoard.getRecipeOutput(itemInInputSlot);
 
