@@ -10,6 +10,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.client.RenderItemInAir;
 import monnef.jaffas.food.JaffasFood;
@@ -27,12 +28,17 @@ import monnef.jaffas.food.common.SpawnStonePacketUtils;
 import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
+import monnef.jaffas.food.entity.EntityLittleSpider;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.item.EnumRarity;
 import net.minecraftforge.common.MinecraftForge;
+
+import java.lang.reflect.Field;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
 
@@ -42,6 +48,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(JaffasFood.getItem(JaffaItem.duckEgg)));
+        RenderingRegistry.registerEntityRenderingHandler(EntityLittleSpider.class, constructLittleSpiderRenderer());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCross.class, new TileEntityCrossRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySink.class, new TileEntitySinkRenderer());
@@ -60,6 +67,17 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerBlockHandler(new DirectionalBlockRenderer());
         RenderingRegistry.registerBlockHandler(new CustomBlockRenderer());
+    }
+
+    private RenderSpider constructLittleSpiderRenderer() {
+        RenderSpider renderer = new RenderSpider();
+        Field f = ReflectionHelper.findField(Render.class, "shadowSize", "field_76989_e");
+        try {
+            f.setFloat(renderer, 0.33f);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+        return renderer;
     }
 
     public int addArmor(String name) {

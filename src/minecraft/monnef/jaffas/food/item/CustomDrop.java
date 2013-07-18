@@ -40,8 +40,10 @@ public class CustomDrop {
         addDrop(EntitySheep.class, JaffaItem.muttonRaw, 1f).setBabyFlagCheck(true);
         addDrop(EntitySheep.class, JaffaItem.muttonRaw, 0.5f).setBabyFlagCheck(true);
 
-        addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 1f).setBabyFlagCheck(true);
-        addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 0.5f).setBabyFlagCheck(true);
+        addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 1f);
+        addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 0.5f);
+        addDrop(EntitySpider.class, new ItemStack(Item.monsterPlacer, 1, JaffasFood.spiderEntityID), 0.07f);
+
     }
 
     public static CustomDropEntry addDrop(Class<? extends EntityLiving> clazz, JaffaItem item, float chance) {

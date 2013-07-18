@@ -36,10 +36,10 @@ import static monnef.jaffas.food.item.JaffaItem.featherDuck;
 
 public class EntityDuck extends EntityAnimal {
     public boolean field_70885_d = false;
-    public float field_70886_e = 0.0F;
+    public float pos = 0.0F;
     public float destPos = 0.0F;
-    public float field_70884_g;
-    public float field_70888_h;
+    public float destPosOld;
+    public float posOld;
     public float field_70889_i = 1.0F;
 
     public static final int feather = getItem(featherDuck).itemID;
@@ -85,8 +85,8 @@ public class EntityDuck extends EntityAnimal {
      */
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        this.field_70888_h = this.field_70886_e;
-        this.field_70884_g = this.destPos;
+        this.posOld = this.pos;
+        this.destPosOld = this.destPos;
         this.destPos = (float) ((double) this.destPos + (double) (this.onGround ? -1 : 4) * 0.3D);
 
         if (this.destPos < 0.0F) {
@@ -107,7 +107,7 @@ public class EntityDuck extends EntityAnimal {
             this.motionY *= 0.6D;
         }
 
-        this.field_70886_e += this.field_70889_i * 2.0F;
+        this.pos += this.field_70889_i * 2.0F;
 
         if (!this.isChild() && !this.worldObj.isRemote && --this.timeUntilNextEgg <= 0) {
             boolean isFeather = rand.nextInt(5) == 0;

@@ -75,6 +75,7 @@ import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
+import monnef.jaffas.food.entity.EntityLittleSpider;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.item.ItemJaffaBase;
@@ -217,9 +218,10 @@ public class JaffasFood extends jaffasMod {
     public static boolean showUpdateMessages;
     public static String lastVersionShown;
 
-    private static int JaffaPaintingEntityID;
-    private static int DuckEntityID;
-    private static int DuckEggEntityID;
+    private static int jaffaPaintingEntityID;
+    private static int duckEntityID;
+    private static int duckEggEntityID;
+    public static int spiderEntityID;
 
     public ItemManager itemManager;
     public ModuleManager moduleManager;
@@ -332,11 +334,14 @@ public class JaffasFood extends jaffasMod {
                 blockDirDebug2ID = idProvider.getBlockIDFromConfig("blockDir2");
             }
 
-            JaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
+            jaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
             createPainting();
-            DuckEntityID = idProvider.getEntityIDFromConfig("duck");
-            DuckEntityID = idProvider.getEntityIDFromConfig("duckEgg");
+            duckEntityID = idProvider.getEntityIDFromConfig("duck");
             registerDuck();
+            duckEggEntityID = idProvider.getEntityIDFromConfig("duckEgg");
+            registerDuckEgg();
+            spiderEntityID = idProvider.getEntityIDFromConfig("littleSpider");
+            registerLittleSpider();
 
             spawnStonesEnabled = config.get(Configuration.CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
             spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
@@ -483,17 +488,33 @@ public class JaffasFood extends jaffasMod {
     private void createPainting() {
         itemPainting = new ItemJaffaPainting(this.itemPaintingID);
         LanguageRegistry.addName(itemPainting, "Painting");
-        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, JaffaPaintingEntityID);
+        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, jaffaPaintingEntityID);
     }
 
     private void registerDuck() {
-        EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", DuckEntityID, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
-        EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", DuckEntityID, this, 160, 1, true);
+        EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", duckEntityID, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
+        EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", duckEntityID, this, 160, 1, true);
+        //EntityHelper.setTrackingRange(EntityDuck.class, 160);
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
-        EntityRegistry.registerModEntity(EntityDuckEgg.class, "duckEgg", DuckEggEntityID, this, 160, 1, true);
         if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerGrindable(new EntityDuck.MFR());
             FarmingRegistry.registerBreederFood(EntityDuck.class, new ItemStack(Item.seeds));
+        }
+    }
+
+    private void registerDuckEgg() {
+        EntityRegistry.registerGlobalEntityID(EntityDuckEgg.class, "duckEgg", duckEggEntityID);
+        EntityRegistry.registerModEntity(EntityDuckEgg.class, "duckEgg", duckEggEntityID, this, 160, 1, true);
+    }
+
+    private void registerLittleSpider() {
+        EntityRegistry.registerGlobalEntityID(EntityLittleSpider.class, "jaffasSpider", spiderEntityID, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
+        EntityRegistry.registerModEntity(EntityLittleSpider.class, "jaffasSpider", spiderEntityID, this, 160, 1, true);
+        //EntityHelper.setTrackingRange(EntityLittleSpider.class, 160);
+        LanguageRegistry.instance().addStringLocalization("entity.jaffasSpider.name", "en_US", "Little Spider");
+        if (otherMods.isMineFactoryReloadedDetected()) {
+            FarmingRegistry.registerGrindable(new EntityLittleSpider.MFR());
+            //FarmingRegistry.registerBreederFood(EntityLittleSpider.class, new ItemStack(Item.seeds));
         }
     }
 
