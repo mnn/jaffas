@@ -6,6 +6,8 @@
 package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.farming.ICrop;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
@@ -116,6 +118,7 @@ public class TileEntityFungiBox extends TileEntity implements ICrop {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void createSporeParticles() {
         for (int i = 0; i < 20; i++) {
             float speed = 0.33f;
