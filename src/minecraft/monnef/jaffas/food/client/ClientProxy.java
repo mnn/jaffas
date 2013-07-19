@@ -10,7 +10,6 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.ReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.client.RenderItemInAir;
 import monnef.jaffas.food.JaffasFood;
@@ -34,11 +33,8 @@ import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.item.EnumRarity;
 import net.minecraftforge.common.MinecraftForge;
-
-import java.lang.reflect.Field;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
 
@@ -69,15 +65,13 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new CustomBlockRenderer());
     }
 
-    private RenderSpider constructLittleSpiderRenderer() {
+    private Render constructLittleSpiderRenderer() {
+        /*
         RenderSpider renderer = new RenderSpider();
-        Field f = ReflectionHelper.findField(Render.class, "shadowSize", "field_76989_e");
-        try {
-            f.setFloat(renderer, 0.33f);
-        } catch (Throwable e) {
-            throw new RuntimeException(e);
-        }
+        RenderUtils.setShadowSizeInRenderer(renderer, 0.33f);
         return renderer;
+        */
+        return new RenderJaffaSpider(0.33f);
     }
 
     public int addArmor(String name) {

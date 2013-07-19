@@ -6,7 +6,6 @@ import monnef.core.utils.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -20,7 +19,7 @@ import java.util.Random;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.item.JaffaItem.spiderLegRaw;
 
-public class EntityLittleSpider extends EntitySpider {
+public class EntityLittleSpider extends EntityJaffaSpider {
     public static final int spiderMeat = getItem(spiderLegRaw).itemID;
     private int timeUntilNextWeb;
 
@@ -46,7 +45,7 @@ public class EntityLittleSpider extends EntitySpider {
 
     @Override
     public boolean isOnLadder() {
-        return attackingPlayer == null ? false : this.isBesideClimbableBlock();
+        return entityToAttack == null ? false : this.isBesideClimbableBlock();
     }
 
     @SideOnly(Side.CLIENT)
@@ -62,8 +61,11 @@ public class EntityLittleSpider extends EntitySpider {
     @Override
     protected void dropFewItems(boolean attackedByPlayer, int lootingLevel) {
         super.dropFewItems(attackedByPlayer, lootingLevel);
+    }
 
-        if (attackedByPlayer && (this.rand.nextInt(2) == 0 || this.rand.nextInt(1 + lootingLevel) > 1)) {
+    @Override
+    protected void processAdditionalDrops(boolean killedByPlayer, int lootingLevel) {
+        if (killedByPlayer && (this.rand.nextInt(2) == 0 || this.rand.nextInt(1 + lootingLevel) > 1)) {
             this.dropItem(Item.silk.itemID, 1);
         }
     }
@@ -99,9 +101,9 @@ public class EntityLittleSpider extends EntitySpider {
 
         if (!this.isChild() && !this.worldObj.isRemote && --this.timeUntilNextWeb <= 0) {
             //this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
-            int x = (int) posX;
-            int y = (int) posY;
-            int z = (int) posZ;
+            int x = (int) Math.round(posX);
+            int y = (int) Math.round(posY);
+            int z = (int) Math.round(posZ);
             if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlockId(x, y, z) == Block.web.blockID) {
                 y++;
                 if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlockId(x, y, z) == Block.web.blockID && rand.nextInt(2) == 0) {
@@ -119,7 +121,12 @@ public class EntityLittleSpider extends EntitySpider {
     }
 
     @Override
-    public boolean isInRangeToRenderDist(double par1) {
-        return super.isInRangeToRenderDist(par1);    //To change body of overridden methods use File | Settings | File Templates.
+    public boolean canSpawnWithSkeleton() {
+        return false;
+    }
+
+    @Override
+    protected boolean shouldDespawnInPeaceful() {
+        return false;
     }
 }
