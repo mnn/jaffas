@@ -52,7 +52,7 @@ public class OtherModsHelper {
         return list;
     }
 
-    public void checkCore() {
+    public static void checkCore() {
         if (!MonnefCorePlugin.isInitialized()) {
             throw new RuntimeException("Core is not properly initialized!");
         }

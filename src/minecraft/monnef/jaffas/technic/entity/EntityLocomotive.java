@@ -25,6 +25,7 @@ public class EntityLocomotive extends EntityMinecart {
         super(par1World, par2, par4, par6);
         this.setSize(0.98F, 1.7F);
         this.yOffset = this.height / 2.0F;
+        this.renderDistanceWeight = 3;
     }
 
     public EntityLocomotive(World w) {

@@ -386,7 +386,7 @@ public class JaffasFood extends jaffasMod {
         super.load(event);
         creativeTab = new JaffaCreativeTab("jaffas");
 
-        otherMods.checkCore(); // really necessary?
+        OtherModsHelper.checkCore();
 
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
