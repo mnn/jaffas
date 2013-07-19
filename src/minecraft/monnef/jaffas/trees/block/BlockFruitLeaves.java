@@ -7,6 +7,7 @@ package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.MonnefCorePlugin;
 import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.PlayerHelper;
@@ -56,6 +57,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         setCreativeTab(JaffasTrees.instance.creativeTab);
         setSheetNumber(2);
         setBurnProperties(blockID, 30, 60);
+        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
     }
 
     public Icon getFruitIcon(int meta) {

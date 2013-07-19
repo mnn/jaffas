@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +20,7 @@ public class BlockConstructionDummy extends BlockTechnic {
         setHardness(5);
         setResistance(15);
         setCreativeTab(null);
+        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
     }
 
     @Override

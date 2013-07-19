@@ -29,7 +29,7 @@ public class RenderJaffaSpider extends RenderLiving {
         if (par2 != 0) {
             return -1;
         } else {
-            this.loadTexture("/mob/spider_eyes.png");
+            this.loadTexture("/jaffas_littleSpider_eyes.png");
             float f1 = 1.0F;
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
@@ -68,7 +68,7 @@ public class RenderJaffaSpider extends RenderLiving {
 
     @Override
     protected int shouldRenderPass(EntityLiving entity, int par2, float par3) {
-        return -1;
-        //return this.setSpiderEyeBrightness((EntityJaffaSpider) entity, par2);
+        //return -1;
+        return this.setSpiderEyeBrightness((EntityJaffaSpider) entity, par2);
     }
 }

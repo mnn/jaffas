@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;
@@ -29,6 +30,7 @@ public class BlockFermenter extends BlockTechnic {
     public BlockFermenter(int id, int textureID) {
         super(id, textureID, JaffasTechnic.breakableIronMaterial);
         setHardness(3f);
+        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
     }
 
     @Override

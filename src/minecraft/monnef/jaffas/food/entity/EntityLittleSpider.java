@@ -3,11 +3,14 @@ package monnef.jaffas.food.entity;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.BlockHelper;
+import monnef.core.utils.RandomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
@@ -21,11 +24,35 @@ import static monnef.jaffas.food.item.JaffaItem.spiderLegRaw;
 
 public class EntityLittleSpider extends EntityJaffaSpider {
     public static final int spiderMeat = getItem(spiderLegRaw).itemID;
+    private static final String AGGRESSIVE_TIMER_TAG = "aggressiveTimer";
+    private static final String WEB_TIMER_TAG = "webTimer";
+    private static final String COLOR_TAG = "spiderColor";
+    private static final int COLOR_WATCHER_INDEX = 25;
+    public static final int COLORS_COUNT = 3;
+    public static final String TEXTURE_STRING = "/jaffas_littleSpider_%d.png";
+    public static final String[] TEXTURES;
+    public static final float LIVING_SOUND_VOLUME = 0.2f;
     private int timeUntilNextWeb;
+    private int aggressiveTime;
+
+    static {
+        TEXTURES = new String[COLORS_COUNT];
+        for (int i = 0; i < COLORS_COUNT; i++) {
+            TEXTURES[i] = generateTextureFileName(i);
+        }
+    }
+
+    private static String generateTextureFileName(int color) {
+        return String.format(TEXTURE_STRING, color);
+    }
+
+    @Override
+    public String getTexture() {
+        return TEXTURES[getColor()];
+    }
 
     public EntityLittleSpider(World world) {
         super(world);
-        this.texture = "/jaffas_littleSpider.png";
         //this.setSize(1.4F, 0.9F);
         this.setSize(0.5F, 0.25F);
         this.moveSpeed = 0.8F;
@@ -35,17 +62,17 @@ public class EntityLittleSpider extends EntityJaffaSpider {
 
     @Override
     public int getMaxHealth() {
-        return 10;
+        return 12;
     }
 
     @Override
     protected Entity findPlayerToAttack() {
-        return null;
+        return isAggressive() ? this.worldObj.getClosestVulnerablePlayerToEntity(this, 18) : null;
     }
 
     @Override
     public boolean isOnLadder() {
-        return entityToAttack == null ? false : this.isBesideClimbableBlock();
+        return isAggressive() ? this.isBesideClimbableBlock() : false;
     }
 
     @SideOnly(Side.CLIENT)
@@ -56,6 +83,20 @@ public class EntityLittleSpider extends EntityJaffaSpider {
 
     @Override
     public void initCreature() {
+    }
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataWatcher.addObject(COLOR_WATCHER_INDEX, (byte) rand.nextInt(COLORS_COUNT));
+    }
+
+    protected void setColor(byte color) {
+        this.dataWatcher.updateObject(COLOR_WATCHER_INDEX, color);
+    }
+
+    public byte getColor() {
+        return this.dataWatcher.getWatchableObjectByte(COLOR_WATCHER_INDEX);
     }
 
     @Override
@@ -99,7 +140,11 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     public void onLivingUpdate() {
         super.onLivingUpdate();
 
-        if (!this.isChild() && !this.worldObj.isRemote && --this.timeUntilNextWeb <= 0) {
+        if (isAggressive()) {
+            aggressiveTime -= 1;
+        }
+
+        if (!this.isChild() && !this.worldObj.isRemote && !isAggressive() && --this.timeUntilNextWeb <= 0) {
             //this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             int x = (int) Math.round(posX);
             int y = (int) Math.round(posY);
@@ -120,6 +165,10 @@ public class EntityLittleSpider extends EntityJaffaSpider {
         }
     }
 
+    private boolean isAggressive() {
+        return aggressiveTime > 0;
+    }
+
     @Override
     public boolean canSpawnWithSkeleton() {
         return false;
@@ -128,5 +177,38 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     @Override
     protected boolean shouldDespawnInPeaceful() {
         return false;
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource source, int damageAmount) {
+        boolean ret = super.attackEntityFrom(source, damageAmount);
+        aggressiveTime = ret ? RandomHelper.generateRandomFromInterval(30 * 20, 120 * 20) : 0;
+        return ret;
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound tag) {
+        super.writeEntityToNBT(tag);
+        tag.setInteger(AGGRESSIVE_TIMER_TAG, aggressiveTime);
+        tag.setInteger(WEB_TIMER_TAG, timeUntilNextWeb);
+        tag.setByte(COLOR_TAG, getColor());
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound tag) {
+        super.readEntityFromNBT(tag);
+        aggressiveTime = tag.getInteger(AGGRESSIVE_TIMER_TAG);
+        timeUntilNextWeb = tag.getInteger(WEB_TIMER_TAG);
+        setColor(tag.getByte(COLOR_TAG));
+    }
+
+    @Override
+    protected float getSoundVolume() {
+        return 0.8f;
+    }
+
+    @Override
+    public void playLivingSound() {
+        this.playSound(this.getLivingSound(), LIVING_SOUND_VOLUME, this.getSoundPitch());
     }
 }

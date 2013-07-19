@@ -1,5 +1,6 @@
 package monnef.jaffas.technic.block;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.material.Material;
@@ -15,7 +16,7 @@ public class BlockKeg extends BlockTechnic {
 
     public BlockKeg(int id, int textureID) {
         super(id, textureID, Material.wood);
-        setCreativeTab(null);
+        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
     }
 
