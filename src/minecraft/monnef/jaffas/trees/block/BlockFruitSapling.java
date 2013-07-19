@@ -73,33 +73,33 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     }
 
     @Override
-    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-        super.updateTick(par1World, par2, par3, par4, par5Random);
-        if (!par1World.isRemote) {
-            tryGrow(par1World, par2, par3, par4, par5Random);
+    public void updateTick(World world, int x, int y, int z, Random par5Random) {
+        super.updateTick(world, x, y, z, par5Random);
+        if (!world.isRemote) {
+            if (world.getBlockLightValue(x, y + 1, z) >= 9 && rand.nextInt(7) == 0)
+                tryGrow(world, x, y, z, par5Random);
         }
     }
 
     private void tryGrow(World world, int x, int y, int z, Random rand) {
         if (world.isRemote) return;
-        if (world.getBlockLightValue(x, y + 1, z) >= 9 && rand.nextInt(7) == 0) {
-            int metadata = world.getBlockMetadata(x, y, z);
 
+        int metadata = world.getBlockMetadata(x, y, z);
+
+        if (JaffasTrees.debug) {
+            Log.printInfo("meta(" + metadata + ") markForDecay("
+                    + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
+                    + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
+                    + BlockFruitLeaves.areLeavesMarkedForDecay(BlockFruitLeaves.setLeavesDecay(metadata)) + ")");
+        }
+
+        if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
+            setBlockMetadata(world, x, y, z, BlockFruitLeaves.setLeavesDecay(metadata));
             if (JaffasTrees.debug) {
-                Log.printInfo("meta(" + metadata + ") markForDecay("
-                        + BlockFruitLeaves.areLeavesMarkedForDecay(metadata) + ") setLeavesDecay("
-                        + BlockFruitLeaves.setLeavesDecay(metadata) + ") areAfterSet("
-                        + BlockFruitLeaves.areLeavesMarkedForDecay(BlockFruitLeaves.setLeavesDecay(metadata)) + ")");
+                Log.printInfo("after set: " + world.getBlockMetadata(x, y, z));
             }
-
-            if (!BlockFruitLeaves.areLeavesMarkedForDecay(metadata)) {
-                setBlockMetadata(world, x, y, z, BlockFruitLeaves.setLeavesDecay(metadata));
-                if (JaffasTrees.debug) {
-                    Log.printInfo("after set: " + world.getBlockMetadata(x, y, z));
-                }
-            } else {
-                this.growTree(world, x, y, z, rand);
-            }
+        } else {
+            this.growTree(world, x, y, z, rand);
         }
     }
 
@@ -113,27 +113,27 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     public void registerIcons(IconRegister iconRegister) {
     }
 
-    public boolean growTree(World par1World, int par2, int par3, int par4, Random par5Random) {
-        int metadata = par1World.getBlockMetadata(par2, par3, par4);
+    public boolean growTree(World world, int x, int y, int z, Random random) {
+        int metadata = world.getBlockMetadata(x, y, z);
         metadata = BlockFruitLeaves.getLeavesType(metadata);
-        Object var7 = null;
-        int var8 = 0;
-        int var9 = 0;
+        Object gen = null;
+        int xShift = 0;
+        int yShift = 0;
 
-        par1World.setBlock(par2, par3, par4, 0);
+        world.setBlock(x, y, z, 0);
 
-        var7 = new WorldGenFruitTrees(true, 5, 0, metadata, false, JaffasTrees.leavesList.get(serialNumber).leavesID);
+        gen = new WorldGenFruitTrees(true, 5, 0, metadata, false, JaffasTrees.leavesList.get(serialNumber).leavesID);
 
-        if (!((WorldGenerator) var7).generate(par1World, par5Random, par2 + var8, par3, par4 + var9)) {
-            setBlock(par1World, par2, par3, par4, this.blockID, metadata);
+        if (!((WorldGenerator) gen).generate(world, random, x + xShift, y, z + yShift)) {
+            setBlock(world, x, y, z, this.blockID, metadata);
             return false;
         }
         return true;
     }
 
     @Override
-    public int damageDropped(int par1) {
-        return par1;
+    public int damageDropped(int damage) {
+        return BlockFruitLeaves.getLeavesType(damage);
     }
 
     @SideOnly(Side.CLIENT)

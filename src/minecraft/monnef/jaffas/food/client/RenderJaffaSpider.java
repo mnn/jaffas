@@ -30,7 +30,6 @@ public class RenderJaffaSpider extends RenderLiving {
             return -1;
         } else {
             this.loadTexture("/jaffas_littleSpider_eyes.png");
-            float f1 = 1.0F;
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
             GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);
@@ -41,12 +40,11 @@ public class RenderJaffaSpider extends RenderLiving {
                 GL11.glDepthMask(true);
             }
 
-            char c0 = 61680;
-            int j = c0 % 65536;
-            int k = c0 / 65536;
-            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j / 1.0F, (float) k / 1.0F);
+            char magic = 61680;
+            int xCoord = magic % 65536;
+            int yCoord = magic / 65536;
+            OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) xCoord / 1.0F, (float) yCoord / 1.0F);
             GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-            GL11.glColor4f(1.0F, 1.0F, 1.0F, f1);
             return 1;
         }
     }
