@@ -19,6 +19,7 @@ public class ItemTechnicTool extends ItemJaffaTool {
     public ItemTechnicTool(int id, int textureIndex, EnumToolMaterial material) {
         super(id, textureIndex, material);
         setCreativeTab(JaffasTechnic.instance.creativeTab);
+        setSecondCreativeTab(CreativeTabs.tabTools);
         setSheetNumber(3);
         durabilityLossOnEntityHit = 2;
     }
@@ -33,4 +34,6 @@ public class ItemTechnicTool extends ItemJaffaTool {
         par3List.add(new ItemStack(par1, 1, 0));
         if (MonnefCorePlugin.debugEnv) par3List.add(new ItemStack(par1, 1, getMaxDamage() - 5));
     }
+
+
 }

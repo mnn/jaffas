@@ -19,6 +19,7 @@ public class ItemSwordTechnic extends ItemJaffaSword {
     public ItemSwordTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
         setCreativeTab(JaffasTechnic.instance.creativeTab);
+        setSecondCreativeTab(CreativeTabs.tabCombat);
         setSheetNumber(3);
     }
 

@@ -50,17 +50,28 @@ public class ItemHoeTechnic extends ItemTechnicTool {
             int blockId = world.getBlockId(x, y, z);
             int blockAboveId = world.getBlockId(x, y + 1, z);
             Block block = Block.blocksList[blockId];
-
-            boolean tillableBlock = blockId == Block.dirt.blockID || blockId == Block.grass.blockID;
-            if ((direction != 0 && blockAboveId == 0 && tillableBlock)) {
+            if (canBeTilled(direction, blockAboveId, blockId)) {
                 Block newBlock = Block.tilledField;
 
                 if (world.isRemote) {
                     return true;
                 } else {
                     world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), newBlock.stepSound.getStepSound(), (newBlock.stepSound.getVolume() + 1.0F) / 2.0F, newBlock.stepSound.getPitch() * 0.8F);
-                    world.setBlock(x, y, z, newBlock.blockID);
+                    BlockHelper.setBlock(world, x, y, z, newBlock.blockID);
                     damageTool(1, player, stack);
+                    if (player.isSneaking() && !nearlyDestroyed(stack)) {
+                        damageTool(1, player, stack);
+                        for (int xx = x - 1; xx <= x + 1; xx++) {
+                            for (int zz = z - 1; zz <= z + 1; zz++) {
+                                int bId = world.getBlockId(xx, y, zz);
+                                int bAboveId = world.getBlockId(xx, y + 1, zz);
+                                if (canBeTilled(direction, bAboveId, bId) && !nearlyDestroyed(stack)) {
+                                    BlockHelper.setBlock(world, xx, y, zz, newBlock.blockID);
+                                    damageTool(1, player, stack);
+                                }
+                            }
+                        }
+                    }
                     return true;
                 }
             } else if (canBeMassHarvested(block)) {
@@ -113,6 +124,11 @@ public class ItemHoeTechnic extends ItemTechnicTool {
                 return false;
             }
         }
+    }
+
+    private boolean canBeTilled(int direction, int blockAboveId, int blockId) {
+        boolean tillableBlock = blockId == Block.dirt.blockID || blockId == Block.grass.blockID;
+        return (direction != 0 && blockAboveId == 0 && tillableBlock);
     }
 
     private boolean allNeighboursAreSwitchgrass(World world, int x, int y, int z) {
