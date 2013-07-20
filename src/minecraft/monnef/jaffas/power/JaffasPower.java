@@ -235,7 +235,7 @@ public class JaffasPower extends jaffasMod {
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileEntityToaster.class, "toaster");
 
-        webHarvester = new BlockWebHarvester(blockWebHarvesterID, 50, JaffasTechnic.breakableIronMaterial, false, false);
+        webHarvester = new BlockWebHarvester(blockWebHarvesterID, 51, JaffasTechnic.breakableIronMaterial, false, false);
         RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
         registerTileEntity(TileWebHarvester.class, "webHarvester");
     }
@@ -256,6 +256,9 @@ public class JaffasPower extends jaffasMod {
             addKitchenUnitRecipe(0, new ItemStack(Block.planks, 1, 0));
             addKitchenUnitRecipe(1, new ItemStack(Block.planks, 1, 3));
             addKitchenUnitRecipe(2, new ItemStack(Block.planks, 1, 1));
+
+            GameRegistry.addRecipe(new ItemStack(webHarvester), "SFS", "S@S", "JCJ",
+                    'J', JaffasTechnic.jaffarrol, 'F', JaffasTechnic.funnel, '@', JaffasTechnic.itemCasing, 'C', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 2), 'S', Item.silk);
         }
 
         TileEntityToaster.addRecipe(TileEntityToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
