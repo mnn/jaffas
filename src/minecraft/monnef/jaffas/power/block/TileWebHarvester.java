@@ -25,6 +25,6 @@ public class TileWebHarvester extends TileEntityMachineWithInventory {
 
     @Override
     public void doWork() {
-
+        // TODO
     }
 }
