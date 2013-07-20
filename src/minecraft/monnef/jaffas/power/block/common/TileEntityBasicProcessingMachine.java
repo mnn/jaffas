@@ -28,8 +28,6 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     public int processTime = 0;
     public int processItemTime = 1;
     private ItemStack[] processingInv;
-    public int powerMax;
-    public int powerStored;
     public int slowingCoefficient = 1;
 
     protected int doWorkCounter;
@@ -168,44 +166,35 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
     @Override
     public int getCurrentValueOfIntegerToSync(int index) {
-        switch (index) {
-            case 0:
-                return processTime;
+        int res = super.getCurrentValueOfIntegerToSync(index);
+        if (res == -1) {
+            switch (index) {
+                case 2:
+                    return processTime;
 
-            case 1:
-                return processItemTime;
+                case 3:
+                    return processItemTime;
 
-            case 2:
-                return (int) getPowerProvider().getEnergyStored();
-
-            case 3:
-                return getPowerProvider().getMaxEnergyStored();
+                default:
+                    return -1;
+            }
+        } else {
+            return res;
         }
-
-        return -1;
     }
 
     @Override
     public void setCurrentValueOfIntegerToSync(int index, int value) {
-        switch (index) {
-            case 0:
-                processTime = value;
-                break;
+        super.setCurrentValueOfIntegerToSync(index,value);
+            switch (index) {
+                case 2:
+                    processTime = value;
+                    break;
 
-            case 1:
-                processItemTime = value;
-                break;
-
-            case 2:
-                powerStored = value;
-                break;
-
-            case 3:
-                powerMax = value;
-
-            default:
-                return;
-        }
+                case 3:
+                    processItemTime = value;
+                    break;
+            }
     }
 
     @Override

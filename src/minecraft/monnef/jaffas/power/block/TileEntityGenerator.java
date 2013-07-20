@@ -251,4 +251,9 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
         tag.setInteger(BURN_TIME_TAG_NAME, this.burnTime);
         tag.setInteger(BURN_ITEM_TIME_TAG_NAME, this.burnItemTime);
     }
+
+    @Override
+    public boolean isPowerBarRenderingEnabled() {
+        return false;
+    }
 }

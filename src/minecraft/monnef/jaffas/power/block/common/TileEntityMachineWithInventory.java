@@ -13,6 +13,8 @@ import net.minecraft.nbt.NBTTagList;
 
 public abstract class TileEntityMachineWithInventory extends TileEntityMachine implements IInventory {
     protected ItemStack[] inventory;
+    public int powerMax;
+    public int powerStored;
 
     protected TileEntityMachineWithInventory() {
         super();
@@ -118,11 +120,25 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
     }
 
     public int getCurrentValueOfIntegerToSync(int index) {
-        throw new RuntimeException("not implemented getting of sync ints");
+        switch (index) {
+            case 0:
+                return (int) getPowerProvider().getEnergyStored();
+
+            case 1:
+                return getPowerProvider().getMaxEnergyStored();
+        }
+        return -1;
     }
 
     public void setCurrentValueOfIntegerToSync(int index, int value) {
-        throw new RuntimeException("not implemented setting of sync ints");
+        switch (index) {
+            case 0:
+                powerStored = value;
+                break;
+
+            case 1:
+                powerMax = value;
+        }
     }
 
     @Override
@@ -132,6 +148,10 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
 
     @Override
     public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+        return true;
+    }
+
+    public boolean isPowerBarRenderingEnabled() {
         return true;
     }
 }

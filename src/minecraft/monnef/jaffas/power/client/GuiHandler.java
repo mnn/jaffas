@@ -22,7 +22,8 @@ public class GuiHandler implements IGuiHandler {
     public enum GuiId {
         GENERATOR,
         GRINDER,
-        TOASTER
+        TOASTER,
+        WEB_HARVESTER
     }
 
     @Override

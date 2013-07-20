@@ -145,7 +145,6 @@ public class EntityLittleSpider extends EntityJaffaSpider {
         }
 
         if (!this.isChild() && !this.worldObj.isRemote && !isAggressive() && --this.timeUntilNextWeb <= 0) {
-            //this.playSound("mob.chicken.plop", 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
             int x = (int) Math.round(posX);
             int y = (int) Math.round(posY);
             int z = (int) Math.round(posZ);
@@ -158,6 +157,7 @@ public class EntityLittleSpider extends EntityJaffaSpider {
             if (worldObj.isAirBlock(x, y, z)) {
                 this.timeUntilNextWeb = this.rand.nextInt(8000) + 4000;
                 BlockHelper.setBlock(worldObj, x, y, z, Block.web.blockID);
+                playWebSound();
             } else {
                 // failed lookup for free space, trying again after some time
                 this.timeUntilNextWeb = 20 * 30;
@@ -210,5 +210,9 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     @Override
     public void playLivingSound() {
         this.playSound(this.getLivingSound(), LIVING_SOUND_VOLUME, this.getSoundPitch());
+    }
+
+    public void playWebSound() {
+        this.playSound(this.getLivingSound(), this.getSoundVolume(), this.getSoundPitch());
     }
 }
