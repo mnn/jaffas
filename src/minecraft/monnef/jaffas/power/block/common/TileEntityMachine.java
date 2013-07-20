@@ -23,6 +23,8 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     public static final String ROTATION_TAG_NAME = "rotation";
     public static final Random rand = new Random();
     private static final int DUMMY_CREATION_PHASE_INSTANCE_COUNTER_LIMIT = 5;
+    protected int slowingCoefficient = 1;
+    protected int doWorkCounter;
 
     private ForgeDirection rotation;
     protected IPowerProvider powerProvider;
@@ -210,5 +212,16 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
         }
         return super.getRenderBoundingBox();
     }
+
+    @Override
+    public final void doWork() {
+        doWorkCounter++;
+        if (doWorkCounter >= slowingCoefficient) {
+            doWorkCounter = 0;
+            doMachineWork();
+        }
+    }
+
+    protected abstract void doMachineWork();
 }
 

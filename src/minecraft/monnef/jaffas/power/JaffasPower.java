@@ -35,12 +35,14 @@ import monnef.jaffas.power.block.BlockGrinder;
 import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.BlockToaster;
+import monnef.jaffas.power.block.BlockWebHarvester;
 import monnef.jaffas.power.block.TileEntityAntenna;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.power.block.TileEntityKitchenUnit;
 import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.block.TileEntityToaster;
+import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.client.GuiHandler;
@@ -110,6 +112,9 @@ public class JaffasPower extends jaffasMod {
     public static BlockToaster toaster;
     private int blockToasterID;
 
+    public static BlockWebHarvester webHarvester;
+    private int blockWebHarvesterID;
+
     @PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -135,6 +140,7 @@ public class JaffasPower extends jaffasMod {
 
             blockGrinderID = idProvider.getBlockIDFromConfig("grinder");
             blockToasterID = idProvider.getBlockIDFromConfig("toaster");
+            blockWebHarvesterID = idProvider.getBlockIDFromConfig("webHarvester");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -228,6 +234,10 @@ public class JaffasPower extends jaffasMod {
         toaster = new BlockToaster(blockToasterID, 50, TileEntityToaster.class, GuiHandler.GuiId.TOASTER, true, false);
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileEntityToaster.class, "toaster");
+
+        webHarvester = new BlockWebHarvester(blockWebHarvesterID, 50, JaffasTechnic.breakableIronMaterial, false, false);
+        RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
+        registerTileEntity(TileWebHarvester.class, "webHarvester");
     }
 
     private void installRecipes() {

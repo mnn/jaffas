@@ -62,7 +62,7 @@ public class TileEntityAntenna extends TileEntityMachine {
     }
 
     @Override
-    public void doWork() {
+    protected void doMachineWork() {
     }
 
     @Override

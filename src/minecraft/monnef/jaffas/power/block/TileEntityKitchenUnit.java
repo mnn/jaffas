@@ -23,7 +23,7 @@ public class TileEntityKitchenUnit extends TileEntityMachine {
     }
 
     @Override
-    public void doWork() {
+    protected void doMachineWork() {
         if (skipCounter > 0) {
             skipCounter--;
         } else {

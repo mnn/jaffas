@@ -128,7 +128,11 @@ public class ClientTickHandler implements IScheduledTickHandler {
                             }
                         } else if (cmp == 1) {
                             if (name.toLowerCase().equals("monnef")) {
-                                player.addChatMessage("Local version is newer than remote, did you forget to update version file?");
+                                player.addChatMessage(String.format(
+                                        "Local version - §6%s§r is newer than remote - §6%s§r, did you forget to update version file? ",
+                                        VersionHelper.versionToString(thisVersion),
+                                        VersionHelper.versionToString(remoteVersion)
+                                ));
                             }
                             Log.printInfo("Remote version is older than yours, ignoring.");
                         } else {

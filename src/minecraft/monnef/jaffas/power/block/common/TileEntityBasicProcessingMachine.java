@@ -28,9 +28,6 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     public int processTime = 0;
     public int processItemTime = 1;
     private ItemStack[] processingInv;
-    public int slowingCoefficient = 1;
-
-    protected int doWorkCounter;
 
     private static HashMap<Class, ContainerBasicProcessingMachine> containerPrototype = new HashMap<Class, ContainerBasicProcessingMachine>();
 
@@ -70,22 +67,18 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     }
 
     @Override
-    public void doWork() {
+    protected void doMachineWork() {
         if (worldObj.isRemote) return;
 
         if (isWorking()) {
-            doWorkCounter++;
-            if (doWorkCounter >= slowingCoefficient) {
-                doWorkCounter = 0;
-                processTime++;
-                float power = getPowerProvider().useEnergy(powerNeeded, powerNeeded, true);
-                if (power < powerNeeded) {
-                    JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
-                } else {
-                    if (processTime >= processItemTime) {
-                        processTime = 0;
-                        produceOutput(getRecipeHandler().findByInput(processingInv));
-                    }
+            processTime++;
+            float power = getPowerProvider().useEnergy(powerNeeded, powerNeeded, true);
+            if (power < powerNeeded) {
+                JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
+            } else {
+                if (processTime >= processItemTime) {
+                    processTime = 0;
+                    produceOutput(getRecipeHandler().findByInput(processingInv));
                 }
             }
         } else {
@@ -185,16 +178,16 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
     @Override
     public void setCurrentValueOfIntegerToSync(int index, int value) {
-        super.setCurrentValueOfIntegerToSync(index,value);
-            switch (index) {
-                case 2:
-                    processTime = value;
-                    break;
+        super.setCurrentValueOfIntegerToSync(index, value);
+        switch (index) {
+            case 2:
+                processTime = value;
+                break;
 
-                case 3:
-                    processItemTime = value;
-                    break;
-            }
+            case 3:
+                processItemTime = value;
+                break;
+        }
     }
 
     @Override

@@ -42,7 +42,7 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
     }
 
     @Override
-    public void doWork() {
+    protected void doMachineWork() {
     }
 
     @Override
