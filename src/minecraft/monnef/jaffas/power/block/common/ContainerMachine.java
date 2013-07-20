@@ -11,16 +11,33 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ContainerJaffas;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 
 import java.util.ArrayList;
 
-public abstract class ContainerMachine extends ContainerJaffas {
+public class ContainerMachine extends ContainerJaffas {
     protected TileEntityMachineWithInventory machine;
 
     protected ArrayList<Integer> lastValue;
 
     // dummy constructor
     protected ContainerMachine() {
+    }
+
+    @Override
+    public int getSlotsCount() {
+        return machine.getSizeInventory();
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 1;
+    }
+
+    @Override
+    public void constructSlots(IInventory inv) {
+        addSlotToContainer(new Slot(inv, 0, 80, 25));
     }
 
     public ContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory te) {

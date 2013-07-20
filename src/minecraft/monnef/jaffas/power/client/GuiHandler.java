@@ -10,10 +10,13 @@ import monnef.jaffas.power.block.ContainerGenerator;
 import monnef.jaffas.power.block.TileEntityGenerator;
 import monnef.jaffas.power.block.TileEntityGrinder;
 import monnef.jaffas.power.block.TileEntityToaster;
+import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
+import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
+import monnef.jaffas.power.client.common.GuiContainerMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -35,6 +38,8 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity);
         } else if (tileEntity instanceof TileEntityToaster) {
             return new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity);
+        } else if (tileEntity instanceof TileWebHarvester) {
+            return new ContainerMachine(player.inventory, (TileWebHarvester) tileEntity);
         }
         return null;
     }
@@ -50,6 +55,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity));
         } else if (tileEntity instanceof TileEntityToaster) {
             return new GuiContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity));
+        } else if (tileEntity instanceof TileWebHarvester) {
+            return new GuiContainerMachine(player.inventory, (TileWebHarvester) tileEntity, new ContainerMachine(player.inventory, (TileWebHarvester) tileEntity));
         }
         return null;
     }

@@ -14,7 +14,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public abstract class GuiContainerMachine extends GuiContainer {
+public class GuiContainerMachine extends GuiContainer {
     public static final int ENERGY_BAR_X = 146;
     public static final int ENERGY_BAR_Y = 15;
     private static final int ENERGY_BAR_HEIGHT = 50;
@@ -39,7 +39,9 @@ public abstract class GuiContainerMachine extends GuiContainer {
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
-    protected abstract String getTitle();
+    protected String getTitle() {
+        return tile.getMachineTitle();
+    }
 
     protected int x, y;
 
@@ -55,7 +57,9 @@ public abstract class GuiContainerMachine extends GuiContainer {
             drawEnergyBar(tile);
     }
 
-    protected abstract String getBackgroundTexture();
+    protected String getBackgroundTexture() {
+        return "/guimachine.png";
+    }
 
     protected void drawEnergyBar(TileEntityMachineWithInventory tile) {
         int bx = x + ENERGY_BAR_X;

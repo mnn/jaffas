@@ -116,7 +116,7 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
     public abstract String getInvName();
 
     public int getIntegersToSyncCount() {
-        return 0;
+        return 2;
     }
 
     public int getCurrentValueOfIntegerToSync(int index) {
