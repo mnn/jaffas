@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.command;
 
+import monnef.core.utils.WeatherHelper;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.technic.block.TileEntityFungiBox;
 import net.minecraft.command.CommandBase;
@@ -55,8 +56,31 @@ public class CommandJaffasOP extends CommandBase {
             } else {
                 TileEntityFungiBox.disableDebugSpeedOverride();
             }
+        } else if (parameters.length == 1 && "wet_rain".equals(parameters[0])) {
+            if (commandsender instanceof EntityPlayer) {
+                WeatherHelper.toggleRain(((EntityPlayer) commandsender).worldObj);
+                printWeatherInfo((EntityPlayer) commandsender);
+            }
+        } else if (parameters.length == 1 && "wet_thun".equals(parameters[0])) {
+            if (commandsender instanceof EntityPlayer) {
+                WeatherHelper.toggleThundering(((EntityPlayer) commandsender).worldObj);
+                printWeatherInfo((EntityPlayer) commandsender);
+            }
+        } else if (parameters.length == 1 && "wet_rath".equals(parameters[0])) {
+            if (commandsender instanceof EntityPlayer) {
+                WeatherHelper.toggleRain(((EntityPlayer) commandsender).worldObj);
+                WeatherHelper.toggleThundering(((EntityPlayer) commandsender).worldObj);
+                printWeatherInfo((EntityPlayer) commandsender);
+            }
+        } else if (parameters.length == 1 && ("wet".equals(parameters[0]) || "wet_info".equals(parameters[0]))) {
+            if (commandsender instanceof EntityPlayer) {
+                printWeatherInfo((EntityPlayer) commandsender);
+            }
         }
+    }
 
+    private void printWeatherInfo(EntityPlayer commandsender) {
+        commandsender.addChatMessage(WeatherHelper.generateWeatherInfo(commandsender.worldObj));
     }
 
     @Override

@@ -2,14 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Boosted ore generation.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/entity/EntityLocomotive.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/entity/EntityLocomotive.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/command/CommandJaffasOP.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/command/CommandJaffasOP.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374264867151" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374222469698" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374311501751" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374304833025" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372606222178" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374156004628" ignored="false" />
@@ -89,7 +91,7 @@
     <file path="/RenderMinecart.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358592605857" ignored="false" />
     <file path="/ModulesEnum.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358802658129" ignored="false" />
     <file path="/mod_jaffas_carts.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361546501327" ignored="false" />
-    <file path="/a.dummy" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374260683746" ignored="false" />
+    <file path="/a.dummy" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374266620644" ignored="false" />
     <file path="/IPowerNode.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359889863688" ignored="false" />
     <file path="/BlockGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373553891515" ignored="false" />
     <file path="/ModelGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358622633246" ignored="false" />
@@ -213,7 +215,7 @@
     <file path="/ItemJaffaTool.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372866710167" ignored="false" />
     <file path="/CoreInitializer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362151538500" ignored="false" />
     <file path="/LibraryInfo.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361790326775" ignored="false" />
-    <file path="/CoreTransformer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374263927967" ignored="false" />
+    <file path="/CoreTransformer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374268325574" ignored="false" />
     <file path="/CloakHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361986083094" ignored="false" />
     <file path="/ICloakHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362052714561" ignored="false" />
     <file path="/CloakHookHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362052794600" ignored="false" />
@@ -235,13 +237,13 @@
     <file path="/RenderItemInAir.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367439229028" ignored="false" />
     <file path="/ItemMagnifier.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364684849701" ignored="false" />
     <file path="/LightningHookHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362313062294" ignored="false" />
-    <file path="/WorldServer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362315291287" ignored="false" />
-    <file path="/LightningGeneratedEvent.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362317592201" ignored="false" />
+    <file path="/WorldServer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374310434006" ignored="false" />
+    <file path="/LightningGeneratedEvent.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374267506957" ignored="false" />
     <file path="/EventTransformer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362323875608" ignored="false" />
     <file path="/PowerEventHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362417334768" ignored="false" />
-    <file path="/WorldServerVisitor.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362327816711" ignored="false" />
+    <file path="/WorldServerVisitor.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374307427955" ignored="false" />
     <file path="/WorldServerWriter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362327256250" ignored="false" />
-    <file path="/InjectLightningEventAdapter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362329198040" ignored="false" />
+    <file path="/InjectLightningEventAdapter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374310355462" ignored="false" />
     <file path="/BlockMonnefCore.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365108038840" ignored="false" />
     <file path="/BlockPower.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368528270609" ignored="false" />
     <file path="/LightningConductor.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362390418004" ignored="false" />
@@ -423,7 +425,7 @@
     <file path="/NetworkHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368640873596" ignored="false" />
     <file path="/StringUtils.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368643802603" ignored="false" />
     <file path="/CommandJaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368645124326" ignored="false" />
-    <file path="/CommandJaffasOP.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1369503080433" ignored="false" />
+    <file path="/CommandJaffasOP.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374312152974" ignored="false" />
     <file path="/AchievementHooksHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368645389241" ignored="false" />
     <file path="/AchievementsHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368699576363" ignored="false" />
     <file path="/EventCalendar.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368709140513" ignored="false" />
@@ -568,9 +570,11 @@
     <file path="/EntityCreatureMob.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374223642375" ignored="false" />
     <file path="/EntityJaffaSpider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374224324663" ignored="false" />
     <file path="/RenderJaffaSpider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374225665145" ignored="false" />
-    <file path="/WorldServerTransformer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374264359754" ignored="false" />
-    <file path="/EventFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374241516047" ignored="false" />
+    <file path="/WorldServerTransformer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374267927273" ignored="false" />
+    <file path="/EventFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374305137047" ignored="false" />
     <file path="/Config.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374264212408" ignored="false" />
+    <file path="/EventWrapper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374267904645" ignored="false" />
+    <file path="/WeatherHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374312079340" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -590,7 +594,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/CompostRegister.java" line="66" class="monnef.jaffas.technic.common.CompostRegister" package="monnef.jaffas.technic.common">
         <option name="ENABLED" value="true" />
@@ -662,7 +665,22 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/core/src/monnef/core/external/javassist/expr/MethodCall.java" line="240" class="monnef.core.external.javassist.expr.MethodCall" package="monnef.core.external.javassist.expr">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -707,19 +725,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EntityWolf.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityWolf.java">
+      <file leaf-file-name="WorldServerVisitor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/WorldServerVisitor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="384" column="68" selection-start="12243" selection-end="12243" vertical-scroll-proportion="0.0">
+            <state line="33" column="26" selection-start="1236" selection-end="1236" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/event/EventFactory.java">
+      <file leaf-file-name="LightningGeneratedEvent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/event/LightningGeneratedEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="38" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+            <state line="11" column="20" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -727,10 +745,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Library.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Library.java">
+      <file leaf-file-name="LightingHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/LightingHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="50" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
+            <state line="28" column="42" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -738,10 +756,55 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Config.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Config.java">
+      <file leaf-file-name="WorldServer.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/WorldServer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="29" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0">
+            <state line="366" column="65" selection-start="13654" selection-end="13654" vertical-scroll-proportion="0.21983472">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="World.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="146" column="33" selection-start="5520" selection-end="5529" vertical-scroll-proportion="-8.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorldInfo.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/storage/WorldInfo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="457" column="15" selection-start="13622" selection-end="13622" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandJaffas.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/command/CommandJaffas.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="13" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CommandJaffasOP.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/command/CommandJaffasOP.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="80" column="42" selection-start="3653" selection-end="3653" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WeatherHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/WeatherHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="58" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -749,58 +812,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PathHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/PathHelper.java">
+      <file leaf-file-name="InjectLightningEventAdapter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/InjectLightningEventAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="84" column="25" selection-start="2812" selection-end="2812" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoreTransformer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/CoreTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="48" selection-start="2067" selection-end="2067" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WorldServerTransformer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/WorldServerTransformer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="67" selection-start="2526" selection-end="2526" vertical-scroll-proportion="0.0">
+            <state line="92" column="0" selection-start="2677" selection-end="2677" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#721#730#0" expanded="true" />
+                <element signature="e#4486#4494#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CoreModContainer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/CoreModContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="60" selection-start="2473" selection-end="2473" vertical-scroll-proportion="0.5633803">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OtherModsHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="17" selection-start="1579" selection-end="1579" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JaffasFood.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="388" column="40" selection-start="18366" selection-end="18366" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -824,22 +844,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/BlockFruitSapling.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemTechnicTool.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemSwordTechnic.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/event/EventFactory.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileEntityFungiBox.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/entity/EntityLocomotive.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/PathHelper.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/Library.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/CoreTransformer.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/Config.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/WorldServerTransformer.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/CoreModContainer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/core/asm/lightningHook/WorldServerTransformer.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/event/LightningGeneratedEvent.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/event/EventWrapper.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/WorldServerTransformer.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/CoreTransformer.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/OldInjectLightningEventAdapter.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/event/EventFactory.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/WorldServerVisitor.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/InjectLightningEventAdapter.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/net/minecraft/world/WorldServer.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/WeatherHelper.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/command/CommandJaffasOP.java" />
       </list>
     </option>
   </component>
@@ -972,6 +992,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -1259,7 +1280,41 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="technic" />
+              <option name="myItemId" value="food" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="food" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="command" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1383,7 +1438,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1395,7 +1449,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="Errors" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/hookAfterCompile.bat" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -1426,6 +1480,9 @@
       <recent name="monnef.jaffas.food.block" />
       <recent name="monnef.core.base" />
     </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="monnef.core.MonnefCorePlugin" />
+    </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="monnef.core.Config" />
       <recent name="monnef.core.utils.RenderUtils" />
@@ -1433,15 +1490,12 @@
       <recent name="monnef.jaffas.power.common.WrenchHelper" />
       <recent name="monnef.jaffas.food.item.JaffasHelper" />
     </key>
-    <key name="IntroduceConstantDialog.RECENTS_KEY">
-      <recent name="monnef.core.MonnefCorePlugin" />
-    </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="monnef.core.utils" />
       <recent name="monnef.jaffas.power.block" />
       <recent name="monnef.jaffas.technic.block.redstone" />
       <recent name="monnef.jaffas.power.api" />
       <recent name="monnef.jaffas.power.common" />
-      <recent name="monnef.jaffas.technic.block" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="monnef.core.external" />
@@ -1451,7 +1505,7 @@
       <recent name="monnef.jaffas.technic.client" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
+  <component name="RunManager" selected="Application.server">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -1707,7 +1761,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1717,21 +1771,22 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2578125" sideWeight="0.49573106" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2890625" sideWeight="0.50053364" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="ASM" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.36979723" sideWeight="0.7421875" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35044643" sideWeight="0.4850587" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575893" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14034152" sideWeight="0.22767857" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14034152" sideWeight="0.23549107" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14034152" sideWeight="0.5066964" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14034152" sideWeight="0.49888393" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.49573106" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1815,122 +1870,124 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityWolf.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/cpw/mods/fml/relauncher/RelaunchClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="384" column="68" selection-start="12243" selection-end="12243" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="237" column="0" selection-start="9644" selection-end="9644" vertical-scroll-proportion="0.24270712" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/MonnefCorePlugin.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/CoreTransformer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="49" selection-start="1066" selection-end="1066" vertical-scroll-proportion="0.27701148">
+        <state line="44" column="0" selection-start="1736" selection-end="1736" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/event/EventFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="38" selection-start="559" selection-end="559" vertical-scroll-proportion="0.0">
+        <state line="13" column="58" selection-start="324" selection-end="324" vertical-scroll-proportion="0.20023558">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/apps/Java/jdk1.6.0_35/src.zip!/java/lang/Boolean.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/IBlockAccess.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="32" selection-start="1199" selection-end="1199" vertical-scroll-proportion="0.33333334">
+        <state line="9" column="17" selection-start="299" selection-end="299" vertical-scroll-proportion="0.020023556">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Library.java">
+    <entry file="jar://$PROJECT_DIR$/lib/asm-debug-all-4.1.jar!/org/objectweb/asm/MethodVisitor.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="50" selection-start="677" selection-end="677" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="29" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/CoreTransformer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="48" selection-start="2067" selection-end="2067" vertical-scroll-proportion="0.0">
+        <state line="26" column="16" selection-start="1093" selection-end="1093" vertical-scroll-proportion="0.34278667">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/WorldServerTransformer.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/command/CommandJaffas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="67" selection-start="2526" selection-end="2526" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="13" column="13" selection-start="233" selection-end="233" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="22" selection-start="2824" selection-end="2824" vertical-scroll-proportion="0.11505922">
+        <state line="146" column="33" selection-start="5520" selection-end="5529" vertical-scroll-proportion="-8.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/storage/WorldInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="457" column="15" selection-start="13622" selection-end="13622" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/OldInjectLightningEventAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="58" selection-start="4066" selection-end="4119" vertical-scroll-proportion="1.1017214">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/WorldServerVisitor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="26" selection-start="1236" selection-end="1236" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/event/LightningGeneratedEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="20" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/LightingHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="42" selection-start="844" selection-end="844" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/asm/lightningHook/InjectLightningEventAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="92" column="0" selection-start="2677" selection-end="2677" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#721#730#0" expanded="true" />
+            <element signature="e#4486#4494#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/WeatherHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="58" selection-start="1142" selection-end="1142" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/command/CommandJaffasOP.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="80" column="42" selection-start="3653" selection-end="3653" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/WorldServer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="36" selection-start="2748" selection-end="2748" vertical-scroll-proportion="0.11505922">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/server/ThreadMinecraftServer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="44" selection-end="44" vertical-scroll-proportion="0.05629139">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/server/ServerListenThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="505" selection-end="505" vertical-scroll-proportion="0.11258278">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/cpw/mods/fml/common/FMLCommonHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="182" column="78" selection-start="6243" selection-end="6243" vertical-scroll-proportion="0.5860927">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="17" selection-start="1579" selection-end="1579" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="388" column="40" selection-start="18366" selection-end="18366" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/CoreModContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="60" selection-start="2473" selection-end="2473" vertical-scroll-proportion="0.5633803">
+        <state line="366" column="65" selection-start="13654" selection-end="13654" vertical-scroll-proportion="0.21983472">
           <folding />
         </state>
       </provider>
