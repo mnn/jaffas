@@ -611,8 +611,8 @@ public class JaffasFood extends jaffasMod {
     }
 
     private void printInitializedMessage() {
-        Log.printInfo("Mod 'Jaffas and more!' successfully initialized");
-        Log.printInfo("created by monnef and Tiartyos");
+        Log.printInfo("Mod '" + Reference.ModName + "' successfully initialized");
+        Log.printInfo("created by " + monnef.core.Reference.MONNEF + " and " + monnef.core.Reference.TIARTYOS + "");
         Log.printInfo("version: " + Reference.Version + " ; " + monnef.core.Reference.URL_JAFFAS_WIKI);
 
         Log.printInfo("enabled modules: " + Joiner.on(", ").join(ModuleManager.CompileEnabledModules()));

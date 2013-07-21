@@ -9,6 +9,7 @@ import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.TickType;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.ThreadVersionCheck;
 import monnef.jaffas.food.common.VersionHelper;
 import net.minecraft.client.Minecraft;
@@ -33,7 +34,7 @@ public class ClientTickHandler implements IScheduledTickHandler {
 
     public static Object lock = new Object();
 
-    private static String cachedVersionString;
+    public static String cachedVersionString;
 
     public ClientTickHandler() {
     }
@@ -106,8 +107,9 @@ public class ClientTickHandler implements IScheduledTickHandler {
                     if (remoteVersion != null) {
                         Integer[] thisVersion = VersionHelper.GetVersionNumbers(clientVersionString);
                         int cmp = VersionHelper.compareVersions(thisVersion, remoteVersion);
+                        String versionString = VersionHelper.versionToString(remoteVersion);
+                        cachedVersionString = versionString;
                         if (cmp == -1) {
-                            String versionString = VersionHelper.versionToString(remoteVersion);
                             if (!JaffasFood.lastVersionShown.equals(versionString)) {
                                 Configuration config = JaffasFood.instance.config;
                                 try {
@@ -118,7 +120,6 @@ public class ClientTickHandler implements IScheduledTickHandler {
                                     e.printStackTrace();
                                 }
                                 if (JaffasFood.showUpdateMessages) {
-                                    cachedVersionString = versionString;
                                     showNewVersionMessage(player);
                                 } else {
                                     Log.printInfo("New version available, but messages are disabled.");
@@ -146,12 +147,13 @@ public class ClientTickHandler implements IScheduledTickHandler {
         }
     }
 
-    public boolean isVersionStringReady() {
+    public static boolean isVersionStringReady() {
         return cachedVersionString != null;
     }
 
     private void showNewVersionMessage(EntityClientPlayerMP player) {
-        player.addChatMessage("New version §6" + cachedVersionString + "§r of \"§5Jaffas and more!§r\" is available.");
+        player.addChatMessage("New version §e" + cachedVersionString + "§r of \"§5" + Reference.ModName + "§r\" is available.");
+        player.addChatMessage("This message will not be shown again, if you want more details use /jam command.");
     }
 
     @Override
