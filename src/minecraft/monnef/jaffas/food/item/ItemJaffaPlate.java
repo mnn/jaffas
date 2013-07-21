@@ -40,6 +40,11 @@ public class ItemJaffaPlate extends ItemArmor {
     }
 
     @Override
+    public CreativeTabs[] getCreativeTabs() {
+        return new CreativeTabs[]{getCreativeTab(), CreativeTabs.tabCombat};
+    }
+
+    @Override
     public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
         return armorTexture;
     }

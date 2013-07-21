@@ -88,7 +88,9 @@ public class ItemJaffaTool extends ItemJaffaBase {
     protected void damageTool(int dmg, EntityLiving source, ItemStack stack) {
         int newDmg = stack.getItemDamage() + dmg;
         if (newDmg == stack.getMaxDamage()) {
-            source.renderBrokenItemStack(stack);
+            if (source != null) {
+                source.renderBrokenItemStack(stack);
+            }
         }
         if (newDmg > stack.getMaxDamage()) {
             dmg = stack.getMaxDamage() - stack.getItemDamage();
