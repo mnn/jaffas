@@ -68,6 +68,7 @@ import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
+import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
@@ -483,6 +484,8 @@ public class JaffasFood extends jaffasMod {
 
         proxy.registerRenderThings();
         GameRegistry.registerFuelHandler(new FuelHandler());
+
+        MinecraftForge.EVENT_BUS.register(new PlateUnequipper());
     }
 
     private void createPainting() {

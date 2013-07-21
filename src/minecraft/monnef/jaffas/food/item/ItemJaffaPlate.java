@@ -5,15 +5,19 @@
 
 package monnef.jaffas.food.item;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.base.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class ItemJaffaPlate extends ItemArmor {
     private String armorTexture;
@@ -26,13 +30,13 @@ public class ItemJaffaPlate extends ItemArmor {
         helm, chest, leggings, boots
     }
 
-    public ItemJaffaPlate(int par1, EnumArmorMaterial par2EnumArmorMaterial, int renderIndex, ArmorType type, String armorTexture, Item repairItem, int customIconIndex) {
-        super(par1, par2EnumArmorMaterial, renderIndex, type.ordinal());
+    public ItemJaffaPlate(int id, EnumArmorMaterial material, int renderIndex, ArmorType type, String armorTexture, Item repairItem, int customIconIndex) {
+        super(id, material, renderIndex, type.ordinal());
         this.armorTexture = armorTexture;
         this.repairItem = repairItem;
         this.customIconIndex = customIconIndex;
         this.setCreativeTab(JaffasFood.instance.creativeTab);
-        setUnlocalizedName("armor." + par2EnumArmorMaterial.name());
+        setUnlocalizedName("armor." + material.name());
     }
 
     @Override
@@ -41,15 +45,34 @@ public class ItemJaffaPlate extends ItemArmor {
     }
 
     @Override
-    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
-        if (repairItem == null || repairItem.itemID != par2ItemStack.itemID)
-            return super.getIsRepairable(par1ItemStack, par2ItemStack);
-        return true;
+    public boolean getIsRepairable(ItemStack armor, ItemStack material) {
+        return repairItem != null && repairItem.itemID == material.itemID;
     }
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister) {
+    public void registerIcons(IconRegister register) {
         String id = CustomIconHelper.generateId(Reference.ModName, 1, customIconIndex);
-        itemIcon = par1IconRegister.registerIcon(id);
+        itemIcon = register.registerIcon(id);
+    }
+
+    @Override
+    public int getItemEnchantability() {
+        return repairItem == null ? -1 : super.getItemEnchantability();
+    }
+
+    @Override
+    public void getSubItems(int id, CreativeTabs par2CreativeTabs, List par3List) {
+        super.getSubItems(id, par2CreativeTabs, par3List);
+        if (MonnefCorePlugin.debugEnv) {
+            par3List.add(new ItemStack(id, 1, getMaxDamage() - 10));
+        }
+    }
+
+    public boolean nearlyDestroyed(ItemStack stack) {
+        return stack.getItemDamage() > stack.getMaxDamage() - 10;
+    }
+
+    public boolean unequipWhenDamaged() {
+        return repairItem == null;
     }
 }

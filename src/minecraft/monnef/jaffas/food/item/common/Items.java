@@ -739,7 +739,7 @@ public class Items extends ItemManagerAccessor {
     }
 
     public void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, JaffaItem repairItem) {
-        createJaffaArmor(item, material, renderIndex, type, texture, repairItem == null ? null : getItem(repairItem));
+        createJaffaArmor(item, material, renderIndex, type, texture, (repairItem == null || repairItem == _last) ? null : getItem(repairItem));
     }
 
     // helm, chest, leggings, boots
