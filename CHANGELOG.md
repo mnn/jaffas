@@ -1,3 +1,18 @@
+## 0.5.1
+- fixed server crash when placing fungi box
+- added spider farm (little spider creature, web harvester)
+- rewritten lightning hook - it looks it's now compatible with MCPC+
+- armor repairing/enchanting via recipes (similar to our tools)
+- upgraded hoe to till 3×3 when crouching
+- jarmor un-equips itself when almost broken
+- added jaffarrol tools and weapon to proper creative tabs
+- hidden blocks from creative - keg, plant post, fermenter, dummy construction block
+- fixed cloak hook to be more aggressive (no more cape overrides by poorly coded mods)
+- fixed home stone to reset fall counter
+- fixed metadata on a sapling when picked in creative
+- kitchen board now accepts wolf and duck meat
+- modified kitchen board, fridge and collector to implement new inventory interface
+
 ## 0.5.0
 - added machines using/producing BuildCraft power: generator, grinder (replaces item meat grinder), toaster, kitchen unit
 - added decorative lamps
