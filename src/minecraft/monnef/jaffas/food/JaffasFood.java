@@ -251,6 +251,7 @@ public class JaffasFood extends jaffasMod {
     public static boolean slimeSpawningEnabled;
     public static boolean vanillaRecipesEnabled;
     public static boolean dungeonLootEnabled;
+    public static boolean disableAutoUnEquip;
 
     public static OtherModsHelper otherMods;
     public ItemStack guideBook;
@@ -362,6 +363,8 @@ public class JaffasFood extends jaffasMod {
             JaffasRegistryHelper.compatibilityMode = config.get(Configuration.CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
             vanillaRecipesEnabled = config.get(Configuration.CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
             dungeonLootEnabled = config.get(Configuration.CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
+            disableAutoUnEquip = config.get(Configuration.CATEGORY_GENERAL, "disableAutoUnEquip", false).getBoolean(false);
+
             AchievementsHandler.setStartingId(config.get(Configuration.CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
@@ -485,7 +488,9 @@ public class JaffasFood extends jaffasMod {
         proxy.registerRenderThings();
         GameRegistry.registerFuelHandler(new FuelHandler());
 
-        MinecraftForge.EVENT_BUS.register(new PlateUnequipper());
+        if (!disableAutoUnEquip) {
+            MinecraftForge.EVENT_BUS.register(new PlateUnequipper());
+        }
     }
 
     private void createPainting() {
