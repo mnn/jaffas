@@ -121,9 +121,9 @@ public class ItemSpawnStone extends ItemJaffaBase {
             Log.printInfo(player.getEntityName() + " used home stone, porting to: " + bed.posX + ", " + bed.posY + ", " + bed.posZ);
 
             player.playerNetServerHandler.setPlayerLocation(bed.posX + 0.5f, bed.posY + 1.1f, bed.posZ + 0.5f, player.rotationYaw, player.rotationPitch);
-
+            player.fallDistance = 0;
             player.motionX = player.motionZ = 0;
-            player.motionY = 0.1;
+            player.motionY = 0.2;
 
             world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
             CoolDownRegistry.setCoolDown(player.getEntityName(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
