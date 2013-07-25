@@ -349,7 +349,7 @@ public class JaffasFood extends jaffasMod {
             spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
             spawnStoneMediumCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMediumCD", 17).getInt();
             spawnStoneBigCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
-            spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", false, "Experimental!").getBoolean(false);
+            spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", true).getBoolean(true);
             transferItemsFromCraftingMatrix = config.get(Configuration.CATEGORY_GENERAL, "transferItemsFromCraftingMatrix", false, "Experimental, try to transfer items created after craft directly to player (e.g. crumpled paper)?").getBoolean(false);
             ignoreBuildCraftsTables = config.get(Configuration.CATEGORY_GENERAL, "ignoreBuildCraftsTables", true, "BC tables has broken recipes handling - wrong stack size or crash on craft").getBoolean(true);
             genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);

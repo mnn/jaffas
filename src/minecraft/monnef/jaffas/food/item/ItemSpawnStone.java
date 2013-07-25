@@ -35,14 +35,12 @@ public class ItemSpawnStone extends ItemJaffaBase {
     }
 
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player) {
-        //FMLCommonHandler.instance().showGuiScreen(new GuiSpawnStone(player, coolDown));
-
-        if (!par2World.isRemote) {
-            SpawnStoneServerPacketSender.sendSyncPacket((EntityPlayerMP) player, true);
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        if (!world.isRemote) {
+            SpawnStoneServerPacketSender.sendSyncPacket(player, true);
         }
 
-        return par1ItemStack;
+        return stack;
     }
 
     @Override
@@ -78,29 +76,6 @@ public class ItemSpawnStone extends ItemJaffaBase {
             }
         }
 
-        /*
-        ChunkCoordinates bed = player.getBedLocation();
-        ChunkCoordinates spawn = bed;
-        String type = "b";
-        if (spawn == null) {
-            spawn = world.getSpawnPoint();
-            type += "S";
-        } else {
-            if (homeWorld) { // bed spawn position method malfunctions after transfer from nether, ignore it
-                spawn = Block.bed.getBedSpawnPosition(world, spawn.posX, spawn.posY, spawn.posZ, player);
-                type += "B";
-                if (spawn == null) {
-                    spawn = bed;
-                    type += "b";
-                } else {
-                    spawn.posY += .5f;
-                }
-            } else {
-                spawn.posY += 2f;
-            }
-        }
-        */
-
         ChunkCoordinates bed = player.getBedLocation();
         boolean success;
         if (bed == null) {
@@ -116,7 +91,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
         }
 
         if (success) {
-            world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
+            playWhooshEffect(player, world);
 
             Log.printInfo(player.getEntityName() + " used home stone, porting to: " + bed.posX + ", " + bed.posY + ", " + bed.posZ);
 
@@ -125,11 +100,15 @@ public class ItemSpawnStone extends ItemJaffaBase {
             player.motionX = player.motionZ = 0;
             player.motionY = 0.2;
 
-            world.playSoundEffect(player.posX, player.posY, player.posZ, "whoosh", 1f, 1f);
+            playWhooshEffect(player, world);
             CoolDownRegistry.setCoolDown(player.getEntityName(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
         }
 
         SpawnStoneServerPacketSender.sendSyncPacket(player, false);
+    }
+
+    private void playWhooshEffect(EntityPlayerMP player, World world) {
+        world.playSoundEffect(player.posX, player.posY, player.posZ, "homestone", 1f, 1f);
     }
 
     private boolean checkRoomForPlayer(World world, ChunkCoordinates spawn) {

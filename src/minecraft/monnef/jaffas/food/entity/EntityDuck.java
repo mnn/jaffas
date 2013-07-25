@@ -121,48 +121,35 @@ public class EntityDuck extends EntityAnimal {
         }
     }
 
-    /**
-     * Called when the mob is falling. Calculates and applies fall damage.
-     */
     @Override
     protected void fall(float par1) {
     }
 
-    /**
-     * Returns the sound this mob makes while it's alive.
-     */
     @Override
     protected String getLivingSound() {
-        return "mob.chicken.say";
+        return "duck";
     }
 
-    /**
-     * Returns the sound this mob makes when it is hurt.
-     */
+    @Override
+    protected float getSoundVolume() {
+        return 0.5f;
+    }
+
     @Override
     protected String getHurtSound() {
         return "mob.chicken.hurt";
     }
 
-    /**
-     * Returns the sound this mob makes on death.
-     */
     @Override
     protected String getDeathSound() {
         return "mob.chicken.hurt";
     }
 
-    /**
-     * Plays step sound at given x, y, z for the entity
-     */
     @Override
     protected void playStepSound(int par1, int par2, int par3, int par4) {
         this.playSound("mob.chicken.step", 0.15F, 1.0F);
     }
 
-    /**
-     * Returns the item ID for the item the mob drops on death.
-     */
     @Override
     protected int getDropItemId() {
         return feather;
