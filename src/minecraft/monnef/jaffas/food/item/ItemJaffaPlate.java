@@ -41,7 +41,7 @@ public class ItemJaffaPlate extends ItemArmor {
 
     @Override
     public CreativeTabs[] getCreativeTabs() {
-        return new CreativeTabs[]{getCreativeTab(), CreativeTabs.tabCombat};
+        return new CreativeTabs[]{CreativeTabs.tabCombat, getCreativeTab()};
     }
 
     @Override

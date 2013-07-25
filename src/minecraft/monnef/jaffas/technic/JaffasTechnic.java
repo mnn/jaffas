@@ -57,6 +57,7 @@ import monnef.jaffas.technic.block.redstone.BlockAnalogRepeater;
 import monnef.jaffas.technic.block.redstone.BlockMultiLamp;
 import monnef.jaffas.technic.block.redstone.BlockRandomizer;
 import monnef.jaffas.technic.block.redstone.BlockSampler;
+import monnef.jaffas.technic.block.redstone.ItemBlockRedstone;
 import monnef.jaffas.technic.block.redstone.TileEntityAnalogRepeater;
 import monnef.jaffas.technic.block.redstone.TileEntityRandomizer;
 import monnef.jaffas.technic.block.redstone.TileEntitySampler;
@@ -103,6 +104,7 @@ import thermalexpansion.api.crafting.CraftingHelpers;
 import java.util.Map;
 import java.util.logging.Level;
 
+import static monnef.core.utils.RegistryUtils.registerMultiBlock;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
@@ -594,7 +596,7 @@ public class JaffasTechnic extends jaffasMod {
         RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
 
         constructionBlock = new BlockConstruction(blockConstructionID, 30);
-        RegistryUtils.registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
+        registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
 
         JaffasRegistryHelper.registerTileEntity(TileEntityConstructionDummy.class, "jaffasConstructionDummy");
         JaffasRegistryHelper.registerTileEntity(TileEntityCompostCore.class, "jaffasCompostCore");
@@ -613,11 +615,11 @@ public class JaffasTechnic extends jaffasMod {
 
         if (!disableRedstoneGadgets) {
             lampDeco = new BlockLamp(blockDecoLampID, 37, 38);
-            RegistryUtils.registerMultiBlock(lampDeco, ItemBlockJaffas.class, lampDeco.generateTitles(), lampDeco.generateSubNames());
+            registerMultiBlock(lampDeco, ItemBlockJaffas.class, lampDeco.generateTitles(), lampDeco.generateSubNames());
             Item.itemsList[lampDeco.blockID].setFull3D();
 
             lamp = new BlockMultiLamp(blockMultiLampID, 37);
-            RegistryUtils.registerBlock(lamp, "multiLamp", "Multi-Lamp");
+            registerRedstoneBlock(lamp, "multiLamp", "Multi-Lamp");
 
             gems = new ItemTechnic(itemGemsID, 40);
             RegistryUtils.registerItem(gems, "colourfulGems", "Colourful Gems");
@@ -628,15 +630,15 @@ public class JaffasTechnic extends jaffasMod {
             rainbowDust.setInfo("Maybe a key to the secret cow level?");
 
             repeater = new BlockAnalogRepeater(blockRepeaterID, 52, 3);
-            RegistryUtils.registerBlock(repeater, "repeater", "Analog Repeater");
+            registerRedstoneBlock(repeater, "repeater", "Analog Repeater");
             JaffasRegistryHelper.registerTileEntity(TileEntityAnalogRepeater.class, "repeater");
 
             sampler = new BlockSampler(blockSamplerID, 60, 3);
-            RegistryUtils.registerBlock(sampler, "sampler", "Sample-and-hold");
+            registerRedstoneBlock(sampler, "sampler", "Sample-and-hold");
             JaffasRegistryHelper.registerTileEntity(TileEntitySampler.class, "sampler");
 
             randomizer = new BlockRandomizer(blockRandomizerID, 63, 3);
-            RegistryUtils.registerBlock(randomizer, "randomizer", "Randomizer");
+            registerRedstoneBlock(randomizer, "randomizer", "Randomizer");
             JaffasRegistryHelper.registerTileEntity(TileEntityRandomizer.class, "randomizer");
         }
 
@@ -688,6 +690,10 @@ public class JaffasTechnic extends jaffasMod {
         JaffasRegistryHelper.registerTileEntity(TileEntityFermenterInventoryRouter.class, "fermenterInvRouter");
 
         createTools();
+    }
+
+    private void registerRedstoneBlock(Block block, String name, String title) {
+        registerMultiBlock(block, ItemBlockRedstone.class, name, title);
     }
 
     private void createTools() {

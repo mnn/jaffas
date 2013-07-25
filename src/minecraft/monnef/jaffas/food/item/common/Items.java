@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.item.common;
 
+import monnef.core.utils.WolfFoodRegistry;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
@@ -385,6 +386,10 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.crisps, "Crisps", 256);
     }
 
+    private void registerWolfFood(JaffaItem item) {
+        WolfFoodRegistry.registerWolfFood(getItem(item), ((IItemFood) getItem(item)).getHealAmount());
+    }
+
     private void AddItemInfoForJaffa(JaffaItem ji, String name, int textureId) {
         AddItemInfo(ji, name, textureId, JaffasHelper.getJaffaTitleForItem(ji));
     }
@@ -619,15 +624,21 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaFood(wolfMeatRaw, 1, 0.05f).setPotionEffect(Potion.hunger.id, 15, 1, 0.2F);
         createJaffaFood(muttonRaw, 1, 0.05f).setPotionEffect(Potion.hunger.id, 15, 1, 0.2F);
+        registerWolfFood(muttonRaw);
         createJaffaFood(spiderLegRaw, 1, 0.07f).setPotionEffect(Potion.poison.id, 4, 0, 0.2F);
+        registerWolfFood(spiderLegRaw);
 
         createJaffaFood(wolfMeat, 4, 0.7f);
         createJaffaFood(mutton, 4, 0.7f);
+        registerWolfFood(mutton);
         createJaffaFood(spiderLeg, 4, 0.7f);
+        registerWolfFood(spiderLeg);
 
         createJaffaItem(JaffaItem.featherDuck);
-        createJaffaItem(JaffaItem.duckRaw);
+        createJaffaFood(duckRaw, 1, 0.05f).setPotionEffect(Potion.hunger.id, 15, 1, 0.2F);
+        registerWolfFood(duckRaw);
         createJaffaFood(JaffaItem.duck, 4, 0.7f);
+        registerWolfFood(duck);
 
         createJaffaItem(JaffaItem.plateRaw);
         createJaffaItem(JaffaItem.plate);

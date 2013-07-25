@@ -72,10 +72,12 @@ public class ItemJaffaFood extends ItemJaffaBase implements IItemFood {
         return this;
     }
 
+    @Override
     public int getHealAmount() {
         return this.healAmount;
     }
 
+    @Override
     public float getSaturationModifier() {
         return this.saturation;
     }
