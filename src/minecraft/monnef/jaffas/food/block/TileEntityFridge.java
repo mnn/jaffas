@@ -7,12 +7,10 @@ package monnef.jaffas.food.block;
 
 import monnef.jaffas.food.crafting.RecipesFridge;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 
 import java.util.Random;
 
@@ -30,7 +28,6 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
 
     public TileEntityFridge() {
         super(70);
-        inv = new ItemStack[20 + 1];
         eventTime = 0;
         temperature = 24;
         fuelSlot = 20;
@@ -149,20 +146,7 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
 
     @Override
     public int getSizeInventory() {
-        return inv.length;
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int slot) {
-        return inv[slot];
-    }
-
-    @Override
-    public void setInventorySlotContents(int slot, ItemStack stack) {
-        inv[slot] = stack;
-        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-            stack.stackSize = getInventoryStackLimit();
-        }
+        return 20 + 1;
     }
 
     @Override
@@ -171,72 +155,8 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
     }
 
     @Override
-    public ItemStack decrStackSize(int slot, int amt) {
-        ItemStack stack = getStackInSlot(slot);
-        if (stack != null) {
-            if (stack.stackSize <= amt) {
-                setInventorySlotContents(slot, null);
-            } else {
-                stack = stack.splitStack(amt);
-                if (stack.stackSize == 0) {
-                    setInventorySlotContents(slot, null);
-                }
-            }
-        }
-        return stack;
-    }
-
-    @Override
-    public ItemStack getStackInSlotOnClosing(int slot) {
-        ItemStack stack = getStackInSlot(slot);
-        if (stack != null) {
-            setInventorySlotContents(slot, null);
-        }
-        return stack;
-    }
-
-    @Override
-    public int getInventoryStackLimit() {
-        return 64;
-    }
-
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this &&
-                player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
-    }
-
-    @Override
-    public void openChest() {
-    }
-
-    @Override
-    public void closeChest() {
-    }
-
-    @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
-        return true;
-    }
-
-    @Override
-    public boolean isInvNameLocalized() {
-        return false;
-    }
-
-    @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
-
-        NBTTagList tagList = tagCompound.getTagList("Inventory");
-        for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
-            byte slot = tag.getByte("Slot");
-            if (slot >= 0 && slot < inv.length) {
-                inv[slot] = ItemStack.loadItemStackFromNBT(tag);
-            }
-        }
-
         setFront(tagCompound.getInteger("front"));
         eventTime = tagCompound.getInteger("eventTime");
         temperature = tagCompound.getFloat("temperature");
@@ -245,18 +165,6 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
     @Override
     public void writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
-
-        NBTTagList itemList = new NBTTagList();
-        for (int i = 0; i < inv.length; i++) {
-            ItemStack stack = inv[i];
-            if (stack != null) {
-                NBTTagCompound tag = new NBTTagCompound();
-                tag.setByte("Slot", (byte) i);
-                stack.writeToNBT(tag);
-                itemList.appendTag(tag);
-            }
-        }
-        tagCompound.setTag("Inventory", itemList);
         tagCompound.setInteger("front", getFront());
         tagCompound.setInteger("eventTime", eventTime);
         tagCompound.setFloat("temperature", temperature);
@@ -273,64 +181,6 @@ public class TileEntityFridge extends TileEntityJaffaMachine implements IInvento
     public float getTemperature() {
         return temperature;
     }
-
-    /*
-    @Override
-    public int addItem(ItemStack stack, boolean doAdd, Orientations from) {
-        if (from == Orientations.YNeg) {
-            if (this.inv[fuelSlot] == null) {
-                if (doAdd) setInventorySlotContents(fuelSlot, stack);
-                return stack.stackSize;
-            } else {
-                if (this.inv[fuelSlot].itemID != stack.itemID) {
-                    return 0;
-                } else {
-                    int newStackSize = stack.stackSize + inv[fuelSlot].stackSize;
-                    if (doAdd) inv[fuelSlot].stackSize += stack.stackSize;
-
-                    if (newStackSize > stack.getMaxStackSize()) {
-                        if (doAdd) inv[fuelSlot].stackSize = stack.getMaxStackSize();
-                        return stack.stackSize - (newStackSize % stack.getMaxStackSize());
-                    } else {
-                        return stack.stackSize;
-                    }
-                }
-            }
-        } else {
-            return this.addItemToInventory(stack, doAdd);
-        }
-    }
-
-    @Override
-    public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
-        int itemSlot = -1;
-
-        for (int i = 0; i < fuelSlot; i++) {
-            if (this.inv[i] != null) {
-                itemSlot = i;
-                i = fuelSlot;
-            }
-        }
-
-        if (itemSlot == -1) {
-            return null;
-        }
-
-        ItemStack stack = this.inv[itemSlot];
-        ItemStack output = stack.copy();
-        int newStackCount = stack.stackSize - maxItemCount;
-        int outputStackCount = maxItemCount;
-        if (newStackCount <= 0) {
-            if (doRemove) setInventorySlotContents(itemSlot, null);
-            outputStackCount = stack.stackSize;
-        } else {
-            if (doRemove) stack.stackSize = newStackCount;
-        }
-
-        output.stackSize = outputStackCount;
-        return new ItemStack[]{output};
-    }
-    */
 
     protected void addEnergy(float i) {
         if (temperature > -10) {

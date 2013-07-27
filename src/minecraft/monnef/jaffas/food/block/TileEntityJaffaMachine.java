@@ -10,24 +10,20 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerFramework;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 
-public abstract class TileEntityJaffaMachine extends TileEntity implements IPowerReceptor, ISidedInventory {
+public abstract class TileEntityJaffaMachine extends TileEntityWithInventory implements IPowerReceptor {
     public int fuelSlot;
     public int burnTime;
     public int burnItemTime;
     public IPowerProvider powerProvider;
     private int powerNeeded;
-
-    protected ItemStack[] inv;
 
     public TileEntityJaffaMachine(int powerNeeded) {
         super();
@@ -83,12 +79,6 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
         }
     }
 
-    public abstract ItemStack getStackInSlot(int slot);
-
-    public abstract void setInventorySlotContents(int slot, ItemStack stack);
-
-    public abstract int getInventoryStackLimit();
-
     public int getBurnTimeRemainingScaled(int par1) {
         if (burnItemTime == 0) {
             burnItemTime = 200;
@@ -104,7 +94,6 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     @Override
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
-
         burnTime = tagCompound.getInteger("burnTime");
         burnItemTime = tagCompound.getInteger("burnItemTime");
     }
@@ -112,7 +101,6 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     @Override
     public void writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
-
         tagCompound.setInteger("burnTime", burnTime);
         tagCompound.setInteger("burnItemTime", burnItemTime);
     }
@@ -128,50 +116,6 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     }
 
     public void doWork() {
-    }
-
-    //@return How many items we added
-    protected int addItemToInventory(ItemStack stack, boolean doAdd) {
-        int free = -1;
-        boolean addToStack = false;
-        int ret;
-
-        for (int i = 0; i < fuelSlot; i++) {
-            if (inv[i] == null) {
-                free = i;
-                i = fuelSlot;
-            } else if (inv[i].itemID == stack.itemID && inv[i].stackSize < inv[i].getMaxStackSize()) {
-                addToStack = true;
-                free = i;
-                i = fuelSlot;
-            }
-        }
-
-        if (free != -1) {
-            if (addToStack) {
-                int newStackSize = stack.stackSize + inv[free].stackSize;
-                if (doAdd) inv[free].stackSize += stack.stackSize;
-
-                if (newStackSize > stack.getMaxStackSize()) {
-                    int overflowItemsCount = newStackSize % stack.getMaxStackSize();
-                    if (doAdd) inv[free].stackSize = stack.getMaxStackSize();
-
-                    ItemStack c = stack.copy();
-                    c.stackSize = overflowItemsCount;
-                    ret = stack.stackSize - overflowItemsCount;
-                    ret += addItemToInventory(c, doAdd);
-                } else {
-                    ret = stack.stackSize;
-                }
-            } else {
-                if (doAdd) inv[free] = stack;
-                ret = stack.stackSize;
-            }
-        } else {
-            ret = 0;
-        }
-
-        return ret;
     }
 
     public int getFuelSlot() {
@@ -232,4 +176,47 @@ public abstract class TileEntityJaffaMachine extends TileEntity implements IPowe
     public int powerRequest(ForgeDirection from) {
         return powerNeeded - (int) powerProvider.getEnergyStored();
     }
-}
+
+    //@return How many items we added
+    protected int addItemToInventory(ItemStack stack, boolean doAdd) {
+        int free = -1;
+        boolean addToStack = false;
+        int ret;
+
+        for (int i = 0; i < fuelSlot; i++) {
+            if (inv[i] == null) {
+                free = i;
+                i = fuelSlot;
+            } else if (inv[i].itemID == stack.itemID && inv[i].stackSize < inv[i].getMaxStackSize()) {
+                addToStack = true;
+                free = i;
+                i = fuelSlot;
+            }
+        }
+
+        if (free != -1) {
+            if (addToStack) {
+                int newStackSize = stack.stackSize + inv[free].stackSize;
+                if (doAdd) inv[free].stackSize += stack.stackSize;
+
+                if (newStackSize > stack.getMaxStackSize()) {
+                    int overflowItemsCount = newStackSize % stack.getMaxStackSize();
+                    if (doAdd) inv[free].stackSize = stack.getMaxStackSize();
+
+                    ItemStack c = stack.copy();
+                    c.stackSize = overflowItemsCount;
+                    ret = stack.stackSize - overflowItemsCount;
+                    ret += addItemToInventory(c, doAdd);
+                } else {
+                    ret = stack.stackSize;
+                }
+            } else {
+                if (doAdd) inv[free] = stack;
+                ret = stack.stackSize;
+            }
+        } else {
+            ret = 0;
+        }
+
+        return ret;
+    }}
