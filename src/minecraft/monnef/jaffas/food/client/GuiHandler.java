@@ -8,8 +8,10 @@ package monnef.jaffas.food.client;
 import cpw.mods.fml.common.network.IGuiHandler;
 import monnef.jaffas.food.block.ContainerBoard;
 import monnef.jaffas.food.block.ContainerFridge;
+import monnef.jaffas.food.block.ContainerRipeningBox;
 import monnef.jaffas.food.block.TileEntityBoard;
 import monnef.jaffas.food.block.TileEntityFridge;
+import monnef.jaffas.food.block.TileRipeningBox;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.ContainerCompost;
 import monnef.jaffas.technic.block.ContainerFermenter;
@@ -25,7 +27,7 @@ import net.minecraft.world.World;
 
 public class GuiHandler implements IGuiHandler {
     public enum GuiTypes {
-        FRIDGE, BOARD, COMPOST, COBBLE_BREAKER, FERMENTER
+        FRIDGE, BOARD, COMPOST, COBBLE_BREAKER, FERMENTER, RIPENING_BOX
     }
 
     @Override
@@ -43,6 +45,8 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerCobbleBreaker(player.inventory, (TileEntityCobbleBreaker) tileEntity);
         } else if (tileEntity instanceof TileEntityFermenter) {
             return new ContainerFermenter(player.inventory, (TileEntityFermenter) tileEntity);
+        } else if (tileEntity instanceof TileRipeningBox) {
+            return new ContainerRipeningBox(player.inventory, (TileRipeningBox) tileEntity);
         }
 
         return null;
@@ -63,6 +67,8 @@ public class GuiHandler implements IGuiHandler {
             return new GuiCobbleBreaker(player.inventory, (TileEntityCobbleBreaker) tileEntity);
         } else if (tileEntity instanceof TileEntityFermenter) {
             return new GuiFermenter(player.inventory, (TileEntityFermenter) tileEntity);
+        } else if (tileEntity instanceof TileRipeningBox) {
+            return new GuiRipeningBox(player.inventory, (TileRipeningBox) tileEntity);
         }
 
         return null;

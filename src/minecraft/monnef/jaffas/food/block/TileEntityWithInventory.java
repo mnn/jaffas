@@ -61,7 +61,6 @@ public abstract class TileEntityWithInventory extends TileEntity implements ISid
         }
     }
 
-
     @Override
     public ItemStack decrStackSize(int slot, int amt) {
         ItemStack stack = getStackInSlot(slot);

@@ -40,6 +40,7 @@ import monnef.jaffas.food.block.BlockJaffaStatue;
 import monnef.jaffas.food.block.BlockMeatDryer;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockPizza;
+import monnef.jaffas.food.block.BlockRipeningBox;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.block.BlockSwitchgrassSolid;
@@ -56,6 +57,7 @@ import monnef.jaffas.food.block.TileEntityMeatDryer;
 import monnef.jaffas.food.block.TileEntityPie;
 import monnef.jaffas.food.block.TileEntityPizza;
 import monnef.jaffas.food.block.TileEntitySink;
+import monnef.jaffas.food.block.TileRipeningBox;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
@@ -121,6 +123,8 @@ import java.util.Random;
 import java.util.Set;
 import java.util.logging.Level;
 
+import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
+import static monnef.jaffas.technic.JaffasTechnic.breakableIronMaterial;
 import static net.minecraftforge.common.BiomeDictionary.Type;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:monnef-core")
@@ -174,6 +178,9 @@ public class JaffasFood extends jaffasMod {
 
     public static int blockMeatDryerID;
     public static BlockMeatDryer blockMeatDryer;
+
+    public static int blockRipeningBoxID;
+    public static BlockRipeningBox blockRipeningBox;
 
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -335,6 +342,7 @@ public class JaffasFood extends jaffasMod {
                 blockDirDebug1ID = idProvider.getBlockIDFromConfig("blockDir1");
                 blockDirDebug2ID = idProvider.getBlockIDFromConfig("blockDir2");
             }
+            blockRipeningBoxID = idProvider.getBlockIDFromConfig("ripeningBox");
 
             jaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
             createPainting();
@@ -541,7 +549,7 @@ public class JaffasFood extends jaffasMod {
         blockFridge = new BlockFridge(blockFridgeID);
         GameRegistry.registerBlock(blockFridge, "blockFridge");
         LanguageRegistry.addName(blockFridge, "Fridge");
-        JaffasRegistryHelper.registerTileEntity(TileEntityFridge.class, "Fridge");
+        registerTileEntity(TileEntityFridge.class, "Fridge");
 
         blockJaffaBomb = new BlockJaffaBomb(blockJaffaBombID, 35, Material.rock);
         GameRegistry.registerBlock(blockJaffaBomb, "blockJaffaBomb");
@@ -550,35 +558,35 @@ public class JaffasFood extends jaffasMod {
         blockCross = new BlockCross(blockCrossID, 5, Material.rock);
         GameRegistry.registerBlock(blockCross, "blockCross");
         LanguageRegistry.addName(blockCross, "Cross");
-        JaffasRegistryHelper.registerTileEntity(TileEntityCross.class, "cross");
+        registerTileEntity(TileEntityCross.class, "cross");
 
         blockSink = new BlockSink(blockSinkID, 141);
         GameRegistry.registerBlock(blockSink, "blockSink");
         LanguageRegistry.addName(blockSink, "Faucet");
-        JaffasRegistryHelper.registerTileEntity(TileEntitySink.class, "sink");
+        registerTileEntity(TileEntitySink.class, "sink");
 
         blockBoard = new BlockBoard(blockBoardID, 142, Material.wood);
         RegistryUtils.registerBlock(blockBoard, "Kitchen Board");
-        JaffasRegistryHelper.registerTileEntity(TileEntityBoard.class, "kitchenBoard");
+        registerTileEntity(TileEntityBoard.class, "kitchenBoard");
 
         blockPizza = new BlockPizza(blockPizzaID, 149, Material.cake);
         RegistryUtils.registerBlock(blockPizza);
         LanguageRegistry.addName(blockPizza, "Block of Pizza");
-        JaffasRegistryHelper.registerTileEntity(TileEntityPizza.class, "pizza");
+        registerTileEntity(TileEntityPizza.class, "pizza");
 
         blockColumn = new BlockColumn(blockColumnID, 160, Material.rock);
         RegistryUtils.registerBlock(blockColumn);
         LanguageRegistry.addName(blockColumn, "Column");
-        JaffasRegistryHelper.registerTileEntity(TileEntityColumn.class, "column");
+        registerTileEntity(TileEntityColumn.class, "column");
 
         blockJaffaStatue = new BlockJaffaStatue(blockJaffaStatueID, 6, Material.iron);
         RegistryUtils.registerBlock(blockJaffaStatue);
         LanguageRegistry.addName(blockJaffaStatue, "Jaffa Statue");
-        JaffasRegistryHelper.registerTileEntity(TileEntityJaffaStatue.class, "jaffaStatue");
+        registerTileEntity(TileEntityJaffaStatue.class, "jaffaStatue");
 
         blockPie = new BlockPie(blockPieID, 156);
         RegistryUtils.registerMultiBlock(blockPie, ItemBlockPie.class, BlockPie.multiBlockNames);
-        JaffasRegistryHelper.registerTileEntity(TileEntityPie.class, "jaffaPie");
+        registerTileEntity(TileEntityPie.class, "jaffaPie");
 
         blockTable = new BlockTable(blockTableID, 0, Material.wood);
         RegistryUtils.registerMultiBlock(blockTable, ItemBlockTable.class, BlockTable.multiBlockNames);
@@ -598,7 +606,7 @@ public class JaffasFood extends jaffasMod {
 
         blockMeatDryer = new BlockMeatDryer(blockMeatDryerID, 250);
         RegistryUtils.registerBlock(blockMeatDryer, "meatDryer", "Meat Dryer");
-        JaffasRegistryHelper.registerTileEntity(TileEntityMeatDryer.class, "MeatDryer");
+        registerTileEntity(TileEntityMeatDryer.class, "MeatDryer");
 
         if (MonnefCorePlugin.debugEnv) {
             blockDir1 = new BlockJDirectional(blockDirDebug1ID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.LOG_LIKE);
@@ -607,6 +615,10 @@ public class JaffasFood extends jaffasMod {
             blockDir2 = new BlockJDirectional(blockDirDebug2ID, 35, 6, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
             RegistryUtils.registerBlock(blockDir2, "dir2", "Dir 2 - All sides");
         }
+
+        blockRipeningBox = new BlockRipeningBox(blockRipeningBoxID, 250, breakableIronMaterial);
+        RegistryUtils.registerBlock(blockRipeningBox, "ripeningBox", "Ripening Box");
+        registerTileEntity(TileRipeningBox.class, "ripeningBox");
     }
 
     private void createJaffaArmorAndSword() {

@@ -9,6 +9,15 @@ import monnef.core.utils.MathHelper;
 import net.minecraft.item.ItemStack;
 
 public class TileRipeningBox extends TileEntityWithInventory {
+    public static final int SLOT_OUTPUT = 8;
+    public static final int RIPENING_SLOTS = 8;
+    public static final int MAX_RIPENING_STATUS = 100;
+    private int[] ripeningStatus;
+
+    public TileRipeningBox() {
+        ripeningStatus = new int[RIPENING_SLOTS];
+    }
+
     @Override
     public int getSizeInventory() {
         return 9;
@@ -37,5 +46,19 @@ public class TileRipeningBox extends TileEntityWithInventory {
     @Override
     public int getInventoryStackLimit() {
         return 1;
+    }
+
+    public int getRipeningStatus(int id) {
+        if (id < 0 || id > ripeningStatus.length) {
+            throw new IllegalArgumentException();
+        }
+        return ripeningStatus[id];
+    }
+
+    public void setRipeningStatus(int id, int value) {
+        if (!worldObj.isRemote) {
+            throw new RuntimeException("Cannot set ripening status via gui method on a server!");
+        }
+        ripeningStatus[id] = value;
     }
 }
