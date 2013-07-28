@@ -52,7 +52,8 @@ public class TileRipeningBox extends TileEntityWithInventory {
         if (id < 0 || id > ripeningStatus.length) {
             throw new IllegalArgumentException();
         }
-        return ripeningStatus[id];
+        return id * MAX_RIPENING_STATUS / (RIPENING_SLOTS - 1);
+        //return ripeningStatus[id]; // TODO: uncomment when riping is ipmlemented
     }
 
     public void setRipeningStatus(int id, int value) {
