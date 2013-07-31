@@ -75,7 +75,7 @@ public class BlockConstruction extends BlockTechnic {
     @Override
     public boolean shouldSideBeRendered(IBlockAccess access, int x, int y, int z, int side) {
         int neighbour = access.getBlockId(x, y, z);
-        if (neighbour != this.blockID) super.shouldSideBeRendered(access, x, y, z, side);
+        if (neighbour != this.blockID) return super.shouldSideBeRendered(access, x, y, z, side);
         int metaNeighbour = access.getBlockMetadata(x, y, z);
         ForgeDirection dir = ForgeDirection.getOrientation(side).getOpposite();
         int metaMe = access.getBlockMetadata(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
