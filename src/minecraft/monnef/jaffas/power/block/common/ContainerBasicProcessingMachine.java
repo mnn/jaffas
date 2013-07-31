@@ -37,4 +37,12 @@ public class ContainerBasicProcessingMachine extends ContainerMachine {
     public int getOutputSlotsCount() {
         return 1;
     }
+
+    public Slot getOutputSlot(int outputNumber) {
+        return getSlot(getStartIndexOfOutput() + outputNumber);
+    }
+
+    public Slot getInputSlot(int number) {
+        return getSlot(number);
+    }
 }

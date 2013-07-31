@@ -47,4 +47,32 @@ public class ProcessingRecipe implements IProcessingRecipe {
     public int getDuration() {
         return duration;
     }
+
+    @Override
+    public IProcessingRecipe copy() {
+        return new ProcessingRecipe(ItemHelper.copyStackArray(input), ItemHelper.copyStackArray(output), duration);
+    }
+
+    @Override
+    public boolean isAnyInput(ItemStack test) {
+        return isAny(test, RecipeItemType.INPUT);
+    }
+
+    @Override
+    public boolean isAnyOutput(ItemStack test) {
+        return isAny(test, RecipeItemType.OUTPUT);
+    }
+
+    @Override
+    public boolean isAny(ItemStack test, RecipeItemType type) {
+        if (test == null) return false;
+
+        ItemStack[] haystack = type == RecipeItemType.INPUT ? input : output;
+        for (int i = 0; i < haystack.length; i++) {
+            ItemStack template = haystack[i];
+            if (ItemHelper.haveStacksSameIdAndDamage(template, test)) return true;
+        }
+
+        return false;
+    }
 }

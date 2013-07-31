@@ -15,4 +15,12 @@ public interface IProcessingRecipe {
     public boolean doesInputMatch(ItemStack[] input);
 
     public int getDuration();
+
+    public IProcessingRecipe copy();
+
+    public boolean isAnyInput(ItemStack test);
+
+    public boolean isAnyOutput(ItemStack test);
+
+    boolean isAny(ItemStack test, RecipeItemType type);
 }

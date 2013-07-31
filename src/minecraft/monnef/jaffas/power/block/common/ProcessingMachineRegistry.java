@@ -7,6 +7,7 @@ package monnef.jaffas.power.block.common;
 
 import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.InventoryBasic;
 
 import java.lang.reflect.Constructor;
 import java.util.Collection;
@@ -51,6 +52,7 @@ public class ProcessingMachineRegistry {
         ContainerBasicProcessingMachine containerInstance;
         try {
             containerInstance = container.newInstance();
+            containerInstance.constructSlots(new InventoryBasic("dummy", false, containerInstance.getSlotsCount()));
         } catch (Throwable e) {
             throw new RuntimeException(CANNOT_INSTANTIATE_CONTAINER, e);
         }
