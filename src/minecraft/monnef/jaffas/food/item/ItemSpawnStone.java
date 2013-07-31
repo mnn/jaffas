@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 
 import java.util.List;
 
@@ -95,6 +96,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
 
             Log.printInfo(player.getEntityName() + " used home stone, porting to: " + bed.posX + ", " + bed.posY + ", " + bed.posZ);
 
+            ((WorldServer) player.worldObj).theChunkProviderServer.loadChunk((int) player.posX >> 4, (int) player.posZ >> 4);
             player.playerNetServerHandler.setPlayerLocation(bed.posX + 0.5f, bed.posY + 1.1f, bed.posZ + 0.5f, player.rotationYaw, player.rotationPitch);
             player.fallDistance = 0;
             player.motionX = player.motionZ = 0;
