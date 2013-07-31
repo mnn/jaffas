@@ -8,7 +8,7 @@ package monnef.jaffas.food.block;
 import monnef.core.utils.MathHelper;
 import net.minecraft.item.ItemStack;
 
-public class TileRipeningBox extends TileEntityWithInventory {
+public class TileRipeningBox extends TileWithInventory {
     public static final int SLOT_OUTPUT = 8;
     public static final int RIPENING_SLOTS = 8;
     public static final int MAX_RIPENING_STATUS = 100;

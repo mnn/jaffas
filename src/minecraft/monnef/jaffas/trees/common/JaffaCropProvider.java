@@ -8,7 +8,7 @@ package monnef.jaffas.trees.common;
 import forestry.api.farming.ICrop;
 import forestry.api.farming.IFarmable;
 import monnef.jaffas.trees.block.BlockJaffaCrops;
-import monnef.jaffas.trees.block.TileEntityJaffaCrops;
+import monnef.jaffas.trees.block.TileJaffaCrops;
 import monnef.jaffas.trees.item.ItemJaffaSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -39,7 +39,7 @@ public class JaffaCropProvider implements IFarmable {
             TileEntity te = world.getBlockTileEntity(x, y, z);
             BlockJaffaCrops crop = (BlockJaffaCrops) block;
             if (crop.canGrow(world.getBlockMetadata(x, y, z))) return null;
-            if (te != null && te instanceof TileEntityJaffaCrops) return (TileEntityJaffaCrops) te;
+            if (te != null && te instanceof TileJaffaCrops) return (TileJaffaCrops) te;
         }
 
         return null;

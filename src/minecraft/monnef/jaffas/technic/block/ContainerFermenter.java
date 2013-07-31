@@ -19,13 +19,13 @@ public class ContainerFermenter extends ContainerJaffas {
     public final static int SLOT_OUTPUT = 2;
     public final static int SLOT_KEG = 1;
 
-    private final TileEntityFermenter tile;
+    private final TileFermenter tile;
 
     private int lastWorkMeter;
     private int lastLiquidType;
     private int lastLiquidAmount;
 
-    public ContainerFermenter(InventoryPlayer inventoryPlayer, TileEntityFermenter tile) {
+    public ContainerFermenter(InventoryPlayer inventoryPlayer, TileFermenter tile) {
         super(inventoryPlayer, tile);
         this.tile = tile;
     }

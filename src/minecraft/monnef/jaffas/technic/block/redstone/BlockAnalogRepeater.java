@@ -11,6 +11,6 @@ public class BlockAnalogRepeater extends BlockRedstoneCircuit {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityAnalogRepeater();
+        return new TileAnalogRepeater();
     }
 }

@@ -10,11 +10,11 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.technic.JaffasTechnic;
-import monnef.jaffas.technic.block.TileEntityCompostCore;
-import monnef.jaffas.technic.block.TileEntityFermenter;
-import monnef.jaffas.technic.block.TileEntityFungiBox;
-import monnef.jaffas.technic.block.TileEntityHighPlant;
-import monnef.jaffas.technic.block.TileEntityKeg;
+import monnef.jaffas.technic.block.TileCompostCore;
+import monnef.jaffas.technic.block.TileFermenter;
+import monnef.jaffas.technic.block.TileFungiBox;
+import monnef.jaffas.technic.block.TileHighPlant;
+import monnef.jaffas.technic.block.TileKeg;
 import monnef.jaffas.technic.client.fungi.TileEntityFungiBoxRenderer;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.entity.EntityLocomotive;
@@ -26,11 +26,11 @@ public class ClientProxy extends CommonProxy {
     public void registerRenderThings() {
         RenderingRegistry.registerEntityRenderingHandler(EntityLocomotive.class, new RenderLocomotive());
 
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFungiBox.class, new TileEntityFungiBoxRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCompostCore.class, new TileEntityCompostTankRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityKeg.class, new TileEntityKegRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityHighPlant.class, new TileEntityHighPlantRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityFermenter.class, new TileEntityFermenterRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFungiBox.class, new TileEntityFungiBoxRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCompostCore.class, new TileCompostTankRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileKeg.class, new TileKegRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileHighPlant.class, new TileHighPlantRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileFermenter.class, new TileFermenterRenderer());
 
         MinecraftForgeClient.registerItemRenderer(JaffasTechnic.constructionBlock.blockID, new CustomBlockRenderer());
 

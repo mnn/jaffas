@@ -5,7 +5,7 @@
 
 package monnef.jaffas.technic.common;
 
-import monnef.jaffas.technic.block.TileEntityHighPlant;
+import monnef.jaffas.technic.block.TileHighPlant;
 import monnef.jaffas.technic.client.ModelHopPlant;
 
 public class HopRenderer implements IHighPlantModel {
@@ -16,7 +16,7 @@ public class HopRenderer implements IHighPlantModel {
     }
 
     @Override
-    public void render(TileEntityHighPlant tile, float scale) {
+    public void render(TileHighPlant tile, float scale) {
         hop.render(scale, tile.getStage());
     }
 

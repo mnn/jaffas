@@ -139,7 +139,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
                     found = true;
 
                 // on a solid block we make a mark to not test blocks above current block
-                if (!TileEntityFruitLeaves.isThisBlockTransparentForFruit(currentBlockID) && currentBlockID != 0)
+                if (!TileFruitLeaves.isThisBlockTransparentForFruit(currentBlockID) && currentBlockID != 0)
                     allowedPillar.set(blockNum, false);
 
                 if (found) break;
@@ -158,12 +158,12 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
 
     public static boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
         TileEntity e = world.getBlockTileEntity(x, y, z);
-        if (e == null || !(e instanceof TileEntityFruitLeaves)) {
+        if (e == null || !(e instanceof TileFruitLeaves)) {
             //if (JaffasTrees.debug) System.err.println("null in TE, where are my leaves?");
             return false;
         }
 
-        TileEntityFruitLeaves te = (TileEntityFruitLeaves) e;
+        TileFruitLeaves te = (TileFruitLeaves) e;
         return te.generateFruitAndDecay(critChance, player);
     }
 
@@ -186,7 +186,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     public TileEntity createNewTileEntity(World par1World) {
-        return new TileEntityFruitLeaves();
+        return new TileFruitLeaves();
     }
 
     @Override
@@ -332,7 +332,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         if (!par1World.isRemote) {
             /*
             if (par1World.rand.nextInt(20) == 0) {
-                this.dropBlockAsItem_do(par1World, par2, par3, par4, TileEntityFruitLeaves.getItemFromMetadata(metadata));
+                this.dropBlockAsItem_do(par1World, par2, par3, par4, TileFruitLeaves.getItemFromMetadata(metadata));
             }                */
         }
     }

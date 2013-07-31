@@ -59,7 +59,7 @@ public class BlockPresent extends BlockXmasMulti {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityPresent();
+        return new TilePresent();
     }
 
     @Override
@@ -94,7 +94,7 @@ public class BlockPresent extends BlockXmasMulti {
             return true;
         }
 
-        TileEntityPresent te = (TileEntityPresent) par1World.getBlockTileEntity(par2, par3, par4);
+        TilePresent te = (TilePresent) par1World.getBlockTileEntity(par2, par3, par4);
 
         if (player.isSneaking()) {
             ItemStack i = te.getContent();
@@ -144,7 +144,7 @@ public class BlockPresent extends BlockXmasMulti {
     }
 
     private void dropItems(World world, int x, int y, int z) {
-        TileEntityPresent te = (TileEntityPresent) world.getBlockTileEntity(x, y, z);
+        TilePresent te = (TilePresent) world.getBlockTileEntity(x, y, z);
         ItemStack item = te.getContent();
         if (item != null) {
             te.setContent(null);

@@ -38,7 +38,7 @@ public class BlockSink extends BlockJaffas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntitySink();
+        return new TileSink();
     }
 
     @Override

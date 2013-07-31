@@ -7,9 +7,9 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.jaffas.power.JaffasPower;
-import monnef.jaffas.power.block.TileEntityAntenna;
-import monnef.jaffas.power.block.TileEntityGenerator;
-import monnef.jaffas.power.block.TileEntityLightningConductor;
+import monnef.jaffas.power.block.TileAntenna;
+import monnef.jaffas.power.block.TileGenerator;
+import monnef.jaffas.power.block.TileLightningConductor;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -21,15 +21,15 @@ import static monnef.jaffas.power.JaffasPower.lightningConductor;
 public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     public static final double POSITION_FIX = -0.5D;
 
-    private static TileEntityGenerator generator;
-    private static TileEntityLightningConductor conductor;
-    private static TileEntityAntenna antenna;
+    private static TileGenerator generator;
+    private static TileLightningConductor conductor;
+    private static TileAntenna antenna;
 
     static {
         TileEntityMachine.enableDummyCreationPhase();
-        generator = new TileEntityGenerator();
-        antenna = new TileEntityAntenna();
-        conductor = new TileEntityLightningConductor();
+        generator = new TileGenerator();
+        antenna = new TileAntenna();
+        conductor = new TileLightningConductor();
         TileEntityMachine.disableDummyCreationPhase();
     }
 

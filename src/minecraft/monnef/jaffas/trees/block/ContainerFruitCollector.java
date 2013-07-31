@@ -17,11 +17,11 @@ import java.util.Iterator;
 public class ContainerFruitCollector extends Container {
 
     public static final int inventorySize = 4;
-    protected TileEntityFruitCollector tileEntity;
+    protected TileFruitCollector tileEntity;
     protected int lastBurnTime;
     protected int lastItemBurnTime;
 
-    public ContainerFruitCollector(InventoryPlayer inventoryPlayer, TileEntityFruitCollector te) {
+    public ContainerFruitCollector(InventoryPlayer inventoryPlayer, TileFruitCollector te) {
         tileEntity = te;
 
         //the Slot constructor takes the IInventory and the slot number in that it binds to

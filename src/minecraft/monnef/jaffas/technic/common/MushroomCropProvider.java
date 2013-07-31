@@ -8,7 +8,7 @@ package monnef.jaffas.technic.common;
 import forestry.api.farming.ICrop;
 import forestry.api.farming.IFarmable;
 import monnef.jaffas.technic.block.BlockFungiBox;
-import monnef.jaffas.technic.block.TileEntityFungiBox;
+import monnef.jaffas.technic.block.TileFungiBox;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -19,7 +19,7 @@ public class MushroomCropProvider implements IFarmable {
         Block b = Block.blocksList[world.getBlockId(x, y, z)];
         if (b == null) return false;
         if (!(b instanceof BlockFungiBox)) return false;
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
         return tile.mushroomPlanted() && !tile.canBeHarvested();
     }
 
@@ -28,7 +28,7 @@ public class MushroomCropProvider implements IFarmable {
         Block b = Block.blocksList[world.getBlockId(x, y, z)];
         if (b == null) return null;
         if (!(b instanceof BlockFungiBox)) return null;
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
         if (!tile.mushroomPlanted() || !tile.canBeHarvested()) return null;
         return tile;
     }
@@ -49,7 +49,7 @@ public class MushroomCropProvider implements IFarmable {
         Block b = Block.blocksList[world.getBlockId(x, y, z)];
         if (b == null) return false;
         if (!(b instanceof BlockFungiBox)) return false;
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
         if (tile.tryPlant(germling)) {
             return true;
         } else {

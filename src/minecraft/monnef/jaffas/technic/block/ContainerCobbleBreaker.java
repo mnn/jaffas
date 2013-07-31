@@ -19,13 +19,13 @@ public class ContainerCobbleBreaker extends ContainerJaffas {
     public final static int SLOT_OUTPUT = 2;
     public final static int SLOT_FUEL = 1;
 
-    private final TileEntityCobbleBreaker tile;
+    private final TileCobbleBreaker tile;
 
     private int lastWorkMeter;
     private int lastBurnTime;
     private int lastBurnItemTime;
 
-    public ContainerCobbleBreaker(InventoryPlayer inventoryPlayer, TileEntityCobbleBreaker tile) {
+    public ContainerCobbleBreaker(InventoryPlayer inventoryPlayer, TileCobbleBreaker tile) {
         super(inventoryPlayer, tile);
         this.tile = tile;
     }

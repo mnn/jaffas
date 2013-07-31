@@ -36,12 +36,12 @@ import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.BlockToaster;
 import monnef.jaffas.power.block.BlockWebHarvester;
-import monnef.jaffas.power.block.TileEntityAntenna;
-import monnef.jaffas.power.block.TileEntityGenerator;
-import monnef.jaffas.power.block.TileEntityGrinder;
-import monnef.jaffas.power.block.TileEntityKitchenUnit;
-import monnef.jaffas.power.block.TileEntityLightningConductor;
-import monnef.jaffas.power.block.TileEntityToaster;
+import monnef.jaffas.power.block.TileAntenna;
+import monnef.jaffas.power.block.TileGenerator;
+import monnef.jaffas.power.block.TileGrinder;
+import monnef.jaffas.power.block.TileKitchenUnit;
+import monnef.jaffas.power.block.TileLightningConductor;
+import monnef.jaffas.power.block.TileToaster;
 import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
@@ -200,14 +200,14 @@ public class JaffasPower extends jaffasMod {
     private void createItems() {
         generator = new BlockGenerator(blockGeneratorID, 5);
         RegistryUtils.registerBlock(generator, "Generator");
-        registerTileEntity(TileEntityGenerator.class, "jp.generator");
+        registerTileEntity(TileGenerator.class, "jp.generator");
 
         ItemDebug = new ItemDebug(ItemDebugID, 1);
         LanguageRegistry.addName(ItemDebug, "Power Debug Tool");
 
         antenna = new BlockAntenna(blockAntennaID, 5);
         RegistryUtils.registerBlock(antenna, "Small Antenna");
-        registerTileEntity(TileEntityAntenna.class, "jp.antenna");
+        registerTileEntity(TileAntenna.class, "jp.antenna");
 
         wrench = new ItemPipeWrench(ItemWrenchID, 1);
         LanguageRegistry.addName(wrench, "Pipe Wrench");
@@ -218,23 +218,23 @@ public class JaffasPower extends jaffasMod {
         if (lightningConductorEnabled) {
             lightningConductor = new BlockLightningConductor(blockLightningConductorID, 5);
             RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
-            registerTileEntity(TileEntityLightningConductor.class, "jp.lightningConductor");
+            registerTileEntity(TileLightningConductor.class, "jp.lightningConductor");
         }
 
         kitchenUnit = new BlockKitchenUnit(blockKitchenUnitID, 10, 3);
         RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
-        registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
+        registerTileEntity(TileKitchenUnit.class, "kitchenUnit");
 
-        ProcessingMachineRegistry.register(TileEntityGrinder.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
-        grinder = new BlockGrinder(blockGrinderID, 101, TileEntityGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
+        ProcessingMachineRegistry.register(TileGrinder.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
+        grinder = new BlockGrinder(blockGrinderID, 101, TileGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
-        registerTileEntity(TileEntityGrinder.class, "grinder");
+        registerTileEntity(TileGrinder.class, "grinder");
         grinder.setRotationShiftInPlacing(1);
 
-        ProcessingMachineRegistry.register(TileEntityToaster.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
-        toaster = new BlockToaster(blockToasterID, 50, TileEntityToaster.class, GuiHandler.GuiId.TOASTER, true, false);
+        ProcessingMachineRegistry.register(TileToaster.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
+        toaster = new BlockToaster(blockToasterID, 50, TileToaster.class, GuiHandler.GuiId.TOASTER, true, false);
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
-        registerTileEntity(TileEntityToaster.class, "toaster");
+        registerTileEntity(TileToaster.class, "toaster");
 
         webHarvester = new BlockWebHarvester(blockWebHarvesterID, 51, JaffasTechnic.breakableIronMaterial, false, false);
         RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
@@ -262,7 +262,7 @@ public class JaffasPower extends jaffasMod {
                     'J', JaffasTechnic.jaffarrol, 'F', JaffasTechnic.funnel, '@', JaffasTechnic.itemCasing, 'C', new ItemStack(JaffasTechnic.itemCentralUnit, 1, 2), 'S', Item.silk);
         }
 
-        TileEntityToaster.addRecipe(TileEntityToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
+        TileToaster.addRecipe(TileToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
     }
 
     private ItemStack getSimpleCentralUnitStack() {

@@ -32,7 +32,7 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.jaffasMod;
-import monnef.jaffas.power.block.TileEntityGrinder;
+import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
@@ -45,22 +45,22 @@ import monnef.jaffas.technic.block.BlockLamp;
 import monnef.jaffas.technic.block.BlockLampDummy;
 import monnef.jaffas.technic.block.BlockOre;
 import monnef.jaffas.technic.block.BlockTechnic;
-import monnef.jaffas.technic.block.TileEntityCobbleBreaker;
-import monnef.jaffas.technic.block.TileEntityCompostCore;
-import monnef.jaffas.technic.block.TileEntityConstructionDummy;
-import monnef.jaffas.technic.block.TileEntityFermenter;
-import monnef.jaffas.technic.block.TileEntityFermenterInventoryRouter;
-import monnef.jaffas.technic.block.TileEntityFungiBox;
-import monnef.jaffas.technic.block.TileEntityHighPlant;
-import monnef.jaffas.technic.block.TileEntityKeg;
+import monnef.jaffas.technic.block.TileCobbleBreaker;
+import monnef.jaffas.technic.block.TileCompostCore;
+import monnef.jaffas.technic.block.TileConstructionDummy;
+import monnef.jaffas.technic.block.TileFermenter;
+import monnef.jaffas.technic.block.TileFermenterInventoryRouter;
+import monnef.jaffas.technic.block.TileFungiBox;
+import monnef.jaffas.technic.block.TileHighPlant;
+import monnef.jaffas.technic.block.TileKeg;
 import monnef.jaffas.technic.block.redstone.BlockAnalogRepeater;
 import monnef.jaffas.technic.block.redstone.BlockMultiLamp;
 import monnef.jaffas.technic.block.redstone.BlockRandomizer;
 import monnef.jaffas.technic.block.redstone.BlockSampler;
 import monnef.jaffas.technic.block.redstone.ItemBlockRedstone;
-import monnef.jaffas.technic.block.redstone.TileEntityAnalogRepeater;
-import monnef.jaffas.technic.block.redstone.TileEntityRandomizer;
-import monnef.jaffas.technic.block.redstone.TileEntitySampler;
+import monnef.jaffas.technic.block.redstone.TileAnalogRepeater;
+import monnef.jaffas.technic.block.redstone.TileRandomizer;
+import monnef.jaffas.technic.block.redstone.TileSampler;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
@@ -403,10 +403,10 @@ public class JaffasTechnic extends jaffasMod {
             switchgrassProbability = (float) config.get(Configuration.CATEGORY_GENERAL, "switchgrassProbability", 0.005, "Do not go too high, or face stack overflow caused by recursive chunk generation").getDouble(0.005);
             disableOreRecipes = config.get(Configuration.CATEGORY_GENERAL, "disableOreRecipes", true).getBoolean(true);
             if (config.get(Configuration.CATEGORY_GENERAL, "preciseTikcingOfFungiBox", false).getBoolean(false)) {
-                TileEntityFungiBox.tickQuantum = 1;
+                TileFungiBox.tickQuantum = 1;
             }
             disableLampParticles = config.get(Configuration.CATEGORY_GENERAL, "disableLampParticles", false).getBoolean(false);
-            TileEntityCobbleBreaker.setTimer(config.get(Configuration.CATEGORY_GENERAL, "cobbleBreakerTimer", 12).getInt());
+            TileCobbleBreaker.setTimer(config.get(Configuration.CATEGORY_GENERAL, "cobbleBreakerTimer", 12).getInt());
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {
@@ -491,7 +491,7 @@ public class JaffasTechnic extends jaffasMod {
     private void createFungiStuff() {
         fungiBox = new BlockFungiBox(blockFungiBoxID, 27);
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
-        JaffasRegistryHelper.registerTileEntity(TileEntityFungiBox.class, "jaffasFungiBox");
+        JaffasRegistryHelper.registerTileEntity(TileFungiBox.class, "jaffasFungiBox");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerHarvestable(fungiBox);
         }
@@ -598,8 +598,8 @@ public class JaffasTechnic extends jaffasMod {
         constructionBlock = new BlockConstruction(blockConstructionID, 30);
         registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
 
-        JaffasRegistryHelper.registerTileEntity(TileEntityConstructionDummy.class, "jaffasConstructionDummy");
-        JaffasRegistryHelper.registerTileEntity(TileEntityCompostCore.class, "jaffasCompostCore");
+        JaffasRegistryHelper.registerTileEntity(TileConstructionDummy.class, "jaffasConstructionDummy");
+        JaffasRegistryHelper.registerTileEntity(TileCompostCore.class, "jaffasCompostCore");
 
         dummyConstructionBlock = new BlockConstructionDummy(blockConstructionDummyID, 17);
         RegistryUtils.registerBlock(dummyConstructionBlock, "dummyConstruction", "Dummy Construction Block - are you a cheater?");
@@ -631,15 +631,15 @@ public class JaffasTechnic extends jaffasMod {
 
             repeater = new BlockAnalogRepeater(blockRepeaterID, 52, 3);
             registerRedstoneBlock(repeater, "repeater", "Analog Repeater");
-            JaffasRegistryHelper.registerTileEntity(TileEntityAnalogRepeater.class, "repeater");
+            JaffasRegistryHelper.registerTileEntity(TileAnalogRepeater.class, "repeater");
 
             sampler = new BlockSampler(blockSamplerID, 60, 3);
             registerRedstoneBlock(sampler, "sampler", "Sample-and-hold");
-            JaffasRegistryHelper.registerTileEntity(TileEntitySampler.class, "sampler");
+            JaffasRegistryHelper.registerTileEntity(TileSampler.class, "sampler");
 
             randomizer = new BlockRandomizer(blockRandomizerID, 63, 3);
             registerRedstoneBlock(randomizer, "randomizer", "Randomizer");
-            JaffasRegistryHelper.registerTileEntity(TileEntityRandomizer.class, "randomizer");
+            JaffasRegistryHelper.registerTileEntity(TileRandomizer.class, "randomizer");
         }
 
         highPlant = new BlockHighPlant(blockHighPlantID, 44);
@@ -647,7 +647,7 @@ public class JaffasTechnic extends jaffasMod {
 
         highPlantPost = new ItemHightPlantPost(itemHighPlantPostID, 44);
         RegistryUtils.registerItem(highPlantPost, "highPlantPost", "Plant Post");
-        JaffasRegistryHelper.registerTileEntity(TileEntityHighPlant.class, "highPlantPost");
+        JaffasRegistryHelper.registerTileEntity(TileHighPlant.class, "highPlantPost");
 
         hop = new ItemTechnic(itemHopID, 45);
         RegistryUtils.registerItem(hop, "hop", "Hop");
@@ -671,7 +671,7 @@ public class JaffasTechnic extends jaffasMod {
 
         cobbleBreaker = new BlockCobbleBreaker(itemCobbleBreakerID, 50, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
         RegistryUtils.registerBlock(cobbleBreaker, "cobbleBreaker", "Cobble Breaker");
-        JaffasRegistryHelper.registerTileEntity(TileEntityCobbleBreaker.class, "cobbleBreaker");
+        JaffasRegistryHelper.registerTileEntity(TileCobbleBreaker.class, "cobbleBreaker");
 
         itemKeg = new ItemKeg(itemKegID, 42);
         RegistryUtils.registerItem(itemKeg, "itemKeg", "Keg");
@@ -679,15 +679,15 @@ public class JaffasTechnic extends jaffasMod {
 
         keg = new BlockKeg(blockKegID, 42);
         RegistryUtils.registerBlock(keg, "keg", "Keg");
-        JaffasRegistryHelper.registerTileEntity(TileEntityKeg.class, "keg");
+        JaffasRegistryHelper.registerTileEntity(TileKeg.class, "keg");
 
         itemFermenter = new ItemFermenter(itemFermenterID, 43);
         RegistryUtils.registerItem(itemFermenter, "itemFermenter", "Fermenter");
 
         fermenter = new BlockFermenter(blockFermenterID, 43);
         RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
-        JaffasRegistryHelper.registerTileEntity(TileEntityFermenter.class, "fermenter");
-        JaffasRegistryHelper.registerTileEntity(TileEntityFermenterInventoryRouter.class, "fermenterInvRouter");
+        JaffasRegistryHelper.registerTileEntity(TileFermenter.class, "fermenter");
+        JaffasRegistryHelper.registerTileEntity(TileFermenterInventoryRouter.class, "fermenterInvRouter");
 
         createTools();
     }
@@ -854,7 +854,7 @@ public class JaffasTechnic extends jaffasMod {
         JaffaCraftingHandler.AddPersistentItem(friedMushroomsInTinCooked, false, cakeTin);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(friedMushrooms), 3), getItem(plate), getItem(plate), getItem(plate), getItem(friedMushroomsInTinCooked));
         //Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMushrooms), 2), MUSHROOMS_EATABLE, getItem(grinderMeat)));
-        TileEntityGrinder.addOreDictRecipe(MUSHROOMS_EATABLE, new ItemStack(getItem(mincedMushrooms), 2), 120);
+        TileGrinder.addOreDictRecipe(MUSHROOMS_EATABLE, new ItemStack(getItem(mincedMushrooms), 2), 120);
         GameRegistry.addRecipe(getItemStack(shroomburgerRaw), "PPP", "PPP", 'P', getItem(mincedMushrooms));
         Recipes.addFryingPanRecipe(shroomburgerRaw, JaffaItem.fryingPanShroomburgerRaw, JaffaItem.fryingPanShroomburger, shroomburger);
         GameRegistry.addShapelessRecipe(getItemStack(shroomburgerInBun, 5), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(shroomburger), getItem(onionSliced));
@@ -892,7 +892,7 @@ public class JaffasTechnic extends jaffasMod {
         }
 
         //GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);
-        TileEntityGrinder.addRecipe(new ItemStack(hopWeatMixture), new ItemStack(processedHop), 400);
+        TileGrinder.addRecipe(new ItemStack(hopWeatMixture), new ItemStack(processedHop), 400);
 
         GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
         GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);

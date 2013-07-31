@@ -6,7 +6,7 @@
 package monnef.jaffas.trees.client;
 
 import monnef.jaffas.trees.block.ContainerFruitCollector;
-import monnef.jaffas.trees.block.TileEntityFruitCollector;
+import monnef.jaffas.trees.block.TileFruitCollector;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
@@ -15,10 +15,10 @@ import org.lwjgl.opengl.GL11;
 public class GuiFruitCollector extends GuiContainer {
 
 
-    private TileEntityFruitCollector tileEntity;
+    private TileFruitCollector tileEntity;
 
     public GuiFruitCollector(InventoryPlayer inventoryPlayer,
-                             TileEntityFruitCollector tileEntity) {
+                             TileFruitCollector tileEntity) {
         //the container is instanciated and passed to the superclass for handling
         super(new ContainerFruitCollector(inventoryPlayer, tileEntity));
         //ySize = 198;

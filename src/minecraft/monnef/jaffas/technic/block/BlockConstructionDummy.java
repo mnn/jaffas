@@ -30,7 +30,7 @@ public class BlockConstructionDummy extends BlockTechnic {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityConstructionDummy();
+        return new TileConstructionDummy();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class BlockConstructionDummy extends BlockTechnic {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        TileEntityConstructionDummy dummy = (TileEntityConstructionDummy) world.getBlockTileEntity(x, y, z);
+        TileConstructionDummy dummy = (TileConstructionDummy) world.getBlockTileEntity(x, y, z);
 
         if (dummy != null && dummy.getCore() != null)
             dummy.getCore().invalidateMultiblock();
@@ -68,10 +68,10 @@ public class BlockConstructionDummy extends BlockTechnic {
         if (player.isSneaking())
             return false;
 
-        TileEntityConstructionDummy dummy = (TileEntityConstructionDummy) world.getBlockTileEntity(x, y, z);
+        TileConstructionDummy dummy = (TileConstructionDummy) world.getBlockTileEntity(x, y, z);
 
         if (dummy != null && dummy.getCore() != null) {
-            TileEntityCompostCore core = dummy.getCore();
+            TileCompostCore core = dummy.getCore();
             return core.getBlockType().onBlockActivated(world, core.xCoord, core.yCoord, core.zCoord, player, par6, par7, par8, par9);
         }
 

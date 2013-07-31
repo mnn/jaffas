@@ -25,7 +25,7 @@ public class BlockJaffaStatue extends BlockJaffas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityJaffaStatue();
+        return new TileJaffaStatue();
     }
 
     @Override

@@ -15,6 +15,6 @@ public class BlockSampler extends BlockRedstoneCircuit {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntitySampler();
+        return new TileSampler();
     }
 }

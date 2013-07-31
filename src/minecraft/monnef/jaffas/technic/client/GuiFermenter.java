@@ -8,7 +8,7 @@ package monnef.jaffas.technic.client;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerFermenter;
-import monnef.jaffas.technic.block.TileEntityFermenter;
+import monnef.jaffas.technic.block.TileFermenter;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
@@ -19,11 +19,11 @@ import java.util.HashMap;
 import static monnef.core.utils.GuiHelper.EnumFillRotation.LEFT_RIGHT;
 import static monnef.core.utils.GuiHelper.EnumFillRotation.TOP_DOWN;
 import static monnef.core.utils.ColorHelper.IntColor;
-import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid;
-import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.BEER;
-import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.BEER_RAW;
-import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.WINE;
-import static monnef.jaffas.technic.block.TileEntityFermenter.FermentedLiquid.WINE_RAW;
+import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid;
+import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.BEER;
+import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.BEER_RAW;
+import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE;
+import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE_RAW;
 
 public class GuiFermenter extends GuiContainer {
     private static final String GUI_TEXTURE = "/guifermenter.png";
@@ -34,7 +34,7 @@ public class GuiFermenter extends GuiContainer {
     public static final int WORK_X = 14;
     public static int TANK_HEIGHT = 46;
 
-    public TileEntityFermenter tile;
+    public TileFermenter tile;
 
     private static HashMap<FermentedLiquid, ColorPair> liquidToColors;
     private static IntColor WORK_BOTTOM_COLOR = new IntColor(255, 150, 150);
@@ -66,7 +66,7 @@ public class GuiFermenter extends GuiContainer {
     }
 
     public GuiFermenter(InventoryPlayer inventoryPlayer,
-                        TileEntityFermenter tileEntity) {
+                        TileFermenter tileEntity) {
         super(new ContainerFermenter(inventoryPlayer, tileEntity));
         tile = tileEntity;
     }
@@ -92,7 +92,7 @@ public class GuiFermenter extends GuiContainer {
         }
 
         if (!tile.isEmpty()) {
-            int m = (tile.getLiquidAmount() * TANK_HEIGHT) / TileEntityFermenter.FERMENTER_CAPACITY;
+            int m = (tile.getLiquidAmount() * TANK_HEIGHT) / TileFermenter.FERMENTER_CAPACITY;
             //DrawingHelper.drawRect(x + 24, y + 20, 16, m, liquidToColors.get(tile.getLiquid()));
             ColorPair pair = liquidToColors.get(tile.getLiquid());
             GuiHelper.drawGradientRectFromDown(this, x + TANK_POS_X, y + TANK_POS_Y, TANK_WIDTH, m, pair.first, pair.second, LEFT_RIGHT, TANK_HEIGHT);

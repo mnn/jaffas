@@ -7,7 +7,7 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import monnef.jaffas.power.block.ContainerGenerator;
-import monnef.jaffas.power.block.TileEntityGenerator;
+import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
@@ -29,8 +29,8 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if (tileEntity instanceof TileEntityGenerator) {
-            return new ContainerGenerator(player.inventory, (TileEntityGenerator) tileEntity);
+        if (tileEntity instanceof TileGenerator) {
+            return new ContainerGenerator(player.inventory, (TileGenerator) tileEntity);
         } else if (tileEntity instanceof TileEntityBasicProcessingMachine) {
             return ProcessingMachineRegistry.createContainer((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
             //return new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity);
@@ -45,8 +45,8 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement(int id, EntityPlayer player, World world,
                                       int x, int y, int z) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        if (tileEntity instanceof TileEntityGenerator) {
-            return new GuiContainerGenerator(player.inventory, (TileEntityGenerator) tileEntity, new ContainerGenerator(player.inventory, (TileEntityMachineWithInventory) tileEntity));
+        if (tileEntity instanceof TileGenerator) {
+            return new GuiContainerGenerator(player.inventory, (TileGenerator) tileEntity, new ContainerGenerator(player.inventory, (TileEntityMachineWithInventory) tileEntity));
         } else if (tileEntity instanceof TileEntityBasicProcessingMachine) {
             return ProcessingMachineRegistry.createGui((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
             //return new GuiContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity, new ContainerBasicProcessingMachine(player.inventory, (TileEntityBasicProcessingMachine) tileEntity));

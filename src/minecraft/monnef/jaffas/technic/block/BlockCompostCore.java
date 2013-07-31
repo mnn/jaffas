@@ -31,7 +31,7 @@ public class BlockCompostCore extends BlockTechnic {
         if (player.isSneaking())
             return false;
 
-        TileEntityCompostCore tileEntity = (TileEntityCompostCore) world.getBlockTileEntity(x, y, z);
+        TileCompostCore tileEntity = (TileCompostCore) world.getBlockTileEntity(x, y, z);
 
         if (tileEntity != null) {
             if (!tileEntity.getIsValidMultiblock()) {
@@ -50,7 +50,7 @@ public class BlockCompostCore extends BlockTechnic {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityCompostCore();
+        return new TileCompostCore();
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BlockCompostCore extends BlockTechnic {
 
     @Override
     public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        TileEntityCompostCore tileEntity = (TileEntityCompostCore) world.getBlockTileEntity(x, y, z);
+        TileCompostCore tileEntity = (TileCompostCore) world.getBlockTileEntity(x, y, z);
 
         if (tileEntity != null)
             tileEntity.invalidateMultiblock();

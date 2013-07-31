@@ -40,11 +40,11 @@ public class BlockPie extends BlockJaffas {
         setBlockBounds(f3, 0, f3, f3d, f3, f3d);
         setHardness(0.5f);
 
-        if (TileEntityPie.PieType.values().length != multiBlockNames.length) {
+        if (TilePie.PieType.values().length != multiBlockNames.length) {
             throw new RuntimeException("pie types number != pie types title number");
         }
 
-        if (TileEntityPie.PieType.values().length != textureIndexFromMeta.length) {
+        if (TilePie.PieType.values().length != textureIndexFromMeta.length) {
             throw new RuntimeException("pie types number != texture types title number");
         }
         icons = new Icon[textureIndexFromMeta.length];
@@ -56,7 +56,7 @@ public class BlockPie extends BlockJaffas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityPie();
+        return new TilePie();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class BlockPie extends BlockJaffas {
         int rotation = MathHelper.floor_double((double) (par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         if (!par1World.isRemote) {
-            TileEntityPie tile = (TileEntityPie) par1World.getBlockTileEntity(par2, par3, par4);
+            TilePie tile = (TilePie) par1World.getBlockTileEntity(par2, par3, par4);
             int meta = par1World.getBlockMetadata(par2, par3, par4);
             tile.init(rotation, meta);
         }
@@ -98,7 +98,7 @@ public class BlockPie extends BlockJaffas {
 
     @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        TileEntityPie te = (TileEntityPie) par1World.getBlockTileEntity(par2, par3, par4);
+        TilePie te = (TilePie) par1World.getBlockTileEntity(par2, par3, par4);
         te.eatPiece(par5EntityPlayer);
         return true;
     }
@@ -140,7 +140,7 @@ public class BlockPie extends BlockJaffas {
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(int unknown, CreativeTabs tab, List subItems) {
-        for (int ix = 0; ix < TileEntityPie.PieType.values().length; ix++) {
+        for (int ix = 0; ix < TilePie.PieType.values().length; ix++) {
             subItems.add(new ItemStack(this, 1, ix));
         }
     }

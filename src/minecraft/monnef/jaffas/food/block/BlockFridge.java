@@ -80,7 +80,7 @@ public class BlockFridge extends BlockContainerJaffas {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityFridge();
+        return new TileFridge();
     }
 
     /**
@@ -200,7 +200,7 @@ public class BlockFridge extends BlockContainerJaffas {
             byte0 = 4;
         }
 
-        ((TileEntityFridge) blockEntity).setFront(byte0);
+        ((TileFridge) blockEntity).setFront(byte0);
     }
 
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
@@ -234,7 +234,7 @@ public class BlockFridge extends BlockContainerJaffas {
 
         }
 
-        ((TileEntityFridge) blockEntity).setFront(front);
+        ((TileFridge) blockEntity).setFront(front);
         w.setBlockMetadataWithNotify(x, y, z, front, 2 + 4);
 
         w.notifyBlockChange(x, y, z, blockID);

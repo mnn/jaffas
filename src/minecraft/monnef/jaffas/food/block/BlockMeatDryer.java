@@ -27,7 +27,7 @@ public class BlockMeatDryer extends BlockJaffas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityMeatDryer();
+        return new TileMeatDryer();
     }
 
     @Override
@@ -52,7 +52,7 @@ public class BlockMeatDryer extends BlockJaffas {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        TileEntityMeatDryer tile = (TileEntityMeatDryer) world.getBlockTileEntity(x, y, z);
+        TileMeatDryer tile = (TileMeatDryer) world.getBlockTileEntity(x, y, z);
         ItemStack hand = player.getCurrentEquippedItem();
 
         if (!world.isRemote && MonnefCorePlugin.debugEnv) tile.printDebugInfo(player);

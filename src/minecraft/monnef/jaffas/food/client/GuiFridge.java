@@ -6,7 +6,7 @@
 package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.ContainerFridge;
-import monnef.jaffas.food.block.TileEntityFridge;
+import monnef.jaffas.food.block.TileFridge;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
@@ -15,10 +15,10 @@ import org.lwjgl.opengl.GL11;
 public class GuiFridge extends GuiContainer {
 
 
-    private TileEntityFridge tileEntity;
+    private TileFridge tileEntity;
 
     public GuiFridge(InventoryPlayer inventoryPlayer,
-                     TileEntityFridge tileEntity) {
+                     TileFridge tileEntity) {
         //the container is instanciated and passed to the superclass for handling
         super(new ContainerFridge(inventoryPlayer, tileEntity));
         ySize = 198;

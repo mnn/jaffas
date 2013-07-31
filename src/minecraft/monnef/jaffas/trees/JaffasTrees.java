@@ -18,7 +18,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.food.block.TileEntityPie;
+import monnef.jaffas.food.block.TilePie;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
@@ -36,9 +36,9 @@ import monnef.jaffas.trees.block.BlockFruitLeaves;
 import monnef.jaffas.trees.block.BlockFruitLeavesDummy;
 import monnef.jaffas.trees.block.BlockFruitSapling;
 import monnef.jaffas.trees.block.BlockJaffaCrops;
-import monnef.jaffas.trees.block.TileEntityFruitCollector;
-import monnef.jaffas.trees.block.TileEntityFruitLeaves;
-import monnef.jaffas.trees.block.TileEntityJaffaCrops;
+import monnef.jaffas.trees.block.TileFruitCollector;
+import monnef.jaffas.trees.block.TileFruitLeaves;
+import monnef.jaffas.trees.block.TileJaffaCrops;
 import monnef.jaffas.trees.client.GuiHandlerTrees;
 import monnef.jaffas.trees.client.PacketHandler;
 import monnef.jaffas.trees.common.BushInfo;
@@ -452,8 +452,8 @@ public class JaffasTrees extends jaffasMod {
         guiHandler = new GuiHandlerTrees();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
-        JaffasRegistryHelper.registerTileEntity(TileEntityFruitLeaves.class, "fruitLeaves");
-        JaffasRegistryHelper.registerTileEntity(TileEntityJaffaCrops.class, "jaffaCrops");
+        JaffasRegistryHelper.registerTileEntity(TileFruitLeaves.class, "fruitLeaves");
+        JaffasRegistryHelper.registerTileEntity(TileJaffaCrops.class, "jaffaCrops");
 
         createItems();
 
@@ -525,7 +525,7 @@ public class JaffasTrees extends jaffasMod {
         blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
         GameRegistry.registerBlock(blockFruitCollector, "blockFruitCollector");
         LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
-        JaffasRegistryHelper.registerTileEntity(TileEntityFruitCollector.class, "fruitcollector");
+        JaffasRegistryHelper.registerTileEntity(TileFruitCollector.class, "fruitcollector");
 
         itemDebug = new ItemJaffaTreeDebugTool(itemDebugID);
         itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");
@@ -687,10 +687,10 @@ public class JaffasTrees extends jaffasMod {
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Item.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(bushType.Tomato), getFruitStack(bushType.Tomato));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bottleMustard)), getItem(JaffaItem.bottleEmpty), getFruit(bushType.Mustard), getFruit(bushType.Mustard));
 
-        addPieRecipe(getFruit(bushType.Strawberry), pieStrawberryRaw, TileEntityPie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
-        addPieRecipe(getFruit(bushType.Raspberry), pieRaspberryRaw, TileEntityPie.PieType.RASPBERRY, true, getItem(jamRaspberry));
-        addPieRecipe(null, pieVanillaRaw, TileEntityPie.PieType.VANILLA, true, getItem(jamV));
-        addPieRecipe(itemPlum, piePlumRaw, TileEntityPie.PieType.PLUM, true, getItem(jamP));
+        addPieRecipe(getFruit(bushType.Strawberry), pieStrawberryRaw, TilePie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
+        addPieRecipe(getFruit(bushType.Raspberry), pieRaspberryRaw, TilePie.PieType.RASPBERRY, true, getItem(jamRaspberry));
+        addPieRecipe(null, pieVanillaRaw, TilePie.PieType.VANILLA, true, getItem(jamV));
+        addPieRecipe(itemPlum, piePlumRaw, TilePie.PieType.PLUM, true, getItem(jamP));
 
         addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceOrange)), getItem(juiceBottle), ORANGE, ORANGE, ORANGE, ORANGE));
         addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), LEMON, LEMON, LEMON, LEMON));
@@ -746,7 +746,7 @@ public class JaffasTrees extends jaffasMod {
 
             ItemStack seed = new ItemStack(item, 1, meta);
 
-            ItemFromFruitResult info = TileEntityFruitLeaves.getItemFromFruit(FruitType.indexToFruitType(i));
+            ItemFromFruitResult info = TileFruitLeaves.getItemFromFruit(FruitType.indexToFruitType(i));
 
             if (info.exception != null) {
                 throw (RuntimeException) info.exception;

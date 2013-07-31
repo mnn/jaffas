@@ -25,8 +25,8 @@ import monnef.jaffas.jaffasMod;
 import monnef.jaffas.xmas.block.BlockCandy;
 import monnef.jaffas.xmas.block.BlockPresent;
 import monnef.jaffas.xmas.block.ItemBlockPresent;
-import monnef.jaffas.xmas.block.TileEntityCandy;
-import monnef.jaffas.xmas.block.TileEntityPresent;
+import monnef.jaffas.xmas.block.TileCandy;
+import monnef.jaffas.xmas.block.TilePresent;
 import monnef.jaffas.xmas.common.CommonProxy;
 import monnef.jaffas.xmas.item.ItemGiantCandy;
 import monnef.jaffas.xmas.item.ItemXmas;
@@ -120,8 +120,8 @@ public class JaffasXmas extends jaffasMod {
 
         creativeTab = new monnef.jaffas.food.common.JaffaCreativeTab("jaffas.xmas");
 
-        JaffasRegistryHelper.registerTileEntity(TileEntityCandy.class, "jaffas.candy");
-        JaffasRegistryHelper.registerTileEntity(TileEntityPresent.class, "jaffas.present");
+        JaffasRegistryHelper.registerTileEntity(TileCandy.class, "jaffas.candy");
+        JaffasRegistryHelper.registerTileEntity(TilePresent.class, "jaffas.present");
 
         createItems();
         items.CreateItems();

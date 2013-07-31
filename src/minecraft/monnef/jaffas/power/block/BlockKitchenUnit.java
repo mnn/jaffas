@@ -33,7 +33,7 @@ public class BlockKitchenUnit extends BlockMachine {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityKitchenUnit();
+        return new TileKitchenUnit();
     }
 
     @Override

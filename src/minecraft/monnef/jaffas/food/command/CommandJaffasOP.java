@@ -10,7 +10,7 @@ import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.CoolDownType;
 import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
-import monnef.jaffas.technic.block.TileEntityFungiBox;
+import monnef.jaffas.technic.block.TileFungiBox;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,9 +55,9 @@ public class CommandJaffasOP extends CommandBase {
             }
 
             if (speed > 0) {
-                TileEntityFungiBox.setDebugSpeedOverride(speed);
+                TileFungiBox.setDebugSpeedOverride(speed);
             } else {
-                TileEntityFungiBox.disableDebugSpeedOverride();
+                TileFungiBox.disableDebugSpeedOverride();
             }
         } else if (parameters.length == 1 && "wet_rain".equals(parameters[0])) {
             if (commandsender instanceof EntityPlayer) {

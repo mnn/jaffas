@@ -6,7 +6,7 @@
 package monnef.jaffas.trees.common;
 
 import monnef.jaffas.trees.JaffasTrees;
-import monnef.jaffas.trees.block.TileEntityFruitLeaves;
+import monnef.jaffas.trees.block.TileFruitLeaves;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -125,7 +125,7 @@ public class WorldGenFruitTrees extends WorldGenerator {
                                     }
 
                                     this.setBlockAndMetadata(world, xx, yy, zz, JaffasTrees.leavesList.get(0).leavesID, 0);
-                                    TileEntityFruitLeaves te = new TileEntityFruitLeaves(chosenLeavesID, chosenLeavesMeta);
+                                    TileFruitLeaves te = new TileFruitLeaves(chosenLeavesID, chosenLeavesMeta);
                                     world.setBlockTileEntity(xx, yy, zz, te);
                                 }
                             }

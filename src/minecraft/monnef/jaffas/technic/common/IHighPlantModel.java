@@ -5,10 +5,10 @@
 
 package monnef.jaffas.technic.common;
 
-import monnef.jaffas.technic.block.TileEntityHighPlant;
+import monnef.jaffas.technic.block.TileHighPlant;
 
 public interface IHighPlantModel {
-    void render(TileEntityHighPlant tile, float scale);
+    void render(TileHighPlant tile, float scale);
 
     String getTextureFile();
 }

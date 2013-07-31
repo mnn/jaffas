@@ -20,8 +20,8 @@ public class BlockKeg extends BlockTechnic {
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
     }
 
-    public TileEntityKeg getTile(World world, int x, int y, int z) {
-        return (TileEntityKeg) world.getBlockTileEntity(x, y, z);
+    public TileKeg getTile(World world, int x, int y, int z) {
+        return (TileKeg) world.getBlockTileEntity(x, y, z);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class BlockKeg extends BlockTechnic {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityKeg();
+        return new TileKeg();
     }
 
     @Override

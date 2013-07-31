@@ -16,6 +16,6 @@ public class BlockRandomizer extends BlockRedstoneCircuit {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityRandomizer();
+        return new TileRandomizer();
     }
 }

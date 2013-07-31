@@ -6,7 +6,7 @@
 package monnef.jaffas.technic.item;
 
 import monnef.core.utils.RegistryUtils;
-import monnef.jaffas.technic.block.TileEntityKeg;
+import monnef.jaffas.technic.block.TileKeg;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,11 +25,11 @@ public class ItemKeg extends ItemTechnic {
 
     public ItemKeg(int id, int textureIndex) {
         super(id, textureIndex);
-        subNames = new String[TileEntityKeg.KegType.values().length];
-        subTitles = new String[TileEntityKeg.KegType.values().length];
+        subNames = new String[TileKeg.KegType.values().length];
+        subTitles = new String[TileKeg.KegType.values().length];
 
-        for (int i = 0; i < TileEntityKeg.KegType.values().length; i++) {
-            TileEntityKeg.KegType kegType = TileEntityKeg.KegType.values()[i];
+        for (int i = 0; i < TileKeg.KegType.values().length; i++) {
+            TileKeg.KegType kegType = TileKeg.KegType.values()[i];
             subNames[i] = "keg" + makeFirstCapital(kegType.toString().toLowerCase());
             subTitles[i] = "Keg - " + makeFirstCapital(kegType.getTitle());
         }
@@ -65,8 +65,8 @@ public class ItemKeg extends ItemTechnic {
 
                         --item.stackSize;
 
-                        TileEntityKeg tile = (TileEntityKeg) world.getBlockTileEntity(x, y, z);
-                        tile.initNewKeg(TileEntityKeg.KegType.values()[item.getItemDamage()]);
+                        TileKeg tile = (TileKeg) world.getBlockTileEntity(x, y, z);
+                        tile.initNewKeg(TileKeg.KegType.values()[item.getItemDamage()]);
                         return true;
 
                     } else {
@@ -83,7 +83,7 @@ public class ItemKeg extends ItemTechnic {
 
     @Override
     public void getSubItems(int id, CreativeTabs tabs, List list) {
-        for (int i = 0; i < TileEntityKeg.KegType.values().length; i++) {
+        for (int i = 0; i < TileKeg.KegType.values().length; i++) {
             list.add(new ItemStack(id, 1, i));
         }
     }

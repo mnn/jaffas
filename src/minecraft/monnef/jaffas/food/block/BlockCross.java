@@ -20,7 +20,7 @@ public class BlockCross extends BlockJaffas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityCross();
+        return new TileCross();
     }
 
     @Override

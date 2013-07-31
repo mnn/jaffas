@@ -16,7 +16,7 @@ import monnef.jaffas.food.item.ItemJaffaPack;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
-import monnef.jaffas.power.block.TileEntityGrinder;
+import monnef.jaffas.power.block.TileGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,7 +34,7 @@ import static monnef.jaffas.food.JaffasFood.blockSwitchgrassSolid;
 import static monnef.jaffas.food.JaffasFood.blockTable;
 import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.JaffasFood.otherMods;
-import static monnef.jaffas.food.block.TileEntityPie.PieType;
+import static monnef.jaffas.food.block.TilePie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
@@ -47,7 +47,7 @@ public class Recipes {
     public static final int JAFFAS_PACK_CONTENT_SIZE = 8;
 
     public static void postLoadInstallRecipes() {
-        TileEntityGrinder.addOreDictRecipe(Items.MINCEABLEMEAT, getItemStack(mincedMeat, 2), 100);
+        TileGrinder.addOreDictRecipe(Items.MINCEABLEMEAT, getItemStack(mincedMeat, 2), 100);
     }
 
     public static void installRecipes() {

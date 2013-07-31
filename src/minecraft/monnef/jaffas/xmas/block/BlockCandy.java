@@ -28,7 +28,7 @@ public class BlockCandy extends BlockXmas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityCandy();
+        return new TileCandy();
     }
 
     @Override

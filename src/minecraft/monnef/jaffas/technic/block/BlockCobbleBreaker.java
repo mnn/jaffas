@@ -27,7 +27,7 @@ public class BlockCobbleBreaker extends BlockDirectionalTechnic {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityCobbleBreaker();
+        return new TileCobbleBreaker();
     }
 
     @Override

@@ -5,10 +5,9 @@
 
 package monnef.jaffas.technic.client;
 
-import codechicken.nei.forge.GuiContainerManager;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCompost;
-import monnef.jaffas.technic.block.TileEntityCompostCore;
+import monnef.jaffas.technic.block.TileCompostCore;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
@@ -18,10 +17,10 @@ public class GuiCompost extends GuiContainer {
     public static final String GUI_TEXTURE = "/guicompost.png";
     public static final int TANK_METER_HEIGHT_MAX = 46;
 
-    public TileEntityCompostCore core;
+    public TileCompostCore core;
 
     public GuiCompost(InventoryPlayer inventoryPlayer,
-                      TileEntityCompostCore tileEntity) {
+                      TileCompostCore tileEntity) {
         super(new ContainerCompost(inventoryPlayer, tileEntity));
         core = tileEntity;
     }

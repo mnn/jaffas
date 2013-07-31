@@ -38,7 +38,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        TileEntityFungiBox te = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox te = (TileFungiBox) world.getBlockTileEntity(x, y, z);
         boolean res = te.playerActivatedBox(player);
         if (MonnefCorePlugin.debugEnv) {
             te.printDebugInfo(player);
@@ -54,7 +54,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityFungiBox();
+        return new TileFungiBox();
     }
 
     @Override
@@ -119,7 +119,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
                 return;
             }
 
-            TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+            TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
             tile.onFallUpon();
         }
     }
@@ -142,20 +142,20 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
 
     @Override
     public boolean canBeHarvested(World world, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
         return tile.canBeHarvested();
     }
 
     @Override
     public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
         tile.generateDrop();
         return Arrays.asList(tile.collectLastLoot());
     }
 
     @Override
     public void preHarvest(World world, int x, int y, int z) {
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
         if (!tile.harvest(null)) {
             throw new RuntimeException("Error in MFR integration.");
         }

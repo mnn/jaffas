@@ -9,7 +9,7 @@ import monnef.core.utils.WolfFoodRegistry;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
-import monnef.jaffas.food.block.TileEntityMeatDryer;
+import monnef.jaffas.food.block.TileMeatDryer;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.ItemCleaver;
@@ -738,10 +738,10 @@ public class Items extends ItemManagerAccessor {
     }
 
     private void addMeatsToDryerDatabase() {
-        TileEntityMeatDryer.addNormalMeat(Recipes.getItem(JaffaItem.duckRaw));
-        TileEntityMeatDryer.addNormalMeat(Recipes.getItem(JaffaItem.muttonRaw));
-        TileEntityMeatDryer.addNormalMeat(Recipes.getItem(JaffaItem.wolfMeatRaw));
-        TileEntityMeatDryer.addZombieMeat(Recipes.getItem(JaffaItem.spiderLegRaw));
+        TileMeatDryer.addNormalMeat(Recipes.getItem(JaffaItem.duckRaw));
+        TileMeatDryer.addNormalMeat(Recipes.getItem(JaffaItem.muttonRaw));
+        TileMeatDryer.addNormalMeat(Recipes.getItem(JaffaItem.wolfMeatRaw));
+        TileMeatDryer.addZombieMeat(Recipes.getItem(JaffaItem.spiderLegRaw));
     }
 
     public void createJaffaArmor(JaffaItem item, EnumArmorMaterial material, int renderIndex, ItemJaffaPlate.ArmorType type, String texture, Item repairItem) {

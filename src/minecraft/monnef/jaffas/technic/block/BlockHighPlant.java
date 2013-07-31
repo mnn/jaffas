@@ -68,20 +68,20 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
         for (int cy = y; cy > y - INTEGRITY_CHECK_RADIUS; cy--) {
             if (cy < 0) break;
             TileEntity tile = world.getBlockTileEntity(x, cy, z);
-            if (tile instanceof TileEntityHighPlant) {
-                ((TileEntityHighPlant) tile).planIntegrityCheck();
+            if (tile instanceof TileHighPlant) {
+                ((TileHighPlant) tile).planIntegrityCheck();
             }
         }
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        TileEntityHighPlant te = null;
+        TileHighPlant te = null;
 
         int ny = y;
         int tested = 0;
         while (te == null && tested < BLOCK_ACTIVATION_RADIUS) {
-            te = (TileEntityHighPlant) world.getBlockTileEntity(x, ny, z);
+            te = (TileHighPlant) world.getBlockTileEntity(x, ny, z);
             ny--;
             tested++;
         }
@@ -101,7 +101,7 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityHighPlant();
+        return new TileHighPlant();
     }
 
     @Override

@@ -6,7 +6,7 @@
 package monnef.jaffas.technic.item;
 
 import monnef.jaffas.technic.JaffasTechnic;
-import monnef.jaffas.technic.block.TileEntityFungiBox;
+import monnef.jaffas.technic.block.TileFungiBox;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.FungusInfo;
 import net.minecraft.creativetab.CreativeTabs;
@@ -77,7 +77,7 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
         int id = world.getBlockId(x, y - 1, z);
         if (id != JaffasTechnic.fungiBox.blockID) return false;
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y - 1, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y - 1, z);
         return !tile.mushroomPlanted();
     }
 
@@ -90,7 +90,7 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
         int id = world.getBlockId(x, y - 1, z);
         world.setBlock(x, y, z, 0);
         if (id != JaffasTechnic.fungiBox.blockID) return;
-        TileEntityFungiBox tile = (TileEntityFungiBox) world.getBlockTileEntity(x, y - 1, z);
+        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y - 1, z);
         tile.tryPlant(stack);
     }
 }

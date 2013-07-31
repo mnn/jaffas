@@ -44,8 +44,8 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     @Override
     public abstract TileEntity createTileEntity(World world, int metadata);
 
-    public TileEntityRedstoneCircuit getTile(IBlockAccess world, int x, int y, int z) {
-        return (TileEntityRedstoneCircuit) world.getBlockTileEntity(x, y, z);
+    public TileRedstoneCircuit getTile(IBlockAccess world, int x, int y, int z) {
+        return (TileRedstoneCircuit) world.getBlockTileEntity(x, y, z);
     }
 
     public void recalculatePower(World world, int x, int y, int z) {
@@ -74,7 +74,7 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     public void updateTick(World world, int x, int y, int z, Random random) {
         super.updateTick(world, x, y, z, random);
         //recalculatePower(world, x, y, z);
-        TileEntityRedstoneCircuit tile = getTile(world, x, y, z);
+        TileRedstoneCircuit tile = getTile(world, x, y, z);
         tile.notifyBlocksOfMyChange();
         tile.notifyOutputNeighbour();
         //tile.notifyOutputNeighbourTwo();

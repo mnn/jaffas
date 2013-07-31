@@ -7,7 +7,7 @@ package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ContainerBoard;
-import monnef.jaffas.food.block.TileEntityBoard;
+import monnef.jaffas.food.block.TileBoard;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
@@ -16,10 +16,10 @@ import org.lwjgl.opengl.GL11;
 public class GuiBoard extends GuiContainer {
     public static final String GUIBOARD_TEXTURE = "/guiboard.png";
 
-    TileEntityBoard board;
+    TileBoard board;
 
     public GuiBoard(InventoryPlayer inventoryPlayer,
-                    TileEntityBoard tileEntity) {
+                    TileBoard tileEntity) {
         super(new ContainerBoard(inventoryPlayer, tileEntity));
         board = tileEntity;
     }

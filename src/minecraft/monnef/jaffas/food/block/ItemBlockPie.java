@@ -14,9 +14,9 @@ public class ItemBlockPie extends ItemBlockJaffas {
     public ItemBlockPie(int par1) {
         super(par1);
 
-        subNames = new String[TileEntityPie.PieType.values().length];
+        subNames = new String[TilePie.PieType.values().length];
         for (int i = 0; i < subNames.length; i++) {
-            subNames[i] = TileEntityPie.PieType.values()[i].toString().toLowerCase();
+            subNames[i] = TilePie.PieType.values()[i].toString().toLowerCase();
         }
 
         setUnlocalizedName("itemBlockJPie");

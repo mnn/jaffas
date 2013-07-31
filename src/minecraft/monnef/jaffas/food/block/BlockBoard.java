@@ -68,7 +68,7 @@ public class BlockBoard extends BlockContainerJaffas {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityBoard();
+        return new TileBoard();
     }
 
     /**

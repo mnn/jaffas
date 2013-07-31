@@ -21,7 +21,7 @@ public class BlockColumn extends BlockJaffas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityColumn();
+        return new TileColumn();
     }
 
     @Override

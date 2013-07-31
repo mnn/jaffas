@@ -5,7 +5,7 @@
 
 package monnef.jaffas.technic.item;
 
-import monnef.jaffas.technic.block.TileEntityHighPlant;
+import monnef.jaffas.technic.block.TileHighPlant;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -55,7 +55,7 @@ public class ItemHightPlantPost extends ItemTechnic {
 
                         --item.stackSize;
 
-                        TileEntityHighPlant tile = (TileEntityHighPlant) world.getBlockTileEntity(x, y, z);
+                        TileHighPlant tile = (TileHighPlant) world.getBlockTileEntity(x, y, z);
                         tile.setStructureHeight(2);
                         return true;
 

@@ -25,7 +25,7 @@ public class BlockAntenna extends BlockMachine {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityAntenna();
+        return new TileAntenna();
     }
 
     @Override

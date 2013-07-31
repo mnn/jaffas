@@ -15,13 +15,13 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ContainerCompost extends ContainerJaffas {
-    private final TileEntityCompostCore core;
+    private final TileCompostCore core;
     public final static int SLOT_INPUT = 0;
     public final static int SLOT_OUTPUT = 1;
     private int lastTankMeter;
     private int lastWorkMeter;
 
-    public ContainerCompost(InventoryPlayer inventoryPlayer, TileEntityCompostCore tile) {
+    public ContainerCompost(InventoryPlayer inventoryPlayer, TileCompostCore tile) {
         super(inventoryPlayer, tile);
         core = tile;
     }

@@ -67,8 +67,8 @@ public class BlockFruitCollector extends BlockContainerJaffas {
     }
 
     public void spawnParticlesOfTargetedItem(World world, Random random, int i, int j, int k, boolean force) {
-        TileEntityFruitCollector et = (TileEntityFruitCollector) world.getBlockTileEntity(i, j, k);
-        if (et.getState() == TileEntityFruitCollector.CollectorStates.targeted || force) {
+        TileFruitCollector et = (TileFruitCollector) world.getBlockTileEntity(i, j, k);
+        if (et.getState() == TileFruitCollector.CollectorStates.targeted || force) {
             for (int a = 0; a < 15; a++) {
                 JaffasTrees.proxy.addEffect("sucking", world, et.getIX() + randomShift(random), et.getIY() + randomShift(random), et.getIZ() + randomShift(random), (random.nextDouble() - 0.5) / 40D, (random.nextDouble()) / 200D, (random.nextDouble() - 0.5) / 40D);
             }
@@ -83,7 +83,7 @@ public class BlockFruitCollector extends BlockContainerJaffas {
 
     @Override
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityFruitCollector();
+        return new TileFruitCollector();
     }
 
     @Override

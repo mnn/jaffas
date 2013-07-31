@@ -256,7 +256,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
     }
 
     public TileEntity createNewTileEntity(World world) {
-        return new TileEntityJaffaCrops();
+        return new TileJaffaCrops();
     }
 
     @Override

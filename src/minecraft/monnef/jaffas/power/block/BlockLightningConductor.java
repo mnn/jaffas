@@ -53,6 +53,6 @@ public class BlockLightningConductor extends BlockPower {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return new TileEntityLightningConductor();
+        return new TileLightningConductor();
     }
 }

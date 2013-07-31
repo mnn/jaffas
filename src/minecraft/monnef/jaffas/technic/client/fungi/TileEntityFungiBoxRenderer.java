@@ -5,7 +5,7 @@
 
 package monnef.jaffas.technic.client.fungi;
 
-import monnef.jaffas.technic.block.TileEntityFungiBox;
+import monnef.jaffas.technic.block.TileFungiBox;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
@@ -32,7 +32,7 @@ public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
 
     @Override
     public void renderTileEntityAt(TileEntity tile, double x, double y, double z, float f) {
-        TileEntityFungiBox t = (TileEntityFungiBox) tile;
+        TileFungiBox t = (TileFungiBox) tile;
 
         GL11.glPushMatrix();
 

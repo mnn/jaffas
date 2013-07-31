@@ -64,7 +64,7 @@ public class BlockPizza extends BlockJaffas {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityPizza();
+        return new TilePizza();
     }
 
     @Override

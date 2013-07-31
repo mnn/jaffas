@@ -68,8 +68,8 @@ public class BlockFermenter extends BlockTechnic {
     private void planIntegrityCheckBellow(World world, int x, int y, int z) {
         int cy = y - 1;
         TileEntity tile = world.getBlockTileEntity(x, cy, z);
-        if (tile instanceof TileEntityFermenter) {
-            ((TileEntityFermenter) tile).planIntegrityCheck();
+        if (tile instanceof TileFermenter) {
+            ((TileFermenter) tile).planIntegrityCheck();
         }
     }
 
@@ -79,18 +79,18 @@ public class BlockFermenter extends BlockTechnic {
 
         int ny = y;
         int tested = 0;
-        while (!(te instanceof TileEntityFermenter) && tested < BLOCK_ACTIVATION_RADIUS) {
+        while (!(te instanceof TileFermenter) && tested < BLOCK_ACTIVATION_RADIUS) {
             te = world.getBlockTileEntity(x, ny, z);
             ny--;
             tested++;
         }
 
-        if (!(te instanceof TileEntityFermenter)) {
+        if (!(te instanceof TileFermenter)) {
             JaffasFood.Log.printWarning("Fermenter: block activation problem, cannot find my TE");
             return false;
         }
 
-        return ((TileEntityFermenter) te).playerActivatedBox(player);
+        return ((TileFermenter) te).playerActivatedBox(player);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class BlockFermenter extends BlockTechnic {
 
     @Override
     public TileEntity createTileEntity(World world, int metadata) {
-        return isMaster(metadata) ? new TileEntityFermenter() : new TileEntityFermenterInventoryRouter();
+        return isMaster(metadata) ? new TileFermenter() : new TileFermenterInventoryRouter();
     }
 
     @Override

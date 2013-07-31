@@ -16,15 +16,15 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-import static monnef.jaffas.food.block.TileEntityBoard.SLOT_INPUT;
-import static monnef.jaffas.food.block.TileEntityBoard.SLOT_KNIFE;
-import static monnef.jaffas.food.block.TileEntityBoard.SLOT_OUTPUT;
+import static monnef.jaffas.food.block.TileBoard.SLOT_INPUT;
+import static monnef.jaffas.food.block.TileBoard.SLOT_KNIFE;
+import static monnef.jaffas.food.block.TileBoard.SLOT_OUTPUT;
 
 public class ContainerBoard extends ContainerJaffas {
-    protected TileEntityBoard board;
+    protected TileBoard board;
     private int lastChopTime;
 
-    public ContainerBoard(InventoryPlayer inventoryPlayer, TileEntityBoard te) {
+    public ContainerBoard(InventoryPlayer inventoryPlayer, TileBoard te) {
         super(inventoryPlayer, te);
         board = te;
     }

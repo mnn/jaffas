@@ -17,12 +17,12 @@ import java.util.Iterator;
 public class ContainerFridge extends Container {
 
     public static final int inventorySize = 20;
-    protected TileEntityFridge tileEntity;
+    protected TileFridge tileEntity;
     protected float lastTemperature;
     protected int lastBurnTime;
     protected int lastItemBurnTime;
 
-    public ContainerFridge(InventoryPlayer inventoryPlayer, TileEntityFridge te) {
+    public ContainerFridge(InventoryPlayer inventoryPlayer, TileFridge te) {
         tileEntity = te;
 
         //the Slot constructor takes the IInventory and the slot number in that it binds to

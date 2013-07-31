@@ -9,11 +9,11 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.power.JaffasPower;
-import monnef.jaffas.power.block.TileEntityAntenna;
-import monnef.jaffas.power.block.TileEntityGenerator;
-import monnef.jaffas.power.block.TileEntityGrinder;
-import monnef.jaffas.power.block.TileEntityLightningConductor;
-import monnef.jaffas.power.block.TileEntityToaster;
+import monnef.jaffas.power.block.TileAntenna;
+import monnef.jaffas.power.block.TileGenerator;
+import monnef.jaffas.power.block.TileGrinder;
+import monnef.jaffas.power.block.TileLightningConductor;
+import monnef.jaffas.power.block.TileToaster;
 import monnef.jaffas.power.common.CommonProxy;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -21,11 +21,11 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
         JaffasPower.renderID = RenderingRegistry.getNextAvailableRenderId();
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGenerator.class, new TileEntityGeneratorRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityAntenna.class, new TileEntityAntennaRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityLightningConductor.class, new TileEntityLightningConductorRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityToaster.class, new TileEntityToasterRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrinder.class, new TileEntityGrinderRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileGenerator.class, new TileGeneratorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileAntenna.class, new TileAntennaRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileLightningConductor.class, new TileLightningConductorRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileToaster.class, new TileToasterRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileGrinder.class, new TileGrinderRenderer());
 
         BlockRenderingHandler handler = new BlockRenderingHandler();
         RenderingRegistry.registerBlockHandler(handler);

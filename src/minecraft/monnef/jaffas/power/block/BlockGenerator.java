@@ -29,7 +29,7 @@ public class BlockGenerator extends BlockMachineWithInventory {
 
     @Override
     public TileEntity createTileEntity(World world, int meta) {
-        return new TileEntityGenerator();
+        return new TileGenerator();
     }
 
     @Override
@@ -38,7 +38,7 @@ public class BlockGenerator extends BlockMachineWithInventory {
     }
 
     public boolean isBurning(IBlockAccess world, int x, int y, int z) {
-        return ((TileEntityGenerator) getTile(world, x, y, z)).isBurning();
+        return ((TileGenerator) getTile(world, x, y, z)).isBurning();
     }
 
     @Override
