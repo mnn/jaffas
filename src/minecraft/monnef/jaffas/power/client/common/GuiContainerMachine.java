@@ -23,6 +23,7 @@ public class GuiContainerMachine extends GuiContainer {
     protected static ColorHelper.IntColor topColor = new ColorHelper.IntColor(53, 180, 212);
     protected static ColorHelper.IntColor bottomColor = new ColorHelper.IntColor(25, 78, 90);
     protected final TileEntityMachineWithInventory tile;
+    private String backgroundTexture = "/guimachine.png";
 
     public GuiContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory tileEntity, ContainerMachine container) {
         super(container);
@@ -58,7 +59,11 @@ public class GuiContainerMachine extends GuiContainer {
     }
 
     protected String getBackgroundTexture() {
-        return "/guimachine.png";
+        return backgroundTexture;
+    }
+
+    public void setBackgroundTexture(String backgroundTexture) {
+        this.backgroundTexture = backgroundTexture;
     }
 
     protected void drawEnergyBar(TileEntityMachineWithInventory tile) {

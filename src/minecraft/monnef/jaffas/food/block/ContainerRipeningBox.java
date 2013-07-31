@@ -28,7 +28,6 @@ public class ContainerRipeningBox extends ContainerJaffas {
     @Override
     public void addCraftingToCrafters(ICrafting par1ICrafting) {
         super.addCraftingToCrafters(par1ICrafting);
-        //par1ICrafting.sendProgressBarUpdate(this, 0, this.board.chopTime);
         for (int i = 0; i < RIPENING_SLOTS; i++) {
             par1ICrafting.sendProgressBarUpdate(this, i, board.getRipeningStatus(i));
         }
@@ -38,20 +37,7 @@ public class ContainerRipeningBox extends ContainerJaffas {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        /*
-        for (int var1 = 0; var1 < this.crafters.size(); ++var1) {
-            ICrafting var2 = (ICrafting) this.crafters.get(var1);
-
-            if (this.lastChopTime != this.board.chopTime) {
-                var2.sendProgressBarUpdate(this, 0, this.board.chopTime);
-            }
-        }
-
-        this.lastChopTime = this.board.chopTime;
-        */
-
         for (int i = 0; i < RIPENING_SLOTS; i++) {
-
             for (int var1 = 0; var1 < this.crafters.size(); ++var1) {
                 ICrafting var2 = (ICrafting) this.crafters.get(var1);
 
@@ -68,11 +54,6 @@ public class ContainerRipeningBox extends ContainerJaffas {
     @SideOnly(Side.CLIENT)
     @Override
     public void updateProgressBar(int id, int value) {
-        /*
-        if (id == 0) {
-            this.board.chopTime = value;
-        }
-        */
         if (id >= 0 && id < RIPENING_SLOTS) {
             board.setRipeningStatus(id, value);
         }

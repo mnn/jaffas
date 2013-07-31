@@ -41,7 +41,7 @@ public class GuiContainerBasicProcessingMachine extends GuiContainerMachine {
 
     @Override
     protected String getBackgroundTexture() {
-        return "/guipmachine.png";
+        return bpMachine.getGuiBackgroundTexture();
     }
 
     @Override

@@ -44,8 +44,9 @@ import monnef.jaffas.power.block.TileEntityLightningConductor;
 import monnef.jaffas.power.block.TileEntityToaster;
 import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
-import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
+import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.client.GuiHandler;
+import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
 import monnef.jaffas.power.common.SimplePowerFramework;
@@ -224,13 +225,13 @@ public class JaffasPower extends jaffasMod {
         RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
         registerTileEntity(TileEntityKitchenUnit.class, "kitchenUnit");
 
-        TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityGrinder.class, ContainerBasicProcessingMachine.class);
+        ProcessingMachineRegistry.register(TileEntityGrinder.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
         grinder = new BlockGrinder(blockGrinderID, 101, TileEntityGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileEntityGrinder.class, "grinder");
         grinder.setRotationShiftInPlacing(1);
 
-        TileEntityBasicProcessingMachine.registerContainerPrototype(TileEntityToaster.class, ContainerBasicProcessingMachine.class);
+        ProcessingMachineRegistry.register(TileEntityToaster.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
         toaster = new BlockToaster(blockToasterID, 50, TileEntityToaster.class, GuiHandler.GuiId.TOASTER, true, false);
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileEntityToaster.class, "toaster");

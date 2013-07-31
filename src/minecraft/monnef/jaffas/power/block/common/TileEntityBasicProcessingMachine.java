@@ -13,13 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import java.util.HashMap;
-
 public abstract class TileEntityBasicProcessingMachine extends TileEntityMachineWithInventory {
     private static final String PROCESS_TIME_TAG_NAME = "processTime";
     private static final String PROCESS_ITEM_TIME_TAG_NAME = "processItemTime";
     private static final String INPUT_ITEM_TAG = "inputItem";
-    public static final String CANNOT_INSTANTIATE_CONTAINER = "Cannot instantiate container.";
     public static final String PROCESSING_INV_TAG = "ProcessingInv";
     public static final String SLOT_TAG = "Slot";
 
@@ -28,25 +25,6 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     public int processTime = 0;
     public int processItemTime = 1;
     private ItemStack[] processingInv;
-
-    private static HashMap<Class, ContainerBasicProcessingMachine> containerPrototype = new HashMap<Class, ContainerBasicProcessingMachine>();
-
-    public static void registerContainerPrototype(Class<? extends TileEntityBasicProcessingMachine> clazz, Class<? extends ContainerBasicProcessingMachine> container) {
-        if (containerPrototype.containsKey(clazz)) {
-            throw new RuntimeException("containerPrototype already contains this class, cannot re-register");
-        }
-
-        ContainerBasicProcessingMachine containerInstance;
-        try {
-            containerInstance = container.newInstance();
-        } catch (InstantiationException e) {
-            throw new RuntimeException(CANNOT_INSTANTIATE_CONTAINER, e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(CANNOT_INSTANTIATE_CONTAINER, e);
-        }
-
-        containerPrototype.put(clazz, containerInstance);
-    }
 
     protected TileEntityBasicProcessingMachine() {
         super();
@@ -229,11 +207,15 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
     public ContainerBasicProcessingMachine getMyContainerPrototype() {
         if (myContainerPrototype == null) {
-            myContainerPrototype = containerPrototype.get(this.getClass());
+            myContainerPrototype = ProcessingMachineRegistry.getContainerPrototype(this.getClass());
             if (myContainerPrototype == null) {
                 throw new RuntimeException("cannot find container prototype for this class (" + getClass().getSimpleName() + ")");
             }
         }
         return myContainerPrototype;
+    }
+
+    public String getGuiBackgroundTexture() {
+        return "/guipmachine.png";
     }
 }

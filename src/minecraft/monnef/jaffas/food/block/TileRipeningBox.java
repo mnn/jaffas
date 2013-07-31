@@ -43,11 +43,6 @@ public class TileRipeningBox extends TileEntityWithInventory {
         return true;
     }
 
-    @Override
-    public int getInventoryStackLimit() {
-        return 1;
-    }
-
     public int getRipeningStatus(int id) {
         if (id < 0 || id > ripeningStatus.length) {
             throw new IllegalArgumentException();
