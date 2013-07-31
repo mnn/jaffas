@@ -45,11 +45,6 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
     protected void doMachineWork() {
     }
 
-    @Override
-    public int powerRequest(ForgeDirection from) {
-        return 0;
-    }
-
     private enum GeneratorState {
         IDLE, BURNING
     }
@@ -65,6 +60,7 @@ public class TileEntityGenerator extends TileEntityMachineWithInventory {
         return "Generator";
     }
 
+    @Override
     public int getSizeInventory() {
         return 1;
     }

@@ -8,6 +8,7 @@ package monnef.jaffas.power.block.common;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.BoundingBoxSize;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.api.IMachineTool;
@@ -97,7 +98,11 @@ public abstract class BlockMachine extends BlockPower {
         TileEntityMachine tile = getTile(w, x, y, z);
 
         if (useDefaultDirection) {
-            MovingObjectPosition obj = entity.rayTrace(5, 1);
+            MovingObjectPosition obj = null; // = entity.rayTrace(5, 1);
+            if (entity instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) entity;
+                obj = PlayerHelper.rayTraceBlock(player, 5, player.getLookVec());
+            }
             if (obj != null && obj.typeOfHit == EnumMovingObjectType.TILE) {
                 tile.setRotation(ForgeDirection.getOrientation(obj.sideHit).getOpposite());
             } else {

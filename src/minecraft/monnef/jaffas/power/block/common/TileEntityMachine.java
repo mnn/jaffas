@@ -152,7 +152,7 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
 
     @Override
     public int powerRequest(ForgeDirection from) {
-        return maxEnergyReceived;
+        return powerNeeded != 0 ? maxEnergyReceived : 0;
     }
 
     private static boolean dummyCreationPhase = false;
