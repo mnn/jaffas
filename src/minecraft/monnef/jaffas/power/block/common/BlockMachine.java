@@ -8,6 +8,7 @@ package monnef.jaffas.power.block.common;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.BoundingBoxSize;
+import monnef.core.utils.DirectionHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.JaffasPower;
@@ -39,6 +40,7 @@ public abstract class BlockMachine extends BlockPower {
     protected int rotationShiftInPlacing = 2;
     private boolean useRotatedBoundingBox = false;
     private BoundingBoxSize customBoundingBox;
+    protected boolean useForgeDirectionsInPlacingComputation = false;
 
     public BlockMachine(int id, int index, Material material, boolean customRenderer, boolean useOwnRenderingId) {
         super(id, index, material);
@@ -112,6 +114,9 @@ public abstract class BlockMachine extends BlockPower {
         } else {
             int direction = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
             direction = (direction + rotationShiftInPlacing) % ROTATIONS_COUNT; // rotation fix
+            if(useForgeDirectionsInPlacingComputation){
+                direction= DirectionHelper.translateFromTrivialXToForgeDir(direction);
+            }
             tile.setRotation(direction);
         }
 
@@ -188,6 +193,7 @@ public abstract class BlockMachine extends BlockPower {
 
     private boolean doRotation(World world, int x, int y, int z, EntityPlayer player, int side) {
         TileEntityMachine machine = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+        if (!((BlockMachine) machine.getBlockType()).supportRotation()) return false;
         boolean res = machine.toggleRotation();
         machine.sendUpdate();
         return res;
@@ -209,7 +215,7 @@ public abstract class BlockMachine extends BlockPower {
         return false;
     }
 
-    public abstract boolean supportRotation();
+    public abstract boolean supportRotation(); // TODO: move to tile?
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourId) {

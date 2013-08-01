@@ -36,6 +36,7 @@ import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.BlockToaster;
 import monnef.jaffas.power.block.BlockWebHarvester;
+import monnef.jaffas.power.block.BlockWindGenerator;
 import monnef.jaffas.power.block.TileAntenna;
 import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileGrinder;
@@ -43,6 +44,7 @@ import monnef.jaffas.power.block.TileKitchenUnit;
 import monnef.jaffas.power.block.TileLightningConductor;
 import monnef.jaffas.power.block.TileToaster;
 import monnef.jaffas.power.block.TileWebHarvester;
+import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.client.GuiHandler;
@@ -53,6 +55,7 @@ import monnef.jaffas.power.common.SimplePowerFramework;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
+import monnef.jaffas.power.item.ItemWindTurbine;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -116,6 +119,13 @@ public class JaffasPower extends jaffasMod {
     public static BlockWebHarvester webHarvester;
     private int blockWebHarvesterID;
 
+    public static boolean windGeneratorEnabled;
+    public static BlockWindGenerator windGenerator;
+    private int blockWindGeneratorID;
+
+    public static ItemWindTurbine windTurbineWooden;
+    private int itemWindTurbineWoodenID;
+
     @PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -143,8 +153,13 @@ public class JaffasPower extends jaffasMod {
             blockToasterID = idProvider.getBlockIDFromConfig("toaster");
             blockWebHarvesterID = idProvider.getBlockIDFromConfig("webHarvester");
 
-            debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
+            windGeneratorEnabled = config.get(Configuration.CATEGORY_GENERAL, "windGeneratorEnabled", true).getBoolean(true);
+            if (windGeneratorEnabled) {
+                blockWindGeneratorID = idProvider.getBlockIDFromConfig("windGenerator");
+                itemWindTurbineWoodenID = idProvider.getItemIDFromConfig("windTurbineWooden");
+            }
 
+            debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (power) can't read config file.");
         } finally {
@@ -239,6 +254,16 @@ public class JaffasPower extends jaffasMod {
         webHarvester = new BlockWebHarvester(blockWebHarvesterID, 51, JaffasTechnic.breakableIronMaterial, false, false);
         RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
         registerTileEntity(TileWebHarvester.class, "webHarvester");
+
+        if (windGeneratorEnabled) {
+            windGenerator = new BlockWindGenerator(blockWindGeneratorID, 51, JaffasTechnic.breakableIronMaterial, false, false);
+            RegistryUtils.registerBlock(windGenerator, "windGenerator", "Wind Generator");
+            registerTileEntity(TileWindGenerator.class, "windGenerator");
+
+            windTurbineWooden = new ItemWindTurbine(itemWindTurbineWoodenID, 54, 1000, 0);
+            windTurbineWooden.configure(true, 1, "TODO", false);
+            RegistryUtils.registerItem(windTurbineWooden, "windTurbineWooden", "Wooden Wind Turbine");
+        }
     }
 
     private void installRecipes() {
