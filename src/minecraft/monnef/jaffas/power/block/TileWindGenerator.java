@@ -5,15 +5,21 @@
 
 package monnef.jaffas.power.block;
 
-import com.google.common.collect.HashBasedTable;
-import com.google.common.collect.Table;
+import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
+import monnef.core.collection.SpaceHashMap;
 import monnef.core.utils.IntegerCoordinates;
+import monnef.core.utils.ItemHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.power.entity.EntityWindTurbine;
 import monnef.jaffas.power.item.ItemWindTurbine;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
+
+import java.util.List;
 
 public class TileWindGenerator extends TileEntityMachineWithInventory {
 
@@ -30,16 +36,21 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     private static final float lossPerSolidBlock = 0.05f;
     private static final int checkDistance = 15;
     private static final int checkOuterRadius = 2;
-    public static int blocksToCheckPerTick = 5;
-    public static float rainBonusMax = 1.2f; // max +120%
+    public static int blocksToCheckPerTick = MonnefCorePlugin.debugEnv ? Short.MAX_VALUE : 5;
+    public static float rainPowerBonusMax = 1.2f; // max +120%
 
     private Obstacles obstacles = new Obstacles();
 
     private ItemWindTurbine turbine;
+    private ItemStack lastTurbineStack;
+    private int turbineSpeed;
+    private static final int TURBINE_NORMAL_SPEED = 70;
+    private static final int TURBINE_MAX_SPEED = 100;
+    private IIntegerCoordinates cachedTurbineHubPosition;
 
     private class Obstacles {
         public static final int RANDOM_LOW_VALUE = -100;
-        private Table<Integer, Integer, Float> obstacles;
+        private SpaceHashMap<Integer, Float> obstacles;
         private float obstaclesVolumeCached;
         private float maximalVolume;
         private int obstaclesCounted;
@@ -57,18 +68,25 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
             totalRadius = checkOuterRadius;
             if (turbine != null) totalRadius += turbine.getRadius();
             maximalVolume = checkDistance * totalRadius;
+            resetVolumeCached();
+            int totalDiameter = totalRadius * 2 + 1;
+            obstacles = new SpaceHashMap<Integer, Float>();
+            resetProcessedCoordinates();
+        }
+
+        private void resetVolumeCached() {
             obstaclesVolumeCached = 0;
             obstaclesCounted = 0;
-            int totalDiameter = totalRadius * 2 + 1;
-            obstacles = HashBasedTable.create(totalDiameter, checkDistance);
-            resetProcessedCoordinates();
         }
 
         private void resetProcessedCoordinates() {
             lastProcessedRX = -totalRadius;
             lastProcessedRY = -totalRadius;
-            lastProcessedRZ = 1;
-            if (turbine != null && turbine.doesCheckBack()) lastProcessedRZ = -checkDistance;
+            lastProcessedRZ = getStartingValueOfRelativeZ();
+        }
+
+        private int getStartingValueOfRelativeZ() {
+            return turbine != null && turbine.doesCheckBack() ? -checkDistance : 1;
         }
 
         private float getBlockObstacleValue(IIntegerCoordinates pos) {
@@ -83,9 +101,12 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
             int toCheckLeft = blocksToCheckPerTick * slowingCoefficient;
             boolean firstIteration = true;
             boolean lastProcessedValuesWereSet = false;
-            for (int rx = RANDOM_LOW_VALUE; rx <= totalRadius; rx++) {
-                for (int ry = RANDOM_LOW_VALUE; ry <= totalRadius; ry++) {
-                    for (int rz = RANDOM_LOW_VALUE; rz <= checkDistance; rz++) {
+            int rxStart = -totalRadius;
+            int ryStart = -totalRadius;
+            int rzStart = getStartingValueOfRelativeZ();
+            for (int rx = rxStart; rx <= totalRadius; rx++) {
+                for (int ry = ryStart; ry <= totalRadius; ry++) {
+                    for (int rz = rzStart; rz <= checkDistance; rz++) {
                         if (firstIteration) {
                             firstIteration = false;
                             rx = lastProcessedRX;
@@ -110,17 +131,53 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
             }
 
             // calculation has reached end
-            if (!lastProcessedValuesWereSet) resetProcessedCoordinates();
+            if (!lastProcessedValuesWereSet) {
+                resetProcessedCoordinates();
+            }
+        }
+
+        /**
+         * Performance heavy version of {@link #compute()} method
+         *
+         * @return obstacles volume
+         */
+        public float debugCompute() {
+            float res = 0;
+            int startingValueOfRelativeZ = getStartingValueOfRelativeZ();
+            for (int rx = -totalRadius; rx <= totalRadius; rx++) {
+                for (int ry = -totalRadius; ry <= totalRadius; ry++) {
+                    for (int rz = startingValueOfRelativeZ; rz <= checkDistance; rz++) {
+                        res += getBlockObstacleValue(computeAbsoluteCoordinates(rx, ry, rz));
+                    }
+                }
+            }
+            return res;
         }
 
         private void processRelativeBlockAtCoordinate(int rx, int ry, int rz) {
             IIntegerCoordinates absCoords = computeAbsoluteCoordinates(rx, ry, rz);
+            Float currentCellValue = getCellValue(rx, ry, rz);
+            if (currentCellValue == null) {
+                obstaclesCounted++;
+            } else {
+                obstaclesVolumeCached -= currentCellValue;
+            }
+            float currentObstacleValue = getBlockObstacleValue(absCoords);
+            obstaclesVolumeCached += currentObstacleValue;
+            setCellValue(rx, ry, rz, currentObstacleValue);
+        }
+
+        private void setCellValue(int rx, int ry, int rz, float value) {
+            obstacles.put(rx, ry, rz, value);
+        }
+
+        private Float getCellValue(int rx, int ry, int rz) {
+            return obstacles.get(rx, ry, rz);
         }
 
         private IIntegerCoordinates computeAbsoluteCoordinates(int rx, int ry, int rz) {
             return new IntegerCoordinates(TileWindGenerator.this).applyRelativeCoordinates(getRotation(), rx, ry, rz);
         }
-
     }
 
     public TileWindGenerator() {
@@ -130,13 +187,81 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     protected void refreshTurbineItem() {
         ItemStack stack = getStackInSlot(TURBINE_SLOT);
         turbine = null;
-        if (stack == null) {
-            return;
+        if (stack != null) {
+            Item item = stack.getItem();
+            if (item instanceof ItemWindTurbine) {
+                turbine = (ItemWindTurbine) item;
+            }
         }
-        Item item = stack.getItem();
-        if (item instanceof ItemWindTurbine) {
-            turbine = (ItemWindTurbine) item;
+
+        if (!ItemHelper.haveStacksSameIdAndDamage(lastTurbineStack, stack)) onTurbineChanged();
+        lastTurbineStack = stack;
+    }
+
+    private void onTurbineChanged() {
+        turbineSpeed = 0;
+        refreshTurbineEntity();
+    }
+
+    @Override
+    protected void doMachineWork() {
+        if (worldObj.isRemote) return;
+
+        if (turbineState == TurbineState.UNKNOWN) {
+            refreshTurbineEntity();
         }
+        processObstacles();
+    }
+
+    private void refreshTurbineEntity() {
+        if (turbineState == TurbineState.TURBINE_SPAWNED) {
+            IIntegerCoordinates pos = getTurbineHubPositionInternal();
+            AxisAlignedBB box = AxisAlignedBB.getAABBPool().getAABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
+            List turbs = worldObj.getEntitiesWithinAABB(EntityWindTurbine.class, box);
+            for (Object turb : turbs) {
+                ((EntityWindTurbine) turb).setDead();
+            }
+        }
+
+        if (turbine == null) {
+            turbineState = TurbineState.NO_TURBINE;
+        } else {
+            if (worldObj != null) {
+                EntityWindTurbine e = new EntityWindTurbine(worldObj);
+                IIntegerCoordinates pos = getTurbineHubPositionInternal();
+                e.setPosition(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
+                worldObj.spawnEntityInWorld(e);
+                turbineState = TurbineState.TURBINE_SPAWNED;
+            }
+        }
+    }
+
+    private void processObstacles() {
+        obstacles.compute();
+        if (MonnefCorePlugin.debugEnv) {
+            float dc = obstacles.debugCompute();
+            if (obstacles.obstaclesVolumeCached != dc) {
+                JaffasFood.Log.printDebug(String.format("obstacles volume doesn't match - cached=%f != direct=%f", obstacles.obstaclesVolumeCached, dc));
+            }
+        }
+    }
+
+    protected IIntegerCoordinates getTurbineHubPositionInternal() {
+        if (cachedTurbineHubPosition == null) {
+            IIntegerCoordinates pos = new IntegerCoordinates(this);
+            cachedTurbineHubPosition = pos.shiftInDirectionBy(getRotation(), 1);
+        }
+        return cachedTurbineHubPosition;
+    }
+
+    public IIntegerCoordinates getTurbineHubPosition() {
+        return getTurbineHubPositionInternal().copy();
+    }
+
+    @Override
+    public void onInventoryChanged() {
+        super.onInventoryChanged();
+        refreshTurbineItem();
     }
 
     @Override
@@ -152,13 +277,6 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     @Override
     public String getMachineTitle() {
         return "Wind Generator";
-    }
-
-    @Override
-    protected void doMachineWork() {
-        if (worldObj.isRemote) return;
-
-
     }
 
     @Override

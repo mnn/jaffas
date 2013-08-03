@@ -15,6 +15,7 @@ import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.power.block.TileLightningConductor;
 import monnef.jaffas.power.block.TileToaster;
 import monnef.jaffas.power.common.CommonProxy;
+import monnef.jaffas.power.entity.EntityWindTurbine;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {
@@ -35,5 +36,7 @@ public class ClientProxy extends CommonProxy {
         }
 
         MinecraftForgeClient.registerItemRenderer(JaffasPower.kitchenUnit.blockID, new CustomBlockRenderer());
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityWindTurbine.class, new RenderWindTurbine());
     }
 }

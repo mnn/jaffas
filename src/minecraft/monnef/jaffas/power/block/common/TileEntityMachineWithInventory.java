@@ -35,6 +35,7 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
         if (stack != null && stack.stackSize > getInventoryStackLimit()) {
             stack.stackSize = getInventoryStackLimit();
         }
+        onInventoryChanged();
     }
 
     @Override
@@ -93,6 +94,7 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
                 inventory[slot] = ItemStack.loadItemStackFromNBT(tag);
             }
         }
+        onInventoryChanged();
     }
 
     @Override
