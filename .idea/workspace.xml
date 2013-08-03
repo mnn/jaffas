@@ -2,13 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Boosted ore generation.">
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.5.0\jaffas\mcp\lib\Jsoup_license.txt" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.5.0\jaffas\mcp\lib\junit-4.10.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_10.xml" afterPath="$PROJECT_DIR$/.idea/libraries/junit_4_10.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375441434911" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375441434911" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375523544220" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375521401623" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372606222178" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374156004628" ignored="false" />
@@ -616,11 +621,16 @@
     <file path="/ProcessingRecipeHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375262394507" ignored="false" />
     <file path="/ProcessingMachineRecipeHandlerWrapper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375264250527" ignored="false" />
     <file path="/BlockWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375355530992" ignored="false" />
-    <file path="/TileWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375441147595" ignored="false" />
+    <file path="/TileWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375478871698" ignored="false" />
     <file path="/ItemWindTurbine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375353568236" ignored="false" />
     <file path="/EntityWindTurbine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375296626202" ignored="false" />
     <file path="/WindTurbineEnum.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375353211925" ignored="false" />
     <file path="/IntCoordsTest.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375447425984" ignored="false" />
+    <file path="/SpaceHashMap.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375524210665" ignored="false" />
+    <file path="/SpaceCoordinate.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375477160686" ignored="false" />
+    <file path="/SpaceHashMapTest.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375524846537" ignored="false" />
+    <file path="/ISpaceMap.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375520650639" ignored="false" />
+    <file path="/IMapFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375523657199" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -640,7 +650,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -747,6 +756,7 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -757,37 +767,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JaffasPower.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="258" column="39" selection-start="10643" selection-end="10643" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityWindTurbine.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/entity/EntityWindTurbine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="17" selection-start="370" selection-end="370" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TileWindGenerator.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TileWindGenerator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="65" selection-start="4911" selection-end="4911" vertical-scroll-proportion="0.9466248">
+            <state line="117" column="31" selection-start="4403" selection-end="4403" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntCoordsTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/test/IntCoordsTest.java">
+      <file leaf-file-name="SpaceHashMapTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/test/SpaceHashMapTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="61" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.0">
+            <state line="19" column="25" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -795,41 +787,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntegerCoordinates.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/IntegerCoordinates.java">
+      <file leaf-file-name="ISpaceMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/ISpaceMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="0" selection-start="1578" selection-end="1578" vertical-scroll-proportion="0.0">
+            <state line="18" column="17" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="World.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
+      <file leaf-file-name="TrivialSpaceHashMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/TrivialSpaceHashMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="49" selection-start="2851" selection-end="2852" vertical-scroll-proportion="0.0">
+            <state line="39" column="21" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ForgeDirection.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/ForgeDirection.java">
+      <file leaf-file-name="SpaceMap.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/SpaceMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="16" selection-start="785" selection-end="786" vertical-scroll-proportion="0.0">
+            <state line="44" column="0" selection-start="1116" selection-end="1273" vertical-scroll-proportion="0.7739403">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WavefrontObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/model/obj/WavefrontObject.java">
+      <file leaf-file-name="SpaceHashMap.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/SpaceHashMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="162" column="33" selection-start="5888" selection-end="5888" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#2326#2339#0" expanded="true" />
-                <element signature="method#loadObjModel#0;class#WavefrontObject#0" expanded="false" />
-              </folding>
+            <state line="13" column="33" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IMapFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/IMapFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="14" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpaceCoordinate.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/SpaceCoordinate.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9" column="0" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -862,22 +869,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileEntityGenerator.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/entity.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/BlockMachine.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/DirectionHelper.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/WindTurbineEnum.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/entity/EntityWindTurbine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockWindGenerator.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/api/IIntegerCoordinates.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/IntegerCoordinates.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/test/IntCoordsTest.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/SpaceCoordinate.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/test/TrivialSpaceHashMapTest.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/ISpaceHashMap.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/ISpaceMap.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/TrivialSpaceHashMap.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/IMapFactory.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/SpaceMap.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/SpaceHashMap.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/test/SpaceHashMapTest.java" />
       </list>
     </option>
   </component>
@@ -1011,6 +1018,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1465,9 +1473,34 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="collection" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1480,16 +1513,16 @@
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="fileTemplates" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/hookAfterCompile.bat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.31578946" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.31578946" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1504,14 +1537,11 @@
       <recent name="D:\workspace\mc\env\1.4.6\mcp725_jaffas\src\minecraft\monnef\jaffas\power" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="monnef.core.collection" />
       <recent name="monnef.jaffas.food.block" />
       <recent name="monnef.jaffas.food.item" />
       <recent name="monnef.jaffas.technic.block" />
       <recent name="monnef.jaffas.technic.common" />
-      <recent name="monnef.core.base" />
-    </key>
-    <key name="IntroduceConstantDialog.RECENTS_KEY">
-      <recent name="monnef.core.MonnefCorePlugin" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="monnef.jaffas.power.block.common.ProcessingMachineRegistry" />
@@ -1520,12 +1550,15 @@
       <recent name="monnef.core.utils.BlockHelper" />
       <recent name="monnef.jaffas.power.common.WrenchHelper" />
     </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="monnef.core.MonnefCorePlugin" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="monnef.core.collection" />
       <recent name="monnef.jaffas.power.block" />
       <recent name="monnef.jaffas.food.nei" />
       <recent name="monnef.jaffas.food.block" />
       <recent name="monnef.core.utils" />
-      <recent name="monnef.jaffas.food.common" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="monnef.jaffas.power.common" />
@@ -1535,7 +1568,7 @@
       <recent name="monnef.jaffas.technic.item" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.IntCoordsTest">
+  <component name="RunManager" selected="JUnit.SpaceHashMapTest.testMap">
     <configuration default="false" name="IntCoordsTest" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="mcp725_jaffas" />
@@ -1548,6 +1581,35 @@
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SpaceHashMapTest.testMap" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="mcp725_jaffas" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="monnef.core.test" />
+      <option name="MAIN_CLASS_NAME" value="monnef.core.test.SpaceHashMapTest" />
+      <option name="METHOD_NAME" value="testMap" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
@@ -1684,14 +1746,44 @@
         <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_afterHookJaffas" />
       </method>
     </configuration>
-    <list size="3">
+    <configuration default="false" name="monnef.core.test in mcp725_jaffas" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="mcp725_jaffas" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="monnef.core.test" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
+      <ConfigurationWrapper RunnerId="Debug" />
+      <method />
+    </configuration>
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.client" />
       <item index="1" class="java.lang.String" itemvalue="Application.server" />
       <item index="2" class="java.lang.String" itemvalue="JUnit.IntCoordsTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.monnef.core.test in mcp725_jaffas" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SpaceHashMapTest.testMap" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.IntCoordsTest" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SpaceHashMapTest.testMap" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.IntCoordsTest" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -1801,6 +1893,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2935268" sideWeight="0.49573106" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26004463" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26004463" sideWeight="0.5048026" order="10" side_tool="true" content_ui="tabs" />
@@ -1811,17 +1904,16 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35044643" sideWeight="0.48292422" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575893" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.13392857" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.29464287" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.59821427" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.4375" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.49359658" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2935268" sideWeight="0.49573106" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1905,24 +1997,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/model/AdvancedModelLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="36" selection-start="2674" selection-end="2674" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/model/obj/ObjModelLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="23" selection-start="693" selection-end="693" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/model/obj/Face.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="16" selection-start="533" selection-end="533" vertical-scroll-proportion="0.5041186" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/model/obj/GroupObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="32" selection-start="1077" selection-end="1077" vertical-scroll-proportion="1.2602966" />
+        <state line="258" column="39" selection-start="10643" selection-end="10643" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockWindGenerator.java">
@@ -1932,84 +2011,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/client/model/obj/WavefrontObject.java">
+    <entry file="jar://D:/apps/Java/jdk1.6.0_35/src.zip!/java/lang/Short.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="33" selection-start="5888" selection-end="5888" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#2326#2339#0" expanded="true" />
-            <element signature="method#loadObjModel#0;class#WavefrontObject#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/api/IIntegerCoordinates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0">
+        <state line="39" column="32" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.33281004">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/ForgeDirection.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/SpaceCoordinate.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="16" selection-start="785" selection-end="786" vertical-scroll-proportion="0.0">
+        <state line="9" column="0" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockJDirectional.java">
+    <entry file="jar://D:/apps/Java/jdk1.6.0_35/src.zip!/java/util/HashMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="24" selection-start="132" selection-end="132" vertical-scroll-proportion="0.080094226">
+        <state line="108" column="16" selection-start="5288" selection-end="5288" vertical-scroll-proportion="0.4945055">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="30" selection-start="802" selection-end="802" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/IBlockAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="73" selection-start="497" selection-end="497" vertical-scroll-proportion="0.23448277">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="49" selection-start="2851" selection-end="2852" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/IntegerCoordinates.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="1578" selection-end="1578" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/redstone/TileRedstoneCircuit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="31" selection-start="442" selection-end="442" vertical-scroll-proportion="0.29042387">
+        <state line="117" column="31" selection-start="4403" selection-end="4403" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/test/IntCoordsTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="61" selection-start="1008" selection-end="1008" vertical-scroll-proportion="0.0">
+        <state line="19" column="18" selection-start="427" selection-end="450" vertical-scroll-proportion="0.12068965">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/ISpaceMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="65" selection-start="4911" selection-end="4911" vertical-scroll-proportion="0.9466248">
+        <state line="18" column="17" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/TrivialSpaceHashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="21" selection-start="818" selection-end="818" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/apps/Java/jdk1.6.0_35/src.zip!/java/util/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="17" selection-start="5193" selection-end="5193" vertical-scroll-proportion="0.41287285">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/IMapFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="14" selection-start="162" selection-end="162" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/SpaceHashMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="33" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/test/SpaceHashMapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="25" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/collection/SpaceMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="1116" selection-end="1273" vertical-scroll-proportion="0.7739403">
           <folding />
         </state>
       </provider>
