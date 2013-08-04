@@ -6,6 +6,7 @@
 package monnef.jaffas.food.client;
 
 import monnef.core.MonnefCorePlugin;
+import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.food.block.ContainerRipeningBox;
 import monnef.jaffas.food.block.TileRipeningBox;
@@ -15,7 +16,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public class GuiRipeningBox extends GuiContainer {
+public class GuiRipeningBox extends GuiContainerJaffas {
     public static final String TEXTURE = "/guiripingbox.png";
     private static final int STATUS_WIDTH = 16;
     private static final int STATUS_HEIGHT = 2;
