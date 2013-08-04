@@ -14,6 +14,8 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
+import java.util.List;
+
 public class GuiCompost extends GuiContainerJaffas {
     public static final String GUI_TEXTURE = "/guicompost.png";
     public static final int TANK_METER_HEIGHT_MAX = 46;
@@ -52,4 +54,15 @@ public class GuiCompost extends GuiContainerJaffas {
         drawTexturedModalRect(x + 100, y + 34, 176, 14, m + 1, 16);
     }
     // x, y, u, v, width, height
+
+    @Override
+    public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
+        GuiCompost compostGui = (GuiCompost) gui;
+        if (GuiHelper.isMouseInRect(gui, mousex, mousey, 76, 20, 16, GuiCompost.TANK_METER_HEIGHT_MAX)) {
+            currenttip.add(String.format("§2Compost §8(§7%d§8/§7%d§8)§r", compostGui.core.getTankMeter(), compostGui.core.getMaxTankValue()));
+        } else if (GuiHelper.isMouseInRect(gui, mousex, mousey, 102, 32, 22, 17)) {
+            currenttip.add(String.format("§7%d%%§r", (compostGui.core.getWorkMeter() * 100) / compostGui.core.getMaxWork()));
+        }
+        return currenttip;
+    }
 }

@@ -15,8 +15,6 @@ import monnef.core.external.javassist.CtClass;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
-import monnef.jaffas.technic.client.CompostTooltip;
-import monnef.jaffas.technic.client.FermenterTooltip;
 
 import java.lang.reflect.Method;
 
@@ -25,8 +23,6 @@ public class NEIJaffasConfig implements IConfigureNEI {
     public void loadConfig() {
         API.registerRecipeHandler(new BoardRecipeHandler());
         API.registerUsageHandler(new BoardRecipeHandler());
-        GuiContainerManager.addTooltipHandler(new CompostTooltip());
-        GuiContainerManager.addTooltipHandler(new FermenterTooltip());
         constructProcessingMachineHandlers();
     }
 
@@ -38,12 +34,6 @@ public class NEIJaffasConfig implements IConfigureNEI {
                 TileEntityBasicProcessingMachine.enableDummyCreationPhase();
                 TileEntityBasicProcessingMachine dummyTile = clazz.newInstance();
                 TileEntityBasicProcessingMachine.disableDummyCreationPhase();
-
-                /*
-                ProcessingMachineRecipeHandler handler = new ProcessingMachineRecipeHandler(dummyTile);
-                API.registerRecipeHandler(handler);
-                API.registerUsageHandler(handler);
-                */
 
                 CtClass classCopy = pool.getAndRename(ProcessingMachineRecipeHandlerWrapper.class.getCanonicalName(), "monnef.jaffas.food.nei.wrapper.PMRH" + (wrapperCounter++));
                 Class wrapperClass = classCopy.toClass();

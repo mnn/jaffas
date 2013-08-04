@@ -16,10 +16,11 @@ import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
+import java.util.List;
 
+import static monnef.core.utils.ColorHelper.IntColor;
 import static monnef.core.utils.GuiHelper.EnumFillRotation.LEFT_RIGHT;
 import static monnef.core.utils.GuiHelper.EnumFillRotation.TOP_DOWN;
-import static monnef.core.utils.ColorHelper.IntColor;
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid;
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.BEER;
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.BEER_RAW;
@@ -100,4 +101,19 @@ public class GuiFermenter extends GuiContainerJaffas {
         }
     }
     // x, y, u, v, width, height
+
+
+    @Override
+    public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
+        GuiFermenter fermenterGui = (GuiFermenter) gui;
+        if (GuiHelper.isMouseInRect(fermenterGui, mousex, mousey, GuiFermenter.TANK_POS_X, GuiFermenter.TANK_POS_Y, GuiFermenter.TANK_WIDTH, GuiFermenter.TANK_HEIGHT)) {
+            TileFermenter tile = fermenterGui.tile;
+            currenttip.add(String.format("§2%s §8(§7%d§8/§7%d§8)§r", tile.getLiquid().getCapTitle(), tile.getLiquidAmount(), TileFermenter.FERMENTER_CAPACITY));
+        } else if (GuiHelper.isMouseInRect(fermenterGui, mousex, mousey, GuiFermenter.WORK_X - 1, GuiFermenter.TANK_POS_Y, GuiFermenter.WORK_WIDTH + 1, GuiFermenter.TANK_HEIGHT)) {
+            TileFermenter tile = fermenterGui.tile;
+            String percent = tile.getMaxWorkMeter() == 0 ? "?" : String.format("%d", (tile.getWorkMeter() * 100) / tile.getMaxWorkMeter());
+            currenttip.add(String.format("§7%s%%§r", percent));
+        }
+        return currenttip;
+    }
 }
