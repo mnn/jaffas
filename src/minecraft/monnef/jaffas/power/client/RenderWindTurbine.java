@@ -5,49 +5,63 @@
 
 package monnef.jaffas.power.client;
 
+import monnef.core.client.IModelObj;
+import monnef.core.client.ModelObj;
+import monnef.core.utils.ColorHelper;
+import monnef.core.utils.RenderUtils;
 import monnef.jaffas.power.entity.EntityWindTurbine;
-import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import org.lwjgl.opengl.GL11;
 
-public class RenderWindTurbine extends Render {
+import java.util.ArrayList;
 
-    private final ModelTest box;
+public class RenderWindTurbine extends Render {
+    private static ArrayList<TurbineRenderer> models = new ArrayList<TurbineRenderer>();
+
+    static {
+        models.add(new TurbineRenderer("/jaffas_windmill01_hub.obj", "/jaffas_logo.png", "/jaffas_windmill01_blades.obj", "/jaffas_testing.png", 90));
+    }
 
     public RenderWindTurbine() {
-        box = new ModelTest();
+
     }
 
     @Override
-    public void doRender(Entity entity, double d0, double d1, double d2, float f, float f1) {
-        render((EntityWindTurbine) entity, d0, d1, d2, f, f1);
+    public void doRender(Entity entity, double d0, double d1, double d2, float f, float partialTickTime) {
+        render((EntityWindTurbine) entity, d0, d1, d2, f, partialTickTime);
     }
 
-    private void render(EntityWindTurbine turbine, double x, double y, double z, float f, float f1) {
+    private void render(EntityWindTurbine turbine, double x, double y, double z, float f, float partialTickTime) {
         GL11.glPushMatrix();
         GL11.glTranslated(x, y, z);
-        box.render(1);
-        renderAABB(turbine.getBoundingBox());
+        RenderUtils.rotate(turbine.getTurbineRotation());
+        float turbineSpin = turbine.animationRotation + partialTickTime * turbine.getItemPrototype().getRotationSpeedPerTick();
+        models.get(turbine.getModelId()).render(1, turbine.getColor(), turbineSpin);
         GL11.glPopMatrix();
     }
 
-    private class ModelTest extends ModelBase {
-        private final ModelRenderer b;
+    private static class TurbineRenderer {
+        private final IModelObj baseModel;
+        private final IModelObj coloredModel;
+        private ColorHelper.IntColor tmpColor = new ColorHelper.IntColor();
 
-        private ModelTest() {
-            b = new ModelRenderer(this, 0, 0);
-            b.addBox(0f, 0f, 0f, 1, 1, 1);
+        public TurbineRenderer(String baseModelFileName, String baseTexture, String coloredModelFileName, String coloredTexture, float rotationFix) {
+            baseModel = baseModelFileName == null ? null : new ModelObj(baseModelFileName, rotationFix, baseTexture);
+            coloredModel = coloredModelFileName == null ? null : new ModelObj(coloredModelFileName, rotationFix, coloredTexture);
         }
 
-        @Override
-        public void render(Entity par1Entity, float par2, float par3, float par4, float par5, float par6, float par7) {
-            b.render(par7);
-        }
-
-        public void render(float f5) {
-            b.render(f5);
+        public void render(float scale, int colour, float turbineSpin) {
+            GL11.glRotatef(360, 0, 0, turbineSpin);
+            if (baseModel != null) {
+                baseModel.renderWithTexture(scale);
+            }
+            if (coloredModel != null) {
+                ColorHelper.getColor(colour, tmpColor);
+                GL11.glColor4f(tmpColor.getRed(), tmpColor.getGreen(), tmpColor.getBlue(), 1);
+                coloredModel.renderWithTexture(scale);
+            }
+            GL11.glRotatef(-360, 0, 0, turbineSpin);
         }
     }
 }

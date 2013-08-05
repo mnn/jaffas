@@ -7,6 +7,7 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;
 import monnef.jaffas.power.block.ContainerGenerator;
+import monnef.jaffas.power.block.ContainerWindGenerator;
 import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.TileWindGenerator;
@@ -37,7 +38,7 @@ public class GuiHandler implements IGuiHandler {
         } else if (tileEntity instanceof TileWebHarvester) {
             return new ContainerMachine(player.inventory, (TileWebHarvester) tileEntity);
         } else if (tileEntity instanceof TileWindGenerator) {
-            return new ContainerMachine(player.inventory, (TileWindGenerator) tileEntity);
+            return new ContainerWindGenerator(player.inventory, (TileWindGenerator) tileEntity);
         }
         return null;
     }
@@ -56,8 +57,7 @@ public class GuiHandler implements IGuiHandler {
             gui.setBackgroundTexture("/guiwebharvester.png");
             return gui;
         } else if (tileEntity instanceof TileWindGenerator) {
-            GuiContainerMachine gui = new GuiContainerMachine(player.inventory, (TileWindGenerator) tileEntity, new ContainerMachine(player.inventory, (TileWindGenerator) tileEntity));
-            return gui;
+            return new GuiContainerWindGenerator(player.inventory, (TileWindGenerator) tileEntity, new ContainerWindGenerator(player.inventory, (TileWindGenerator) tileEntity));
         }
         return null;
     }

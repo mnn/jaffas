@@ -18,6 +18,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.DamageSource;
 
 import java.util.List;
 
@@ -42,11 +43,13 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     private Obstacles obstacles = new Obstacles();
 
     private ItemWindTurbine turbine;
+    private EntityWindTurbine turbineEntity;
     private ItemStack lastTurbineStack;
     private int turbineSpeed;
     private static final int TURBINE_NORMAL_SPEED = 70;
     private static final int TURBINE_MAX_SPEED = 100;
     private IIntegerCoordinates cachedTurbineHubPosition;
+    private int lastPowerProduction;
 
     private class Obstacles {
         public static final int RANDOM_LOW_VALUE = -100;
@@ -210,30 +213,72 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
         if (turbineState == TurbineState.UNKNOWN) {
             refreshTurbineEntity();
         }
-        processObstacles();
+        if (turbineState == TurbineState.TURBINE_SPAWNED) {
+            checkTurbine();
+            if (turbineState == TurbineState.TURBINE_SPAWNED) {
+                processObstacles();
+
+            }
+        }
+    }
+
+    private void checkTurbine() {
+        if (turbineEntity == null || turbineEntity.isDead) {
+            invalidateTurbineEntityRecord();
+            return;
+        }
+
+        IIntegerCoordinates pos = getTurbineHubPositionInternal();
+        AxisAlignedBB box = AxisAlignedBB.getAABBPool().getAABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
+        List turbs = worldObj.getEntitiesWithinAABB(EntityWindTurbine.class, box);
+        if (turbs.size() > 1) {
+            killAllTurbinesInFront();
+            turbineState = TurbineState.NO_TURBINE;
+            return;
+        }
+        if (turbs.size() < 1) {
+            invalidateTurbineEntityRecord();
+        }
+        if (turbineEntity != turbs.get(0)) {
+            killAllTurbinesInFront();
+            invalidateTurbineEntityRecord();
+        }
+    }
+
+    private void invalidateTurbineEntityRecord() {
+        turbineState = TurbineState.NO_TURBINE;
+        turbineEntity = null;
     }
 
     private void refreshTurbineEntity() {
+        if (worldObj == null || worldObj.isRemote) return;
+
         if (turbineState == TurbineState.TURBINE_SPAWNED) {
-            IIntegerCoordinates pos = getTurbineHubPositionInternal();
-            AxisAlignedBB box = AxisAlignedBB.getAABBPool().getAABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
-            List turbs = worldObj.getEntitiesWithinAABB(EntityWindTurbine.class, box);
-            for (Object turb : turbs) {
-                ((EntityWindTurbine) turb).setDead();
-            }
+            killAllTurbinesInFront();
         }
 
         if (turbine == null) {
             turbineState = TurbineState.NO_TURBINE;
         } else {
             if (worldObj != null) {
-                EntityWindTurbine e = new EntityWindTurbine(worldObj);
+                turbineEntity = new EntityWindTurbine(worldObj);
                 IIntegerCoordinates pos = getTurbineHubPositionInternal();
-                e.setPosition(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
-                worldObj.spawnEntityInWorld(e);
+                turbineEntity.setPosition(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D);
+                worldObj.spawnEntityInWorld(turbineEntity);
+                turbineEntity.configure(getRotation(), getStackInSlot(TURBINE_SLOT), this);
                 turbineState = TurbineState.TURBINE_SPAWNED;
             }
         }
+    }
+
+    private void killAllTurbinesInFront() {
+        IIntegerCoordinates pos = getTurbineHubPositionInternal();
+        AxisAlignedBB box = AxisAlignedBB.getAABBPool().getAABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
+        List turbs = worldObj.getEntitiesWithinAABB(EntityWindTurbine.class, box);
+        for (Object turb : turbs) {
+            ((EntityWindTurbine) turb).setDead();
+        }
+        turbineEntity = null;
     }
 
     private void processObstacles() {
@@ -288,5 +333,57 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     @Override
     public boolean isPowerBarRenderingEnabled() {
         return false;
+    }
+
+    @Override
+    public int getIntegersToSyncCount() {
+        return 2;
+    }
+
+    @Override
+    public int getCurrentValueOfIntegerToSync(int index) {
+        switch (index) {
+            case 0:
+                return turbineSpeed;
+
+            case 1:
+                return lastPowerProduction;
+        }
+
+        return -1;
+    }
+
+    @Override
+    public void setCurrentValueOfIntegerToSync(int index, int value) {
+        switch (index) {
+            case 0:
+                turbineSpeed = value;
+                break;
+
+            case 1:
+                lastPowerProduction = value;
+                break;
+        }
+    }
+
+    public void onEntityTurbineHit(DamageSource damageSource, int amount, EntityWindTurbine entity) {
+        ItemStack stack = getStackInSlot(TURBINE_SLOT);
+        if ((stack == null) != (turbine == null)) {
+            JaffasFood.Log.printDebug("WindGen: inv and saved turbine are not correct, fixing");
+            refreshTurbineItem();
+        }
+        if (turbine == null) {
+            entity.setDead();
+            return;
+        }
+        if (turbineEntity != entity) {
+            JaffasFood.Log.printDebug("WindGen: getting message from not my turbine, die!");
+            entity.setDead();
+            return;
+        }
+        if (ItemHelper.damageItem(stack, amount * 10)) {
+            setInventorySlotContents(TURBINE_SLOT, null);
+            entity.setDead();
+        }
     }
 }

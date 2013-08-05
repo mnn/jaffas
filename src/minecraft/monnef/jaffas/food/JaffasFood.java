@@ -28,6 +28,7 @@ import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.ClassHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
+import monnef.core.utils.EntityHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.block.BlockBoard;
@@ -56,8 +57,8 @@ import monnef.jaffas.food.block.TileJaffaStatue;
 import monnef.jaffas.food.block.TileMeatDryer;
 import monnef.jaffas.food.block.TilePie;
 import monnef.jaffas.food.block.TilePizza;
-import monnef.jaffas.food.block.TileSink;
 import monnef.jaffas.food.block.TileRipeningBox;
+import monnef.jaffas.food.block.TileSink;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
@@ -99,7 +100,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
@@ -504,13 +504,11 @@ public class JaffasFood extends jaffasMod {
     private void createPainting() {
         itemPainting = new ItemJaffaPainting(this.itemPaintingID);
         LanguageRegistry.addName(itemPainting, "Painting");
-        registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, jaffaPaintingEntityID);
+        EntityHelper.registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, jaffaPaintingEntityID, this);
     }
 
     private void registerDuck() {
-        EntityRegistry.registerGlobalEntityID(EntityDuck.class, "jaffasDuck", duckEntityID, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
-        EntityRegistry.registerModEntity(EntityDuck.class, "jaffasDuck", duckEntityID, this, 160, 1, true);
-        //EntityHelper.setTrackingRange(EntityDuck.class, 160);
+        EntityHelper.registerEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, duckEntityID, this, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerGrindable(new EntityDuck.MFR());
@@ -519,14 +517,11 @@ public class JaffasFood extends jaffasMod {
     }
 
     private void registerDuckEgg() {
-        EntityRegistry.registerGlobalEntityID(EntityDuckEgg.class, "duckEgg", duckEggEntityID);
-        EntityRegistry.registerModEntity(EntityDuckEgg.class, "duckEgg", duckEggEntityID, this, 160, 1, true);
+        EntityHelper.registerEntity(EntityDuckEgg.class, "duckEgg", 160, 1, true, duckEggEntityID, this);
     }
 
     private void registerLittleSpider() {
-        EntityRegistry.registerGlobalEntityID(EntityLittleSpider.class, "jaffasSpider", spiderEntityID, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
-        EntityRegistry.registerModEntity(EntityLittleSpider.class, "jaffasSpider", spiderEntityID, this, 160, 1, true);
-        //EntityHelper.setTrackingRange(EntityLittleSpider.class, 160);
+        EntityHelper.registerEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, spiderEntityID, this, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasSpider.name", "en_US", "Little Spider");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerGrindable(new EntityLittleSpider.MFR());
@@ -637,12 +632,6 @@ public class JaffasFood extends jaffasMod {
 
         Log.printInfo("enabled modules: " + Joiner.on(", ").join(ModuleManager.CompileEnabledModules()));
         Log.printInfo("detected mods: " + Joiner.on(", ").join(otherMods.compileDetectedMods()));
-    }
-
-    private void registerEntity(Class<? extends Entity> entityClass, String entityName, int trackingRange, int updateFrequency, boolean sendsVelocityUpdates, int id) {
-        //Log.printDebug("Registered: " + entityClass + " id: " + id);
-        EntityRegistry.registerGlobalEntityID(entityClass, entityName, id);
-        EntityRegistry.registerModEntity(entityClass, entityName, id, this, trackingRange, updateFrequency, sendsVelocityUpdates);
     }
 
     @Mod.ServerStarting

@@ -15,6 +15,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.DyeColor;
@@ -126,6 +127,9 @@ public class JaffasPower extends jaffasMod {
     public static ItemWindTurbine windTurbineWooden;
     private int itemWindTurbineWoodenID;
 
+    public static ItemWindTurbine windTurbineMill;
+    private int itemWindTurbineMillID;
+
     @PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -157,6 +161,7 @@ public class JaffasPower extends jaffasMod {
             if (windGeneratorEnabled) {
                 blockWindGeneratorID = idProvider.getBlockIDFromConfig("windGenerator");
                 itemWindTurbineWoodenID = idProvider.getItemIDFromConfig("windTurbineWooden");
+                itemWindTurbineMillID = idProvider.getItemIDFromConfig("windTurbineMill");
             }
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
@@ -260,9 +265,13 @@ public class JaffasPower extends jaffasMod {
             RegistryUtils.registerBlock(windGenerator, "windGenerator", "Wind Generator");
             registerTileEntity(TileWindGenerator.class, "windGenerator");
 
-            windTurbineWooden = new ItemWindTurbine(itemWindTurbineWoodenID, 54, 1000, 0);
-            windTurbineWooden.configure(true, 1, "TODO", false);
+            windTurbineWooden = new ItemWindTurbine(itemWindTurbineWoodenID, 54, 100, 0);
+            windTurbineWooden.configure(true, 1, false, 0.5f);
             RegistryUtils.registerItem(windTurbineWooden, "windTurbineWooden", "Wooden Wind Turbine");
+
+            windTurbineMill = new ItemWindTurbine(itemWindTurbineMillID, 55, 1000, 0);
+            windTurbineMill.configure(false, 7, true, 0.1f);
+            RegistryUtils.registerItem(windTurbineMill, "windTurbineMill", "Windmill");
         }
     }
 

@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/minecraft" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/core/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/utils" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/bin" />
       <excludeFolder url="file://$MODULE_DIR$/eclipse" />
       <excludeFolder url="file://$MODULE_DIR$/jars" />
@@ -25,6 +26,7 @@
     <orderEntry type="library" exported="" name="libs" level="project" />
     <orderEntry type="library" exported="" name="runtime" level="project" />
     <orderEntry type="library" exported="" name="junit-4.10" level="project" />
+    <orderEntry type="library" name="scala_stuff" level="application" />
   </component>
 </module>
 
