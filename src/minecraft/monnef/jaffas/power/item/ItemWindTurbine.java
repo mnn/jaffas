@@ -26,6 +26,7 @@ public class ItemWindTurbine extends ItemPower {
         super(id, textureIndex);
         this.model = model;
         setMaxDamage(durability);
+        setMaxStackSize(1);
     }
 
     public void configure(boolean checkBack, int radius, boolean usesColoring, float rotationSpeedPerTick) {

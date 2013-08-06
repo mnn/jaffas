@@ -16,9 +16,9 @@ import org.lwjgl.opengl.GL11;
 public class GuiContainerMachine extends GuiContainerJaffas {
     public static final int ENERGY_BAR_X = 146;
     public static final int ENERGY_BAR_Y = 15;
-    private static final int ENERGY_BAR_HEIGHT = 50;
+    public static final int ENERGY_BAR_HEIGHT = 50;
     public static final int ENERGY_BAR_INNER_HEIGHT = ENERGY_BAR_HEIGHT - 2;
-    private static final int ENERGY_BAR_WIDTH = 18;
+    public static final int ENERGY_BAR_WIDTH = 18;
     protected static ColorHelper.IntColor topColor = new ColorHelper.IntColor(53, 180, 212);
     protected static ColorHelper.IntColor bottomColor = new ColorHelper.IntColor(25, 78, 90);
     protected final TileEntityMachineWithInventory tile;

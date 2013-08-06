@@ -15,11 +15,11 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
+import monnef.core.utils.EntityHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ItemBlockJaffas;
@@ -53,6 +53,7 @@ import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
 import monnef.jaffas.power.common.SimplePowerFramework;
+import monnef.jaffas.power.entity.EntityWindTurbine;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
@@ -130,6 +131,8 @@ public class JaffasPower extends jaffasMod {
     public static ItemWindTurbine windTurbineMill;
     private int itemWindTurbineMillID;
 
+    private int windTurbineEntityID;
+
     @PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -162,6 +165,7 @@ public class JaffasPower extends jaffasMod {
                 blockWindGeneratorID = idProvider.getBlockIDFromConfig("windGenerator");
                 itemWindTurbineWoodenID = idProvider.getItemIDFromConfig("windTurbineWooden");
                 itemWindTurbineMillID = idProvider.getItemIDFromConfig("windTurbineMill");
+                windTurbineEntityID = idProvider.getEntityIDFromConfig("windTurbine");
             }
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
@@ -265,12 +269,14 @@ public class JaffasPower extends jaffasMod {
             RegistryUtils.registerBlock(windGenerator, "windGenerator", "Wind Generator");
             registerTileEntity(TileWindGenerator.class, "windGenerator");
 
+            EntityHelper.registerEntity(EntityWindTurbine.class, "jaffasWindGenerator", 160, 1, true, windTurbineEntityID, this);
+
             windTurbineWooden = new ItemWindTurbine(itemWindTurbineWoodenID, 54, 100, 0);
-            windTurbineWooden.configure(true, 1, false, 0.5f);
+            windTurbineWooden.configure(true, 1, false, 0.1f);
             RegistryUtils.registerItem(windTurbineWooden, "windTurbineWooden", "Wooden Wind Turbine");
 
             windTurbineMill = new ItemWindTurbine(itemWindTurbineMillID, 55, 1000, 0);
-            windTurbineMill.configure(false, 7, true, 0.1f);
+            windTurbineMill.configure(false, 7, true, 0.02f);
             RegistryUtils.registerItem(windTurbineMill, "windTurbineMill", "Windmill");
         }
     }

@@ -32,7 +32,7 @@ public class ContainerMachine extends ContainerJaffas {
 
     @Override
     public int getOutputSlotsCount() {
-        return 1;
+        return 0;
     }
 
     @Override

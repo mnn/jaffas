@@ -36,7 +36,7 @@ public class RenderWindTurbine extends Render {
         GL11.glPushMatrix();
         GL11.glTranslated(x, y, z);
         RenderUtils.rotate(turbine.getTurbineRotation());
-        float turbineSpin = turbine.animationRotation + partialTickTime * turbine.getItemPrototype().getRotationSpeedPerTick();
+        float turbineSpin = turbine.animationRotation + partialTickTime * turbine.getCurrentRotationPerTick();
         models.get(turbine.getModelId()).render(1, turbine.getColor(), turbineSpin);
         GL11.glPopMatrix();
     }
@@ -52,7 +52,8 @@ public class RenderWindTurbine extends Render {
         }
 
         public void render(float scale, int colour, float turbineSpin) {
-            GL11.glRotatef(360, 0, 0, turbineSpin);
+            float angle = 360 * turbineSpin;
+            GL11.glRotatef(angle, 0, 0, 1);
             if (baseModel != null) {
                 baseModel.renderWithTexture(scale);
             }
@@ -61,7 +62,7 @@ public class RenderWindTurbine extends Render {
                 GL11.glColor4f(tmpColor.getRed(), tmpColor.getGreen(), tmpColor.getBlue(), 1);
                 coloredModel.renderWithTexture(scale);
             }
-            GL11.glRotatef(-360, 0, 0, turbineSpin);
+            GL11.glRotatef(-angle, 0, 0, 1);
         }
     }
 }
