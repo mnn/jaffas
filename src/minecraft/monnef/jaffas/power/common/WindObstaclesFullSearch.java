@@ -12,7 +12,7 @@ import monnef.jaffas.power.block.BlockWindGenerator;
 import monnef.jaffas.power.block.TileWindGenerator;
 import net.minecraft.block.Block;
 
-public class WindObstacles {
+public class WindObstaclesFullSearch implements IWindObstacles {
     private SpaceHashMap<Integer, Float> obstacles;
     private float obstaclesVolumeCached;
     private float maximalVolume;
@@ -25,11 +25,12 @@ public class WindObstacles {
     private int lastProcessedRY;
     private TileWindGenerator tile;
 
-    public WindObstacles(TileWindGenerator tile) {
+    public WindObstaclesFullSearch(TileWindGenerator tile) {
         this.tile = tile;
         reset();
     }
 
+    @Override
     public void reset() {
         totalRadius = TileWindGenerator.checkOuterRadius;
         if (tile.getTurbine() != null) totalRadius += tile.getTurbine().getRadius();
@@ -51,10 +52,12 @@ public class WindObstacles {
         lastProcessedRZ = getStartingValueOfRelativeZ();
     }
 
+    @Override
     public int getTotalRadius() {
         return totalRadius;
     }
 
+    @Override
     public int getTotalDiameter() {
         return totalDiameter;
     }
@@ -71,6 +74,7 @@ public class WindObstacles {
         return 0.2f;
     }
 
+    @Override
     public void compute() {
         int toCheckLeft = TileWindGenerator.blocksToCheckPerTick * tile.getSlowingCoefficient();
         boolean firstIteration = true;
@@ -115,6 +119,7 @@ public class WindObstacles {
      *
      * @return obstacles volume
      */
+    @Override
     public float debugCompute() {
         float res = 0;
         int startingValueOfRelativeZ = getStartingValueOfRelativeZ();
@@ -153,10 +158,12 @@ public class WindObstacles {
         return new IntegerCoordinates(tile).applyRelativeCoordinates(tile.getRotation(), rx, ry, rz);
     }
 
+    @Override
     public float getObstaclesVolumeWorstScenario() {
         return obstaclesVolumeCached + (maximalVolume - obstaclesCounted);
     }
 
+    @Override
     public float getObstaclesVolumeCached() {
         return obstaclesVolumeCached;
     }

@@ -6,7 +6,6 @@
 package monnef.jaffas.power.entity;
 
 import monnef.core.utils.BoxHelper;
-import monnef.core.utils.ColorHelper;
 import monnef.core.utils.EntityHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.jaffas.food.JaffasFood;
@@ -25,6 +24,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 import java.util.List;
+
+import static monnef.core.utils.ColorEnum.*;
 
 public class EntityWindTurbine extends Entity {
     private static final int SPEED_WID = 10;
@@ -124,7 +125,7 @@ public class EntityWindTurbine extends Entity {
     protected void entityInit() {
         dataWatcher.addObject(SPEED_WID, 0);
         dataWatcher.addObject(ROTATION_WID, (byte) ForgeDirection.UNKNOWN.ordinal());
-        dataWatcher.addObject(COLOR_WID, ColorHelper.WHITE_INT);
+        dataWatcher.addObject(COLOR_WID, WHITE.getInt());
         dataWatcher.addObject(ITEM_PROTOTYPE_WID, 0);
     }
 

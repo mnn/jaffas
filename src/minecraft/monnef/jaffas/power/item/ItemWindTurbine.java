@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.item;
 
+import monnef.core.utils.ColorEnum;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.DyeHelper;
 import net.minecraft.creativetab.CreativeTabs;
@@ -53,11 +54,11 @@ public class ItemWindTurbine extends ItemPower {
     }
 
     public int getTurbineColor(ItemStack stack) {
-        if (!usesColoring) return ColorHelper.WHITE_INT;
+        if (!usesColoring) return ColorHelper.getInt(ColorEnum.WHITE);
         initNBT(stack);
         NBTTagCompound tag = stack.getTagCompound();
         if (!tag.hasKey(COLOR_TAG)) {
-            return ColorHelper.WHITE_INT;
+            return ColorHelper.getInt(ColorEnum.WHITE);
         }
         return tag.getInteger(COLOR_TAG);
     }

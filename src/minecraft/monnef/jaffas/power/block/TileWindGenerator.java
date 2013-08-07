@@ -13,7 +13,8 @@ import monnef.core.utils.RandomHelper;
 import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
-import monnef.jaffas.power.common.WindObstacles;
+import monnef.jaffas.power.common.IWindObstacles;
+import monnef.jaffas.power.common.WindObstaclesFullSearch;
 import monnef.jaffas.power.entity.EntityWindTurbine;
 import monnef.jaffas.power.item.ItemWindTurbine;
 import net.minecraft.item.Item;
@@ -46,7 +47,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     public static int blocksToCheckPerTick = MonnefCorePlugin.debugEnv ? 100 : 5;
     public static float rainPowerBonusMax = 1.2f; // max +120%
 
-    private WindObstacles obstacles = new WindObstacles(this);
+    private IWindObstacles obstacles = new WindObstaclesFullSearch(this);
 
     private ItemWindTurbine turbine;
     private EntityWindTurbine turbineEntity;
