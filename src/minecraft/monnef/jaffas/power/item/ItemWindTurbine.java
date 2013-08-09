@@ -22,6 +22,7 @@ public class ItemWindTurbine extends ItemPower {
     private int radius;
     private boolean usesColoring;
     private float rotationSpeedPerTick;
+    private float maximalEnergyPerRainyTick;
 
     public ItemWindTurbine(int id, int textureIndex, int durability, int model) {
         super(id, textureIndex);
@@ -30,11 +31,16 @@ public class ItemWindTurbine extends ItemPower {
         setMaxStackSize(1);
     }
 
-    public void configure(boolean checkBack, int radius, boolean usesColoring, float rotationSpeedPerTick) {
+    public void configure(boolean checkBack, int radius, boolean usesColoring, float rotationSpeedPerTick, float maximalEnergyPerRainyTick) {
         this.checkBack = checkBack;
         this.radius = radius;
         this.usesColoring = usesColoring;
         this.rotationSpeedPerTick = rotationSpeedPerTick;
+        this.maximalEnergyPerRainyTick = maximalEnergyPerRainyTick;
+    }
+
+    public float getMaximalEnergyPerRainyTick() {
+        return maximalEnergyPerRainyTick;
     }
 
     public int getModel() {
@@ -72,7 +78,7 @@ public class ItemWindTurbine extends ItemPower {
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         list.add(String.format("Radius: §f%s.5m§r", getRadius()));
         if (usesColoring)
-            list.add(String.format("Color: §f%sm§r", ColorHelper.getColor(getTurbineColor(stack)).formatHex()));
+            list.add(String.format("Color: §f%s§r", ColorHelper.getColor(getTurbineColor(stack)).formatTextOrHex()));
     }
 
     public float getRotationSpeedPerTick() {
@@ -81,12 +87,14 @@ public class ItemWindTurbine extends ItemPower {
 
     @Override
     public void getSubItems(int id, CreativeTabs tab, List list) {
-        super.getSubItems(id, tab, list);
-        if (!usesColoring) return;
-        for (int i = 1; i < 16; i++) {
-            ItemStack item = new ItemStack(id, 1, 0);
-            setTurbineColor(item, DyeHelper.getIntColor(16 - i));
-            list.add(item);
+        if (!usesColoring) {
+            super.getSubItems(id, tab, list);
+        } else {
+            for (int i = 0; i < 16; i++) {
+                ItemStack item = new ItemStack(id, 1, 0);
+                setTurbineColor(item, DyeHelper.getIntColor(i));
+                list.add(item);
+            }
         }
     }
 }
