@@ -8,6 +8,8 @@ package monnef.jaffas.power.block.common;
 import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerFramework;
+import monnef.core.api.IIntegerCoordinates;
+import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -223,5 +225,9 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     }
 
     protected abstract void doMachineWork();
+
+    public IIntegerCoordinates getPosition() {
+        return new IntegerCoordinates(this);
+    }
 }
 

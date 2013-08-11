@@ -16,7 +16,7 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import monnef.jaffas.power.common.IWindObstacles;
-import monnef.jaffas.power.common.WindObstaclesFullSearch;
+import monnef.jaffas.power.common.WindObstaclesFastFail;
 import monnef.jaffas.power.entity.EntityWindTurbine;
 import monnef.jaffas.power.item.ItemWindTurbine;
 import net.minecraft.item.Item;
@@ -50,7 +50,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     public static int blocksToCheckPerTick = MonnefCorePlugin.debugEnv ? 100 : 5;
     public static float rainPowerBonusMax = 1.2f; // max +120%
 
-    private IWindObstacles obstacles = new WindObstaclesFullSearch(this);
+    private IWindObstacles obstacles = new WindObstaclesFastFail(this);
 
     private ItemWindTurbine turbine;
     private EntityWindTurbine turbineEntity;
@@ -197,7 +197,8 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
         if (obstaclesVolume > obstaclesThresholdForNoTurbineMovement) setCurrentMaximalSpeed(0);
         else if (obstaclesVolume < obstaclesToleratedWithoutLoss) setCurrentMaximalSpeed(TURBINE_MAX_SPEED);
         else {
-            float newSpeed = TURBINE_MAX_SPEED - (obstaclesVolume - obstaclesToleratedWithoutLoss) / obstaclesThresholdForNoTurbineMovement;
+            float coef = (obstaclesVolume - obstaclesToleratedWithoutLoss) * 1 / (obstaclesThresholdForNoTurbineMovement - obstaclesToleratedWithoutLoss);
+            float newSpeed = TURBINE_MAX_SPEED * (1 - coef);
             setCurrentMaximalSpeed(Math.round(newSpeed));
         }
     }

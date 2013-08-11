@@ -2,19 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Boosted ore generation.">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/BuildCraftHelper.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/BuildCraftHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerMachine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerMachine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiContainerWindGenerator.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiContainerWindGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesBase.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFastFail.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFullSearch.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFullSearch.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375868140026" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376048721371" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376213460900" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376211138965" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372606222178" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374156004628" ignored="false" />
@@ -79,9 +78,9 @@
     <file path="/BlockMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375351763869" ignored="false" />
     <file path="/mod_jaffas_power.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1363809132282" ignored="false" />
     <file path="/JaffaCreativeTab.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368533157970" ignored="false" />
-    <file path="/TileEntityMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375285544547" ignored="false" />
+    <file path="/TileEntityMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376218113200" ignored="false" />
     <file path="/ItemPower.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368528275101" ignored="false" />
-    <file path="/ItemDebug.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373796950763" ignored="false" />
+    <file path="/ItemDebug.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376218613480" ignored="false" />
     <file path="/a.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358518373233" ignored="false" />
     <file path="/sample.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358518327752" ignored="false" />
     <file path="/a.xml" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358518376747" ignored="false" />
@@ -164,7 +163,7 @@
     <file path="/IPowerNodeCoordinates.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359849840008" ignored="false" />
     <file path="/PowerNodeCoordinates.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361445711344" ignored="false" />
     <file path="/IIntegerCoordinates.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375440657292" ignored="false" />
-    <file path="/IntegerCoordinates.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375531153213" ignored="false" />
+    <file path="/IntegerCoordinates.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376218456217" ignored="false" />
     <file path="/TileEntityMachineWithInventory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375526605056" ignored="false" />
     <file path="/InventoryUtils.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364056799270" ignored="false" />
     <file path="/BlockMachineWithInventory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373556969409" ignored="false" />
@@ -622,7 +621,7 @@
     <file path="/ProcessingRecipeHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375262394507" ignored="false" />
     <file path="/ProcessingMachineRecipeHandlerWrapper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375264250527" ignored="false" />
     <file path="/BlockWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375355530992" ignored="false" />
-    <file path="/TileWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376064998168" ignored="false" />
+    <file path="/TileWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376220309121" ignored="false" />
     <file path="/ItemWindTurbine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376054545284" ignored="false" />
     <file path="/EntityWindTurbine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375868189124" ignored="false" />
     <file path="/WindTurbineEnum.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375353211925" ignored="false" />
@@ -645,6 +644,7 @@
     <file path="/SpaceMap.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375866685422" ignored="false" />
     <file path="/Colors.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375868411443" ignored="false" />
     <file path="/ColorEnum.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375872636971" ignored="false" />
+    <file path="/WindObstaclesFastFail.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376217380847" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -665,40 +665,6 @@
   </component>
   <component name="DebuggerManager">
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
-    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint>
-        <option name="NOTIFY_CAUGHT" value="true" />
-        <option name="NOTIFY_UNCAUGHT" value="true" />
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-    </breakpoint_any>
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/CompostRegister.java" line="66" class="monnef.jaffas.technic.common.CompostRegister" package="monnef.jaffas.technic.common">
         <option name="ENABLED" value="true" />
@@ -742,7 +708,7 @@
         <option name="CONDITION" value="&#13;&#13;JAVA" />
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" line="183" class="monnef.jaffas.power.block.common.TileEntityMachine" package="monnef.jaffas.power.block.common">
+      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" line="185" class="monnef.jaffas.power.block.common.TileEntityMachine" package="monnef.jaffas.power.block.common">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -770,7 +736,7 @@
         <option name="CONDITION" value="&#13;&#13;JAVA" />
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" line="359" class="monnef.jaffas.power.block.TileWindGenerator" package="monnef.jaffas.power.block">
+      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" line="360" class="monnef.jaffas.power.block.TileWindGenerator" package="monnef.jaffas.power.block">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -784,7 +750,7 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" line="367" class="monnef.jaffas.power.block.TileWindGenerator" package="monnef.jaffas.power.block">
+      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" line="368" class="monnef.jaffas.power.block.TileWindGenerator" package="monnef.jaffas.power.block">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -813,6 +779,40 @@
         <option name="LOG_MESSAGE" value="&quot;reached Line 507 in renderEntities()&quot;&#13;&#13;JAVA" />
       </breakpoint>
     </line_breakpoints>
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+      <breakpoint>
+        <option name="NOTIFY_CAUGHT" value="true" />
+        <option name="NOTIFY_UNCAUGHT" value="true" />
+        <option name="ENABLED" value="false" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="&#13;&#13;JAVA" />
+        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+      </breakpoint>
+    </breakpoint_any>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -823,15 +823,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ItemWindTurbine.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="24" selection-start="141" selection-end="141" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="JaffasPower.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -844,7 +835,36 @@
       <file leaf-file-name="WindObstaclesFullSearch.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFullSearch.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="0" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0">
+            <state line="24" column="38" selection-start="621" selection-end="632" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WindObstaclesBase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesBase.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="71" column="17" selection-start="2006" selection-end="2006" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WindObstaclesFastFail.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFastFail.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="91" column="63" selection-start="2996" selection-end="2996" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemDebug.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="27" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -859,31 +879,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileWindGenerator.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TileWindGenerator.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="135" column="0" selection-start="4735" selection-end="4735" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#14261#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuiContainerMachine.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerMachine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="93" selection-start="3259" selection-end="3259" vertical-scroll-proportion="1.0455259">
+            <state line="199" column="0" selection-start="7665" selection-end="7665" vertical-scroll-proportion="0.27943486">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileEntityMachineWithInventory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachineWithInventory.java">
+      <file leaf-file-name="IWindObstacles.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/IWindObstacles.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="22" selection-start="3520" selection-end="3520" vertical-scroll-proportion="0.0">
+            <state line="18" column="0" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -908,22 +916,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/RandomHelper.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/collection/SpaceMap.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstacles.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFullSearch.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/entity/EntityWindTurbine.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/Colors.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ColorEnum.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/DyeHelper.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ColorHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/BuildCraftHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiContainerWindGenerator.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerMachine.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesBase.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFullSearch.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFastFail.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/api/IIntegerCoordinates.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/IntegerCoordinates.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
       </list>
     </option>
   </component>
@@ -1056,6 +1064,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1214,6 +1223,40 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="power" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="block" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -1321,7 +1364,6 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1341,9 +1383,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.31578946" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.31578946" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1364,15 +1406,15 @@
       <recent name="monnef.jaffas.food.block" />
       <recent name="monnef.jaffas.food.item" />
     </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="monnef.core.MonnefCorePlugin" />
+    </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="monnef.core.utils.EntityHelper" />
       <recent name="monnef.jaffas.power.block.common.ProcessingMachineRegistry" />
       <recent name="monnef.core.Config" />
       <recent name="monnef.core.utils.RenderUtils" />
       <recent name="monnef.core.utils.BlockHelper" />
-    </key>
-    <key name="IntroduceConstantDialog.RECENTS_KEY">
-      <recent name="monnef.core.MonnefCorePlugin" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="monnef.core.collection" />
@@ -1752,11 +1794,11 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19196428" sideWeight="0.48292422" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575893" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.32254463" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.4330357" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.4095982" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.29910713" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.49359658" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
@@ -1845,44 +1887,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/DyeColor.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiContainerWindGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="12" selection-start="86" selection-end="86" vertical-scroll-proportion="0.07816092">
+        <state line="40" column="52" selection-start="1885" selection-end="1885" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/ColorEnum.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="15" selection-start="976" selection-end="976" vertical-scroll-proportion="0.8011494">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="47" selection-start="1302" selection-end="1302" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFullSearch.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="888" selection-end="888" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/entity/EntityWindTurbine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="55" selection-start="4400" selection-end="4400" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/IPowerReceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="22" selection-start="811" selection-end="811" vertical-scroll-proportion="0.44051826">
+        <state line="66" column="44" selection-start="2438" selection-end="2438" vertical-scroll-proportion="0.52068967">
           <folding />
         </state>
       </provider>
@@ -1901,61 +1915,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/IntegerCoordinates.java">
+    <entry file="jar://D:/apps/scala-2.10.2/lib/scala-library.jar!/scala/collection/mutable/HashTable.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="0" selection-start="1782" selection-end="1782" vertical-scroll-proportion="0.0">
+        <state line="1" column="6" selection-start="39" selection-end="39" vertical-scroll-proportion="0.020432692">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerProvider.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/entity/EntityWindTurbine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="172" column="16" selection-start="4243" selection-end="4243" vertical-scroll-proportion="0.42045453">
+        <state line="127" column="55" selection-start="4400" selection-end="4400" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/IPowerProvider.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFullSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="0" selection-start="810" selection-end="810" vertical-scroll-proportion="0.6530612">
+        <state line="24" column="38" selection-start="621" selection-end="632" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesFastFail.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="0" selection-start="4735" selection-end="4735" vertical-scroll-proportion="0.0">
+        <state line="91" column="63" selection-start="2996" selection-end="2996" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#0#14261#0" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/BuildCraftHelper.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/IntegerCoordinates.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="804" selection-end="804" vertical-scroll-proportion="0.41287285">
+        <state line="215" column="0" selection-start="5913" selection-end="5913" vertical-scroll-proportion="0.8896104">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiContainerWindGenerator.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/api/IIntegerCoordinates.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="52" selection-start="1885" selection-end="1885" vertical-scroll-proportion="0.0">
+        <state line="43" column="0" selection-start="923" selection-end="923" vertical-scroll-proportion="0.733124">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="22" selection-start="723" selection-end="723" vertical-scroll-proportion="0.16012558">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemDebug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="27" selection-start="1037" selection-end="1037" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachineWithInventory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="22" selection-start="3520" selection-end="3520" vertical-scroll-proportion="0.0">
+        <state line="13" column="66" selection-start="363" selection-end="363" vertical-scroll-proportion="0.16012558">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerMachine.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WindObstaclesBase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="93" selection-start="3259" selection-end="3259" vertical-scroll-proportion="1.0455259">
+        <state line="71" column="17" selection-start="2006" selection-end="2006" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/IWindObstacles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="240" selection-end="240" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="199" column="0" selection-start="7665" selection-end="7665" vertical-scroll-proportion="0.27943486">
           <folding />
         </state>
       </provider>

@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.item;
 
+import buildcraft.api.power.IPowerProvider;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,30 +18,21 @@ public class ItemDebug extends ItemPower implements IMachineTool {
         setUnlocalizedName("debugPower");
     }
 
+    @Override
     public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side) {
         this.player = player;
 
         if (machine == null) {
             print("TE is null");
-        }
+        } else {
+            IPowerProvider provider = machine.getPowerProvider();
+            if (provider != null) {
+                print(String.format("%s: %d/%d(%d)", machine.getPosition().format(), Math.round(provider.getEnergyStored()), provider.getMaxEnergyStored(), provider.getActivationEnergy()));
+            }
 
-        /*
-        //TODO machine can be both - provider & consumer
-        if (machine instanceof IPowerProvider) {
-            IPowerProviderManager provider = ((IPowerProvider) machine).getPowerProviderManager();
-            print(getFormattedCoordinates(machine) + ": " + formatEnergyInfo(true, false, provider.getCurrentBufferedEnergy(), provider.getBufferSize(), provider.getMaximalPacketSize()));
-            print(getConnectionInfo(provider, true));
-        }
-
-        if (machine instanceof IPowerConsumer) {
-            IPowerConsumerManager consumer = ((IPowerConsumer) machine).getPowerConsumerManager();
-            print(getFormattedCoordinates(machine) + ": " + formatEnergyInfo(false, true, consumer.getCurrentBufferedEnergy(), consumer.getBufferSize(), consumer.getMaximalPacketSize()));
-            print(getConnectionInfo(consumer, true));
-        }
-        */
-
-        if (machine.getMachineBlock().supportRotation()) {
-            print("dir: [" + machine.getRotation().ordinal() + "] " + machine.getRotation().toString());
+            if (machine.getRotation() != null) {
+                print("dir: [" + machine.getRotation().ordinal() + "] " + machine.getRotation().toString() + (machine.getMachineBlock().supportRotation() ? "" : "(doesn't support rotation)"));
+            }
         }
 
         return true;
