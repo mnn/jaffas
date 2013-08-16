@@ -19,6 +19,7 @@ import monnef.jaffas.power.common.IWindObstacles;
 import monnef.jaffas.power.common.WindObstaclesFastFail;
 import monnef.jaffas.power.entity.EntityWindTurbine;
 import monnef.jaffas.power.item.ItemWindTurbine;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -55,7 +56,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     private ItemWindTurbine turbine;
     private EntityWindTurbine turbineEntity;
     private ItemStack lastTurbineStack;
-    private int turbineSpeed;
+    private float turbineSpeed;
     private static final int TURBINE_NORMAL_SPEED = 70;
     public static final int TURBINE_MAX_SPEED = 100;
     private IIntegerCoordinates cachedTurbineHubPosition;
@@ -76,7 +77,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     }
 
     public int getTurbineSpeed() {
-        return turbineSpeed;
+        return Math.round(turbineSpeed);
     }
 
     public void setTurbineSpeed(int turbineSpeed) {
@@ -98,8 +99,10 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     }
 
     private void onTurbineChanged() {
+        if (worldObj == null || worldObj.isRemote) return;
         turbineSpeed = 0;
         refreshTurbineEntity();
+        obstacles.reset();
     }
 
     @Override
@@ -170,9 +173,11 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     }
 
     private void updateSpeedOfTurbineEntity() {
-        turbineEntity.updateStatus(turbineSpeed);
+        turbineEntity.updateStatus(getTurbineSpeed());
     }
 
+    /*
+    // OLD rigid impl
     private void adjustCurrentSpeed() {
         if (speedChangeCoolDown-- <= 0) {
             int maxSpeed = getCurrentMaximalSpeed();
@@ -186,6 +191,28 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
             if (turbineSpeed < 0) turbineSpeed = 0;
             if (turbineSpeed > TURBINE_MAX_SPEED) turbineSpeed = TURBINE_MAX_SPEED;
             speedChangeCoolDown = RandomHelper.generateRandomFromInterval(1, worldObj.isRaining() ? 3 : 6);
+        }
+    }
+    */
+
+    private void adjustCurrentSpeed() {
+        if (speedChangeCoolDown-- <= 0) {
+            int currentMaxSpeed = getCurrentMaximalSpeed();
+            boolean rain = worldObj.isRaining();
+            if (currentMaxSpeed > TURBINE_NORMAL_SPEED && !rain) currentMaxSpeed = TURBINE_NORMAL_SPEED;
+
+            float step = turbine.getNormalStepSize();
+            step *= rain ? (worldObj.isThundering() ? turbine.getStormStepCoef() : turbine.getRainStepCoef()) : 1;
+            if (turbineSpeed < currentMaxSpeed) turbineSpeed += step;
+            else if (turbineSpeed > currentMaxSpeed) turbineSpeed -= step;
+            if (rain || turbine.getRandomChangeChance() > rand.nextFloat())
+                turbineSpeed += step * (rand.nextBoolean() ? 1 : -1);
+
+            if (turbineSpeed < 0) turbineSpeed = 0;
+            if (turbineSpeed > TURBINE_MAX_SPEED) turbineSpeed = TURBINE_MAX_SPEED;
+            speedChangeCoolDown = RandomHelper.generateRandomFromInterval(
+                    rain ? turbine.getSpeedChangeInRainCoolDownMin() : turbine.getSpeedChangeCoolDownMin(),
+                    rain ? turbine.getSpeedChangeInRainCoolDownMax() : turbine.getSpeedChangeCoolDownMax());
         }
     }
 
@@ -332,7 +359,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     public int getCurrentValueOfIntegerToSync(int index) {
         switch (index) {
             case 0:
-                return turbineSpeed;
+                return getTurbineSpeed();
 
             case 1:
                 return lastPowerProduction;
@@ -409,5 +436,11 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
 
     public int getLastPowerProduction() {
         return lastPowerProduction;
+    }
+
+    @Override
+    public void onItemDebug(EntityPlayer player) {
+        if (worldObj.isRemote) return;
+        player.addChatMessage(String.format("ObsVolumeCached: %.2f, ObsDebug: %.2f, cMaxSpeed: %d, totRad: %d", obstacles.getObstaclesVolumeWorstScenario(), obstacles.debugCompute(), getCurrentMaximalSpeed(), obstacles.getTotalRadius()));
     }
 }

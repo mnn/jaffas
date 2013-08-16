@@ -11,6 +11,7 @@ import buildcraft.api.power.PowerFramework;
 import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet;
@@ -228,6 +229,9 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
 
     public IIntegerCoordinates getPosition() {
         return new IntegerCoordinates(this);
+    }
+
+    public void onItemDebug(EntityPlayer player) {
     }
 }
 

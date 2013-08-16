@@ -23,6 +23,14 @@ public class ItemWindTurbine extends ItemPower {
     private boolean usesColoring;
     private float rotationSpeedPerTick;
     private float maximalEnergyPerRainyTick;
+    private float normalStepSize;
+    private float rainStepCoef;
+    private float stormStepCoef;
+    private float randomChangeChance;
+    private int speedChangeCoolDownMin;
+    private int speedChangeCoolDownMax;
+    private int speedChangeInRainCoolDownMin;
+    private int speedChangeInRainCoolDownMax;
 
     public ItemWindTurbine(int id, int textureIndex, int durability, int model) {
         super(id, textureIndex);
@@ -97,4 +105,49 @@ public class ItemWindTurbine extends ItemPower {
             }
         }
     }
+
+    public void setupStep(float normalStepSize, float rainStepCoef, float stormStepCoef, float randomChangeChance, int speedChangeCoolDownMin, int speedChangeCoolDownMax, int speedChangeInRainCoolDownMin, int speedChangeInRainCoolDownMax) {
+        this.normalStepSize = normalStepSize;
+        this.rainStepCoef = rainStepCoef;
+        this.stormStepCoef = stormStepCoef;
+        this.randomChangeChance = randomChangeChance;
+        this.speedChangeCoolDownMin = speedChangeCoolDownMin;
+        this.speedChangeCoolDownMax = speedChangeCoolDownMax;
+        this.speedChangeInRainCoolDownMin = speedChangeInRainCoolDownMin;
+        this.speedChangeInRainCoolDownMax = speedChangeInRainCoolDownMax;
+    }
+
+    public float getNormalStepSize() {
+        return normalStepSize;
+    }
+
+    public float getRainStepCoef() {
+        return rainStepCoef;
+    }
+
+    public float getStormStepCoef() {
+        return stormStepCoef;
+    }
+
+    public float getRandomChangeChance() {
+        return randomChangeChance;
+    }
+
+    public int getSpeedChangeCoolDownMin() {
+        return speedChangeCoolDownMin;
+    }
+
+    public int getSpeedChangeCoolDownMax() {
+        return speedChangeCoolDownMax;
+    }
+
+    public int getSpeedChangeInRainCoolDownMin() {
+        return speedChangeInRainCoolDownMin;
+    }
+
+    public int getSpeedChangeInRainCoolDownMax() {
+        return speedChangeInRainCoolDownMax;
+    }
+
+
 }

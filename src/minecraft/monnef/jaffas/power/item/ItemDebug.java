@@ -33,6 +33,8 @@ public class ItemDebug extends ItemPower implements IMachineTool {
             if (machine.getRotation() != null) {
                 print("dir: [" + machine.getRotation().ordinal() + "] " + machine.getRotation().toString() + (machine.getMachineBlock().supportRotation() ? "" : "(doesn't support rotation)"));
             }
+
+            machine.onItemDebug(player);
         }
 
         return true;
