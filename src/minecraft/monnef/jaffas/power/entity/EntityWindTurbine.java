@@ -5,12 +5,14 @@
 
 package monnef.jaffas.power.entity;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BoxHelper;
 import monnef.core.utils.EntityHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.item.ItemWindTurbine;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +27,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import java.util.List;
 
-import static monnef.core.utils.ColorEnum.*;
+import static monnef.core.utils.ColorEnum.WHITE;
 
 public class EntityWindTurbine extends Entity {
     private static final int SPEED_WID = 10;
@@ -80,7 +82,7 @@ public class EntityWindTurbine extends Entity {
 
     public ItemWindTurbine getItemPrototype() {
         int id = dataWatcher.getWatchableObjectInt(ITEM_PROTOTYPE_WID);
-        if (id < 0) return null;
+        if (id <= 0) return null;
         return (ItemWindTurbine) Item.itemsList[id];
     }
 
@@ -279,6 +281,8 @@ public class EntityWindTurbine extends Entity {
                         int blockId = this.worldObj.getBlockId(xx, yy, zz);
                         if (blockId != 0) {
                             breakTurbine();
+                            if (MonnefCorePlugin.debugEnv) worldObj.setBlock(xx, yy, zz, Block.blockGold.blockID);
+                            return;
                         }
                     }
                 }
@@ -294,7 +298,9 @@ public class EntityWindTurbine extends Entity {
     }
 
     public float getCurrentRotationPerTick() {
-        return getItemPrototype().getRotationSpeedPerTick() * ((float) getSpeed() / TileWindGenerator.TURBINE_MAX_SPEED);
+        ItemWindTurbine item = getItemPrototype();
+        float currItemRotationSpeedPerTick = item == null ? 0 : item.getRotationSpeedPerTick();
+        return currItemRotationSpeedPerTick * ((float) getSpeed() / TileWindGenerator.TURBINE_MAX_SPEED);
     }
 
     @Override
