@@ -40,4 +40,10 @@ public class BlockWindGenerator extends BlockMachineWithInventory {
         TileWindGenerator tile = (TileWindGenerator) getTile(world, x, y, z);
         return tile.getRotation().ordinal() == side ? icons[0] : icons[1];
     }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+        ((TileWindGenerator) getTile(world, x, y, z)).killAllTurbinesInFront();
+        super.breakBlock(world, x, y, z, par5, par6);
+    }
 }

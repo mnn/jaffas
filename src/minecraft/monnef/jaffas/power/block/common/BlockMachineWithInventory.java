@@ -35,9 +35,9 @@ public abstract class BlockMachineWithInventory extends BlockMachine {
     }
 
     @Override
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
-        InventoryUtils.dropItems(par1World, par2, par3, par4);
-        super.breakBlock(par1World, par2, par3, par4, par5, par6);
+    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+        InventoryUtils.dropItems(world, x, y, z);
+        super.breakBlock(world, x, y, z, par5, par6);
     }
 
     public abstract GuiHandler.GuiId getGuiId();

@@ -279,7 +279,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
         }
     }
 
-    private void killAllTurbinesInFront() {
+    public void killAllTurbinesInFront() {
         IIntegerCoordinates pos = getTurbineHubPositionInternal();
         AxisAlignedBB box = AxisAlignedBB.getAABBPool().getAABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
         List turbs = worldObj.getEntitiesWithinAABB(EntityWindTurbine.class, box);
