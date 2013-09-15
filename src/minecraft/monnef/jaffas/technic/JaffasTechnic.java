@@ -755,9 +755,9 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addSmelting(itemCasing.itemID, new ItemStack(itemCasingRefined), 1f);
 
         GameRegistry.addRecipe(new ItemStack(JaffasFood.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
-                '&', itemCasing, 'J', jaffarrol, 'B', Block.fenceIron, 'C', new ItemStack(itemCentralUnit, 1, 0));
+                '&', itemCasing, 'J', jaffarrol, 'B', Block.fenceIron, 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
         GameRegistry.addRecipe(new ItemStack(JaffasTrees.blockFruitCollector), "JFJ", "J@J", "JCJ",
-                'J', jaffarrol, 'F', funnel, '@', itemCasing, 'C', new ItemStack(itemCentralUnit, 1, 2));
+                'J', jaffarrol, 'F', funnel, '@', itemCasing, 'C', createCentralUnitStack(CentralUnitEnum.ADVANCED));
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
@@ -841,7 +841,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(mushroomKnife), " J", "W ", 'J', jaffarrol, 'W', "plankWood"));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fungiBox), " W ", "PDP", "PPP", 'W', Item.bucketWater, 'D', Block.dirt, 'P', "plankWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compostCore), "JPJ", "PCP", "JPJ", 'J', jaffarrol, 'P', "plankWood", 'C', new ItemStack(itemCentralUnit, 1, 1)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compostCore), "JPJ", "PCP", "JPJ", 'J', jaffarrol, 'P', "plankWood", 'C', createCentralUnitStack(CentralUnitEnum.NORMAL)));
 
         // temporal recipes
         GameRegistry.addShapelessRecipe(new ItemStack(Block.mushroomBrown),
@@ -905,7 +905,7 @@ public class JaffasTechnic extends jaffasMod {
 
         GameRegistry.addShapedRecipe(new ItemStack(cobbleBreaker), "SSS", "JLJ", "TFT", 'S', Item.stick, 'J', jaffarrolRefined, 'L', Item.slimeBall, 'T', DyeHelper.getDye(DyeColor.YELLOW), 'F', Block.furnaceIdle);
         GameRegistry.addShapedRecipe(new ItemStack(itemFermenter), "BFB", "CAC", "BBB",
-                'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_ALLOY), 'C', new ItemStack(itemCentralUnit, 1, 0),
+                'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_ALLOY), 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE),
                 'F', funnel, 'A', itemCasingRefined);
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.shears), " J", "J ", 'J', jaffarrol);
@@ -920,5 +920,9 @@ public class JaffasTechnic extends jaffasMod {
 
     private Item getItem(JaffaItem item) {
         return JaffasFood.getItem(item);
+    }
+
+    public static ItemStack createCentralUnitStack(CentralUnitEnum type) {
+        return new ItemStack(itemCentralUnit, 1, type.ordinal());
     }
 }
