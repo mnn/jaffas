@@ -10,9 +10,10 @@ import monnef.core.utils.DyeColor;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.item.ItemJaffaPack;
+import monnef.jaffas.food.item.ItemPack;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
@@ -435,11 +436,13 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(potatesSlicedInTinRaw).itemID, new ItemStack(getItem(potatesSlicedInTin)), 1F);
         GameRegistry.addShapelessRecipe(getItemStack(crisps, 2), getItem(woodenBowl), getItem(woodenBowl), getItem(potatesSlicedInTin));
         JaffaCraftingHandler.AddPersistentItem(potatesSlicedInTin, false, cakeTin);
+
+        GameRegistry.addShapedRecipe(new ItemStack(Item.paper, 1), "xxx", "xxx", 'x', new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP));
     }
 
     public static void addPackRecipe(JaffaItem item) {
         ItemStack output = new ItemStack(getItem(jaffasPack));
-        ((ItemJaffaPack) getItem(jaffasPack)).setContent(output, getItem(item).itemID, JAFFAS_PACK_CONTENT_SIZE, 0);
+        ItemPack.setContent(output, getItem(item).itemID, JAFFAS_PACK_CONTENT_SIZE, 0);
         GameRegistry.addShapelessRecipe(output, new ItemStack(getItem(wrapperJaffas)),
                 new ItemStack(getItem(item)), new ItemStack(getItem(item)),
                 new ItemStack(getItem(item)), new ItemStack(getItem(item)), new ItemStack(getItem(item)),
@@ -484,6 +487,7 @@ public class Recipes {
         GameRegistry.addShapedRecipe(new ItemStack(Block.gravel, 3), "SCS", "CSC", "SCS", 'S', Block.stone, 'C', Block.cobblestone);
         GameRegistry.addShapedRecipe(new ItemStack(Block.sand, 3), "GGG", "GWG", "GGG", 'W', Item.bucketWater, 'G', Block.gravel);
         GameRegistry.addShapedRecipe(new ItemStack(Item.bucketWater), "CCC", "CCC", "B", 'C', Block.cactus, 'B', Item.bucketEmpty);
+        addRecipe(new ShapelessOreRecipe(new ItemStack(Item.book), Item.paper, Item.paper, Item.paper, Item.silk, WOOD_PLANK));
     }
 
     private static void addJamBreadSliceRecipe(JaffaItem jam) {
