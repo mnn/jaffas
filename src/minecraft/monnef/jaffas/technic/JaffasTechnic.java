@@ -792,8 +792,8 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ItemStack(spadeJaffarrol), "J", "S", "S", 'J', jaffarrol, 'S', Item.stick);
         GameRegistry.addRecipe(new ItemStack(axeJaffarrol), "JJ ", "JS ", " S ", 'J', jaffarrol, 'S', Item.stick);
 
-        GameRegistry.addRecipe(new ItemStack(pickaxeJaffarrol, 1, pickaxeJaffarrol.getMaxDamage() * 3 / 4), "JJJ", " S ", " S ", 'J', jaffarrol, 'S', Item.stick);
-        GameRegistry.addRecipe(new ItemStack(pickaxeJaffarrol, 1, pickaxeJaffarrol.getMaxDamage() / 2), "JJJ", "DS ", " S ", 'J', jaffarrol, 'S', Item.stick, 'D', limsew);
+        GameRegistry.addRecipe(ItemHelper.constructDamagedItemStack(pickaxeJaffarrol, .25f), "JJJ", " S ", " S ", 'J', jaffarrol, 'S', Item.stick);
+        GameRegistry.addRecipe(ItemHelper.constructDamagedItemStack(pickaxeJaffarrol, .5f), "JJJ", "DS ", " S ", 'J', jaffarrol, 'S', Item.stick, 'D', limsew);
         GameRegistry.addRecipe(new ItemStack(pickaxeJaffarrol, 1, 0), "JJJ", "DSD", " S ", 'J', jaffarrol, 'S', Item.stick, 'D', limsew);
 
         GameRegistry.addRecipe(getItemStack(cookingPot), "I I", "I I", "IJI", 'I', Item.ingotIron, 'J', jaffarrol);
@@ -910,8 +910,8 @@ public class JaffasTechnic extends jaffasMod {
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.shears), " J", "J ", 'J', jaffarrol);
         GameRegistry.addShapedRecipe(new ItemStack(highPlantPost), "SSS", " S ", " S ", 'S', Item.stick);
-
         GameRegistry.addShapelessRecipe(new ItemStack(hopWeatMixture), hop, Item.wheat);
+        GameRegistry.addShapedRecipe(ItemHelper.constructDamagedItemStack(Item.flintAndSteel, 0.33f), "J ", " F", 'J', jaffarrolRefined, 'F', Item.flint);
     }
 
     private void addEnchantRecipe(Item toEnchant, Item toDestroy) {

@@ -20,6 +20,7 @@ import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.power.block.TileGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
