@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.block.common;
 
-import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
+import monnef.jaffas.power.JaffasPower;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.InventoryBasic;
 
@@ -15,36 +15,51 @@ import java.util.HashMap;
 
 public class ProcessingMachineRegistry {
     public static final String CANNOT_INSTANTIATE_CONTAINER = "Cannot instantiate container.";
-    private static HashMap<Class<? extends TileEntityBasicProcessingMachine>, machineItem> db = new HashMap<Class<? extends TileEntityBasicProcessingMachine>, machineItem>();
+    private static HashMap<Class<? extends TileEntityBasicProcessingMachine>, MachineItem> db = new HashMap<Class<? extends TileEntityBasicProcessingMachine>, MachineItem>();
 
-    private static class machineItem {
+    public static class MachineItem {
         public final Class<? extends TileEntityBasicProcessingMachine> tileClass;
         public final Class<? extends ContainerBasicProcessingMachine> containerClass;
-        public final Class<? extends GuiContainerBasicProcessingMachine> guiClass;
+        private Class<?> guiClass; // GuiContainerBasicProcessingMachine
 
         public final ContainerBasicProcessingMachine container;
-        public final Constructor<? extends GuiContainerBasicProcessingMachine> guiConstructor;
+        private Constructor<?> guiConstructor; // GuiContainerBasicProcessingMachine
         public final Constructor<? extends ContainerBasicProcessingMachine> containerConstructor;
 
-        private machineItem(Class<? extends TileEntityBasicProcessingMachine> tileClass, Class<? extends ContainerBasicProcessingMachine> containerClass, Class<? extends GuiContainerBasicProcessingMachine> guiClass, ContainerBasicProcessingMachine container) {
+        private MachineItem(Class<? extends TileEntityBasicProcessingMachine> tileClass, Class<? extends ContainerBasicProcessingMachine> containerClass, ContainerBasicProcessingMachine container) {
             this.tileClass = tileClass;
             this.containerClass = containerClass;
-            this.guiClass = guiClass;
             this.container = container;
-            try {
-                this.guiConstructor = guiClass.getConstructor(InventoryPlayer.class, TileEntityBasicProcessingMachine.class, ContainerMachine.class);
-            } catch (NoSuchMethodException e) {
-                throw new RuntimeException(String.format("Cannot get constructor of GUI of %s.", tileClass.getSimpleName()), e);
-            }
+
             try {
                 this.containerConstructor = containerClass.getConstructor(InventoryPlayer.class, TileEntityBasicProcessingMachine.class);
             } catch (NoSuchMethodException e) {
                 throw new RuntimeException(String.format("Cannot get constructor of container of %s.", tileClass.getSimpleName()), e);
             }
         }
+
+        private void setGuiConstructor(Constructor<?> guiConstructor) {
+            if (this.guiConstructor != null) throw new RuntimeException("GUI constructor already set");
+            this.guiConstructor = guiConstructor;
+        }
+
+        public void setGuiClass(Class<?> guiClass) {
+            this.guiClass = guiClass;
+            if (guiClass != null) {
+                try {
+                    this.guiConstructor = guiClass.getConstructor(InventoryPlayer.class, TileEntityBasicProcessingMachine.class, ContainerMachine.class);
+                } catch (NoSuchMethodException e) {
+                    throw new RuntimeException(String.format("Cannot get constructor of GUI of %s.", tileClass.getSimpleName()), e);
+                }
+            } else guiConstructor = null;
+        }
+
+        public Constructor<?> getGuiConstructor() {
+            return guiConstructor;
+        }
     }
 
-    public static void register(Class<? extends TileEntityBasicProcessingMachine> clazz, Class<? extends ContainerBasicProcessingMachine> container, Class<? extends GuiContainerBasicProcessingMachine> gui) {
+    public static void register(Class<? extends TileEntityBasicProcessingMachine> clazz, Class<? extends ContainerBasicProcessingMachine> container) {
         if (db.containsKey(clazz)) {
             throw new RuntimeException("containerPrototype already contains this class, cannot re-register");
         }
@@ -57,7 +72,14 @@ public class ProcessingMachineRegistry {
             throw new RuntimeException(CANNOT_INSTANTIATE_CONTAINER, e);
         }
 
-        db.put(clazz, new machineItem(clazz, container, gui, containerInstance));
+        db.put(clazz, new MachineItem(clazz, container, containerInstance));
+    }
+
+    public static void registerOnClient(Class<? extends TileEntityBasicProcessingMachine> clazz, Class<?> gui) {
+        MachineItem item = db.get(clazz);
+        if (item == null) throw new RuntimeException("Registering GUI container with unknown TE.");
+        JaffasPower.proxy.assertClassInheritsFromGuiContainerBasicProcessingMachine(gui);
+        item.setGuiClass(gui);
     }
 
     public static ContainerBasicProcessingMachine getContainerPrototype(Class<? extends TileEntityBasicProcessingMachine> clazz) {
@@ -76,11 +98,7 @@ public class ProcessingMachineRegistry {
         }
     }
 
-    public static GuiContainerBasicProcessingMachine createGui(TileEntityBasicProcessingMachine tile, InventoryPlayer inventory) {
-        try {
-            return db.get(tile.getClass()).guiConstructor.newInstance(inventory, tile, createContainer(tile, inventory));
-        } catch (Throwable e) {
-            throw new RuntimeException("Cannot create new GUI for container for tile class: " + tile.getClass().getSimpleName());
-        }
+    public static MachineItem getItem(Class tileClass) {
+        return db.get(tileClass);
     }
 }

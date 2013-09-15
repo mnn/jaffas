@@ -18,6 +18,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import static monnef.jaffas.power.JaffasPower.proxy;
+
 public class GuiHandler implements IGuiHandler {
     public enum GuiId {
         GENERATOR,
@@ -49,7 +51,7 @@ public class GuiHandler implements IGuiHandler {
         if (tileEntity instanceof TileGenerator) {
             return new GuiContainerGenerator(player.inventory, (TileGenerator) tileEntity, new ContainerMachine(player.inventory, (TileEntityMachineWithInventory) tileEntity));
         } else if (tileEntity instanceof TileEntityBasicProcessingMachine) {
-            return ProcessingMachineRegistry.createGui((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
+            return proxy.createGuiFromProcessingMachineRegistry((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
         } else if (tileEntity instanceof TileWebHarvester) {
             GuiContainerMachine gui = new GuiContainerMachine(player.inventory, (TileWebHarvester) tileEntity, new ContainerMachine(player.inventory, (TileWebHarvester) tileEntity));
             gui.setBackgroundTexture("/guiwebharvester.png");

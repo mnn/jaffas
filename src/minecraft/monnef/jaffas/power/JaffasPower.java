@@ -6,6 +6,7 @@
 package monnef.jaffas.power;
 
 import buildcraft.api.power.PowerFramework;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;
@@ -17,6 +18,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.relauncher.Side;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.EntityHelper;
@@ -253,13 +255,13 @@ public class JaffasPower extends jaffasMod {
         RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
         registerTileEntity(TileKitchenUnit.class, "kitchenUnit");
 
-        ProcessingMachineRegistry.register(TileGrinder.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
+        ProcessingMachineRegistry.register(TileGrinder.class, ContainerBasicProcessingMachine.class);
         grinder = new BlockGrinder(blockGrinderID, 101, TileGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileGrinder.class, "grinder");
         grinder.setRotationShiftInPlacing(1);
 
-        ProcessingMachineRegistry.register(TileToaster.class, ContainerBasicProcessingMachine.class, GuiContainerBasicProcessingMachine.class);
+        ProcessingMachineRegistry.register(TileToaster.class, ContainerBasicProcessingMachine.class);
         toaster = new BlockToaster(blockToasterID, 50, TileToaster.class, GuiHandler.GuiId.TOASTER, true, false);
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileToaster.class, "toaster");
@@ -285,6 +287,13 @@ public class JaffasPower extends jaffasMod {
             windTurbineMill.setupStep(0.8f, 2, 3, 0.2f, 2, 6, 1, 3);
             RegistryUtils.registerItem(windTurbineMill, "windTurbineMill", "Windmill");
         }
+
+        proxy.registerGUIsOfProcessingMachines();
+    }
+
+    private Object clientWrapper(Object a) {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) return a;
+        else return null;
     }
 
     private void installRecipes() {

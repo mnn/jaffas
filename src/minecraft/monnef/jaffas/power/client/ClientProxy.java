@@ -14,8 +14,12 @@ import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.power.block.TileLightningConductor;
 import monnef.jaffas.power.block.TileToaster;
+import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
+import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
+import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.entity.EntityWindTurbine;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {
@@ -38,5 +42,28 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(JaffasPower.kitchenUnit.blockID, new CustomBlockRenderer());
 
         RenderingRegistry.registerEntityRenderingHandler(EntityWindTurbine.class, new RenderWindTurbine());
+    }
+
+    @Override
+    public Object createGuiFromProcessingMachineRegistry(TileEntityBasicProcessingMachine tile, InventoryPlayer inventory) {
+        try {
+
+            return ProcessingMachineRegistry.getItem(tile.getClass()).getGuiConstructor().newInstance(inventory, tile, ProcessingMachineRegistry.createContainer(tile, inventory));
+        } catch (Throwable e) {
+            throw new RuntimeException("Cannot create new GUI for container for tile class: " + tile.getClass().getSimpleName());
+        }
+    }
+
+    @Override
+    public void assertClassInheritsFromGuiContainerBasicProcessingMachine(Class<?> aClass) {
+        if (!GuiContainerBasicProcessingMachine.class.isAssignableFrom(aClass)) {
+            throw new RuntimeException("Class doesn't inherit from proper ancestor!");
+        }
+    }
+
+    @Override
+    public void registerGUIsOfProcessingMachines() {
+        ProcessingMachineRegistry.registerOnClient(TileGrinder.class, GuiContainerBasicProcessingMachine.class);
+        ProcessingMachineRegistry.registerOnClient(TileToaster.class, GuiContainerBasicProcessingMachine.class);
     }
 }
