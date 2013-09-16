@@ -9,6 +9,8 @@ import monnef.core.utils.ColorEnum;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
+import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.power.JaffasPower;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -86,6 +88,7 @@ public class ItemWindTurbine extends ItemPower {
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        if (this != JaffasPower.windTurbineMill) list.add(JaffasFood.BETA_WARNING_TEXT);
         list.add(String.format("Radius: §f%s.5m§r", getRadius()));
         if (usesColoring)
             list.add(String.format("Color: §f%s§r", ColorHelper.getColor(getTurbineColor(stack)).formatTextOrHex()));
@@ -154,6 +157,4 @@ public class ItemWindTurbine extends ItemPower {
     public int getSpeedChangeInRainCoolDownMax() {
         return speedChangeInRainCoolDownMax;
     }
-
-
 }

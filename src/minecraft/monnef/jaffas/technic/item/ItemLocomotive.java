@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.item;
 
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import net.minecraft.block.BlockRail;
@@ -27,7 +28,7 @@ public class ItemLocomotive extends ItemTechnic {
 
     @Override
     public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        par3List.add("\u00A7lbeta\u00A7r");
+        par3List.add(JaffasFood.BETA_WARNING_TEXT);
     }
 
     /**

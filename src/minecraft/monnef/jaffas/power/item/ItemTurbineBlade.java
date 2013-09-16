@@ -5,7 +5,11 @@
 
 package monnef.jaffas.power.item;
 
+import monnef.jaffas.food.JaffasFood;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class ItemTurbineBlade extends ItemPowerMulti {
     private static String[] subNames;
@@ -62,5 +66,10 @@ public class ItemTurbineBlade extends ItemPowerMulti {
 
     public ItemStack constructBlade(TurbineBladeEnum type) {
         return new ItemStack(this, 1, type.ordinal());
+    }
+
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+        if (stack.getItemDamage() > 0) list.add(JaffasFood.BETA_WARNING_TEXT);
     }
 }
