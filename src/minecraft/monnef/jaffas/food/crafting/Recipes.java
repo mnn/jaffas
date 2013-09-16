@@ -20,10 +20,10 @@ import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.power.block.TileGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFlintAndSteel;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
@@ -47,6 +47,7 @@ public class Recipes {
     public static final String TREE_SAPLING = "treeSapling";
     public static final String TREE_LEAVES = "treeLeaves";
     public static final int JAFFAS_PACK_CONTENT_SIZE = 8;
+    public static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
 
     public static void postLoadInstallRecipes() {
         TileGrinder.addOreDictRecipe(Items.MINCEABLEMEAT, getItemStack(mincedMeat, 2), 100);

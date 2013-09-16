@@ -7,6 +7,7 @@ package monnef.jaffas.power.item;
 
 import monnef.core.utils.ColorEnum;
 import monnef.core.utils.ColorHelper;
+import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import java.util.List;
 
 public class ItemWindTurbine extends ItemPower {
+    public static final int BASIC_COLOURS_COUNT = 16;
     private final int model;
     private static final String COLOR_TAG = "turbineColor";
     private boolean checkBack;
@@ -72,7 +74,7 @@ public class ItemWindTurbine extends ItemPower {
         initNBT(stack);
         NBTTagCompound tag = stack.getTagCompound();
         if (!tag.hasKey(COLOR_TAG)) {
-            return ColorHelper.getInt(ColorEnum.WHITE);
+            return DyeHelper.getIntColor(DyeColor.WHITE);
         }
         return tag.getInteger(COLOR_TAG);
     }
@@ -98,12 +100,16 @@ public class ItemWindTurbine extends ItemPower {
         if (!usesColoring) {
             super.getSubItems(id, tab, list);
         } else {
-            for (int i = 0; i < 16; i++) {
-                ItemStack item = new ItemStack(id, 1, 0);
-                setTurbineColor(item, DyeHelper.getIntColor(i));
-                list.add(item);
+            for (int i = 0; i < BASIC_COLOURS_COUNT; i++) {
+                list.add(constructColoredTurbine(i));
             }
         }
+    }
+
+    public ItemStack constructColoredTurbine(int colorNumber) {
+        ItemStack item = new ItemStack(this);
+        setTurbineColor(item, DyeHelper.getIntColor(colorNumber));
+        return item;
     }
 
     public void setupStep(float normalStepSize, float rainStepCoef, float stormStepCoef, float randomChangeChance, int speedChangeCoolDownMin, int speedChangeCoolDownMax, int speedChangeInRainCoolDownMin, int speedChangeInRainCoolDownMax) {

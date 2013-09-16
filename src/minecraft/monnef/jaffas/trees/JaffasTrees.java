@@ -81,6 +81,7 @@ import java.util.logging.Level;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.common.ModulesEnum.technic;
+import static monnef.jaffas.food.crafting.Recipes.ANY_DMG;
 import static monnef.jaffas.food.crafting.Recipes.addPieRecipe;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem.bananaInChocolate;
@@ -124,7 +125,6 @@ import static monnef.jaffas.trees.common.EatableType.NotEatable;
 import static monnef.jaffas.trees.common.Reference.ModId;
 import static monnef.jaffas.trees.common.Reference.ModName;
 import static monnef.jaffas.trees.common.Reference.Version;
-import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = JaffasTrees.channel, packetHandler = PacketHandler.class)
@@ -569,7 +569,7 @@ public class JaffasTrees extends jaffasMod {
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(creativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
-        OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, ANY_DMG));
         if (otherMods.isMineFactoryReloadedDetected()) {
             FarmingRegistry.registerFertilizable(leaves.saplingBlock);
             FarmingRegistry.registerPlantable(leaves.saplingBlock);
@@ -675,7 +675,7 @@ public class JaffasTrees extends jaffasMod {
 
         GameRegistry.addShapelessRecipe(new ItemStack(itemStick, 4), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.slimeBall));
         GameRegistry.addRecipe(new ItemStack(itemRod), " S ", "ISI", " S ", 'S', new ItemStack(itemStick), 'I', new ItemStack(Item.ingotIron));
-        GameRegistry.addRecipe(new ItemStack(itemFruitPickerHead), "III", "WWW", " W ", 'I', new ItemStack(Item.ingotIron), 'W', new ItemStack(Block.cloth, 1, WILDCARD_VALUE));
+        GameRegistry.addRecipe(new ItemStack(itemFruitPickerHead), "III", "WWW", " W ", 'I', new ItemStack(Item.ingotIron), 'W', new ItemStack(Block.cloth, 1, ANY_DMG));
         GameRegistry.addRecipe(new ItemStack(itemFruitPicker), "H ", " R", 'H', new ItemStack(itemFruitPickerHead), 'R', new ItemStack(itemRod));
 
         Recipes.addMalletShapedRecipe(new ItemStack(getJaffaItem(JaffaItem.coconutPowder)), new ItemStack(itemCoconut));

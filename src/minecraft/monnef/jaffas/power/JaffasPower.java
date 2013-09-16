@@ -51,7 +51,6 @@ import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.client.GuiHandler;
-import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
 import monnef.jaffas.power.common.SimplePowerFramework;
@@ -59,9 +58,10 @@ import monnef.jaffas.power.entity.EntityWindTurbine;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
 import monnef.jaffas.power.item.ItemPipeWrench;
+import monnef.jaffas.power.item.ItemTurbineBlade;
 import monnef.jaffas.power.item.ItemWindTurbine;
-import monnef.jaffas.technic.CentralUnitEnum;
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.item.CentralUnitEnum;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -139,6 +139,9 @@ public class JaffasPower extends jaffasMod {
 
     private int windTurbineEntityID;
 
+    public static ItemTurbineBlade turbineBlade;
+    private int itemTurbineBladeID;
+
     @PreInit
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -172,6 +175,7 @@ public class JaffasPower extends jaffasMod {
                 itemWindTurbineWoodenID = idProvider.getItemIDFromConfig("windTurbineWooden");
                 itemWindTurbineMillID = idProvider.getItemIDFromConfig("windTurbineMill");
                 windTurbineEntityID = idProvider.getEntityIDFromConfig("windTurbine");
+                itemTurbineBladeID = idProvider.getItemIDFromConfig("turbineBlade");
             }
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
@@ -209,6 +213,8 @@ public class JaffasPower extends jaffasMod {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.power", "en_US", "Jaffas and more! Power");
         creativeTab.setup(wrench);
+
+        turbineBlade.registerNames();
 
         NetworkRegistry.instance().registerGuiHandler(this, new GuiHandler());
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
@@ -286,6 +292,8 @@ public class JaffasPower extends jaffasMod {
             windTurbineMill.configure(false, 7, true, 0.02f, 7);
             windTurbineMill.setupStep(0.8f, 2, 3, 0.2f, 2, 6, 1, 3);
             RegistryUtils.registerItem(windTurbineMill, "windTurbineMill", "Windmill");
+
+            turbineBlade = new ItemTurbineBlade(itemTurbineBladeID, 0);
         }
 
         proxy.registerGUIsOfProcessingMachines();
@@ -317,8 +325,20 @@ public class JaffasPower extends jaffasMod {
                     'J', JaffasTechnic.jaffarrol, 'F', JaffasTechnic.funnel, '@', JaffasTechnic.itemCasing, 'C', createCentralUnitStack(CentralUnitEnum.ADVANCED), 'S', Item.silk);
 
             if (windGeneratorEnabled) {
-                GameRegistry.addRecipe(new ItemStack(windGenerator), " J ", "iCi", "IUI", 'J',
+                GameRegistry.addShapedRecipe(new ItemStack(windGenerator), " J ", "iCi", "IUI", 'J',
                         jaffarrol, 'I', Block.blockIron, 'i', Item.ingotIron, 'U', createCentralUnitStack(CentralUnitEnum.SIMPLE), 'C', itemCasing);
+                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), "iii", "iji", " j ", 'i', Item.ingotIron, 'j', jaffarrol);
+                GameRegistry.addRecipe(new ShapedOreRecipe(
+                        turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.woodenBlade), "iii", "iji", " j ", 'i', Recipes.WOOD_PLANK, 'j', jaffarrol
+                ));
+                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.ironBlade), "i", "i", "j", 'i', Item.ingotIron, 'j', jaffarrol);
+                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.jaffarrolBlade), "jjj", "jij", " j ", 'i', Item.ingotIron, 'j', jaffarrol);
+                GameRegistry.addShapedRecipe(new ItemStack(windTurbineMill), " B ", "BiB", " B ", 'B', turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), 'i', Item.ingotIron);
+                GameRegistry.addShapedRecipe(new ItemStack(windTurbineMill), "B B", " i ", "B B", 'B', turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), 'i', Item.ingotIron);
+                for (int i = 0; i < ItemWindTurbine.BASIC_COLOURS_COUNT; i++) {
+                    ItemStack turbine = windTurbineMill.constructColoredTurbine(i);
+                    GameRegistry.addShapelessRecipe(turbine, windTurbineMill, DyeHelper.getDye(i));
+                }
             }
         }
 

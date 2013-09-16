@@ -4,6 +4,7 @@ import com.google.common.collect.HashMultimap;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.block.BlockSwitchgrass;
+import monnef.jaffas.food.crafting.Recipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,7 @@ import java.util.Set;
 
 import static monnef.jaffas.food.JaffasFood.blockSwitchgrass;
 import static monnef.jaffas.food.JaffasFood.blockSwitchgrassSolid;
+import static monnef.jaffas.food.crafting.Recipes.ANY_DMG;
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 public class CompostRegister {
@@ -106,7 +108,7 @@ public class CompostRegister {
     }
 
     public static CompostItem addStackAnyDamage(Block block, int compostingValue) {
-        return addStack(block, WILDCARD_VALUE, compostingValue);
+        return addStack(block, ANY_DMG, compostingValue);
     }
 
     public static CompostItem addStack(Block block, int meta, int compostingValue) {
@@ -118,7 +120,7 @@ public class CompostRegister {
     }
 
     public static CompostItem addStackAnyDamage(Item item, int compostingValue) {
-        return addStack(item, WILDCARD_VALUE, compostingValue);
+        return addStack(item, ANY_DMG, compostingValue);
     }
 
     public static CompostItem addStack(Item item, int meta, int compostingValue) {

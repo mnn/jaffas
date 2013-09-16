@@ -68,6 +68,7 @@ import monnef.jaffas.technic.common.FungusInfo;
 import monnef.jaffas.technic.common.MushroomCropProvider;
 import monnef.jaffas.technic.common.RepairRecipe;
 import monnef.jaffas.technic.entity.EntityLocomotive;
+import monnef.jaffas.technic.item.CentralUnitEnum;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
 import monnef.jaffas.technic.item.ItemCompost;
@@ -107,6 +108,7 @@ import java.util.logging.Level;
 import static monnef.core.utils.RegistryUtils.registerMultiBlock;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.otherMods;
+import static monnef.jaffas.food.crafting.Recipes.ANY_DMG;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem._last;
 import static monnef.jaffas.food.item.JaffaItem.beerMugEmpty;
@@ -153,7 +155,6 @@ public class JaffasTechnic extends jaffasMod {
     @SidedProxy(clientSide = "monnef.jaffas.technic.client.ClientProxy", serverSide = "monnef.jaffas.technic.common.CommonProxy")
     public static CommonProxy proxy;
 
-    private static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
     private static final String FORESTRY_FARM_FUNGAL = "farmShroom";
     public static final String MUSHROOMS_EATABLE = "jaffasMushroomEatable";
     public boolean debug;
