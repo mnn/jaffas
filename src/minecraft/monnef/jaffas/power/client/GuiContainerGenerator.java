@@ -10,7 +10,10 @@ import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.client.common.GuiContainerMachine;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+
+import java.util.List;
 
 public class GuiContainerGenerator extends GuiContainerMachine {
     private TileGenerator generator;
@@ -48,5 +51,10 @@ public class GuiContainerGenerator extends GuiContainerMachine {
             int burn = generator.getBurnTimeScaled(14);
             this.drawTexturedModalRect(x + 80, y + 45 + (13 - burn), 176, 14 - burn, 14, burn);
         }
+    }
+
+    @Override
+    public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
+        return currenttip;
     }
 }
