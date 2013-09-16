@@ -32,6 +32,7 @@ public class GuiContainerMachine extends GuiContainerJaffas {
         super(container);
 
         this.tile = tileEntity;
+        refreshXY();
     }
 
     @Override
@@ -53,12 +54,16 @@ public class GuiContainerMachine extends GuiContainerJaffas {
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.renderEngine.bindTexture(getBackgroundTexture());
-        x = (width - xSize) / 2;
-        y = (height - ySize) / 2;
+        refreshXY();
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
         if (tile.isPowerBarRenderingEnabled())
             drawEnergyBar(tile);
+    }
+
+    protected void refreshXY() {
+        x = (width - xSize) / 2;
+        y = (height - ySize) / 2;
     }
 
     protected String getBackgroundTexture() {
