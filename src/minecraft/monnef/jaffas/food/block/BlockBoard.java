@@ -8,6 +8,7 @@ package monnef.jaffas.food.block;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.InventoryUtils;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.material.Material;
@@ -92,7 +93,7 @@ public class BlockBoard extends BlockContainerJaffas {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderID;
+        return ContentHolder.renderID;
     }
 
     @Override

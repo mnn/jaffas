@@ -7,7 +7,6 @@ package monnef.jaffas.food.nei;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-import codechicken.nei.forge.GuiContainerManager;
 import codechicken.nei.recipe.ICraftingHandler;
 import codechicken.nei.recipe.IUsageHandler;
 import monnef.core.external.javassist.ClassPool;

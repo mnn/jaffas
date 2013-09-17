@@ -4,7 +4,6 @@ import com.google.common.collect.HashMultimap;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.block.BlockSwitchgrass;
-import monnef.jaffas.food.crafting.Recipes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static monnef.jaffas.food.JaffasFood.blockSwitchgrass;
-import static monnef.jaffas.food.JaffasFood.blockSwitchgrassSolid;
+import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.ContentHolder.blockSwitchgrassSolid;
 import static monnef.jaffas.food.crafting.Recipes.ANY_DMG;
-import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
 public class CompostRegister {
     private static HashMultimap<Integer, CompostItem> compostItems;

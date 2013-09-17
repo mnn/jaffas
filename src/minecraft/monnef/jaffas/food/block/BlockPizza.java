@@ -8,7 +8,7 @@ package monnef.jaffas.food.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.BitHelper;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +20,7 @@ import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
-import static monnef.jaffas.food.JaffasFood.blockPizza;
+import static monnef.jaffas.food.ContentHolder.blockPizza;
 import static monnef.jaffas.food.JaffasFood.getItem;
 
 public class BlockPizza extends BlockJaffas {
@@ -69,7 +69,7 @@ public class BlockPizza extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderID;
+        return ContentHolder.renderID;
     }
 
     @Override

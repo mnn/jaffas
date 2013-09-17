@@ -10,7 +10,6 @@ import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.food.block.ContainerRipeningBox;
 import monnef.jaffas.food.block.TileRipeningBox;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.StatCollector;

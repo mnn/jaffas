@@ -7,7 +7,7 @@ package monnef.jaffas.technic.item;
 
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.WorldHelper;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -91,9 +91,9 @@ public class ItemHoeTechnic extends ItemTechnicTool {
                 }
                 damageTool(5, player, stack);
                 return true;
-            } else if (blockId == JaffasFood.blockSwitchgrassSolid.blockID) {
+            } else if (blockId == ContentHolder.blockSwitchgrassSolid.blockID) {
                 if (!world.isRemote) world.setBlockToAir(x, y, z);
-                BlockSwitchgrass switchgrass = JaffasFood.blockSwitchgrass;
+                BlockSwitchgrass switchgrass = ContentHolder.blockSwitchgrass;
                 int dmgCoef = 1;
 
                 int plantSize = HOE_SWITCHGRASS_PLANT_RADIUS;
@@ -135,7 +135,7 @@ public class ItemHoeTechnic extends ItemTechnicTool {
         for (int xx = x - 1; xx <= x + 1; xx++) {
             for (int zz = z - 1; zz <= z + 1; zz++) {
                 if (xx == x && zz == z) continue; // skip already destroyed block
-                if (world.getBlockId(xx, y, zz) != JaffasFood.blockSwitchgrassSolid.blockID) return false;
+                if (world.getBlockId(xx, y, zz) != ContentHolder.blockSwitchgrassSolid.blockID) return false;
             }
         }
         return true;

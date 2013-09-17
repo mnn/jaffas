@@ -8,8 +8,6 @@ package monnef.jaffas.technic.item;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.item.ItemJaffaBase;
-import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;

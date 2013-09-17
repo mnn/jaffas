@@ -6,6 +6,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.base.CustomIconHelper;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffasHelper;
 import monnef.jaffas.food.item.common.ItemManager;
@@ -123,7 +124,7 @@ public class BlockJaffaBomb extends BlockJaffas {
 
     @Override
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) {
-        this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(JaffasFood.blockJaffaBomb));
+        this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(ContentHolder.blockJaffaBomb));
     }
 
     @Override

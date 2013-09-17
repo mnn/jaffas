@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ModuleManager;
@@ -28,13 +29,12 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import static monnef.core.utils.DyeHelper.getDye;
-import static monnef.jaffas.food.JaffasFood.blockColumn;
-import static monnef.jaffas.food.JaffasFood.blockJaffaStatue;
-import static monnef.jaffas.food.JaffasFood.blockPie;
-import static monnef.jaffas.food.JaffasFood.blockSwitchgrass;
-import static monnef.jaffas.food.JaffasFood.blockSwitchgrassSolid;
-import static monnef.jaffas.food.JaffasFood.blockTable;
-import static monnef.jaffas.food.JaffasFood.instance;
+import static monnef.jaffas.food.ContentHolder.blockColumn;
+import static monnef.jaffas.food.ContentHolder.blockJaffaStatue;
+import static monnef.jaffas.food.ContentHolder.blockPie;
+import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.ContentHolder.blockSwitchgrassSolid;
+import static monnef.jaffas.food.ContentHolder.blockTable;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.block.TilePie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
@@ -175,7 +175,7 @@ public class Recipes {
         addPackRecipe(jaffaV);
         addPackRecipe(jaffaStrawberry);
 
-        GameRegistry.addRecipe(new ItemStack(JaffasFood.blockJaffaBomb), "JJJ", "RLG", " T ", 'J', new ItemStack(getItem(jaffasPack)),
+        GameRegistry.addRecipe(new ItemStack(ContentHolder.blockJaffaBomb), "JJJ", "RLG", " T ", 'J', new ItemStack(getItem(jaffasPack)),
                 'R', Item.redstone, 'L', Item.goldNugget, 'G', Item.lightStoneDust,
                 'T', new ItemStack(Block.tnt));
 
@@ -197,7 +197,7 @@ public class Recipes {
         RecipesFridge.AddRecipe(getItem(chocolateIcecreamRaw).itemID, new ItemStack(getItem(chocolateIcecreamFrozen)));
 
         if (!ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
-            GameRegistry.addRecipe(new ItemStack(instance.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockIron), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
+            GameRegistry.addRecipe(new ItemStack(ContentHolder.blockFridge), "GGG", "IMI", "SRS", 'G', new ItemStack(Item.ingotGold), 'I', new ItemStack(Block.blockIron), 'M', new ItemStack(Block.fenceIron), 'S', new ItemStack(Block.stone), 'R', new ItemStack(Item.redstone));
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(donutRaw)), " P ", "P P", " P ", 'P', new ItemStack(getItem(pastrySweet)));
@@ -227,7 +227,7 @@ public class Recipes {
 
         GameRegistry.addRecipe(new ItemStack(getItem(magnifier)), "GG ", "GG ", "  I", 'G', new ItemStack(Block.glass), 'I', new ItemStack(Item.ingotIron));
 
-        GameRegistry.addRecipe(new ItemStack(instance.itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(jaffa)));
+        GameRegistry.addRecipe(new ItemStack(ContentHolder.itemJaffaPlate), "BBB", " J ", " B ", 'B', new ItemStack(Block.cloth, 1, 15), 'J', new ItemStack(getItem(jaffa)));
 
         GameRegistry.addSmelting(getItem(vanillaPowder).itemID, new ItemStack(getItem(jamV)), 0.6F);
 
@@ -532,7 +532,7 @@ public class Recipes {
     }
 
     public static Item getItem(JaffaItem item) {
-        return JaffasFood.getItem(item);
+        return ContentHolder.getItem(item);
     }
 
     private static void addMalletRecipes() {

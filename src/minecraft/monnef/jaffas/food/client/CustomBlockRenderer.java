@@ -7,7 +7,7 @@ package monnef.jaffas.food.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.core.client.CustomBlockRenderingHelper;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.EntityLiving;
@@ -35,7 +35,7 @@ public class CustomBlockRenderer implements ISimpleBlockRenderingHandler, IItemR
 
     @Override
     public int getRenderId() {
-        return JaffasFood.renderBlockID;
+        return ContentHolder.renderBlockID;
     }
 
     @Override

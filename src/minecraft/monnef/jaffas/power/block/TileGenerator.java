@@ -10,7 +10,7 @@ import buildcraft.api.power.IPowerReceptor;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.IntegerCoordinates;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.item.ItemStack;
@@ -203,7 +203,7 @@ public class TileGenerator extends TileEntityMachineWithInventory {
             int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
             if (fuelBurnTime > 0) {
                 fuelStack.stackSize--;
-                isSwitchgrass = fuelStack.itemID == JaffasFood.blockSwitchgrass.blockID || fuelStack.itemID == JaffasFood.blockSwitchgrassSolid.blockID;
+                isSwitchgrass = fuelStack.itemID == ContentHolder.blockSwitchgrass.blockID || fuelStack.itemID == ContentHolder.blockSwitchgrassSolid.blockID;
                 if (fuelStack.stackSize <= 0) {
                     setInventorySlotContents(SLOT_FUEL, null);
                 }

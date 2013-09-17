@@ -7,7 +7,7 @@ package monnef.jaffas.food.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.core.client.CustomBlockRenderingHelper;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.block.BlockJDirectional;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -104,7 +104,7 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public int getRenderId() {
-        return JaffasFood.renderDirectionalBlockID;
+        return ContentHolder.renderDirectionalBlockID;
     }
 
     private static class DummyBlockAccess implements IBlockAccess {

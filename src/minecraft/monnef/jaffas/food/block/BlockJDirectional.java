@@ -4,7 +4,7 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.DirectionHelper;
 import monnef.core.utils.IntegerCoordinates;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.Icon;
@@ -98,7 +98,7 @@ public class BlockJDirectional extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderDirectionalBlockID;
+        return ContentHolder.renderDirectionalBlockID;
     }
 
     @Override

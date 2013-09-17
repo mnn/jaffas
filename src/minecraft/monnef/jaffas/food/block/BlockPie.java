@@ -8,7 +8,7 @@ package monnef.jaffas.food.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.base.CustomIconHelper;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -61,7 +61,7 @@ public class BlockPie extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderID;
+        return ContentHolder.renderID;
     }
 
     @Override
@@ -124,7 +124,7 @@ public class BlockPie extends BlockJaffas {
 
     @SideOnly(Side.CLIENT)
     public int idPicked(World par1World, int par2, int par3, int par4) {
-        return JaffasFood.blockPie.blockID;
+        return ContentHolder.blockPie.blockID;
     }
 
     @Override

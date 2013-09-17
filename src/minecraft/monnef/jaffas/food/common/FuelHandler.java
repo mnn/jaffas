@@ -6,18 +6,18 @@
 package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.IFuelHandler;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import net.minecraft.item.ItemStack;
 
 public class FuelHandler implements IFuelHandler {
-    public static int SWITCHGRASS_BURN_VALUE;
+    public static int switchgrassBurnValue;
 
     @Override
     public int getBurnTime(ItemStack fuel) {
-        if (fuel.itemID == JaffasFood.blockSwitchgrass.blockID) {
-            return SWITCHGRASS_BURN_VALUE;
-        } else if (fuel.itemID == JaffasFood.blockSwitchgrassSolid.blockID) {
-            return SWITCHGRASS_BURN_VALUE * (9 + 1);
+        if (fuel.itemID == ContentHolder.blockSwitchgrass.blockID) {
+            return switchgrassBurnValue;
+        } else if (fuel.itemID == ContentHolder.blockSwitchgrassSolid.blockID) {
+            return switchgrassBurnValue * (9 + 1);
         }
 
         return 0;

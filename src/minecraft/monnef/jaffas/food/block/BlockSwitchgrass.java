@@ -8,6 +8,7 @@ package monnef.jaffas.food.block;
 import monnef.core.base.CustomIconHelper;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
@@ -137,7 +138,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderSwitchgrassID;
+        return ContentHolder.renderSwitchgrassID;
     }
 
     @Override

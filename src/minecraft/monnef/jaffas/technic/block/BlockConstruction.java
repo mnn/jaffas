@@ -7,7 +7,7 @@ package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -63,7 +63,7 @@ public class BlockConstruction extends BlockTechnic {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderBlockID;
+        return ContentHolder.renderBlockID;
     }
 
     @Override

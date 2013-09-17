@@ -8,7 +8,6 @@ package monnef.jaffas.trees.client;
 import monnef.core.client.GuiContainerJaffas;
 import monnef.jaffas.trees.block.ContainerFruitCollector;
 import monnef.jaffas.trees.block.TileFruitCollector;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;

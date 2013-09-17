@@ -7,6 +7,7 @@ package monnef.jaffas.food.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.material.Material;
@@ -32,7 +33,7 @@ public class BlockMeatDryer extends BlockJaffas {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderID;
+        return ContentHolder.renderID;
     }
 
     @Override

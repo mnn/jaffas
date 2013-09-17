@@ -12,6 +12,7 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.client.RenderItemInAir;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileBoard;
 import monnef.jaffas.food.block.TileColumn;
@@ -55,11 +56,11 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TilePie.class, new TilePieRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMeatDryer.class, new TileMeatDryerRenderer());
 
-        JaffasFood.renderID = RenderingRegistry.getNextAvailableRenderId();
-        JaffasFood.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
+        ContentHolder.renderID = RenderingRegistry.getNextAvailableRenderId();
+        ContentHolder.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new SwitchgrassRenderer());
-        JaffasFood.renderDirectionalBlockID = RenderingRegistry.getNextAvailableRenderId();
-        JaffasFood.renderBlockID = RenderingRegistry.getNextAvailableRenderId();
+        ContentHolder.renderDirectionalBlockID = RenderingRegistry.getNextAvailableRenderId();
+        ContentHolder.renderBlockID = RenderingRegistry.getNextAvailableRenderId();
 
         RenderingRegistry.registerBlockHandler(new DirectionalBlockRenderer());
         RenderingRegistry.registerBlockHandler(new CustomBlockRenderer());

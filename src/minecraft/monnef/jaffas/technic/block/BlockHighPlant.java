@@ -3,7 +3,7 @@ package monnef.jaffas.technic.block;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -116,7 +116,7 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderID;
+        return ContentHolder.renderID;
     }
 
     @Override

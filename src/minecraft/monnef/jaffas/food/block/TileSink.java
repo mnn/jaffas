@@ -6,6 +6,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.BitHelper;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.tileentity.TileEntity;
 
@@ -25,7 +26,7 @@ public class TileSink extends TileEntity {
     public void updateEntity() {
         playQueuedSound();
 
-        if (getBlockType().blockID != JaffasFood.blockSink.blockID) {
+        if (getBlockType().blockID != ContentHolder.blockSink.blockID) {
             if (JaffasFood.debug) {
                 Log.printInfo("sink block not detected, ending - " + xCoord + "x" + yCoord + "x" + zCoord);
             }

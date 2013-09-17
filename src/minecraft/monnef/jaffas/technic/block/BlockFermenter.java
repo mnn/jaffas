@@ -8,6 +8,7 @@ package monnef.jaffas.technic.block;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.entity.player.EntityPlayer;
@@ -115,7 +116,7 @@ public class BlockFermenter extends BlockTechnic {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderID;
+        return ContentHolder.renderID;
     }
 
     @Override

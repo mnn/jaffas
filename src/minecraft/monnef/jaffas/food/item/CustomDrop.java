@@ -6,6 +6,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.EntityHelper;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -42,7 +43,7 @@ public class CustomDrop {
 
         addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 1f);
         addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 0.5f);
-        addDrop(EntitySpider.class, new ItemStack(Item.monsterPlacer, 1, JaffasFood.spiderEntityID), 0.07f);
+        addDrop(EntitySpider.class, new ItemStack(Item.monsterPlacer, 1, ContentHolder.spiderEntityID), 0.07f);
 
     }
 

@@ -9,7 +9,6 @@ import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.TileCobbleBreaker;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;

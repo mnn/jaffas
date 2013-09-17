@@ -18,47 +18,15 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
-import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.ClassHelper;
-import monnef.core.utils.ColorHelper;
 import monnef.core.utils.CustomLogger;
-import monnef.core.utils.EntityHelper;
-import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.achievement.AchievementsHandler;
-import monnef.jaffas.food.block.BlockBoard;
-import monnef.jaffas.food.block.BlockColumn;
-import monnef.jaffas.food.block.BlockCross;
-import monnef.jaffas.food.block.BlockFridge;
-import monnef.jaffas.food.block.BlockJDirectional;
-import monnef.jaffas.food.block.BlockJaffaBomb;
-import monnef.jaffas.food.block.BlockJaffaStatue;
-import monnef.jaffas.food.block.BlockMeatDryer;
-import monnef.jaffas.food.block.BlockPie;
-import monnef.jaffas.food.block.BlockPizza;
-import monnef.jaffas.food.block.BlockRipeningBox;
-import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.block.BlockSwitchgrass;
-import monnef.jaffas.food.block.BlockSwitchgrassSolid;
-import monnef.jaffas.food.block.BlockTable;
-import monnef.jaffas.food.block.ItemBlockPie;
-import monnef.jaffas.food.block.ItemBlockSwitchgrass;
-import monnef.jaffas.food.block.ItemBlockTable;
-import monnef.jaffas.food.block.TileBoard;
-import monnef.jaffas.food.block.TileColumn;
-import monnef.jaffas.food.block.TileCross;
-import monnef.jaffas.food.block.TileFridge;
-import monnef.jaffas.food.block.TileJaffaStatue;
-import monnef.jaffas.food.block.TileMeatDryer;
-import monnef.jaffas.food.block.TilePie;
-import monnef.jaffas.food.block.TilePizza;
-import monnef.jaffas.food.block.TileRipeningBox;
-import monnef.jaffas.food.block.TileSink;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
@@ -73,21 +41,13 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
-import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
 import monnef.jaffas.food.crafting.JaffaCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
-import monnef.jaffas.food.entity.EntityDuck;
-import monnef.jaffas.food.entity.EntityDuckEgg;
-import monnef.jaffas.food.entity.EntityJaffaPainting;
-import monnef.jaffas.food.entity.EntityLittleSpider;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.ItemJaffaFood;
-import monnef.jaffas.food.item.ItemJaffaPainting;
-import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.ItemJaffaRecipeTool;
-import monnef.jaffas.food.item.ItemJaffaSword;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.item.common.ItemManager;
@@ -96,36 +56,28 @@ import monnef.jaffas.food.network.JaffasPacketHandler;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import monnef.jaffas.jaffasMod;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Random;
-import java.util.Set;
 import java.util.logging.Level;
 
-import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
-import static monnef.jaffas.technic.JaffasTechnic.breakableIronMaterial;
-import static net.minecraftforge.common.BiomeDictionary.Type;
+import static monnef.jaffas.food.ContentHolder.addDungeonLoot;
+import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.ContentHolder.createBlocks;
+import static monnef.jaffas.food.ContentHolder.createJaffaArmorAndSword;
+import static monnef.jaffas.food.ContentHolder.itemJaffaPlateID;
+import static monnef.jaffas.food.ContentHolder.itemJaffaSwordID;
+import static monnef.jaffas.food.ContentHolder.itemPaintingID;
+import static monnef.jaffas.food.ContentHolder.loadBlockIDs;
+import static monnef.jaffas.food.ContentHolder.registerCleaverRecords;
+import static monnef.jaffas.food.ContentHolder.registerDuckSpawns;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {JaffasPacketHandler.CHANNEL_SpawnStone, JaffasPacketHandler.CHANNEL_Generic}, packetHandler = JaffasPacketHandler.class)
@@ -136,102 +88,16 @@ public class JaffasFood extends jaffasMod {
 
     private static MinecraftServer server;
 
-    public static BlockJaffaBomb blockJaffaBomb;
-    public static int blockJaffaBombID;
-
-    public static BlockFridge blockFridge;
-    public static int blockFridgeID;
-
-    public static BlockCross blockCross;
-    public static int blockCrossID;
-
-    public static BlockSink blockSink;
-    public static int blockSinkID;
-
-    public static BlockBoard blockBoard;
-    public static int blockBoardID;
-
-    public static BlockPizza blockPizza;
-    public static int blockPizzaID;
-
-    public static int blockColumnID;
-    public static BlockColumn blockColumn;
-
-    public static int blockJaffaStatueID;
-    public static BlockJaffaStatue blockJaffaStatue;
-
-    public static int blockPieID;
-    public static BlockPie blockPie;
-
-    public static int blockTableID;
-    public static BlockTable blockTable;
-
-    public static int blockSwitchgrassID;
-    public static BlockSwitchgrass blockSwitchgrass;
-
-    public static int blockSwitchgrassSolidID;
-    public static BlockJDirectional blockSwitchgrassSolid;
-
-    public static int blockDirDebug1ID;
-    public static BlockJDirectional blockDir1;
-
-    public static int blockDirDebug2ID;
-    public static BlockJDirectional blockDir2;
-
-    public static int blockMeatDryerID;
-    public static BlockMeatDryer blockMeatDryer;
-
-    public static int blockRipeningBoxID;
-    public static BlockRipeningBox blockRipeningBox;
-
-    /*
-    CLOTH(5, new int[]{1, 3, 2, 1}, 15),
-    CHAIN(15, new int[]{2, 5, 4, 1}, 12),
-    IRON(15, new int[]{2, 6, 5, 2}, 9),
-    GOLD(7, new int[]{2, 5, 3, 1}, 25),
-    DIAMOND(33, new int[]{3, 8, 6, 3}, 10);
-    */
-
-    public static EnumArmorMaterial EnumArmorMaterialJaffas = EnumHelper.addArmorMaterial("JaffaArmor", 10, new int[]{1, 4, 2, 3}, 23);
-    public static EnumArmorMaterial EnumArmorMaterialDuck = EnumHelper.addArmorMaterial("Duck", 10, new int[]{1, 3, 2, 1}, 23);
-    public static EnumArmorMaterial EnumArmorMaterialWolf = EnumHelper.addArmorMaterial("Wolf", 13, new int[]{3, 3, 2, 2}, 15);
-    public static EnumArmorMaterial EnumArmorMaterialJaffarrol = EnumHelper.addArmorMaterial("Jaffarrol", 29, new int[]{4, 7, 5, 3}, 17);
-    public static ItemJaffaPlate itemJaffaPlate;
-    public static int itemJaffaPlateID;
-    public static EnumToolMaterial EnumToolMaterialJaffas = EnumHelper.addToolMaterial("Jaffa", 2, 400, 6.0F, 6, 15);
-    public static EnumToolMaterial EnumToolMaterialCleaver = EnumHelper.addToolMaterial("JaffaCleaver", 2, 75, 2.0F, 0, 15);
-    public static ItemJaffaSword itemJaffaSword;
-    public static int itemJaffaSwordID;
-
- /* WOOD(0, 59, 2.0F, 0, 15),
-    STONE(1, 131, 4.0F, 1, 5),
-    IRON(2, 250, 6.0F, 2, 14),
-    EMERALD(3, 1561, 8.0F, 3, 10),
-    GOLD(0, 32, 12.0F, 0, 22);*/
-
-    public static int renderID;
-    public static int renderSwitchgrassID;
-    public static int renderDirectionalBlockID;
-    public static int renderBlockID;
-
     private static IGuiHandler guiHandler;
 
     @Mod.Instance("Jaffas")
     public static JaffasFood instance;
-
-    public static ItemJaffaPainting itemPainting;
-    private int itemPaintingID;
 
     public static boolean debug;
     public static String jaffasTitle;
     public static String jaffaTitle;
     public static boolean showUpdateMessages;
     public static String lastVersionShown;
-
-    private static int jaffaPaintingEntityID;
-    private static int duckEntityID;
-    private static int duckEggEntityID;
-    public static int spiderEntityID;
 
     public ItemManager itemManager;
     public ModuleManager moduleManager;
@@ -321,39 +187,12 @@ public class JaffasFood extends jaffasMod {
             items.InitializeItemInfos();
             items.LoadItemsFromConfig(idProvider);
 
-            blockJaffaBombID = idProvider.getBlockIDFromConfig("jaffa bomb");
-            blockFridgeID = idProvider.getBlockIDFromConfig("fridge");
-
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
             showUpdateMessages = config.get(Configuration.CATEGORY_GENERAL, "showUpdateMessages", true).getBoolean(true);
             lastVersionShown = config.get(Configuration.CATEGORY_GENERAL, LAST_VERSION_SHOWN, "").getString();
 
-            blockCrossID = idProvider.getBlockIDFromConfig("cross");
-            blockSinkID = idProvider.getBlockIDFromConfig("sink");
-            blockBoardID = idProvider.getBlockIDFromConfig("board");
-            blockPizzaID = idProvider.getBlockIDFromConfig("pizza");
-            blockColumnID = idProvider.getBlockIDFromConfig("column");
-            blockJaffaStatueID = idProvider.getBlockIDFromConfig("statue");
-            blockPieID = idProvider.getBlockIDFromConfig("pie");
-            blockTableID = idProvider.getBlockIDFromConfig("table");
-            blockSwitchgrassID = idProvider.getBlockIDFromConfig("switchgrass");
-            blockSwitchgrassSolidID = idProvider.getBlockIDFromConfig("switchgrassSolid");
-            blockMeatDryerID = idProvider.getBlockIDFromConfig("meatDryer");
-            if (MonnefCorePlugin.debugEnv) {
-                blockDirDebug1ID = idProvider.getBlockIDFromConfig("blockDir1");
-                blockDirDebug2ID = idProvider.getBlockIDFromConfig("blockDir2");
-            }
-            blockRipeningBoxID = idProvider.getBlockIDFromConfig("ripeningBox");
-
-            jaffaPaintingEntityID = idProvider.getEntityIDFromConfig("painting");
-            createPainting();
-            duckEntityID = idProvider.getEntityIDFromConfig("duck");
-            registerDuck();
-            duckEggEntityID = idProvider.getEntityIDFromConfig("duckEgg");
-            registerDuckEgg();
-            spiderEntityID = idProvider.getEntityIDFromConfig("littleSpider");
-            registerLittleSpider();
+            loadBlockIDs(idProvider);
 
             spawnStonesEnabled = config.get(Configuration.CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
             spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
@@ -368,7 +207,7 @@ public class JaffasFood extends jaffasMod {
             duckSpawnProbabilityLow = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityLow", 10).getInt();
             duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 12).getInt();
             duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
-            FuelHandler.SWITCHGRASS_BURN_VALUE = config.get(Configuration.CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
+            FuelHandler.switchgrassBurnValue = config.get(Configuration.CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
             slimeSpawningEnabled = config.get(Configuration.CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
             JaffasRegistryHelper.compatibilityMode = config.get(Configuration.CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
             vanillaRecipesEnabled = config.get(Configuration.CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
@@ -385,6 +224,7 @@ public class JaffasFood extends jaffasMod {
         proxy.registerSounds();
     }
 
+
     @Override
     protected int getStartOfItemsIdInterval() {
         return 24744;
@@ -395,6 +235,7 @@ public class JaffasFood extends jaffasMod {
         return 3600;
     }
 
+    @Override
     @Mod.Init
     public void load(FMLInitializationEvent event) {
         super.load(event);
@@ -433,59 +274,6 @@ public class JaffasFood extends jaffasMod {
         Recipes.postLoadInstallRecipes();
     }
 
-    private void addDungeonLoot() {
-        if (!JaffasFood.dungeonLootEnabled) return;
-
-        // 100 ~ trash, 5 ~ treasure
-        addToDungeons(JaffaItem.malletIron, 25, 1, 1);
-        addToDungeons(JaffaItem.honey, 90, 5, 15);
-        addToDungeons(JaffaItem.kettle, 30, 1, 1);
-        addToDungeons(new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP), 90, 5, 64);
-        addToDungeons(JaffaItem.magnifier, 30, 1, 1);
-        addToDungeons(JaffaItem.spawnStoneLittle, 10, 1, 1);
-        addToDungeons(JaffaItem.spawnStoneMedium, 5, 1, 1);
-        addToDungeons(JaffaItem.jaffa, 20, 5, 15);
-        addToDungeons(JaffaItem.scrap, 40, 1, 64);
-
-        ChestGenHooks.addItem(ChestGenHooks.BONUS_CHEST, new WeightedRandomChestContent(Recipes.getItemStack(JaffaItem.mallet), 1, 1, 4));
-
-        // 20 ~ trash, 3 ~ treasure
-        addToPyramids(JaffaItem.spawnStoneBig, 3, 1, 1);
-        addToPyramids(JaffaItem.malletHeadDiamond, 3, 1, 1);
-        addToPyramids(JaffaItem.spiderLegRaw, 7, 1, 4);
-    }
-
-    public static void addToDungeons(JaffaItem item, int weight, int min, int max) {
-        addToDungeons(Recipes.getItem(item), weight, min, max);
-    }
-
-    public static void addToDungeons(Item item, int weight, int min, int max) {
-        addToDungeons(new ItemStack(item), weight, min, max);
-    }
-
-    public static void addToDungeons(Block block, int weight, int min, int max) {
-        addToDungeons(new ItemStack(block), weight, min, max);
-    }
-
-    public static void addToDungeons(ItemStack stack, int weight, int min, int max) {
-        ChestGenHooks.addItem(ChestGenHooks.DUNGEON_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
-    }
-
-    public static void addToPyramids(JaffaItem item, int weight, int min, int max) {
-        addToPyramids(Recipes.getItemStack(item), weight, min, max);
-    }
-
-    public static void addToPyramids(ItemStack stack, int weight, int min, int max) {
-        ChestGenHooks.addItem(ChestGenHooks.PYRAMID_DESERT_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
-        ChestGenHooks.addItem(ChestGenHooks.PYRAMID_JUNGLE_CHEST, new WeightedRandomChestContent(stack, min, max, weight));
-    }
-
-    private void registerCleaverRecords() {
-        ItemCleaverHookContainer.registerMeatFromAnimal(EntityDuck.class, new ItemStack(getItem(JaffaItem.duckRaw)));
-        ItemCleaverHookContainer.registerMeatFromAnimal(EntitySheep.class, new ItemStack(getItem(JaffaItem.muttonRaw)));
-        ItemCleaverHookContainer.registerMeatFromAnimal(EntityWolf.class, new ItemStack(getItem(JaffaItem.wolfMeatRaw)));
-    }
-
     private void registerHandlers() {
         proxy.registerTickHandler();
         TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
@@ -501,130 +289,6 @@ public class JaffasFood extends jaffasMod {
         if (!disableAutoUnEquip) {
             MinecraftForge.EVENT_BUS.register(new PlateUnequipper());
         }
-    }
-
-    private void createPainting() {
-        itemPainting = new ItemJaffaPainting(this.itemPaintingID);
-        LanguageRegistry.addName(itemPainting, "Painting");
-        EntityHelper.registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, jaffaPaintingEntityID, this);
-    }
-
-    private void registerDuck() {
-        EntityHelper.registerEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, duckEntityID, this, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
-        LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
-        if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerGrindable(new EntityDuck.MFR());
-            FarmingRegistry.registerBreederFood(EntityDuck.class, new ItemStack(Item.seeds));
-        }
-    }
-
-    private void registerDuckEgg() {
-        EntityHelper.registerEntity(EntityDuckEgg.class, "duckEgg", 160, 1, true, duckEggEntityID, this);
-    }
-
-    private void registerLittleSpider() {
-        EntityHelper.registerEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, spiderEntityID, this, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
-        LanguageRegistry.instance().addStringLocalization("entity.jaffasSpider.name", "en_US", "Little Spider");
-        if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerGrindable(new EntityLittleSpider.MFR());
-            //FarmingRegistry.registerBreederFood(EntityLittleSpider.class, new ItemStack(Item.seeds));
-        }
-    }
-
-    private void registerDuckSpawns() {
-        BiomeDictionary.registerAllBiomes();
-
-        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityHigh, 4, 6, EnumCreatureType.creature, // high
-                BiomeHelper.compileListOrAsArray(new Type[]{Type.SWAMP, Type.BEACH}));
-        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityMed, 2, 5, EnumCreatureType.creature,  // med
-                BiomeHelper.compileListOrAsArray(new Type[]{Type.PLAINS, Type.FOREST}));
-        EntityRegistry.addSpawn(EntityDuck.class, duckSpawnProbabilityLow, 1, 4, EnumCreatureType.creature,  // low
-                BiomeHelper.compileListOrAsArray(new Type[]{Type.JUNGLE}));
-    }
-
-    private void createBlocks() {
-        blockFridge = new BlockFridge(blockFridgeID);
-        GameRegistry.registerBlock(blockFridge, "blockFridge");
-        LanguageRegistry.addName(blockFridge, "Fridge");
-        registerTileEntity(TileFridge.class, "Fridge");
-
-        blockJaffaBomb = new BlockJaffaBomb(blockJaffaBombID, 35, Material.rock);
-        GameRegistry.registerBlock(blockJaffaBomb, "blockJaffaBomb");
-        LanguageRegistry.addName(blockJaffaBomb, "Jaffa Cakes BOMB");
-
-        blockCross = new BlockCross(blockCrossID, 5, Material.rock);
-        GameRegistry.registerBlock(blockCross, "blockCross");
-        LanguageRegistry.addName(blockCross, "Cross");
-        registerTileEntity(TileCross.class, "cross");
-
-        blockSink = new BlockSink(blockSinkID, 141);
-        GameRegistry.registerBlock(blockSink, "blockSink");
-        LanguageRegistry.addName(blockSink, "Faucet");
-        registerTileEntity(TileSink.class, "sink");
-
-        blockBoard = new BlockBoard(blockBoardID, 142, Material.wood);
-        RegistryUtils.registerBlock(blockBoard, "Kitchen Board");
-        registerTileEntity(TileBoard.class, "kitchenBoard");
-
-        blockPizza = new BlockPizza(blockPizzaID, 149, Material.cake);
-        RegistryUtils.registerBlock(blockPizza);
-        LanguageRegistry.addName(blockPizza, "Block of Pizza");
-        registerTileEntity(TilePizza.class, "pizza");
-
-        blockColumn = new BlockColumn(blockColumnID, 160, Material.rock);
-        RegistryUtils.registerBlock(blockColumn);
-        LanguageRegistry.addName(blockColumn, "Column");
-        registerTileEntity(TileColumn.class, "column");
-
-        blockJaffaStatue = new BlockJaffaStatue(blockJaffaStatueID, 6, Material.iron);
-        RegistryUtils.registerBlock(blockJaffaStatue);
-        LanguageRegistry.addName(blockJaffaStatue, "Jaffa Statue");
-        registerTileEntity(TileJaffaStatue.class, "jaffaStatue");
-
-        blockPie = new BlockPie(blockPieID, 156);
-        RegistryUtils.registerMultiBlock(blockPie, ItemBlockPie.class, BlockPie.multiBlockNames);
-        registerTileEntity(TilePie.class, "jaffaPie");
-
-        blockTable = new BlockTable(blockTableID, 0, Material.wood);
-        RegistryUtils.registerMultiBlock(blockTable, ItemBlockTable.class, BlockTable.multiBlockNames);
-        blockTable.setSheetNumber(7);
-
-        blockSwitchgrass = new BlockSwitchgrass(blockSwitchgrassID, 238);
-        RegistryUtils.registerMultiBlock(blockSwitchgrass, ItemBlockSwitchgrass.class, blockSwitchgrass.subBlockNames);
-        MinecraftForge.EVENT_BUS.register(new SwitchgrassBonemealHandler());
-        if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerFertilizable(blockSwitchgrass);
-            FarmingRegistry.registerHarvestable(blockSwitchgrass);
-            FarmingRegistry.registerPlantable(blockSwitchgrass);
-        }
-
-        blockSwitchgrassSolid = new BlockSwitchgrassSolid(blockSwitchgrassSolidID, 240, 2);
-        RegistryUtils.registerBlock(blockSwitchgrassSolid, "switchgrassSolid", "Block of Switchgrass");
-
-        blockMeatDryer = new BlockMeatDryer(blockMeatDryerID, 250);
-        RegistryUtils.registerBlock(blockMeatDryer, "meatDryer", "Meat Dryer");
-        registerTileEntity(TileMeatDryer.class, "MeatDryer");
-
-        if (MonnefCorePlugin.debugEnv) {
-            blockDir1 = new BlockJDirectional(blockDirDebug1ID, 35, 2, Material.rock, BlockJDirectional.TextureMappingType.LOG_LIKE);
-            RegistryUtils.registerBlock(blockDir1, "dir1", "Dir 1 - Log like");
-
-            blockDir2 = new BlockJDirectional(blockDirDebug2ID, 35, 6, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
-            RegistryUtils.registerBlock(blockDir2, "dir2", "Dir 2 - All sides");
-        }
-
-        blockRipeningBox = new BlockRipeningBox(blockRipeningBoxID, 250, breakableIronMaterial);
-        RegistryUtils.registerBlock(blockRipeningBox, "ripeningBox", "Ripening Box");
-        registerTileEntity(TileRipeningBox.class, "ripeningBox");
-    }
-
-    private void createJaffaArmorAndSword() {
-        int armorRender = proxy.addArmor("Jaffa");
-        itemJaffaPlate = new ItemJaffaPlate(itemJaffaPlateID, EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png", null, 90);
-        LanguageRegistry.addName(itemJaffaPlate, "Jaffa Hoodie");
-
-        itemJaffaSword = new ItemJaffaSword(itemJaffaSwordID, 88, EnumToolMaterialJaffas);
-        RegistryUtils.registerItem(itemJaffaSword, "jaffaSword", "Jaffa Sword");
     }
 
     private void printInitializedMessage() {
@@ -653,28 +317,11 @@ public class JaffasFood extends jaffasMod {
         manager.registerCommand(new CommandJaffasOP());
     }
 
-    public static Item getItem(JaffaItem item) {
-        return ItemManager.getItem(item);
-    }
-
     public static void PrintInitialized(ModulesEnum module) {
         Log.printInfo("Module " + module + " initialized.");
     }
 
-    private static final Set<Integer> defaultDimensions = new HashSet<Integer>(Arrays.asList(-1, 0, 1));
-
-    public static boolean isGenerationEnabled(int dimensionID) {
-        if (genDisabled) {
-            return false;
-        }
-        if (defaultDimensions.contains(dimensionID)) {
-            return true;
-        }
-
-        if (genDisabledForNonStandardDimensions) {
-            return false;
-        } else {
-            return true;
-        }
+    public static Item getItem(JaffaItem item) {
+        return ContentHolder.getItem(item);
     }
 }

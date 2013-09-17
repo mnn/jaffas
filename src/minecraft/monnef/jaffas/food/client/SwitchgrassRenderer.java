@@ -6,7 +6,7 @@
 package monnef.jaffas.food.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -33,7 +33,7 @@ public class SwitchgrassRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public int getRenderId() {
-        return JaffasFood.renderSwitchgrassID;
+        return ContentHolder.renderSwitchgrassID;
     }
 
     // grass renderer
@@ -60,7 +60,7 @@ public class SwitchgrassRenderer implements ISimpleBlockRenderingHandler {
         double newY = (double) y;
         double newZ = (double) z;
 
-        if (block.blockID == JaffasFood.blockSwitchgrassID) {
+        if (block.blockID == ContentHolder.blockSwitchgrassID) {
             long var17 = (long) (x * 3129871) ^ (long) z * 116129781L /*^ (long) y*/;
             var17 = var17 * var17 * 42317861L + var17 * 11L;
             newX += ((double) ((float) (var17 >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;

@@ -6,6 +6,7 @@
 package monnef.jaffas.food.item.common;
 
 import monnef.core.utils.WolfFoodRegistry;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
@@ -562,7 +563,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(mincedMeat);
         JaffaItemInfo cleaverInfo = ItemManager.getItemInfo(meatCleaver);
         createJaffaItemManual(meatCleaver,
-                new ItemCleaver(cleaverInfo.getId(), cleaverInfo.getIconIndex(), JaffasFood.EnumToolMaterialCleaver));
+                new ItemCleaver(cleaverInfo.getId(), cleaverInfo.getIconIndex(), ContentHolder.EnumToolMaterialCleaver));
 
         createJaffaItemManual(sink, ItemSink.class);
 
@@ -577,7 +578,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItemManual(pizza, ItemPizza.class);
 
         createJaffaItem(wolfSkin);
-        createJaffaArmorSet("wolf", JaffasFood.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
+        createJaffaArmorSet("wolf", ContentHolder.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
 
         createJaffaItem(pastry);
 
@@ -647,7 +648,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.tinDuckOrangeRaw);
         createJaffaItem(JaffaItem.tinDuckOrange);
 
-        createJaffaArmorSet("duck", JaffasFood.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
+        createJaffaArmorSet("duck", ContentHolder.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
 
         createJaffaItem(strawberryIcecreamRaw);
         createJaffaItem(strawberryIcecreamFrozen);

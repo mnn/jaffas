@@ -6,7 +6,7 @@
 package monnef.jaffas.technic;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.world.WorldGenHelper;
 import monnef.jaffas.technic.block.BlockOre;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -17,9 +17,9 @@ import net.minecraftforge.common.BiomeDictionary;
 import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.ContentHolder.blockSwitchgrassID;
 import static monnef.jaffas.food.JaffasFood.Log;
-import static monnef.jaffas.food.JaffasFood.blockSwitchgrass;
-import static monnef.jaffas.food.JaffasFood.blockSwitchgrassID;
 
 public class TechnicWorldGen implements IWorldGenerator {
     private final WorldGenMinable jaffarrolGenRich;
@@ -46,7 +46,7 @@ public class TechnicWorldGen implements IWorldGenerator {
         saveData(world, random, chunkX * 16, chunkZ * 16, chunkGenerator, chunkProvider);
 
         int dimensionId = world.provider.dimensionId;
-        if (!JaffasFood.isGenerationEnabled(dimensionId)) {
+        if (!WorldGenHelper.isGenerationEnabled(dimensionId)) {
             return;
         }
 

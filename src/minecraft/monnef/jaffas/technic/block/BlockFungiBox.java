@@ -7,7 +7,7 @@ package monnef.jaffas.technic.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BlockHelper;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -69,7 +69,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
 
     @Override
     public int getRenderType() {
-        return JaffasFood.renderID;
+        return ContentHolder.renderID;
     }
 
     @Override

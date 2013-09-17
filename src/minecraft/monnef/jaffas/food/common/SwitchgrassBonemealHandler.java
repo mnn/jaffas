@@ -1,6 +1,6 @@
 package monnef.jaffas.food.common;
 
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -10,7 +10,7 @@ public class SwitchgrassBonemealHandler {
 
     @ForgeSubscribe
     public void onBonemeal(BonemealEvent event) {
-        BlockSwitchgrass block = JaffasFood.blockSwitchgrass;
+        BlockSwitchgrass block = ContentHolder.blockSwitchgrass;
 
         if (event.ID != block.blockID) {
             return;

@@ -19,6 +19,7 @@ import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.ItemBlockJaffas;
@@ -460,11 +461,11 @@ public class JaffasTechnic extends jaffasMod {
 
     private void addDungeonLoot() {
         if (!JaffasFood.dungeonLootEnabled) return;
-        JaffasFood.addToDungeons(jaffarrolRaw, 30, 2, 10);
-        JaffasFood.addToDungeons(limsew, 10, 2, 5);
-        JaffasFood.addToDungeons(hopSeeds, 5, 2, 10);
+        ContentHolder.addToDungeons(jaffarrolRaw, 30, 2, 10);
+        ContentHolder.addToDungeons(limsew, 10, 2, 5);
+        ContentHolder.addToDungeons(hopSeeds, 5, 2, 10);
         if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
-            JaffasFood.addToDungeons(JaffasTrees.itemUnknownSeeds, 100, 3, 20);
+            ContentHolder.addToDungeons(JaffasTrees.itemUnknownSeeds, 100, 3, 20);
         }
     }
 
@@ -577,10 +578,10 @@ public class JaffasTechnic extends jaffasMod {
 
         // jarmor
         int renderIndexJaffarrol = JaffasFood.proxy.addArmor("jarmor");
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolHelmet, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.helm, "/jaffas_jarmor1.png", _last);
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolChest, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "/jaffas_jarmor1.png", _last);
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolLeggins, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "/jaffas_jarmor2.png", _last);
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolBoots, JaffasFood.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "/jaffas_jarmor1.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolHelmet, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.helm, "/jaffas_jarmor1.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolChest, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "/jaffas_jarmor1.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolLeggins, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "/jaffas_jarmor2.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolBoots, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "/jaffas_jarmor1.png", _last);
 
         blockJaffarrolOre = new BlockOre(BlockJaffarrolOreID, 17);
         MinecraftForge.setBlockHarvestLevel(blockJaffarrolOre, "pickaxe", 2);
@@ -755,7 +756,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ItemStack(itemCasing, 1, 0), "JJJ", "J J", "JJJ", 'J', jaffarrol);
         GameRegistry.addSmelting(itemCasing.itemID, new ItemStack(itemCasingRefined), 1f);
 
-        GameRegistry.addRecipe(new ItemStack(JaffasFood.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
+        GameRegistry.addRecipe(new ItemStack(ContentHolder.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
                 '&', itemCasing, 'J', jaffarrol, 'B', Block.fenceIron, 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
         GameRegistry.addRecipe(new ItemStack(JaffasTrees.blockFruitCollector), "JFJ", "J@J", "JCJ",
                 'J', jaffarrol, 'F', funnel, '@', itemCasing, 'C', createCentralUnitStack(CentralUnitEnum.ADVANCED));
@@ -768,7 +769,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', JaffasTechnic.jaffarrol, 'I', Item.ingotIron);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', JaffasTechnic.jaffarrol, 'G', Block.glass);
 
-        GameRegistry.addRecipe(new ItemStack(JaffasFood.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', JaffasTechnic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(ContentHolder.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', JaffasTechnic.jaffarrol);
 
         // jarmor
         GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolHelmet)), "JJJ", "J J", 'J', jaffarrol);
