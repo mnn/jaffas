@@ -6,7 +6,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.base.CustomIconHelper;
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffasHelper;
 import monnef.jaffas.food.item.common.ItemManager;

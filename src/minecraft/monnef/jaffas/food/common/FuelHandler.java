@@ -6,7 +6,6 @@
 package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.IFuelHandler;
-import monnef.jaffas.food.ContentHolder;
 import net.minecraft.item.ItemStack;
 
 public class FuelHandler implements IFuelHandler {

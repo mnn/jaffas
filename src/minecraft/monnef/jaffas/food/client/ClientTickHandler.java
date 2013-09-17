@@ -8,6 +8,7 @@ package monnef.jaffas.food.client;
 import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.TickType;
+import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.ThreadVersionCheck;
@@ -110,7 +111,7 @@ public class ClientTickHandler implements IScheduledTickHandler {
                         String versionString = VersionHelper.versionToString(remoteVersion);
                         cachedVersionString = versionString;
                         if (cmp == -1) {
-                            if (!JaffasFood.lastVersionShown.equals(versionString)) {
+                            if (!ConfigurationManager.lastVersionShown.equals(versionString)) {
                                 Configuration config = JaffasFood.instance.config;
                                 try {
                                     config.get(Configuration.CATEGORY_GENERAL, JaffasFood.LAST_VERSION_SHOWN, "").set(versionString);
@@ -119,7 +120,7 @@ public class ClientTickHandler implements IScheduledTickHandler {
                                     Log.printSevere("Problem while writing new version to the config.");
                                     e.printStackTrace();
                                 }
-                                if (JaffasFood.showUpdateMessages) {
+                                if (ConfigurationManager.showUpdateMessages) {
                                     showNewVersionMessage(player);
                                 } else {
                                     Log.printInfo("New version available, but messages are disabled.");

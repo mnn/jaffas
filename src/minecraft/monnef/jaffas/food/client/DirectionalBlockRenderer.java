@@ -7,7 +7,7 @@ package monnef.jaffas.food.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.core.client.CustomBlockRenderingHelper;
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.block.BlockJDirectional;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

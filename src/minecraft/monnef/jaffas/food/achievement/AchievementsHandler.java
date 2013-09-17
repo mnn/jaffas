@@ -12,7 +12,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.utils.AchievementsHelper;
 import monnef.core.utils.CallerClassNameFinder;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.network.AchievementPacket;
@@ -29,7 +29,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import static monnef.jaffas.food.ContentHolder.getItem;
+import static monnef.jaffas.food.common.ContentHolder.getItem;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.achievement.AchievementDataHolder.ACHIEVEMENT_DATA_HOLDER;
 import static monnef.jaffas.food.item.JaffaItem.butter;
@@ -64,7 +64,7 @@ public class AchievementsHandler {
     private static boolean initialized = false;
 
     public static void init() {
-        if (JaffasFood.achievementsDisabled) {
+        if (ConfigurationManager.achievementsDisabled) {
             Log.printInfo("Achievements disabled in config, skipping registrations.");
             return;
         }
@@ -295,7 +295,7 @@ public class AchievementsHandler {
     // called from server side
     public static void synchronizeAchievements(EntityPlayer player) {
         //getAchievementHolder(player).sendSyncPackets();
-        if (!JaffasFood.achievementsDisabled) {
+        if (!ConfigurationManager.achievementsDisabled) {
             getAchievementHolder(player).recreateAchievements();
         }
     }

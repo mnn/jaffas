@@ -11,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import static monnef.jaffas.food.ContentHolder.blockBoard;
+import static monnef.jaffas.food.common.ContentHolder.blockBoard;
 
 public class TileBoardRenderer extends TileEntitySpecialRenderer {
     private ModelBoard board;

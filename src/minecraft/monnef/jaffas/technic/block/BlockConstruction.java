@@ -7,7 +7,7 @@ package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;

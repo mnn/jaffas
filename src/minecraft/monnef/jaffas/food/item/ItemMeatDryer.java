@@ -5,7 +5,7 @@
 
 package monnef.jaffas.food.item;
 
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

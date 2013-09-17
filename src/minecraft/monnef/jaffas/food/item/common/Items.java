@@ -6,8 +6,8 @@
 package monnef.jaffas.food.item.common;
 
 import monnef.core.utils.WolfFoodRegistry;
-import monnef.jaffas.food.ContentHolder;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ConfigurationManager;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.block.TileMeatDryer;
@@ -134,8 +134,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(flour, "Flour", 49, "Flour");
         AddItemInfo(chocolateWrapper, "Chocolate Wrapper", 33, "Chocolate Wrapper");
         AddItemInfo(chocolateBar, "Chocolate Bar", 34, "Chocolate Bar");
-        AddItemInfo(wrapperJaffas, "Wrapper Jaffas", 50, JaffasFood.jaffasTitle + " Wrapper");
-        AddItemInfo(jaffasPack, "Jaffa Cakes Pack", 51, JaffasFood.jaffasTitle + " Pack");
+        AddItemInfo(wrapperJaffas, "Wrapper Jaffas", 50, ConfigurationManager.jaffasTitle + " Wrapper");
+        AddItemInfo(jaffasPack, "Jaffa Cakes Pack", 51, ConfigurationManager.jaffasTitle + " Pack");
         AddItemInfo(vanillaBeans, "Vanilla Beans", 52, "Vanilla Beans");
         AddItemInfo(waferIcecream, "Wafer Ice-cream", 53, "Wafer");
         AddItemInfo(cone, "Icecream Cone", 54, "Cone");
@@ -385,6 +385,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.potatesSlicedInTinRaw, "Raw Crisps", 254);
         AddItemInfo(JaffaItem.potatesSlicedInTin, "Crisps In Tin", 255);
         AddItemInfo(JaffaItem.crisps, "Crisps", 256);
+
+        AddItemInfo(JaffaItem.cheeseRaw,"Raw Cheese",257);
     }
 
     private void registerWolfFood(JaffaItem item) {
@@ -598,10 +600,10 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(pieVanillaRaw);
         createJaffaItem(piePlumRaw);
 
-        if (JaffasFood.spawnStonesEnabled) {
-            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneLittle), JaffasFood.spawnStoneLittleCD));
-            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneMedium), JaffasFood.spawnStoneMediumCD));
-            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneBig), JaffasFood.spawnStoneBigCD));
+        if (ConfigurationManager.spawnStonesEnabled) {
+            createJaffaItemManual(spawnStoneLittle, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneLittle), ConfigurationManager.spawnStoneLittleCD));
+            createJaffaItemManual(spawnStoneMedium, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneMedium), ConfigurationManager.spawnStoneMediumCD));
+            createJaffaItemManual(spawnStoneBig, new ItemSpawnStone(ItemManager.getItemInfo(spawnStoneBig), ConfigurationManager.spawnStoneBigCD));
         }
 
         createJaffaItem(juiceBottle);
@@ -713,13 +715,6 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(beerMugEmpty).setMaxStackSize(16);
         createJaffaFood(beerMugFull, 4, 1.5f).setIsDrink().setAlwaysEdible().setReturnItem(getItemStack(beerMugEmpty)).setPotionEffect(Potion.damageBoost.id, 30, 0, 0.35f).setMaxStackSize(1);
 
-        /*
-                AddItemInfo(JaffaItem.potatesSliced, "Sliced Potatoes", 253);
-        AddItemInfo(JaffaItem.potatesSlicedInTinRaw, "Raw Crisps", 254);
-        AddItemInfo(JaffaItem.potatesSlicedInTin, "Crisps In Tin", 255);
-        AddItemInfo(JaffaItem.crisps, "Crisps", 256);
-
-         */
         createJaffaItem(potatesSliced);
         createJaffaItem(potatesSlicedInTinRaw);
         createJaffaItem(potatesSlicedInTin);

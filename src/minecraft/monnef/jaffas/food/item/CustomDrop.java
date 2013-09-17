@@ -6,7 +6,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.EntityHelper;
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;

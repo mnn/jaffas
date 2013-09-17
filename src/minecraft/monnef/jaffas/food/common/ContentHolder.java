@@ -3,7 +3,7 @@
  * author: monnef
  */
 
-package monnef.jaffas.food;
+package monnef.jaffas.food.common;
 
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -14,6 +14,7 @@ import monnef.core.utils.ColorHelper;
 import monnef.core.utils.EntityHelper;
 import monnef.core.utils.IDProvider;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockBoard;
 import monnef.jaffas.food.block.BlockColumn;
 import monnef.jaffas.food.block.BlockCross;
@@ -42,7 +43,6 @@ import monnef.jaffas.food.block.TilePie;
 import monnef.jaffas.food.block.TilePizza;
 import monnef.jaffas.food.block.TileRipeningBox;
 import monnef.jaffas.food.block.TileSink;
-import monnef.jaffas.food.common.SwitchgrassBonemealHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
@@ -70,10 +70,10 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
-import static monnef.jaffas.food.JaffasFood.duckSpawnProbabilityHigh;
-import static monnef.jaffas.food.JaffasFood.duckSpawnProbabilityLow;
-import static monnef.jaffas.food.JaffasFood.duckSpawnProbabilityMed;
-import static monnef.jaffas.food.JaffasFood.dungeonLootEnabled;
+import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilityHigh;
+import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilityLow;
+import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilityMed;
+import static monnef.jaffas.food.common.ConfigurationManager.dungeonLootEnabled;
 import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.JaffasFood.proxy;

@@ -7,6 +7,7 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import monnef.core.utils.PlayerHelper;
+import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
@@ -98,10 +99,10 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     }
 
     private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info, EntityPlayer player) {
-        if (player == null || !JaffasFood.transferItemsFromCraftingMatrix) {
+        if (player == null || !ConfigurationManager.transferItemsFromCraftingMatrix) {
             // "fix" to not crash/return more on BuildCraft's tables...
             String inventoryClassName = matrix.getClass().getName();
-            if (JaffasFood.ignoreBuildCraftsTables) {
+            if (ConfigurationManager.ignoreBuildCraftsTables) {
                 if (inventoryClassName.contains("TileAssemblyAdvancedWorkbench")
                         || inventoryClassName.contains("TileAutoWorkbench")) {
                     return;

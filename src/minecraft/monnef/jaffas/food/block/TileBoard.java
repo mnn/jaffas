@@ -19,7 +19,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-import static monnef.jaffas.food.ContentHolder.blockBoard;
+import static monnef.jaffas.food.common.ContentHolder.blockBoard;
 import static monnef.jaffas.food.JaffasFood.getItem;
 
 public class TileBoard extends TileEntity implements IInventory, ISidedInventory {

@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.item;
 
+import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.common.Items;
 import net.minecraft.item.Item;
@@ -50,7 +51,7 @@ public class JaffasHelper {
     }
 
     public static String getJaffaTitleForItem(JaffaItem ji) {
-        String cakeTitle = JaffasFood.jaffaTitle;
+        String cakeTitle = ConfigurationManager.jaffaTitle;
 
         if (!isFilled(ji)) {
             return cakeTitle;

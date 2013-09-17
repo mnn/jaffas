@@ -82,10 +82,15 @@ public class ItemManager {
     }
 
     public static void addItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
-        JaffaItemInfo newItem = new JaffaItemInfo(name);
+        String newTitle = title;
+        String newName = name;
+        if (title.isEmpty()) {
+            newTitle = name;
+            newName = item.toString();
+        }
+        JaffaItemInfo newItem = new JaffaItemInfo(newName);
         newItem.setIconIndex(iconIndex);
-        if (title.isEmpty()) title = name;
-        newItem.setTitle(title);
+        newItem.setTitle(newTitle);
         newItem.setModule(module);
         newItem.setSheetNumber(sheetNumber);
         itemsInfo.put(item, newItem);

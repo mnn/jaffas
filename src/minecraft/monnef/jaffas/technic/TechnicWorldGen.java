@@ -17,8 +17,8 @@ import net.minecraftforge.common.BiomeDictionary;
 import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
-import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
-import static monnef.jaffas.food.ContentHolder.blockSwitchgrassID;
+import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrassID;
 import static monnef.jaffas.food.JaffasFood.Log;
 
 public class TechnicWorldGen implements IWorldGenerator {

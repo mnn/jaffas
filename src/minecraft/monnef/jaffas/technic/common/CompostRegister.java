@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
-import static monnef.jaffas.food.ContentHolder.blockSwitchgrassSolid;
+import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrassSolid;
 import static monnef.jaffas.food.crafting.Recipes.ANY_DMG;
 
 public class CompostRegister {

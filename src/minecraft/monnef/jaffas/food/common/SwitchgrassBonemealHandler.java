@@ -1,6 +1,5 @@
 package monnef.jaffas.food.common;
 
-import monnef.jaffas.food.ContentHolder;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;

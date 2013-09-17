@@ -6,7 +6,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.BitHelper;
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.tileentity.TileEntity;
 

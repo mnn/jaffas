@@ -19,7 +19,8 @@ import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ConfigurationManager;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.ItemBlockJaffas;
@@ -460,7 +461,7 @@ public class JaffasTechnic extends jaffasMod {
     }
 
     private void addDungeonLoot() {
-        if (!JaffasFood.dungeonLootEnabled) return;
+        if (!ConfigurationManager.dungeonLootEnabled) return;
         ContentHolder.addToDungeons(jaffarrolRaw, 30, 2, 10);
         ContentHolder.addToDungeons(limsew, 10, 2, 5);
         ContentHolder.addToDungeons(hopSeeds, 5, 2, 10);
@@ -778,7 +779,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolLeggins)), "JJJ", "J J", "J J", 'J', jaffarrol);
 
         // spawn stones
-        if (JaffasFood.spawnStonesEnabled) {
+        if (ConfigurationManager.spawnStonesEnabled) {
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Item.ingotIron, 'J', blockJaffarrol);
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "LGR", "GSG", "RGL", 'G', Item.ingotGold, 'S', getItem(spawnStoneLittle), 'R', Item.redstone, 'L', limsew);
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "DLB", "GSL", "BGD", 'L', limsew, 'B', Item.blazePowder, 'D', Item.diamond, 'G', Item.lightStoneDust, 'S', getItem(spawnStoneMedium));

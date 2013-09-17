@@ -9,8 +9,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
-import monnef.jaffas.food.ContentHolder;
-import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ConfigurationManager;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -29,12 +29,12 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import static monnef.core.utils.DyeHelper.getDye;
-import static monnef.jaffas.food.ContentHolder.blockColumn;
-import static monnef.jaffas.food.ContentHolder.blockJaffaStatue;
-import static monnef.jaffas.food.ContentHolder.blockPie;
-import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
-import static monnef.jaffas.food.ContentHolder.blockSwitchgrassSolid;
-import static monnef.jaffas.food.ContentHolder.blockTable;
+import static monnef.jaffas.food.common.ContentHolder.blockColumn;
+import static monnef.jaffas.food.common.ContentHolder.blockJaffaStatue;
+import static monnef.jaffas.food.common.ContentHolder.blockPie;
+import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrassSolid;
+import static monnef.jaffas.food.common.ContentHolder.blockTable;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.block.TilePie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
@@ -428,7 +428,7 @@ public class Recipes {
 
         GameRegistry.addShapedRecipe(getItemStack(meatDryer), "SSS", "SIS", "S S", 'S', Item.stick, 'I', Item.silk);
 
-        if (JaffasFood.vanillaRecipesEnabled) {
+        if (ConfigurationManager.vanillaRecipesEnabled) {
             registerVanillaLikeRecipes();
         }
 

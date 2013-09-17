@@ -6,7 +6,7 @@
 package monnef.jaffas.technic.block;
 
 import monnef.core.MonnefCorePlugin;
-import monnef.jaffas.food.ContentHolder;
+import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

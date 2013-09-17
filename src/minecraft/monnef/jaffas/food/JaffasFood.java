@@ -33,9 +33,10 @@ import monnef.jaffas.food.command.CommandJaffaHunger;
 import monnef.jaffas.food.command.CommandJaffas;
 import monnef.jaffas.food.command.CommandJaffasOP;
 import monnef.jaffas.food.common.CommonProxy;
+import monnef.jaffas.food.common.ConfigurationManager;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.common.FuelHandler;
 import monnef.jaffas.food.common.JaffaCreativeTab;
-import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
@@ -68,16 +69,16 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.Random;
 import java.util.logging.Level;
 
-import static monnef.jaffas.food.ContentHolder.addDungeonLoot;
-import static monnef.jaffas.food.ContentHolder.blockSwitchgrass;
-import static monnef.jaffas.food.ContentHolder.createBlocks;
-import static monnef.jaffas.food.ContentHolder.createJaffaArmorAndSword;
-import static monnef.jaffas.food.ContentHolder.itemJaffaPlateID;
-import static monnef.jaffas.food.ContentHolder.itemJaffaSwordID;
-import static monnef.jaffas.food.ContentHolder.itemPaintingID;
-import static monnef.jaffas.food.ContentHolder.loadBlockIDs;
-import static monnef.jaffas.food.ContentHolder.registerCleaverRecords;
-import static monnef.jaffas.food.ContentHolder.registerDuckSpawns;
+import static monnef.jaffas.food.common.ContentHolder.addDungeonLoot;
+import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrass;
+import static monnef.jaffas.food.common.ContentHolder.createBlocks;
+import static monnef.jaffas.food.common.ContentHolder.createJaffaArmorAndSword;
+import static monnef.jaffas.food.common.ContentHolder.itemJaffaPlateID;
+import static monnef.jaffas.food.common.ContentHolder.itemJaffaSwordID;
+import static monnef.jaffas.food.common.ContentHolder.itemPaintingID;
+import static monnef.jaffas.food.common.ContentHolder.loadBlockIDs;
+import static monnef.jaffas.food.common.ContentHolder.registerCleaverRecords;
+import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {JaffasPacketHandler.CHANNEL_SpawnStone, JaffasPacketHandler.CHANNEL_Generic}, packetHandler = JaffasPacketHandler.class)
@@ -94,39 +95,13 @@ public class JaffasFood extends jaffasMod {
     public static JaffasFood instance;
 
     public static boolean debug;
-    public static String jaffasTitle;
-    public static String jaffaTitle;
-    public static boolean showUpdateMessages;
-    public static String lastVersionShown;
 
     public ItemManager itemManager;
     public ModuleManager moduleManager;
     public Items items;
     public static CustomLogger Log = new CustomLogger("Jaffas");
 
-    public static boolean spawnStonesEnabled = true;
-    public static int spawnStoneLittleCD;
-    public static int spawnStoneMediumCD;
-    public static int spawnStoneBigCD;
-    public static boolean spawnStoneMultidimensional;
-
-    public static boolean transferItemsFromCraftingMatrix;
-    public static boolean ignoreBuildCraftsTables;
-
-    public static boolean genDisabled;
-    public static boolean genDisabledForNonStandardDimensions;
-
-    public static boolean achievementsDisabled;
     public static Random rand = new Random();
-
-    public static int duckSpawnProbabilityHigh;
-    public static int duckSpawnProbabilityMed;
-    public static int duckSpawnProbabilityLow;
-
-    public static boolean slimeSpawningEnabled;
-    public static boolean vanillaRecipesEnabled;
-    public static boolean dungeonLootEnabled;
-    public static boolean disableAutoUnEquip;
 
     public static OtherModsHelper otherMods;
     public ItemStack guideBook;
@@ -182,39 +157,16 @@ public class JaffasFood extends jaffasMod {
             itemPaintingID = idProvider.getItemIDFromConfig("painting");
 
             // careful - order is important!
-            jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").getString();
-            jaffaTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffaTitle", "Jaffa").getString();
+            ConfigurationManager.jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").getString();
+            ConfigurationManager.jaffaTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffaTitle", "Jaffa").getString();
             items.InitializeItemInfos();
             items.LoadItemsFromConfig(idProvider);
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
-            showUpdateMessages = config.get(Configuration.CATEGORY_GENERAL, "showUpdateMessages", true).getBoolean(true);
-            lastVersionShown = config.get(Configuration.CATEGORY_GENERAL, LAST_VERSION_SHOWN, "").getString();
-
             loadBlockIDs(idProvider);
 
-            spawnStonesEnabled = config.get(Configuration.CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
-            spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
-            spawnStoneMediumCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMediumCD", 17).getInt();
-            spawnStoneBigCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
-            spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", true).getBoolean(true);
-            transferItemsFromCraftingMatrix = config.get(Configuration.CATEGORY_GENERAL, "transferItemsFromCraftingMatrix", false, "Experimental, try to transfer items created after craft directly to player (e.g. crumpled paper)?").getBoolean(false);
-            ignoreBuildCraftsTables = config.get(Configuration.CATEGORY_GENERAL, "ignoreBuildCraftsTables", true, "BC tables has broken recipes handling - wrong stack size or crash on craft").getBoolean(true);
-            genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
-            genDisabledForNonStandardDimensions = config.get(Configuration.CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
-            achievementsDisabled = config.get(Configuration.CATEGORY_GENERAL, "achievementsDisabled", false).getBoolean(false);
-            duckSpawnProbabilityLow = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityLow", 10).getInt();
-            duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 12).getInt();
-            duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
-            FuelHandler.switchgrassBurnValue = config.get(Configuration.CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
-            slimeSpawningEnabled = config.get(Configuration.CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
-            JaffasRegistryHelper.compatibilityMode = config.get(Configuration.CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
-            vanillaRecipesEnabled = config.get(Configuration.CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
-            dungeonLootEnabled = config.get(Configuration.CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
-            disableAutoUnEquip = config.get(Configuration.CATEGORY_GENERAL, "disableAutoUnEquip", false).getBoolean(false);
-
-            AchievementsHandler.setStartingId(config.get(Configuration.CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
+            ConfigurationManager.loadSettings(config);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -286,7 +238,7 @@ public class JaffasFood extends jaffasMod {
         proxy.registerRenderThings();
         GameRegistry.registerFuelHandler(new FuelHandler());
 
-        if (!disableAutoUnEquip) {
+        if (!ConfigurationManager.disableAutoUnEquip) {
             MinecraftForge.EVENT_BUS.register(new PlateUnequipper());
         }
     }
