@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.base.ICustomIcon;
 import monnef.core.base.ItemMonnefCore;
 import monnef.core.utils.IDProvider;
+import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemInfo;
@@ -45,7 +46,13 @@ public class ItemManager {
             }
 
             if (info.getModule() == module) {
-                String configName = info.getConfigName();
+                String configName = info.getName();
+                // TODO: remove in future; maybe in/after 1.6 update
+                if (ConfigurationManager.useOldConfigItemNames) {
+                    if (configName.equals(item.toString())) {
+                        configName = info.getTitle();
+                    }
+                }
                 int id = idProvider.getItemIDFromConfig(configName);
                 info.setId(id);
             }

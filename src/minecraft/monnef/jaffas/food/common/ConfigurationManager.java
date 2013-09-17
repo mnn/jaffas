@@ -7,8 +7,6 @@ package monnef.jaffas.food.common;
 
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.achievement.AchievementsHandler;
-import monnef.jaffas.food.common.FuelHandler;
-import monnef.jaffas.food.common.JaffasRegistryHelper;
 import net.minecraftforge.common.Configuration;
 
 public class ConfigurationManager {
@@ -33,6 +31,7 @@ public class ConfigurationManager {
     public static boolean vanillaRecipesEnabled;
     public static boolean dungeonLootEnabled;
     public static boolean disableAutoUnEquip;
+    public static boolean useOldConfigItemNames;
 
     public static void loadSettings(Configuration config) {
         showUpdateMessages = config.get(Configuration.CATEGORY_GENERAL, "showUpdateMessages", true).getBoolean(true);
@@ -57,5 +56,6 @@ public class ConfigurationManager {
         dungeonLootEnabled = config.get(Configuration.CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
         disableAutoUnEquip = config.get(Configuration.CATEGORY_GENERAL, "disableAutoUnEquip", false).getBoolean(false);
         AchievementsHandler.setStartingId(config.get(Configuration.CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
+        useOldConfigItemNames = config.get(Configuration.CATEGORY_GENERAL, "useOldConfigItemNames", false, "If you're updating and you want to use your world save then set this option to true.").getBoolean(false);
     }
 }

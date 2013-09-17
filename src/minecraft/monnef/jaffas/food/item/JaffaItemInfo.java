@@ -10,15 +10,15 @@ import net.minecraft.item.Item;
 
 public class JaffaItemInfo {
     private int id;
-    private String configName;
+    private String name;
     private Item item;
     private String title;
     private int iconIndex;
     private ModulesEnum module;
     private int sheetNumber;
 
-    public JaffaItemInfo(String configName) {
-        this.setConfigName(configName);
+    public JaffaItemInfo(String name) {
+        this.setName(name);
     }
 
     public void setId(int id) {
@@ -29,12 +29,12 @@ public class JaffaItemInfo {
         return this.id;
     }
 
-    public void setConfigName(String configName) {
-        this.configName = configName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getConfigName() {
-        return this.configName;
+    public String getName() {
+        return this.name;
     }
 
     public Item getItem() {

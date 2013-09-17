@@ -143,10 +143,10 @@ public class Recipes {
 
         GameRegistry.addSmelting(getItem(sweetRollRaw).itemID, new ItemStack(getItem(sweetRoll)), 0.2F);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), getItem(milkBoxFull));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(cream), 4), getItemStack(duckEgg), getItemStack(duckEgg), new ItemStack(Item.sugar), getItem(milkBoxFull));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(creamSweet), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), getItem(milkBoxFull));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(creamSweet), 4), getItemStack(duckEgg), getItemStack(duckEgg), new ItemStack(Item.sugar), getItem(milkBoxFull));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(creamRoll)), "RC", 'R', new ItemStack(getItem(sweetRoll)), 'C', new ItemStack(getItem(cream)));
+        GameRegistry.addRecipe(new ItemStack(getItem(creamRoll)), "RC", 'R', new ItemStack(getItem(sweetRoll)), 'C', new ItemStack(getItem(creamSweet)));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(flour), 3), new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.wheat),
                 new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.wheat), new ItemStack(Item.paper));
@@ -184,9 +184,9 @@ public class Recipes {
 
         addMalletShapedRecipe(new ItemStack(getItem(vanillaPowder)), new ItemStack(getItem(vanillaBeans)));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(vanillaIcecreamRaw), 4), new ItemStack(getItem(cream)), new ItemStack(getItem(vanillaPowder)), new ItemStack(Item.snowball));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(chocolateIcecreamRaw), 4), new ItemStack(getItem(cream)), new ItemStack(getItem(beans)), new ItemStack(Item.snowball));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(icecreamRaw), 4), new ItemStack(getItem(cream)), new ItemStack(getItem(cream)), new ItemStack(Item.snowball));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(vanillaIcecreamRaw), 4), new ItemStack(getItem(creamSweet)), new ItemStack(getItem(vanillaPowder)), new ItemStack(Item.snowball));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(chocolateIcecreamRaw), 4), new ItemStack(getItem(creamSweet)), new ItemStack(getItem(beans)), new ItemStack(Item.snowball));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(icecreamRaw), 4), new ItemStack(getItem(creamSweet)), new ItemStack(getItem(creamSweet)), new ItemStack(Item.snowball));
 
         GameRegistry.addRecipe(new ItemStack(getItem(vanillaIcecream), 4), "S", "C", 'S', new ItemStack(getItem(vanillaIcecreamFrozen)), 'C', new ItemStack(getItem(cone)));
         GameRegistry.addRecipe(new ItemStack(getItem(chocolateIcecream), 4), "S", "C", 'S', new ItemStack(getItem(chocolateIcecreamFrozen)), 'C', new ItemStack(getItem(cone)));
@@ -368,7 +368,7 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(muttonRaw).itemID, getItemStack(mutton), 0.3f);
         GameRegistry.addSmelting(getItem(spiderLegRaw).itemID, getItemStack(spiderLeg), 0.3f);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(strawberryIcecreamRaw), 4), new ItemStack(getItem(cream)), new ItemStack(getItem(jamStrawberry)), new ItemStack(Item.snowball));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(strawberryIcecreamRaw), 4), new ItemStack(getItem(creamSweet)), new ItemStack(getItem(jamStrawberry)), new ItemStack(Item.snowball));
         RecipesFridge.AddRecipe(getItem(strawberryIcecreamRaw).itemID, getItemStack(strawberryIcecreamFrozen));
         GameRegistry.addRecipe(new ItemStack(getItem(strawberryIcecream), 4), "S", "C", 'S', new ItemStack(getItem(strawberryIcecreamFrozen)), 'C', new ItemStack(getItem(cone)));
 

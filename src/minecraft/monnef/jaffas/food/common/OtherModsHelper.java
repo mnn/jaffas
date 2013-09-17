@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import static monnef.jaffas.food.JaffasFood.Log;
 
 public class OtherModsHelper {
+    boolean IDResolverDetected;
     boolean forestryDetected;
     boolean MFRDetected;
     boolean TEDetected;
@@ -20,7 +21,9 @@ public class OtherModsHelper {
         checkForestry();
         checkMFR();
         checkTE();
+        checkIDResolver();
     }
+
 
     public static void dumpForestryRegister(String category) {
         String msg = "Registered items for " + category + ": ";
@@ -43,6 +46,10 @@ public class OtherModsHelper {
         return TEDetected;
     }
 
+    public boolean isIDResolverDetected() {
+        return IDResolverDetected;
+    }
+
     public Iterable<String> compileDetectedMods() {
         ArrayList<String> list = new ArrayList<String>();
         if (isForestryDetected()) list.add("forestry");
@@ -56,6 +63,10 @@ public class OtherModsHelper {
         if (!MonnefCorePlugin.isInitialized()) {
             throw new RuntimeException("Core is not properly initialized!");
         }
+    }
+
+    private void checkIDResolver() {
+        IDResolverDetected = ClassHelper.isClassPresent("sharose.mods.idresolver.IDResolverMod");
     }
 
     private void checkForestry() {

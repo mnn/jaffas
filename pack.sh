@@ -5,6 +5,7 @@ outtmp=$output/tmp
 core=$output/core
 binPath=bin_data
 dist=$output/dist
+compl=readyToCopy
 
 echo -n Preparing...
 
@@ -112,5 +113,20 @@ zip -q -9r "../$outNameZ.zip" ./*
 cd "$od"
 echo Done
 
+cd $output
+echo -n Creating and populating ready-to-copy directory...
+if [ "${#compl}" -lt 5 ]; then
+	echo "weird string in compl directory variable. halting for safety reasons."
+	exit 1
+fi
+rm -fr "$compl"
+mkdir "$compl"
+mkdir "$compl/mods"
+mkdir "$compl/coremods"
+cp "${outName}.jar" "$compl/mods/"
+cp "${outNameB}.jar" "$compl/coremods/"
+
+cd "$od"
+echo Done
 
 

@@ -6,11 +6,11 @@
 package monnef.jaffas.food.item.common;
 
 import monnef.core.utils.WolfFoodRegistry;
-import monnef.jaffas.food.common.ConfigurationManager;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.block.TileMeatDryer;
+import monnef.jaffas.food.common.ConfigurationManager;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.ItemCleaver;
@@ -118,7 +118,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(browniesPastry, "Brown Pastry", 14, "Brownies Pastry");
         AddItemInfo(puffPastry, "Puff Pastry", 15, "Puff Pastry");
         //AddItemInfo(JaffaItem.peanut, "Peanut", 16, "Peanut");
-        AddItemInfo(cream, "Cream", 17, "Cream");
+        AddItemInfo(creamSweet, "Sweet Cream", 17);
         AddItemInfo(sweetRoll, "Roll", 18, "Roll");
         AddItemInfo(creamRoll, "Cream Roll", 19, "Cream Roll");
         AddItemInfo(cakeTin, "Cake Tin", 20, "Cake Tin");
@@ -386,7 +386,8 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.potatesSlicedInTin, "Crisps In Tin", 255);
         AddItemInfo(JaffaItem.crisps, "Crisps", 256);
 
-        AddItemInfo(JaffaItem.cheeseRaw,"Raw Cheese",257);
+        AddItemInfo(JaffaItem.cheeseRaw, "Raw Cheese", 257);
+        AddItemInfo(JaffaItem.cream, "Cream", 17);
     }
 
     private void registerWolfFood(JaffaItem item) {
@@ -431,7 +432,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(browniesPastry);
         createJaffaItem(puffPastry);
         //createJaffaItem(JaffaItem.peanut);
-        createJaffaItem(cream);
+        createJaffaItem(creamSweet);
         createJaffaItem(sweetRoll);
         createJaffaItem(cakeTin);
         createJaffaItem(browniesInTin);
@@ -719,6 +720,9 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(potatesSlicedInTinRaw);
         createJaffaItem(potatesSlicedInTin);
         createJaffaFood(crisps, 3, 0.8f).setReturnItem(getItemStack(woodenBowl));
+
+        createJaffaItem(cream);
+        createJaffaItem(cheeseRaw).setMaxStackSize(1);
 
         createItemsOreDictRegistration();
 

@@ -23,7 +23,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
-import monnef.core.utils.ClassHelper;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.block.BlockSwitchgrass;
@@ -132,7 +131,7 @@ public class JaffasFood extends jaffasMod {
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
         otherMods = new OtherModsHelper();
-        if (ClassHelper.isClassPresent("sharose.mods.idresolver.IDResolverMod")) {
+        if (otherMods.isIDResolverDetected()) {
             Log.printSevere("ID Resolver detected, do *not* use ID moving or face consequences.");
             Log.printSevere("I warned you.");
         }
@@ -140,16 +139,9 @@ public class JaffasFood extends jaffasMod {
         try {
             config.load();
             idProvider.linkWithConfig(config);
+            ConfigurationManager.loadSettings(config);
 
-            this.moduleManager = new ModuleManager();
-            ModuleManager.Add(ModulesEnum.food);
-            for (ModulesEnum module : ModulesEnum.values()) {
-                boolean defaultState = module.getEnabledByDefault();
-                boolean enabled = config.get("modules", module.toString(), defaultState).getBoolean(defaultState);
-                if (enabled) {
-                    moduleManager.Add(module);
-                }
-            }
+            initializeModuleManager();
 
             itemJaffaPlateID = idProvider.getItemIDFromConfig("jaffaPlate");
             itemJaffaSwordID = idProvider.getItemIDFromConfig("jaffaSword");
@@ -165,8 +157,6 @@ public class JaffasFood extends jaffasMod {
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
             loadBlockIDs(idProvider);
-
-            ConfigurationManager.loadSettings(config);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {
@@ -174,6 +164,18 @@ public class JaffasFood extends jaffasMod {
         }
 
         proxy.registerSounds();
+    }
+
+    private void initializeModuleManager() {
+        this.moduleManager = new ModuleManager();
+        ModuleManager.Add(ModulesEnum.food);
+        for (ModulesEnum module : ModulesEnum.values()) {
+            boolean defaultState = module.getEnabledByDefault();
+            boolean enabled = config.get("modules", module.toString(), defaultState).getBoolean(defaultState);
+            if (enabled) {
+                ModuleManager.Add(module);
+            }
+        }
     }
 
 

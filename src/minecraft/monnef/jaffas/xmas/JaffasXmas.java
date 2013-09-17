@@ -208,7 +208,7 @@ public class JaffasXmas extends jaffasMod {
         // gingerbread figure
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerFigureRaw)), "XXX", " X ", "X X", 'X', getItem(JaffaItem.gingerbread));
         GameRegistry.addSmelting(getItem(JaffaItem.xcandyGingerFigureRaw).itemID, new ItemStack(getItem(JaffaItem.xcandyGingerFigure)), 0.2f);
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerCreamed), 26), getItem(JaffaItem.xcandyGingerFigure), getItem(JaffaItem.cream));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerCreamed), 26), getItem(JaffaItem.xcandyGingerFigure), getItem(JaffaItem.creamSweet));
     }
 
     private Item getItem(JaffaItem type) {
