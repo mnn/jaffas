@@ -27,7 +27,7 @@ import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.crafting.JaffaCraftingHandler;
+import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
@@ -857,7 +857,7 @@ public class JaffasTechnic extends jaffasMod {
 
         Recipes.addRecipe(new ShapedOreRecipe(getItem(friedMushroomsInTinRaw), "MSM", "PPP", " T ", 'M', MUSHROOMS_EATABLE, 'S', getItem(sausage), 'P', JaffasTrees.getFruit(JaffasTrees.bushType.Pea), 'T', getItem(cakeTin)));
         GameRegistry.addSmelting(getItem(friedMushroomsInTinRaw).itemID, getItemStack(friedMushroomsInTinCooked), 2f);
-        JaffaCraftingHandler.AddPersistentItem(friedMushroomsInTinCooked, false, cakeTin);
+        PersistentItemsCraftingHandler.AddPersistentItem(friedMushroomsInTinCooked, false, cakeTin);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(friedMushrooms), 3), getItem(plate), getItem(plate), getItem(plate), getItem(friedMushroomsInTinCooked));
         //Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMushrooms), 2), MUSHROOMS_EATABLE, getItem(grinderMeat)));
         TileGrinder.addOreDictRecipe(MUSHROOMS_EATABLE, new ItemStack(getItem(mincedMushrooms), 2), 120);

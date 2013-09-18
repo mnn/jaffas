@@ -23,7 +23,7 @@ import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
-import monnef.jaffas.food.crafting.JaffaCraftingHandler;
+import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.ItemJaffaBase;
@@ -464,7 +464,7 @@ public class JaffasTrees extends jaffasMod {
         // texture stuff
         proxy.registerRenderThings();
 
-        //GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+        //GameRegistry.registerCraftingHandler(new PersistentItemsCraftingHandler());
 
         registerForestryStuff();
 
@@ -706,7 +706,7 @@ public class JaffasTrees extends jaffasMod {
         GameRegistry.addRecipe(getItemStack(lambWithPeasInTinRaw), " M ", "PPP", " T ", 'M', getItem(muttonRaw), 'P', getFruit(bushType.Pea), 'T', getItem(cakeTin));
         GameRegistry.addSmelting(getItem(lambWithPeasInTinRaw).itemID, getItemStack(lambWithPeasInTin), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(lambWithPeas, 3), getItemStack(lambWithPeasInTin), getItem(plate), getItem(plate), getItem(plate));
-        JaffaCraftingHandler.AddPersistentItem(lambWithPeasInTin, false, getItem(cakeTin).itemID);
+        PersistentItemsCraftingHandler.AddPersistentItem(lambWithPeasInTin, false, getItem(cakeTin).itemID);
 
         // beans
         // chopped tomatoes   ->  raw beans with tomato sauce => baked beans with tomato sauce
@@ -718,7 +718,7 @@ public class JaffasTrees extends jaffasMod {
 
         GameRegistry.addSmelting(getItem(tinDuckOrangeRaw).itemID, getItemStack(tinDuckOrange), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(plateDuckOrange, 3), getItemStack(tinDuckOrange), getItem(plate), getItem(plate), getItem(plate));
-        JaffaCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin).itemID);
+        PersistentItemsCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin).itemID);
 
         GameRegistry.addShapelessRecipe(getItemStack(bananaInChocolate, 2), itemBanana, getItem(chocolate), itemBanana);
 

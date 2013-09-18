@@ -9,9 +9,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ContentHolder;
-import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemPack;
@@ -29,14 +29,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import static monnef.core.utils.DyeHelper.getDye;
+import static monnef.jaffas.food.JaffasFood.otherMods;
+import static monnef.jaffas.food.block.TilePie.PieType;
 import static monnef.jaffas.food.common.ContentHolder.blockColumn;
 import static monnef.jaffas.food.common.ContentHolder.blockJaffaStatue;
 import static monnef.jaffas.food.common.ContentHolder.blockPie;
 import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrass;
 import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrassSolid;
 import static monnef.jaffas.food.common.ContentHolder.blockTable;
-import static monnef.jaffas.food.JaffasFood.otherMods;
-import static monnef.jaffas.food.block.TilePie.PieType;
 import static monnef.jaffas.food.item.JaffaItem.*;
 import static net.minecraftforge.oredict.OreDictionary.WILDCARD_VALUE;
 
@@ -115,13 +115,14 @@ public class Recipes {
                 'S', new ItemStack(Item.silk), 'B', new ItemStack(Block.blockIron),
                 'O', new ItemStack(Block.stone));
 
-        JaffaCraftingHandler.AddPersistentItem(mallet, true, -1);
-        JaffaCraftingHandler.AddPersistentItem(malletStone, true, -1);
-        JaffaCraftingHandler.AddPersistentItem(malletIron, true, -1);
-        JaffaCraftingHandler.AddPersistentItem(malletDiamond, true, -1);
+        PersistentItemsCraftingHandler.AddPersistentItem(mallet, true, -1);
+        PersistentItemsCraftingHandler.AddPersistentItem(malletStone, true, -1);
+        PersistentItemsCraftingHandler.AddPersistentItem(malletIron, true, -1);
+        PersistentItemsCraftingHandler.AddPersistentItem(malletDiamond, true, -1);
 
         addMalletShapedRecipe(new ItemStack(getItem(beans)), new ItemStack(Item.dyePowder, 1, 3));
-        addMalletShapedRecipe(new ItemStack(getItem(butter)), getItemStack(milkBoxFull));
+        addMalletShapedRecipe(new ItemStack(getItem(butter)), getItemStack(cream));
+        addMalletShapedRecipe(new ItemStack(getItem(cheeseRaw)), getItemStack(milkBoxFull));
         addMalletShapedRecipe(new ItemStack(getItem(cakeTin)), new ItemStack(Item.ingotIron));
 
         // moved to the trees module because of the peanut
@@ -137,7 +138,7 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(browniesInTinRaw)), "P", "T", 'P', new ItemStack(getItem(browniesPastry)), 'T', new ItemStack(getItem(cakeTin)));
         GameRegistry.addSmelting(getItem(browniesInTinRaw).itemID, new ItemStack(getItem(browniesInTin)), 1F);
         GameRegistry.addRecipe(new ItemStack(getItem(brownie), 15), "S", "T", 'S', new ItemStack(getItem(knifeKitchen), 1, WILDCARD_VALUE), 'T', getItem(browniesInTin));
-        JaffaCraftingHandler.AddPersistentItem(browniesInTin, false, cakeTin);
+        PersistentItemsCraftingHandler.AddPersistentItem(browniesInTin, false, cakeTin);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(sweetRollRaw), 10), new ItemStack(getItem(puffPastry)), new ItemStack(Item.stick));
 
@@ -255,10 +256,10 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(kettleWaterCold).itemID, new ItemStack(getItem(kettleWaterHot)), 0);
         GameRegistry.addRecipe(new ItemStack(getItem(cupCoffee)), "K", "C", "U",
                 'K', new ItemStack(getItem(kettleWaterHot), 1, WILDCARD_VALUE), 'C', new ItemStack(getItem(coffee)), 'U', new ItemStack(getItem(cup)));
-        JaffaCraftingHandler.AddPersistentItem(kettleWaterHot, true, kettle);
+        PersistentItemsCraftingHandler.AddPersistentItem(kettleWaterHot, true, kettle);
 
         GameRegistry.addRecipe(new ItemStack(getItem(knifeKitchen)), "I  ", " I ", "  S", 'I', new ItemStack(Item.ingotIron), 'S', new ItemStack(Item.stick));
-        JaffaCraftingHandler.AddPersistentItem(knifeKitchen, true, -1);
+        PersistentItemsCraftingHandler.AddPersistentItem(knifeKitchen, true, -1);
 
         RecipesBoard.addRecipeSimple(roll, rollChopped);
         RecipesBoard.addRecipe(new ItemStack(Item.porkRaw), new ItemStack(getItem(meatChopped)));
@@ -294,14 +295,14 @@ public class Recipes {
 
         GameRegistry.addRecipe(new ItemStack(getItem(hamburgerBunRaw)), " O ", "OOO", 'O', getItem(pastry));
         GameRegistry.addSmelting(getItem(hamburgerBunRaw).itemID, new ItemStack(getItem(hamburgerBun)), 0.5f);
-        addMalletShapedRecipe(new ItemStack(getItem(cheese)), new ItemStack(getItem(butter)));
+        //addMalletShapedRecipe(new ItemStack(getItem(cheese)), new ItemStack(getItem(butter)));
 
         RecipesBoard.addRecipe(cheese, 1, cheeseSlice, 4);
 
         GameRegistry.addSmelting(getItem(coneRaw).itemID, new ItemStack(getItem(cone)), 1f);
         GameRegistry.addSmelting(getItem(waferIcecreamRaw).itemID, new ItemStack(getItem(waferIcecream)), 1f);
 
-        JaffaCraftingHandler.AddPersistentItem(grater);
+        PersistentItemsCraftingHandler.AddPersistentItem(grater);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(cheeseGrated)), getItem(grater), getItem(cheese));
         RecipesBoard.addRecipe(salami, 1, salamiSliced, 1);
 
@@ -309,19 +310,21 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(salami)), "M  ", "SM ", "  M", 'M', getItem(mincedMeat), 'S', Item.silk);
         GameRegistry.addRecipe(new ItemStack(getItem(pizzaRaw)), "SCK", "PPP", " T ", 'S', getItem(salamiSliced), 'C', getItem(cheeseGrated), 'K', getItem(bottleKetchup), 'P', getItem(pastry), 'T', getItem(cakeTin));
 
-        JaffaCraftingHandler.AddPersistentItem(bottleKetchup, false, bottleEmpty);
-        JaffaCraftingHandler.AddPersistentItem(bottleBrownMustard, false, bottleEmpty);
-        JaffaCraftingHandler.AddPersistentItem(bottleMustard, false, bottleEmpty);
+        PersistentItemsCraftingHandler.AddPersistentItem(bottleKetchup, false, bottleEmpty);
+        PersistentItemsCraftingHandler.AddPersistentItem(bottleBrownMustard, false, bottleEmpty);
+        PersistentItemsCraftingHandler.AddPersistentItem(bottleMustard, false, bottleEmpty);
 
         GameRegistry.addRecipe(new ItemStack(getItem(wolfHelmet)), " S ", "S S", 'S', getItem(wolfSkin));
         GameRegistry.addRecipe(getItemStack(wolfChest), "S S", "SCS", "CCC", 'S', getItem(wolfSkin), 'C', new ItemStack(Block.cloth, 1, 14));
         GameRegistry.addRecipe(getItemStack(wolfLeggins), "SCS", "S S", "C C", 'S', getItem(wolfSkin), 'C', Item.leather);
         GameRegistry.addRecipe(getItemStack(wolfBoots), "S S", "S S", 'S', getItem(wolfSkin));
 
-        JaffaCraftingHandler.AddPersistentItem(milkBoxFull, false, crumpledPaper).SetSubstituteItemsCount(2);
+        PersistentItemsCraftingHandler.AddPersistentItem(milkBoxFull, false, crumpledPaper).SetSubstituteItemsCount(2);
 
         GameRegistry.addRecipe(getItemStack(milkBoxEmpty, 3), "PP", "PP", "PP", 'P', Item.paper);
-        GameRegistry.addShapelessRecipe(getItemStack(milkBoxFull, 2), Item.bucketMilk, getItem(milkBoxEmpty), getItem(milkBoxEmpty));
+        ItemStack milkStack = getItemStack(milkBoxFull, 2);
+        GameRegistry.addShapelessRecipe(milkStack, Item.bucketMilk, getItem(milkBoxEmpty), getItem(milkBoxEmpty));
+        LeftoversCraftingHandler.registerLeftovers(milkStack, getItemStack(cream));
         GameRegistry.addShapelessRecipe(new ItemStack(Item.bucketMilk), getItem(milkBoxFull), getItem(milkBoxFull), Item.bucketEmpty);
 
         GameRegistry.addRecipe(getItemStack(breadRaw), "PPP", "PPP", 'P', getItem(pastry));
@@ -350,7 +353,7 @@ public class Recipes {
         addRecipe(new ShapedOreRecipe(blockJaffaStatue, "JIJ", "III", "JIJ", 'J', Items.JAFFA, 'I', Item.ingotIron));
 
         for (Items.Juice juice : Items.Juice.values()) {
-            JaffaCraftingHandler.AddPersistentItem(juice.juiceBottle, false, juiceBottle);
+            PersistentItemsCraftingHandler.AddPersistentItem(juice.juiceBottle, false, juiceBottle);
             GameRegistry.addShapelessRecipe(getItemStack(juice.glass, 3), getItem(juice.juiceBottle), getItem(glassEmpty), getItem(glassEmpty), getItem(glassEmpty));
         }
         GameRegistry.addRecipe(getItemStack(glassEmpty, 4), "G G", "GGG", 'G', Block.glass);
@@ -412,12 +415,12 @@ public class Recipes {
 
         addRecipe(new ShapedOreRecipe(getItemStack(cookingPotEggsRaw), "EEE", "EEE", " P ", 'E', Items.EGG, 'P', getItem(cookingPotWater)));
         GameRegistry.addSmelting(getItem(cookingPotEggsRaw).itemID, getItemStack(cookingPotEggs), 3f);
-        JaffaCraftingHandler.AddPersistentItem(cookingPotEggs, false, cookingPot);
+        PersistentItemsCraftingHandler.AddPersistentItem(cookingPotEggs, false, cookingPot);
         GameRegistry.addShapelessRecipe(getItemStack(eggHardBoiled, 6), getItem(cookingPotEggs));
 
         GameRegistry.addShapelessRecipe(getItemStack(cookingPotCocoaCold), getItem(milkBoxFull), getItem(milkBoxFull), getItem(sweetBeans), getItem(sweetBeans), getItem(cookingPot));
         GameRegistry.addSmelting(getItem(cookingPotCocoaCold).itemID, getItemStack(cookingPotCocoaHot), 3f);
-        JaffaCraftingHandler.AddPersistentItem(cookingPotCocoaHot, false, cookingPot);
+        PersistentItemsCraftingHandler.AddPersistentItem(cookingPotCocoaHot, false, cookingPot);
         GameRegistry.addShapelessRecipe(getItemStack(cupCocoa, 5), getItem(cookingPotCocoaHot), getItem(cup), getItem(cup), getItem(cup), getItem(cup), getItem(cup));
 
         GameRegistry.addShapelessRecipe(getItemStack(cookingPot), getItem(cookingPotWater));
@@ -437,7 +440,7 @@ public class Recipes {
         GameRegistry.addShapedRecipe(getItemStack(potatesSlicedInTinRaw), " P ", "P P", " T ", 'P', getItem(potatesSliced), 'T', getItem(cakeTin));
         GameRegistry.addSmelting(getItem(potatesSlicedInTinRaw).itemID, new ItemStack(getItem(potatesSlicedInTin)), 1F);
         GameRegistry.addShapelessRecipe(getItemStack(crisps, 2), getItem(woodenBowl), getItem(woodenBowl), getItem(potatesSlicedInTin));
-        JaffaCraftingHandler.AddPersistentItem(potatesSlicedInTin, false, cakeTin);
+        PersistentItemsCraftingHandler.AddPersistentItem(potatesSlicedInTin, false, cakeTin);
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.paper, 1), "xxx", "xxx", 'x', new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP));
     }
@@ -502,7 +505,7 @@ public class Recipes {
         GameRegistry.addRecipe(getItemStack(coupledRaw), "I", "F", 'I', input, 'F', getItem(fryingPan));
         GameRegistry.addSmelting(getItem(coupledRaw).itemID, getItemStack(coupled), 0f);
         GameRegistry.addShapelessRecipe(getItemStack(output), getItem(coupled));
-        JaffaCraftingHandler.AddPersistentItem(coupled, false, fryingPan);
+        PersistentItemsCraftingHandler.AddPersistentItem(coupled, false, fryingPan);
     }
 
     public static void addFryingPanRecipe(JaffaItem input, JaffaItem coupledRaw, JaffaItem coupled, JaffaItem output) {

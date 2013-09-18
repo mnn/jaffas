@@ -7,8 +7,8 @@ package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,13 +21,13 @@ import java.util.HashSet;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 
-public class JaffaCraftingHandler implements ICraftingHandler {
+public class PersistentItemsCraftingHandler implements ICraftingHandler {
 
     private boolean debug = false;
 
     private static HashMap<Integer, PersistentItemInfo> persistentItems = new HashMap<Integer, PersistentItemInfo>();
 
-    public JaffaCraftingHandler() {
+    public PersistentItemsCraftingHandler() {
         debug = JaffasFood.debug;
     }
 
@@ -59,15 +59,12 @@ public class JaffaCraftingHandler implements ICraftingHandler {
     @Override
     public void onCrafting(EntityPlayer player, ItemStack item,
                            IInventory craftMatrix) {
-        //HandleMallets(craftMatrix);
+        handleRolls(craftMatrix);
 
-        //HandleTin(craftMatrix);
-        HandleRolls(craftMatrix);
-
-        HandlePersistentItems(craftMatrix, player);
+        handlePersistentItems(craftMatrix, player);
     }
 
-    private void HandlePersistentItems(IInventory matrix, EntityPlayer player) {
+    private void handlePersistentItems(IInventory matrix, EntityPlayer player) {
         int ingredientsCount = 0;
         HashSet<Integer> processedSlots = new HashSet<Integer>(); // to not process newly added items (because they're result of some recipe)
 
@@ -141,7 +138,11 @@ public class JaffaCraftingHandler implements ICraftingHandler {
         return -1;
     }
 
-    private void HandleRolls(IInventory matrix) {
+    @Override
+    public void onSmelting(EntityPlayer player, ItemStack item) {
+    }
+
+    private void handleRolls(IInventory matrix) {
         boolean foundPuff = false;
         int stickSlot = -1, ingredientsCount = 0;
 
@@ -164,7 +165,5 @@ public class JaffaCraftingHandler implements ICraftingHandler {
         }
     }
 
-    @Override
-    public void onSmelting(EntityPlayer player, ItemStack item) {
-    }
+
 }

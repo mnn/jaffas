@@ -2,21 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManager.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItemInfo.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItemInfo.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/HelperCraftingContainer.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/JaffasXmas.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/JaffasXmas.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pack.sh" afterPath="$PROJECT_DIR$/pack.sh" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MOVED" beforePath="D:\workspace\mc\env\1.5.0\jaffas\mcp\src\minecraft\monnef\jaffas\food\crafting\JaffaCraftingHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379408903867" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379408218959" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379493263645" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379489534108" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372606222178" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374156004628" ignored="false" />
@@ -38,7 +36,7 @@
     <file path="/ItemSink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364139094455" ignored="false" />
     <file path="/JaffaItem.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379410083934" ignored="false" />
     <file path="/TileEntitySink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364132538638" ignored="false" />
-    <file path="/Recipes.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379406211705" ignored="false" />
+    <file path="/Recipes.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379494780095" ignored="false" />
     <file path="/mod_jaffas_ores.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1363117153436" ignored="false" />
     <file path="/VersionHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368460012146" ignored="false" />
     <file path="/IPowerConsumer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649430440" ignored="false" />
@@ -141,7 +139,7 @@
     <file path="/BlockItemPie.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359144144015" ignored="false" />
     <file path="/ItemBlockPie.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364827697041" ignored="false" />
     <file path="/PersistentItemInfo.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359147127183" ignored="false" />
-    <file path="/JaffaCraftingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1370715357991" ignored="false" />
+    <file path="/JaffaCraftingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379490577686" ignored="false" />
     <file path="/BlockJaffaCrops.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367345474783" ignored="false" />
     <file path="/ItemSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375298241310" ignored="false" />
     <file path="/GuiSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364138789010" ignored="false" />
@@ -343,7 +341,7 @@
     <file path="/ItemBlunderbass.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365351206571" ignored="false" />
     <file path="$PROJECT_DIR$/../../dawn/src/monnef/dawn/item/ItemBlunderbass.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365349496334" ignored="false" />
     <file path="$PROJECT_DIR$/../../dawn/src/monnef/dawn/item/ItemBlunderbuss.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365354427763" ignored="false" />
-    <file path="/JaffasFood.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379410850724" ignored="false" />
+    <file path="/JaffasFood.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379490879009" ignored="false" />
     <file path="/JaffasTrees.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379323086872" ignored="false" />
     <file path="$PROJECT_DIR$/src/minecraft/monnef/core/utils/WorldHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365502657863" ignored="false" />
     <file path="$PROJECT_DIR$/src/minecraft/monnef/core/utils/UrlHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365502657863" ignored="false" />
@@ -654,6 +652,8 @@
     <file path="/ContentHolder.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379405684534" ignored="false" />
     <file path="/GenerationHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379406402114" ignored="false" />
     <file path="/ConfigurationManager.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379410915958" ignored="false" />
+    <file path="/LeftoversCraftingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379495378729" ignored="false" />
+    <file path="/HelperCraftingContainer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379493357129" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -673,6 +673,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -709,7 +710,6 @@
         <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/CompostRegister.java" line="66" class="monnef.jaffas.technic.common.CompostRegister" package="monnef.jaffas.technic.common">
         <option name="ENABLED" value="true" />
@@ -842,83 +842,45 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="JaffasFood.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="141" column="39" selection-start="6286" selection-end="6286" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#0#11190#0" expanded="true" />
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OtherModsHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="6" selection-start="1359" selection-end="1359" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConfigurationManager.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="66" selection-start="4760" selection-end="4760" vertical-scroll-proportion="0.8368">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Items.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="15" selection-start="3725" selection-end="3725" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemManagerAccessor.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManagerAccessor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="22" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="90" column="23" selection-start="3312" selection-end="3312" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JaffaItemInfo.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItemInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="17" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Recipes.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="153" column="0" selection-start="8349" selection-end="8349" vertical-scroll-proportion="0.0">
+            <state line="326" column="61" selection-start="22016" selection-end="22016" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="e#0#36599#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LeftoversCraftingHandler.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="70" column="64" selection-start="3004" selection-end="3004" vertical-scroll-proportion="1.3244514">
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#905#931#0" expanded="true" />
+                <element signature="e#1148#1157#0" expanded="true" />
+                <element signature="e#3063#3072#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PersistentItemsCraftingHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="131" column="17" selection-start="5334" selection-end="5334" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InventoryCrafting.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/inventory/InventoryCrafting.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="11" selection-start="503" selection-end="503" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -942,12 +904,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemLocomotive.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemTurbineBlade.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ContentHolder.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/world/GenerationHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/world/WorldGenHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/ConfigurationManager.java" />
@@ -955,9 +912,14 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItemInfo.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManager.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/JaffaCraftingHandler.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/HelperCraftingContainer.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java" />
       </list>
     </option>
   </component>
@@ -1090,6 +1052,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1282,7 +1246,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
+              <option name="myItemId" value="crafting" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1320,8 +1284,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1341,9 +1303,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.31578946" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.31578946" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1364,9 +1326,6 @@
       <recent name="monnef.jaffas.food.block" />
       <recent name="monnef.jaffas.food.item" />
     </key>
-    <key name="IntroduceConstantDialog.RECENTS_KEY">
-      <recent name="monnef.core.MonnefCorePlugin" />
-    </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="monnef.jaffas.food.ConfigurationManager" />
       <recent name="monnef.jaffas.food.ContentHolder" />
@@ -1374,12 +1333,15 @@
       <recent name="monnef.core.utils.EntityHelper" />
       <recent name="monnef.jaffas.power.block.common.ProcessingMachineRegistry" />
     </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="monnef.core.MonnefCorePlugin" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="monnef.jaffas.food.crafting" />
       <recent name="monnef.core.collection" />
       <recent name="monnef.jaffas.power.block" />
       <recent name="monnef.jaffas.food.nei" />
       <recent name="monnef.jaffas.food.block" />
-      <recent name="monnef.core.utils" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="monnef.jaffas.power.common" />
@@ -1855,128 +1817,121 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileGrinder.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/crafting/RecipesMapExtending.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="23" selection-start="831" selection-end="831" vertical-scroll-proportion="0.254023">
+        <state line="21" column="19" selection-start="900" selection-end="900" vertical-scroll-proportion="0.33333334">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntitySheep.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="49" column="0" selection-start="2144" selection-end="2144" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockMeatDryer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="26" selection-start="2334" selection-end="2334" vertical-scroll-proportion="0.0">
+        <state line="309" column="60" selection-start="9841" selection-end="9841" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffasHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/inventory/SlotCrafting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="40" selection-start="1171" selection-end="1171" vertical-scroll-proportion="0.74608153">
+        <state line="120" column="36" selection-start="4159" selection-end="4159" vertical-scroll-proportion="0.41639343">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/world/WorldGenHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/cpw/mods/fml/common/registry/GameRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="21" selection-start="215" selection-end="215" vertical-scroll-proportion="0.26645768">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#310#319#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ContentHolder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="354" column="36" selection-start="17621" selection-end="17621" vertical-scroll-proportion="0.25747126">
+        <state line="316" column="32" selection-start="11396" selection-end="11396" vertical-scroll-proportion="0.56113905">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/jaffasMod.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/inventory/ContainerWorkbench.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="25" selection-start="620" selection-end="620" vertical-scroll-proportion="0.15632184">
+        <state line="9" column="47" selection-start="340" selection-end="340" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/inventory/Container.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="154" selection-start="3926" selection-end="3926" vertical-scroll-proportion="0.74252874">
+        <state line="14" column="22" selection-start="437" selection-end="437" vertical-scroll-proportion="0.113902844">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/OtherModsHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/crafting/CraftingManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="6" selection-start="1359" selection-end="1359" vertical-scroll-proportion="0.0">
+        <state line="257" column="49" selection-start="17837" selection-end="17837" vertical-scroll-proportion="0.3327869">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/inventory/IInventory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="138" selection-end="138" vertical-scroll-proportion="0.11147541">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/HelperCraftingContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="63" selection-start="519" selection-end="519" vertical-scroll-proportion="0.27868852">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/crafting/ShapedRecipes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="118" column="35" selection-start="3725" selection-end="3725" vertical-scroll-proportion="0.16557378">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/crafting/RecipesArmorDyes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="150" column="21" selection-start="4790" selection-end="4790" vertical-scroll-proportion="0.69344264">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/crafting/IRecipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="19" selection-start="591" selection-end="591" vertical-scroll-proportion="0.5852459">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="0" selection-start="8349" selection-end="8349" vertical-scroll-proportion="0.0">
+        <state line="326" column="61" selection-start="22016" selection-end="22016" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#0#36599#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItemInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/inventory/InventoryCrafting.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="17" selection-start="562" selection-end="562" vertical-scroll-proportion="0.0">
+        <state line="18" column="11" selection-start="503" selection-end="503" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="15" selection-start="3725" selection-end="3725" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManagerAccessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="22" selection-start="707" selection-end="707" vertical-scroll-proportion="0.0">
+        <state line="131" column="17" selection-start="5334" selection-end="5334" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/ItemManager.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="90" column="23" selection-start="3312" selection-end="3312" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="141" column="39" selection-start="6286" selection-end="6286" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#11190#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="66" selection-start="4760" selection-end="4760" vertical-scroll-proportion="0.8368">
+        <state line="70" column="64" selection-start="3004" selection-end="3004" vertical-scroll-proportion="1.3244514">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#905#931#0" expanded="true" />
+            <element signature="e#1148#1157#0" expanded="true" />
+            <element signature="e#3063#3072#0" expanded="true" />
           </folding>
         </state>
       </provider>

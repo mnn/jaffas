@@ -41,7 +41,8 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
-import monnef.jaffas.food.crafting.JaffaCraftingHandler;
+import monnef.jaffas.food.crafting.LeftoversCraftingHandler;
+import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
@@ -235,7 +236,8 @@ public class JaffasFood extends jaffasMod {
         guiHandler = new GuiHandler();
         NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
 
-        GameRegistry.registerCraftingHandler(new JaffaCraftingHandler());
+        GameRegistry.registerCraftingHandler(new PersistentItemsCraftingHandler());
+        GameRegistry.registerCraftingHandler(new LeftoversCraftingHandler());
 
         proxy.registerRenderThings();
         GameRegistry.registerFuelHandler(new FuelHandler());
