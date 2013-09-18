@@ -16,12 +16,12 @@ import net.minecraft.inventory.Slot;
 import static monnef.jaffas.food.block.TileRipeningBox.RIPENING_SLOTS;
 
 public class ContainerRipeningBox extends ContainerJaffas {
-    protected TileRipeningBox board;
+    protected TileRipeningBox box;
     private int[] lastRipStatus;
 
     public ContainerRipeningBox(InventoryPlayer inventoryPlayer, TileRipeningBox te) {
         super(inventoryPlayer, te);
-        board = te;
+        box = te;
         lastRipStatus = new int[RIPENING_SLOTS];
     }
 
@@ -29,7 +29,7 @@ public class ContainerRipeningBox extends ContainerJaffas {
     public void addCraftingToCrafters(ICrafting par1ICrafting) {
         super.addCraftingToCrafters(par1ICrafting);
         for (int i = 0; i < RIPENING_SLOTS; i++) {
-            par1ICrafting.sendProgressBarUpdate(this, i, board.getRipeningStatus(i));
+            par1ICrafting.sendProgressBarUpdate(this, i, box.getRipeningStatus(i));
         }
     }
 
@@ -38,15 +38,15 @@ public class ContainerRipeningBox extends ContainerJaffas {
         super.detectAndSendChanges();
 
         for (int i = 0; i < RIPENING_SLOTS; i++) {
-            for (int var1 = 0; var1 < this.crafters.size(); ++var1) {
-                ICrafting var2 = (ICrafting) this.crafters.get(var1);
+            for (int crafterIdx = 0; crafterIdx < this.crafters.size(); ++crafterIdx) {
+                ICrafting currCrafter = (ICrafting) this.crafters.get(crafterIdx);
 
-                if (lastRipStatus[i] != board.getRipeningStatus(i)) {
-                    var2.sendProgressBarUpdate(this, 0, board.getRipeningStatus(i));
+                if (lastRipStatus[i] != box.getRipeningStatus(i)) {
+                    currCrafter.sendProgressBarUpdate(this, i, box.getRipeningStatus(i));
                 }
             }
 
-            lastRipStatus[i] = board.getRipeningStatus(i);
+            lastRipStatus[i] = box.getRipeningStatus(i);
         }
 
     }
@@ -55,13 +55,13 @@ public class ContainerRipeningBox extends ContainerJaffas {
     @Override
     public void updateProgressBar(int id, int value) {
         if (id >= 0 && id < RIPENING_SLOTS) {
-            board.setRipeningStatus(id, value);
+            box.setRipeningStatusFromGUI(id, value);
         }
     }
 
     @Override
     public int getSlotsCount() {
-        return board.getSizeInventory();
+        return box.getSizeInventory();
     }
 
     @Override

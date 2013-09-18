@@ -280,4 +280,9 @@ public class JaffasFood extends jaffasMod {
     public static Item getItem(JaffaItem item) {
         return ContentHolder.getItem(item);
     }
+
+    public static boolean itemsHaveSameID(JaffaItem item, ItemStack stack) {
+        if (stack == null) return false;
+        return getItem(item).itemID == stack.itemID;
+    }
 }
