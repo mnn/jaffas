@@ -5,11 +5,14 @@ import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeDirection;
 
 public class BlockRipeningBox extends BlockContainerJaffas {
     public BlockRipeningBox(int id, int index, Material material) {
         super(id, index, material);
+        setIconsCount(3);
     }
 
     @Override
@@ -27,5 +30,18 @@ public class BlockRipeningBox extends BlockContainerJaffas {
 
         player.openGui(JaffasFood.instance, GuiHandler.GuiTypes.RIPENING_BOX.ordinal(), world, x, y, z);
         return true;
+    }
+
+    @Override
+    public Icon getIcon(int side, int meta) {
+        ForgeDirection dir = ForgeDirection.getOrientation(side);
+        switch (dir) {
+            case UP:
+                return icons[1];
+            case DOWN:
+                return icons[2];
+            default:
+                return icons[0];
+        }
     }
 }

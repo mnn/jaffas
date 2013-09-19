@@ -70,13 +70,13 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
+import static monnef.jaffas.food.JaffasFood.instance;
+import static monnef.jaffas.food.JaffasFood.otherMods;
+import static monnef.jaffas.food.JaffasFood.proxy;
 import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilityHigh;
 import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilityLow;
 import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilityMed;
 import static monnef.jaffas.food.common.ConfigurationManager.dungeonLootEnabled;
-import static monnef.jaffas.food.JaffasFood.instance;
-import static monnef.jaffas.food.JaffasFood.otherMods;
-import static monnef.jaffas.food.JaffasFood.proxy;
 import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
 import static monnef.jaffas.technic.JaffasTechnic.breakableIronMaterial;
 
@@ -339,7 +339,7 @@ public class ContentHolder {
             RegistryUtils.registerBlock(ContentHolder.blockDir2, "dir2", "Dir 2 - All sides");
         }
 
-        ContentHolder.blockRipeningBox = new BlockRipeningBox(ContentHolder.blockRipeningBoxID, 250, breakableIronMaterial);
+        ContentHolder.blockRipeningBox = new BlockRipeningBox(ContentHolder.blockRipeningBoxID, 257, breakableIronMaterial);
         RegistryUtils.registerBlock(ContentHolder.blockRipeningBox, "ripeningBox", "Ripening Box");
         registerTileEntity(TileRipeningBox.class, "ripeningBox");
     }
