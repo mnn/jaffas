@@ -19,11 +19,11 @@ import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
-import monnef.jaffas.food.common.ConfigurationManager;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.ItemBlockJaffas;
+import monnef.jaffas.food.common.ConfigurationManager;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
@@ -178,6 +178,9 @@ public class JaffasTechnic extends jaffasMod {
 
     private int BlockJaffarrolID;
     public static BlockTechnic blockJaffarrol;
+
+    private int jaffarrolNuggetID;
+    public static ItemTechnic jaffarrolNugget;
 
     private int BlockLimsewID;
     public static BlockTechnic blockLimsew;
@@ -410,6 +413,8 @@ public class JaffasTechnic extends jaffasMod {
             }
             disableLampParticles = config.get(Configuration.CATEGORY_GENERAL, "disableLampParticles", false).getBoolean(false);
             TileCobbleBreaker.setTimer(config.get(Configuration.CATEGORY_GENERAL, "cobbleBreakerTimer", 12).getInt());
+
+            jaffarrolNuggetID = idProvider.getItemIDFromConfig("jaffarrolNugget");
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {
@@ -538,12 +543,10 @@ public class JaffasTechnic extends jaffasMod {
 
     private void createItemsAndBlocks() {
         jaffarrol = new ItemTechnic(JaffarrolID, 0);
-        jaffarrol.setUnlocalizedName("jaffarrol");
-        LanguageRegistry.addName(jaffarrol, "Jaffarrol Ingot");
+        RegistryUtils.registerItem(jaffarrol, "jaffarrol", "Jaffarrol Ingot");
 
         jaffarrolRaw = new ItemTechnic(JaffarrolRawID, 1);
-        jaffarrolRaw.setUnlocalizedName("jaffarrolRaw");
-        LanguageRegistry.addName(jaffarrolRaw, "Raw Jaffarrol");
+        RegistryUtils.registerItem(jaffarrolRaw, "jaffarrolRaw", "Raw Jaffarrol");
 
         jaffarrolRefined = new ItemTechnic(JaffarrolRefinedID, 2);
         jaffarrolRefined.setUnlocalizedName("jaffarrolRefined");
@@ -691,6 +694,9 @@ public class JaffasTechnic extends jaffasMod {
         RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
         JaffasRegistryHelper.registerTileEntity(TileFermenter.class, "fermenter");
         JaffasRegistryHelper.registerTileEntity(TileFermenterInventoryRouter.class, "fermenterInvRouter");
+
+        jaffarrolNugget = new ItemTechnic(jaffarrolNuggetID, 103);
+        RegistryUtils.registerItem(jaffarrolNugget, "jaffarrolNugget", "Jaffarrol Nugget");
 
         createTools();
     }
@@ -915,6 +921,13 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapedRecipe(new ItemStack(highPlantPost), "SSS", " S ", " S ", 'S', Item.stick);
         GameRegistry.addShapelessRecipe(new ItemStack(hopWeatMixture), hop, Item.wheat);
         GameRegistry.addShapedRecipe(ItemHelper.constructDamagedItemStack(Item.flintAndSteel, 0.33f), "J ", " F", 'J', jaffarrolRefined, 'F', Item.flint);
+
+        GameRegistry.addShapelessRecipe(new ItemStack(jaffarrolNugget, 9), jaffarrol);
+        GameRegistry.addShapelessRecipe(new ItemStack(jaffarrol), ItemHelper.constructStackArray(new ItemStack(jaffarrolNugget), 9));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(
+                new ItemStack(ContentHolder.blockRipeningBox), "SSS", "P P", "NSN", 'S', Recipes.WOOD_SLAB, 'P', Recipes.WOOD_PLANK, 'N', jaffarrolNugget
+        ));
     }
 
     private void addEnchantRecipe(Item toEnchant, Item toDestroy) {

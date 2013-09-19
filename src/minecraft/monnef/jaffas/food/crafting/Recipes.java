@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ContentHolder;
@@ -331,7 +332,6 @@ public class Recipes {
         GameRegistry.addSmelting(getItem(breadRaw).itemID, getItemStack(bread), 0.5f);
 
         GameRegistry.addRecipe(getItemStack(rawBurger), "PPP", "PPP", 'P', getItem(mincedMeat));
-        //GameRegistry.addSmelting(getItem(JaffaItem.rawBurger).itemID, getItemStack(JaffaItem.burger), 2f);
         addFryingPanRecipe(rawBurger, fryingPanBurgerRaw, fryingPanBurger, burger);
         RecipesBoard.addRecipe(bread, 1, breadSlice, 12);
         GameRegistry.addShapelessRecipe(getItemStack(hamburger, 5), getItem(bottleKetchup), getItem(bottleMustard), getItem(hamburgerBun), getItem(burger), getItem(onionSliced));

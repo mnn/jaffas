@@ -25,9 +25,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LeftoversCraftingHandler implements ICraftingHandler {
+    public static boolean disabled = false;
+
     private static Map<IRecipe, List<ItemStack>> db = new LinkedHashMap<IRecipe, List<ItemStack>>();
 
     public static void registerLeftovers(ItemStack recipeOutput, ItemStack... items) {
+        if (disabled) return;
         List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
         List<IRecipe> matching = new ArrayList<IRecipe>();
         for (IRecipe recipe : recipes) {
@@ -40,6 +43,7 @@ public class LeftoversCraftingHandler implements ICraftingHandler {
     }
 
     public static void registerLeftovers(IRecipe recipe, ItemStack... items) {
+        if (disabled) return;
         if (recipe == null) throw new RuntimeException("Null recipe!");
         if (items.length > 9) throw new RuntimeException("Too many items to return for any recipe.");
         int inputItemsCount = -1;
@@ -58,6 +62,7 @@ public class LeftoversCraftingHandler implements ICraftingHandler {
 
     @Override
     public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) {
+        if (disabled) return;
         Container c = new HelperCraftingContainer(craftMatrix);
         int w = 3, h = 3;
         if (craftMatrix instanceof ContainerPlayer) {
