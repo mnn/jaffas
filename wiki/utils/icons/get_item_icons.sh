@@ -53,6 +53,12 @@ for file in "$tmpdir"/*.png ; do
 done
 printDone
 
+#---
+
+printDoing "Making montage"
+montage -tile 30x -label '%t' -font Arial -pointsize 10 -background '#000000' -fill 'gray' -define png:size=32x32 -geometry 32x32+7+7 "$output/*.png" montageItems.png
+printDone
+
 optiPNGlogFile="optipng.log"
 rm -f $optiPNGlogFile
 printDoing "Applying OptiPNG"

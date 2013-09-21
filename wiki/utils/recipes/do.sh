@@ -29,7 +29,9 @@ for file in $src/*.png ; do
 done
 echo
 
-montage -tile 3x -geometry +2+2 $tar/* montage.png
+#montage -tile 3x -geometry +2+2 $tar/* montage.png
+#montage -verbose -label '%f' -font Helvetica -pointsize 10 -background '#000000' -fill 'gray' -define jpeg:size=200x200 -geometry 200x200+2+2 -auto-orient P21603{65..70}.JPG ~/Dropbox/contact-dark.jpg
+montage -tile 6x -label '%t' -font Arial -pointsize 10 -background '#000000' -fill 'gray' -define png:size=250x160 -geometry 250x160+2+2 $tar/* montage.png
 
 echo "Running optiPNG"
 opLog="optipng.log"
