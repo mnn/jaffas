@@ -89,6 +89,7 @@ import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
@@ -537,8 +538,12 @@ public class JaffasTechnic extends jaffasMod {
 
     private void addDrops() {
         CustomDrop.addDrop(EntitySkeleton.class, limsew, 0.05f);
-        CustomDrop.addDrop(EntityZombie.class, jaffarrolRaw, 0.15f);
+        CustomDrop.addDrop(EntityZombie.class, jaffarrolRaw, 0.01f);
+        CustomDrop.addDrop(EntityZombie.class, jaffarrolNugget, 0.15f);
+        CustomDrop.addDrop(EntityZombie.class, jaffarrolNugget, 0.15f);
         CustomDrop.addDrop(EntityEnderman.class, limsew, 0.25f);
+        CustomDrop.addDrop(EntityEnderman.class, limsew, 0.10f);
+        CustomDrop.addDrop(EntityCreeper.class, limsew, 0.05f);
     }
 
     private void createItemsAndBlocks() {
@@ -755,7 +760,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addShapelessRecipe(new ItemStack(limsew, 9), new ItemStack(blockLimsew));
         GameRegistry.addShapelessRecipe(new ItemStack(jaffarrol, 9), new ItemStack(blockJaffarrol));
 
-        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 0), "JRJ", "RLR", "JRJ", 'J', jaffarrol, 'R', Item.redstone, 'L', limsew);
+        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 0), "JRJ", "RLR", "JRJ", 'J', jaffarrolNugget, 'R', Item.redstone, 'L', limsew);
         GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 1), "JRJ", "CLC", "JRJ", 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew, 'C', new ItemStack(itemCentralUnit, 1, 0));
         GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 2), "LJL", "CLC", "LJL", 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew, 'C', new ItemStack(itemCentralUnit, 1, 1));
 
@@ -774,7 +779,7 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', JaffasTechnic.jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockIron);
 
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', JaffasTechnic.jaffarrol, 'I', Item.ingotIron);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', JaffasTechnic.jaffarrol, 'G', Block.glass);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', JaffasTechnic.jaffarrolNugget, 'G', Block.glass);
 
         GameRegistry.addRecipe(new ItemStack(ContentHolder.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', JaffasTechnic.jaffarrol);
 
@@ -791,7 +796,7 @@ public class JaffasTechnic extends jaffasMod {
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "DLB", "GSL", "BGD", 'L', limsew, 'B', Item.blazePowder, 'D', Item.diamond, 'G', Item.lightStoneDust, 'S', getItem(spawnStoneMedium));
         }
 
-        GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', jaffarrolNugget);
 
         GameRegistry.addSmelting(blockJaffarrolOre.blockID, new ItemStack(jaffarrol), 1f);
         GameRegistry.addSmelting(blockLimsewOre.blockID, new ItemStack(limsew), 1f);
@@ -840,9 +845,7 @@ public class JaffasTechnic extends jaffasMod {
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRefined));
         GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0);
 
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrol);
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrolDust);
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, limsew);
+        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrolNugget);
 
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IJI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron);
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "I I", "JIJ", 'J', jaffarrol, 'I', Block.glass);

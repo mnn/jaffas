@@ -314,7 +314,7 @@ public class JaffasPower extends jaffasMod {
 
             GameRegistry.addRecipe(new ItemStack(grinder), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
 
-            GameRegistry.addShapedRecipe(new ItemStack(toaster), "CJ", "H ", 'C', JaffasTechnic.itemCasingRefined, 'J', JaffasTechnic.jaffarrol, 'H', createCentralUnitStack(CentralUnitEnum.SIMPLE));
+            GameRegistry.addShapedRecipe(new ItemStack(toaster), "CJ", "H ", 'C', JaffasTechnic.itemCasingRefined, 'J', JaffasTechnic.jaffarrolNugget, 'H', createCentralUnitStack(CentralUnitEnum.SIMPLE));
 
             addKitchenUnitRecipe(0, new ItemStack(Block.planks, 1, 2));
             addKitchenUnitRecipe(0, new ItemStack(Block.planks, 1, 0));
