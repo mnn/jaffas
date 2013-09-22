@@ -7,8 +7,8 @@ package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.block.ContainerJaffas;
-import monnef.jaffas.technic.client.SlotOutput;
+import monnef.core.common.ContainerJaffas;
+import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;

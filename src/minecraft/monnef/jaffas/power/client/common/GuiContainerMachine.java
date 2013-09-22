@@ -30,9 +30,7 @@ public class GuiContainerMachine extends GuiContainerJaffas {
 
     public GuiContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory tileEntity, ContainerMachine container) {
         super(container);
-
         this.tile = tileEntity;
-        refreshXY();
     }
 
     @Override
@@ -48,22 +46,14 @@ public class GuiContainerMachine extends GuiContainerJaffas {
         return tile.getMachineTitle();
     }
 
-    protected int x, y;
-
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.renderEngine.bindTexture(getBackgroundTexture());
-        refreshXY();
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
         if (tile.isPowerBarRenderingEnabled())
             drawEnergyBar(tile);
-    }
-
-    protected void refreshXY() {
-        x = (width - xSize) / 2;
-        y = (height - ySize) / 2;
     }
 
     protected String getBackgroundTexture() {

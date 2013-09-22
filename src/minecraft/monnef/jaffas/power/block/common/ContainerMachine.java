@@ -8,7 +8,7 @@ package monnef.jaffas.power.block.common;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.food.block.ContainerJaffas;
+import monnef.core.common.ContainerJaffas;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;

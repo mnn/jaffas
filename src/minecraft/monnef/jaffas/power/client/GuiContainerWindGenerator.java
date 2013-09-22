@@ -36,7 +36,6 @@ public class GuiContainerWindGenerator extends GuiContainerMachine {
     @Override
     public void initGui() {
         super.initGui();
-        refreshXY();
         safeRadButton = new GuiButton(CHECK_SPACE_BUTTON_ID, x + 8, y + CHECK_SPACE_Y_OFFSET - 3, 100, 20, checkText);
         buttonList.add(safeRadButton);
     }
