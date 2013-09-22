@@ -28,6 +28,7 @@ public class BlockConstruction extends BlockTechnic {
         setHardness(5);
         setResistance(15);
         setStepSound(soundMetalFootstep);
+        setUnlocalizedName("constructionBlock");
     }
 
     @Override

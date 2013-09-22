@@ -284,8 +284,7 @@ public class ContentHolder {
         registerTileEntity(TileCross.class, "cross");
 
         ContentHolder.blockSink = new BlockSink(ContentHolder.blockSinkID, 141);
-        GameRegistry.registerBlock(ContentHolder.blockSink, "blockSink");
-        LanguageRegistry.addName(ContentHolder.blockSink, "Faucet");
+        RegistryUtils.registerBlock(ContentHolder.blockSink, "blockSink", "Faucet");
         registerTileEntity(TileSink.class, "sink");
 
         ContentHolder.blockBoard = new BlockBoard(ContentHolder.blockBoardID, 142, Material.wood);
