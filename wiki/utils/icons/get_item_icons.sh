@@ -75,6 +75,7 @@ printDone
 printDoing "Converting blocks and vanilla items"
 for file in "$tmpdir"/*.png ; do
     filename=$(basename "$file")
+    filename=`tr '[:upper:]' '[:lower:]' <<< "$filename"`
     convert  "$file" -transparent "rgb(255,0,255)" png8:"$outputB/$filename"
 done
 printDone
