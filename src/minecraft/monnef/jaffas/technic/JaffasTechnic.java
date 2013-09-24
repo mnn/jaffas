@@ -92,6 +92,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -544,6 +545,7 @@ public class JaffasTechnic extends jaffasMod {
         CustomDrop.addDrop(EntityEnderman.class, limsew, 0.25f);
         CustomDrop.addDrop(EntityEnderman.class, limsew, 0.10f);
         CustomDrop.addDrop(EntityCreeper.class, limsew, 0.05f);
+        CustomDrop.addDrop(EntitySlime.class, limsew, 0.25f);
     }
 
     private void createItemsAndBlocks() {
@@ -931,6 +933,16 @@ public class JaffasTechnic extends jaffasMod {
         GameRegistry.addRecipe(new ShapedOreRecipe(
                 new ItemStack(ContentHolder.blockRipeningBox), "SSS", "P P", "NSN", 'S', Recipes.WOOD_SLAB, 'P', Recipes.WOOD_PLANK, 'N', jaffarrolNugget
         ));
+
+        addToolRecycleRecipe(pickaxeJaffarrol, 3);
+        addToolRecycleRecipe(hoeJaffarrol, 2);
+        addToolRecycleRecipe(axeJaffarrol, 3);
+        addToolRecycleRecipe(spadeJaffarrol, 1);
+        addToolRecycleRecipe(swordJaffarrol, 2);
+    }
+
+    private void addToolRecycleRecipe(Item tool, int nuggetsCount) {
+        GameRegistry.addShapelessRecipe(new ItemStack(jaffarrolNugget, nuggetsCount), new ItemStack(tool, 1, tool.getMaxDamage()));
     }
 
     private void addEnchantRecipe(Item toEnchant, Item toDestroy) {
