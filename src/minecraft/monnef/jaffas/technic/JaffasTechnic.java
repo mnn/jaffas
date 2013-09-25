@@ -153,6 +153,7 @@ import static monnef.jaffas.technic.common.FungiCatalog.PORCINO_ID;
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class JaffasTechnic extends jaffasMod {
+    private static final int NUGGETS_COUT_FOR_EACH_INGOT_IN_RECYCLE = 5;
     @Mod.Instance(ModId)
     public static JaffasTechnic instance;
 
@@ -941,7 +942,8 @@ public class JaffasTechnic extends jaffasMod {
         addToolRecycleRecipe(swordJaffarrol, 2);
     }
 
-    private void addToolRecycleRecipe(Item tool, int nuggetsCount) {
+    private void addToolRecycleRecipe(Item tool, int ingotsUsedForCreation) {
+        int nuggetsCount = ingotsUsedForCreation * NUGGETS_COUT_FOR_EACH_INGOT_IN_RECYCLE;
         GameRegistry.addShapelessRecipe(new ItemStack(jaffarrolNugget, nuggetsCount), new ItemStack(tool, 1, tool.getMaxDamage()));
     }
 
