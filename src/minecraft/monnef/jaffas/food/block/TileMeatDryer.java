@@ -328,7 +328,7 @@ public class TileMeatDryer extends TileEntity {
     @Override
     public Packet getDescriptionPacket() {
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
         writeToNBT(tag);
         return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
     }
@@ -336,7 +336,7 @@ public class TileMeatDryer extends TileEntity {
     @Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.customParam1;
+        NBTTagCompound tag = pkt.data;
         readFromNBT(tag);
     }
 

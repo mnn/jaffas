@@ -11,10 +11,12 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
 public class RenderLocomotive extends Render {
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_locomotive.png");
     private final ModelBase model;
 
     public RenderLocomotive() {
@@ -118,16 +120,20 @@ public class RenderLocomotive extends Render {
         */
 
 
-        this.loadTexture("/jaffas_locomotive.png");
+        bindTexture(TEXTURE);
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         GL11.glTranslatef(0F, -1F, 0F);
         this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
     }
 
-
     @Override
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
         this.renderTheMinecart((EntityLocomotive) par1Entity, par2, par4, par6, par8, par9);
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return TEXTURE;
     }
 }

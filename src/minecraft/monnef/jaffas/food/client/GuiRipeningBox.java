@@ -12,11 +12,12 @@ import monnef.jaffas.food.block.ContainerRipeningBox;
 import monnef.jaffas.food.block.TileRipeningBox;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiRipeningBox extends GuiContainerJaffas {
-    public static final String TEXTURE = "/guiripingbox.png";
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/guiripingbox.png");
     private static final int STATUS_WIDTH = 16;
     private static final int STATUS_HEIGHT = 2;
     private static final int STATUS_SPACE = 2;

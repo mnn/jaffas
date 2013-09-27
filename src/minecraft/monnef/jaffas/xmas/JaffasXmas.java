@@ -76,7 +76,7 @@ public class JaffasXmas extends jaffasMod {
         items.InitializeItemInfos();
     }
 
-    @Mod.PreInit
+    @Mod.EventHandler
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
@@ -111,7 +111,7 @@ public class JaffasXmas extends jaffasMod {
         return 3650;
     }
 
-    @Mod.Init
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
 

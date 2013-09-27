@@ -16,6 +16,11 @@ public class CommandFridgeDebug extends CommandBase {
     }
 
     @Override
+    public String getCommandUsage(ICommandSender icommandsender) {
+        return "command.fridgedebug.usage";
+    }
+
+    @Override
     public void processCommand(ICommandSender var1, String[] var2) {
         TileFridge.tickDivider = TileFridge.tickDivider == 1 ? 20 : 1;
     }

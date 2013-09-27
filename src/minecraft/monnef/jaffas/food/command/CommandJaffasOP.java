@@ -19,10 +19,17 @@ import net.minecraft.server.MinecraftServer;
 import java.util.Arrays;
 import java.util.List;
 
+import static monnef.core.utils.PlayerHelper.addMessage;
+
 public class CommandJaffasOP extends CommandBase {
     @Override
     public String getCommandName() {
         return "jaffasop";
+    }
+
+    @Override
+    public String getCommandUsage(ICommandSender icommandsender) {
+        return "command.jaffasop.usage";
     }
 
     @Override
@@ -31,26 +38,26 @@ public class CommandJaffasOP extends CommandBase {
         else if (parameters.length == 2 && parameters[0].equals("ach_removeall") && parameters[1].length() > 0) {
             EntityPlayer player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(parameters[1]);
             if (player == null) {
-                commandsender.sendChatToPlayer("Player not found.");
+                addMessage(commandsender, "Player not found.");
                 return;
             }
             AchievementsHandler.removeAllJaffasAchievements(player);
-            commandsender.sendChatToPlayer(String.format("Achievements of \"%s\" has been reset.", player.username));
+            addMessage(commandsender, String.format("Achievements of \"%s\" has been reset.", player.username));
         } else if (parameters.length == 2 && parameters[0].equals("ach_corrupt") && parameters[1].length() > 0) {
             EntityPlayer player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(parameters[1]);
             if (player == null) {
-                commandsender.sendChatToPlayer("Player not found.");
+                addMessage(commandsender, "Player not found.");
                 return;
             }
             AchievementsHandler.corrupt(player);
-            commandsender.sendChatToPlayer(String.format("Achievements of \"%s\" has been corrupted.", player.username));
+            addMessage(commandsender, String.format("Achievements of \"%s\" has been corrupted.", player.username));
         } else if (parameters.length == 2 && parameters[0].equals("fun_speed")) {
             int speed;
 
             try {
                 speed = Integer.parseInt(parameters[1]);
             } catch (NumberFormatException e) {
-                commandsender.sendChatToPlayer("cannot parse number");
+                addMessage(commandsender, "cannot parse number");
                 return;
             }
 
@@ -85,7 +92,7 @@ public class CommandJaffasOP extends CommandBase {
                 if (commandsender instanceof EntityPlayer) {
                     playerName = ((EntityPlayer) commandsender).getEntityName();
                 } else {
-                    commandsender.sendChatToPlayer("Cannot issue this command on a non-player.");
+                    addMessage(commandsender, "Cannot issue this command on a non-player.");
                     return;
                 }
             } else {
@@ -93,12 +100,12 @@ public class CommandJaffasOP extends CommandBase {
             }
             EntityPlayer player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(playerName);
             if (player == null) {
-                commandsender.sendChatToPlayer("Player not found.");
+                addMessage(commandsender, "Player not found.");
                 return;
             }
             CoolDownRegistry.setCoolDown(player.getEntityName(), CoolDownType.SPAWN_STONE, 1);
             SpawnStoneServerPacketSender.sendSyncPacket(player, false);
-            commandsender.sendChatToPlayer(String.format("Cooldown on home stone has been cleared for a player %s.", playerName));
+            addMessage(commandsender, String.format("Cooldown on home stone has been cleared for a player %s.", playerName));
         }
     }
 

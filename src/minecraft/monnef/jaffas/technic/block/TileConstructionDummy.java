@@ -110,9 +110,9 @@ public class TileConstructionDummy extends TileEntity implements IInventory, ISi
     }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         if (getCore() == null) return false;
-        return getCore().isStackValidForSlot(i, itemstack);
+        return getCore().isItemValidForSlot(i, itemstack);
     }
 
     @Override

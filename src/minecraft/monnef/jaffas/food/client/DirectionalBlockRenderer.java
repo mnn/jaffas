@@ -7,8 +7,8 @@ package monnef.jaffas.food.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import monnef.core.client.CustomBlockRenderingHelper;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.block.BlockJDirectional;
+import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -16,6 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3Pool;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.ForgeDirection;
 
 public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
     private DummyBlockAccess dummyBlockAccess = new DummyBlockAccess();
@@ -186,6 +187,11 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
         @Override
         public int isBlockProvidingPowerTo(int i, int j, int k, int l) {
             return 0;
+        }
+
+        @Override
+        public boolean isBlockSolidOnSide(int x, int y, int z, ForgeDirection side, boolean _default) {
+            return false;
         }
     }
 }

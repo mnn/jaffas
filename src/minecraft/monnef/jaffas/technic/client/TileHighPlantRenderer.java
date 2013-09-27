@@ -11,6 +11,7 @@ import monnef.jaffas.technic.common.HighPlantInfo;
 import monnef.jaffas.technic.common.IHighPlantModel;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -19,6 +20,7 @@ import java.util.HashMap;
 
 public class TileHighPlantRenderer extends TileEntitySpecialRenderer {
     public static final float U = 0.0625F;
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_hop_plant.png");
     private ModelStake stake;
     private static HashMap<Integer, IHighPlantModel> plantModel;
 
@@ -73,7 +75,7 @@ public class TileHighPlantRenderer extends TileEntitySpecialRenderer {
 
         GL11.glPushMatrix();
         GL11.glRotatef(angle, 0, 1.0f, 0);
-        bindTextureByName("/jaffas_hop_plant.png");
+        bindTexture(TEXTURE);
         stake.render(U);
         GL11.glPopMatrix();
 
@@ -82,7 +84,7 @@ public class TileHighPlantRenderer extends TileEntitySpecialRenderer {
         HighPlantInfo info = tile.getPlantInfo();
         if (info != null) {
             IHighPlantModel renderer = plantModel.get(info.id);
-            bindTextureByName(renderer.getTextureFile());
+            bindTexture(renderer.getTextureFile());
             renderer.render(tile, U);
         }
 

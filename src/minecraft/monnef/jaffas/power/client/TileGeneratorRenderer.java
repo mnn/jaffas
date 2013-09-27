@@ -8,10 +8,12 @@ package monnef.jaffas.power.client;
 import monnef.jaffas.power.block.TileGenerator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileGeneratorRenderer extends TileEntitySpecialRenderer {
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_generator.png");
     private ModelGenerator generator;
 
     public TileGeneratorRenderer() {
@@ -58,7 +60,7 @@ public class TileGeneratorRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef((float) x, (float) y + 1.0F, (float) z + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTextureByName("/jaffas_generator.png");
+        bindTexture(TEXTURE);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
         generator.render(0.0625F, burning);

@@ -12,6 +12,7 @@ import monnef.core.utils.RenderUtils;
 import monnef.jaffas.power.entity.EntityWindTurbine;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
@@ -74,5 +75,10 @@ public class RenderWindTurbine extends Render {
             GL11.glTranslatef(0, 0, zOffset);
             GL11.glRotatef(-angle, 0, 0, 1);
         }
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return null;
     }
 }

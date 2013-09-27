@@ -5,7 +5,7 @@
 
 package monnef.jaffas.food.entity;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
@@ -16,7 +16,7 @@ public class EntityDuckEgg extends EntityThrowable {
         super(par1World);
     }
 
-    public EntityDuckEgg(World par1World, EntityLiving par2EntityLiving) {
+    public EntityDuckEgg(World par1World, EntityLivingBase par2EntityLiving) {
         super(par1World, par2EntityLiving);
     }
 
@@ -25,6 +25,7 @@ public class EntityDuckEgg extends EntityThrowable {
     }
 
     // based on EntityEgg
+    @Override
     protected void onImpact(MovingObjectPosition par1MovingObjectPosition) {
         if (par1MovingObjectPosition.entityHit != null) {
             par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 0);

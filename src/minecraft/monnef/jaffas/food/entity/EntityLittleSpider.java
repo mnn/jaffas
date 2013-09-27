@@ -12,6 +12,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
@@ -31,15 +32,15 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     private static final int COLOR_WATCHER_INDEX = 25;
     public static final int COLORS_COUNT = 3;
     public static final String TEXTURE_STRING = "/jaffas_littleSpider_%d.png";
-    public static final String[] TEXTURES;
+    public static final ResourceLocation[] TEXTURES;
     public static final float LIVING_SOUND_VOLUME = 0.2f;
     private int timeUntilNextWeb;
     private int aggressiveTime;
 
     static {
-        TEXTURES = new String[COLORS_COUNT];
+        TEXTURES = new ResourceLocation[COLORS_COUNT];
         for (int i = 0; i < COLORS_COUNT; i++) {
-            TEXTURES[i] = generateTextureFileName(i);
+            TEXTURES[i] = new ResourceLocation(generateTextureFileName(i));
         }
     }
 
@@ -48,9 +49,10 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     }
 
     @Override
-    public String getTexture() {
+    public ResourceLocation getTexture() {
         return TEXTURES[getColor()];
     }
+
 
     public EntityLittleSpider(World world) {
         super(world);

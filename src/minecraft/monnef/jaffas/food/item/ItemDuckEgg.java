@@ -15,6 +15,7 @@ public class ItemDuckEgg extends ItemJaffaBase {
         super(id);
     }
 
+    @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (!player.capabilities.isCreativeMode) {
             stack.stackSize--;

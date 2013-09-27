@@ -14,12 +14,14 @@ import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 // based on EntitySpider
 public class EntityJaffaSpider extends EntityCreatureMob {
 
     public static final int CLIMBABLE_BLOCK_WATCHER_INDEX = 16;
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/mob/spider.png");
 
     public EntityJaffaSpider(World world) {
         super(world);
@@ -33,8 +35,8 @@ public class EntityJaffaSpider extends EntityCreatureMob {
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.8D);
     }
 
-    public static String getTexturePath() {
-        return "/mob/spider.png";
+    public ResourceLocation getTexture() {
+        return TEXTURE;
     }
 
     @Override

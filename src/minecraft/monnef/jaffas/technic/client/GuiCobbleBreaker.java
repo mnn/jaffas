@@ -10,11 +10,12 @@ import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.TileCobbleBreaker;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiCobbleBreaker extends GuiContainerJaffas {
-    public static final String GUI_TEXTURE = "/guibreaker.png";
+    public static final ResourceLocation GUI_TEXTURE = new ResourceLocation("/guibreaker.png");
 
     public TileCobbleBreaker tile;
 

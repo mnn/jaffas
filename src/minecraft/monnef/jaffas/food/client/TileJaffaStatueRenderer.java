@@ -8,10 +8,12 @@ package monnef.jaffas.food.client;
 import monnef.jaffas.food.block.TileJaffaStatue;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileJaffaStatueRenderer extends TileEntitySpecialRenderer {
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_jaffa.png");
     private ModelJaffaStatue model;
 
     public TileJaffaStatueRenderer() {
@@ -55,7 +57,7 @@ public class TileJaffaStatueRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef((float) par2, (float) par4 + 1.0F, (float) par6 + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTextureByName("/jaffas_jaffa.png");
+        bindTexture(TEXTURE);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
         model.render(0.0625F);

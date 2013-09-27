@@ -189,7 +189,7 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
             float sx = RandomHelper.generateRandomFromSymmetricInterval(radius);
             float sy = RandomHelper.generateRandomFromSymmetricInterval(radius);
             float sz = RandomHelper.generateRandomFromSymmetricInterval(radius);
-            EntityFX fx = new EntityDiggingFX(worldObj, pos.getX() + .5 + sx, pos.getY() + .5 + sy, pos.getZ() + .5 + sz, mx, my, mz, Block.cobblestone, 0, 0, FMLClientHandler.instance().getClient().renderEngine);
+            EntityFX fx = new EntityDiggingFX(worldObj, pos.getX() + .5 + sx, pos.getY() + .5 + sy, pos.getZ() + .5 + sz, mx, my, mz, Block.cobblestone, 0, 0);
             FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
         }
     }
@@ -305,7 +305,7 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         return true;
     }
 
@@ -350,7 +350,7 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     @Override
     public Packet getDescriptionPacket() {
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
         writeToNBT(tag);
         tag.setBoolean(SHOW_EFFECT_TAG, showBreakEffect);
         if (showBreakEffect) showBreakEffect = false;
@@ -360,7 +360,7 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     @Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.customParam1;
+        NBTTagCompound tag = pkt.data;
         readFromNBT(tag);
         showBreakEffect = tag.getBoolean(SHOW_EFFECT_TAG);
     }

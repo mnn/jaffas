@@ -381,7 +381,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
         }
     }
 
-    public void onEntityTurbineHit(DamageSource damageSource, int amount, EntityWindTurbine entity) {
+    public void onEntityTurbineHit(DamageSource damageSource, float amount, EntityWindTurbine entity) {
         ItemStack stack = getStackInSlot(TURBINE_SLOT);
         if ((stack == null) != (turbine == null)) {
             JaffasFood.Log.printDebug("WindGen: inv and saved turbine are not correct, fixing");
@@ -396,7 +396,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
             entity.setDead();
             return;
         }
-        damageTurbineItem(amount * 10);
+        damageTurbineItem(Math.round(amount * 10));
     }
 
     private void damageTurbineItem(int amount) {

@@ -13,10 +13,17 @@ import net.minecraft.command.ICommandSender;
 import java.util.Arrays;
 import java.util.List;
 
+import static monnef.core.utils.PlayerHelper.addMessage;
+
 public class CommandJaffas extends CommandBase {
     @Override
     public String getCommandName() {
         return "jaffas";
+    }
+
+    @Override
+    public String getCommandUsage(ICommandSender icommandsender) {
+        return "command.jaffas.usage";
     }
 
     @Override
@@ -25,12 +32,12 @@ public class CommandJaffas extends CommandBase {
     }
 
     private void showAbout(ICommandSender sender) {
-        sender.sendChatToPlayer(String.format("§d%s§r version §6%s§r", Reference.ModName, Reference.Version));
-        sender.sendChatToPlayer(String.format(" Created by §a%s§r and §a%s§r", monnef.core.Reference.MONNEF, monnef.core.Reference.TIARTYOS));
+        addMessage(sender, String.format("§d%s§r version §6%s§r", Reference.ModName, Reference.Version));
+        addMessage(sender, String.format(" Created by §a%s§r and §a%s§r", monnef.core.Reference.MONNEF, monnef.core.Reference.TIARTYOS));
         String versionInfo = ClientTickHandler.isVersionStringReady() ? String.format(" current version is §e%s§r", ClientTickHandler.cachedVersionString) : " Unable to get/process remote version.";
-        sender.sendChatToPlayer(versionInfo);
+        addMessage(sender, versionInfo);
         String urlString = monnef.core.Reference.URL_JAFFAS_WIKI.replaceAll("^(http://)(.*$)", "§7$1§7§9$2§r");
-        sender.sendChatToPlayer(String.format(" %s", urlString));
+        addMessage(sender, String.format(" %s", urlString));
     }
 
     @Override

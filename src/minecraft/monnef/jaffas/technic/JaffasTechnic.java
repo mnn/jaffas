@@ -322,7 +322,7 @@ public class JaffasTechnic extends jaffasMod {
     public static final Material breakableIronMaterial = new Material(MapColor.ironColor);
     public static int omniWrenchId;
 
-    @Mod.PreInit
+    @Mod.EventHandler
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
@@ -435,7 +435,7 @@ public class JaffasTechnic extends jaffasMod {
         return 3450;
     }
 
-    @Mod.Init
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
@@ -478,7 +478,7 @@ public class JaffasTechnic extends jaffasMod {
         }
     }
 
-    @Mod.PostInit
+    @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
         int marked = 0;
         for (int i = 0; i < Block.blocksList.length; i++) {

@@ -6,9 +6,10 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.EntityHelper;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.passive.EntitySheep;
@@ -66,7 +67,7 @@ public class CustomDrop {
 
     @ForgeSubscribe
     public void entityDrop(LivingDropsEvent event) {
-        EntityLiving mob = event.entityLiving;
+        EntityLivingBase mob = event.entityLiving;
 
         ArrayList<CustomDropEntry> data = drops.get(mob.getClass());
         if (data != null) {

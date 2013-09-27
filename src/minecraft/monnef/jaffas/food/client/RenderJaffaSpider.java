@@ -8,10 +8,12 @@ package monnef.jaffas.food.client;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.food.entity.EntityJaffaSpider;
+import monnef.jaffas.food.entity.EntityLittleSpider;
 import net.minecraft.client.model.ModelSpider;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
@@ -61,18 +63,23 @@ public class RenderJaffaSpider extends RenderLiving {
     }
 
     @Override
-    protected void preRenderCallback(EntityLiving entity, float par2) {
+    protected void preRenderCallback(EntityLivingBase entity, float par2) {
         this.scaleSpider((EntityJaffaSpider) entity);
     }
 
     @Override
-    protected float getDeathMaxRotation(EntityLiving entity) {
+    protected float getDeathMaxRotation(EntityLivingBase par1EntityLivingBase) {
         return this.setSpiderDeathMaxRotation();
     }
 
     @Override
-    protected int shouldRenderPass(EntityLiving entity, int par2, float par3) {
+    protected int shouldRenderPass(EntityLivingBase entity, int par2, float par3) {
         //return -1;
         return this.setSpiderEyeBrightness((EntityJaffaSpider) entity, par2);
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return ((EntityLittleSpider) entity).getTexture();
     }
 }

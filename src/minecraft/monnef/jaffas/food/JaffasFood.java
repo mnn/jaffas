@@ -191,7 +191,7 @@ public class JaffasFood extends jaffasMod {
     }
 
     @Override
-    @Mod.Init
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
         creativeTab = new JaffaCreativeTab("jaffas");
@@ -224,7 +224,7 @@ public class JaffasFood extends jaffasMod {
         printInitializedMessage();
     }
 
-    @Mod.PostInit
+    @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
         Recipes.postLoadInstallRecipes();
     }
@@ -256,7 +256,7 @@ public class JaffasFood extends jaffasMod {
         Log.printInfo("detected mods: " + Joiner.on(", ").join(otherMods.compileDetectedMods()));
     }
 
-    @Mod.ServerStarting
+    @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         server = ModLoader.getMinecraftServerInstance();
         ICommandManager commandManager = server.getCommandManager();

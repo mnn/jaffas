@@ -15,6 +15,7 @@ import monnef.jaffas.power.item.ItemWindTurbine;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -140,7 +141,7 @@ public class EntityWindTurbine extends Entity {
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource damageSource, int amount) {
+    public boolean attackEntityFrom(DamageSource damageSource, float amount) {
         super.attackEntityFrom(damageSource, amount);
         if (tileWindGenerator != null) {
             tileWindGenerator.onEntityTurbineHit(damageSource, amount, this);
@@ -201,7 +202,7 @@ public class EntityWindTurbine extends Entity {
         }
     }
 
-    public void onCollideWithEntity(EntityLiving entity) {
+    public void onCollideWithEntity(EntityLivingBase entity) {
         if (damageCooldown > 0) return;
         if (!worldObj.isRemote) {
             if (entity instanceof EntityPlayer && ((EntityPlayer) entity).capabilities.isCreativeMode) return;
@@ -209,7 +210,7 @@ public class EntityWindTurbine extends Entity {
             if (getSpeed() < NO_DMG_SPEED_THRESHOLD) damage = 0;
             if (damage > 0) {
                 if (JaffasFood.rand.nextInt(3) == 0) {
-                    entity.setEntityHealth(entity.getHealth() - damage);
+                    entity.setHealth(entity.getHealth() - damage);
                 } else {
                     entity.attackEntityFrom(DamageSource.generic, damage);
                 }

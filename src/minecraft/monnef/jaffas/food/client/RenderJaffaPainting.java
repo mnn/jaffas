@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -21,6 +22,7 @@ import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class RenderJaffaPainting extends Render {
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_paintings_01.png");
     /**
      * RNG.
      */
@@ -37,7 +39,7 @@ public class RenderJaffaPainting extends Render {
         GL11.glTranslatef((float) par2, (float) par4, (float) par6);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        this.loadTexture("/jaffas_paintings_01.png");
+        bindTexture(TEXTURE);
         float var11 = 0.0625F;
         GL11.glScalef(var11, var11, var11);
         this.func_77010_a(par1EntityPainting, var10.sizeX, var10.sizeY, var10.offsetX, var10.offsetY);
@@ -147,5 +149,10 @@ public class RenderJaffaPainting extends Render {
      */
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
         this.func_77009_a((EntityJaffaPainting) par1Entity, par2, par4, par6, par8, par9);
+    }
+
+    @Override
+    protected ResourceLocation getEntityTexture(Entity entity) {
+        return TEXTURE;
     }
 }

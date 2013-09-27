@@ -54,7 +54,7 @@ public class EntityLocomotive extends EntityMinecart {
     }
 
     @Override
-    public boolean interact(EntityPlayer par1EntityPlayer) {
+    public boolean interactFirst(EntityPlayer par1EntityPlayer) {
         fillFuel(par1EntityPlayer);
         return true;
     }

@@ -68,8 +68,8 @@ public class TileFermenterInventoryRouter extends TileEntity implements IInvento
     }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
-        return getMaster().isStackValidForSlot(i, itemstack);
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
+        return getMaster().isItemValidForSlot(i, itemstack);
     }
 
     @Override

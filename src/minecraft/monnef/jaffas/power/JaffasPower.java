@@ -142,7 +142,7 @@ public class JaffasPower extends jaffasMod {
     public static ItemTurbineBlade turbineBlade;
     private int itemTurbineBladeID;
 
-    @PreInit
+    @Mod.EventHandler
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
@@ -196,7 +196,7 @@ public class JaffasPower extends jaffasMod {
         return 3750;
     }
 
-    @Init
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
@@ -225,7 +225,7 @@ public class JaffasPower extends jaffasMod {
         JaffasFood.PrintInitialized(ModulesEnum.power);
     }
 
-    @PostInit
+    @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
         if (PowerFramework.currentFramework == null) {
             JaffasFood.Log.printInfo("No BC power framework detected, using my simple one.");

@@ -275,7 +275,7 @@ public class JaffasTrees extends jaffasMod {
     @SidedProxy(clientSide = "monnef.jaffas.trees.client.ClientProxy", serverSide = "monnef.jaffas.trees.common.CommonProxy")
     public static CommonProxy proxy;
 
-    @Mod.PreInit
+    @Mod.EventHandler
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
@@ -441,7 +441,7 @@ public class JaffasTrees extends jaffasMod {
         BushesList.put(type, info);
     }
 
-    @Mod.Init
+    @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
@@ -616,7 +616,7 @@ public class JaffasTrees extends jaffasMod {
         return seed;
     }
 
-    @Mod.ServerStarting
+    @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
         server = ModLoader.getMinecraftServerInstance();
         ICommandManager commandManager = server.getCommandManager();

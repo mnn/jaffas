@@ -10,6 +10,7 @@ import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
@@ -32,10 +33,10 @@ public class ItemCleaverHookContainer {
     private static int meatCleaverID = 0;
     private static Random rand = new Random();
 
-    private static HashMap<Class<? extends EntityLiving>, ItemStack> AnimalToMeat;
+    private static HashMap<Class<? extends EntityLivingBase>, ItemStack> AnimalToMeat;
 
     static {
-        AnimalToMeat = new HashMap<Class<? extends EntityLiving>, ItemStack>();
+        AnimalToMeat = new HashMap<Class<? extends EntityLivingBase>, ItemStack>();
         AnimalToMeat.put(EntityCow.class, new ItemStack(Item.beefRaw));
         AnimalToMeat.put(EntityPig.class, new ItemStack(Item.porkRaw));
         AnimalToMeat.put(EntityChicken.class, new ItemStack(Item.chickenRaw));
@@ -64,7 +65,7 @@ public class ItemCleaverHookContainer {
     @ForgeSubscribe
     public void entityHurt(LivingHurtEvent event) {
         DamageSource source = event.source;
-        EntityLiving mob = event.entityLiving;
+        EntityLivingBase mob = event.entityLiving;
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
@@ -80,7 +81,7 @@ public class ItemCleaverHookContainer {
     @ForgeSubscribe
     public void entityDeath(LivingDeathEvent event) {
         DamageSource source = event.source;
-        EntityLiving mob = event.entityLiving;
+        EntityLivingBase mob = event.entityLiving;
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();

@@ -9,10 +9,12 @@ import monnef.core.client.GuiContainerJaffas;
 import monnef.jaffas.trees.block.ContainerFruitCollector;
 import monnef.jaffas.trees.block.TileFruitCollector;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiFruitCollector extends GuiContainerJaffas {
+    public static final ResourceLocation TEXTURE = new ResourceLocation("/guicollector.png");
     private TileFruitCollector tileEntity;
 
     public GuiFruitCollector(InventoryPlayer inventoryPlayer,
@@ -25,8 +27,7 @@ public class GuiFruitCollector extends GuiContainerJaffas {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int par1, int par2)
-    {
+    protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         //draw text and stuff here
         //the parameters for drawString are: string, x, y, color
         this.fontRenderer.drawString("Fruit Collector", 8, 5, 4210752);
@@ -43,7 +44,7 @@ public class GuiFruitCollector extends GuiContainerJaffas {
                                                    int par3) {
         //draw your Gui here, only thing you need to change is the path
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/guicollector.png");
+        this.mc.renderEngine.bindTexture(TEXTURE);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

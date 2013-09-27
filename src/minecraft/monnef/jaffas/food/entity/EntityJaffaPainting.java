@@ -289,7 +289,7 @@ public class EntityJaffaPainting extends Entity {
      * Called when the entity is attacked.
      */
     @Override
-    public boolean attackEntityFrom(DamageSource par1DamageSource, int par2) {
+    public boolean attackEntityFrom(DamageSource par1DamageSource, float par2) {
         if (!this.isDead && !this.worldObj.isRemote) {
             this.setDead();
             this.setBeenAttacked();
