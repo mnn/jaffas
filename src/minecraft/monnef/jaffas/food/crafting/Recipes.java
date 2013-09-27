@@ -178,7 +178,7 @@ public class Recipes {
         addPackRecipe(jaffaStrawberry);
 
         GameRegistry.addRecipe(new ItemStack(ContentHolder.blockJaffaBomb), "JJJ", "RLG", " T ", 'J', new ItemStack(getItem(jaffasPack)),
-                'R', Item.redstone, 'L', Item.goldNugget, 'G', Item.lightStoneDust,
+                'R', Item.redstone, 'L', Item.goldNugget, 'G', Item.glowstone,
                 'T', new ItemStack(Block.tnt));
 
         GameRegistry.addRecipe(new ItemStack(getItem(waferIcecreamRaw), 2), "PP", "PP", 'P', new ItemStack(getItem(pastrySweet)));

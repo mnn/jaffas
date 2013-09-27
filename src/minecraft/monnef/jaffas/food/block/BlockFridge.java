@@ -12,7 +12,7 @@ import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -86,6 +86,7 @@ public class BlockFridge extends BlockContainerJaffas {
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
+    @Override
     public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
         int front = 0;
 
@@ -203,13 +204,14 @@ public class BlockFridge extends BlockContainerJaffas {
         ((TileFridge) blockEntity).setFront(byte0);
     }
 
+    @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
         setDefaultDirection(par1World, par2, par3, par4);
     }
 
     @Override
-    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity, ItemStack stack) {
+    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         TileEntity blockEntity = w.getBlockTileEntity(x, y, z);

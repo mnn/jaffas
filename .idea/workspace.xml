@@ -2,13 +2,284 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/chickenStuff.xml" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\mcp725_jaffas.iml" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\ArrayUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\ClassDiscoverer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\ClientUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\CommonUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\IGuiPacketSender.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\IStringMatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\ItemCustomTexture.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\JavaUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\LongArrayList.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\NetworkClosedException.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\ReentrantCheck.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\ReflectionManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\RegistrationHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\ServerUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\alg\MathHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\alg\SquareSpiral.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\ASMDev.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\ASMHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\CC_ClassWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\ClassHeirachyManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\ClassOverrider.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\CodeChickenAccessTransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\CodeChickenCoreModContainer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\CodeChickenCorePlugin.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\DelegatedTransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\DependancyLister.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\FeatureHackTransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\InsnListPrinter.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\InstructionComparator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\InterfaceDependancies.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\InterfaceDependancyTransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\MCPDeobfuscationTransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\MethodASMifier.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\ObfuscationMappings.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\asm\TweakTransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\colour\Colour.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\colour\ColourARGB.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\colour\ColourRGBA.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\colour\CustomGradient.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\commands\CoreCommand.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\commands\PlayerCommand.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\commands\ServerCommand.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\config\ConfigFile.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\config\ConfigTag.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\config\SimpleProperties.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\data\MCDataInput.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\data\MCDataInputStream.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\data\MCDataOutput.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\data\MCDataOutputStream.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\data\MCOutputStreamWrapper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\data\NBTDataWrapper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\entity\EntityDigIconFX.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\EntityRenderHook.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\EntityUpdateHook.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\FeatureHack.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\GameDataManipulator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\LiquidTextures.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\RenderEntityRenderHook.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\RenderNull.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\TweakTransformerHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\mc\TextureLavaFX.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\mc\TextureLavaFlowFX.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\mc\TextureWaterFX.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\featurehack\mc\TextureWaterFlowFX.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\gui\GuiCCButton.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\gui\GuiCCTextField.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\gui\GuiScrollSlot.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\gui\GuiWidget.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\gui\IGuiActionListener.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\internal\ClientTickHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\ContainerExtended.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\ContainerSynchronised.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\GuiContainerWidget.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\IContainerSyncVar.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\IntegerSync.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\InventoryCopy.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\InventoryNBT.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\InventoryRange.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\InventorySensor.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\InventorySimple.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\InventoryUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\ItemKey.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\MappedInventoryAccess.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\SlotDummy.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\SlotDummyOutput.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\inventory\SlotHandleClicks.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\lighting\CCRBModel.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\lighting\LC.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\lighting\LazyLightMatrix.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\lighting\LightMatrix.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\lighting\LightModel.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\liquid\ExtendedLiquidTank.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\liquid\LiquidUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\liquid\TankAccess.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\packet\ICustomPacketTile.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\packet\PacketCustom.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\raytracer\ExtendedMOP.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\raytracer\IndexedCuboid6.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\raytracer\RayTracer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\raytracer\SelectionBox.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\CCModel.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\CCModelLibrary.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\CCModelSection.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\CCRenderState.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\FontUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\IUVTransformation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\IconTransformation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\MultiIconTransformation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\PlaceholderTexture.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\RenderCustomEndPortal.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\RenderUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\ShaderProgram.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\SpriteSheetManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\TextureFX.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\TextureSpecial.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\TextureUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\UV.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\UVTranslation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\render\Vertex5.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\AxisCycle.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\BlockCoord.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\CoordinateSystem.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Cuboid6.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\CuboidCoord.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\ITransformation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Line3.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Matrix4.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Quat.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\RedundantTransformation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\RightHanded.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Rotation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Scale.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\SwapYZ.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\TransformationList.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Translation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\VariableTransformation.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\vec\Vector3.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\world\ChunkExtension.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\world\WorldExtension.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\world\WorldExtensionInstantiator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\core\world\WorldExtensionManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\AllowedPropertyMap.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\Button.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\Button2ActiveState.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ClientHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ContainerCreativeInv.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ContainerEnchantmentModifier.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ContainerPotionCreator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\DropDownFile.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\DropDownWidget.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ExtendedCreativeInv.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\FastTransferManger.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiEnchantmentModifier.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiExtendedCreativeInv.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiNEIBlockIDs.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiNEIButton.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiNEIControls.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiNEIOptions.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiNEISettings.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiOptionButton.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\GuiPotionCreator.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\HUDAugmenter.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\Image.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\InfiniteStackSizeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\InfiniteToolHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\InterActionMap.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\InventoryCraftingDummy.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemHash.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemList.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemMobSpawner.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemPanel.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemPanelStack.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemQuantityField.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemRange.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ItemVisibilityHash.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\Label.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\LayoutManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\LayoutStyleDefault.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\LayoutStyleMinecraft.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\LayoutStyleTMIOld.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\MultiItemRange.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEICPH.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIChestGuiHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIClientConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIClientUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEICompatibility.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIController.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEICreativeGuiHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIDummySlotHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIInventoryHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEISPH.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIServerConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\NEIServerUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\OffsetPositioner.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\PlayerSave.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\PopupInputHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\PositionedStack.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\SaveLoadButton.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\SearchField.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\ServerHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\SlotBlockArmor.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\SlotOP.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\SpawnerRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\SubSetRangeTag.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\TMIUninstaller.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\TextField.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\UnusedBlock.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\VisiblityData.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\Widget.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\WidgetZOrder.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\WorldOverlayRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\API.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\DefaultOverlayRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\GuiInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\IConfigureNEI.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\IGuiContainerOverlay.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\IHighlightIdentifier.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\IInfiniteItemHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\INEIGuiAdapter.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\INEIGuiHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\IOverlayHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\IRecipeOverlayRenderer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\IStackPositioner.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\ItemInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\LayoutStyle.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\api\TaggedInventoryArea.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\asm\NEICorePlugin.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\asm\NEIModContainer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\asm\NEITransformer.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\forge\DefaultSlotClickHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\forge\GuiContainerManager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\forge\IContainerDrawHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\forge\IContainerInputHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\forge\IContainerObjectHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\forge\IContainerSlotClickHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\forge\IContainerTooltipHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\inv.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\nei_sprites.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\potion.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\BrewingOverlayHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\BrewingRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\ContainerRecipe.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\DefaultOverlayHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\FireworkRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\FuelRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\FurnaceRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\GuiCraftingRecipe.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\GuiRecipe.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\GuiUsageRecipe.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\ICraftingHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\IRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\IUsageHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\RecipeInfo.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\RecipeItemInputHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\ShapedRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\ShapelessRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\TemplateRecipeHandler.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipe\weakDependancy_Forge.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\nei\recipebg.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\packager\Packager.java" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\codechicken\packager\SrcPackager.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockFridge.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockFridge.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/TilePie.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/TilePie.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mc_libs.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mc_libs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379844511875" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380097872356" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380276341239" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380278070896" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372606222178" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374156004628" ignored="false" />
@@ -30,7 +301,7 @@
     <file path="/ItemSink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364139094455" ignored="false" />
     <file path="/JaffaItem.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379410083934" ignored="false" />
     <file path="/TileEntitySink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364132538638" ignored="false" />
-    <file path="/Recipes.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379592093868" ignored="false" />
+    <file path="/Recipes.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380280303927" ignored="false" />
     <file path="/mod_jaffas_ores.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1363117153436" ignored="false" />
     <file path="/VersionHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368460012146" ignored="false" />
     <file path="/IPowerConsumer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359649430440" ignored="false" />
@@ -200,7 +471,7 @@
     <file path="/ItemAxeOres.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1363116995421" ignored="false" />
     <file path="/ItemSpadeOres.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361014387071" ignored="false" />
     <file path="/ItemSwordOres.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361014783324" ignored="false" />
-    <file path="/DyeHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375876023848" ignored="false" />
+    <file path="/DyeHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277075047" ignored="false" />
     <file path="/ItemLinkTool.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373796366008" ignored="false" />
     <file path="/ItemID.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361207926546" ignored="false" />
     <file path="/NBTHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361456022080" ignored="false" />
@@ -215,7 +486,7 @@
     <file path="/CoreTransformer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374268325574" ignored="false" />
     <file path="/CloakHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361986083094" ignored="false" />
     <file path="/ICloakHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362052714561" ignored="false" />
-    <file path="/CloakHookHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374414607845" ignored="false" />
+    <file path="/CloakHookHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380280245680" ignored="false" />
     <file path="/RenderGlobal.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374413486312" ignored="false" />
     <file path="/InjectCloakHookAdapter.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374414511753" ignored="false" />
     <file path="/CustomCloaksHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368458133389" ignored="false" />
@@ -231,7 +502,7 @@
     <file path="/MappingDictionary.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362179160752" ignored="false" />
     <file path="/ItemEgg.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362247709945" ignored="false" />
     <file path="/EntityDuckEgg.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364128393589" ignored="false" />
-    <file path="/RenderItemInAir.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367439229028" ignored="false" />
+    <file path="/RenderItemInAir.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380280140349" ignored="false" />
     <file path="/ItemMagnifier.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364684849701" ignored="false" />
     <file path="/LightningHookHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362313062294" ignored="false" />
     <file path="/WorldServer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374310434006" ignored="false" />
@@ -394,7 +665,7 @@
     <file path="/JaffasPower.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379759065546" ignored="false" />
     <file path="/ItemSpadeTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372872815288" ignored="false" />
     <file path="/ItemPickaxeTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372866123154" ignored="false" />
-    <file path="/JaffasTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380098433709" ignored="false" />
+    <file path="/JaffasTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380280324129" ignored="false" />
     <file path="/ItemDuckEgg.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367437975479" ignored="false" />
     <file path="/TileEntityFruitLeavesRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367687647501" ignored="false" />
     <file path="/LeavesBlockRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367700128493" ignored="false" />
@@ -659,6 +930,15 @@
     <file path="/RenderingHook.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379861731995" ignored="false" />
     <file path="/RenderingTickHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379866307041" ignored="false" />
     <file path="/ExporterTickHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379945868816" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/api/TaggedInventoryArea.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627432" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/api/INEIGuiHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627434" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/forge/IContainerTooltipHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627436" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/forge/IContainerObjectHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627436" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/forge/IContainerDrawHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627437" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/forge/IContainerInputHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627439" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/forge/IContainerSlotClickHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627439" ignored="false" />
+    <file path="$PROJECT_DIR$/src/minecraft/codechicken/nei/SlotBlockArmor.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380277627441" ignored="false" />
+    <file path="/TilePie.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380280282389" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -678,7 +958,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -694,8 +973,8 @@
         <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
       </breakpoint>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -711,134 +990,17 @@
         <option name="CONDITION_ENABLED" value="true" />
         <option name="CLASS_FILTERS_ENABLED" value="false" />
         <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <line_breakpoints default_suspend_policy="SuspendAll" default_condition_enabled="true">
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/CompostRegister.java" line="66" class="monnef.jaffas.technic.common.CompostRegister" package="monnef.jaffas.technic.common">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockFermenter.java" line="86" class="monnef.jaffas.technic.block.BlockFermenter" package="monnef.jaffas.technic.block">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileFermenter.java" line="198" class="monnef.jaffas.technic.block.TileFermenter" package="monnef.jaffas.technic.block">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityMachine.java" line="186" class="monnef.jaffas.power.block.common.TileEntityMachine" package="monnef.jaffas.power.block.common">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/core/src/monnef/core/external/javassist/expr/MethodCall.java" line="240" class="monnef.core.external.javassist.expr.MethodCall" package="monnef.core.external.javassist.expr">
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="&#13;&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&#13;&#13;JAVA" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" line="387" class="monnef.jaffas.power.block.TileWindGenerator" package="monnef.jaffas.power.block">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" line="395" class="monnef.jaffas.power.block.TileWindGenerator" package="monnef.jaffas.power.block">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/RenderGlobal.java" line="506" class="net.minecraft.client.renderer.RenderGlobal" package="net.minecraft.client.renderer">
-        <option name="ENABLED" value="false" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="true" />
-        <option name="REMOVE_AFTER_HIT" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="SUSPEND" value="true" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="true" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="entity instanceof EntityWindTurbine&#13;monnef.jaffas.power.entity.EntityWindTurbine&#13;JAVA" />
-        <option name="LOG_MESSAGE" value="&quot;reached Line 507 in renderEntities()&quot;&#13;&#13;JAVA" />
-      </breakpoint>
-    </line_breakpoints>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
+  </component>
+  <component name="ErrorTreeViewConfiguration">
+    <option name="hideWarnings" value="true" />
+    <option name="HIDE_WARNINGS" value="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -847,19 +1009,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CustomDrop.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/CustomDrop.java">
+      <file leaf-file-name="BlockSink.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSink.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="35" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="944" column="0" selection-start="50291" selection-end="50291" vertical-scroll-proportion="0.7456">
+            <state line="100" column="18" selection-start="3153" selection-end="3153" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -884,14 +1037,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiContainerWindGenerator.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/client/GuiContainerJaffas.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/client/SlotLocked.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/common/ContainerExporter.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/client/RenderingHook.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/client/RenderingTickHandler.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/client/ClientTickHandler.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ScreenShotHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/BlockConstruction.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ContentHolder.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/command/CommandMC.java" />
@@ -899,7 +1044,15 @@
         <option value="$PROJECT_DIR$/core/src/monnef/core/mod/MonnefCoreNormalMod.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/GuiExporter.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/ExporterTickHandler.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/MonnefCorePlugin.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/DyeHelper.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/asm/CoreTransformer.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/client/RenderItemInAir.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/CloakHookHandler.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/TilePie.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockFridge.java" />
       </list>
     </option>
   </component>
@@ -1037,37 +1190,23 @@
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mcp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1085,7 +1224,29 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1105,13 +1266,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="minecraftforge" />
+              <option name="myItemId" value="minecraft" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1131,7 +1292,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="minecraftforge" />
+              <option name="myItemId" value="minecraft" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1141,7 +1302,7 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1161,7 +1322,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="minecraftforge" />
+              <option name="myItemId" value="minecraft" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1169,13 +1330,13 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="event" />
+              <option name="myItemId" value="renderer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1194,10 +1355,60 @@
               <option name="myItemId" value="net" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="renderer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="texture" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="net" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1219,29 +1430,11 @@
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1249,13 +1442,43 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fml" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
+              <option name="myItemId" value="jaffas_1.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fml" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="relauncher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1.6" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1264,96 +1487,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mod" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="command" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp725_jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1365,23 +1498,23 @@
   <component name="PropertiesComponent">
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="OverrideImplement.combined" value="false" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="options.lastSelected" value="preferences.pluginManager" />
-    <property name="last_opened_file_path" value="D:/apps/scala-2.10.2/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/jars/mods/NotEnoughItems-dev 1.6.1.5.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.31578946" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.31578946" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1427,7 +1560,7 @@
       <recent name="monnef.core.external" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.client">
+  <component name="RunManager" selected="Application.server">
     <configuration default="false" name="IntCoordsTest" type="JUnit" factoryName="JUnit" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <module name="mcp725_jaffas" />
@@ -1587,7 +1720,7 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="mcp725_jaffas" />
+      <module name="jaffas_1.6" />
       <envs />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
@@ -1620,7 +1753,7 @@
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="mcp725_jaffas" />
+      <module name="jaffas_1.6" />
       <envs />
       <RunnerSettings RunnerId="Debug">
         <option name="DEBUG_PORT" value="" />
@@ -1777,26 +1910,27 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="true" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29017857" sideWeight="0.49573106" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25892857" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25841478" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.5058698" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="ASM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36979723" sideWeight="0.73995537" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19196428" sideWeight="0.48292422" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29575893" sideWeight="0.48292422" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29575893" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.18080357" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.171875" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16862327" sideWeight="0.55915177" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14194237" sideWeight="0.53125" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.4941302" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="LuaJ" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19316968" sideWeight="0.4955357" order="2" side_tool="false" content_ui="tabs" />
@@ -1804,7 +1938,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29017857" sideWeight="0.49573106" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1893,108 +2026,118 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/RegistryUtils.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/texture/AbstractTexture.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="103" selection-start="1666" selection-end="1666" vertical-scroll-proportion="0.01954023">
+        <state line="6" column="53" selection-start="203" selection-end="203" vertical-scroll-proportion="0.14049587">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/ScreenShotHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/texture/TextureAtlasSprite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="56" selection-start="1971" selection-end="1971" vertical-scroll-proportion="0.31609195" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/mod/MonnefCoreNormalMod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="31" selection-start="1886" selection-end="1886" vertical-scroll-proportion="0.0">
+        <state line="316" column="0" selection-start="9729" selection-end="9729" vertical-scroll-proportion="1.3417085">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/Configuration.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/texture/TextureUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="138" column="21" selection-start="5407" selection-end="5407" vertical-scroll-proportion="-0.16885246">
+        <state line="143" column="53" selection-start="5190" selection-end="5235" vertical-scroll-proportion="0.391453">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/thermalexpansion/api/ThermalExpansionInfo.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/RenderItemInAir.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="60" selection-start="1025" selection-end="1025" vertical-scroll-proportion="0.58360654" />
+        <state line="53" column="20" selection-start="1376" selection-end="1376" vertical-scroll-proportion="0.74252874">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/CloakHookHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="48" selection-start="469" selection-end="469" vertical-scroll-proportion="0.29310346">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/texture/TextureMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="21" selection-start="939" selection-end="939" vertical-scroll-proportion="0.099183194">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/Minecraft.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="503" column="35" selection-start="20929" selection-end="20929" vertical-scroll-proportion="0.41073513">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/texture/TextureManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="22" selection-start="861" selection-end="861" vertical-scroll-proportion="0.15632184">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/util/Icon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="17" selection-start="125" selection-end="125" vertical-scroll-proportion="0.07816092">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/entity/RenderSnowball.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="13" selection-start="606" selection-end="606" vertical-scroll-proportion="-0.42988506">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="180" column="77" selection-start="10125" selection-end="10125" vertical-scroll-proportion="0.33277026">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/TilePie.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="135" column="37" selection-start="3663" selection-end="3663" vertical-scroll-proportion="0.6628099">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="128" column="85" selection-start="9373" selection-end="9375" vertical-scroll-proportion="0.33333334">
+        <state line="1190" column="20" selection-start="65157" selection-end="65303" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemStack.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockFridge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="446" column="18" selection-start="13276" selection-end="13276" vertical-scroll-proportion="0.3328">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/command/CommandMC.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="45" selection-start="445" selection-end="445" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="169" column="50" selection-start="8574" selection-end="8574" vertical-scroll-proportion="0.43640608">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/ExporterTickHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="53" selection-start="2673" selection-end="2673" vertical-scroll-proportion="0.21839081">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="135" column="63" selection-start="4654" selection-end="4654" vertical-scroll-proportion="0.7264368">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemBucket.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="11" selection-start="671" selection-end="671" vertical-scroll-proportion="0.01954023" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="114" column="48" selection-start="10137" selection-end="10137" vertical-scroll-proportion="0.01954023">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/GuiExporter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="82" selection-start="2432" selection-end="2432" vertical-scroll-proportion="0.62873566">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/CustomDrop.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="35" selection-start="2038" selection-end="2038" vertical-scroll-proportion="0.0">
+        <state line="244" column="28" selection-start="7525" selection-end="7525" vertical-scroll-proportion="0.8827586">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="944" column="0" selection-start="50291" selection-end="50291" vertical-scroll-proportion="0.7456">
+        <state line="904" column="64" selection-start="47436" selection-end="47436" vertical-scroll-proportion="0.36872813">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockSink.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="18" selection-start="3153" selection-end="3153" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -2028,7 +2171,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Scala</last-edited>
+          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2064,7 +2207,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Scala|mcp725_jaffas</last-edited>
+          <last-edited>jaffas_1.6</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2088,7 +2231,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>runtime</last-edited>
+          <last-edited>chickenStuff</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

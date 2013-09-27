@@ -755,8 +755,8 @@ public class JaffasTechnic extends jaffasMod {
                 new ItemStack(limsew), new ItemStack(limsew), new ItemStack(limsew));
 
         if (!disableOreRecipes) {
-            GameRegistry.addShapelessRecipe(new ItemStack(limsew, 2), new ItemStack(Item.diamond), new ItemStack(Item.lightStoneDust),
-                    new ItemStack(Item.lightStoneDust), new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone),
+            GameRegistry.addShapelessRecipe(new ItemStack(limsew, 2), new ItemStack(Item.diamond), new ItemStack(Item.glowstone),
+                    new ItemStack(Item.glowstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone),
                     new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone));
         }
 
@@ -796,7 +796,7 @@ public class JaffasTechnic extends jaffasMod {
         if (ConfigurationManager.spawnStonesEnabled) {
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Item.ingotIron, 'J', blockJaffarrol);
             GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "LGR", "GSG", "RGL", 'G', Item.ingotGold, 'S', getItem(spawnStoneLittle), 'R', Item.redstone, 'L', limsew);
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "DLB", "GSL", "BGD", 'L', limsew, 'B', Item.blazePowder, 'D', Item.diamond, 'G', Item.lightStoneDust, 'S', getItem(spawnStoneMedium));
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "DLB", "GSL", "BGD", 'L', limsew, 'B', Item.blazePowder, 'D', Item.diamond, 'G', Item.glowstone, 'S', getItem(spawnStoneMedium));
         }
 
         GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', jaffarrolNugget);
@@ -895,14 +895,14 @@ public class JaffasTechnic extends jaffasMod {
             );
             GameRegistry.addSmelting(rainbowDust.itemID, new ItemStack(gems), 7f);
 
-            GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBL", "IRI", 'L', Item.lightStoneDust, 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
+            GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBL", "IRI", 'L', Item.glowstone, 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
 
             GameRegistry.addShapedRecipe(new ItemStack(repeater, 2), " R ", "JCJ", 'C', Item.redstoneRepeater, 'R', Item.redstone, 'J', jaffarrolRefined);
             GameRegistry.addShapedRecipe(new ItemStack(sampler), " R ", "JCJ", 'C', Item.comparator, 'R', Item.netherQuartz, 'J', jaffarrolRefined);
 
             for (int i = 0; i <= 15; i++) {
                 GameRegistry.addShapedRecipe(new ItemStack(lampDeco, 2, i), "IGI", "RBR", "IDI",
-                        'I', Item.ingotIron, 'R', Item.lightStoneDust, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY),
+                        'I', Item.ingotIron, 'R', Item.glowstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY),
                         'D', DyeHelper.getDye(i));
             }
 
