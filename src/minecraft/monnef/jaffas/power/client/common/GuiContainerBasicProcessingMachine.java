@@ -40,7 +40,7 @@ public class GuiContainerBasicProcessingMachine extends GuiContainerMachine {
     }
 
     @Override
-    protected String getBackgroundTexture() {
+    public String getBackgroundTexture() {
         return bpMachine.getGuiBackgroundTexture();
     }
 

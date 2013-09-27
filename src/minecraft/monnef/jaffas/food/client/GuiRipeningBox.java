@@ -10,19 +10,16 @@ import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.food.block.ContainerRipeningBox;
 import monnef.jaffas.food.block.TileRipeningBox;
+import monnef.jaffas.food.common.Reference;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiRipeningBox extends GuiContainerJaffas {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/guiripingbox.png");
     private static final int STATUS_WIDTH = 16;
     private static final int STATUS_HEIGHT = 2;
     private static final int STATUS_SPACE = 2;
-    int x;
-    int y;
 
     TileRipeningBox box;
 
@@ -30,6 +27,8 @@ public class GuiRipeningBox extends GuiContainerJaffas {
                           TileRipeningBox tileEntity) {
         super(new ContainerRipeningBox(inventoryPlayer, tileEntity));
         box = tileEntity;
+        setBackgroundTexture("guiripingbox.png");
+        setModId(Reference.ModName);
     }
 
     @Override
@@ -48,7 +47,7 @@ public class GuiRipeningBox extends GuiContainerJaffas {
                 if (MonnefCorePlugin.debugEnv) {
                     String status = String.format("%d", ripeningStatus);
                     fontRenderer.drawString(status, xPos, yPos, 4210752);
-                    this.mc.renderEngine.bindTexture(TEXTURE);
+                    bindBackgroundTexture();
                     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                 }
                 int stripWidth = (ripeningStatus * STATUS_WIDTH) / TileRipeningBox.MAX_RIPENING_STATUS;
@@ -61,12 +60,7 @@ public class GuiRipeningBox extends GuiContainerJaffas {
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2,
                                                    int par3) {
-        x = (width - xSize) / 2;
-        y = (height - ySize) / 2;
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(TEXTURE);
-
-        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        super.drawGuiContainerBackgroundLayer(par1, par2, par3);
         renderStatusBars();
     }
 }

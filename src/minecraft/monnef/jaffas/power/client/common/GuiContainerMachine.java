@@ -27,7 +27,6 @@ public class GuiContainerMachine extends GuiContainerJaffas {
     protected static ColorHelper.IntColor topColor = new ColorHelper.IntColor(53, 180, 212);
     protected static ColorHelper.IntColor bottomColor = new ColorHelper.IntColor(25, 78, 90);
     protected final TileEntityMachineWithInventory tile;
-    private String backgroundTexture = "/guimachine.png";
 
     public GuiContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory tileEntity, ContainerMachine container) {
         super(container);
@@ -49,20 +48,10 @@ public class GuiContainerMachine extends GuiContainerJaffas {
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(new ResourceLocation(getBackgroundTexture())); // TODO: optimalize?
-        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+        super.drawGuiContainerBackgroundLayer(par1, par2, par3);
 
         if (tile.isPowerBarRenderingEnabled())
             drawEnergyBar(tile);
-    }
-
-    protected String getBackgroundTexture() {
-        return backgroundTexture;
-    }
-
-    public void setBackgroundTexture(String backgroundTexture) {
-        this.backgroundTexture = backgroundTexture;
     }
 
     protected void drawEnergyBar(TileEntityMachineWithInventory tile) {
