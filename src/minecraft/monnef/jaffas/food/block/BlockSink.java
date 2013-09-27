@@ -8,8 +8,8 @@ package monnef.jaffas.food.block;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -98,7 +98,7 @@ public class BlockSink extends BlockJaffas {
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if (debug && JaffasFood.debug && !world.isRemote) {
             int m = world.getBlockMetadata(x, y, z);
-            player.sendChatToPlayer("meta: " + m);
+            PlayerHelper.addMessage(player, "meta: " + m);
         }
 
         if (player.isSneaking()) {

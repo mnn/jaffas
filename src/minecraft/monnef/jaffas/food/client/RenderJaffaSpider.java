@@ -12,13 +12,18 @@ import net.minecraft.client.model.ModelSpider;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class RenderJaffaSpider extends RenderLiving {
+
+    private final ResourceLocation textureEyes;
+
     public RenderJaffaSpider(float shadowSize) {
         super(new ModelSpider(), shadowSize);
         this.setRenderPassModel(new ModelSpider());
+        textureEyes = new ResourceLocation("/jaffas_littleSpider_eyes.png");
     }
 
     protected float setSpiderDeathMaxRotation() {
@@ -29,7 +34,8 @@ public class RenderJaffaSpider extends RenderLiving {
         if (par2 != 0) {
             return -1;
         } else {
-            this.loadTexture("/jaffas_littleSpider_eyes.png");
+            // this.loadTexture(...);
+            bindTexture(textureEyes);
             GL11.glEnable(GL11.GL_BLEND);
             GL11.glDisable(GL11.GL_ALPHA_TEST);
             GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_ONE);

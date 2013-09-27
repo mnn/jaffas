@@ -149,7 +149,7 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
     }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         return true;
     }
 

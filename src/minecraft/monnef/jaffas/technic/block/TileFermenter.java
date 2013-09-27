@@ -364,7 +364,7 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
     }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         return true;
     }
 

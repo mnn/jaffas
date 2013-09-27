@@ -16,6 +16,7 @@ import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.common.WrenchHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -96,7 +97,7 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     @Override
-    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLiving entity, ItemStack stack) {
+    public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         TileEntityMachine tile = getTile(w, x, y, z);
 
         if (useDefaultDirection) {

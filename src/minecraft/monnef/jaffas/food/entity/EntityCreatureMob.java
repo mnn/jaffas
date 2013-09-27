@@ -56,7 +56,7 @@ public abstract class EntityCreatureMob extends EntityCreature {
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, int damageAmount) {
+    public boolean attackEntityFrom(DamageSource source, float damageAmount) {
         if (this.isEntityInvulnerable()) {
             return false;
         } else if (super.attackEntityFrom(source, damageAmount)) {

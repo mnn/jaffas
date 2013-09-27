@@ -9,10 +9,12 @@ import monnef.core.client.GuiContainerJaffas;
 import monnef.jaffas.food.block.ContainerFridge;
 import monnef.jaffas.food.block.TileFridge;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
 public class GuiFridge extends GuiContainerJaffas {
+    private final ResourceLocation texture;
     private TileFridge tileEntity;
 
     public GuiFridge(InventoryPlayer inventoryPlayer,
@@ -22,6 +24,7 @@ public class GuiFridge extends GuiContainerJaffas {
         ySize = 198;
 
         this.tileEntity = tileEntity;
+        texture = new ResourceLocation("/guifridge.png");
     }
 
     @Override
@@ -51,7 +54,7 @@ public class GuiFridge extends GuiContainerJaffas {
                                                    int par3) {
         //draw your Gui here, only thing you need to change is the path
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture("/guifridge.png");
+        this.mc.renderEngine.bindTexture(texture);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);

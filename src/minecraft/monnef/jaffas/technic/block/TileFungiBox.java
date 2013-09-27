@@ -266,7 +266,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
     @Override
     public Packet getDescriptionPacket() {
         Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
+        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
         writeToNBT(tag);
         tag.setBoolean(TAG_SHOW_SPORES, showSporeEffect);
         if (showSporeEffect) showSporeEffect = false;
@@ -276,7 +276,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
     @Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.customParam1;
+        NBTTagCompound tag = pkt.data;
         readFromNBT(tag);
         showSporeEffect = tag.getBoolean(TAG_SHOW_SPORES);
     }

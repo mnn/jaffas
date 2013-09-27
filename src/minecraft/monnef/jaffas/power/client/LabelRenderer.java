@@ -9,6 +9,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 
@@ -25,7 +26,7 @@ public class LabelRenderer {
     }
 
     protected void renderLabel(TileEntity tileEntity, String text, int visibleDistance, double x, double y, double z, int textWidth, int lines) {
-        EntityLiving player = this.renderManager.livingPlayer;
+        EntityLivingBase player = this.renderManager.livingPlayer;
         double distanceToEntity = tileEntity.getDistanceFrom(player.posX, player.posY, player.posZ);
 
         if (distanceToEntity <= visibleDistance) {

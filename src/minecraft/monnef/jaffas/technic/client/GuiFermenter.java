@@ -12,6 +12,7 @@ import monnef.jaffas.technic.block.ContainerFermenter;
 import monnef.jaffas.technic.block.TileFermenter;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
@@ -35,6 +36,7 @@ public class GuiFermenter extends GuiContainerJaffas {
     public static final int WORK_WIDTH = 4;
     public static final int WORK_X = 14;
     public static int TANK_HEIGHT = 46;
+    private final ResourceLocation texture;
 
     public TileFermenter tile;
 
@@ -71,6 +73,7 @@ public class GuiFermenter extends GuiContainerJaffas {
                         TileFermenter tileEntity) {
         super(new ContainerFermenter(inventoryPlayer, tileEntity));
         tile = tileEntity;
+        texture = new ResourceLocation(GUI_TEXTURE);
     }
 
     @Override
@@ -83,21 +86,21 @@ public class GuiFermenter extends GuiContainerJaffas {
     protected void drawGuiContainerBackgroundLayer(float par1, int par2,
                                                    int par3) {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(GUI_TEXTURE);
+        this.mc.renderEngine.bindTexture(texture);
         int x = (width - xSize) / 2;
         int y = (height - ySize) / 2;
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
         if (tile.isWorking()) {
             int m = (tile.getWorkMeter() * TANK_HEIGHT) / tile.getMaxWorkMeter();
-            GuiHelper.drawGradientRectFromDown(this, x + WORK_X, y + TANK_POS_Y, WORK_WIDTH, m, WORK_BOTTOM_COLOR, WORK_TOP_COLOR, TOP_DOWN, TANK_HEIGHT);
+            drawGradientRectFromDown(this, x + WORK_X, y + TANK_POS_Y, WORK_WIDTH, m, WORK_BOTTOM_COLOR, WORK_TOP_COLOR, TOP_DOWN, TANK_HEIGHT);
         }
 
         if (!tile.isEmpty()) {
             int m = (tile.getLiquidAmount() * TANK_HEIGHT) / TileFermenter.FERMENTER_CAPACITY;
             //DrawingHelper.drawRect(x + 24, y + 20, 16, m, liquidToColors.get(tile.getLiquid()));
             ColorPair pair = liquidToColors.get(tile.getLiquid());
-            GuiHelper.drawGradientRectFromDown(this, x + TANK_POS_X, y + TANK_POS_Y, TANK_WIDTH, m, pair.first, pair.second, LEFT_RIGHT, TANK_HEIGHT);
+            drawGradientRectFromDown(this, x + TANK_POS_X, y + TANK_POS_Y, TANK_WIDTH, m, pair.first, pair.second, LEFT_RIGHT, TANK_HEIGHT);
         }
     }
     // x, y, u, v, width, height

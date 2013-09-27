@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -23,9 +23,18 @@ public class EntityJaffaSpider extends EntityCreatureMob {
 
     public EntityJaffaSpider(World world) {
         super(world);
-        this.texture = "/mob/spider.png";
         this.setSize(1.4F, 0.9F);
-        this.moveSpeed = 0.8F;
+    }
+
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(16D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.8D);
+    }
+
+    public static String getTexturePath() {
+        return "/mob/spider.png";
     }
 
     @Override
@@ -41,11 +50,6 @@ public class EntityJaffaSpider extends EntityCreatureMob {
         if (!this.worldObj.isRemote) {
             this.setBesideClimbableBlock(this.isCollidedHorizontally);
         }
-    }
-
-    @Override
-    public int getMaxHealth() {
-        return 16;
     }
 
     @Override
@@ -167,17 +171,6 @@ public class EntityJaffaSpider extends EntityCreatureMob {
         }
 
         this.dataWatcher.updateObject(CLIMBABLE_BLOCK_WATCHER_INDEX, Byte.valueOf(b0));
-    }
-
-    @Override
-    public void initCreature() {
-        if (canSpawnWithSkeleton() && this.worldObj.rand.nextInt(100) == 0) {
-            EntitySkeleton entityskeleton = new EntitySkeleton(this.worldObj);
-            entityskeleton.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-            entityskeleton.initCreature();
-            this.worldObj.spawnEntityInWorld(entityskeleton);
-            entityskeleton.mountEntity(this);
-        }
     }
 
     public boolean canSpawnWithSkeleton() {

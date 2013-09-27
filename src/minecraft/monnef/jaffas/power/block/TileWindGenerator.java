@@ -443,4 +443,6 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
         if (worldObj.isRemote) return;
         player.addChatMessage(String.format("ObsVolumeCached: %.2f, ObsDebug: %.2f, cMaxSpeed: %d, totRad: %d", obstacles.getObstaclesVolumeWorstScenario(), obstacles.debugCompute(), getCurrentMaximalSpeed(), obstacles.getTotalRadius()));
     }
+
+
 }

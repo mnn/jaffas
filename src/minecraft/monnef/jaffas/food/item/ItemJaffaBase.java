@@ -96,4 +96,12 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     public EnumRarity getRarity(ItemStack stack) {
         return EnumRarity.values()[rarity];
     }
+
+    public int getCustomDamageVsEntity() {
+        return 1;
+    }
+
+    public int getCustomDamageVsEntity(ItemStack itemStack) {
+        return getCustomDamageVsEntity();
+    }
 }

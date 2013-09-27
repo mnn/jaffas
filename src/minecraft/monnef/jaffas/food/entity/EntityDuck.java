@@ -7,6 +7,7 @@ package monnef.jaffas.food.entity;
 
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMate;
@@ -54,7 +55,6 @@ public class EntityDuck extends EntityAnimal {
 
     public EntityDuck(World par1World) {
         super(par1World);
-        this.texture = "/jaffas_duck.png";
         this.setSize(0.3F, 0.7F);
         this.timeUntilNextEgg = this.rand.nextInt(6000) + 6000;
         float var2 = 0.25F;
@@ -75,14 +75,18 @@ public class EntityDuck extends EntityAnimal {
         return true;
     }
 
-    public int getMaxHealth() {
-        return 5;
+    @Override
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(5D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
     }
 
     /**
      * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
      * use this to react to sunlight and start to burn.
      */
+    @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.posOld = this.pos;
@@ -200,5 +204,9 @@ public class EntityDuck extends EntityAnimal {
             res.add(new MobDrop(1, new ItemStack(feather, 1, 0)));
             return res;
         }
+    }
+
+    public static String getTexturePath(){
+        return "/jaffas_duck.png";
     }
 }

@@ -5,14 +5,19 @@
 
 package monnef.jaffas.food.item;
 
+import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -20,7 +25,7 @@ import java.util.List;
 
 public class ItemJaffaTool extends ItemJaffaBase {
     public float efficiencyOnProperMaterial = 4.0F;
-    public int damageVsEntity;
+    public float damageVsEntity;
     protected EnumToolMaterial toolMaterial;
     protected int durabilityLossOnEntityHit = 2;
     protected int durabilityLossOnBlockBreak = 1;
@@ -36,13 +41,13 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     @Override
-    public boolean hitEntity(ItemStack stack, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving) {
+    public boolean hitEntity(ItemStack stack, EntityLivingBase par2EntityLiving, EntityLivingBase par3EntityLiving) {
         damageTool(durabilityLossOnEntityHit, par3EntityLiving, stack);
         return true;
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLiving par7EntityLiving) {
+    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLivingBase par7EntityLiving) {
         if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
             damageTool(durabilityLossOnBlockBreak, par7EntityLiving, par1ItemStack);
         }
@@ -51,17 +56,16 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     @Override
-    public int getDamageVsEntity(Entity par1Entity) {
-        return this.damageVsEntity;
+    public Multimap getItemAttributeModifiers() {
+        Multimap multimap = super.getItemAttributeModifiers();
+        multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.damageVsEntity, 0));
+        return multimap;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean isFull3D() {
         return true;
-    }
-
-    public String getToolMaterialName() {
-        return this.toolMaterial.toString();
     }
 
     @Override
@@ -85,17 +89,33 @@ public class ItemJaffaTool extends ItemJaffaBase {
         return stack.getMaxDamage() == stack.getItemDamage();
     }
 
-    protected void damageTool(int dmg, EntityLiving source, ItemStack stack) {
+    protected void damageTool(int dmg, EntityLivingBase source, ItemStack stack) {
         int newDmg = stack.getItemDamage() + dmg;
         if (newDmg == stack.getMaxDamage()) {
             if (source != null) {
                 source.renderBrokenItemStack(stack);
+                refreshDamageAttribute(stack);
             }
         }
         if (newDmg > stack.getMaxDamage()) {
             dmg = stack.getMaxDamage() - stack.getItemDamage();
         }
         stack.damageItem(dmg, source);
+    }
+
+    private void refreshDamageAttribute(ItemStack stack) {
+        NBTTagCompound inbt = stack.stackTagCompound;
+        NBTTagCompound nnbt = new NBTTagCompound();
+        NBTTagList nnbtl = new NBTTagList();
+        AttributeModifier att = new AttributeModifier(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), getCustomDamageVsEntity(stack), 0);
+        nnbt.setLong("UUIDMost", att.getID().getMostSignificantBits());
+        nnbt.setLong("UUIDLeast", att.getID().getLeastSignificantBits());
+        nnbt.setString("Name", att.getName());
+        nnbt.setDouble("Amount", att.getAmount());
+        nnbt.setInteger("Operation", att.getOperation());
+        nnbt.setString("AttributeName", att.getName());
+        nnbtl.appendTag(nnbt);
+        inbt.setTag("AttributeModifiers", nnbtl);
     }
 
     @Override
@@ -110,11 +130,11 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     @Override
-    public int getDamageVsEntity(Entity entity, ItemStack itemStack) {
+    public int getCustomDamageVsEntity(ItemStack itemStack) {
         if (nearlyDestroyed(itemStack)) {
             return 0;
         }
-        return getDamageVsEntity(entity);
+        return getCustomDamageVsEntity();
     }
 
     @Override

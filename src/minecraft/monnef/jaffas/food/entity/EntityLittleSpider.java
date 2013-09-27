@@ -7,6 +7,7 @@ import monnef.core.utils.RandomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -55,14 +56,15 @@ public class EntityLittleSpider extends EntityJaffaSpider {
         super(world);
         //this.setSize(1.4F, 0.9F);
         this.setSize(0.5F, 0.25F);
-        this.moveSpeed = 0.8F;
         this.timeUntilNextWeb = this.rand.nextInt(6000) + 6000;
         this.renderDistanceWeight = 2;
     }
 
     @Override
-    public int getMaxHealth() {
-        return 12;
+    protected void applyEntityAttributes() {
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(12D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.8D);
     }
 
     @Override
@@ -79,10 +81,6 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     @Override
     public float spiderScaleAmount() {
         return 0.4F;
-    }
-
-    @Override
-    public void initCreature() {
     }
 
     @Override
@@ -180,7 +178,7 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, int damageAmount) {
+    public boolean attackEntityFrom(DamageSource source, float damageAmount) {
         boolean ret = super.attackEntityFrom(source, damageAmount);
         aggressiveTime = ret ? RandomHelper.generateRandomFromInterval(30 * 20, 120 * 20) : 0;
         return ret;

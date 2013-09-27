@@ -10,6 +10,7 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ContainerBoard;
 import monnef.jaffas.food.block.TileBoard;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
@@ -17,11 +18,13 @@ public class GuiBoard extends GuiContainerJaffas {
     public static final String GUIBOARD_TEXTURE = "/guiboard.png";
 
     TileBoard board;
+    ResourceLocation texture;
 
     public GuiBoard(InventoryPlayer inventoryPlayer,
                     TileBoard tileEntity) {
         super(new ContainerBoard(inventoryPlayer, tileEntity));
         board = tileEntity;
+        texture = new ResourceLocation(GUIBOARD_TEXTURE);
     }
 
     @Override
@@ -44,7 +47,7 @@ public class GuiBoard extends GuiContainerJaffas {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(GUIBOARD_TEXTURE);
+        this.mc.renderEngine.bindTexture(texture);
         this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
 
         int var7 = this.board.getChopTimeScaled(24);

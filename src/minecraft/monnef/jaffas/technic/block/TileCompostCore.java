@@ -188,7 +188,7 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
     }
 
     @Override
-    public boolean isStackValidForSlot(int i, ItemStack itemstack) {
+    public boolean isItemValidForSlot(int i, ItemStack itemstack) {
         return true;
     }
 
@@ -295,7 +295,7 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
     @Override
     public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.customParam1;
+        NBTTagCompound tag = pkt.data;
         readFromNBTIsValid(tag);
     }
 
