@@ -8,7 +8,6 @@ package monnef.jaffas.food;
 import com.google.common.base.Joiner;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -23,6 +22,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.block.BlockSwitchgrass;
@@ -127,8 +127,8 @@ public class JaffasFood extends jaffasMod {
     @SidedProxy(clientSide = "monnef.jaffas.food.client.ClientProxy", serverSide = "monnef.jaffas.food.common.CommonProxy")
     public static CommonProxy proxy;
 
-    @PreInit
     @Override
+    @Mod.EventHandler
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
         otherMods = new OtherModsHelper();
@@ -220,6 +220,8 @@ public class JaffasFood extends jaffasMod {
         GameRegistry.registerPlayerTracker(new PlayerTracker());
 
         MinecraftForge.addGrassPlant(blockSwitchgrass, BlockSwitchgrass.VALUE_TOP, 5);
+
+        GuiContainerJaffas.Registry.registerClassToModId();
 
         printInitializedMessage();
     }

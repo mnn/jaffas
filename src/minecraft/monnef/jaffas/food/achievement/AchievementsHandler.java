@@ -11,7 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.utils.AchievementsHelper;
-import monnef.core.utils.CallerClassNameFinder;
+import monnef.core.utils.CallerFinder;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
@@ -69,7 +69,7 @@ public class AchievementsHandler {
             return;
         }
         if (initialized) {
-            Log.printSevere("AchievementsHandler reinitialization by " + CallerClassNameFinder.getCallerClassName(1));
+            Log.printSevere("AchievementsHandler reinitialization by " + CallerFinder.getCallerClassName(1));
         }
         if (idCounter == -1) {
             throw new RuntimeException("Counter not initialized.");

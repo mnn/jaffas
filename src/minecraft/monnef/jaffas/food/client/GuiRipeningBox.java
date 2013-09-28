@@ -28,7 +28,6 @@ public class GuiRipeningBox extends GuiContainerJaffas {
         super(new ContainerRipeningBox(inventoryPlayer, tileEntity));
         box = tileEntity;
         setBackgroundTexture("guiripingbox.png");
-        setModId(Reference.ModName);
     }
 
     @Override
