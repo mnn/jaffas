@@ -9,6 +9,8 @@ import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ICraftingHandler;
 import codechicken.nei.recipe.IUsageHandler;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import monnef.core.client.PackageToModIdRegistry;
+import monnef.core.client.ResourcePathHelper;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.common.IProcessingRecipe;
@@ -18,6 +20,8 @@ import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collection;
+
+import static monnef.core.client.ResourcePathHelper.ResourceTextureType.GUI;
 
 public class ProcessingMachineRecipeHandler extends TemplateRecipeHandler implements ICraftingHandler, IUsageHandler {
     private TileEntityBasicProcessingMachine tile;
@@ -30,7 +34,7 @@ public class ProcessingMachineRecipeHandler extends TemplateRecipeHandler implem
 
     @Override
     public String getGuiTexture() {
-        return tile.getGuiBackgroundTexture();
+        return ResourcePathHelper.assemble(tile.getGuiBackgroundTexture(), PackageToModIdRegistry.searchModId(tile.getClass()), GUI);
     }
 
     @Override

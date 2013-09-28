@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.item;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
@@ -20,6 +21,7 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
 
     public ItemLinkTool(int id, int textureIndex) {
         super(id, textureIndex);
+        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
     }
 
     @Override

@@ -13,7 +13,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
 public class GuiBoard extends GuiContainerJaffas {
-    public static final String GUIBOARD_TEXTURE = "/guiboard.png";
+    public static final String GUIBOARD_TEXTURE = "guiboard.png";
 
     TileBoard board;
 

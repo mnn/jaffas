@@ -7,12 +7,16 @@ package monnef.jaffas.food.nei;
 
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import monnef.core.client.ResourcePathHelper;
 import monnef.jaffas.food.client.GuiBoard;
+import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.crafting.BoardRecipe;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.item.ItemStack;
+
+import static monnef.core.client.ResourcePathHelper.ResourceTextureType.GUI;
 
 public class BoardRecipeHandler extends TemplateRecipeHandler {
     private static final int GLOBAL_Y = 24;
@@ -28,7 +32,7 @@ public class BoardRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public String getGuiTexture() {
-        return GuiBoard.GUIBOARD_TEXTURE;
+        return ResourcePathHelper.assemble(GuiBoard.GUIBOARD_TEXTURE, Reference.ModName, GUI);
     }
 
     @Override
