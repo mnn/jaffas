@@ -6,6 +6,7 @@
 package monnef.jaffas.power.block;
 
 import buildcraft.api.power.IPowerReceptor;
+import buildcraft.api.power.PowerHandler;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
@@ -342,7 +343,7 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     @Override
     protected void configurePowerParameters() {
         super.configurePowerParameters();
-        powerNeeded = 0;
+        configureAsPowerSource();
     }
 
     @Override

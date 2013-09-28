@@ -5,9 +5,9 @@
 
 package monnef.jaffas.power.block.common;
 
-import buildcraft.api.power.IPowerProvider;
+import buildcraft.api.power.IPowerEmitter;
 import buildcraft.api.power.IPowerReceptor;
-import buildcraft.api.power.PowerFramework;
+import buildcraft.api.power.PowerHandler;
 import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
@@ -18,11 +18,12 @@ import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
 import java.util.Random;
 
-public abstract class TileEntityMachine extends TileEntity implements IPowerReceptor {
+public abstract class TileEntityMachine extends TileEntity implements IPowerReceptor, IPowerEmitter {
     public static final String ROTATION_TAG_NAME = "rotation";
     public static final Random rand = new Random();
     private static final int DUMMY_CREATION_PHASE_INSTANCE_COUNTER_LIMIT = 5;
@@ -30,28 +31,25 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     protected int doWorkCounter;
 
     private ForgeDirection rotation;
-    protected IPowerProvider powerProvider;
+    protected PowerHandler powerHandler;
 
     protected int powerNeeded;
     protected int powerStorage;
     protected int maxEnergyReceived;
+    protected PowerHandler.Type bcPowerType;
     private boolean isRedstoneSensitive = false;
     private boolean cachedRedstoneStatus;
     private boolean isRedstoneStatusDirty;
     private boolean forceFullCubeRenderBoundingBox;
+    private boolean isPowerSource;
 
     protected TileEntityMachine() {
         onNewInstance(this);
         setRotation(ForgeDirection.UNKNOWN);
-        if (PowerFramework.currentFramework != null) {
-            powerProvider = PowerFramework.currentFramework.createPowerProvider();
-            configurePowerParameters();
-            powerProvider.configure(0, 2, maxEnergyReceived, powerNeeded, powerStorage);
-        } else {
-            if (!dummyCreationPhase) {
-                JaffasFood.Log.printWarning("Got null in power framework, this should never happen!");
-            }
-        }
+
+        configurePowerParameters();
+        powerHandler = new PowerHandler(this, bcPowerType);
+        powerHandler.configure(2, maxEnergyReceived, powerNeeded, powerStorage);
     }
 
     public void setForceFullCubeRenderBoundingBox(boolean value) {
@@ -75,13 +73,24 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
             isRedstoneStatusDirty = false;
             refreshCachedRedstoneStatus();
         }
-        getPowerProvider().update(this);
+        powerHandler.update();
+    }
+
+    /**
+     * Configures this instance to serve as an engine.
+     * Use only from {@link #configurePowerParameters}.
+     */
+    protected void configureAsPowerSource() {
+        isPowerSource = true;
+        bcPowerType = PowerHandler.Type.ENGINE;
+        powerNeeded = 0;
     }
 
     protected void configurePowerParameters() {
         powerNeeded = 20;
         maxEnergyReceived = 20;
         powerStorage = 10 * powerNeeded;
+        bcPowerType = PowerHandler.Type.MACHINE;
     }
 
     public BlockMachine getMachineBlock() {
@@ -143,21 +152,6 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
         this.setRotation(ForgeDirection.getOrientation(direction));
     }
 
-    @Override
-    public void setPowerProvider(IPowerProvider provider) {
-        powerProvider = provider;
-    }
-
-    @Override
-    public IPowerProvider getPowerProvider() {
-        return powerProvider;
-    }
-
-    @Override
-    public int powerRequest(ForgeDirection from) {
-        return powerNeeded != 0 ? maxEnergyReceived : 0;
-    }
-
     private static boolean dummyCreationPhase = false;
     private static int dummyCreationPhaseCounter;
 
@@ -216,15 +210,6 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
         return super.getRenderBoundingBox();
     }
 
-    @Override
-    public final void doWork() {
-        doWorkCounter++;
-        if (doWorkCounter >= slowingCoefficient) {
-            doWorkCounter = 0;
-            doMachineWork();
-        }
-    }
-
     protected abstract void doMachineWork();
 
     public IIntegerCoordinates getPosition() {
@@ -233,5 +218,31 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
 
     public void onItemDebug(EntityPlayer player) {
     }
+
+    //<editor-fold desc="BuildCraft API">
+    @Override
+    public final void doWork(PowerHandler workProvider) {
+        doWorkCounter++;
+        if (doWorkCounter >= slowingCoefficient) {
+            doWorkCounter = 0;
+            doMachineWork();
+        }
+    }
+
+    @Override
+    public boolean canEmitPowerFrom(ForgeDirection side) {
+        return isPowerSource;
+    }
+
+    @Override
+    public PowerHandler.PowerReceiver getPowerReceiver(ForgeDirection side) {
+        return powerHandler.getPowerReceiver();
+    }
+
+    @Override
+    public World getWorld() {
+        return worldObj;
+    }
+    //</editor-fold>
 }
 

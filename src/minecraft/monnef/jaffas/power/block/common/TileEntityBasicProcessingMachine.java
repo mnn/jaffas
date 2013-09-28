@@ -50,7 +50,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
         if (isWorking()) {
             processTime++;
-            float power = getPowerProvider().useEnergy(powerNeeded, powerNeeded, true);
+            float power = getPowerHandler().useEnergy(powerNeeded, powerNeeded, true);
             if (power < powerNeeded) {
                 JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
             } else {
@@ -182,7 +182,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
                 processingInv[slot] = ItemStack.loadItemStackFromNBT(innerTag);
             }
         }
-        getPowerProvider().readFromNBT(tag);
+        getPowerHandler().readFromNBT(tag);
     }
 
     @Override
@@ -202,7 +202,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
             }
         }
         tag.setTag(PROCESSING_INV_TAG, itemList);
-        getPowerProvider().writeToNBT(tag);
+        getPowerHandler().writeToNBT(tag);
     }
 
     public ContainerBasicProcessingMachine getMyContainerPrototype() {

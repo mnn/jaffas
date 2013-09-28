@@ -60,11 +60,11 @@ public class TileWebHarvester extends TileEntityMachineWithInventory implements 
 
         IIntegerCoordinates web = findWeb();
         if (web == null) {
-            getPowerProvider().useEnergy(WEB_SEARCH_ENERGY, WEB_SEARCH_ENERGY, true);
+            getPowerHandler().useEnergy(WEB_SEARCH_ENERGY, WEB_SEARCH_ENERGY, true);
             return;
         }
 
-        if (getPowerProvider().useEnergy(powerNeeded, powerNeeded, true) < powerNeeded) {
+        if (getPowerHandler().useEnergy(powerNeeded, powerNeeded, true) < powerNeeded) {
             return;
         }
         worldObj.destroyBlock(web.getX(), web.getY(), web.getZ(), false);

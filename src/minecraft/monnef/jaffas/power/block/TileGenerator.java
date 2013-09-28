@@ -52,7 +52,7 @@ public class TileGenerator extends TileEntityMachineWithInventory {
     @Override
     protected void configurePowerParameters() {
         super.configurePowerParameters();
-        powerNeeded = 0;
+        configureAsPowerSource();
     }
 
     @Override

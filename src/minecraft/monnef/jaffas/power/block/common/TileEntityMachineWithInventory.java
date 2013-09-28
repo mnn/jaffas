@@ -124,10 +124,10 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
     public int getCurrentValueOfIntegerToSync(int index) {
         switch (index) {
             case 0:
-                return (int) getPowerProvider().getEnergyStored();
+                return (int) getPowerHandler().getEnergyStored();
 
             case 1:
-                return getPowerProvider().getMaxEnergyStored();
+                return getPowerHandler().getMaxEnergyStored();
         }
         return -1;
     }

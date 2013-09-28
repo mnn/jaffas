@@ -37,7 +37,7 @@ public class TileKitchenUnit extends TileEntityMachine {
                 IPowerReceptor teReceptor = (IPowerReceptor) te;
                 IPowerProvider provider = teReceptor.getPowerProvider();
                 if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(provider) && BuildCraftHelper.doesWantEnergy(teReceptor, ForgeDirection.DOWN)) {
-                    float extracted = powerProvider.useEnergy(5, powerNeeded, true);
+                    float extracted = powerHandler.useEnergy(5, powerNeeded, true);
                     provider.receiveEnergy(extracted, ForgeDirection.DOWN);
                 } else {
                     skipCounter = 20;

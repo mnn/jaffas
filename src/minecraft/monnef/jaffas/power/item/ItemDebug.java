@@ -25,7 +25,7 @@ public class ItemDebug extends ItemPower implements IMachineTool {
         if (machine == null) {
             print("TE is null");
         } else {
-            IPowerProvider provider = machine.getPowerProvider();
+            IPowerProvider provider = machine.getPowerHandler();
             if (provider != null) {
                 print(String.format("%s: %d/%d(%d)", machine.getPosition().format(), Math.round(provider.getEnergyStored()), provider.getMaxEnergyStored(), provider.getActivationEnergy()));
             }
