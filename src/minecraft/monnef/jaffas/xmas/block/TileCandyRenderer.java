@@ -5,6 +5,7 @@
 
 package monnef.jaffas.xmas.block;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.xmas.client.ModelCandy;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileCandyRenderer extends TileEntitySpecialRenderer {
+public class TileCandyRenderer extends TileSpecialJaffaRenderer {
     private final ResourceLocation texture;
     private ModelCandy candy;
 

@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileCrossRenderer extends TileEntitySpecialRenderer {
+public class TileCrossRenderer extends TileSpecialJaffaRenderer {
     private final ResourceLocation texture;
     private ModelGrave grave;
 

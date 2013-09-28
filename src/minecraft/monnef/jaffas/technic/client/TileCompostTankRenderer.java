@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.client;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.technic.block.TileCompostCore;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileCompostTankRenderer extends TileEntitySpecialRenderer {
+public class TileCompostTankRenderer extends TileSpecialJaffaRenderer {
     public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_composttank.png");
     private ModelCompostTank compost;
 

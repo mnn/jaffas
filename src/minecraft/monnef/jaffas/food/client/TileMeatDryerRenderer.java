@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL12;
 
 import static monnef.jaffas.food.block.TileMeatDryer.MeatState;
 
-public class TileMeatDryerRenderer extends TileEntitySpecialRenderer {
+public class TileMeatDryerRenderer extends TileSpecialJaffaRenderer {
     public static final float U = 0.0625F;
     public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_meat_rack.png");
     public static final ResourceLocation TEXTURE_ZOMBIE_RAW = new ResourceLocation("/jaffas_meat_zombie_1.png");

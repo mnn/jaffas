@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileJaffaStatueRenderer extends TileEntitySpecialRenderer {
+public class TileJaffaStatueRenderer extends TileSpecialJaffaRenderer {
     public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_jaffa.png");
     private ModelJaffaStatue model;
 

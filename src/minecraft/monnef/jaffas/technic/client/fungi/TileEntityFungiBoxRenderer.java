@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.client.fungi;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.technic.block.TileFungiBox;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -15,7 +16,7 @@ import org.lwjgl.opengl.GL12;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TileEntityFungiBoxRenderer extends TileEntitySpecialRenderer {
+public class TileEntityFungiBoxRenderer extends TileSpecialJaffaRenderer {
     public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_fungi_box.png");
     private ModelFungiBox box = new ModelFungiBox();
     private ModelFungi[][] fungi;

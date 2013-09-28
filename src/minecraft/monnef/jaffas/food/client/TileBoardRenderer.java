@@ -6,20 +6,22 @@
 package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.TileBoard;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import static monnef.jaffas.food.common.ContentHolder.blockBoard;
 
-public class TileBoardRenderer extends TileEntitySpecialRenderer {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_board.png");
+public class TileBoardRenderer extends TileSpecialJaffaRenderer {
     private ModelBoard board;
 
     public TileBoardRenderer() {
         board = new ModelBoard();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_board.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -59,7 +61,7 @@ public class TileBoardRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef((float) par2, (float) par4 + 1.0F, (float) par6 + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
         board.render(0.0625F, blockBoard.hasKnife(meta));

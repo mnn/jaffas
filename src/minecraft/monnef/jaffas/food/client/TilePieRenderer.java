@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TilePieRenderer extends TileEntitySpecialRenderer {
+public class TilePieRenderer extends TileSpecialJaffaRenderer {
     private ModelPie pie;
 
     private static final String[] textures = new String[]{"/jaffas_pie01.png", "/jaffas_pie02.png", "/jaffas_pie04.png", "/jaffas_pie03.png"};

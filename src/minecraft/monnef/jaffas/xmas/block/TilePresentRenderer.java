@@ -5,6 +5,7 @@
 
 package monnef.jaffas.xmas.block;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.xmas.client.ModelPresent;
 import monnef.jaffas.xmas.client.ModelPresentSmall;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -13,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TilePresentRenderer extends TileEntitySpecialRenderer {
+public class TilePresentRenderer extends TileSpecialJaffaRenderer {
     private ModelPresent present;
     private ModelPresentSmall presentSmall;
 

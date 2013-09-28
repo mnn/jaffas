@@ -6,19 +6,20 @@
 package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.TileColumn;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileColumnRenderer extends TileEntitySpecialRenderer {
+public class TileColumnRenderer extends TileSpecialJaffaRenderer {
     private ModelColumn model;
-    private ResourceLocation texture;
 
     public TileColumnRenderer() {
-        texture = new ResourceLocation("/jaffas_column.png");
         model = new ModelColumn();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_column.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -35,7 +36,7 @@ public class TileColumnRenderer extends TileEntitySpecialRenderer {
         GL11.glTranslatef((float) par2, (float) par4 + 1.0F, (float) par6 + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTexture(texture);
+        bindTexture(textures[0]);
 
         model.render(0.0625F);
 

@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.client;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileLightningConductor;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -13,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileLightningConductorRenderer extends TileEntitySpecialRenderer {
+public class TileLightningConductorRenderer extends TileSpecialJaffaRenderer {
     private final ResourceLocation texture;
     private ModelLightningConductor conductor;
 

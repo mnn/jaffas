@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.client;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileToaster;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileToasterRenderer extends TileEntitySpecialRenderer {
+public class TileToasterRenderer extends TileSpecialJaffaRenderer {
     private final ResourceLocation texture;
     private ModelToaster toaster;
 

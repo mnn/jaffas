@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileSinkRenderer extends TileEntitySpecialRenderer {
+public class TileSinkRenderer extends TileSpecialJaffaRenderer {
     private final ResourceLocation texture;
     private ModelSink sink;
 

@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.client;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.technic.block.TileKeg;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-public class TileKegRenderer extends TileEntitySpecialRenderer {
+public class TileKegRenderer extends TileSpecialJaffaRenderer {
     public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_barrel.png");
     private ModelBarrel keg;
 

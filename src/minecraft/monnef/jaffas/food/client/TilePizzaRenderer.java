@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL12;
 
 import static monnef.jaffas.food.common.ContentHolder.blockPizza;
 
-public class TilePizzaRenderer extends TileEntitySpecialRenderer {
+public class TilePizzaRenderer extends TileSpecialJaffaRenderer {
     private ModelPizza pizza;
     private ResourceLocation texture;
 

@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.client;
 
+import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.technic.block.TileHighPlant;
 import monnef.jaffas.technic.common.HighPlantCatalog;
 import monnef.jaffas.technic.common.HighPlantInfo;
@@ -18,7 +19,7 @@ import org.lwjgl.opengl.GL12;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class TileHighPlantRenderer extends TileEntitySpecialRenderer {
+public class TileHighPlantRenderer extends TileSpecialJaffaRenderer {
     public static final float U = 0.0625F;
     public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_hop_plant.png");
     private ModelStake stake;
