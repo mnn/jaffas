@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.entity;
 
+import monnef.core.client.ResourcePathHelper;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -29,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
+import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.item.JaffaItem.duck;
 import static monnef.jaffas.food.item.JaffaItem.duckEgg;
@@ -206,7 +209,7 @@ public class EntityDuck extends EntityAnimal {
         }
     }
 
-    public static String getTexturePath(){
-        return "/jaffas_duck.png";
+    public static String getTexturePath() {
+        return ResourcePathHelper.assemble("jaffas_duck.png", searchModIdFromCurrentPackage(), ENTITY);
     }
 }

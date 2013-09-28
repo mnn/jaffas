@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_01_01.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_01_02.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_01_03.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_02_01.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_02_02.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_02_03.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_03_01.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_03_02.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_fungi_03_03.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/HopRenderer.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/HopRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/ModelFungi.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/ModelFungi.java" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_duck.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_0.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_1.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_2.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_eyes.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_locomotive.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,7 +89,7 @@
     <file path="/a.xml" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358518376747" ignored="false" />
     <file path="/MathHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375791804013" ignored="false" />
     <file path="/EntityLocomotive.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380292300441" ignored="false" />
-    <file path="/RenderLocomotive.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380291775148" ignored="false" />
+    <file path="/RenderLocomotive.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380378773551" ignored="false" />
     <file path="/ItemLocomotive.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379334119931" ignored="false" />
     <file path="/ModelLocomotive.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358546721093" ignored="false" />
     <file path="/EntityMinecart.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1358590730905" ignored="false" />
@@ -175,7 +174,7 @@
     <file path="/ContainerGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372603735052" ignored="false" />
     <file path="/GuiContainerMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380307818549" ignored="false" />
     <file path="/GuiContainerGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379317841073" ignored="false" />
-    <file path="/EntityDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380285136622" ignored="false" />
+    <file path="/EntityDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380374857793" ignored="false" />
     <file path="/ColorHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1377614489917" ignored="false" />
     <file path="/RenderDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380285182730" ignored="false" />
     <file path="/ItemJaffaBase.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380284437446" ignored="false" />
@@ -572,10 +571,10 @@
     <file path="/TileEntityGrinderRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373788466432" ignored="false" />
     <file path="/BoundingBoxSize.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373792970888" ignored="false" />
     <file path="/BlockLampDummy.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373800379517" ignored="false" />
-    <file path="/EntityLittleSpider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380290901407" ignored="false" />
+    <file path="/EntityLittleSpider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380375029242" ignored="false" />
     <file path="/EntityCreatureMob.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380290151425" ignored="false" />
     <file path="/EntityJaffaSpider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380290846247" ignored="false" />
-    <file path="/RenderJaffaSpider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380290771135" ignored="false" />
+    <file path="/RenderJaffaSpider.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380374928188" ignored="false" />
     <file path="/WorldServerTransformer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374267927273" ignored="false" />
     <file path="/EventFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374305137047" ignored="false" />
     <file path="/Config.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379943179128" ignored="false" />
@@ -807,60 +806,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TileBoardRenderer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/TileBoardRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="4" selection-start="472" selection-end="579" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TileEntityFungiBoxRenderer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/TileEntityFungiBoxRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="63" column="39" selection-start="2340" selection-end="2340" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ModelFungi.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/ModelFungi.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="6" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TileHighPlantRenderer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileHighPlantRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="91" column="37" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IHighPlantModel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/IHighPlantModel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="266" selection-end="287" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HopRenderer.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/HopRenderer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="626" selection-end="626" vertical-scroll-proportion="0.31825274">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="PackageToModIdRegistry.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -872,10 +817,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ResourcePathHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/ResourcePathHelper.java">
+      <file leaf-file-name="RenderDuck.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="35" selection-start="745" selection-end="745" vertical-scroll-proportion="0.0">
+            <state line="19" column="93" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityDuck.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="212" column="0" selection-start="6786" selection-end="6786" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenderJaffaSpider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="82" column="36" selection-start="2767" selection-end="2767" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EntityLittleSpider.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RenderLocomotive.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="0" selection-start="914" selection-end="914" vertical-scroll-proportion="0.3447738">
               <folding />
             </state>
           </provider>
@@ -900,10 +881,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/TileSinkRenderer.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileAntennaRenderer.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileGeneratorRenderer.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileGrinderRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileLightningConductorRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileToasterRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileCompostTankRenderer.java" />
@@ -916,6 +893,10 @@
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/ModelFungi.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/HopRenderer.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java" />
       </list>
     </option>
   </component>
@@ -2242,43 +2223,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileGrinderRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="30" selection-start="1786" selection-end="1786" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#0#2108#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileLightningConductorRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="30" selection-start="1337" selection-end="1337" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileToasterRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="30" selection-start="1786" selection-end="1786" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileCompostTankRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="30" selection-start="1415" selection-end="1415" vertical-scroll-proportion="0.6021841">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileFermenterRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="63" column="30" selection-start="1777" selection-end="1777" vertical-scroll-proportion="0.76911074">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileKegRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="36" column="30" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.0">
@@ -2323,15 +2267,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="48" selection-start="1940" selection-end="1940" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/fungi/ModelFungi.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="6" selection-start="520" selection-end="520" vertical-scroll-proportion="0.0">
@@ -2356,6 +2291,50 @@
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/common/HopRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="0" selection-start="626" selection-end="626" vertical-scroll-proportion="0.31825274">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="48" selection-start="1940" selection-end="1940" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="93" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="212" column="0" selection-start="6786" selection-end="6786" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="82" column="36" selection-start="2767" selection-end="2767" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="0" selection-start="914" selection-end="914" vertical-scroll-proportion="0.3447738">
           <folding />
         </state>
       </provider>

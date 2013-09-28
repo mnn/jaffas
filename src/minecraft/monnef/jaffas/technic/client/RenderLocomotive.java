@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.client;
 
+import monnef.core.client.ResourcePathHelper;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.Render;
@@ -15,13 +16,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
+import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
+import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
+
 public class RenderLocomotive extends Render {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_locomotive.png");
+    public final ResourceLocation texture;
     private final ModelBase model;
 
     public RenderLocomotive() {
         this.shadowSize = 0.5F;
         this.model = new ModelLocomotive();
+        texture = ResourcePathHelper.assembleAndCreate("jaffas_locomotive.png", searchModIdFromCurrentPackage(), ENTITY);
     }
 
     public void renderTheMinecart(EntityMinecart entity, double par2, double par4, double par6, float renderRotation, float par9) {
@@ -120,7 +125,7 @@ public class RenderLocomotive extends Render {
         */
 
 
-        bindTexture(TEXTURE);
+        bindTexture(texture);
         GL11.glScalef(-1.0F, -1.0F, 1.0F);
         GL11.glTranslatef(0F, -1F, 0F);
         this.model.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
@@ -134,6 +139,6 @@ public class RenderLocomotive extends Render {
 
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
-        return TEXTURE;
+        return texture;
     }
 }

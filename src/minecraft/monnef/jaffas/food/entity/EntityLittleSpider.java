@@ -2,6 +2,7 @@ package monnef.jaffas.food.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.client.ResourcePathHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.RandomHelper;
 import net.minecraft.block.Block;
@@ -21,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
+import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.item.JaffaItem.spiderLegRaw;
 
@@ -31,7 +34,7 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     private static final String COLOR_TAG = "spiderColor";
     private static final int COLOR_WATCHER_INDEX = 25;
     public static final int COLORS_COUNT = 3;
-    public static final String TEXTURE_STRING = "/jaffas_littleSpider_%d.png";
+    public static final String TEXTURE_STRING = "jaffas_littleSpider_%d.png";
     public static final ResourceLocation[] TEXTURES;
     public static final float LIVING_SOUND_VOLUME = 0.2f;
     private int timeUntilNextWeb;
@@ -45,7 +48,8 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     }
 
     private static String generateTextureFileName(int color) {
-        return String.format(TEXTURE_STRING, color);
+        String name = String.format(TEXTURE_STRING, color);
+        return ResourcePathHelper.assemble(name, searchModIdFromCurrentPackage(), ENTITY);
     }
 
     @Override
