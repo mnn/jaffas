@@ -12,6 +12,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 
@@ -37,14 +38,17 @@ public class RenderDuck extends RenderLiving {
     /**
      * Defines what float the third param in setRotationAngles of ModelBase is
      */
-    protected float handleRotationFloat(EntityLiving par1EntityLiving, float par2) {
+    @Override
+    protected float handleRotationFloat(EntityLivingBase par1EntityLiving, float par2) {
         return this.getWingRotation((EntityDuck) par1EntityLiving, par2);
     }
 
+    @Override
     public void doRenderLiving(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9) {
         this.renderDuck((EntityDuck) par1EntityLiving, par2, par4, par6, par8, par9);
     }
 
+    @Override
     public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9) {
         this.renderDuck((EntityDuck) par1Entity, par2, par4, par6, par8, par9);
     }

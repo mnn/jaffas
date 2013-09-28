@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_duck.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_0.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_1.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_2.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_littleSpider_eyes.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\jaffas_locomotive.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -176,7 +167,7 @@
     <file path="/GuiContainerGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379317841073" ignored="false" />
     <file path="/EntityDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380374857793" ignored="false" />
     <file path="/ColorHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1377614489917" ignored="false" />
-    <file path="/RenderDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380285182730" ignored="false" />
+    <file path="/RenderDuck.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380379443204" ignored="false" />
     <file path="/ItemJaffaBase.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380284437446" ignored="false" />
     <file path="/ItemJaffaPainting.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993874418" ignored="false" />
     <file path="/BlockFruitCollector.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368532710227" ignored="false" />
@@ -806,21 +797,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PackageToModIdRegistry.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="48" selection-start="1940" selection-end="1940" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderDuck.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="RenderDuck.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="93" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
+            <state line="51" column="20" selection-start="1833" selection-end="1833" vertical-scroll-proportion="0.9594384">
               <folding />
             </state>
           </provider>
@@ -829,34 +809,16 @@
       <file leaf-file-name="EntityDuck.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="212" column="0" selection-start="6786" selection-end="6786" vertical-scroll-proportion="0.0">
+            <state line="98" column="21" selection-start="3775" selection-end="3775" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RenderJaffaSpider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java">
+      <file leaf-file-name="RenderChicken.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/entity/RenderChicken.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="36" selection-start="2767" selection-end="2767" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EntityLittleSpider.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RenderLocomotive.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="0" selection-start="914" selection-end="914" vertical-scroll-proportion="0.3447738">
+            <state line="47" column="29" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -881,7 +843,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileLightningConductorRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/TileToasterRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileCompostTankRenderer.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileFermenterRenderer.java" />
@@ -897,6 +858,7 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java" />
       </list>
     </option>
   </component>
@@ -2107,13 +2069,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29017857" sideWeight="0.49573106" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2894144" sideWeight="0.49573106" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25558037" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.5058698" order="10" side_tool="true" content_ui="tabs" />
@@ -2223,22 +2185,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/TileKegRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="30" selection-start="1174" selection-end="1174" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/client/TileCandyRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="30" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.76911074">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/client/TilePresentRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="24" column="37" selection-start="692" selection-end="692" vertical-scroll-proportion="0.0">
@@ -2295,46 +2241,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="48" selection-start="1940" selection-end="1940" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="93" selection-start="641" selection-end="641" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="212" column="0" selection-start="6786" selection-end="6786" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="36" selection-start="2767" selection-end="2767" vertical-scroll-proportion="0.0">
+        <state line="28" column="0" selection-start="914" selection-end="914" vertical-scroll-proportion="0.3447738">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityLittleSpider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.0">
+        <state line="41" column="57" selection-start="1789" selection-end="1789" vertical-scroll-proportion="0.42433697">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/client/RenderLocomotive.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderJaffaSpider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="0" selection-start="914" selection-end="914" vertical-scroll-proportion="0.3447738">
+        <state line="82" column="36" selection-start="2767" selection-end="2767" vertical-scroll-proportion="1.0390016">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="48" selection-start="1940" selection-end="1940" vertical-scroll-proportion="0.8798752">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="98" column="21" selection-start="3775" selection-end="3775" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/client/renderer/entity/RenderChicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="29" selection-start="1820" selection-end="1820" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityChicken.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="18" selection-start="1902" selection-end="1902" vertical-scroll-proportion="-0.11419424">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/RenderDuck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="20" selection-start="1833" selection-end="1833" vertical-scroll-proportion="0.9594384">
           <folding />
         </state>
       </provider>
