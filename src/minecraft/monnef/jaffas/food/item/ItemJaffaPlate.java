@@ -7,6 +7,7 @@ package monnef.jaffas.food.item;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.base.CustomIconHelper;
+import monnef.core.client.ResourcePathHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -18,6 +19,9 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
+
+import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
+import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ARMOR;
 
 public class ItemJaffaPlate extends ItemArmor {
     private String armorTexture;
@@ -32,7 +36,7 @@ public class ItemJaffaPlate extends ItemArmor {
 
     public ItemJaffaPlate(int id, EnumArmorMaterial material, int renderIndex, ArmorType type, String armorTexture, Item repairItem, int customIconIndex) {
         super(id, material, renderIndex, type.ordinal());
-        this.armorTexture = armorTexture;
+        this.armorTexture = ResourcePathHelper.assemble(armorTexture, searchModIdFromCurrentPackage(), ARMOR);
         this.repairItem = repairItem;
         this.customIconIndex = customIconIndex;
         this.setCreativeTab(JaffasFood.instance.creativeTab);
@@ -45,7 +49,7 @@ public class ItemJaffaPlate extends ItemArmor {
     }
 
     @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, int layer) {
+    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type) {
         return armorTexture;
     }
 

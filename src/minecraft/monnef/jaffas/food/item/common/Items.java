@@ -581,7 +581,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItemManual(pizza, ItemPizza.class);
 
         createJaffaItem(wolfSkin);
-        createJaffaArmorSet("wolf", ContentHolder.EnumArmorMaterialWolf, "/jaffas_wolf1.png", "/jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
+        createJaffaArmorSet("wolf", ContentHolder.EnumArmorMaterialWolf, "jaffas_wolf1.png", "jaffas_wolf2.png", getItem(wolfSkin), new JaffaItem[]{wolfHelmet, wolfChest, wolfLeggins, wolfBoots});
 
         createJaffaItem(pastry);
 
@@ -651,7 +651,7 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(JaffaItem.tinDuckOrangeRaw);
         createJaffaItem(JaffaItem.tinDuckOrange);
 
-        createJaffaArmorSet("duck", ContentHolder.EnumArmorMaterialDuck, "/jaffas_duckarmor1.png", "/jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
+        createJaffaArmorSet("duck", ContentHolder.EnumArmorMaterialDuck, "jaffas_duckarmor1.png", "jaffas_duckarmor2.png", getItem(featherDuck), new JaffaItem[]{duckHelmet, duckChest, duckLeggins, duckBoots});
 
         createJaffaItem(strawberryIcecreamRaw);
         createJaffaItem(strawberryIcecreamFrozen);

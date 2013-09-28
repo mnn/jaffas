@@ -80,7 +80,7 @@ public class ModelFungiOneStageTwo extends ModelFungi {
 
     @Override
     public String getTexture() {
-        return "/jaffas_fungi_01_02.png";
+        return "jaffas_fungi_01_02.png";
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {
@@ -93,6 +93,5 @@ public class ModelFungiOneStageTwo extends ModelFungi {
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
     }
-
 }
 

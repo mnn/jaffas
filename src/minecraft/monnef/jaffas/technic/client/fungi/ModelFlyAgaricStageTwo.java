@@ -158,6 +158,6 @@ public class ModelFlyAgaricStageTwo extends ModelFungi {
 
     @Override
     public String getTexture() {
-        return "/jaffas_fungi_03_02.png";
+        return "jaffas_fungi_03_02.png";
     }
 }

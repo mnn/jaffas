@@ -590,10 +590,10 @@ public class JaffasTechnic extends JaffasModBase {
 
         // jarmor
         int renderIndexJaffarrol = JaffasFood.proxy.addArmor("jarmor");
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolHelmet, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.helm, "/jaffas_jarmor1.png", _last);
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolChest, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "/jaffas_jarmor1.png", _last);
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolLeggins, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "/jaffas_jarmor2.png", _last);
-        JaffasFood.instance.items.createJaffaArmor(jaffarrolBoots, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "/jaffas_jarmor1.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolHelmet, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.helm, "jaffas_jarmor1.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolChest, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.chest, "jaffas_jarmor1.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolLeggins, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "jaffas_jarmor2.png", _last);
+        JaffasFood.instance.items.createJaffaArmor(jaffarrolBoots, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "jaffas_jarmor1.png", _last);
 
         blockJaffarrolOre = new BlockOre(BlockJaffarrolOreID, 17);
         MinecraftForge.setBlockHarvestLevel(blockJaffarrolOre, "pickaxe", 2);

@@ -345,7 +345,7 @@ public class ContentHolder {
 
     public static void createJaffaArmorAndSword() {
         int armorRender = proxy.addArmor("Jaffa");
-        ContentHolder.itemJaffaPlate = new ItemJaffaPlate(ContentHolder.itemJaffaPlateID, ContentHolder.EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "/jaffabrn1.png", null, 90);
+        ContentHolder.itemJaffaPlate = new ItemJaffaPlate(ContentHolder.itemJaffaPlateID, ContentHolder.EnumArmorMaterialJaffas, armorRender, ItemJaffaPlate.ArmorType.chest, "jaffabrn1.png", null, 90);
         LanguageRegistry.addName(ContentHolder.itemJaffaPlate, "Jaffa Hoodie");
 
         ContentHolder.itemJaffaSword = new ItemJaffaSword(ContentHolder.itemJaffaSwordID, 88, ContentHolder.EnumToolMaterialJaffas);
