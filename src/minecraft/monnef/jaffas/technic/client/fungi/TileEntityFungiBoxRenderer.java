@@ -7,9 +7,7 @@ package monnef.jaffas.technic.client.fungi;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.technic.block.TileFungiBox;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class TileEntityFungiBoxRenderer extends TileSpecialJaffaRenderer {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_fungi_box.png");
     private ModelFungiBox box = new ModelFungiBox();
     private ModelFungi[][] fungi;
 
@@ -27,6 +24,11 @@ public class TileEntityFungiBoxRenderer extends TileSpecialJaffaRenderer {
         insertModelSeq(list, new ModelFungiParasolStageOne(), new ModelFungiParasolStageTwo(), new ModelFungiParasolStageThree());
         insertModelSeq(list, new ModelFlyAgaricStageOne(), new ModelFlyAgaricStageTwo(), new ModelFlyAgaricStageThree());
         fungi = list.toArray(new ModelFungi[][]{});
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_fungi_box.png"};
     }
 
     private void insertModelSeq(ArrayList<ModelFungi[]> list, ModelFungi... items) {
@@ -46,7 +48,7 @@ public class TileEntityFungiBoxRenderer extends TileSpecialJaffaRenderer {
 
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
 
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
 
         GL11.glPushMatrix();
         GL11.glRotatef(t.getRenderRotationBox() * 90, 0, 1, 0);

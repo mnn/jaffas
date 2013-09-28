@@ -3,34 +3,33 @@
  * author: monnef
  */
 
-package monnef.jaffas.xmas.block;
+package monnef.jaffas.xmas.client;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
-import monnef.jaffas.xmas.client.ModelPresent;
-import monnef.jaffas.xmas.client.ModelPresentSmall;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import monnef.jaffas.xmas.block.TilePresent;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TilePresentRenderer extends TileSpecialJaffaRenderer {
+    public static final int PRESENTS_COUNT = 6;
     private ModelPresent present;
     private ModelPresentSmall presentSmall;
 
-    private static final ResourceLocation[] TEXTURES;
-    public static final String TEXTURE_NAME_STRING = "/jaffas_present_%d.png";
-
-    static {
-        TEXTURES = new ResourceLocation[6];
-        for (int i = 0; i <= 5; i++) {
-            TEXTURES[i] = new ResourceLocation(String.format(TEXTURE_NAME_STRING, i));
-        }
-    }
+    public static final String TEXTURE_NAME_STRING = "jaffas_present_%d.png";
 
     public TilePresentRenderer() {
         present = new ModelPresent();
         presentSmall = new ModelPresentSmall();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        String[] res = new String[PRESENTS_COUNT];
+        for (int i = 0; i < PRESENTS_COUNT; i++) {
+            res[i] = String.format(TEXTURE_NAME_STRING, i);
+        }
+        return res;
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -64,6 +63,6 @@ public class TilePresentRenderer extends TileSpecialJaffaRenderer {
     }
 
     private void bindPresentTexture(int meta) {
-        bindTexture(TEXTURES[meta % 6]);
+        bindTexture(textures[meta % 6]);
     }
 }

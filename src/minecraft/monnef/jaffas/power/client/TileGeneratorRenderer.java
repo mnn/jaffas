@@ -14,11 +14,15 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileGeneratorRenderer extends TileSpecialJaffaRenderer {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_generator.png");
     private ModelGenerator generator;
 
     public TileGeneratorRenderer() {
         generator = new ModelGenerator();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_generator.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -61,7 +65,7 @@ public class TileGeneratorRenderer extends TileSpecialJaffaRenderer {
         GL11.glTranslatef((float) x, (float) y + 1.0F, (float) z + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
         generator.render(0.0625F, burning);

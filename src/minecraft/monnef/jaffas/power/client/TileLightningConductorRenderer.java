@@ -8,19 +8,20 @@ package monnef.jaffas.power.client;
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileLightningConductor;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileLightningConductorRenderer extends TileSpecialJaffaRenderer {
-    private final ResourceLocation texture;
     private ModelLightningConductor conductor;
 
     public TileLightningConductorRenderer() {
         conductor = new ModelLightningConductor();
-        texture = new ResourceLocation("/jaffas_conductor.png");
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_conductor.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -37,7 +38,7 @@ public class TileLightningConductorRenderer extends TileSpecialJaffaRenderer {
 
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
 
-        bindTexture(texture);
+        bindTexture(textures[0]);
 
         conductor.render(0.0625F);
 

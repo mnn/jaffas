@@ -3,23 +3,25 @@
  * author: monnef
  */
 
-package monnef.jaffas.xmas.block;
+package monnef.jaffas.xmas.client;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
-import monnef.jaffas.xmas.client.ModelCandy;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import monnef.jaffas.xmas.block.BlockCandy;
+import monnef.jaffas.xmas.block.TileCandy;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileCandyRenderer extends TileSpecialJaffaRenderer {
-    private final ResourceLocation texture;
     private ModelCandy candy;
 
     public TileCandyRenderer() {
         candy = new ModelCandy();
-        texture = new ResourceLocation("/jaffas_candy.png");
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_candy.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -60,7 +62,7 @@ public class TileCandyRenderer extends TileSpecialJaffaRenderer {
         GL11.glTranslatef((float) par2, (float) par4 + 1.0F, (float) par6 + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTexture(texture);
+        bindTexture(textures[0]);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
         candy.render(0.0625F);

@@ -7,18 +7,20 @@ package monnef.jaffas.power.client;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileGrinder;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileGrinderRenderer extends TileSpecialJaffaRenderer {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_grinder.png");
     private ModelGrinder grinder;
 
     public TileGrinderRenderer() {
         grinder = new ModelGrinder();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_grinder.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -61,7 +63,7 @@ public class TileGrinderRenderer extends TileSpecialJaffaRenderer {
         GL11.glTranslatef((float) x, (float) y + 1.0F, (float) z + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
         grinder.render(0.0625F);

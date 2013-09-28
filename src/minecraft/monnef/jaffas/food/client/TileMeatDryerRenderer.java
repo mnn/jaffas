@@ -6,9 +6,7 @@
 package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.TileMeatDryer;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -16,12 +14,11 @@ import static monnef.jaffas.food.block.TileMeatDryer.MeatState;
 
 public class TileMeatDryerRenderer extends TileSpecialJaffaRenderer {
     public static final float U = 0.0625F;
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_meat_rack.png");
-    public static final ResourceLocation TEXTURE_ZOMBIE_RAW = new ResourceLocation("/jaffas_meat_zombie_1.png");
-    public static final ResourceLocation TEXTURE_ZOMBIE_HALF_DONE = new ResourceLocation("/jaffas_meat_zombie_2.png");
-    public static final ResourceLocation TEXUTRE_NORMAL_RAW = new ResourceLocation("/jaffas_meat_norm_1.png");
-    public static final ResourceLocation TEXTURE_NORMAL_HALF_DONE = new ResourceLocation("/jaffas_meat_norm_2.png");
-    public static final ResourceLocation TEXTURE_DONE = new ResourceLocation("/jaffas_meat_final.png");
+
+    public enum MeatTextureId {
+        TEXTURE, TEXTURE_ZOMBIE_RAW, TEXTURE_ZOMBIE_HALF_DONE, TEXUTRE_NORMAL_RAW, TEXTURE_NORMAL_HALF_DONE, TEXTURE_DONE
+    }
+
     private ModelMeatRack rack;
     private ModelMeat meat;
     public static final float X_SHIFT = -11 * U;
@@ -36,6 +33,11 @@ public class TileMeatDryerRenderer extends TileSpecialJaffaRenderer {
     public TileMeatDryerRenderer() {
         rack = new ModelMeatRack();
         meat = new ModelMeat();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_meat_rack.png", "jaffas_meat_zombie_1.png", "jaffas_meat_zombie_2.png", "jaffas_meat_norm_1.png", "jaffas_meat_norm_2.png", "jaffas_meat_final.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -77,7 +79,7 @@ public class TileMeatDryerRenderer extends TileSpecialJaffaRenderer {
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
-        bindTexture(TEXTURE);
+        bindTexture(textures[MeatTextureId.TEXTURE.ordinal()]);
         rack.render(U);
 
         GL11.glTranslatef(6 * U, -4 * U, -4 * U);
@@ -101,34 +103,34 @@ public class TileMeatDryerRenderer extends TileSpecialJaffaRenderer {
     }
 
     private void bindMeatTexture(MeatState state) {
-        ResourceLocation texture;
+        MeatTextureId texture;
         switch (state) {
             case ZOMBIE_RAW:
-                texture = TEXTURE_ZOMBIE_RAW;
+                texture = MeatTextureId.TEXTURE_ZOMBIE_RAW;
                 break;
 
             case ZOMBIE_HALF_DONE:
-                texture = TEXTURE_ZOMBIE_HALF_DONE;
+                texture = MeatTextureId.TEXTURE_ZOMBIE_HALF_DONE;
                 break;
 
             case NORMAL_RAW:
-                texture = TEXUTRE_NORMAL_RAW;
+                texture = MeatTextureId.TEXUTRE_NORMAL_RAW;
                 break;
 
             case NORMAL_HALF_DONE:
-                texture = TEXTURE_NORMAL_HALF_DONE;
+                texture = MeatTextureId.TEXTURE_NORMAL_HALF_DONE;
                 break;
 
             case ZOMBIE_DONE:
             case NORMAL_DONE:
-                texture = TEXTURE_DONE;
+                texture = MeatTextureId.TEXTURE_DONE;
                 break;
 
             default:
                 throw new RuntimeException("unknown meat state - " + state);
         }
 
-        bindTexture(texture);
+        bindTexture(textures[texture.ordinal()]);
     }
 
 }

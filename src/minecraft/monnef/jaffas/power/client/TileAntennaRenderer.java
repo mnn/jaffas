@@ -7,19 +7,21 @@ package monnef.jaffas.power.client;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileAntenna;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileAntennaRenderer extends TileSpecialJaffaRenderer {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_antenna.png");
     private ModelAntenna antenna;
 
     public TileAntennaRenderer() {
         antenna = new ModelAntenna();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_antenna.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -100,7 +102,7 @@ public class TileAntennaRenderer extends TileSpecialJaffaRenderer {
         GL11.glScalef(1.0F, -1.0F, -1.0F);
 
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
 
         GL11.glTranslatef(shift[0], shift[1], shift[2]);
 

@@ -7,19 +7,21 @@ package monnef.jaffas.technic.client;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.technic.block.TileFermenter;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileFermenterRenderer extends TileSpecialJaffaRenderer {
     public static final float U = 0.0625F;
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_fermenter.png");
     private ModelFermenter fermenter;
 
     public TileFermenterRenderer() {
         fermenter = new ModelFermenter();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_fermenter.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -59,7 +61,7 @@ public class TileFermenterRenderer extends TileSpecialJaffaRenderer {
         }
 
         GL11.glRotatef(angle, 0, 1.0f, 0);
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
         fermenter.render(U);
 
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);

@@ -6,9 +6,7 @@
 package monnef.jaffas.food.client;
 
 import monnef.jaffas.food.block.TilePizza;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -16,11 +14,14 @@ import static monnef.jaffas.food.common.ContentHolder.blockPizza;
 
 public class TilePizzaRenderer extends TileSpecialJaffaRenderer {
     private ModelPizza pizza;
-    private ResourceLocation texture;
 
     public TilePizzaRenderer() {
-        texture = new ResourceLocation("/jaffas_pizza.png");
         pizza = new ModelPizza();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_pizza.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -44,7 +45,7 @@ public class TilePizzaRenderer extends TileSpecialJaffaRenderer {
         GL11.glTranslatef((float) par2, (float) par4 + 1.0F, (float) par6 + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F, 0.5F - 1F, 0.5F);
-        bindTexture(texture);
+        bindTexture(textures[0]);
         GL11.glRotatef(angle, 0, 1.0f, 0);
 
         pizza.render(0.0625F, blockPizza.getPieces(meta));

@@ -14,11 +14,15 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 public class TileCompostTankRenderer extends TileSpecialJaffaRenderer {
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_composttank.png");
     private ModelCompostTank compost;
 
     public TileCompostTankRenderer() {
         compost = new ModelCompostTank();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_composttank.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -34,7 +38,7 @@ public class TileCompostTankRenderer extends TileSpecialJaffaRenderer {
         GL11.glTranslatef((float) par2, (float) par4 + 1.0F, (float) par6 + 1.0F);
         GL11.glScalef(1.0F, -1.0F, -1.0F);
         GL11.glTranslatef(0.5F - 1, 0.5F - 1F, 0.5F - 1);
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
 
         compost.render(0.0625F);
 

@@ -21,7 +21,6 @@ import java.util.HashMap;
 
 public class TileHighPlantRenderer extends TileSpecialJaffaRenderer {
     public static final float U = 0.0625F;
-    public static final ResourceLocation TEXTURE = new ResourceLocation("/jaffas_hop_plant.png");
     private ModelStake stake;
     private static HashMap<Integer, IHighPlantModel> plantModel;
 
@@ -36,6 +35,11 @@ public class TileHighPlantRenderer extends TileSpecialJaffaRenderer {
 
     public TileHighPlantRenderer() {
         stake = new ModelStake();
+    }
+
+    @Override
+    protected String[] getTexturePaths() {
+        return new String[]{"jaffas_hop_plant.png"};
     }
 
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
@@ -76,7 +80,7 @@ public class TileHighPlantRenderer extends TileSpecialJaffaRenderer {
 
         GL11.glPushMatrix();
         GL11.glRotatef(angle, 0, 1.0f, 0);
-        bindTexture(TEXTURE);
+        bindTexture(textures[0]);
         stake.render(U);
         GL11.glPopMatrix();
 

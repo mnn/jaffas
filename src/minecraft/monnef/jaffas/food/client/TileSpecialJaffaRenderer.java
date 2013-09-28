@@ -29,10 +29,7 @@ public abstract class TileSpecialJaffaRenderer extends TileEntitySpecialRenderer
         }
     }
 
-    //protected abstract String[] getTexturePaths();
-    protected String[] getTexturePaths() {
-        return new String[0]; // TODO: remove!
-    }
+    protected abstract String[] getTexturePaths();
 
     public String getModId() {
         return modId;
