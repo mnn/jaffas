@@ -139,7 +139,8 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
                 IPowerReceptor tile = (IPowerReceptor) customerPos.getTile();
                 float energyTotal = energyPerTick * slowingCoefficient;
                 if (BuildCraftHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy(tile, dir)) {
-                    tile.getPowerProvider().receiveEnergy(energyTotal, dir);
+                    //tile.getPowerProvider().receiveEnergy(energyTotal, dir);
+                    tile.getPowerReceiver(dir).receiveEnergy(PowerHandler.Type.ENGINE, energyTotal, dir);
                 } else {
                     // energy wasted
                     // TODO: add "waste" animation?

@@ -5,7 +5,6 @@
 
 package monnef.jaffas.power;
 
-import buildcraft.api.power.PowerFramework;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -53,7 +52,6 @@ import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
-import monnef.jaffas.power.common.SimplePowerFramework;
 import monnef.jaffas.power.entity.EntityWindTurbine;
 import monnef.jaffas.power.item.ItemDebug;
 import monnef.jaffas.power.item.ItemLinkTool;
@@ -224,10 +222,6 @@ public class JaffasPower extends JaffasModBase {
 
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
-        if (PowerFramework.currentFramework == null) {
-            JaffasFood.Log.printInfo("No BC power framework detected, using my simple one.");
-            PowerFramework.currentFramework = new SimplePowerFramework();
-        }
     }
 
     private void createItems() {

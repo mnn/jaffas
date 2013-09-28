@@ -219,6 +219,10 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     public void onItemDebug(EntityPlayer player) {
     }
 
+    public PowerHandler getPowerHandler() {
+        return powerHandler;
+    }
+
     //<editor-fold desc="BuildCraft API">
     @Override
     public final void doWork(PowerHandler workProvider) {

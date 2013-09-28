@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.item;
 
-import buildcraft.api.power.IPowerProvider;
+import buildcraft.api.power.PowerHandler;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,9 +25,9 @@ public class ItemDebug extends ItemPower implements IMachineTool {
         if (machine == null) {
             print("TE is null");
         } else {
-            IPowerProvider provider = machine.getPowerHandler();
-            if (provider != null) {
-                print(String.format("%s: %d/%d(%d)", machine.getPosition().format(), Math.round(provider.getEnergyStored()), provider.getMaxEnergyStored(), provider.getActivationEnergy()));
+            PowerHandler powerHandler = machine.getPowerHandler();
+            if (powerHandler != null) {
+                print(String.format("%s: %d/%d(%d)", machine.getPosition().format(), Math.round(powerHandler.getEnergyStored()), (int) powerHandler.getMaxEnergyStored(), (int) powerHandler.getActivationEnergy()));
             }
 
             if (machine.getRotation() != null) {

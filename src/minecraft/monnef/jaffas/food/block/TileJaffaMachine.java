@@ -18,6 +18,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 
+@Deprecated
 public abstract class TileJaffaMachine extends TileWithInventory implements IPowerReceptor {
     public int fuelSlot;
     public int burnTime;
@@ -219,4 +220,5 @@ public abstract class TileJaffaMachine extends TileWithInventory implements IPow
         }
 
         return ret;
-    }}
+    }
+}

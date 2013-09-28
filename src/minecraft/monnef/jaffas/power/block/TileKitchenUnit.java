@@ -5,8 +5,8 @@
 
 package monnef.jaffas.power.block;
 
-import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
+import buildcraft.api.power.PowerHandler;
 import monnef.core.utils.TileEntityHelper;
 import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.block.common.TileEntityMachine;
@@ -15,6 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
 public class TileKitchenUnit extends TileEntityMachine {
+    public static final ForgeDirection INPUT_SIDE_OF_APPLIANCE = ForgeDirection.DOWN;
     private int skipCounter;
 
     @Override
@@ -35,10 +36,10 @@ public class TileKitchenUnit extends TileEntityMachine {
                     throw new RuntimeException("is KUAppliance but doesn't accept power? my pos: " + TileEntityHelper.getFormattedCoordinates(this));
                 }
                 IPowerReceptor teReceptor = (IPowerReceptor) te;
-                IPowerProvider provider = teReceptor.getPowerProvider();
-                if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(provider) && BuildCraftHelper.doesWantEnergy(teReceptor, ForgeDirection.DOWN)) {
+                PowerHandler.PowerReceiver appliancePowerReceiver = teReceptor.getPowerReceiver(INPUT_SIDE_OF_APPLIANCE);
+                if (BuildCraftHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy(appliancePowerReceiver)) {
                     float extracted = powerHandler.useEnergy(5, powerNeeded, true);
-                    provider.receiveEnergy(extracted, ForgeDirection.DOWN);
+                    appliancePowerReceiver.receiveEnergy(PowerHandler.Type.STORAGE, extracted, INPUT_SIDE_OF_APPLIANCE);
                 } else {
                     skipCounter = 20;
                 }
