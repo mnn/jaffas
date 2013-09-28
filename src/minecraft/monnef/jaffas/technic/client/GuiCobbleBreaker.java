@@ -10,19 +10,16 @@ import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.TileCobbleBreaker;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 
 public class GuiCobbleBreaker extends GuiContainerJaffas {
-    public static final ResourceLocation GUI_TEXTURE = new ResourceLocation("/guibreaker.png");
-
     public TileCobbleBreaker tile;
 
     public GuiCobbleBreaker(InventoryPlayer inventoryPlayer,
                             TileCobbleBreaker tileEntity) {
         super(new ContainerCobbleBreaker(inventoryPlayer, tileEntity));
         tile = tileEntity;
+        setBackgroundTexture("guibreaker.png");
     }
 
     @Override
@@ -32,14 +29,8 @@ public class GuiCobbleBreaker extends GuiContainerJaffas {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-                                                   int par3) {
-        //draw your Gui here, only thing you need to change is the path
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(GUI_TEXTURE);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
+        super.drawGuiContainerBackgroundLayer(par1, par2, par3);
 
         // arrow
         int m = (tile.getWorkMeter() * 24) / tile.getMaxWorkMeter();

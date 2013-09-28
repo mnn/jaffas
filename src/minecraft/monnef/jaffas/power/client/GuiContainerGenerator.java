@@ -30,7 +30,7 @@ public class GuiContainerGenerator extends GuiContainerMachine {
 
     @Override
     public String getBackgroundTexture() {
-        return "/guigenerator.png";
+        return "guigenerator.png";
     }
 
     @Override

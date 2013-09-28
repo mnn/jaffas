@@ -19,6 +19,7 @@ import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.ItemBlockJaffas;
@@ -33,7 +34,6 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
@@ -152,7 +152,7 @@ import static monnef.jaffas.technic.common.FungiCatalog.PORCINO_ID;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class JaffasTechnic extends jaffasMod {
+public class JaffasTechnic extends JaffasModBase {
     private static final int NUGGETS_COUT_FOR_EACH_INGOT_IN_RECYCLE = 5;
     @Mod.Instance(ModId)
     public static JaffasTechnic instance;

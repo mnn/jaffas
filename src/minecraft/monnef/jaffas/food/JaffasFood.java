@@ -22,8 +22,8 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
-import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.CustomLogger;
+import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.client.GuiHandler;
@@ -56,7 +56,6 @@ import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.food.network.JaffasPacketHandler;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
-import monnef.jaffas.jaffasMod;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
@@ -82,7 +81,7 @@ import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:monnef-core")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = {JaffasPacketHandler.CHANNEL_SpawnStone, JaffasPacketHandler.CHANNEL_Generic}, packetHandler = JaffasPacketHandler.class)
-public class JaffasFood extends jaffasMod {
+public class JaffasFood extends JaffasModBase {
     public static final String LAST_VERSION_SHOWN = "lastVersionShown";
 
     public static final String BETA_WARNING_TEXT = "\u00A7lnot finished!\u00A7r";

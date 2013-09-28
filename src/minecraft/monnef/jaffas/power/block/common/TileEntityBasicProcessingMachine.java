@@ -216,6 +216,6 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     }
 
     public String getGuiBackgroundTexture() {
-        return "/guipmachine.png";
+        return "guipmachine.png";
     }
 }

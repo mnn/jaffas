@@ -12,9 +12,7 @@ import monnef.jaffas.technic.block.ContainerFermenter;
 import monnef.jaffas.technic.block.TileFermenter;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,14 +27,12 @@ import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE;
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE_RAW;
 
 public class GuiFermenter extends GuiContainerJaffas {
-    private static final String GUI_TEXTURE = "/guifermenter.png";
     public static final int TANK_POS_X = 24;
     public static final int TANK_POS_Y = 20;
     public static final int TANK_WIDTH = 16;
     public static final int WORK_WIDTH = 4;
     public static final int WORK_X = 14;
     public static int TANK_HEIGHT = 46;
-    private final ResourceLocation texture;
 
     public TileFermenter tile;
 
@@ -73,7 +69,7 @@ public class GuiFermenter extends GuiContainerJaffas {
                         TileFermenter tileEntity) {
         super(new ContainerFermenter(inventoryPlayer, tileEntity));
         tile = tileEntity;
-        texture = new ResourceLocation(GUI_TEXTURE);
+        setBackgroundTexture("guifermenter.png");
     }
 
     @Override
@@ -83,13 +79,8 @@ public class GuiFermenter extends GuiContainerJaffas {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-                                                   int par3) {
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(texture);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
+        super.drawGuiContainerBackgroundLayer(par1, par2, par3);
 
         if (tile.isWorking()) {
             int m = (tile.getWorkMeter() * TANK_HEIGHT) / tile.getMaxWorkMeter();

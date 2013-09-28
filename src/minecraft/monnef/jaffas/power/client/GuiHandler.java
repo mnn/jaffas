@@ -54,7 +54,7 @@ public class GuiHandler implements IGuiHandler {
             return proxy.createGuiFromProcessingMachineRegistry((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
         } else if (tileEntity instanceof TileWebHarvester) {
             GuiContainerMachine gui = new GuiContainerMachine(player.inventory, (TileWebHarvester) tileEntity, new ContainerMachine(player.inventory, (TileWebHarvester) tileEntity));
-            gui.setBackgroundTexture("/guiwebharvester.png");
+            gui.setBackgroundTexture("guiwebharvester.png");
             return gui;
         } else if (tileEntity instanceof TileWindGenerator) {
             return new GuiContainerWindGenerator(player.inventory, (TileWindGenerator) tileEntity, new ContainerMachine(player.inventory, (TileWindGenerator) tileEntity));

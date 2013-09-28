@@ -17,6 +17,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TilePie;
 import monnef.jaffas.food.common.JaffaCreativeTab;
@@ -29,7 +30,6 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
-import monnef.jaffas.jaffasMod;
 import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
@@ -128,7 +128,7 @@ import static monnef.jaffas.trees.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = JaffasTrees.channel, packetHandler = PacketHandler.class)
-public class JaffasTrees extends jaffasMod {
+public class JaffasTrees extends JaffasModBase {
     public static final String FORESTRY_FARM_VEGETABLES = "farmVegetables";
     private static MinecraftServer server;
     public static boolean bonemealingAllowed;

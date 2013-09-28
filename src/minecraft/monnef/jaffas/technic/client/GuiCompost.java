@@ -11,16 +11,12 @@ import monnef.jaffas.technic.block.ContainerCompost;
 import monnef.jaffas.technic.block.TileCompostCore;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 
 import java.util.List;
 
 public class GuiCompost extends GuiContainerJaffas {
-    public static final String GUI_TEXTURE = "/guicompost.png";
     public static final int TANK_METER_HEIGHT_MAX = 46;
-    private final ResourceLocation texture;
 
     public TileCompostCore core;
 
@@ -28,7 +24,7 @@ public class GuiCompost extends GuiContainerJaffas {
                       TileCompostCore tileEntity) {
         super(new ContainerCompost(inventoryPlayer, tileEntity));
         core = tileEntity;
-        texture = new ResourceLocation(GUI_TEXTURE);
+        setBackgroundTexture("guicompost.png");
     }
 
     @Override
@@ -38,14 +34,8 @@ public class GuiCompost extends GuiContainerJaffas {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-                                                   int par3) {
-        //draw your Gui here, only thing you need to change is the path
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(texture);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
+        super.drawGuiContainerBackgroundLayer(par1, par2, par3);
 
         int n = (TANK_METER_HEIGHT_MAX * core.getTankMeter()) / core.getMaxTankValue();
         GuiHelper.drawModalRectFromDown(this, x + 76, y + 20, 176, 31, 16, n, TANK_METER_HEIGHT_MAX);

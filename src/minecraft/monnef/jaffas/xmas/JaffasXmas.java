@@ -14,6 +14,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
@@ -21,7 +22,6 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
-import monnef.jaffas.jaffasMod;
 import monnef.jaffas.xmas.block.BlockCandy;
 import monnef.jaffas.xmas.block.BlockPresent;
 import monnef.jaffas.xmas.block.ItemBlockPresent;
@@ -46,7 +46,7 @@ import static monnef.jaffas.xmas.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class JaffasXmas extends jaffasMod {
+public class JaffasXmas extends JaffasModBase {
     @Mod.Instance(ModId)
     public static JaffasXmas instance;
 

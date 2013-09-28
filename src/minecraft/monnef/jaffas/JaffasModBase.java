@@ -18,7 +18,7 @@ import net.minecraftforge.common.Configuration;
 
 import java.util.Arrays;
 
-public abstract class jaffasMod {
+public abstract class JaffasModBase {
     public JaffaCreativeTab creativeTab;
     public Configuration config;
 
@@ -32,7 +32,7 @@ public abstract class jaffasMod {
         food -> xmas
    */
 
-    protected jaffasMod() {
+    protected JaffasModBase() {
     }
 
     private void handleMetadata() {

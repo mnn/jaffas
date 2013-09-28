@@ -23,6 +23,7 @@ import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.EntityHelper;
 import monnef.core.utils.RegistryUtils;
+import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.common.JaffaCreativeTab;
@@ -31,7 +32,6 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.jaffasMod;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.BlockGrinder;
@@ -71,9 +71,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.logging.Level;
 
-import static cpw.mods.fml.common.Mod.Init;
-import static cpw.mods.fml.common.Mod.PostInit;
-import static cpw.mods.fml.common.Mod.PreInit;
 import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
 import static monnef.jaffas.power.common.Reference.ModId;
 import static monnef.jaffas.power.common.Reference.ModName;
@@ -84,7 +81,7 @@ import static monnef.jaffas.technic.JaffasTechnic.jaffarrol;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Technic")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
-public class JaffasPower extends jaffasMod {
+public class JaffasPower extends JaffasModBase {
     @Instance("Jaffas-Power")
     public static JaffasPower instance;
 

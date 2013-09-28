@@ -9,36 +9,27 @@ import monnef.core.client.GuiContainerJaffas;
 import monnef.jaffas.food.block.ContainerFridge;
 import monnef.jaffas.food.block.TileFridge;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
-import org.lwjgl.opengl.GL11;
 
 public class GuiFridge extends GuiContainerJaffas {
-    private final ResourceLocation texture;
     private TileFridge tileEntity;
 
     public GuiFridge(InventoryPlayer inventoryPlayer,
                      TileFridge tileEntity) {
-        //the container is instanciated and passed to the superclass for handling
+        //the container is instantiated and passed to the superclass for handling
         super(new ContainerFridge(inventoryPlayer, tileEntity));
         ySize = 198;
 
         this.tileEntity = tileEntity;
-        texture = new ResourceLocation("/guifridge.png");
+        setBackgroundTexture("guifridge.png");
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        //draw text and stuff here
-        //the parameters for drawString are: string, x, y, color
         fontRenderer.drawString("Fridge", 8, 3, 4210752);
-        //draws "Inventory" or your regional equivalent
         fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-
-        if (tileEntity.tickDivider == 1) {
+        if (TileFridge.tickDivider == 1) {
             String s = String.valueOf(tileEntity.getTemperature());
             fontRenderer.drawString(s, 75, 3, 4210752);
 
@@ -50,14 +41,8 @@ public class GuiFridge extends GuiContainerJaffas {
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float par1, int par2,
-                                                   int par3) {
-        //draw your Gui here, only thing you need to change is the path
-        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(texture);
-        int x = (width - xSize) / 2;
-        int y = (height - ySize) / 2;
-        this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
+    protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
+        super.drawGuiContainerBackgroundLayer(par1, par2, par3);
 
         if (tileEntity.isBurning()) {
             int burn = tileEntity.getBurnTimeRemainingScaled(14);
