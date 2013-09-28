@@ -10,6 +10,7 @@ import cpw.mods.fml.common.ModContainer;
 import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.Reference;
@@ -60,6 +61,7 @@ public abstract class jaffasMod {
     }
 
     public void load(FMLInitializationEvent event) {
+        GuiContainerJaffas.Registry.registerClassToModId(1);
     }
 
     public void preLoad(FMLPreInitializationEvent event) {

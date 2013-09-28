@@ -221,8 +221,6 @@ public class JaffasFood extends jaffasMod {
 
         MinecraftForge.addGrassPlant(blockSwitchgrass, BlockSwitchgrass.VALUE_TOP, 5);
 
-        GuiContainerJaffas.Registry.registerClassToModId();
-
         printInitializedMessage();
     }
 

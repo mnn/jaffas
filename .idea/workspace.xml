@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementsHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiRipeningBox.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiRipeningBox.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/jaffasMod.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/jaffasMod.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -630,7 +628,7 @@
     <file path="/IMapFactory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375523657199" ignored="false" />
     <file path="/RenderWindTurbine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380291815499" ignored="false" />
     <file path="/BoxHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1377679005808" ignored="false" />
-    <file path="/GuiContainerJaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380358668480" ignored="false" />
+    <file path="/GuiContainerJaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380359564046" ignored="false" />
     <file path="/ContainerWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375629612072" ignored="false" />
     <file path="/GuiContainerWindGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379330702688" ignored="false" />
     <file path="/tidyObj.sh" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375634637456" ignored="false" />
@@ -799,7 +797,7 @@
       <file leaf-file-name="GuiContainerJaffas.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/GuiContainerJaffas.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="249" column="0" selection-start="9858" selection-end="9858" vertical-scroll-proportion="0.5881435">
+            <state line="257" column="40" selection-start="10337" selection-end="10337" vertical-scroll-proportion="0.44305772">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#drawToolTip#0;class#GuiContainerJaffas#0" expanded="false" />
@@ -822,7 +820,16 @@
       <file leaf-file-name="JaffasFood.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="224" column="48" selection-start="9075" selection-end="9075" vertical-scroll-proportion="0.0">
+            <state line="195" column="16" selection-start="8157" selection-end="8157" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jaffasMod.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/jaffasMod.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="63" column="58" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -856,7 +863,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/JaffasXmas.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/CoreModContainer.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/asm/MappingDictionary.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/asm/MappedObject.java" />
@@ -866,11 +872,12 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiContainerGenerator.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/CallerClassNameFinder.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiRipeningBox.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/test/CallerFinderWrapper.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/CallerFinder.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/test/innerPackage/CallerFinderWrapper.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/test/CallerClassNameFinderTest.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/jaffasMod.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/GuiContainerJaffas.java" />
       </list>
     </option>
@@ -1709,14 +1716,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29017857" sideWeight="0.49573106" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25558037" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25558037" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.5058698" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="ASM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36979723" sideWeight="0.73995537" order="4" side_tool="false" content_ui="tabs" />
@@ -1852,13 +1859,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/jaffasMod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="46" selection-start="1263" selection-end="1263" vertical-scroll-proportion="0.6099844">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/GuiExporter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="13" selection-start="460" selection-end="460" vertical-scroll-proportion="0.11724138">
@@ -1926,14 +1926,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="224" column="48" selection-start="9075" selection-end="9075" vertical-scroll-proportion="0.0">
+        <state line="195" column="16" selection-start="8157" selection-end="8157" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/jaffasMod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="63" column="58" selection-start="1916" selection-end="1916" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/GuiContainerJaffas.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="249" column="0" selection-start="9858" selection-end="9858" vertical-scroll-proportion="0.5881435">
+        <state line="257" column="40" selection-start="10337" selection-end="10337" vertical-scroll-proportion="0.44305772">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#drawToolTip#0;class#GuiContainerJaffas#0" expanded="false" />
