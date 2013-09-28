@@ -20,6 +20,7 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
 
     public ItemLinkTool(int id, int textureIndex) {
         super(id, textureIndex);
+        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
     }
 
     @Override
