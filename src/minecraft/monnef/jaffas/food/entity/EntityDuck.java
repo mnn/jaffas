@@ -6,6 +6,7 @@
 package monnef.jaffas.food.entity;
 
 import monnef.core.client.ResourcePathHelper;
+import monnef.jaffas.food.client.Sounds;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -134,7 +135,7 @@ public class EntityDuck extends EntityAnimal {
 
     @Override
     protected String getLivingSound() {
-        return "duck";
+        return Sounds.SoundsEnum.DUCK.getSoundName();
     }
 
     @Override
