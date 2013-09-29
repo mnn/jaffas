@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\homestone.wav" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\sharpener.wav" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\suck.wav" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\water.ogg" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\whoosh.wav" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/TileFruitCollector.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/TileFruitCollector.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/TileSink.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/TileSink.java" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\guispawnstone.png" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -142,7 +136,7 @@
     <file path="/JaffaCraftingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1379490577686" ignored="false" />
     <file path="/BlockJaffaCrops.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367345474783" ignored="false" />
     <file path="/ItemSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380483973460" ignored="false" />
-    <file path="/GuiSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380284708249" ignored="false" />
+    <file path="/GuiSpawnStone.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380484577276" ignored="false" />
     <file path="/CooldownRegistry.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359379636217" ignored="false" />
     <file path="/CoolDownType.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359379655239" ignored="false" />
     <file path="/CoolDownEntry.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1359383174277" ignored="false" />
@@ -714,7 +708,7 @@
     <file path="/CallerFinder.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380358229036" ignored="false" />
     <file path="/CallerFinderWrapper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380358374353" ignored="false" />
     <file path="/PackageToModIdRegistry.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380373059670" ignored="false" />
-    <file path="/ResourcePathHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380475087975" ignored="false" />
+    <file path="/ResourcePathHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380484506467" ignored="false" />
     <file path="/TileSpecialJaffaRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380370852823" ignored="false" />
     <file path="$PROJECT_DIR$/src_orig/minecraft/monnef/jaffas/xmas/client/ClientProxy.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380371763161" ignored="false" />
     <file path="/TileGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380402863195" ignored="false" />
@@ -811,10 +805,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Sounds.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Sounds.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/Sounds.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="18" selection-start="555" selection-end="555" vertical-scroll-proportion="0.2698908">
+            <state line="20" column="18" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiSpawnStone.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="45" column="43" selection-start="1600" selection-end="1600" vertical-scroll-proportion="0.5569423">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ResourcePathHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/ResourcePathHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="34" column="29" selection-start="820" selection-end="820" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PackageToModIdRegistry.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="25" selection-start="1973" selection-end="1973" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -877,7 +898,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/common/TileEntityMachineWithInventory.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/common/TileJaffaMachine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/ContainerFridge.java" />
@@ -889,10 +909,11 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/common/TileEntityMachine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/Sounds.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/client/ResourcePathHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/TileFruitCollector.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemSpawnStone.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/TileSink.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/client/ResourcePathHelper.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java" />
       </list>
     </option>
   </component>
@@ -2080,13 +2101,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25558037" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25558037" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32142857" sideWeight="0.5058698" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="ASM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.36979723" sideWeight="0.73995537" order="4" side_tool="false" content_ui="tabs" />
@@ -2195,18 +2216,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/common/TileJaffaMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="179" column="2" selection-start="5136" selection-end="5136" vertical-scroll-proportion="1.1981279" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/power/PowerHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="46" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.4648986">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/BiomeHelper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="69" column="33" selection-start="2394" selection-end="2394" vertical-scroll-proportion="1.0655227">
@@ -2265,13 +2274,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/ResourcePathHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="28" selection-start="1129" selection-end="1129" vertical-scroll-proportion="0.875195">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/TileFruitCollector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="180" column="77" selection-start="5791" selection-end="5791" vertical-scroll-proportion="0.0">
@@ -2304,7 +2306,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/Sounds.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="18" selection-start="555" selection-end="555" vertical-scroll-proportion="0.2698908">
+        <state line="20" column="18" selection-start="555" selection-end="555" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="25" selection-start="1973" selection-end="1973" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/ResourcePathHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="29" selection-start="820" selection-end="820" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiSpawnStone.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="43" selection-start="1600" selection-end="1600" vertical-scroll-proportion="0.5569423">
           <folding />
         </state>
       </provider>

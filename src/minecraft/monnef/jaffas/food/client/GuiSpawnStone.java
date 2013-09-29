@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.client;
 
+import monnef.core.client.ResourcePathHelper;
 import monnef.core.utils.MathHelper;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.CoolDownType;
@@ -28,6 +29,7 @@ public class GuiSpawnStone extends GuiScreen {
     private GuiButton buttonClose;
     private RenderItem itemRenderer = new RenderItem();
     private final ItemStack stack;
+    private final ResourceLocation texture;
 
     public GuiSpawnStone(EntityPlayer player, ItemSpawnStone stone) {
         super();
@@ -35,6 +37,7 @@ public class GuiSpawnStone extends GuiScreen {
         this.stone = stone;
         coolDownText = Integer.toString(stone.getCoolDownInMinutes());
         stack = new ItemStack(stone);
+        texture = ResourcePathHelper.assembleAndCreate("guispawnstone.png", ResourcePathHelper.ResourceTextureType.GUI);
     }
 
     @Override
@@ -42,7 +45,7 @@ public class GuiSpawnStone extends GuiScreen {
         drawDefaultBackground();
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.renderEngine.bindTexture(new ResourceLocation("/guispawnstone.png"));
+        this.mc.renderEngine.bindTexture(texture);
 
         int posX = (this.width - xSizeOfTexture) / 2;
         int posY = (this.height - ySizeOfTexture) / 2;
