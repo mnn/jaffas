@@ -26,7 +26,7 @@ public class RenderLocomotive extends Render {
     public RenderLocomotive() {
         this.shadowSize = 0.5F;
         this.model = new ModelLocomotive();
-        texture = ResourcePathHelper.assembleAndCreate("jaffas_locomotive.png", searchModIdFromCurrentPackage(), ENTITY);
+        texture = ResourcePathHelper.assembleAndCreate("jaffas_locomotive.png",  ENTITY);
     }
 
     public void renderTheMinecart(EntityMinecart entity, double par2, double par4, double par6, float renderRotation, float par9) {

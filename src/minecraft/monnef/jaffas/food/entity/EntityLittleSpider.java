@@ -49,7 +49,7 @@ public class EntityLittleSpider extends EntityJaffaSpider {
 
     private static String generateTextureFileName(int color) {
         String name = String.format(TEXTURE_STRING, color);
-        return ResourcePathHelper.assemble(name, searchModIdFromCurrentPackage(), ENTITY);
+        return ResourcePathHelper.assemble(name, ENTITY);
     }
 
     @Override

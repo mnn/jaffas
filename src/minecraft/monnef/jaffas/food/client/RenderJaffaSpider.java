@@ -29,7 +29,7 @@ public class RenderJaffaSpider extends RenderLiving {
     public RenderJaffaSpider(float shadowSize) {
         super(new ModelSpider(), shadowSize);
         this.setRenderPassModel(new ModelSpider());
-        textureEyes = ResourcePathHelper.assembleAndCreate("jaffas_littleSpider_eyes.png", searchModIdFromCurrentPackage(), ENTITY);
+        textureEyes = ResourcePathHelper.assembleAndCreate("jaffas_littleSpider_eyes.png",  ENTITY);
     }
 
     protected float setSpiderDeathMaxRotation() {

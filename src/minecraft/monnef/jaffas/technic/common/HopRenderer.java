@@ -10,7 +10,6 @@ import monnef.jaffas.technic.block.TileHighPlant;
 import monnef.jaffas.technic.client.ModelHopPlant;
 import net.minecraft.util.ResourceLocation;
 
-import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.TILE;
 
 public class HopRenderer implements IHighPlantModel {
@@ -19,7 +18,7 @@ public class HopRenderer implements IHighPlantModel {
 
     public HopRenderer() {
         hop = new ModelHopPlant();
-        texture = ResourcePathHelper.assembleAndCreate("jaffas_hop_plant.png", searchModIdFromCurrentPackage(), TILE);
+        texture = ResourcePathHelper.assembleAndCreate("jaffas_hop_plant.png", TILE);
     }
 
     @Override

@@ -211,6 +211,6 @@ public class EntityDuck extends EntityAnimal {
     }
 
     public static String getTexturePath() {
-        return ResourcePathHelper.assemble("jaffas_duck.png", searchModIdFromCurrentPackage(), ENTITY);
+        return ResourcePathHelper.assemble("jaffas_duck.png", ENTITY);
     }
 }

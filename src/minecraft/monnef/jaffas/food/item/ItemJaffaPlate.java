@@ -36,7 +36,7 @@ public class ItemJaffaPlate extends ItemArmor {
 
     public ItemJaffaPlate(int id, EnumArmorMaterial material, int renderIndex, ArmorType type, String armorTexture, Item repairItem, int customIconIndex) {
         super(id, material, renderIndex, type.ordinal());
-        this.armorTexture = ResourcePathHelper.assemble(armorTexture, searchModIdFromCurrentPackage(), ARMOR);
+        this.armorTexture = ResourcePathHelper.assemble(armorTexture, ARMOR);
         this.repairItem = repairItem;
         this.customIconIndex = customIconIndex;
         this.setCreativeTab(JaffasFood.instance.creativeTab);
