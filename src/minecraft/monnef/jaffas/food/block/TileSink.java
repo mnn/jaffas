@@ -6,8 +6,9 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.BitHelper;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.client.Sounds;
+import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
@@ -23,6 +24,7 @@ public class TileSink extends TileEntity {
     private String soundToRun = null;
     private float soundVolume = 1f;
 
+    @Override
     public void updateEntity() {
         playQueuedSound();
 
@@ -39,7 +41,7 @@ public class TileSink extends TileEntity {
             if (!BlockSink.isWaterReady(meta)) {
                 delay--;
                 if (delay == 20) {
-                    queueSound("water", 0.7f);
+                    queueSound(Sounds.SoundsEnum.WATER.getSoundName(), 0.7f);
                 }
 
                 if (delay <= 0) {

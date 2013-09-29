@@ -6,6 +6,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.MathHelper;
+import monnef.jaffas.food.client.Sounds;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
@@ -77,7 +78,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
             }
         }
 
-        ChunkCoordinates bed = player.getBedLocation();
+        ChunkCoordinates bed = player.getBedLocation(0);
         boolean success;
         if (bed == null) {
             player.addChatMessage("You have no home.");
@@ -110,7 +111,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
     }
 
     private void playWhooshEffect(EntityPlayerMP player, World world) {
-        world.playSoundEffect(player.posX, player.posY, player.posZ, "homestone", 1f, 1f);
+        world.playSoundEffect(player.posX, player.posY, player.posZ, Sounds.SoundsEnum.HOMESTONE.getSoundName(), 1f, 1f);
     }
 
     private boolean checkRoomForPlayer(World world, ChunkCoordinates spawn) {

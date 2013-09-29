@@ -29,6 +29,8 @@ import java.util.List;
 import java.util.Random;
 
 import static monnef.jaffas.food.JaffasFood.Log;
+import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_NOISE;
+import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_SUCK;
 
 public class TileFruitCollector extends TileEntityMachineWithInventory {
 
@@ -156,7 +158,7 @@ public class TileFruitCollector extends TileEntityMachineWithInventory {
                     case idle:
                         if (eventTime > 5 && gotPower(suckCost)) {
                             if (aquireTarget()) {
-                                this.queueSound("sharpener", 0.7F);
+                                this.queueSound(COLLECTOR_NOISE.getSoundName(), 0.7F);
                                 consumePower(suckCost);
                                 this.findFruitToKnockHarder = true;
                             } else {
@@ -176,7 +178,7 @@ public class TileFruitCollector extends TileEntityMachineWithInventory {
                                 if (JaffasTrees.debug) Log.printInfo("target destroyed");
                                 int itemsLeft = stack.stackSize - itemsAdded;
 
-                                this.queueSound("suck");
+                                this.queueSound(COLLECTOR_SUCK.getSoundName());
 
                                 // spit out stuff we can't add
                                 if (itemsLeft != 0) {
