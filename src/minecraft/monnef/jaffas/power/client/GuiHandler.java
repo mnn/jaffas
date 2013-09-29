@@ -12,7 +12,7 @@ import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
-import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.client.common.GuiContainerMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;

@@ -10,12 +10,11 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.jaffas.food.block.TileJaffaMachine;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -31,10 +30,11 @@ import java.util.Random;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 
-public class TileFruitCollector extends TileJaffaMachine implements IInventory {
+public class TileFruitCollector extends TileEntityMachineWithInventory {
 
     public static final int suckCost = 30;
     public static Random rand = new Random();
+    private final int SLOTS_COUNT = 4;
 
     private int eventTime;
 
@@ -100,9 +100,18 @@ public class TileFruitCollector extends TileJaffaMachine implements IInventory {
     }
 
     public TileFruitCollector() {
-        super(100);
         eventTime = 0;
-        this.fuelSlot = 4;
+    }
+
+    @Override
+    protected void configurePowerParameters() {
+        super.configurePowerParameters();
+        powerNeeded = 10;
+    }
+
+    @Override
+    public String getMachineTitle() {
+        return "Fruit Collector";
     }
 
     public CollectorStates getState() {
@@ -129,7 +138,7 @@ public class TileFruitCollector extends TileJaffaMachine implements IInventory {
         tickCounter++;
         playQueuedSound();
 
-        if (isBurning()) {
+        if (gotPowerToActivate()) {
             int limit = this.findFruitToKnockHarder ? 15 : 3;
             this.findFruitToKnockHarder = false;
             for (int i = 0; i < limit; i++)
@@ -139,63 +148,54 @@ public class TileFruitCollector extends TileJaffaMachine implements IInventory {
         if (tickCounter % tickDivider == 0) {
             // only every second do stuff
 
-            if (isBurning()) {
+            if (gotPowerToActivate()) {
                 eventTime++;
-                burnTime -= 5;
-            }
+                consumePower(5);
 
-            if (burnTime <= 0) {
-                burnTime = 0;
-                if (!inventoryFull()) {
-                    tryGetFuel();
+                switch (state) {
+                    case idle:
+                        if (eventTime > 5 && gotPower(suckCost)) {
+                            if (aquireTarget()) {
+                                this.queueSound("sharpener", 0.7F);
+                                consumePower(suckCost);
+                                this.findFruitToKnockHarder = true;
+                            } else {
+                                consumePower(1);
+                            }
+                            eventTime = 0;
+                        }
+                        break;
+
+                    case targeted:
+                        cooldown -= 1;
+                        if (cooldown <= 0) {
+                            if (targetedItem != null && this.targetedItem.isEntityAlive()) {
+                                ItemStack stack = this.targetedItem.getEntityItem().copy();
+                                int itemsAdded = addItemToInventory(this.targetedItem.getEntityItem().copy(), true);
+                                this.targetedItem.setDead();
+                                if (JaffasTrees.debug) Log.printInfo("target destroyed");
+                                int itemsLeft = stack.stackSize - itemsAdded;
+
+                                this.queueSound("suck");
+
+                                // spit out stuff we can't add
+                                if (itemsLeft != 0) {
+                                    EntityItem ei = new EntityItem(worldObj, xCoord + 0.5, yCoord + 0.7, zCoord + 0.5, stack);
+                                    ei.motionX = 0;
+                                    ei.motionY = 0.2;
+                                    ei.motionZ = 0;
+
+                                    worldObj.spawnEntityInWorld(ei);
+                                }
+                            }
+
+                            this.state = CollectorStates.idle;
+                            this.sendStateUpdatePacket();
+                            this.targetedItem = null;
+                        }
+                        break;
                 }
             }
-
-
-            switch (state) {
-                case idle:
-                    if (eventTime > 5 && burnTime > suckCost) {
-                        if (aquireTarget()) {
-                            this.queueSound("sharpener", 0.7F);
-                            burnTime -= suckCost;
-                            this.findFruitToKnockHarder = true;
-                        } else {
-                            burnTime -= 1;
-                        }
-                        eventTime = 0;
-                    }
-                    break;
-
-                case targeted:
-                    cooldown -= 1;
-                    if (cooldown <= 0) {
-                        if (targetedItem != null && this.targetedItem.isEntityAlive()) {
-                            ItemStack stack = this.targetedItem.getEntityItem().copy();
-                            int itemsAdded = addItemToInventory(this.targetedItem.getEntityItem().copy(), true);
-                            this.targetedItem.setDead();
-                            if (JaffasTrees.debug) Log.printInfo("target destroyed");
-                            int itemsLeft = stack.stackSize - itemsAdded;
-
-                            this.queueSound("suck");
-
-                            // spit out stuff we can't add
-                            if (itemsLeft != 0) {
-                                EntityItem ei = new EntityItem(worldObj, xCoord + 0.5, yCoord + 0.7, zCoord + 0.5, stack);
-                                ei.motionX = 0;
-                                ei.motionY = 0.2;
-                                ei.motionZ = 0;
-
-                                worldObj.spawnEntityInWorld(ei);
-                            }
-                        }
-
-                        this.state = CollectorStates.idle;
-                        this.sendStateUpdatePacket();
-                        this.targetedItem = null;
-                    }
-                    break;
-            }
-
         }
     }
 
@@ -343,5 +343,9 @@ public class TileFruitCollector extends TileJaffaMachine implements IInventory {
     public void writeToNBT(NBTTagCompound tagCompound) {
         super.writeToNBT(tagCompound);
         tagCompound.setInteger("eventTime", eventTime);
+    }
+
+    @Override
+    protected void doMachineWork() {
     }
 }

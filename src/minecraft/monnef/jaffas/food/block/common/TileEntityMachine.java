@@ -3,7 +3,7 @@
  * author: monnef
  */
 
-package monnef.jaffas.power.block.common;
+package monnef.jaffas.food.block.common;
 
 import buildcraft.api.power.IPowerEmitter;
 import buildcraft.api.power.IPowerReceptor;
@@ -11,6 +11,7 @@ import buildcraft.api.power.PowerHandler;
 import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.power.block.common.BlockMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.INetworkManager;
@@ -27,6 +28,7 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     public static final String ROTATION_TAG_NAME = "rotation";
     public static final Random rand = new Random();
     private static final int DUMMY_CREATION_PHASE_INSTANCE_COUNTER_LIMIT = 5;
+    public static final float POWER_LOSS = 0.01f;
     protected int slowingCoefficient = 1;
     protected int doWorkCounter;
 
@@ -42,6 +44,7 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     private boolean isRedstoneStatusDirty;
     private boolean forceFullCubeRenderBoundingBox;
     private boolean isPowerSource;
+    private int tickCounter = 0;
 
     protected TileEntityMachine() {
         onNewInstance(this);
@@ -49,7 +52,8 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
 
         configurePowerParameters();
         powerHandler = new PowerHandler(this, bcPowerType);
-        powerHandler.configure(2, maxEnergyReceived, powerNeeded, powerStorage);
+        powerHandler.configure(1, maxEnergyReceived, powerNeeded, powerStorage);
+        powerHandler.setPerdition(new PowerHandler.PerditionCalculator(POWER_LOSS));
     }
 
     public void setForceFullCubeRenderBoundingBox(boolean value) {
@@ -69,11 +73,18 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
     @Override
     public void updateEntity() {
         super.updateEntity();
+        if (tickCounter == 0) {
+            onFirstTick();
+        }
+        tickCounter++;
         if (isRedstoneStatusDirty) {
             isRedstoneStatusDirty = false;
             refreshCachedRedstoneStatus();
         }
         powerHandler.update();
+    }
+
+    protected void onFirstTick() {
     }
 
     /**
@@ -248,5 +259,21 @@ public abstract class TileEntityMachine extends TileEntity implements IPowerRece
         return worldObj;
     }
     //</editor-fold>
+
+    public boolean gotPowerToActivate() {
+        return gotPower(getPowerHandler().getActivationEnergy());
+    }
+
+    public boolean gotPower(float amount) {
+        return getPowerHandler().getEnergyStored() >= amount;
+    }
+
+    protected float consumeNeededPower() {
+        return consumePower(powerNeeded);
+    }
+
+    protected float consumePower(float amount) {
+        return getPowerHandler().useEnergy(amount, amount, true);
+    }
 }
 

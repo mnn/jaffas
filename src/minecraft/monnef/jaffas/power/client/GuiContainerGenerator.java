@@ -8,7 +8,7 @@ package monnef.jaffas.power.client;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.common.ContainerMachine;
-import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.client.common.GuiContainerMachine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;

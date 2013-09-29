@@ -33,21 +33,14 @@ public class GuiFridge extends GuiContainerJaffas {
             String s = String.valueOf(tileEntity.getTemperature());
             fontRenderer.drawString(s, 75, 3, 4210752);
 
-            if (tileEntity.powerProvider != null) {
-                s = String.valueOf(tileEntity.powerProvider.getEnergyStored());
-                fontRenderer.drawString(s, 90, 15, 4210752);
-            }
+            s = String.valueOf(tileEntity.getPowerHandler().getEnergyStored());
+            fontRenderer.drawString(s, 90, 15, 4210752);
         }
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);
-
-        if (tileEntity.isBurning()) {
-            int burn = tileEntity.getBurnTimeRemainingScaled(14);
-            this.drawTexturedModalRect(x + 103, y + 54 + (13 - burn), 176, 14 - burn, 14, burn);
-        }
 
         int temp = Math.round(tileEntity.temperature);
         int tY = (int) Math.round(56 - temp * 1.2D);

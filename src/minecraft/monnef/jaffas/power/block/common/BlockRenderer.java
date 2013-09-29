@@ -6,6 +6,7 @@
 package monnef.jaffas.power.block.common;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import monnef.jaffas.food.block.common.TileEntityMachine;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.client.ModelGenerator;
 import net.minecraft.block.Block;

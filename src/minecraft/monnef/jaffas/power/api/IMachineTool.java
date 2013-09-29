@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.api;
 
-import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.food.block.common.TileEntityMachine;
 import net.minecraft.entity.player.EntityPlayer;
 
 public interface IMachineTool {

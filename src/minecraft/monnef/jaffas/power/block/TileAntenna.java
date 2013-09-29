@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.block;
 
-import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.food.block.common.TileEntityMachine;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 

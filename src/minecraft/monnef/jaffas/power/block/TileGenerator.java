@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.common.ContentHolder;
-import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

@@ -9,7 +9,7 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
@@ -64,7 +64,7 @@ public class TileWebHarvester extends TileEntityMachineWithInventory implements 
             return;
         }
 
-        if (getPowerHandler().useEnergy(powerNeeded, powerNeeded, true) < powerNeeded) {
+        if (consumeNeededPower() < powerNeeded) {
             return;
         }
         worldObj.destroyBlock(web.getX(), web.getY(), web.getZ(), false);

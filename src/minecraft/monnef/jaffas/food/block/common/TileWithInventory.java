@@ -3,7 +3,7 @@
  * author: monnef
  */
 
-package monnef.jaffas.food.block;
+package monnef.jaffas.food.block.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
@@ -12,6 +12,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 
+@Deprecated
 public abstract class TileWithInventory extends TileEntity implements ISidedInventory {
     protected ItemStack[] inv;
 

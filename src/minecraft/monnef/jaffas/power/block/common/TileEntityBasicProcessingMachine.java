@@ -7,6 +7,7 @@ package monnef.jaffas.power.block.common;
 
 import monnef.core.utils.ItemHelper;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.common.IProcessingRecipe;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
 import net.minecraft.item.ItemStack;
@@ -50,7 +51,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
 
         if (isWorking()) {
             processTime++;
-            float power = getPowerHandler().useEnergy(powerNeeded, powerNeeded, true);
+            float power = consumeNeededPower();
             if (power < powerNeeded) {
                 JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
             } else {

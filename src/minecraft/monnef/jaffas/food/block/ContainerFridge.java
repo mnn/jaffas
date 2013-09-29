@@ -19,14 +19,9 @@ public class ContainerFridge extends Container {
     public static final int inventorySize = 20;
     protected TileFridge tileEntity;
     protected float lastTemperature;
-    protected int lastBurnTime;
-    protected int lastItemBurnTime;
 
     public ContainerFridge(InventoryPlayer inventoryPlayer, TileFridge te) {
         tileEntity = te;
-
-        //the Slot constructor takes the IInventory and the slot number in that it binds to
-        //and the x-y coordinates it resides on-screen
 
         int row, col;
         int colsPerRow = 4;
@@ -36,11 +31,7 @@ public class ContainerFridge extends Container {
             addSlotToContainer(new Slot(tileEntity, i, 8 + col * 18, 13 + row * 18));
         }
 
-        addSlotToContainer(new Slot(tileEntity, te.fuelSlot, 102, 69));
-
-        //addSlotToContainer(new Slot(tileEntity, 0, 76, 37));
-
-        //commonly used vanilla code that adds the player's inventory
+        //addSlotToContainer(new Slot(tileEntity, te.fuelSlot, 102, 69));
         bindPlayerInventory(inventoryPlayer);
     }
 
@@ -55,41 +46,23 @@ public class ContainerFridge extends Container {
             if (this.lastTemperature != this.tileEntity.temperature) {
                 var2.sendProgressBarUpdate(this, 0, Math.round(this.tileEntity.temperature * 10));
             }
-
-            if (this.lastBurnTime != this.tileEntity.burnTime) {
-                var2.sendProgressBarUpdate(this, 1, this.tileEntity.burnTime);
-            }
-
-            if (this.lastItemBurnTime != this.tileEntity.burnItemTime) {
-                var2.sendProgressBarUpdate(this, 2, this.tileEntity.burnItemTime);
-            }
         }
 
         this.lastTemperature = this.tileEntity.temperature;
-        this.lastBurnTime = this.tileEntity.burnTime;
-        this.lastItemBurnTime = this.tileEntity.burnItemTime;
     }
 
-    public void updateProgressBar(int par1, int par2) {
-        if (par1 == 0) {
-            tileEntity.temperature = par2 / 10F;
-        }
-
-        if (par1 == 1) {
-            tileEntity.burnTime = par2;
-        }
-
-        if (par1 == 2) {
-            tileEntity.burnItemTime = par2;
+    @Override
+    public void updateProgressBar(int id, int value) {
+        super.updateProgressBar(id, value);
+        if (id == 0) {
+            tileEntity.temperature = value / 10F;
         }
     }
-
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
         return tileEntity.isUseableByPlayer(player);
     }
-
 
     protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
         int yshift = 29;
@@ -107,8 +80,7 @@ public class ContainerFridge extends Container {
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slot)
-    {
+    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slot) {
         ItemStack stack = null;
         Slot slotObject = (Slot) inventorySlots.get(slot);
 

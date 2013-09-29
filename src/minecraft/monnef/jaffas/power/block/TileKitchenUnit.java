@@ -9,7 +9,7 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import monnef.core.utils.TileEntityHelper;
 import monnef.jaffas.power.api.IKitchenUnitAppliance;
-import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.food.block.common.TileEntityMachine;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;

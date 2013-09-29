@@ -6,7 +6,7 @@
 package monnef.jaffas.power.item;
 
 import monnef.jaffas.power.api.IPipeWrench;
-import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.food.block.common.TileEntityMachine;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;

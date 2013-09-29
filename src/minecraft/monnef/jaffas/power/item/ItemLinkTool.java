@@ -8,7 +8,7 @@ package monnef.jaffas.power.item;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.power.api.IMachineTool;
-import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.food.block.common.TileEntityMachine;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

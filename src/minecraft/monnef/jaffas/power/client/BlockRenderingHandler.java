@@ -10,7 +10,7 @@ import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileAntenna;
 import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileLightningConductor;
-import monnef.jaffas.power.block.common.TileEntityMachine;
+import monnef.jaffas.food.block.common.TileEntityMachine;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;

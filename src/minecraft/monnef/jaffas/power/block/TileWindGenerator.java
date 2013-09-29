@@ -14,7 +14,7 @@ import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.power.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import monnef.jaffas.power.common.IWindObstacles;
 import monnef.jaffas.power.common.WindObstaclesFastFail;

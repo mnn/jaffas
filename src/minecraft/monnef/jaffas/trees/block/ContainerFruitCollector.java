@@ -24,10 +24,6 @@ public class ContainerFruitCollector extends Container {
     public ContainerFruitCollector(InventoryPlayer inventoryPlayer, TileFruitCollector te) {
         tileEntity = te;
 
-        //the Slot constructor takes the IInventory and the slot number in that it binds to
-        //and the x-y coordinates it resides on-screen
-
-
         int row, col;
         int colsPerRow = 2;
         for (int i = 0; i < inventorySize; i++) {
@@ -36,9 +32,6 @@ public class ContainerFruitCollector extends Container {
             addSlotToContainer(new Slot(tileEntity, i, 45 + col * 18, 22 + row * 18));
         }
 
-        addSlotToContainer(new Slot(tileEntity, te.getFuelSlot(), 105, 40));
-
-        //commonly used vanilla code that adds the player's inventory
         bindPlayerInventory(inventoryPlayer);
     }
 
@@ -49,30 +42,12 @@ public class ContainerFruitCollector extends Container {
 
         while (var1.hasNext()) {
             ICrafting var2 = (ICrafting) var1.next();
-
-            if (this.lastBurnTime != this.tileEntity.burnTime) {
-                var2.sendProgressBarUpdate(this, 1, this.tileEntity.burnTime);
-            }
-
-            if (this.lastItemBurnTime != this.tileEntity.burnItemTime) {
-                var2.sendProgressBarUpdate(this, 2, this.tileEntity.burnItemTime);
-            }
         }
-
-        this.lastBurnTime = this.tileEntity.burnTime;
-        this.lastItemBurnTime = this.tileEntity.burnItemTime;
     }
 
+    @Override
     public void updateProgressBar(int par1, int par2) {
-        if (par1 == 1) {
-            tileEntity.burnTime = par2;
-        }
-
-        if (par1 == 2) {
-            tileEntity.burnItemTime = par2;
-        }
     }
-
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {

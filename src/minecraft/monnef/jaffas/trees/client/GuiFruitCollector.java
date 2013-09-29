@@ -31,17 +31,6 @@ public class GuiFruitCollector extends GuiContainerJaffas {
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);
-
-        if (tileEntity.isBurning()) {
-            int burn = tileEntity.getBurnTimeRemainingScaled(14);
-            this.drawTexturedModalRect(x + 105, y + 24 + (13 - burn), 176, 14 - burn, 14, burn);
-        }
-
-        /*
-        int temp = Math.round(tileEntity.temperature);
-        int tY = (int) Math.round(56 - temp * 1.2D);
-        this.drawTexturedModalRect(x + 154, y + tY, 190, 0, 1, 105 - tY);
-        */
     }
 
 }

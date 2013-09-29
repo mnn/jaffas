@@ -3,11 +3,10 @@
  * author: monnef
  */
 
-package monnef.jaffas.food.block;
+/*
+package monnef.jaffas.food.block.common;
 
-import buildcraft.api.power.IPowerProvider;
 import buildcraft.api.power.IPowerReceptor;
-import buildcraft.api.power.PowerFramework;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
@@ -177,48 +176,5 @@ public abstract class TileJaffaMachine extends TileWithInventory implements IPow
     public int powerRequest(ForgeDirection from) {
         return powerNeeded - (int) powerProvider.getEnergyStored();
     }
-
-    //@return How many items we added
-    protected int addItemToInventory(ItemStack stack, boolean doAdd) {
-        int free = -1;
-        boolean addToStack = false;
-        int ret;
-
-        for (int i = 0; i < fuelSlot; i++) {
-            if (inv[i] == null) {
-                free = i;
-                i = fuelSlot;
-            } else if (inv[i].itemID == stack.itemID && inv[i].stackSize < inv[i].getMaxStackSize()) {
-                addToStack = true;
-                free = i;
-                i = fuelSlot;
-            }
-        }
-
-        if (free != -1) {
-            if (addToStack) {
-                int newStackSize = stack.stackSize + inv[free].stackSize;
-                if (doAdd) inv[free].stackSize += stack.stackSize;
-
-                if (newStackSize > stack.getMaxStackSize()) {
-                    int overflowItemsCount = newStackSize % stack.getMaxStackSize();
-                    if (doAdd) inv[free].stackSize = stack.getMaxStackSize();
-
-                    ItemStack c = stack.copy();
-                    c.stackSize = overflowItemsCount;
-                    ret = stack.stackSize - overflowItemsCount;
-                    ret += addItemToInventory(c, doAdd);
-                } else {
-                    ret = stack.stackSize;
-                }
-            } else {
-                if (doAdd) inv[free] = stack;
-                ret = stack.stackSize;
-            }
-        } else {
-            ret = 0;
-        }
-
-        return ret;
-    }
 }
+*/

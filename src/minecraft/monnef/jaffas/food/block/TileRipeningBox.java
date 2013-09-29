@@ -7,6 +7,7 @@ package monnef.jaffas.food.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.MathHelper;
+import monnef.jaffas.food.block.common.TileWithInventory;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.item.ItemStack;

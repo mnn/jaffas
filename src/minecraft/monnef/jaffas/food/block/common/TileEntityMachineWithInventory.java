@@ -3,8 +3,9 @@
  * author: monnef
  */
 
-package monnef.jaffas.power.block.common;
+package monnef.jaffas.food.block.common;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -127,7 +128,7 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
                 return (int) getPowerHandler().getEnergyStored();
 
             case 1:
-                return getPowerHandler().getMaxEnergyStored();
+                return (int) getPowerHandler().getMaxEnergyStored();
         }
         return -1;
     }
@@ -155,5 +156,60 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
 
     public boolean isPowerBarRenderingEnabled() {
         return true;
+    }
+
+    /**
+     * Search whole inventory and tries to insert the item there.
+     *
+     * @param stack Input item.
+     * @param doAdd Change inventory.
+     * @return How many items we added.
+     */
+    protected int addItemToInventory(ItemStack stack, boolean doAdd) {
+        int free = -1;
+        boolean addToStack = false;
+        int ret;
+        int slotsCount = getSizeInventory();
+
+        for (int i = 0; i < slotsCount; i++) {
+            if (getStackInSlot(i) == null) {
+                free = i;
+                i = slotsCount;
+            } else if (getStackInSlot(i).itemID == stack.itemID && getStackInSlot(i).stackSize < getStackInSlot(i).getMaxStackSize()) {
+                addToStack = true;
+                free = i;
+                i = slotsCount;
+            }
+        }
+
+        if (free != -1) {
+            if (addToStack) {
+                int newStackSize = stack.stackSize + getStackInSlot(free).stackSize;
+                if (doAdd) getStackInSlot(free).stackSize += stack.stackSize;
+
+                if (newStackSize > stack.getMaxStackSize()) {
+                    int overflowItemsCount = newStackSize % stack.getMaxStackSize();
+                    if (doAdd) getStackInSlot(free).stackSize = stack.getMaxStackSize();
+
+                    ItemStack c = stack.copy();
+                    c.stackSize = overflowItemsCount;
+                    ret = stack.stackSize - overflowItemsCount;
+                    ret += addItemToInventory(c, doAdd);
+                } else {
+                    ret = stack.stackSize;
+                }
+            } else {
+                if (doAdd) setInventorySlotContents(free, stack);
+                ret = stack.stackSize;
+            }
+        } else {
+            ret = 0;
+        }
+
+        return ret;
+    }
+
+    public boolean canAddToInventory(EntityItem item) {
+        return this.addItemToInventory(item.getEntityItem(), false) > 0;
     }
 }
