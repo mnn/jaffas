@@ -11,7 +11,7 @@ import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.block.BlockLamp;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
@@ -67,7 +67,7 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return type == ItemRenderType.EQUIPPED;
+        return isMyType(type);
     }
 
     @Override
@@ -77,9 +77,9 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
 
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-        if (type == ItemRenderType.EQUIPPED) {
+        if (isMyType(type)) {
             RenderBlocks render = (RenderBlocks) data[0];
-            EntityLiving entity = (EntityLiving) data[1];
+            EntityLivingBase entity = (EntityLivingBase) data[1];
             GL11.glTranslatef(0.5f, 0.5f, 0.5f);
             CustomBlockRenderingHelper.render(JaffasTechnic.lampDummy, item.getItemDamage(), 1, render, getBlock(item).shouldForceInventoryColoring());
             GL11.glScalef(slightlyBigger, slightlyBigger, slightlyBigger);
@@ -89,5 +89,9 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
 
     private BlockLamp getBlock(ItemStack stack) {
         return (BlockLamp) Block.blocksList[stack.itemID];
+    }
+
+    private static boolean isMyType(ItemRenderType type) {
+        return type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
     }
 }

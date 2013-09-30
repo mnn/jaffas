@@ -10,7 +10,7 @@ import monnef.core.client.CustomBlockRenderingHelper;
 import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.IItemRenderer;
@@ -40,7 +40,7 @@ public class CustomBlockRenderer implements ISimpleBlockRenderingHandler, IItemR
 
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
-        return type == ItemRenderType.EQUIPPED;
+        return isMyType(type);
     }
 
     @Override
@@ -50,11 +50,15 @@ public class CustomBlockRenderer implements ISimpleBlockRenderingHandler, IItemR
 
     @Override
     public void renderItem(ItemRenderType type, ItemStack item, Object... data) {
-        if (type == ItemRenderType.EQUIPPED) {
+        if (isMyType(type)) {
             RenderBlocks render = (RenderBlocks) data[0];
-            EntityLiving entity = (EntityLiving) data[1];
+            EntityLivingBase entity = (EntityLivingBase) data[1];
             GL11.glTranslatef(0.5f, 0.5f, 0.5f);
             CustomBlockRenderingHelper.doRendering(render, Block.blocksList[item.itemID], 0, 0, 0, true, item.getItemDamage(), 1);
         }
+    }
+
+    private static boolean isMyType(ItemRenderType type) {
+        return type == ItemRenderType.EQUIPPED || type == ItemRenderType.EQUIPPED_FIRST_PERSON;
     }
 }

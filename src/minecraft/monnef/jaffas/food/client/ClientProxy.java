@@ -12,7 +12,6 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.client.RenderItemInAir;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileBoard;
 import monnef.jaffas.food.block.TileColumn;
@@ -23,6 +22,7 @@ import monnef.jaffas.food.block.TilePie;
 import monnef.jaffas.food.block.TilePizza;
 import monnef.jaffas.food.block.TileSink;
 import monnef.jaffas.food.common.CommonProxy;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.SpawnStonePacketUtils;
 import monnef.jaffas.food.entity.EntityDuck;
@@ -35,6 +35,7 @@ import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.item.EnumRarity;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
@@ -64,6 +65,8 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerBlockHandler(new DirectionalBlockRenderer());
         RenderingRegistry.registerBlockHandler(new CustomBlockRenderer());
+
+        MinecraftForgeClient.registerItemRenderer(ContentHolder.blockTable.blockID, new CustomBlockRenderer());
     }
 
     private Render constructLittleSpiderRenderer() {
