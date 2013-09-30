@@ -1,53 +1,93 @@
 package forestry.api.lepidopterology;
 
-public enum EnumButterflyChromosome {
-	SPECIES,
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleArea;
+import forestry.api.genetics.IAlleleBoolean;
+import forestry.api.genetics.IAlleleFloat;
+import forestry.api.genetics.IAlleleFlowers;
+import forestry.api.genetics.IAlleleInteger;
+import forestry.api.genetics.IAlleleTolerance;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.ISpeciesRoot;
+
+public enum EnumButterflyChromosome implements IChromosomeType {
+	/**
+	 * Species of the bee. Alleles here must implement {@link IAlleleButterflySpecies}.
+	 */
+	SPECIES(IAlleleButterflySpecies.class),
 	/**
 	 * Physical size.
 	 */
-	SIZE,
+	SIZE(IAlleleFloat.class),
 	/**
 	 * Flight speed.
 	 */
-	SPEED,
+	SPEED(IAlleleFloat.class),
 	/**
 	 * How long the butterfly can last without access to matching pollinatables.
 	 */
-	LIFESPAN,
+	LIFESPAN(IAlleleInteger.class),
 	/**
 	 * Species with a higher metabolism have a higher appetite and may cause more damage to their environment.
 	 */
-	METABOLISM,
+	METABOLISM(IAlleleInteger.class),
 	/**
 	 * Determines likelyhood of caterpillars and length of caterpillar/pupation phase. Also: Number of max caterpillars after mating?
 	 */
-	FERTILITY,
+	FERTILITY(IAlleleInteger.class),
 	/**
 	 * Not sure yet.
 	 */
-	TEMPERATURE_TOLERANCE,
+	TEMPERATURE_TOLERANCE(IAlleleTolerance.class),
 	/**
 	 * Not sure yet.
 	 */
-	HUMIDITY_TOLERANCE,
+	HUMIDITY_TOLERANCE(IAlleleTolerance.class),
 	/**
 	 * Only nocturnal butterflys/moths will fly at night. Allows daylight activity for naturally nocturnal species.
 	 */
-	NOCTURNAL,
+	NOCTURNAL(IAlleleBoolean.class),
 	/**
 	 * Only tolerant flyers will fly in the rain.
 	 */
-	TOLERANT_FLYER,
+	TOLERANT_FLYER(IAlleleBoolean.class),
 	/**
 	 * Fire resistance.
 	 */
-	FIRE_RESIST,
+	FIRE_RESIST(IAlleleBoolean.class),
 	/**
 	 * Required flowers/leaves.
 	 */
-	FLOWER_PROVIDER,
+	FLOWER_PROVIDER(IAlleleFlowers.class),
 	/**
 	 * Extra effect to surroundings. (?)
 	 */
-	EFFECT
+	EFFECT(IAlleleButterflyEffect.class),
+	/**
+	 * Not used yet
+	 */
+	TERRITORY(IAlleleArea.class),
+	;
+	
+	Class<? extends IAllele> clss;
+	
+	EnumButterflyChromosome(Class<? extends IAllele> clss) {
+		this.clss = clss;
+	}
+
+	@Override
+	public Class<? extends IAllele> getAlleleClass() {
+		return clss;
+	}
+
+	@Override
+	public String getName() {
+		return this.toString().toLowerCase();
+	}
+
+	@Override
+	public ISpeciesRoot getSpeciesRoot() {
+		return AlleleManager.alleleRegistry.getSpeciesRoot("rootButterflies");
+	}
 }

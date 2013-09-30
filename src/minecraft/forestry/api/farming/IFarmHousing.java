@@ -3,7 +3,7 @@ package forestry.api.farming;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public interface IFarmHousing {
 
@@ -22,9 +22,9 @@ public interface IFarmHousing {
 	 */
 	boolean doWork();
 
-	boolean hasLiquid(LiquidStack liquid);
+	boolean hasLiquid(FluidStack liquid);
 
-	void removeLiquid(LiquidStack liquid);
+	void removeLiquid(FluidStack liquid);
 
 	boolean hasResources(ItemStack[] resources);
 

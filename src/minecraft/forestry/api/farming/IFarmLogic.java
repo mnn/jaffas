@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,7 +28,7 @@ public interface IFarmLogic {
 	@SideOnly(Side.CLIENT)
 	Icon getIcon();
 
-	String getTextureSheet();
+	ResourceLocation getSpriteSheet();
 	
 	String getName();
 }

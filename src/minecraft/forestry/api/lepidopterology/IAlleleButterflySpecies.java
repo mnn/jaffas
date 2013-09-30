@@ -16,7 +16,7 @@ public interface IAlleleButterflySpecies extends IAlleleSpecies {
 	IButterflyRoot getRoot();
 
 	/**
-	 * @return Texture to be used for the Entity of this species.
+	 * @return Path of the texture to use for entity rendering.
 	 */
 	String getEntityTexture();
 	

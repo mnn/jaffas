@@ -38,4 +38,9 @@ public interface IAlleleBeeSpecies extends IAlleleSpecies {
 
 	@SideOnly(Side.CLIENT)
 	Icon getIcon(EnumBeeType type, int renderPass);
+
+	/**
+	 * @return Path of the texture to use for entity rendering.
+	 */
+	String getEntityTexture();
 }

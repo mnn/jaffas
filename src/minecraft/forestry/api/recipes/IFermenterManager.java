@@ -1,7 +1,7 @@
 package forestry.api.recipes;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Provides an interface to the recipe manager of the fermenter.
@@ -29,7 +29,7 @@ public interface IFermenterManager extends ICraftingProvider {
 	 * @param liquid
 	 *            LiquidStack representing resource liquid and amount.
 	 */
-	public void addRecipe(ItemStack resource, int fermentationValue, float modifier, LiquidStack output, LiquidStack liquid);
+	public void addRecipe(ItemStack resource, int fermentationValue, float modifier, FluidStack output, FluidStack liquid);
 
 	/**
 	 * Add a recipe to the fermenter. Defaults to water as input liquid.
@@ -43,6 +43,6 @@ public interface IFermenterManager extends ICraftingProvider {
 	 * @param output
 	 *            LiquidStack representing output liquid. Amount is determined by fermentationValue*modifier.
 	 */
-	public void addRecipe(ItemStack resource, int fermentationValue, float modifier, LiquidStack output);
+	public void addRecipe(ItemStack resource, int fermentationValue, float modifier, FluidStack output);
 
 }

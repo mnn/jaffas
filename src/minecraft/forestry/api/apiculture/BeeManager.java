@@ -5,7 +5,12 @@ import java.util.HashMap;
 
 import net.minecraft.item.ItemStack;
 import forestry.api.genetics.IMutation;
-
+/**
+ * 
+ * Some miscellaneous lists and settings for bees.
+ * 
+ * @author SirSengir
+ */
 public class BeeManager {
 
 	/**

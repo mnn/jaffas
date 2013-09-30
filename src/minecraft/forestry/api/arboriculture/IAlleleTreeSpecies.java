@@ -53,5 +53,8 @@ public interface IAlleleTreeSpecies extends IAlleleSpecies {
 
 	@SideOnly(Side.CLIENT)
 	Icon getGermlingIcon(EnumGermlingType type, int renderPass);
+	
+	@SideOnly(Side.CLIENT)
+	int getGermlingColour(EnumGermlingType type, int renderPass);
 
 }

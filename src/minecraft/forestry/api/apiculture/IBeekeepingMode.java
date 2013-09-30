@@ -31,7 +31,7 @@ public interface IBeekeepingMode extends IBeeModifier {
 	 * @param queen
 	 * @return true if the queen is genetically "fatigued" and should not be reproduced anymore.
 	 */
-	boolean isFatigued(IBee queen);
+	boolean isFatigued(IBee queen, IBeeHousing housing);
 
 	/**
 	 * @param queen

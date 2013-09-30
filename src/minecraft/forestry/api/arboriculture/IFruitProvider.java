@@ -1,5 +1,8 @@
 package forestry.api.arboriculture;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -59,5 +62,6 @@ public interface IFruitProvider {
 	 */
 	boolean trySpawnFruitBlock(ITreeGenome genome, World world, int x, int y, int z);
 
-	void registerIcons();
+	@SideOnly(Side.CLIENT)
+	void registerIcons(IconRegister register);
 }

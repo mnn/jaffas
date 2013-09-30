@@ -2,7 +2,7 @@ package forestry.api.recipes;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Provides an interface to the recipe manager of the carpenter.
@@ -57,7 +57,7 @@ public interface ICarpenterManager extends ICraftingProvider {
 	 * @param materials
 	 *            Materials needed in the crafting matrix. This gets passed directly to {@link ShapedRecipes}. Notation is the same.
 	 */
-	public void addRecipe(int packagingTime, LiquidStack liquid, ItemStack box, ItemStack product, Object materials[]);
+	public void addRecipe(int packagingTime, FluidStack liquid, ItemStack box, ItemStack product, Object materials[]);
 
 	public void addCrating(String toCrate, ItemStack unpack, ItemStack crated);
 

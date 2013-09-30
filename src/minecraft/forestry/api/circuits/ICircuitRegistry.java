@@ -2,6 +2,7 @@ package forestry.api.circuits;
 
 import java.util.HashMap;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public interface ICircuitRegistry {
@@ -27,5 +28,10 @@ public interface ICircuitRegistry {
 	ICircuitLayout getLayout(String uid);
 
 	ICircuitLayout getDefaultLayout();
+	
+	
+	ICircuitBoard getCircuitboard(ItemStack itemstack);
+	
+	boolean isChipset(ItemStack itemstack);
 
 }

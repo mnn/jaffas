@@ -38,6 +38,12 @@ public interface IBeeModifier {
 	float getFloweringModifier(IBeeGenome genome, float currentModifier);
 
 	/**
+	 * @param genome Genome of the bee this modifier is called for.
+	 * @return Float modifying the chance for a swarmer queen to die off.
+	 */
+	float getGeneticDecay(IBeeGenome genome, float currentModifier);
+	
+	/**
 	 * @return Boolean indicating if housing can ignore rain
 	 */
 	boolean isSealed();

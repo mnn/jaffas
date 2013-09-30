@@ -1,7 +1,7 @@
 package forestry.api.recipes;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Provides an interface to the recipe manager of the bottler.
@@ -30,5 +30,5 @@ public interface IBottlerManager extends ICraftingProvider {
 	 *            ItemStack representing the finished product
 	 */
 	@Deprecated
-	public void addRecipe(int cyclesPerUnit, LiquidStack input, ItemStack can, ItemStack bottled);
+	public void addRecipe(int cyclesPerUnit, FluidStack input, ItemStack can, ItemStack bottled);
 }

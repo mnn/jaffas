@@ -20,4 +20,6 @@ public interface IGenome extends INBTTagable {
 	IAllele getInactiveAllele(int chromosome);
 
 	boolean isGeneticEqual(IGenome other);
+	
+	ISpeciesRoot getSpeciesRoot();
 }

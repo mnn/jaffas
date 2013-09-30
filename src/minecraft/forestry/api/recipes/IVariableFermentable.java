@@ -3,7 +3,7 @@ package forestry.api.recipes;
 import net.minecraft.item.ItemStack;
 
 /**
- * fermenter checks any valid fermentation item for an implementation of this interface.
+ * Fermenter checks any valid fermentation item for an implementation of this interface.
  * This does not supersede adding a proper recipe to the fermenter!
  */
 public interface IVariableFermentable {

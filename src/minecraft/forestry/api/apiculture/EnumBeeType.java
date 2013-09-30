@@ -3,7 +3,7 @@ package forestry.api.apiculture;
 import java.util.Locale;
 
 public enum EnumBeeType {
-	DRONE, PRINCESS, QUEEN, NONE;
+	DRONE, PRINCESS, QUEEN, LARVAE, NONE;
 
 	public static final EnumBeeType[] VALUES = values();
 

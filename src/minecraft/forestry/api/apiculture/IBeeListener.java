@@ -35,4 +35,6 @@ public interface IBeeListener {
 	void onPostQueenDeath(IBee queen);
 
 	boolean onPollenRetrieved(IBee queen, IIndividual pollen, boolean isHandled);
+	
+	boolean onEggLaid(IBee queen);
 }

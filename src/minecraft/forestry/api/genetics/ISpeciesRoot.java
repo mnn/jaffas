@@ -97,10 +97,14 @@ public interface ISpeciesRoot {
 	IAllele[] getTemplate(String identifier);
 
 	/**
-	 * @return Default individual template for use in emergencies.
+	 * @return Default individual template for use when stuff breaks.
 	 */
 	IAllele[] getDefaultTemplate();
 
+	/**
+	 * @param rand Random to use.
+	 * @return A random template from the pool of registered species templates.
+	 */
 	IAllele[] getRandomTemplate(Random rand);
 
 	Map<String, IAllele[]> getGenomeTemplates();
@@ -126,14 +130,31 @@ public interface ISpeciesRoot {
 	Collection<? extends IMutation> getCombinations(IAllele other);
 	
 	/**
-	 * @param result
-	 * @return All registered mutations the given allele is the result of.
+	 * @param result {@link IAllele} to search for.
+	 * @return All registered mutations the given {@link IAllele} is the result of.
 	 */
 	Collection<? extends IMutation> getPaths(IAllele result, int chromosomeOrdinal);
 	
 	/* RESEARCH */
+	/**
+	 * @return List of generic catalysts which should be accepted for research by species of this class.
+	 */
 	Map<ItemStack, Float> getResearchCatalysts();
 	
+	/**
+	 * Sets an item stack as a valid (generic) research catalyst for this class.
+	 * @param itemstack ItemStack to set as suitable.
+	 * @param suitability Float between 0 and 1 to indicate suitability.
+	 */
 	void setResearchSuitability(ItemStack itemstack, float suitability);
+	
+	/**
+	 * @return Array of {@link IChromosomeType} which are in this species genome
+	 */
+	IChromosomeType[] getKaryotype();
 
+	/**
+	 * @return {@link IChromosomeType} which is the "key" for this species class, usually the species chromosome.  
+	 */
+	IChromosomeType getKaryotypeKey();
 }

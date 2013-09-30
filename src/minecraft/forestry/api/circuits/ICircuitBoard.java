@@ -20,5 +20,7 @@ public interface ICircuitBoard extends INBTTagable {
 	void onRemoval(TileEntity tile);
 
 	void onTick(TileEntity tile);
+	
+	ICircuit[] getCircuits();
 
 }
