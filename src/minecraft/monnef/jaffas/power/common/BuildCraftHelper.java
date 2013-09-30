@@ -26,6 +26,7 @@ public class BuildCraftHelper {
 
     public static boolean gotFreeSpaceInEnergyStorageAndWantsEnergy(IPowerReceptor receptor, ForgeDirection from) {
         PowerHandler.PowerReceiver receiver = receptor.getPowerReceiver(from);
+        if (receiver == null) return false;
         return gotFreeSpaceInEnergyStorage(receiver) && doesWantEnergy(receiver);
     }
 

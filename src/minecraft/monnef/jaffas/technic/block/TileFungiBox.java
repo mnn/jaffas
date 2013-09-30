@@ -456,7 +456,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
         return tmp;
     }
 
-    // Forestry compatibility
+    //<editor-fold desc="Forestry compatibility">
     @Override
     public Collection<ItemStack> harvest() {
         if (!harvest(null)) {
@@ -470,4 +470,5 @@ public class TileFungiBox extends TileEntity implements ICrop {
         }
         return res;
     }
+    //</editor-fold>
 }
