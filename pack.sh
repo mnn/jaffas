@@ -46,7 +46,7 @@ echo "Version detected: [$version]"
 
 echo -n Copying mod files...
 cp -r $binPath/* "$outtmp"
-cp -r reobf/minecraft/{buildcraft,monnef,forestry,powercrystals} "$outtmp"
+cp -r reobf/minecraft/{buildcraft,monnef,forestry,powercrystals,thermalexpansion} "$outtmp"
 rm -fr "$outtmp/monnef/core"
 cp "lib/Jsoup_license.txt" "$outtmp"
 
