@@ -46,11 +46,10 @@ echo "Version detected: [$version]"
 
 echo -n Copying mod files...
 cp -r $binPath/* "$outtmp"
-cp -r reobf/minecraft/{buildcraft,monnef,forestry,powercrystals} "$outtmp"
+cp -r reobf/minecraft/{buildcraft,monnef,forestry,powercrystals,thermalexpansion} "$outtmp"
 rm -fr "$outtmp/monnef/core"
-cp "lib/Jsoup_license.txt" "$outtmp"
 
-outName="mod_jaffas_$version"
+outName="jaffas_$version"
 
 cd "$outtmp"
 zip -q -9r "../$outName.jar" ./*
@@ -77,14 +76,14 @@ echo -n Copying core files...
 core2="$core/monnef"
 mkdir "$core2" &>/dev/null
 cp -r reobf/minecraft/monnef/core "$core2"
-unzip -q jars/coremods/monnefCore_dummy.jar -d "$core"
+unzip -q jars/mods/monnefCore_dummy.jar -d "$core"
 cp bin_data/monnef_mappings.ser "$core"
 if [ $? -ne 0 ]; then
 	echo "Cannot unpack meta-inf stuff"
 	exit 3
 fi
 
-outNameB="mod_monnef_core_$version_core"
+outNameB="monnef_core_$version_core"
 cd "$core"
 zip -q -9r "../$outNameB.jar" ./*
 cd "$od"
@@ -122,9 +121,7 @@ fi
 rm -fr "$compl"
 mkdir "$compl"
 mkdir "$compl/mods"
-mkdir "$compl/coremods"
-cp "${outName}.jar" "$compl/mods/"
-cp "${outNameB}.jar" "$compl/coremods/"
+cp "${outName}.jar" "${outNameB}.jar" "$compl/mods/"
 
 cd "$od"
 echo Done
