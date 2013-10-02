@@ -51,9 +51,9 @@ public class GuiCompost extends GuiContainerJaffas {
     @Override
     public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
         GuiCompost compostGui = (GuiCompost) gui;
-        if (GuiHelper.isMouseInRect(gui, mousex, mousey, 76, 20, 16, GuiCompost.TANK_METER_HEIGHT_MAX)) {
+        if (isMouseInRect(mousex, mousey, 76, 20, 16, GuiCompost.TANK_METER_HEIGHT_MAX)) {
             currenttip.add(String.format("§2Compost §8(§7%d§8/§7%d§8)§r", compostGui.core.getTankMeter(), compostGui.core.getMaxTankValue()));
-        } else if (GuiHelper.isMouseInRect(gui, mousex, mousey, 102, 32, 22, 17)) {
+        } else if (isMouseInRect(mousex, mousey, 102, 32, 22, 17)) {
             currenttip.add(String.format("§7%d%%§r", (compostGui.core.getWorkMeter() * 100) / compostGui.core.getMaxWork()));
         }
         return currenttip;

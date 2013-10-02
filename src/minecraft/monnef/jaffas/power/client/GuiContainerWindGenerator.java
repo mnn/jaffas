@@ -7,7 +7,6 @@ package monnef.jaffas.power.client;
 
 import monnef.core.utils.ColorEnum;
 import monnef.core.utils.ColorHelper;
-import monnef.core.utils.GuiHelper;
 import monnef.core.utils.MathHelper;
 import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.block.WindGeneratorFreeSpaceHelper;
@@ -54,7 +53,7 @@ public class GuiContainerWindGenerator extends GuiContainerMachine {
 
     @Override
     public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
-        if (GuiHelper.isMouseInRect(this, mousex, mousey, ENERGY_BAR_X, ENERGY_BAR_Y, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT)) {
+        if (isMouseInRect(mousex, mousey, ENERGY_BAR_X, ENERGY_BAR_Y, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT)) {
             currenttip.add("§2Speed:§r");
             currenttip.add(String.format(" §7%d§8/§7%d§r", generator.getTurbineSpeed(), TileWindGenerator.TURBINE_MAX_SPEED));
             currenttip.add("§2Production:§r");

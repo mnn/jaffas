@@ -7,9 +7,8 @@ package monnef.jaffas.power.client.common;
 
 import monnef.core.client.GuiContainerJaffas;
 import monnef.core.utils.ColorHelper;
-import monnef.core.utils.GuiHelper;
-import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
+import monnef.jaffas.power.block.common.ContainerMachine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
@@ -56,7 +55,7 @@ public class GuiContainerMachine extends GuiContainerJaffas {
 
     @Override
     public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
-        if (GuiHelper.isMouseInRect(this, mousex, mousey, ENERGY_BAR_X, ENERGY_BAR_Y, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT)) {
+        if (isMouseInRect(mousex, mousey, ENERGY_BAR_X, ENERGY_BAR_Y, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT)) {
             currenttip.add("§2Energy:§r");
             currenttip.add(String.format("§7%d§8 / §7%d§r", tile.powerStored, tile.powerMax));
         }
