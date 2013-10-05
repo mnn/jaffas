@@ -5,13 +5,13 @@
 
 package monnef.jaffas.food.client;
 
-import monnef.core.client.GuiContainerJaffas;
+import monnef.core.client.GuiContainerMonnefCore;
 import monnef.jaffas.food.block.ContainerFridge;
 import monnef.jaffas.food.block.TileFridge;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
-public class GuiFridge extends GuiContainerJaffas {
+public class GuiFridge extends GuiContainerMonnefCore {
     private TileFridge tileEntity;
 
     public GuiFridge(InventoryPlayer inventoryPlayer,

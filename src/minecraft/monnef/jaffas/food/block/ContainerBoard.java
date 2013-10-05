@@ -7,7 +7,7 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.common.ContainerJaffas;
+import monnef.core.block.ContainerMonnefCore;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +21,7 @@ import static monnef.jaffas.food.block.TileBoard.SLOT_INPUT;
 import static monnef.jaffas.food.block.TileBoard.SLOT_KNIFE;
 import static monnef.jaffas.food.block.TileBoard.SLOT_OUTPUT;
 
-public class ContainerBoard extends ContainerJaffas {
+public class ContainerBoard extends ContainerMonnefCore {
     protected TileBoard board;
     private int lastChopTime;
 

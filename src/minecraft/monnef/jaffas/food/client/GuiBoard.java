@@ -5,14 +5,14 @@
 
 package monnef.jaffas.food.client;
 
-import monnef.core.client.GuiContainerJaffas;
+import monnef.core.client.GuiContainerMonnefCore;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ContainerBoard;
 import monnef.jaffas.food.block.TileBoard;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
-public class GuiBoard extends GuiContainerJaffas {
+public class GuiBoard extends GuiContainerMonnefCore {
     public static final String GUIBOARD_TEXTURE = "guiboard.png";
 
     TileBoard board;

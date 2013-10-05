@@ -7,7 +7,7 @@ package monnef.jaffas.trees.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;

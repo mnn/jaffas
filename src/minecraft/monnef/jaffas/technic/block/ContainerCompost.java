@@ -7,14 +7,14 @@ package monnef.jaffas.technic.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.common.ContainerJaffas;
+import monnef.core.block.ContainerMonnefCore;
 import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
-public class ContainerCompost extends ContainerJaffas {
+public class ContainerCompost extends ContainerMonnefCore {
     private final TileCompostCore core;
     public final static int SLOT_INPUT = 0;
     public final static int SLOT_OUTPUT = 1;

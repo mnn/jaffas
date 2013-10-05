@@ -6,17 +6,16 @@
 package monnef.jaffas.food.client;
 
 import monnef.core.MonnefCorePlugin;
-import monnef.core.client.GuiContainerJaffas;
+import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.food.block.ContainerRipeningBox;
 import monnef.jaffas.food.block.TileRipeningBox;
-import monnef.jaffas.food.common.Reference;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.StatCollector;
 import org.lwjgl.opengl.GL11;
 
-public class GuiRipeningBox extends GuiContainerJaffas {
+public class GuiRipeningBox extends GuiContainerMonnefCore {
     private static final int STATUS_WIDTH = 16;
     private static final int STATUS_HEIGHT = 2;
     private static final int STATUS_SPACE = 2;

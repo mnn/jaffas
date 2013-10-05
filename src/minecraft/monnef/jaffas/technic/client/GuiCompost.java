@@ -5,7 +5,7 @@
 
 package monnef.jaffas.technic.client;
 
-import monnef.core.client.GuiContainerJaffas;
+import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCompost;
 import monnef.jaffas.technic.block.TileCompostCore;
@@ -15,7 +15,7 @@ import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
-public class GuiCompost extends GuiContainerJaffas {
+public class GuiCompost extends GuiContainerMonnefCore {
     public static final int TANK_METER_HEIGHT_MAX = 46;
 
     public TileCompostCore core;

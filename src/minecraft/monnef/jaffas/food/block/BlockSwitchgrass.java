@@ -5,7 +5,7 @@
 
 package monnef.jaffas.food.block;
 
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.common.ContentHolder;

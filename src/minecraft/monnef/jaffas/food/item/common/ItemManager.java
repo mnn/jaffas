@@ -6,8 +6,8 @@
 package monnef.jaffas.food.item.common;
 
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import monnef.core.base.ICustomIcon;
-import monnef.core.base.ItemMonnefCore;
+import monnef.core.api.ICustomIcon;
+import monnef.core.item.ItemMonnefCore;
 import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ModulesEnum;

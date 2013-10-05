@@ -5,7 +5,7 @@
 
 package monnef.jaffas.food.item;
 
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.entity.EntityJaffaPainting;

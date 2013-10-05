@@ -5,7 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.material.Material;

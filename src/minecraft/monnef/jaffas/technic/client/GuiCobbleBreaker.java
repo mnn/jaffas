@@ -5,14 +5,14 @@
 
 package monnef.jaffas.technic.client;
 
-import monnef.core.client.GuiContainerJaffas;
+import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.GuiHelper;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.TileCobbleBreaker;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
-public class GuiCobbleBreaker extends GuiContainerJaffas {
+public class GuiCobbleBreaker extends GuiContainerMonnefCore {
     public TileCobbleBreaker tile;
 
     public GuiCobbleBreaker(InventoryPlayer inventoryPlayer,

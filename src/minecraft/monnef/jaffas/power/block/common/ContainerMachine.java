@@ -7,8 +7,8 @@ package monnef.jaffas.power.block.common;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.block.ContainerMonnefCore;
 import monnef.jaffas.food.JaffasFood;
-import monnef.core.common.ContainerJaffas;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -17,7 +17,7 @@ import net.minecraft.inventory.Slot;
 
 import java.util.ArrayList;
 
-public class ContainerMachine extends ContainerJaffas {
+public class ContainerMachine extends ContainerMonnefCore {
     protected TileEntityMachineWithInventory machine;
 
     protected ArrayList<Integer> lastValue;

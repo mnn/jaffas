@@ -8,7 +8,7 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.MonnefCorePlugin;
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.block.BlockLeavesBaseJaffas;

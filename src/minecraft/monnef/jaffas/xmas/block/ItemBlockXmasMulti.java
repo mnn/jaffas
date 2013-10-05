@@ -8,7 +8,7 @@ package monnef.jaffas.xmas.block;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.xmas.common.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;

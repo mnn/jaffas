@@ -5,7 +5,7 @@
 
 package monnef.jaffas.trees.block;
 
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.food.block.BlockContainerJaffas;
 import monnef.jaffas.trees.JaffasTrees;

@@ -7,7 +7,7 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.common.ContainerJaffas;
+import monnef.core.block.ContainerMonnefCore;
 import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -16,7 +16,7 @@ import net.minecraft.inventory.Slot;
 
 import static monnef.jaffas.food.block.TileRipeningBox.RIPENING_SLOTS;
 
-public class ContainerRipeningBox extends ContainerJaffas {
+public class ContainerRipeningBox extends ContainerMonnefCore {
     protected TileRipeningBox box;
     private int[] lastRipStatus;
 

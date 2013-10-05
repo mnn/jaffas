@@ -8,7 +8,7 @@ package monnef.jaffas.food.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.base.ItemMonnefCore;
+import monnef.core.item.ItemMonnefCore;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.item.common.IItemJaffa;

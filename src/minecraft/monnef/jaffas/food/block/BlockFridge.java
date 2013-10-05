@@ -21,7 +21,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import static monnef.core.base.CustomIconHelper.generateId;
+import static monnef.core.common.CustomIconHelper.generateId;
 
 public class BlockFridge extends BlockContainerJaffas {
     /*

@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.client.common;
 
-import monnef.core.client.GuiContainerJaffas;
+import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.ColorHelper;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.block.common.ContainerMachine;
@@ -15,7 +15,7 @@ import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
-public class GuiContainerMachine extends GuiContainerJaffas {
+public class GuiContainerMachine extends GuiContainerMonnefCore {
     public static final int ENERGY_BAR_X = 146;
     public static final int ENERGY_BAR_Y = 15;
     public static final int ENERGY_BAR_HEIGHT = 50;

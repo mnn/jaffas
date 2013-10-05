@@ -5,7 +5,7 @@
 
 package monnef.jaffas.technic.client;
 
-import monnef.core.client.GuiContainerJaffas;
+import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.ColorHelper;
 import monnef.jaffas.technic.block.ContainerFermenter;
 import monnef.jaffas.technic.block.TileFermenter;
@@ -25,7 +25,7 @@ import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.BEER_RAW
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE;
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE_RAW;
 
-public class GuiFermenter extends GuiContainerJaffas {
+public class GuiFermenter extends GuiContainerMonnefCore {
     public static final int TANK_POS_X = 24;
     public static final int TANK_POS_Y = 20;
     public static final int TANK_WIDTH = 16;

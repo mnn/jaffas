@@ -8,7 +8,7 @@ package monnef.jaffas.technic.block;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.core.utils.StringsHelper;

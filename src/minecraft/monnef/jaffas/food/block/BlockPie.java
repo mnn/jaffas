@@ -7,7 +7,7 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.base.CustomIconHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
