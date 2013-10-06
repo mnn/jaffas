@@ -223,6 +223,9 @@ public class JaffasPower extends JaffasModBase {
 
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
+            ProcessingMachineRegistry.assertAllItemsHasGuiClass();
+        }
     }
 
     private void createItems() {

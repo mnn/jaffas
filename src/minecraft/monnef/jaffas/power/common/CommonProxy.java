@@ -16,9 +16,6 @@ public class CommonProxy {
         return null;
     }
 
-    public void assertClassInheritsFromGuiContainerBasicProcessingMachine(Class<?> aClass) {
-    }
-
     public void registerGUIsOfProcessingMachines() {
     }
 }
