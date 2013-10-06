@@ -9,6 +9,7 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RandomHelper;
@@ -30,6 +31,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import java.util.List;
 
+@ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0)
 public class TileWindGenerator extends TileEntityMachineWithInventory {
     public static final int TURBINE_SLOT = 0;
     public static final int TICKS_PER_MINUTE = 60 * 20;
@@ -327,11 +329,6 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
     }
 
     @Override
-    public int getSizeInventory() {
-        return 1;
-    }
-
-    @Override
     public String getInvName() {
         return "jaffas.power.windGenerator";
     }
@@ -445,6 +442,4 @@ public class TileWindGenerator extends TileEntityMachineWithInventory {
         if (worldObj.isRemote) return;
         player.addChatMessage(String.format("ObsVolumeCached: %.2f, ObsDebug: %.2f, cMaxSpeed: %d, totRad: %d", obstacles.getObstaclesVolumeWorstScenario(), obstacles.debugCompute(), getCurrentMaximalSpeed(), obstacles.getTotalRadius()));
     }
-
-
 }

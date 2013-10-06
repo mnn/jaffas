@@ -9,11 +9,12 @@ import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import codechicken.nei.recipe.ICraftingHandler;
 import codechicken.nei.recipe.IUsageHandler;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.external.javassist.ClassPool;
 import monnef.core.external.javassist.CtClass;
 import monnef.jaffas.food.common.Reference;
-import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
+import net.minecraft.tileentity.TileEntity;
 
 import java.lang.reflect.Method;
 
@@ -28,18 +29,20 @@ public class NEIJaffasConfig implements IConfigureNEI {
     private void constructProcessingMachineHandlers() {
         ClassPool pool = ClassPool.getDefault();
         int wrapperCounter = 0;
-        for (Class<? extends TileEntityBasicProcessingMachine> clazz : ProcessingMachineRegistry.getTileClasses()) {
+        for (Class<? extends TileEntity> clazz : ContainerRegistry.getTileClasses()) {
             try {
-                TileEntityBasicProcessingMachine.enableDummyCreationPhase();
-                TileEntityBasicProcessingMachine dummyTile = clazz.newInstance();
-                TileEntityBasicProcessingMachine.disableDummyCreationPhase();
+                if (TileEntityBasicProcessingMachine.class.isAssignableFrom(clazz)) {
+                    TileEntityBasicProcessingMachine.enableDummyCreationPhase();
+                    TileEntityBasicProcessingMachine dummyTile = (TileEntityBasicProcessingMachine) clazz.newInstance();
+                    TileEntityBasicProcessingMachine.disableDummyCreationPhase();
 
-                CtClass classCopy = pool.getAndRename(ProcessingMachineRecipeHandlerWrapper.class.getCanonicalName(), "monnef.jaffas.food.nei.wrapper.PMRH" + (wrapperCounter++));
-                Class wrapperClass = classCopy.toClass();
-                Method initMethod = wrapperClass.getDeclaredMethod("init", TileEntityBasicProcessingMachine.class);
-                initMethod.invoke(null, dummyTile);
-                API.registerRecipeHandler((ICraftingHandler) wrapperClass.newInstance());
-                API.registerUsageHandler((IUsageHandler) wrapperClass.newInstance());
+                    CtClass classCopy = pool.getAndRename(ProcessingMachineRecipeHandlerWrapper.class.getCanonicalName(), "monnef.jaffas.food.nei.wrapper.PMRH" + (wrapperCounter++));
+                    Class wrapperClass = classCopy.toClass();
+                    Method initMethod = wrapperClass.getDeclaredMethod("init", TileEntityBasicProcessingMachine.class);
+                    initMethod.invoke(null, dummyTile);
+                    API.registerRecipeHandler((ICraftingHandler) wrapperClass.newInstance());
+                    API.registerUsageHandler((IUsageHandler) wrapperClass.newInstance());
+                }
             } catch (Throwable e) {
                 throw new RuntimeException("Problem in NEI processing machine handler construction.", e);
             }

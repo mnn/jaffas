@@ -18,6 +18,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.EntityHelper;
@@ -48,7 +49,7 @@ import monnef.jaffas.power.block.TileToaster;
 import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
-import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
+import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
@@ -224,11 +225,12 @@ public class JaffasPower extends JaffasModBase {
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
         if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            ProcessingMachineRegistry.assertAllItemsHasGuiClass();
+            ContainerRegistry.assertAllItemsHasGuiClass();
         }
     }
 
     private void createItems() {
+        ContainerRegistry.register(TileGenerator.class, ContainerMachine.class);
         generator = new BlockGenerator(blockGeneratorID, 5);
         RegistryUtils.registerBlock(generator, "Generator");
         registerTileEntity(TileGenerator.class, "jp.generator");
@@ -256,22 +258,24 @@ public class JaffasPower extends JaffasModBase {
         RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
         registerTileEntity(TileKitchenUnit.class, "kitchenUnit");
 
-        ProcessingMachineRegistry.register(TileGrinder.class, ContainerBasicProcessingMachine.class);
+        ContainerRegistry.register(TileGrinder.class, ContainerBasicProcessingMachine.class);
         grinder = new BlockGrinder(blockGrinderID, 101, TileGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileGrinder.class, "grinder");
         grinder.setRotationShiftInPlacing(1);
 
-        ProcessingMachineRegistry.register(TileToaster.class, ContainerBasicProcessingMachine.class);
+        ContainerRegistry.register(TileToaster.class, ContainerBasicProcessingMachine.class);
         toaster = new BlockToaster(blockToasterID, 50, TileToaster.class, GuiHandler.GuiId.TOASTER, true, false);
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileToaster.class, "toaster");
 
+        ContainerRegistry.register(TileWebHarvester.class, ContainerMachine.class);
         webHarvester = new BlockWebHarvester(blockWebHarvesterID, 51, breakableIronMaterial, false, false);
         RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
         registerTileEntity(TileWebHarvester.class, "webHarvester");
 
         if (windGeneratorEnabled) {
+            ContainerRegistry.register(TileWindGenerator.class, ContainerMachine.class);
             windGenerator = new BlockWindGenerator(blockWindGeneratorID, 54, breakableIronMaterial, false, false);
             RegistryUtils.registerBlock(windGenerator, "windGenerator", "Wind Generator");
             registerTileEntity(TileWindGenerator.class, "windGenerator");

@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.block.common;
 
+import monnef.core.common.ContainerRegistry;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -16,14 +17,31 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
     protected ItemStack[] inventory;
     public int powerMax;
     public int powerStored;
+    private ContainerRegistry.ContainerDescriptor containerDescriptor;
 
     protected TileEntityMachineWithInventory() {
         super();
+        setupContainerDescriptor();
         inventory = new ItemStack[getSizeInventory()];
     }
 
+    private void setupContainerDescriptor() {
+        containerDescriptor = ContainerRegistry.getContainerPrototype(this.getClass());
+    }
+
+    public ContainerRegistry.ContainerDescriptor getContainerDescriptor() {
+        return containerDescriptor;
+    }
+
+    /*
     @Override
     public abstract int getSizeInventory();
+    */
+
+    @Override
+    public int getSizeInventory() {
+        return containerDescriptor.getSlotsCount();
+    }
 
     @Override
     public ItemStack getStackInSlot(int slot) {

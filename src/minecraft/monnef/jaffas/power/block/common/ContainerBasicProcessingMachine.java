@@ -14,10 +14,6 @@ public class ContainerBasicProcessingMachine extends ContainerMachine {
     public static final int SLOT_INPUT = 0;
     public static final int SLOT_OUTPUT = 1;
 
-    // dummy constructor
-    public ContainerBasicProcessingMachine() {
-    }
-
     public ContainerBasicProcessingMachine(InventoryPlayer inventoryPlayer, TileEntityBasicProcessingMachine te) {
         super(inventoryPlayer, te);
     }
@@ -28,6 +24,7 @@ public class ContainerBasicProcessingMachine extends ContainerMachine {
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 111, 35));
     }
 
+    /*
     @Override
     public int getSlotsCount() {
         return 2;
@@ -37,6 +34,7 @@ public class ContainerBasicProcessingMachine extends ContainerMachine {
     public int getOutputSlotsCount() {
         return 1;
     }
+    */
 
     public Slot getOutputSlot(int outputNumber) {
         return getSlot(getStartIndexOfOutput() + outputNumber);

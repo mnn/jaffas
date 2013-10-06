@@ -22,10 +22,7 @@ public class ContainerMachine extends ContainerMonnefCore {
 
     protected ArrayList<Integer> lastValue;
 
-    // dummy constructor
-    protected ContainerMachine() {
-    }
-
+    /*
     @Override
     public int getSlotsCount() {
         return machine.getSizeInventory();
@@ -35,6 +32,7 @@ public class ContainerMachine extends ContainerMonnefCore {
     public int getOutputSlotsCount() {
         return 0;
     }
+    */
 
     @Override
     public void constructSlots(IInventory inv) {

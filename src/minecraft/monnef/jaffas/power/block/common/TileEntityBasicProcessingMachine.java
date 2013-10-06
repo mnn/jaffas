@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.block.common;
 
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.ItemHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
@@ -14,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+@ContainerRegistry.ContainerTag(slotsCount = 2, outputSlotsCount = 1)
 public abstract class TileEntityBasicProcessingMachine extends TileEntityMachineWithInventory {
     private static final String PROCESS_TIME_TAG_NAME = "processTime";
     private static final String PROCESS_ITEM_TIME_TAG_NAME = "processItemTime";
@@ -21,20 +23,18 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     public static final String PROCESSING_INV_TAG = "ProcessingInv";
     public static final String SLOT_TAG = "Slot";
 
-    private ContainerBasicProcessingMachine myContainerPrototype;
-
     public int processTime = 0;
     public int processItemTime = 1;
     private ItemStack[] processingInv;
 
     protected TileEntityBasicProcessingMachine() {
         super();
-        processingInv = new ItemStack[getMyContainerPrototype().getInputSlotsCount()];
+        processingInv = new ItemStack[getSizeInventory()];
     }
 
     @Override
     public int getSizeInventory() {
-        return getMyContainerPrototype().getSlotsCount();
+        return getContainerDescriptor().getSlotsCount();
     }
 
     public abstract IProcessingRecipeHandler getRecipeHandler();
@@ -73,7 +73,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     }
 
     private ItemStack[] createInputInv() {
-        ItemStack[] ret = new ItemStack[getMyContainerPrototype().getInputSlotsCount()];
+        ItemStack[] ret = new ItemStack[getContainerDescriptor().getInputSlotsCount()];
         for (int i = 0; i < ret.length; i++) {
             ItemStack inputStack = getStackInSlot(i);
             if (inputStack != null) {
@@ -104,7 +104,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
         }
 
         for (int i = 0; i < output.length; i++) {
-            produceOneOutput(output[i], i + getMyContainerPrototype().getStartIndexOfOutput());
+            produceOneOutput(output[i], i + getContainerDescriptor().getStartIndexOfOutput());
         }
     }
 
@@ -118,8 +118,8 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
     }
 
     private boolean isOutputSlotFreeFor(ItemStack[] recipeOutput) {
-        int start = getMyContainerPrototype().getStartIndexOfOutput();
-        for (int i = start; i < getMyContainerPrototype().getSlotsCount(); i++) {
+        int start = getContainerDescriptor().getStartIndexOfOutput();
+        for (int i = start; i < getContainerDescriptor().getSlotsCount(); i++) {
             int recipeOutputIndex = i - start;
             if (!ItemHelper.isOutputSlotFreeFor(recipeOutput[recipeOutputIndex], i, this)) return false;
         }
@@ -204,16 +204,6 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
         }
         tag.setTag(PROCESSING_INV_TAG, itemList);
         getPowerHandler().writeToNBT(tag);
-    }
-
-    public ContainerBasicProcessingMachine getMyContainerPrototype() {
-        if (myContainerPrototype == null) {
-            myContainerPrototype = ProcessingMachineRegistry.getContainerPrototype(this.getClass());
-            if (myContainerPrototype == null) {
-                throw new RuntimeException("cannot find container prototype for this class (" + getClass().getSimpleName() + ")");
-            }
-        }
-        return myContainerPrototype;
     }
 
     public String getGuiBackgroundTexture() {

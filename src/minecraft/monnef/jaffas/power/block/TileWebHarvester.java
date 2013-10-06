@@ -7,6 +7,7 @@ package monnef.jaffas.power.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
@@ -15,6 +16,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+@ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 1)
 public class TileWebHarvester extends TileEntityMachineWithInventory implements ISidedInventory {
     public static final int WEB_HARVESTER_RADIUS = 5;
     public static final int WEB_HARVESTER_DIAMETER = 2 * WEB_HARVESTER_RADIUS;
@@ -36,11 +38,6 @@ public class TileWebHarvester extends TileEntityMachineWithInventory implements 
             slowingCoefficient = 1;
             powerNeeded = 1;
         }
-    }
-
-    @Override
-    public int getSizeInventory() {
-        return 1;
     }
 
     @Override

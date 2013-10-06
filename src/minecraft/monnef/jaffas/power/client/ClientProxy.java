@@ -7,6 +7,7 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileAntenna;
@@ -14,12 +15,13 @@ import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.power.block.TileLightningConductor;
 import monnef.jaffas.power.block.TileToaster;
-import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
-import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
+import monnef.jaffas.power.block.TileWebHarvester;
+import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.entity.EntityWindTurbine;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {
@@ -45,9 +47,9 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public Object createGuiFromProcessingMachineRegistry(TileEntityBasicProcessingMachine tile, InventoryPlayer inventory) {
+    public Object createGuiFromProcessingMachineRegistry(TileEntity tile, InventoryPlayer inventory) {
         try {
-            return ProcessingMachineRegistry.getItem(tile.getClass()).getGuiConstructor().newInstance(inventory, tile, ProcessingMachineRegistry.createContainer(tile, inventory));
+            return ContainerRegistry.getItem(tile.getClass()).getGuiConstructor().newInstance(inventory, tile, ContainerRegistry.createContainer(tile, inventory));
         } catch (Throwable e) {
             throw new RuntimeException("Cannot create new GUI for container for tile class: " + tile.getClass().getSimpleName());
         }
@@ -55,7 +57,10 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerGUIsOfProcessingMachines() {
-        ProcessingMachineRegistry.registerOnClient(TileGrinder.class, GuiContainerBasicProcessingMachine.class);
-        ProcessingMachineRegistry.registerOnClient(TileToaster.class, GuiContainerBasicProcessingMachine.class);
+        ContainerRegistry.registerOnClient(TileGrinder.class, GuiContainerBasicProcessingMachine.class);
+        ContainerRegistry.registerOnClient(TileToaster.class, GuiContainerBasicProcessingMachine.class);
+        ContainerRegistry.registerOnClient(TileGenerator.class, GuiContainerGenerator.class);
+        ContainerRegistry.registerOnClient(TileWebHarvester.class, GuiContainerWebHarvester.class);
+        ContainerRegistry.registerOnClient(TileWindGenerator.class, GuiContainerWindGenerator.class);
     }
 }

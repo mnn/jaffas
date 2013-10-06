@@ -9,12 +9,16 @@ import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.ICraftingHandler;
 import codechicken.nei.recipe.IUsageHandler;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import cpw.mods.fml.client.FMLClientHandler;
+import monnef.core.block.ContainerMonnefCore;
 import monnef.core.client.PackageToModIdRegistry;
 import monnef.core.client.ResourcePathHelper;
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.common.IProcessingRecipe;
 import monnef.jaffas.power.common.RecipeItemType;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
@@ -57,7 +61,8 @@ public class ProcessingMachineRecipeHandler extends TemplateRecipeHandler implem
         for (IProcessingRecipe recipe : recipes) {
             if (!recipe.isAny(filter, type)) continue;
             for (int i = 0; i < recipe.getOutput().length; i++) {
-                arecipes.add(new CachedMachineRecipe(recipe, i, tile.getMyContainerPrototype()));
+                ContainerMonnefCore container = ContainerRegistry.createContainer(tile, new InventoryPlayer(FMLClientHandler.instance().getClient().thePlayer));
+                arecipes.add(new CachedMachineRecipe(recipe, i, (ContainerBasicProcessingMachine) container));
                 if (!repeatForEachResult) break;
             }
         }
@@ -98,7 +103,9 @@ public class ProcessingMachineRecipeHandler extends TemplateRecipeHandler implem
         protected PositionedStack getPositionStack(int numberInGroup, RecipeItemType type) {
             ItemStack outputStack = (type == RecipeItemType.INPUT ? recipe.getInput() : recipe.getOutput())[numberInGroup].copy();
             Slot slot = type == RecipeItemType.INPUT ? container.getInputSlot(numberInGroup) : container.getOutputSlot(numberInGroup);
-            return new PositionedStack(outputStack, slot.xDisplayPosition + SLOT_SHIFT_X, slot.yDisplayPosition + SLOT_SHIFT_Y);
+            int offX = slot.xDisplayPosition;
+            int offY = slot.yDisplayPosition;
+            return new PositionedStack(outputStack, offX + SLOT_SHIFT_X, offY + SLOT_SHIFT_Y);
         }
     }
 
