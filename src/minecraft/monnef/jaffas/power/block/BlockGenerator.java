@@ -10,17 +10,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.common.BlockMachineWithInventory;
 import monnef.jaffas.power.client.GuiHandler;
-import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
+import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
+
 public class BlockGenerator extends BlockMachineWithInventory {
 
     public BlockGenerator(int id, int texture) {
-        super(id, texture, JaffasTechnic.breakableIronMaterial, true, true);
+        super(id, texture, breakableIronMaterial, true, true);
         setCreativeTab(JaffasPower.instance.creativeTab);
         setUnlocalizedName("generator");
         setHardness(1.5f);

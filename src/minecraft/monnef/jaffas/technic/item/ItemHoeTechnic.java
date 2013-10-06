@@ -7,8 +7,8 @@ package monnef.jaffas.technic.item;
 
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.WorldHelper;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.block.BlockSwitchgrass;
+import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;

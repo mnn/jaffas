@@ -54,8 +54,9 @@ public class ItemSink extends ItemJaffaBase {
         }
     }
 
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        par3List.add("Construction kit");
+    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformation(stack, player, result, par4);
+        result.add("Construction kit");
     }
 }
 

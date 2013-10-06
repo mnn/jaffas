@@ -20,7 +20,7 @@ public class BlockConstructionDummy extends BlockTechnic {
         setHardness(5);
         setResistance(15);
         setCreativeTab(null);
-        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
+        removeFromCreativeTab();
     }
 
     @Override

@@ -57,7 +57,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         setCreativeTab(JaffasTrees.instance.creativeTab);
         setSheetNumber(2);
         setBurnProperties(blockID, 30, 60);
-        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
+        removeFromCreativeTab();
     }
 
     public Icon getFruitIcon(int meta) {

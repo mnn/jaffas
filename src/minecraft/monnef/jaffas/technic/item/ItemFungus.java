@@ -32,11 +32,12 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformation(stack, player, result, par4);
         FungusInfo info = FungiCatalog.get(stack.getItemDamage());
         String subTitle = info.subTitle;
         if (subTitle != null && !subTitle.isEmpty()) {
-            list.add(subTitle);
+            result.add(subTitle);
         }
     }
 

@@ -5,7 +5,6 @@
 
 package monnef.jaffas.power.item;
 
-import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -69,7 +68,8 @@ public class ItemTurbineBlade extends ItemPowerMulti {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
-        if (stack.getItemDamage() > 0) list.add(JaffasFood.BETA_WARNING_TEXT);
+    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformation(stack, player, result, par4);
+        if (stack.getItemDamage() > 0) result.add(BETA_WARNING_TEXT);
     }
 }

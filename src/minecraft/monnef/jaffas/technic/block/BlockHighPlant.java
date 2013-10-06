@@ -31,7 +31,7 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
     public BlockHighPlant(int id, int textureID) {
         super(id, textureID, Material.plants);
         setHardness(0.33f);
-        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
+        removeFromCreativeTab();
     }
 
     @Override

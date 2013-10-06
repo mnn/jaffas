@@ -18,7 +18,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
-import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
 
 @SideOnly(Side.CLIENT)

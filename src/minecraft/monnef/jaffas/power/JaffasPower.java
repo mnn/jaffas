@@ -69,6 +69,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.logging.Level;
 
+import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
 import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
 import static monnef.jaffas.power.common.Reference.ModId;
 import static monnef.jaffas.power.common.Reference.ModName;
@@ -263,12 +264,12 @@ public class JaffasPower extends JaffasModBase {
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileToaster.class, "toaster");
 
-        webHarvester = new BlockWebHarvester(blockWebHarvesterID, 51, JaffasTechnic.breakableIronMaterial, false, false);
+        webHarvester = new BlockWebHarvester(blockWebHarvesterID, 51, breakableIronMaterial, false, false);
         RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
         registerTileEntity(TileWebHarvester.class, "webHarvester");
 
         if (windGeneratorEnabled) {
-            windGenerator = new BlockWindGenerator(blockWindGeneratorID, 54, JaffasTechnic.breakableIronMaterial, false, false);
+            windGenerator = new BlockWindGenerator(blockWindGeneratorID, 54, breakableIronMaterial, false, false);
             RegistryUtils.registerBlock(windGenerator, "windGenerator", "Wind Generator");
             registerTileEntity(TileWindGenerator.class, "windGenerator");
 

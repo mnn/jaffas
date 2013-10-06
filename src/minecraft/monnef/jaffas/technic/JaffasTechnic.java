@@ -87,7 +87,6 @@ import monnef.jaffas.technic.item.ItemSwordTechnic;
 import monnef.jaffas.technic.item.ItemTechnic;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -319,7 +318,6 @@ public class JaffasTechnic extends JaffasModBase {
     private boolean disableRedstoneGadgets;
     public static boolean disableLampParticles;
 
-    public static final Material breakableIronMaterial = new Material(MapColor.ironColor);
     public static int omniWrenchId;
 
     @Mod.EventHandler
@@ -480,19 +478,6 @@ public class JaffasTechnic extends JaffasModBase {
 
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
-        int marked = 0;
-        for (int i = 0; i < Block.blocksList.length; i++) {
-            Block b = Block.blocksList[i];
-            if (b != null && b.blockMaterial == breakableIronMaterial) {
-                MinecraftForge.setBlockHarvestLevel(b, "pickaxe", 0);
-                marked++;
-            }
-        }
-        Log.printFine("Registered " + marked + " blocks as mine-able by pickaxe.");
-        if (marked <= 0) {
-            Log.printWarning("No block registered as mine-able by pickaxe, possible error!");
-        }
-
         omniWrenchId = ItemHelper.findItemIdByName("omniwrench");
         if (omniWrenchId != 0) {
             Log.printInfo("Omni wrench detected (" + omniWrenchId + "), compatibility with pipe wrench engaged.");

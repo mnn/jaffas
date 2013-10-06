@@ -7,8 +7,8 @@ package monnef.jaffas.food.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;

@@ -84,8 +84,6 @@ import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
 public class JaffasFood extends JaffasModBase {
     public static final String LAST_VERSION_SHOWN = "lastVersionShown";
 
-    public static final String BETA_WARNING_TEXT = "\u00A7lnot finished!\u00A7r";
-
     private static MinecraftServer server;
 
     private static IGuiHandler guiHandler;

@@ -7,9 +7,7 @@ package monnef.jaffas.power.client;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileGenerator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 

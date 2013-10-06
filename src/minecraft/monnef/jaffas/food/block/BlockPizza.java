@@ -20,8 +20,8 @@ import java.util.Random;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
-import static monnef.jaffas.food.common.ContentHolder.blockPizza;
 import static monnef.jaffas.food.JaffasFood.getItem;
+import static monnef.jaffas.food.common.ContentHolder.blockPizza;
 
 public class BlockPizza extends BlockJaffas {
     public static final int BIT_ROTATION = 3;

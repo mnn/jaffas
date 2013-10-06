@@ -54,8 +54,9 @@ public class ItemGiantCandy extends ItemXmas {
         }
     }
 
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        par3List.add("Do NOT eat!");
+    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformation(stack, player, result, par4);
+        result.add("Do NOT eat!");
     }
 
 }

@@ -9,7 +9,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
-import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ContentHolder;

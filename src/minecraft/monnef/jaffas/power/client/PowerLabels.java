@@ -6,8 +6,8 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.jaffas.power.api.IMachineTool;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

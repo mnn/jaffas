@@ -70,6 +70,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 
+import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
 import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.JaffasFood.proxy;
@@ -78,7 +79,6 @@ import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilit
 import static monnef.jaffas.food.common.ConfigurationManager.duckSpawnProbabilityMed;
 import static monnef.jaffas.food.common.ConfigurationManager.dungeonLootEnabled;
 import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
-import static monnef.jaffas.technic.JaffasTechnic.breakableIronMaterial;
 
 public class ContentHolder {
     public static BlockJaffaBomb blockJaffaBomb;

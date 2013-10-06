@@ -12,7 +12,6 @@ import monnef.jaffas.trees.common.Reference;
 public class ItemJaffaBerryEatable extends ItemJaffaFood {
     public ItemJaffaBerryEatable(int id) {
         super(id);
-        // TODO
         setCreativeTab(JaffasTrees.instance.creativeTab);
     }
 

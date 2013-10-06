@@ -13,8 +13,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import static monnef.core.utils.BlockHelper.setBlock;
-import static monnef.jaffas.food.common.ContentHolder.blockPizza;
 import static monnef.jaffas.food.JaffasFood.getItem;
+import static monnef.jaffas.food.common.ContentHolder.blockPizza;
 
 public class ItemPizza extends ItemJaffaBase {
     public ItemPizza(int par1) {

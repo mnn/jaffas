@@ -1,9 +1,10 @@
 package monnef.jaffas.power.block.common;
 
 import monnef.jaffas.power.client.GuiHandler;
-import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
 
 public class BlockBasicProcessingMachine extends BlockMachineWithInventory {
     private Class<? extends TileEntityBasicProcessingMachine> tileClass;
@@ -14,7 +15,7 @@ public class BlockBasicProcessingMachine extends BlockMachineWithInventory {
     }
 
     public BlockBasicProcessingMachine(int id, int index, Class<? extends TileEntityBasicProcessingMachine> tileClass, GuiHandler.GuiId guiId, boolean customRenderer, boolean customRenderingId) {
-        super(id, index, JaffasTechnic.breakableIronMaterial, customRenderer, customRenderingId);
+        super(id, index, breakableIronMaterial, customRenderer, customRenderingId);
         this.tileClass = tileClass;
         this.guiId = guiId;
     }

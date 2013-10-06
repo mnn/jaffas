@@ -16,7 +16,7 @@ public class BlockKeg extends BlockTechnic {
 
     public BlockKeg(int id, int textureID) {
         super(id, textureID, Material.wood);
-        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
+        removeFromCreativeTab();
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
     }
 

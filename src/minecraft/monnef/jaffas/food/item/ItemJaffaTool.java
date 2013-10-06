@@ -9,7 +9,6 @@ import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -138,8 +137,8 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
-        super.addInformation(stack, player, list, par4);
-        if (nearlyDestroyed(stack)) list.add("Broken");
+    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformation(stack, player, result, par4);
+        if (nearlyDestroyed(stack)) result.add("Broken");
     }
 }

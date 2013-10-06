@@ -16,7 +16,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import org.lwjgl.opengl.GL11;
 
-import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
 
 public class RenderLocomotive extends Render {

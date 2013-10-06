@@ -10,9 +10,7 @@ import monnef.jaffas.technic.block.TileHighPlant;
 import monnef.jaffas.technic.common.HighPlantCatalog;
 import monnef.jaffas.technic.common.HighPlantInfo;
 import monnef.jaffas.technic.common.IHighPlantModel;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 

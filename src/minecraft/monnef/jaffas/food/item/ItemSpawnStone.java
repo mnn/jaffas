@@ -46,8 +46,9 @@ public class ItemSpawnStone extends ItemJaffaBase {
     }
 
     @Override
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
-        par3List.add(getCoolDownText(par2EntityPlayer));
+    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformation(stack, player, result, par4);
+        result.add(getCoolDownText(player));
     }
 
     public static String getCoolDownText(EntityPlayer par2EntityPlayer) {

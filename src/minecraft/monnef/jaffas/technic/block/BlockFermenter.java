@@ -8,8 +8,8 @@ package monnef.jaffas.technic.block;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
-import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -20,6 +20,8 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
+import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
+
 public class BlockFermenter extends BlockTechnic {
     private static final int SLAVE_BIT = 3;
     private static final int BLOCK_ACTIVATION_RADIUS = 2;
@@ -29,9 +31,9 @@ public class BlockFermenter extends BlockTechnic {
     private static final float topBorderComplement = 1f - topBorder;
 
     public BlockFermenter(int id, int textureID) {
-        super(id, textureID, JaffasTechnic.breakableIronMaterial);
+        super(id, textureID, breakableIronMaterial);
         setHardness(3f);
-        if (!MonnefCorePlugin.debugEnv) setCreativeTab(null);
+        removeFromCreativeTab();
     }
 
     @Override

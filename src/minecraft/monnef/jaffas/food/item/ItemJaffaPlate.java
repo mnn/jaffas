@@ -6,8 +6,8 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.MonnefCorePlugin;
-import monnef.core.common.CustomIconHelper;
 import monnef.core.client.ResourcePathHelper;
+import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -20,7 +20,6 @@ import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ARMOR;
 
 public class ItemJaffaPlate extends ItemArmor {

@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static monnef.core.client.PackageToModIdRegistry.searchModIdFromCurrentPackage;
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.item.JaffaItem.duck;

@@ -6,8 +6,8 @@
 package monnef.jaffas.power.item;
 
 import buildcraft.api.power.PowerHandler;
-import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.jaffas.power.api.IMachineTool;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ItemDebug extends ItemPower implements IMachineTool {

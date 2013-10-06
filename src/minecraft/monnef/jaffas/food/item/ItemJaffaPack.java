@@ -44,12 +44,13 @@ public class ItemJaffaPack extends ItemPack {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformation(stack, player, result, par4);
         if (properNBT(stack)) {
             int contentId = getContent(stack).itemID;
             JaffaItem jaffaItem = JaffasFood.instance.items.getJaffaItem(contentId);
             String title = JaffasHelper.getTitle(jaffaItem);
-            list.add("§f  " + title + "§r");
+            result.add("§f  " + title + "§r");
         }
     }
 

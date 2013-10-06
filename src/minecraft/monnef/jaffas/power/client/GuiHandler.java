@@ -6,13 +6,13 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.TileWindGenerator;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.block.common.ProcessingMachineRegistry;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.client.common.GuiContainerMachine;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
