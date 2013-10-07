@@ -28,20 +28,21 @@ public class NEIJaffasConfig implements IConfigureNEI {
     private void constructProcessingMachineHandlers() {
         ClassPool pool = ClassPool.getDefault();
         int wrapperCounter = 0;
+        String className = ProcessingMachineRecipeHandlerWrapper.class.getName();
         for (Class<? extends TileEntityBasicProcessingMachine> clazz : ProcessingMachineRegistry.getTileClasses()) {
             try {
                 TileEntityBasicProcessingMachine.enableDummyCreationPhase();
                 TileEntityBasicProcessingMachine dummyTile = clazz.newInstance();
                 TileEntityBasicProcessingMachine.disableDummyCreationPhase();
 
-                CtClass classCopy = pool.getAndRename(ProcessingMachineRecipeHandlerWrapper.class.getCanonicalName(), "monnef.jaffas.food.nei.wrapper.PMRH" + (wrapperCounter++));
+                CtClass classCopy = pool.getAndRename(className, "monnef.jaffas.food.nei.wrapper.PMRH" + (wrapperCounter++));
                 Class wrapperClass = classCopy.toClass();
                 Method initMethod = wrapperClass.getDeclaredMethod("init", TileEntityBasicProcessingMachine.class);
                 initMethod.invoke(null, dummyTile);
                 API.registerRecipeHandler((ICraftingHandler) wrapperClass.newInstance());
                 API.registerUsageHandler((IUsageHandler) wrapperClass.newInstance());
             } catch (Throwable e) {
-                throw new RuntimeException("Problem in NEI processing machine handler construction.", e);
+                throw new RuntimeException(String.format("Problem in NEI processing machine handler construction. (Wrapper's class name: %s)", className), e);
             }
         }
     }
