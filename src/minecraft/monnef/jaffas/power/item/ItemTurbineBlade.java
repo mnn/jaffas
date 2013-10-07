@@ -62,6 +62,7 @@ public class ItemTurbineBlade extends ItemPowerMulti {
         super(id, textureIndex);
         setUnlocalizedName("turbineBlade");
         setMaxStackSize(16);
+        setIconsCount(TurbineBladeEnum.values().length);
     }
 
     public ItemStack constructBlade(TurbineBladeEnum type) {
