@@ -1,3 +1,35 @@
+## 0.5.2
+- power from wind
+- ripening box
+- dairy products recipes
+  bucket with milk → milk and cream
+  cream + mallet → butter
+  milk + mallet → “raw cheese”
+- NEI is no longer required for showing tooltips
+- fixed rendering issue of glassy construction block
+- implemented generic support for NEI of processing machines (grinder, toaster)
+- changed GUI of web harvester
+- rewritten entity ID assigning from config
+- new sounds for home stone and duck
+- added pipe wrench to tools tab
+- added redstone block to redstone tab
+- added support for wolf foods (mutton, duck)
+- raw duck is now eatable
+- added configuration option to disable auto un-equipping
+- upgraded sword to allow easy (and spider-safe) web harvesting
+- added armours to combat creative tab
+- more recipes:
+  paper from switchgrass
+  books from plank, silk and paper 
+  flint and steel with jaffarrol
+- nerfed pickaxe - recipe is now costlier
+- fixed ghost tooltip on generator GUI
+- fixed item titles to be used as internal item names
+- added jaffarrol nugget (modified monster drop table and recipes)
+- fixed internal names of sink and construction block
+- recycling recipes for jaffarrol tools
+- added limsew drop from slimes
+
 ## 0.5.1
 - fixed server crash when placing fungi box
 - added spider farm (little spider creature, web harvester)

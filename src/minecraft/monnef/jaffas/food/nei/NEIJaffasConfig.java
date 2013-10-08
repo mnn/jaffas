@@ -9,14 +9,20 @@ import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 import codechicken.nei.recipe.ICraftingHandler;
 import codechicken.nei.recipe.IUsageHandler;
+import monnef.core.MonnefCorePlugin;
 import monnef.core.common.ContainerRegistry;
+import monnef.core.external.javassist.ClassClassPath;
 import monnef.core.external.javassist.ClassPool;
 import monnef.core.external.javassist.CtClass;
+import monnef.core.external.javassist.NotFoundException;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import net.minecraft.tileentity.TileEntity;
 
 import java.lang.reflect.Method;
+import java.util.Iterator;
+
+import static monnef.jaffas.food.JaffasFood.Log;
 
 public class NEIJaffasConfig implements IConfigureNEI {
     @Override
@@ -28,25 +34,53 @@ public class NEIJaffasConfig implements IConfigureNEI {
 
     private void constructProcessingMachineHandlers() {
         ClassPool pool = ClassPool.getDefault();
+        if (!MonnefCorePlugin.debugEnv) {
+            pool.insertClassPath(new ClassClassPath(this.getClass()));
+        }
+
+        Iterator iter = pool.getImportedPackages();
+        Log.printFinest("Packages:");
+        while (iter.hasNext()) Log.printFinest(iter.next().toString());
+
         int wrapperCounter = 0;
+        String className = ProcessingMachineRecipeHandlerWrapper.class.getName();
+
+        CtClass classCopy = null;
+        try {
+            classCopy = pool.getAndRename(className, getNextWrapperClassName(wrapperCounter));
+        } catch (NotFoundException e) {
+            throw new RuntimeException("Problem in NEI processing machine handler construction. Cannot get the wrapper template class.", e);
+        }
+
         for (Class<? extends TileEntity> clazz : ContainerRegistry.getTileClasses()) {
-            try {
-                if (TileEntityBasicProcessingMachine.class.isAssignableFrom(clazz)) {
+            if (TileEntityBasicProcessingMachine.class.isAssignableFrom(clazz)) {
+                try {
                     TileEntityBasicProcessingMachine.enableDummyCreationPhase();
                     TileEntityBasicProcessingMachine dummyTile = (TileEntityBasicProcessingMachine) clazz.newInstance();
                     TileEntityBasicProcessingMachine.disableDummyCreationPhase();
 
-                    CtClass classCopy = pool.getAndRename(ProcessingMachineRecipeHandlerWrapper.class.getCanonicalName(), "monnef.jaffas.food.nei.wrapper.PMRH" + (wrapperCounter++));
+                    classCopy.defrost();
                     Class wrapperClass = classCopy.toClass();
                     Method initMethod = wrapperClass.getDeclaredMethod("init", TileEntityBasicProcessingMachine.class);
                     initMethod.invoke(null, dummyTile);
+
                     API.registerRecipeHandler((ICraftingHandler) wrapperClass.newInstance());
                     API.registerUsageHandler((IUsageHandler) wrapperClass.newInstance());
+                    Log.printFine("Successfully created wrapper for NEI integration for " + clazz.getSimpleName());
+
+                    wrapperCounter++;
+                    classCopy.defrost();
+                    classCopy.setName(getNextWrapperClassName(wrapperCounter));
+                } catch (Throwable e) {
+                    Log.printSevere(String.format("Problem in NEI processing machine handler construction. (Wrapper's class name: %s, current machine: %s)", className, clazz.getName()));
+                    Log.printSevere(e.toString());
                 }
-            } catch (Throwable e) {
-                throw new RuntimeException("Problem in NEI processing machine handler construction.", e);
             }
         }
+    }
+
+    private String getNextWrapperClassName(int wrapperCounter) {
+        return "monnef.jaffas.food.nei.wrapper.PMRH" + wrapperCounter;
     }
 
     @Override

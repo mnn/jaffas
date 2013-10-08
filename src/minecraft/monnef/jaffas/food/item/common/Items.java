@@ -387,7 +387,7 @@ public class Items extends ItemManagerAccessor {
         AddItemInfo(JaffaItem.crisps, "Crisps", 256);
 
         AddItemInfo(JaffaItem.cheeseRaw, "Raw Cheese", 257);
-        AddItemInfo(JaffaItem.cream, "Cream", 17);
+        AddItemInfo(JaffaItem.cream, "Cream", 258);
     }
 
     private void registerWolfFood(JaffaItem item) {

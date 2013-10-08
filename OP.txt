@@ -1,7 +1,7 @@
 [center][img]http://www.mediafire.com/conv/4ec63a3d49c33144bfe680566e381c1c386da1297254fd076499012154a0c3f26g.jpg[/img]
 created by monnef and Tiartyos[/center]
 
-This simple mod adds Jaffa Cakes (brownies, cream rolls, ice creams and more) into the game. I tried to make a not so easy craft chain - this mod has been mainly created to add extra content which could be used in factory designing and building. It also adds a bunch of [b]fruit trees[/b] that bear fruits (apple, cocoa, vanilla, lemon, orange, plum) and plants (coffee, strawberry, onion, etc).
+This mod adds Jaffa Cakes (brownies, cream rolls, ice creams and more) into the game. I tried to make a not so easy craft chain - this mod has been mainly created to add extra content which could be used in factory designing and building. It also adds a bunch of [b]fruit trees[/b] that bear fruits (apple, cocoa, vanilla, lemon, orange, plum) and plants (coffee, strawberry, onion, etc).
 
 [size=5][color=#008000]More information can be found on our wiki:[/color]
 [url="http://jaffaswiki.tk"]http://jaffaswiki.tk[/url][/size] <- change log, recipes, description of items/blocks
@@ -35,27 +35,33 @@ old screenshots
 [size=6]Download[/size]
 Before installation/updating always [b]backup[/b] your world (saves, configs)! From version 0.4.16 you have to download also monnef core to be able to run this mod (versions of core and mod can differ). 
 [b]Core[/b]
-| 1.5.2      | 0.5.1     | [url="http://adf.ly/2536344/core-0-5-1"]download[/url] |
+| 1.5.2      | 0.5.2     | [url="http://adf.ly/2536344/core-0-5-2"]download[/url] |
 
 [b]Mod itself[/b]
-| 1.5.2/1         | 0.5.1      | ???                  | [url="http://adf.ly/2536344/jaffas-0-5-1"]download[/url]  |
+| 1.5.2/1         | 0.5.2      | ???                  | [url="http://adf.ly/2536344/jaffas-0-5-2"]download[/url]  |
 
 old versions, more is available at the wiki
 [spoiler]
 core
-| 1.5.2      | 0.5.0     | [url="http://adf.ly/2536344/core-0-5-0"]download[/url] |
+| 1.5.2      | 0.5.1     | [url="http://adf.ly/2536344/core-0-5-1"]download[/url] |
 
 mod
-| 1.5.2/1         | 0.5.0      | ???                  | [url="http://adf.ly/2536344/jaffas-0-5-0"]download[/url]  |
+| 1.5.2/1         | 0.5.1      | ???                  | [url="http://adf.ly/2536344/jaffas-0-5-1"]download[/url]  |
 
 ancient stuff
 1.3.2 / 0.2.0 (universal), tested with forge #251 - [url="http://www.mediafire.com/?kiaz1obzyddtb1x"]link[/url][/spoiler]
 
 [size=6]Rights of Use[/size]
 moved to wiki - [url=http://www.jaffaswiki.tk/wiki/notes]link[/url]
+in short (in case of conflict with rights on the wiki, the wiki takes precedence!): don't redistribute without written permission
 
 [size=6]Bug reporting[/size]
 Please read first this - [url]http://www.jaffaswiki.tk/wiki/bugs[/url] and then write a report.
+
+[size=6]Other[/size]
+Many things can be turned off in config files. Also in case of ID conflicts you can tell the mod to start assigning IDs from custom numbers.
+The mod is checking if there is a newer version available. However you can disable printing of update messages.
+For more info check wiki.
 
 [size=6]Donate[/size]
 If you like this mod, please consider donating. Every contribution would be highly apreciated.
