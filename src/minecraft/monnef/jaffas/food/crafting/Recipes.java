@@ -441,7 +441,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(getItemStack(crisps, 2), getItem(woodenBowl), getItem(woodenBowl), getItem(potatesSlicedInTin));
         PersistentItemsCraftingHandler.AddPersistentItem(potatesSlicedInTin, false, cakeTin);
 
-        GameRegistry.addShapedRecipe(new ItemStack(Item.paper, 1), "xxx", "xxx", 'x', new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP));
+        GameRegistry.addShapedRecipe(new ItemStack(Item.paper, 2), "xxx", "xxx", 'x', new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP));
     }
 
     public static void addPackRecipe(JaffaItem item) {

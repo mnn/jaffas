@@ -710,6 +710,7 @@ public class JaffasTechnic extends JaffasModBase {
         pickaxeJaffarrol = new ItemPickaxeTechnic(ItemJPickaxeID, 20, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(pickaxeJaffarrol, "pickaxeJaffarrol", "Jaffarrol Pickaxe");
         MinecraftForge.setToolClass(pickaxeJaffarrol, "pickaxe", 3);
+        TileCobbleBreaker.registerJaffarrolTool(pickaxeJaffarrol);
 
         spadeJaffarrol = new ItemSpadeTechnic(ItemJSpadeID, 19, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(spadeJaffarrol, "spadeJaffarrol", "Jaffarrol Shovel");

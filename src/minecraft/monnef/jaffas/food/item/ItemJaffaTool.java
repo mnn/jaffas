@@ -83,8 +83,7 @@ public class ItemJaffaTool extends ItemJaffaBase {
         return super.getStrVsBlock(stack, block, meta);
     }
 
-
-    protected boolean nearlyDestroyed(ItemStack stack) {
+    public static boolean nearlyDestroyed(ItemStack stack) {
         return stack.getMaxDamage() == stack.getItemDamage();
     }
 

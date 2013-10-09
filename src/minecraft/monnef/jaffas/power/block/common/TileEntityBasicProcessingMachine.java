@@ -7,13 +7,14 @@ package monnef.jaffas.power.block.common;
 
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.ItemHelper;
-import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.common.IProcessingRecipe;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+
+import static monnef.jaffas.food.JaffasFood.Log;
 
 @ContainerRegistry.ContainerTag(slotsCount = 2)
 public abstract class TileEntityBasicProcessingMachine extends TileEntityMachineWithInventory {
@@ -53,11 +54,16 @@ public abstract class TileEntityBasicProcessingMachine extends TileEntityMachine
             processTime++;
             float power = consumeNeededPower();
             if (power < powerNeeded) {
-                JaffasFood.Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
+                Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
             } else {
                 if (processTime >= processItemTime) {
                     processTime = 0;
-                    produceOutput(getRecipeHandler().findByInput(processingInv));
+                    IProcessingRecipe recipe = getRecipeHandler().findByInput(processingInv);
+                    if (recipe == null) {
+                        Log.printWarning("Null recipe in " + this.getClass().getSimpleName());
+                    } else {
+                        produceOutput(recipe);
+                    }
                 }
             }
         } else {

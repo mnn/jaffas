@@ -12,6 +12,7 @@ import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.RandomHelper;
+import monnef.jaffas.food.item.ItemJaffaTool;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.client.particle.EntityDiggingFX;
@@ -30,7 +31,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
-import java.util.HashSet;
+import java.util.HashMap;
 
 import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_FUEL;
 import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_INPUT;
@@ -53,10 +54,11 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     private static final int TICK_QUANTUM = 20;
     private static int WORK_EVERY_N_TICKS = 20 * timerInSeconds;
     private static int BURN_EVERY_N_TICKS = 10;
-    private static HashSet<Integer> validToolIDs;
+    private static HashMap<Integer, ValidToolRecord> validToolIDs;
+    private ContainerRegistry.ContainerDescriptor containerDescriptor;
 
     static {
-        validToolIDs = new HashSet<Integer>();
+        validToolIDs = new HashMap<Integer, ValidToolRecord>();
         registerTool(Item.pickaxeWood);
         registerTool(Item.pickaxeStone);
         registerTool(Item.pickaxeGold);
@@ -69,6 +71,28 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
 
     private boolean showBreakEffect;
     private IntegerCoordinates cachedFacingBlockCoords;
+
+    private static class ValidToolRecord {
+        private final int itemId;
+        private final boolean jaffarrolTool;
+
+        private ValidToolRecord(int itemId) {
+            this(itemId, false);
+        }
+
+        private ValidToolRecord(int itemId, boolean jaffarrolTool) {
+            this.itemId = itemId;
+            this.jaffarrolTool = jaffarrolTool;
+        }
+
+        private int getItemId() {
+            return itemId;
+        }
+
+        private boolean isJaffarrolTool() {
+            return jaffarrolTool;
+        }
+    }
 
     public static void setTimer(int seconds) {
         if (timerSet) {
@@ -84,11 +108,30 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
      * @param item Tool.
      */
     public static void registerTool(Item item) {
-        validToolIDs.add(item.itemID);
+        registerTool(item, false);
+    }
+
+    public static void registerJaffarrolTool(Item item) {
+        registerTool(item, true);
+    }
+
+    public static void registerTool(Item item, boolean isJaffarrol) {
+        int id = item.itemID;
+        ValidToolRecord rec = new ValidToolRecord(id, isJaffarrol);
+        validToolIDs.put(id, rec);
     }
 
     public TileCobbleBreaker() {
-        inv = new ItemStack[3];
+        setupContainerDescriptor();
+        inv = new ItemStack[getSizeInventory()];
+    }
+
+    private void setupContainerDescriptor() {
+        containerDescriptor = ContainerRegistry.getContainerPrototype(this.getClass());
+    }
+
+    public ContainerRegistry.ContainerDescriptor getContainerDescriptor() {
+        return containerDescriptor;
     }
 
     @Override
@@ -241,12 +284,15 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     private boolean isToolValid() {
         ItemStack stack = inv[SLOT_INPUT];
         if (stack == null) return false;
-        return validToolIDs.contains(stack.itemID);
+        ValidToolRecord rec = validToolIDs.get(stack.itemID);
+        if (rec == null) return false;
+        if (!rec.isJaffarrolTool()) return true;
+        return !ItemJaffaTool.nearlyDestroyed(stack);
     }
 
     @Override
     public int getSizeInventory() {
-        return inv.length;
+        return getContainerDescriptor().getSlotsCount();
     }
 
     @Override
