@@ -15,9 +15,8 @@ import net.minecraft.util.StatCollector;
 public class GuiCobbleBreaker extends GuiContainerMonnefCore {
     public TileCobbleBreaker tile;
 
-    public GuiCobbleBreaker(InventoryPlayer inventoryPlayer,
-                            TileCobbleBreaker tileEntity) {
-        super(new ContainerCobbleBreaker(inventoryPlayer, tileEntity));
+    public GuiCobbleBreaker(InventoryPlayer inventoryPlayer, TileCobbleBreaker tileEntity, ContainerCobbleBreaker container) {
+        super(container);
         tile = tileEntity;
         setBackgroundTexture("guibreaker.png");
     }

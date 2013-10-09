@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.block;
 
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BiomeHelper;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.food.crafting.RecipesFridge;
@@ -16,9 +17,9 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.Random;
 
+@ContainerRegistry.ContainerTag(slotsCount = 20, outputSlotsCount = 0)
 public class TileFridge extends TileEntityMachineWithInventory implements IInventory {
     public static Random rand = new Random();
-    private final int SLOTS_COUNT = 20;
 
     private int front;
     private int eventTime;
@@ -96,39 +97,6 @@ public class TileFridge extends TileEntityMachineWithInventory implements IInven
         }
     }
 
-    /*
-    @Override
-    public void updateEntity() {
-        super.updateEntity();
-        tickCounter++;
-
-        if (tickCounter % tickDivider == 0) {
-            // only every second do stuff
-
-            if (isBurning()) {
-                //burnTime--;
-                burnTime -= 7;
-                addHeatEnergy(0.1F);
-            } else {
-                melt(4);
-            }
-
-            if (burnTime <= 0) {
-                burnTime = 0;
-                tryGetFuel();
-            }
-
-            if (temperature < -5) {
-                eventTime++;
-                if (eventTime > 15) {
-                    runSpecialEvent();
-                    eventTime = 0;
-                }
-            }
-        }
-    }
-    */
-
     private void runSpecialEvent() {
         if (!worldObj.isRemote) {
             int tries = 0;
@@ -138,7 +106,7 @@ public class TileFridge extends TileEntityMachineWithInventory implements IInven
 
             // try harder find a slot with proper recipe input
             do {
-                slotNum = Math.abs(rand.nextInt()) % SLOTS_COUNT;
+                slotNum = Math.abs(rand.nextInt()) % getSizeInventory();
 
                 stack = getStackInSlot(slotNum);
                 if (stack != null) {
@@ -168,14 +136,14 @@ public class TileFridge extends TileEntityMachineWithInventory implements IInven
                     int free = -1;
                     boolean addToStack = false;
 
-                    for (int i = 0; i < SLOTS_COUNT - 1; i++) {
+                    for (int i = 0; i < getSizeInventory() - 1; i++) {
                         if (getStackInSlot(i) == null) {
                             free = i;
-                            i = SLOTS_COUNT;
+                            i = getSizeInventory();
                         } else if (getStackInSlot(i).itemID == output.itemID && getStackInSlot(i).stackSize < getStackInSlot(i).getMaxStackSize()) {
                             addToStack = true;
                             free = i;
-                            i = SLOTS_COUNT;
+                            i = getSizeInventory();
                         }
                     }
 
@@ -213,11 +181,6 @@ public class TileFridge extends TileEntityMachineWithInventory implements IInven
         if (temperature > -10) {
             temperature -= i;
         }
-    }
-
-    @Override
-    public int getSizeInventory() {
-        return SLOTS_COUNT;
     }
 
     @Override

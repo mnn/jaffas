@@ -206,6 +206,7 @@ public class JaffasFood extends JaffasModBase {
         addDungeonLoot();
 
         registerHandlers();
+        proxy.registerContainers();
 
         Recipes.installRecipes();
         MinecraftForge.EVENT_BUS.register(new CustomDrop());

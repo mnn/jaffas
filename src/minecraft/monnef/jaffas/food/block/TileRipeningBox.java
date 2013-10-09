@@ -6,6 +6,7 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.MonnefCorePlugin;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.MathHelper;
 import monnef.jaffas.food.block.common.TileWithInventory;
 import monnef.jaffas.food.crafting.Recipes;
@@ -14,6 +15,7 @@ import net.minecraft.item.ItemStack;
 
 import static monnef.jaffas.food.JaffasFood.itemsHaveSameID;
 
+@ContainerRegistry.ContainerTag(slotsCount = 9)
 public class TileRipeningBox extends TileWithInventory {
     public static final int SLOT_OUTPUT = 8;
     public static final int RIPENING_SLOTS = 8;

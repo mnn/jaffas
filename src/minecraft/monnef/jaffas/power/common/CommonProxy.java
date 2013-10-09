@@ -13,10 +13,6 @@ public class CommonProxy {
     public void registerRenderThings() {
     }
 
-    public Object createGuiFromProcessingMachineRegistry(TileEntity tile, InventoryPlayer inventory) {
-        return null;
-    }
-
     public void registerGUIsOfProcessingMachines() {
     }
 }

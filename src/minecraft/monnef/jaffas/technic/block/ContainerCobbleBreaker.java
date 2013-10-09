@@ -38,11 +38,6 @@ public class ContainerCobbleBreaker extends ContainerMonnefCore {
     }
 
     @Override
-    public int getSlotsCount() {
-        return 3;
-    }
-
-    @Override
     public void addCraftingToCrafters(ICrafting crafting) {
         super.addCraftingToCrafters(crafting);
         crafting.sendProgressBarUpdate(this, 0, this.tile.getBurnTime());
@@ -87,10 +82,5 @@ public class ContainerCobbleBreaker extends ContainerMonnefCore {
                 this.tile.setBurnItemTime(value);
                 break;
         }
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
     }
 }

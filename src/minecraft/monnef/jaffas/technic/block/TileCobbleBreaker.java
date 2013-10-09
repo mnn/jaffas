@@ -8,6 +8,7 @@ package monnef.jaffas.technic.block;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.RandomHelper;
@@ -35,6 +36,7 @@ import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_FUEL;
 import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_INPUT;
 import static monnef.jaffas.technic.block.ContainerCobbleBreaker.SLOT_OUTPUT;
 
+@ContainerRegistry.ContainerTag(slotsCount = 3)
 public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedInventory {
     private static final String SHOW_EFFECT_TAG = "showBreakEffect";
     private static final String BURN_TIME_TAG = "burnTime";

@@ -6,8 +6,10 @@
 package monnef.jaffas.trees.client;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
+import monnef.jaffas.trees.block.TileFruitCollector;
 import monnef.jaffas.trees.common.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
@@ -36,5 +38,11 @@ public class ClientProxy extends CommonProxy {
         if (efx != null) {
             Minecraft.getMinecraft().effectRenderer.addEffect(efx);
         }
+    }
+
+    @Override
+    public void registerContainers() {
+        super.registerContainers();
+        ContainerRegistry.registerOnClient(TileFruitCollector.class, GuiFruitCollector.class);
     }
 }

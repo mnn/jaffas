@@ -47,15 +47,6 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public Object createGuiFromProcessingMachineRegistry(TileEntity tile, InventoryPlayer inventory) {
-        try {
-            return ContainerRegistry.getItem(tile.getClass()).getGuiConstructor().newInstance(inventory, tile, ContainerRegistry.createContainer(tile, inventory));
-        } catch (Throwable e) {
-            throw new RuntimeException("Cannot create new GUI for container for tile class: " + tile.getClass().getSimpleName());
-        }
-    }
-
-    @Override
     public void registerGUIsOfProcessingMachines() {
         ContainerRegistry.registerOnClient(TileGrinder.class, GuiContainerBasicProcessingMachine.class);
         ContainerRegistry.registerOnClient(TileToaster.class, GuiContainerBasicProcessingMachine.class);

@@ -453,6 +453,8 @@ public class JaffasTechnic extends JaffasModBase {
         // texture stuff
         proxy.registerRenderThings();
 
+        proxy.registerContainers();
+
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.technic", "en_US", "Jaffas and more! Ores");
         creativeTab.setup(JaffasTechnic.jaffarrolRefined);
 

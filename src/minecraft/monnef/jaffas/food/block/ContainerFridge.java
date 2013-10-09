@@ -5,34 +5,29 @@
 
 package monnef.jaffas.food.block;
 
+import monnef.core.block.ContainerMonnefCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
 
 import java.util.Iterator;
 
-public class ContainerFridge extends Container {
+public class ContainerFridge extends ContainerMonnefCore {
 
     public static final int inventorySize = 20;
     protected TileFridge tileEntity;
     protected float lastTemperature;
 
     public ContainerFridge(InventoryPlayer inventoryPlayer, TileFridge te) {
+        super(inventoryPlayer, te);
         tileEntity = te;
+    }
 
-        int row, col;
-        int colsPerRow = 4;
-        for (int i = 0; i < inventorySize; i++) {
-            col = i % colsPerRow;
-            row = i / colsPerRow;
-            addSlotToContainer(new Slot(tileEntity, i, 8 + col * 18, 13 + row * 18));
-        }
-
-        //addSlotToContainer(new Slot(tileEntity, te.fuelSlot, 102, 69));
-        bindPlayerInventory(inventoryPlayer);
+    @Override
+    public int getYSize() {
+        return 195;
     }
 
     @Override
@@ -64,21 +59,18 @@ public class ContainerFridge extends Container {
         return tileEntity.isUseableByPlayer(player);
     }
 
-    protected void bindPlayerInventory(InventoryPlayer inventoryPlayer) {
-        int yshift = 29;
-
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 9; j++) {
-                addSlotToContainer(new Slot(inventoryPlayer, j + i * 9 + 9,
-                        8 + j * 18, 84 + i * 18 + yshift));
-            }
-        }
-
-        for (int i = 0; i < 9; i++) {
-            addSlotToContainer(new Slot(inventoryPlayer, i, 8 + i * 18, 142 + yshift));
+    @Override
+    public void constructSlots(IInventory inv) {
+        int row, col;
+        int colsPerRow = 4;
+        for (int i = 0; i < inventorySize; i++) {
+            col = i % colsPerRow;
+            row = i / colsPerRow;
+            addSlotToContainer(new Slot(inv, i, 8 + col * 18, 13 + row * 18));
         }
     }
 
+    /*
     @Override
     public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slot) {
         ItemStack stack = null;
@@ -108,4 +100,5 @@ public class ContainerFridge extends Container {
 
         return stack;
     }
+    */
 }

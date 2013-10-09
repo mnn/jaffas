@@ -12,13 +12,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
 
 public class GuiFruitCollector extends GuiContainerMonnefCore {
-    private TileFruitCollector tileEntity;
 
-    public GuiFruitCollector(InventoryPlayer inventoryPlayer, TileFruitCollector tileEntity) {
-        super(new ContainerFruitCollector(inventoryPlayer, tileEntity));
-        //ySize = 198;
-
-        this.tileEntity = tileEntity;
+    public GuiFruitCollector(InventoryPlayer inventoryPlayer, TileFruitCollector tileEntity, ContainerFruitCollector container) {
+        super(container);
         setBackgroundTexture("guicollector.png");
     }
 

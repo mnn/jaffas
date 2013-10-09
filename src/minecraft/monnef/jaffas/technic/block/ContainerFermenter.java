@@ -31,16 +31,6 @@ public class ContainerFermenter extends ContainerMonnefCore {
     }
 
     @Override
-    public int getSlotsCount() {
-        return 3;
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
-    }
-
-    @Override
     public void constructSlots(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 78, 48));
         addSlotToContainer(new Slot(inv, SLOT_KEG, 78, 20));

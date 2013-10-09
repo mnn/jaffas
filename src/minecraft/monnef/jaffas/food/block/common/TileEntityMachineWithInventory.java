@@ -33,11 +33,6 @@ public abstract class TileEntityMachineWithInventory extends TileEntityMachine i
         return containerDescriptor;
     }
 
-    /*
-    @Override
-    public abstract int getSizeInventory();
-    */
-
     @Override
     public int getSizeInventory() {
         return containerDescriptor.getSlotsCount();

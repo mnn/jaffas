@@ -33,11 +33,6 @@ public class ContainerCompost extends ContainerMonnefCore {
     }
 
     @Override
-    public int getSlotsCount() {
-        return 2;
-    }
-
-    @Override
     public void addCraftingToCrafters(ICrafting crafting) {
         super.addCraftingToCrafters(crafting);
         crafting.sendProgressBarUpdate(this, 0, this.core.getTankMeter());
@@ -72,10 +67,5 @@ public class ContainerCompost extends ContainerMonnefCore {
         if (num == 1) {
             this.core.setWorkMeter(value);
         }
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
     }
 }

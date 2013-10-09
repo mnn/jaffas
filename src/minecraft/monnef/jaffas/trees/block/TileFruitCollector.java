@@ -10,6 +10,7 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
@@ -32,11 +33,11 @@ import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_NOISE;
 import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_SUCK;
 
+@ContainerRegistry.ContainerTag(slotsCount = 4, outputSlotsCount = 4)
 public class TileFruitCollector extends TileEntityMachineWithInventory {
 
     public static final int suckCost = 30;
     public static Random rand = new Random();
-    private final int SLOTS_COUNT = 4;
 
     private int eventTime;
 
@@ -102,6 +103,7 @@ public class TileFruitCollector extends TileEntityMachineWithInventory {
     }
 
     public TileFruitCollector() {
+        super();
         eventTime = 0;
     }
 
@@ -302,11 +304,6 @@ public class TileFruitCollector extends TileEntityMachineWithInventory {
             PacketDispatcher.sendPacketToPlayer(packet, p);
         }
 
-    }
-
-    @Override
-    public int getSizeInventory() {
-        return 4 + 1;
     }
 
     @Override

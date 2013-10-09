@@ -8,6 +8,7 @@ package monnef.jaffas.food.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.ContainerMonnefCore;
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;

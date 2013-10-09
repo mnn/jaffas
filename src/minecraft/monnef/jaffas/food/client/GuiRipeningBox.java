@@ -22,9 +22,8 @@ public class GuiRipeningBox extends GuiContainerMonnefCore {
 
     TileRipeningBox box;
 
-    public GuiRipeningBox(InventoryPlayer inventoryPlayer,
-                          TileRipeningBox tileEntity) {
-        super(new ContainerRipeningBox(inventoryPlayer, tileEntity));
+    public GuiRipeningBox(InventoryPlayer inventoryPlayer, TileRipeningBox tileEntity, ContainerRipeningBox container) {
+        super(container);
         box = tileEntity;
         setBackgroundTexture("guiripingbox.png");
     }

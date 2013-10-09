@@ -14,11 +14,8 @@ import net.minecraft.util.StatCollector;
 public class GuiFridge extends GuiContainerMonnefCore {
     private TileFridge tileEntity;
 
-    public GuiFridge(InventoryPlayer inventoryPlayer,
-                     TileFridge tileEntity) {
-        //the container is instantiated and passed to the superclass for handling
-        super(new ContainerFridge(inventoryPlayer, tileEntity));
-        ySize = 198;
+    public GuiFridge(InventoryPlayer inventoryPlayer, TileFridge tileEntity, ContainerFridge container) {
+        super(container);
 
         this.tileEntity = tileEntity;
         setBackgroundTexture("guifridge.png");

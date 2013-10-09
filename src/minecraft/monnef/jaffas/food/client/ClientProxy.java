@@ -12,14 +12,17 @@ import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.client.RenderItemInAir;
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileBoard;
 import monnef.jaffas.food.block.TileColumn;
 import monnef.jaffas.food.block.TileCross;
+import monnef.jaffas.food.block.TileFridge;
 import monnef.jaffas.food.block.TileJaffaStatue;
 import monnef.jaffas.food.block.TileMeatDryer;
 import monnef.jaffas.food.block.TilePie;
 import monnef.jaffas.food.block.TilePizza;
+import monnef.jaffas.food.block.TileRipeningBox;
 import monnef.jaffas.food.block.TileSink;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.ContentHolder;
@@ -31,6 +34,12 @@ import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.entity.EntityLittleSpider;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.technic.block.TileCobbleBreaker;
+import monnef.jaffas.technic.block.TileCompostCore;
+import monnef.jaffas.technic.block.TileFermenter;
+import monnef.jaffas.technic.client.GuiCobbleBreaker;
+import monnef.jaffas.technic.client.GuiCompost;
+import monnef.jaffas.technic.client.GuiFermenter;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.renderer.entity.Render;
@@ -90,6 +99,14 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerTickHandler() {
         TickRegistry.registerScheduledTickHandler(new ClientTickHandler(), Side.CLIENT);
+    }
+
+    @Override
+    public void registerContainers() {
+        super.registerContainers();
+        ContainerRegistry.registerOnClient(TileBoard.class, GuiBoard.class);
+        ContainerRegistry.registerOnClient(TileRipeningBox.class, GuiRipeningBox.class);
+        ContainerRegistry.registerOnClient(TileFridge.class, GuiFridge.class);
     }
 
     @Override

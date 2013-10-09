@@ -64,9 +64,8 @@ public class GuiFermenter extends GuiContainerMonnefCore {
         }
     }
 
-    public GuiFermenter(InventoryPlayer inventoryPlayer,
-                        TileFermenter tileEntity) {
-        super(new ContainerFermenter(inventoryPlayer, tileEntity));
+    public GuiFermenter(InventoryPlayer inventoryPlayer, TileFermenter tileEntity, ContainerFermenter container) {
+        super(container);
         tile = tileEntity;
         setBackgroundTexture("guifermenter.png");
     }

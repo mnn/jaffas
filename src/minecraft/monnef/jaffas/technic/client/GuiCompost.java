@@ -20,9 +20,8 @@ public class GuiCompost extends GuiContainerMonnefCore {
 
     public TileCompostCore core;
 
-    public GuiCompost(InventoryPlayer inventoryPlayer,
-                      TileCompostCore tileEntity) {
-        super(new ContainerCompost(inventoryPlayer, tileEntity));
+    public GuiCompost(InventoryPlayer inventoryPlayer, TileCompostCore tileEntity, ContainerCompost container) {
+        super(container);
         core = tileEntity;
         setBackgroundTexture("guicompost.png");
     }

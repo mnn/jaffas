@@ -6,21 +6,9 @@
 package monnef.jaffas.food.client;
 
 import cpw.mods.fml.common.network.IGuiHandler;
-import monnef.jaffas.food.block.ContainerBoard;
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.food.block.ContainerFridge;
-import monnef.jaffas.food.block.ContainerRipeningBox;
-import monnef.jaffas.food.block.TileBoard;
 import monnef.jaffas.food.block.TileFridge;
-import monnef.jaffas.food.block.TileRipeningBox;
-import monnef.jaffas.technic.block.ContainerCobbleBreaker;
-import monnef.jaffas.technic.block.ContainerCompost;
-import monnef.jaffas.technic.block.ContainerFermenter;
-import monnef.jaffas.technic.block.TileCobbleBreaker;
-import monnef.jaffas.technic.block.TileCompostCore;
-import monnef.jaffas.technic.block.TileFermenter;
-import monnef.jaffas.technic.client.GuiCobbleBreaker;
-import monnef.jaffas.technic.client.GuiCompost;
-import monnef.jaffas.technic.client.GuiFermenter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -35,9 +23,11 @@ public class GuiHandler implements IGuiHandler {
                                       int x, int y, int z) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
-        if (tileEntity instanceof TileFridge) {
+        if (ContainerRegistry.containsRegistration(tileEntity)) {
+            return ContainerRegistry.createContainer(tileEntity, player.inventory);
+        } else if (tileEntity instanceof TileFridge) {
             return new ContainerFridge(player.inventory, (TileFridge) tileEntity);
-        } else if (tileEntity instanceof TileBoard) {
+        } /*else if (tileEntity instanceof TileBoard) {
             return new ContainerBoard(player.inventory, (TileBoard) tileEntity);
         } else if (tileEntity instanceof TileCompostCore) {
             return new ContainerCompost(player.inventory, (TileCompostCore) tileEntity);
@@ -47,7 +37,7 @@ public class GuiHandler implements IGuiHandler {
             return new ContainerFermenter(player.inventory, (TileFermenter) tileEntity);
         } else if (tileEntity instanceof TileRipeningBox) {
             return new ContainerRipeningBox(player.inventory, (TileRipeningBox) tileEntity);
-        }
+        } */
 
         return null;
     }
@@ -57,20 +47,23 @@ public class GuiHandler implements IGuiHandler {
                                       int x, int y, int z) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
 
-        if (tileEntity instanceof TileFridge) {
-            return new GuiFridge(player.inventory, (TileFridge) tileEntity);
-        } else if (tileEntity instanceof TileBoard) {
-            return new GuiBoard(player.inventory, (TileBoard) tileEntity);
-        } else if (tileEntity instanceof TileCompostCore) {
-            return new GuiCompost(player.inventory, (TileCompostCore) tileEntity);
-        } else if (tileEntity instanceof TileCobbleBreaker) {
-            return new GuiCobbleBreaker(player.inventory, (TileCobbleBreaker) tileEntity);
-        } else if (tileEntity instanceof TileFermenter) {
-            return new GuiFermenter(player.inventory, (TileFermenter) tileEntity);
-        } else if (tileEntity instanceof TileRipeningBox) {
-            return new GuiRipeningBox(player.inventory, (TileRipeningBox) tileEntity);
-        }
-
+        if (ContainerRegistry.containsRegistration(tileEntity)) {
+            return ContainerRegistry.createGui(tileEntity, player.inventory);
+        }/* else {
+            //if (tileEntity instanceof TileFridge) {
+            //    return new GuiFridge(player.inventory, (TileFridge) tileEntity);
+            //} else if (tileEntity instanceof TileBoard) {
+            //   return new GuiBoard(player.inventory, (TileBoard) tileEntity);
+            //} else if (tileEntity instanceof TileCompostCore) {
+            //    return new GuiCompost(player.inventory, (TileCompostCore) tileEntity);
+            //} else if (tileEntity instanceof TileCobbleBreaker) {
+            //    return new GuiCobbleBreaker(player.inventory, (TileCobbleBreaker) tileEntity);
+            //} else if (tileEntity instanceof TileFermenter) {
+            //    return new GuiFermenter(player.inventory, (TileFermenter) tileEntity);
+            //} else if (tileEntity instanceof TileRipeningBox) {
+            //    return new GuiRipeningBox(player.inventory, (TileRipeningBox) tileEntity);
+            //}
+        }*/
         return null;
     }
 }

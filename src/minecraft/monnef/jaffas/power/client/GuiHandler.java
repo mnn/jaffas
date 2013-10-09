@@ -11,8 +11,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import static monnef.jaffas.power.JaffasPower.proxy;
-
 public class GuiHandler implements IGuiHandler {
     public enum GuiId {
         GENERATOR,
@@ -58,6 +56,6 @@ public class GuiHandler implements IGuiHandler {
         }
         return null;
         */
-        return proxy.createGuiFromProcessingMachineRegistry(tileEntity, player.inventory);
+        return ContainerRegistry.createGui(tileEntity, player.inventory);
     }
 }

@@ -16,7 +16,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-@ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 1)
+@ContainerRegistry.ContainerTag(slotsCount = 1)
 public class TileWebHarvester extends TileEntityMachineWithInventory implements ISidedInventory {
     public static final int WEB_HARVESTER_RADIUS = 5;
     public static final int WEB_HARVESTER_DIAMETER = 2 * WEB_HARVESTER_RADIUS;

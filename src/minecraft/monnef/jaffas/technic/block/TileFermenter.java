@@ -7,6 +7,7 @@ package monnef.jaffas.technic.block;
 
 import com.google.common.collect.HashMultimap;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.StringsHelper;
 import monnef.jaffas.food.JaffasFood;
@@ -36,6 +37,7 @@ import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.NOTHING;
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE;
 import static monnef.jaffas.technic.block.TileKeg.KegType;
 
+@ContainerRegistry.ContainerTag(slotsCount = 3)
 public class TileFermenter extends TileEntity implements IInventory, ISidedInventory {
     private static final String WORK_TIME_TAG = "workCounter";
     private static final String LIQUID_AMOUNT_TAG = "liquidAmount";
@@ -406,26 +408,9 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
         tag.setInteger(LIQUID_AMOUNT_TAG, getLiquidAmount());
     }
 
-    /*
-    @Override
-    public Packet getDescriptionPacket() {
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.customParam1 : new NBTTagCompound();
-        writeToNBT(tag);
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
-    }
-
-    @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
-        super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.customParam1;
-        readFromNBT(tag);
-    }
-    */
-
     @Override
     public String getInvName() {
-        return "jaffas.board";
+        return "jaffas.fermenter";
     }
 
     @Override

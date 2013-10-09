@@ -17,9 +17,8 @@ public class GuiBoard extends GuiContainerMonnefCore {
 
     TileBoard board;
 
-    public GuiBoard(InventoryPlayer inventoryPlayer,
-                    TileBoard tileEntity) {
-        super(new ContainerBoard(inventoryPlayer, tileEntity));
+    public GuiBoard(InventoryPlayer inventoryPlayer, TileBoard tileEntity, ContainerBoard container) {
+        super(container);
         board = tileEntity;
         setBackgroundTexture(GUIBOARD_TEXTURE);
     }

@@ -7,6 +7,7 @@ package monnef.jaffas.food.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.ItemHelper;
 import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.JaffaItem;
@@ -22,6 +23,7 @@ import net.minecraftforge.common.ForgeDirection;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.common.ContentHolder.blockBoard;
 
+@ContainerRegistry.ContainerTag(slotsCount = 3)
 public class TileBoard extends TileEntity implements IInventory, ISidedInventory {
     private ItemStack[] inv;
     public int chopTime;

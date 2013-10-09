@@ -6,6 +6,7 @@
 package monnef.jaffas.technic.block;
 
 import monnef.core.MonnefCorePlugin;
+import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.common.CompostRegister;
@@ -32,6 +33,7 @@ import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.CON_ALL
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.CON_GLASS;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.ME;
 
+@ContainerRegistry.ContainerTag(slotsCount = 2)
 public class TileCompostCore extends TileEntity implements IInventory, ISidedInventory {
     public static final int NUMBER_OF_COMPOST_PRODUCED = 32;
     public static final String TAG_WORK_METER = "workMeter";

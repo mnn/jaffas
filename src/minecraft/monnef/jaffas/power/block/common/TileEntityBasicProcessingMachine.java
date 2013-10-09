@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-@ContainerRegistry.ContainerTag(slotsCount = 2, outputSlotsCount = 1)
+@ContainerRegistry.ContainerTag(slotsCount = 2)
 public abstract class TileEntityBasicProcessingMachine extends TileEntityMachineWithInventory {
     private static final String PROCESS_TIME_TAG_NAME = "processTime";
     private static final String PROCESS_ITEM_TIME_TAG_NAME = "processItemTime";
