@@ -100,7 +100,7 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
             // "fix" to not crash/return more on BuildCraft's tables...
             String inventoryClassName = matrix.getClass().getName();
             if (ConfigurationManager.ignoreBuildCraftsTables) {
-                if (inventoryClassName.contains("TileAssemblyAdvancedWorkbench")
+                if (inventoryClassName.contains("TileAdvancedCraftingTable")
                         || inventoryClassName.contains("TileAutoWorkbench")) {
                     return;
                 }
