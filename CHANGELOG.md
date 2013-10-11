@@ -1,3 +1,7 @@
+## 0.6.0
+- ported to 1.6.4
+- buffed recipe: switchgrass → paper
+
 ## 0.5.2
 - power from wind
 - ripening box
