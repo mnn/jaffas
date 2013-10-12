@@ -15,6 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import scala.Option;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -96,7 +97,8 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
     }
 
     private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info, EntityPlayer player) {
-        CraftingHelper.returnLeftover(new ItemStack(info.substituteItemID, info.substituteItemsCount, 0), matrix, player, ConfigurationManager.transferItemsFromCraftingMatrix);
+        Option<Object> ret = CraftingHelper.returnLeftover(new ItemStack(info.substituteItemID, info.substituteItemsCount, 0), matrix, player, ConfigurationManager.transferItemsFromCraftingMatrix);
+        if (ret.isDefined()) processedSlots.add((Integer) ret.get());
     }
 
     @Override

@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/highlighting.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OP.txt" afterPath="$PROJECT_DIR$/OP.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jaffas_1.6.iml" afterPath="$PROJECT_DIR$/jaffas_1.6.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
@@ -28,7 +23,7 @@
     <file path="/ItemCleaver.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365107119251" ignored="false" />
     <file path="/mod_jaffas.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1361546108307" ignored="false" />
     <file path="/ItemCleaverHookContainer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380292686212" ignored="false" />
-    <file path="/PlayerHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381570848722" ignored="false" />
+    <file path="/PlayerHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381579705678" ignored="false" />
     <file path="/BlockSink.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1380283055021" ignored="false" />
     <file path="/ClientProxyTutorial.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357935921279" ignored="false" />
     <file path="/TileEntitySinkRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1357940055402" ignored="false" />
@@ -833,8 +828,8 @@
     <file path="/GuiContainerMonnefCore.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381315622296" ignored="false" />
     <file path="/CraftingHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381564864441" ignored="false" />
     <file path="/CraftingHelperS.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381566508055" ignored="false" />
-    <file path="/CraftingHelper.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381570217081" ignored="false" />
-    <file path="/PersistentItemsCraftingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381568979867" ignored="false" />
+    <file path="/CraftingHelper.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381579169534" ignored="false" />
+    <file path="/PersistentItemsCraftingHandler.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381579330704" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -906,19 +901,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="LeftoversCraftingHandler.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LeftoversCraftingHandler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="86" column="35" selection-start="3700" selection-end="3700" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="86" column="36" selection-start="3701" selection-end="3701" vertical-scroll-proportion="0.6666667">
+              <folding>
+                <element signature="e#3294#3303#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersistentItemsCraftingHandler.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PersistentItemsCraftingHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="0" selection-start="4954" selection-end="4954" vertical-scroll-proportion="0.8411215">
+            <state line="100" column="0" selection-start="4045" selection-end="4045" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -927,8 +924,9 @@
       <file leaf-file-name="CraftingHelper.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/CraftingHelper.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="31" selection-start="807" selection-end="807" vertical-scroll-proportion="0.0">
+            <state line="74" column="0" selection-start="3200" selection-end="3200" vertical-scroll-proportion="0.0">
               <folding>
+                <element signature="n#!!doc" expanded="true" />
                 <element signature="e#73#114#0" expanded="true" />
               </folding>
             </state>
@@ -938,7 +936,7 @@
       <file leaf-file-name="PlayerHelper.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/PlayerHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="57" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0">
+            <state line="37" column="48" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -994,9 +992,9 @@
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/CraftingHelperS.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ConfigurationManager.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/CraftingHelper.scala" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/PlayerHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/PlayerHelper.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/CraftingHelper.scala" />
       </list>
     </option>
   </component>
@@ -1187,62 +1185,6 @@
               <option name="myItemId" value="net" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraftforge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas_1.6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraftforge" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas_1.6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="net" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -1340,19 +1282,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafting" />
+              <option name="myItemId" value="api" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1389,32 +1319,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas_1.6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2061,34 +1965,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/apps/scala-2.10.2/lib/scala-library.jar!/scala/package.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/Configuration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="28" selection-start="129" selection-end="129" vertical-scroll-proportion="0.05379747">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/AchievementPage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="317" selection-end="317" vertical-scroll-proportion="0.1613924">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/ForgeChunkManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="13" selection-start="3326" selection-end="3326" vertical-scroll-proportion="0.5648734">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/common/FakePlayerFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="24" selection-start="210" selection-end="210" vertical-scroll-proportion="0.21518987">
@@ -2131,22 +2007,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="35" selection-start="3700" selection-end="3700" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/CraftingHelper.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="31" selection-start="807" selection-end="807" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#73#114#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/player/EntityPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="87" column="22" selection-start="3817" selection-end="3817" vertical-scroll-proportion="0.0">
@@ -2161,17 +2021,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/recipes/AssemblyRecipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="47" selection-start="467" selection-end="467" vertical-scroll-proportion="0.3321839">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/buildcraft/api/core/BuildCraftAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="352" selection-end="352" vertical-scroll-proportion="0.11724138">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraftforge/oredict/OreDictionary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="13" selection-start="891" selection-end="891" vertical-scroll-proportion="0.1954023">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/apps/scala-2.10.2/lib/scala-library.jar!/scala/collection/mutable/ListBuffer.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="25" selection-start="103" selection-end="103" vertical-scroll-proportion="0.040865384">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/PlayerHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="57" selection-start="1363" selection-end="1363" vertical-scroll-proportion="0.0">
+        <state line="37" column="48" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/CraftingHelper.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="0" selection-start="3200" selection-end="3200" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#73#114#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="0" selection-start="4954" selection-end="4954" vertical-scroll-proportion="0.8411215">
+        <state line="100" column="0" selection-start="4045" selection-end="4045" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/LeftoversCraftingHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="36" selection-start="3701" selection-end="3701" vertical-scroll-proportion="0.6666667">
+          <folding>
+            <element signature="e#3294#3303#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
