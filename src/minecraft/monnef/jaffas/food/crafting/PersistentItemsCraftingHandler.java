@@ -6,7 +6,7 @@
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
-import monnef.core.utils.PlayerHelper;
+import monnef.core.utils.CraftingHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.item.JaffaItem;
@@ -96,46 +96,7 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
     }
 
     private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info, EntityPlayer player) {
-        if (player == null || !ConfigurationManager.transferItemsFromCraftingMatrix) {
-            // "fix" to not crash/return more on BuildCraft's tables...
-            String inventoryClassName = matrix.getClass().getName();
-            if (ConfigurationManager.ignoreBuildCraftsTables) {
-                if (inventoryClassName.contains("TileAdvancedCraftingTable")
-                        || inventoryClassName.contains("TileAutoWorkbench")) {
-                    return;
-                }
-            }
-
-            int slot = getFreeSlot(matrix);
-            if (slot < 0 || slot >= matrix.getSizeInventory()) {
-                if (player != null) {
-                    // no space in crafting matrix, give item directly to a player
-                    PlayerHelper.giveItemToPlayer(player, new ItemStack(info.substituteItemID, info.substituteItemsCount, 0));
-                }
-                return;
-            }
-
-            if (debug) {
-                Log.printInfo("name of inventory of matrix is: " + inventoryClassName);
-            }
-
-            matrix.setInventorySlotContents(slot, new ItemStack(info.substituteItemID, 1 + info.substituteItemsCount, 0)); // +1 because one will be consumed (hmm)
-            processedSlots.add(slot);
-        } else {
-            ItemStack stack = new ItemStack(info.substituteItemID, info.substituteItemsCount, 0);
-            if (!player.worldObj.isRemote) {
-                PlayerHelper.giveItemToPlayer(player, stack);
-            }
-        }
-
-    }
-
-    public static int getFreeSlot(IInventory matrix) {
-        for (int i = 0; i < matrix.getSizeInventory(); i++)
-            if (matrix.getStackInSlot(i) == null)
-                return i;
-
-        return -1;
+        CraftingHelper.returnLeftover(new ItemStack(info.substituteItemID, info.substituteItemsCount, 0), matrix, player, ConfigurationManager.transferItemsFromCraftingMatrix);
     }
 
     @Override
@@ -164,6 +125,4 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
             stick.stackSize++;
         }
     }
-
-
 }

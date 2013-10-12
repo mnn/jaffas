@@ -6,7 +6,9 @@
 package monnef.jaffas.food.crafting;
 
 import cpw.mods.fml.common.ICraftingHandler;
+import monnef.core.utils.CraftingHelper;
 import monnef.core.utils.ItemHelper;
+import monnef.jaffas.food.common.ConfigurationManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ContainerPlayer;
@@ -82,13 +84,7 @@ public class LeftoversCraftingHandler implements ICraftingHandler {
         if (matchingRecipes.size() > 1) throw new RuntimeException("Multiple matching recipes.");
         if (matchingRecipes.size() == 1) {
             List<ItemStack> toGive = db.get(matchingRecipes.get(0));
-            for (ItemStack stack : toGive) {
-                int freeSlot = PersistentItemsCraftingHandler.getFreeSlot(craftMatrix);
-                if (freeSlot == -1) throw new RuntimeException("No free slot for leftovers.");
-                ItemStack newStack = stack.copy();
-                newStack.stackSize++;
-                craftMatrix.setInventorySlotContents(freeSlot, newStack);
-            }
+            CraftingHelper.returnLeftovers(toGive, craftMatrix, player, ConfigurationManager.transferItemsFromCraftingMatrix);
         }
     }
 
