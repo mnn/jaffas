@@ -29,7 +29,7 @@ public class CommonProxy {
     }
 
     public void registerContainers() {
-        ContainerRegistry.register(TileBoard.class, ContainerBoard.class);
+        //ContainerRegistry.register(TileBoard.class, ContainerBoard.class);
         ContainerRegistry.register(TileRipeningBox.class, ContainerRipeningBox.class);
         ContainerRegistry.register(TileFridge.class, ContainerFridge.class);
     }

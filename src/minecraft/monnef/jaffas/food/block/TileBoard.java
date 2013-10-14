@@ -23,7 +23,7 @@ import net.minecraftforge.common.ForgeDirection;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.common.ContentHolder.blockBoard;
 
-@ContainerRegistry.ContainerTag(slotsCount = 3)
+@ContainerRegistry.ContainerTag(slotsCount = 3, containerClassName = "monnef.jaffas.food.block.ContainerBoard", guiClassName = "monnef.jaffas.food.client.GuiBoard")
 public class TileBoard extends TileEntity implements IInventory, ISidedInventory {
     private ItemStack[] inv;
     public int chopTime;
