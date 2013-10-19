@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,7 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0)
-public class TileGenerator extends TileEntityMachineWithInventory {
+public class TileGenerator extends TileMachineWithInventory {
     private static final String BURN_TIME_TAG_NAME = "burnTime";
     private static final String BURN_ITEM_TIME_TAG_NAME = "burnItemTime";
     private static final float ENERGY_PER_TICK = 1.05f;

@@ -6,12 +6,12 @@
 package monnef.jaffas.power.block.common;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.core.block.TileMachine;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.BoundingBoxSize;
 import monnef.core.utils.DirectionHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.food.block.common.TileEntityMachine;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.api.IMachineTool;
 import monnef.jaffas.power.common.WrenchHelper;
@@ -54,8 +54,8 @@ public abstract class BlockMachine extends BlockPower {
 
     public abstract TileEntity createTileEntity(World world, int meta);
 
-    public TileEntityMachine getTile(IBlockAccess world, int x, int y, int z) {
-        return (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+    public TileMachine getTile(IBlockAccess world, int x, int y, int z) {
+        return (TileMachine) world.getBlockTileEntity(x, y, z);
     }
 
     public void setRotationShiftInPlacing(int rotationShiftInPlacing) {
@@ -85,7 +85,7 @@ public abstract class BlockMachine extends BlockPower {
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
         if (!useRotatedBoundingBox) return;
-        TileEntityMachine tile = getTile(world, x, y, z);
+        TileMachine tile = getTile(world, x, y, z);
         if (tile == null) return;
         ForgeDirection rotation = tile.getRotation();
         if (rotation == null) return;
@@ -98,7 +98,7 @@ public abstract class BlockMachine extends BlockPower {
 
     @Override
     public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        TileEntityMachine tile = getTile(w, x, y, z);
+        TileMachine tile = getTile(w, x, y, z);
 
         if (useDefaultDirection) {
             MovingObjectPosition obj = null; // = entity.rayTrace(5, 1);
@@ -162,7 +162,7 @@ public abstract class BlockMachine extends BlockPower {
                 return this.onPipeWrenchClickDefault(world, x, y, z, player, side);
             } else if (item instanceof IMachineTool) {
                 IMachineTool tool = (IMachineTool) item;
-                TileEntityMachine machineTile = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+                TileMachine machineTile = (TileMachine) world.getBlockTileEntity(x, y, z);
                 return tool.onMachineClick(machineTile, player, side);
             }
         }
@@ -193,7 +193,7 @@ public abstract class BlockMachine extends BlockPower {
     }
 
     private boolean doRotation(World world, int x, int y, int z, EntityPlayer player, int side) {
-        TileEntityMachine machine = (TileEntityMachine) world.getBlockTileEntity(x, y, z);
+        TileMachine machine = (TileMachine) world.getBlockTileEntity(x, y, z);
         if (!((BlockMachine) machine.getBlockType()).supportRotation()) return false;
         boolean res = machine.toggleRotation();
         machine.sendUpdate();

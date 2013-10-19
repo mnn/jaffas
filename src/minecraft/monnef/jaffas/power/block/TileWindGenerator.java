@@ -9,13 +9,13 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import monnef.jaffas.power.common.IWindObstacles;
 import monnef.jaffas.power.common.WindObstaclesFastFail;
@@ -32,7 +32,7 @@ import net.minecraftforge.common.ForgeDirection;
 import java.util.List;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0)
-public class TileWindGenerator extends TileEntityMachineWithInventory {
+public class TileWindGenerator extends TileMachineWithInventory {
     public static final int TURBINE_SLOT = 0;
     public static final int TICKS_PER_MINUTE = 60 * 20;
     public static final int DAMAGE_TIMER_BASE = TICKS_PER_MINUTE;

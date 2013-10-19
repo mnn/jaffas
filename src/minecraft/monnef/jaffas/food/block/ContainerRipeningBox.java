@@ -61,11 +61,6 @@ public class ContainerRipeningBox extends ContainerMonnefCore {
     }
 
     @Override
-    public int getSlotsCount() {
-        return box.getSizeInventory();
-    }
-
-    @Override
     public void constructSlots(IInventory inv) {
         for (int i = 0; i < RIPENING_SLOTS; i++) {
             addSlotToContainer(new Slot(inv, i, 26 + (i % 4) * 20, 26 + (i / 4) * 20));

@@ -9,7 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.ContainerMonnefCore;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
+import monnef.core.block.TileMachineWithInventory;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
@@ -18,7 +18,7 @@ import net.minecraft.inventory.Slot;
 import java.util.ArrayList;
 
 public class ContainerMachine extends ContainerMonnefCore {
-    protected TileEntityMachineWithInventory machine;
+    protected TileMachineWithInventory machine;
 
     protected ArrayList<Integer> lastValue;
 
@@ -27,7 +27,7 @@ public class ContainerMachine extends ContainerMonnefCore {
         addSlotToContainer(new Slot(inv, 0, 80, 25));
     }
 
-    public ContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory te) {
+    public ContainerMachine(InventoryPlayer inventoryPlayer, TileMachineWithInventory te) {
         super(inventoryPlayer, te);
         machine = te;
 

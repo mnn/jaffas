@@ -5,11 +5,11 @@
 
 package monnef.jaffas.power.api;
 
-import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.core.block.TileMachine;
 import net.minecraft.entity.player.EntityPlayer;
 
 public interface IMachineTool {
-    public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side);
+    public boolean onMachineClick(TileMachine machine, EntityPlayer player, int side);
 
     public boolean renderPowerLabels(EntityPlayer player);
 }

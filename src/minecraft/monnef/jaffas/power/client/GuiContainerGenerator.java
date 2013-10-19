@@ -6,7 +6,7 @@
 package monnef.jaffas.power.client;
 
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import monnef.jaffas.power.client.common.GuiContainerMachine;
@@ -18,7 +18,7 @@ import java.util.List;
 public class GuiContainerGenerator extends GuiContainerMachine {
     private TileGenerator generator;
 
-    public GuiContainerGenerator(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory tileEntity, ContainerMachine container) {
+    public GuiContainerGenerator(InventoryPlayer inventoryPlayer, TileMachineWithInventory tileEntity, ContainerMachine container) {
         super(inventoryPlayer, tileEntity, container);
         generator = (TileGenerator) tileEntity;
     }

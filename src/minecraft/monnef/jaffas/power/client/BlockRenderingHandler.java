@@ -6,7 +6,7 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.core.block.TileMachine;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileAntenna;
 import monnef.jaffas.power.block.TileGenerator;
@@ -26,11 +26,11 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     private static TileAntenna antenna;
 
     static {
-        TileEntityMachine.enableDummyCreationPhase();
+        TileMachine.enableDummyCreationPhase();
         generator = new TileGenerator();
         antenna = new TileAntenna();
         conductor = new TileLightningConductor();
-        TileEntityMachine.disableDummyCreationPhase();
+        TileMachine.disableDummyCreationPhase();
     }
 
     @Override

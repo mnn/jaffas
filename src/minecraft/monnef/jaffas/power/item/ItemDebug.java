@@ -6,7 +6,7 @@
 package monnef.jaffas.power.item;
 
 import buildcraft.api.power.PowerHandler;
-import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.core.block.TileMachine;
 import monnef.jaffas.power.api.IMachineTool;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -19,7 +19,7 @@ public class ItemDebug extends ItemPower implements IMachineTool {
     }
 
     @Override
-    public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side) {
+    public boolean onMachineClick(TileMachine machine, EntityPlayer player, int side) {
         this.player = player;
 
         if (machine == null) {

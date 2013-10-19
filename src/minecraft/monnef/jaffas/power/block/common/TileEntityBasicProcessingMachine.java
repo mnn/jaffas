@@ -7,7 +7,7 @@ package monnef.jaffas.power.block.common;
 
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.ItemHelper;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.power.common.IProcessingRecipe;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
 import net.minecraft.item.ItemStack;
@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagList;
 import static monnef.jaffas.food.JaffasFood.Log;
 
 @ContainerRegistry.ContainerTag(slotsCount = 2)
-public abstract class TileEntityBasicProcessingMachine extends TileEntityMachineWithInventory {
+public abstract class TileEntityBasicProcessingMachine extends TileMachineWithInventory {
     private static final String PROCESS_TIME_TAG_NAME = "processTime";
     private static final String PROCESS_ITEM_TIME_TAG_NAME = "processItemTime";
     private static final String INPUT_ITEM_TAG = "inputItem";

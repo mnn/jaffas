@@ -44,7 +44,7 @@ public class GuiHandler implements IGuiHandler {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
         /*
         if (tileEntity instanceof TileGenerator) {
-            return new GuiContainerGenerator(player.inventory, (TileGenerator) tileEntity, new ContainerMachine(player.inventory, (TileEntityMachineWithInventory) tileEntity));
+            return new GuiContainerGenerator(player.inventory, (TileGenerator) tileEntity, new ContainerMachine(player.inventory, (TileMachineWithInventory) tileEntity));
         } else if (tileEntity instanceof TileEntityBasicProcessingMachine) {
             return proxy.createGuiFromProcessingMachineRegistry((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
         } else if (tileEntity instanceof TileWebHarvester) {

@@ -7,17 +7,17 @@ package monnef.jaffas.power.block;
 
 import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1)
-public class TileWebHarvester extends TileEntityMachineWithInventory implements ISidedInventory {
+public class TileWebHarvester extends TileMachineWithInventory implements ISidedInventory {
     public static final int WEB_HARVESTER_RADIUS = 5;
     public static final int WEB_HARVESTER_DIAMETER = 2 * WEB_HARVESTER_RADIUS;
     private static final int WEB_HARVESTER_DIAMETER_SQUARE = WEB_HARVESTER_DIAMETER * WEB_HARVESTER_DIAMETER;

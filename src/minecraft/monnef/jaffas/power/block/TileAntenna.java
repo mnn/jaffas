@@ -5,11 +5,11 @@
 
 package monnef.jaffas.power.block;
 
-import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.core.block.TileMachine;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileAntenna extends TileEntityMachine {
+public class TileAntenna extends TileMachine {
     private boolean lit;
 
     public TileAntenna() {

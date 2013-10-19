@@ -10,8 +10,8 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.JaffasTrees;
@@ -34,7 +34,7 @@ import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_NOISE;
 import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_SUCK;
 
 @ContainerRegistry.ContainerTag(slotsCount = 4, outputSlotsCount = 4)
-public class TileFruitCollector extends TileEntityMachineWithInventory {
+public class TileFruitCollector extends TileMachineWithInventory {
 
     public static final int suckCost = 30;
     public static Random rand = new Random();

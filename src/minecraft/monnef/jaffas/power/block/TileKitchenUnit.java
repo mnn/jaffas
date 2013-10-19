@@ -7,14 +7,14 @@ package monnef.jaffas.power.block;
 
 import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
+import monnef.core.block.TileMachine;
 import monnef.core.utils.TileEntityHelper;
-import monnef.jaffas.food.block.common.TileEntityMachine;
 import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.ForgeDirection;
 
-public class TileKitchenUnit extends TileEntityMachine {
+public class TileKitchenUnit extends TileMachine {
     public static final ForgeDirection INPUT_SIDE_OF_APPLIANCE = ForgeDirection.DOWN;
     private int skipCounter;
 

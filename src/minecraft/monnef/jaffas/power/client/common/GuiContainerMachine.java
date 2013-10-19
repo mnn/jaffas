@@ -7,7 +7,7 @@ package monnef.jaffas.power.client.common;
 
 import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.ColorHelper;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -23,9 +23,9 @@ public class GuiContainerMachine extends GuiContainerMonnefCore {
     public static final int ENERGY_BAR_WIDTH = 18;
     protected static ColorHelper.IntColor topColor = new ColorHelper.IntColor(53, 180, 212);
     protected static ColorHelper.IntColor bottomColor = new ColorHelper.IntColor(25, 78, 90);
-    protected final TileEntityMachineWithInventory tile;
+    protected final TileMachineWithInventory tile;
 
-    public GuiContainerMachine(InventoryPlayer inventoryPlayer, TileEntityMachineWithInventory tileEntity, ContainerMachine container) {
+    public GuiContainerMachine(InventoryPlayer inventoryPlayer, TileMachineWithInventory tileEntity, ContainerMachine container) {
         super(container);
         this.tile = tileEntity;
     }
@@ -48,7 +48,7 @@ public class GuiContainerMachine extends GuiContainerMonnefCore {
             drawEnergyBar(tile);
     }
 
-    protected void drawEnergyBar(TileEntityMachineWithInventory tile) {
+    protected void drawEnergyBar(TileMachineWithInventory tile) {
         int value = tile.powerMax != 0 ? (tile.powerStored * ENERGY_BAR_INNER_HEIGHT) / tile.powerMax : 0;
         drawBottomUpBar(x + ENERGY_BAR_X, y + ENERGY_BAR_Y, value, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT, topColor, bottomColor);
     }

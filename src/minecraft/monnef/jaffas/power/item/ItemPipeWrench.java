@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.item;
 
-import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.core.block.TileMachine;
 import monnef.jaffas.power.api.IPipeWrench;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +20,7 @@ public class ItemPipeWrench extends ItemPower implements IPipeWrench {
     }
 
     @Override
-    public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side) {
+    public boolean onMachineClick(TileMachine machine, EntityPlayer player, int side) {
         return false;
     }
 

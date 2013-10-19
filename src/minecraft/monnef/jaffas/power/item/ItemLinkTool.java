@@ -5,9 +5,8 @@
 
 package monnef.jaffas.power.item;
 
-import monnef.core.MonnefCorePlugin;
+import monnef.core.block.TileMachine;
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.food.block.common.TileEntityMachine;
 import monnef.jaffas.power.api.IMachineTool;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +24,7 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
     }
 
     @Override
-    public boolean onMachineClick(TileEntityMachine machine, EntityPlayer player, int side) {
+    public boolean onMachineClick(TileMachine machine, EntityPlayer player, int side) {
         return false;
     }
 

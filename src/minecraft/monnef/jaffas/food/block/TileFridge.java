@@ -5,9 +5,9 @@
 
 package monnef.jaffas.food.block;
 
+import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BiomeHelper;
-import monnef.jaffas.food.block.common.TileEntityMachineWithInventory;
 import monnef.jaffas.food.crafting.RecipesFridge;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.IInventory;
@@ -18,7 +18,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import java.util.Random;
 
 @ContainerRegistry.ContainerTag(slotsCount = 20, outputSlotsCount = 0)
-public class TileFridge extends TileEntityMachineWithInventory implements IInventory {
+public class TileFridge extends TileMachineWithInventory implements IInventory {
     public static Random rand = new Random();
 
     private int front;

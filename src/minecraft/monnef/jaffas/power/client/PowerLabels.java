@@ -6,7 +6,7 @@
 package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import monnef.jaffas.food.block.common.TileEntityMachine;
+import monnef.core.block.TileMachine;
 import monnef.jaffas.power.api.IMachineTool;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.item.Item;
@@ -33,14 +33,14 @@ public class PowerLabels {
         player = FMLClientHandler.instance().getClient().thePlayer;
     }
 
-    public static void renderLabel(TileEntityMachine tile, double x, double y, double z, boolean debug) {
+    public static void renderLabel(TileMachine tile, double x, double y, double z, boolean debug) {
         // skip label rendering when rendering in inventory/hand
         if (tile.worldObj == null) return;
 
         instance.render(tile, x, y, z, debug);
     }
 
-    public void render(TileEntityMachine tile, double x, double y, double z, boolean debug) {
+    public void render(TileMachine tile, double x, double y, double z, boolean debug) {
         if (!holdingTool()) {
             return;
         }
@@ -51,7 +51,7 @@ public class PowerLabels {
         labelRenderer.renderLabel(tile, label, RENDER_DISTANCE, x, y, z, 40, 3);
     }
 
-    private String generateLabelText(TileEntityMachine tile, boolean debug) {
+    private String generateLabelText(TileMachine tile, boolean debug) {
         StringBuilder text = new StringBuilder();
 
         text.append(tile.getMachineTitle());
@@ -81,7 +81,7 @@ public class PowerLabels {
         return text.toString();
     }
 
-    private boolean isFullyInitialized(TileEntityMachine tile, boolean provider, boolean consumer) {
+    private boolean isFullyInitialized(TileMachine tile, boolean provider, boolean consumer) {
 /*        if (provider && !((IPowerProvider) tile).getPowerProviderManager().isInitialized()) {
             return false;
         }
