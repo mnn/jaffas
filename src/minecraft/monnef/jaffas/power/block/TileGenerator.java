@@ -9,9 +9,9 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
-import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.item.ItemStack;
@@ -20,7 +20,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.common.ForgeDirection;
 
-@ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0)
+@ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0, containerClassName = "monnef.jaffas.power.block.common.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerGenerator")
 public class TileGenerator extends TileMachineWithInventory {
     private static final String BURN_TIME_TAG_NAME = "burnTime";
     private static final String BURN_ITEM_TIME_TAG_NAME = "burnItemTime";

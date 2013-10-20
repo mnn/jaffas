@@ -5,18 +5,20 @@
 
 package monnef.jaffas.power.block.common;
 
+import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.ItemHelper;
-import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.power.common.IProcessingRecipe;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import java.util.HashMap;
+
 import static monnef.jaffas.food.JaffasFood.Log;
 
-@ContainerRegistry.ContainerTag(slotsCount = 2)
+@ContainerRegistry.ContainerTag(slotsCount = 2, containerClassName = "monnef.jaffas.power.block.common.ContainerBasicProcessingMachine", guiClassName = "monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine")
 public abstract class TileEntityBasicProcessingMachine extends TileMachineWithInventory {
     private static final String PROCESS_TIME_TAG_NAME = "processTime";
     private static final String PROCESS_ITEM_TIME_TAG_NAME = "processItemTime";
@@ -27,18 +29,73 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
     public int processTime = 0;
     public int processItemTime = 1;
     private ItemStack[] processingInv;
+    private MachineRecord myRecord = getMachineRecord(this.getClass());
+
+    private static final HashMap<Class<? extends TileEntityBasicProcessingMachine>, MachineRecord> machineRecords = new HashMap<Class<? extends TileEntityBasicProcessingMachine>, MachineRecord>();
+
+    public static class MachineRecord {
+        private IProcessingRecipeHandler recipeHandler;
+        private String guiBackgroundTexture;
+        private String title;
+
+        private MachineRecord(IProcessingRecipeHandler recipeHandler, String guiBackgroundTexture, String title) {
+            this.recipeHandler = recipeHandler;
+            this.guiBackgroundTexture = guiBackgroundTexture;
+            this.title = title;
+        }
+
+        public IProcessingRecipeHandler getRecipeHandler() {
+            return recipeHandler;
+        }
+
+        public String getGuiBackgroundTexture() {
+            return guiBackgroundTexture;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+    }
+
+    @Override
+    public String getMachineTitle() {
+        return myRecord.getTitle();
+    }
+
+    public static MachineRecord getMachineRecord(Class<? extends TileEntityBasicProcessingMachine> clazz) {
+        return machineRecords.get(clazz);
+    }
+
+    public static void registerMachine(Class<? extends TileEntityBasicProcessingMachine> clazz, IProcessingRecipeHandler handler, String backgroundTexture, String title) {
+        if (machineRecords.containsKey(clazz)) {
+            throw new RuntimeException("Re-registering recipe handler for class " + clazz.getName() + ".");
+        }
+        if (clazz == null || handler == null) {
+            throw new NullPointerException("class or handler");
+        }
+        machineRecords.put(clazz, new MachineRecord(handler, backgroundTexture, title));
+    }
 
     protected TileEntityBasicProcessingMachine() {
         super();
         processingInv = new ItemStack[getSizeInventory()];
     }
 
+    public static IProcessingRecipeHandler getRecipeHandler(Class<? extends TileEntityBasicProcessingMachine> machineClass) {
+        if (!machineRecords.containsKey(machineClass)) return null;
+        return machineRecords.get(machineClass).getRecipeHandler();
+    }
+
+    public static String getBackgroundTexture(Class<? extends TileEntityBasicProcessingMachine> machineClass) {
+        if (!machineRecords.containsKey(machineClass)) return null;
+        return machineRecords.get(machineClass).getGuiBackgroundTexture();
+    }
+
+
     @Override
     public int getSizeInventory() {
         return getContainerDescriptor().getSlotsCount();
     }
-
-    public abstract IProcessingRecipeHandler getRecipeHandler();
 
     @Override
     protected void configurePowerParameters() {
@@ -58,7 +115,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
             } else {
                 if (processTime >= processItemTime) {
                     processTime = 0;
-                    IProcessingRecipe recipe = getRecipeHandler().findByInput(processingInv);
+                    IProcessingRecipe recipe = getRecipeHandler(this.getClass()).findByInput(processingInv);
                     if (recipe == null) {
                         Log.printWarning("Null recipe in " + this.getClass().getSimpleName());
                     } else {
@@ -67,7 +124,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
                 }
             }
         } else {
-            IProcessingRecipe recipe = getRecipeHandler().findByInput(createInputInv());
+            IProcessingRecipe recipe = getRecipeHandler(this.getClass()).findByInput(createInputInv());
             if (recipe != null) {
                 if (isOutputSlotFreeFor(recipe.getOutput())) {
                     processTime = 1;
@@ -212,7 +269,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
         getPowerHandler().writeToNBT(tag);
     }
 
-    public String getGuiBackgroundTexture() {
+    public static String getDefaultGuiBackgroundTexture() {
         return "guipmachine.png";
     }
 }

@@ -464,8 +464,6 @@ public class JaffasTrees extends JaffasModBase {
         // texture stuff
         proxy.registerRenderThings();
 
-        proxy.registerContainers();
-
         //GameRegistry.registerCraftingHandler(new PersistentItemsCraftingHandler());
 
         registerForestryStuff();

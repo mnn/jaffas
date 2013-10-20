@@ -102,14 +102,6 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void registerContainers() {
-        super.registerContainers();
-        //ContainerRegistry.registerOnClient(TileBoard.class, GuiBoard.class);
-        ContainerRegistry.registerOnClient(TileRipeningBox.class, GuiRipeningBox.class);
-        ContainerRegistry.registerOnClient(TileFridge.class, GuiFridge.class);
-    }
-
-    @Override
     public void handleSyncPacket(Player player, int secondsRemaining, boolean openGUI) {
         EntityClientPlayerMP p = (EntityClientPlayerMP) player;
         CoolDownRegistry.setCoolDown(p.getEntityName(), SPAWN_STONE, secondsRemaining);

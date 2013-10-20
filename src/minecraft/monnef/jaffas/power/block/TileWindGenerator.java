@@ -31,7 +31,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import java.util.List;
 
-@ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0)
+@ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0, containerClassName = "monnef.jaffas.power.block.common.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerWindGenerator")
 public class TileWindGenerator extends TileMachineWithInventory {
     public static final int TURBINE_SLOT = 0;
     public static final int TICKS_PER_MINUTE = 60 * 20;

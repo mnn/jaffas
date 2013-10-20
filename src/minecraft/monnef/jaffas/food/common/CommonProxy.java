@@ -28,12 +28,6 @@ public class CommonProxy {
     public void registerTickHandler() {
     }
 
-    public void registerContainers() {
-        //ContainerRegistry.register(TileBoard.class, ContainerBoard.class);
-        ContainerRegistry.register(TileRipeningBox.class, ContainerRipeningBox.class);
-        ContainerRegistry.register(TileFridge.class, ContainerFridge.class);
-    }
-
     public void handleSyncPacket(Player player, int secondsRemaining, boolean openGUI) {
     }
 

@@ -12,7 +12,4 @@ import net.minecraft.tileentity.TileEntity;
 public class CommonProxy {
     public void registerRenderThings() {
     }
-
-    public void registerGUIsOfProcessingMachines() {
-    }
 }

@@ -48,8 +48,7 @@ import monnef.jaffas.power.block.TileLightningConductor;
 import monnef.jaffas.power.block.TileToaster;
 import monnef.jaffas.power.block.TileWebHarvester;
 import monnef.jaffas.power.block.TileWindGenerator;
-import monnef.jaffas.power.block.common.ContainerBasicProcessingMachine;
-import monnef.jaffas.power.block.common.ContainerMachine;
+import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.client.GuiHandler;
 import monnef.jaffas.power.common.CommonProxy;
 import monnef.jaffas.power.common.LightingHandler;
@@ -230,7 +229,6 @@ public class JaffasPower extends JaffasModBase {
     }
 
     private void createItems() {
-        ContainerRegistry.register(TileGenerator.class, ContainerMachine.class);
         generator = new BlockGenerator(blockGeneratorID, 5);
         RegistryUtils.registerBlock(generator, "Generator");
         registerTileEntity(TileGenerator.class, "jp.generator");
@@ -258,24 +256,22 @@ public class JaffasPower extends JaffasModBase {
         RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
         registerTileEntity(TileKitchenUnit.class, "kitchenUnit");
 
-        ContainerRegistry.register(TileGrinder.class, ContainerBasicProcessingMachine.class);
+        TileEntityBasicProcessingMachine.registerMachine(TileGrinder.class, TileGrinder.getRecipeHandler(), TileEntityBasicProcessingMachine.getDefaultGuiBackgroundTexture(), "Grinder");
         grinder = new BlockGrinder(blockGrinderID, 101, TileGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
         RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
         registerTileEntity(TileGrinder.class, "grinder");
         grinder.setRotationShiftInPlacing(1);
 
-        ContainerRegistry.register(TileToaster.class, ContainerBasicProcessingMachine.class);
+        TileEntityBasicProcessingMachine.registerMachine(TileToaster.class, TileToaster.getRecipeHandler(), TileEntityBasicProcessingMachine.getDefaultGuiBackgroundTexture(), "Toaster");
         toaster = new BlockToaster(blockToasterID, 50, TileToaster.class, GuiHandler.GuiId.TOASTER, true, false);
         RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
         registerTileEntity(TileToaster.class, "toaster");
 
-        ContainerRegistry.register(TileWebHarvester.class, ContainerMachine.class);
         webHarvester = new BlockWebHarvester(blockWebHarvesterID, 51, breakableIronMaterial, false, false);
         RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
         registerTileEntity(TileWebHarvester.class, "webHarvester");
 
         if (windGeneratorEnabled) {
-            ContainerRegistry.register(TileWindGenerator.class, ContainerMachine.class);
             windGenerator = new BlockWindGenerator(blockWindGeneratorID, 54, breakableIronMaterial, false, false);
             RegistryUtils.registerBlock(windGenerator, "windGenerator", "Wind Generator");
             registerTileEntity(TileWindGenerator.class, "windGenerator");
@@ -294,8 +290,6 @@ public class JaffasPower extends JaffasModBase {
 
             turbineBlade = new ItemTurbineBlade(itemTurbineBladeID, 58);
         }
-
-        proxy.registerGUIsOfProcessingMachines();
     }
 
     private Object clientWrapper(Object a) {

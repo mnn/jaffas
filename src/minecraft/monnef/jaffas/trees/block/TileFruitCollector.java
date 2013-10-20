@@ -33,7 +33,7 @@ import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_NOISE;
 import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_SUCK;
 
-@ContainerRegistry.ContainerTag(slotsCount = 4, outputSlotsCount = 4)
+@ContainerRegistry.ContainerTag(slotsCount = 4, outputSlotsCount = 4,containerClassName ="monnef.jaffas.trees.block.ContainerFruitCollector",guiClassName = "monnef.jaffas.trees.client.GuiFruitCollector")
 public class TileFruitCollector extends TileMachineWithInventory {
 
     public static final int suckCost = 30;

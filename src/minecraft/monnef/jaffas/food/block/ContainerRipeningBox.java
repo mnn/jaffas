@@ -67,9 +67,4 @@ public class ContainerRipeningBox extends ContainerMonnefCore {
         }
         addSlotToContainer(new SlotOutput(inv, TileRipeningBox.SLOT_OUTPUT, 133, 20)); // output
     }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
-    }
 }

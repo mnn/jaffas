@@ -8,24 +8,24 @@ package monnef.jaffas.food.nei;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 
 public class ProcessingMachineRecipeHandlerWrapper extends ProcessingMachineRecipeHandler {
-    private static TileEntityBasicProcessingMachine tile;
+    private static Class<? extends TileEntityBasicProcessingMachine> machineClazz;
 
-    public static void init(TileEntityBasicProcessingMachine newTile) {
-        if (tile != null) {
-            throw new RuntimeException("Tile already set.");
+    public static void init(Class<? extends TileEntityBasicProcessingMachine> newClazz) {
+        if (machineClazz != null) {
+            throw new RuntimeException("machineClazz already set.");
         }
 
-        tile = newTile;
+        machineClazz = newClazz;
     }
 
     public ProcessingMachineRecipeHandlerWrapper() {
-        super(checkTile(tile));
+        super(checkTile(machineClazz));
     }
 
-    private static TileEntityBasicProcessingMachine checkTile(TileEntityBasicProcessingMachine tile) {
-        if (tile == null) {
+    private static Class<? extends TileEntityBasicProcessingMachine> checkTile(Class<? extends TileEntityBasicProcessingMachine> clazz) {
+        if (clazz == null) {
             throw new RuntimeException("Tile is null!");
         }
-        return tile;
+        return clazz;
     }
 }

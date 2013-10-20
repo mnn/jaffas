@@ -39,10 +39,4 @@ public class ClientProxy extends CommonProxy {
             Minecraft.getMinecraft().effectRenderer.addEffect(efx);
         }
     }
-
-    @Override
-    public void registerContainers() {
-        super.registerContainers();
-        ContainerRegistry.registerOnClient(TileFruitCollector.class, GuiFruitCollector.class);
-    }
 }

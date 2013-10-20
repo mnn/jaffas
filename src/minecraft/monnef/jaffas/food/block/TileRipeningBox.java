@@ -15,7 +15,7 @@ import net.minecraft.item.ItemStack;
 
 import static monnef.jaffas.food.JaffasFood.itemsHaveSameID;
 
-@ContainerRegistry.ContainerTag(slotsCount = 9)
+@ContainerRegistry.ContainerTag(slotsCount = 9, containerClassName = "monnef.jaffas.food.block.ContainerRipeningBox", guiClassName = "monnef.jaffas.food.client.GuiRipeningBox")
 public class TileRipeningBox extends TileWithInventory {
     public static final int SLOT_OUTPUT = 8;
     public static final int RIPENING_SLOTS = 8;

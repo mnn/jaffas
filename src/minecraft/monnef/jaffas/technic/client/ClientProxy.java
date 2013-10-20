@@ -47,12 +47,4 @@ public class ClientProxy extends CommonProxy {
         MinecraftForgeClient.registerItemRenderer(JaffasTechnic.lamp.blockID, lampBlockRenderer);
         MinecraftForgeClient.registerItemRenderer(JaffasTechnic.lampDeco.blockID, lampBlockRenderer);
     }
-
-    @Override
-    public void registerContainers() {
-        super.registerContainers();
-        ContainerRegistry.registerOnClient(TileCobbleBreaker.class, GuiCobbleBreaker.class);
-        ContainerRegistry.registerOnClient(TileCompostCore.class, GuiCompost.class);
-        ContainerRegistry.registerOnClient(TileFermenter.class, GuiFermenter.class);
-    }
 }

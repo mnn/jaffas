@@ -33,7 +33,7 @@ import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.CON_ALL
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.CON_GLASS;
 import static monnef.jaffas.technic.common.MultiBlockHelper.TemplateMark.ME;
 
-@ContainerRegistry.ContainerTag(slotsCount = 2)
+@ContainerRegistry.ContainerTag(slotsCount = 2, containerClassName = "monnef.jaffas.technic.block.ContainerCompost", guiClassName = "monnef.jaffas.technic.client.GuiCompost")
 public class TileCompostCore extends TileEntity implements IInventory, ISidedInventory {
     public static final int NUMBER_OF_COMPOST_PRODUCED = 32;
     public static final String TAG_WORK_METER = "workMeter";

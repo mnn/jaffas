@@ -24,18 +24,6 @@ public class ContainerBasicProcessingMachine extends ContainerMachine {
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 111, 35));
     }
 
-    /*
-    @Override
-    public int getSlotsCount() {
-        return 2;
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
-    }
-    */
-
     public Slot getOutputSlot(int outputNumber) {
         return getSlot(getStartIndexOfOutput() + outputNumber);
     }

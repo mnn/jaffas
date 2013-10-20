@@ -17,7 +17,7 @@ import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.Random;
 
-@ContainerRegistry.ContainerTag(slotsCount = 20, outputSlotsCount = 0)
+@ContainerRegistry.ContainerTag(slotsCount = 20, outputSlotsCount = 0, containerClassName = "monnef.jaffas.food.block.ContainerFridge", guiClassName = "monnef.jaffas.food.client.GuiFridge")
 public class TileFridge extends TileMachineWithInventory implements IInventory {
     public static Random rand = new Random();
 

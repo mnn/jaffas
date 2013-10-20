@@ -37,7 +37,7 @@ import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.NOTHING;
 import static monnef.jaffas.technic.block.TileFermenter.FermentedLiquid.WINE;
 import static monnef.jaffas.technic.block.TileKeg.KegType;
 
-@ContainerRegistry.ContainerTag(slotsCount = 3)
+@ContainerRegistry.ContainerTag(slotsCount = 3, containerClassName = "monnef.jaffas.technic.block.ContainerFermenter", guiClassName = "monnef.jaffas.technic.client.GuiFermenter")
 public class TileFermenter extends TileEntity implements IInventory, ISidedInventory {
     private static final String WORK_TIME_TAG = "workCounter";
     private static final String LIQUID_AMOUNT_TAG = "liquidAmount";

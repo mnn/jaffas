@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.block;
 
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 
 import static monnef.jaffas.food.JaffasFood.getItem;
 
+@ContainerRegistry.ContainerTag(slotsCount = 2, containerClassName = "monnef.jaffas.power.block.common.ContainerBasicProcessingMachine", guiClassName = "monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine")
 public class TileToaster extends TileEntityBasicProcessingMachine implements IKitchenUnitAppliance {
     public enum ToastLevel {
         MEDIUM
@@ -46,18 +48,12 @@ public class TileToaster extends TileEntityBasicProcessingMachine implements IKi
         slowingCoefficient = 3;
     }
 
-    @Override
-    public IProcessingRecipeHandler getRecipeHandler() {
-        return recipes.get(currentLevel);
+    public static IProcessingRecipeHandler getRecipeHandler() {
+        return recipes.get(ToastLevel.MEDIUM); // TODO: more levels
     }
 
     @Override
     public String getInvName() {
         return "jaffas.power.toaster";
-    }
-
-    @Override
-    public String getMachineTitle() {
-        return "Toaster";
     }
 }

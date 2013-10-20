@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.block;
 
+import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
@@ -14,6 +15,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.ArrayList;
 
+@ContainerRegistry.ContainerTag(slotsCount = 2, containerClassName = "monnef.jaffas.power.block.common.ContainerBasicProcessingMachine", guiClassName = "monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine")
 public class TileGrinder extends TileEntityBasicProcessingMachine implements IKitchenUnitAppliance {
     private static ProcessingRecipeHandler recipes = new ProcessingRecipeHandler();
 
@@ -33,13 +35,7 @@ public class TileGrinder extends TileEntityBasicProcessingMachine implements IKi
         return "jaffas.power.grinder";
     }
 
-    @Override
-    public String getMachineTitle() {
-        return "Grinder";
-    }
-
-    @Override
-    public IProcessingRecipeHandler getRecipeHandler() {
+    public static IProcessingRecipeHandler getRecipeHandler() {
         return recipes;
     }
 }

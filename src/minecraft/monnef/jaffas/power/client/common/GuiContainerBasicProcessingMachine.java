@@ -12,11 +12,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiContainerBasicProcessingMachine extends GuiContainerMachine {
     protected TileEntityBasicProcessingMachine bpMachine;
+    private TileEntityBasicProcessingMachine.MachineRecord machineRecord;
 
     public GuiContainerBasicProcessingMachine(InventoryPlayer inventoryPlayer, TileEntityBasicProcessingMachine tileEntity, ContainerMachine container) {
         super(inventoryPlayer, tileEntity, container);
 
         bpMachine = tileEntity;
+        machineRecord = TileEntityBasicProcessingMachine.getMachineRecord(tileEntity.getClass());
     }
 
     @Override
@@ -41,7 +43,7 @@ public class GuiContainerBasicProcessingMachine extends GuiContainerMachine {
 
     @Override
     public String getBackgroundTexture() {
-        return bpMachine.getGuiBackgroundTexture();
+        return machineRecord.getGuiBackgroundTexture();
     }
 
     @Override

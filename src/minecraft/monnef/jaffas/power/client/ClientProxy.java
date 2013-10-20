@@ -45,13 +45,4 @@ public class ClientProxy extends CommonProxy {
 
         RenderingRegistry.registerEntityRenderingHandler(EntityWindTurbine.class, new RenderWindTurbine());
     }
-
-    @Override
-    public void registerGUIsOfProcessingMachines() {
-        ContainerRegistry.registerOnClient(TileGrinder.class, GuiContainerBasicProcessingMachine.class);
-        ContainerRegistry.registerOnClient(TileToaster.class, GuiContainerBasicProcessingMachine.class);
-        ContainerRegistry.registerOnClient(TileGenerator.class, GuiContainerGenerator.class);
-        ContainerRegistry.registerOnClient(TileWebHarvester.class, GuiContainerWebHarvester.class);
-        ContainerRegistry.registerOnClient(TileWindGenerator.class, GuiContainerWindGenerator.class);
-    }
 }

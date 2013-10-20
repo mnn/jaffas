@@ -28,22 +28,29 @@ import java.util.Collection;
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.GUI;
 
 public class ProcessingMachineRecipeHandler extends TemplateRecipeHandler implements ICraftingHandler, IUsageHandler {
-    private TileEntityBasicProcessingMachine tile;
     private final static int SLOT_SHIFT_X = -5;
     private final static int SLOT_SHIFT_Y = -11;
+    private Class<? extends TileEntityBasicProcessingMachine> machineClazz;
+    private TileEntityBasicProcessingMachine.MachineRecord machine;
+    private TileEntityBasicProcessingMachine fakeTile;
 
-    public ProcessingMachineRecipeHandler(TileEntityBasicProcessingMachine tile) {
-        this.tile = tile;
+    public ProcessingMachineRecipeHandler(Class<? extends TileEntityBasicProcessingMachine> machineClazz) {
+        this.machineClazz = machineClazz;
+        this.machine = TileEntityBasicProcessingMachine.getMachineRecord(machineClazz);
+        if (machine == null) {
+            throw new RuntimeException("No record for machine " + machineClazz.getName() + ".");
+        }
+        this.fakeTile = new TileBPMDummy();
     }
 
     @Override
     public String getGuiTexture() {
-        return ResourcePathHelper.assemble(tile.getGuiBackgroundTexture(), PackageToModIdRegistry.searchModId(tile.getClass()), GUI);
+        return ResourcePathHelper.assemble(machine.getGuiBackgroundTexture(), PackageToModIdRegistry.searchModId(machineClazz), GUI);
     }
 
     @Override
     public String getRecipeName() {
-        return tile.getMachineTitle();
+        return machine.getTitle();
     }
 
     @Override
@@ -57,11 +64,11 @@ public class ProcessingMachineRecipeHandler extends TemplateRecipeHandler implem
     }
 
     private void processRecipes(boolean repeatForEachResult, ItemStack filter, RecipeItemType type) {
-        Collection<IProcessingRecipe> recipes = tile.getRecipeHandler().copyRecipes();
+        Collection<IProcessingRecipe> recipes = machine.getRecipeHandler().copyRecipes();
         for (IProcessingRecipe recipe : recipes) {
             if (!recipe.isAny(filter, type)) continue;
             for (int i = 0; i < recipe.getOutput().length; i++) {
-                ContainerMonnefCore container = ContainerRegistry.createContainer(tile, new InventoryPlayer(FMLClientHandler.instance().getClient().thePlayer));
+                ContainerMonnefCore container = ContainerRegistry.createContainer(fakeTile, new InventoryPlayer(FMLClientHandler.instance().getClient().thePlayer));
                 arecipes.add(new CachedMachineRecipe(recipe, i, (ContainerBasicProcessingMachine) container));
                 if (!repeatForEachResult) break;
             }
