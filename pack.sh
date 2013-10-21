@@ -46,7 +46,7 @@ echo "Version detected: [$version]"
 
 echo -n Copying mod files...
 cp -r $binPath/* "$outtmp"
-cp -r reobf/minecraft/{buildcraft,monnef,forestry,powercrystals,thermalexpansion} "$outtmp"
+cp -r reobf/minecraft/{monnef,forestry,powercrystals,thermalexpansion} "$outtmp"
 rm -fr "$outtmp/monnef/core"
 
 outName="jaffas_$version"
@@ -76,6 +76,7 @@ echo -n Copying core files...
 core2="$core/monnef"
 mkdir "$core2" &>/dev/null
 cp -r reobf/minecraft/monnef/core "$core2"
+cp -r reobf/minecraft/buildcraft "$core"
 unzip -q jars/mods/monnefCore_dummy.jar -d "$core"
 cp bin_data/monnef_mappings.ser "$core"
 if [ $? -ne 0 ]; then
