@@ -199,7 +199,7 @@ public class TileGenerator extends TileMachineWithInventory {
     }
 
     private void tryGetFuel() {
-        ItemStack fuelStack = inventory[SLOT_FUEL];
+        ItemStack fuelStack = getStackInSlot(SLOT_FUEL);
         if (fuelStack != null) {
             int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
             if (fuelBurnTime > 0) {

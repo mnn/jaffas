@@ -5,9 +5,9 @@
 
 package monnef.jaffas.power.client.common;
 
+import monnef.core.block.TileMachineWithInventory;
 import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.ColorHelper;
-import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.power.block.common.ContainerMachine;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -49,7 +49,7 @@ public class GuiContainerMachine extends GuiContainerMonnefCore {
     }
 
     protected void drawEnergyBar(TileMachineWithInventory tile) {
-        int value = tile.powerMax != 0 ? (tile.powerStored * ENERGY_BAR_INNER_HEIGHT) / tile.powerMax : 0;
+        int value = tile.getGuiPowerMax() != 0 ? (tile.getGuiPowerStored() * ENERGY_BAR_INNER_HEIGHT) / tile.getGuiPowerMax() : 0;
         drawBottomUpBar(x + ENERGY_BAR_X, y + ENERGY_BAR_Y, value, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT, topColor, bottomColor);
     }
 
@@ -57,7 +57,7 @@ public class GuiContainerMachine extends GuiContainerMonnefCore {
     public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
         if (isMouseInRect(mousex, mousey, ENERGY_BAR_X, ENERGY_BAR_Y, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT)) {
             currenttip.add("§2Energy:§r");
-            currenttip.add(String.format("§7%d§8 / §7%d§r", tile.powerStored, tile.powerMax));
+            currenttip.add(String.format("§7%d§8 / §7%d§r", tile.getGuiPowerStored(), tile.getGuiPowerMax()));
         }
 
         return currenttip;
