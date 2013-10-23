@@ -113,19 +113,4 @@ public class ClientProxy extends CommonProxy {
             }
         }
     }
-
-    @Override
-    public int getCommonRarity() {
-        return EnumRarity.common.ordinal();
-    }
-
-    @Override
-    public int getEpicRarity() {
-        return EnumRarity.epic.ordinal();
-    }
-
-    @Override
-    public int getUncommonRarity() {
-        return EnumRarity.uncommon.ordinal();
-    }
 }

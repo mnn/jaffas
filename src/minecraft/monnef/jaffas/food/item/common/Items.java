@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.item.common;
 
+import monnef.core.mod.MonnefCoreNormalMod;
 import monnef.core.utils.WolfFoodRegistry;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockSink;
@@ -457,7 +458,7 @@ public class Items extends ItemManagerAccessor {
 
         createJaffaItem(wrapperJaffas);
 
-        ((IItemJaffa) createJaffaItemManual(jaffasPack, ItemJaffaPack.class)).setRarity(proxy.getEpicRarity());
+        ((IItemJaffa) createJaffaItemManual(jaffasPack, ItemJaffaPack.class)).setRarity(MonnefCoreNormalMod.proxy.getEpicRarity());
 
         createJaffaItem(vanillaBeans);
         createJaffaItem(waferIcecream);
@@ -733,7 +734,7 @@ public class Items extends ItemManagerAccessor {
 
     private void markJaffasRare() {
         for (JaffaItem ji : JaffasHelper.getJaffas()) {
-            ((IItemJaffa) getItem(ji)).setRarity(proxy.getUncommonRarity());
+            ((IItemJaffa) getItem(ji)).setRarity(MonnefCoreNormalMod.proxy.getUncommonRarity());
         }
     }
 
