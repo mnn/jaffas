@@ -33,7 +33,7 @@ public class BlockConstruction extends BlockTechnic {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        return icons[meta];
+        return getCustomIcon(meta);
     }
 
     @Override

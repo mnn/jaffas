@@ -16,7 +16,7 @@ public class ItemXmasFood extends ItemJaffaFood {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

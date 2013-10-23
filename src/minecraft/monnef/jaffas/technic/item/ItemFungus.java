@@ -28,7 +28,7 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
 
     @Override
     public Icon getIconFromDamage(int meta) {
-        return icons[meta];
+        return getCustomIcon(meta);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class ItemTechnicTool extends ItemJaffaTool {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

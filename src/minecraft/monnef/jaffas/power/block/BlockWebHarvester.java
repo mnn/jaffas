@@ -38,7 +38,7 @@ public class BlockWebHarvester extends BlockMachineWithInventory {
 
     @Override
     public Icon getIcon(int side, int meta) {
-        if (DirectionHelper.isYAxis(side)) return icons[0];
-        return icons[1];
+        if (DirectionHelper.isYAxis(side)) return getCustomIcon(0);
+        return getCustomIcon(1);
     }
 }

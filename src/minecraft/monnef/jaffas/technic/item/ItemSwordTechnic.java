@@ -27,7 +27,7 @@ public class ItemSwordTechnic extends ItemJaffaSword {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

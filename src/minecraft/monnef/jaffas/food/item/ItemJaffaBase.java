@@ -60,7 +60,7 @@ public class ItemJaffaBase extends ItemMonnefCore implements IItemJaffa {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

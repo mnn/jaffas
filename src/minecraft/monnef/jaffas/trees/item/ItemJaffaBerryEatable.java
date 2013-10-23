@@ -16,7 +16,7 @@ public class ItemJaffaBerryEatable extends ItemJaffaFood {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

@@ -51,7 +51,7 @@ public abstract class ItemBlockXmasMulti extends ItemBlockJaffas {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

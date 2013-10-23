@@ -16,7 +16,7 @@ public class ItemPower extends ItemJaffaBase {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

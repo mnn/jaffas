@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
@@ -71,8 +72,8 @@ public class BlockCompostCore extends BlockTechnic {
     @Override
     public Icon getIcon(int side, int meta) {
         if (!isCompostTankFormed(meta)) {
-            if (side == ForgeDirection.UP.ordinal()) return icons[0];
-            return icons[1];
+            if (side == ForgeDirection.UP.ordinal()) return getCustomIcon(0);
+            return getCustomIcon(1);
         }
 
         return blankIcon;
@@ -81,7 +82,7 @@ public class BlockCompostCore extends BlockTechnic {
     @Override
     public void registerIcons(IconRegister iconRegister) {
         super.registerIcons(iconRegister);
-        blankIcon = iconRegister.registerIcon(CustomIconHelper.generateId(this, 99));
+        blankIcon = iconRegister.registerIcon(CustomIconHelper.generateId((ICustomIcon) this, 99));
     }
 
     @Override

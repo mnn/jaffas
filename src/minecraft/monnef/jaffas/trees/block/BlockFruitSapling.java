@@ -189,7 +189,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

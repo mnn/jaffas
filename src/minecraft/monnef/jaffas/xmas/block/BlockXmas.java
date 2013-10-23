@@ -19,7 +19,7 @@ public class BlockXmas extends BlockJaffas {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

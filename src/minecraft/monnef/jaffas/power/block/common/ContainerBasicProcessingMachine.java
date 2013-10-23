@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.block.common;
 
+import monnef.core.block.ContainerMachine;
 import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;

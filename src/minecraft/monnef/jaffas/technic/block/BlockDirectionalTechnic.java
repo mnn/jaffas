@@ -21,7 +21,7 @@ public class BlockDirectionalTechnic extends BlockJDirectional {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

@@ -168,7 +168,7 @@ public class BlockJDirectional extends BlockJaffas {
     public Icon getIcon(int side, int meta) {
         int idx = getCustomIconMapping(side, getRotation(meta), getCustomData(meta));
 
-        return icons[idx];
+        return getCustomIcon(idx);
     }
 
     /**

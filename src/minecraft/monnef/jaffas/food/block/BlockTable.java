@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.block;
 
+import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -35,10 +36,10 @@ public class BlockTable extends BlockJaffas {
         icons = new Icon[NUMBER_OF_TABLES][];
         for (int color = 0; color < NUMBER_OF_TABLES; color++) {
             icons[color] = new Icon[SIDES_COUNT];
-            int index = this.customIconIndex + SIDES_COUNT * color;
+            int index = this.getCustomIconIndex() + SIDES_COUNT * color;
             for (int side = 0; side < SIDES_COUNT; side++) {
                 int idx = index + side;
-                icons[color][side] = iconRegister.registerIcon(CustomIconHelper.generateId(this, idx));
+                icons[color][side] = iconRegister.registerIcon(CustomIconHelper.generateId((ICustomIcon) this, idx));
             }
         }
     }

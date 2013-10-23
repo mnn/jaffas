@@ -71,6 +71,6 @@ public class ItemTurbineBlade extends ItemPowerMulti {
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
         super.addInformation(stack, player, result, par4);
-        if (stack.getItemDamage() > 0) result.add(BETA_WARNING_TEXT);
+        if (stack.getItemDamage() > 0) result.add(BETA_WARNING_TEXT());
     }
 }

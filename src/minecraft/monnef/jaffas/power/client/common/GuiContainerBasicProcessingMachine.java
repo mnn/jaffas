@@ -6,7 +6,8 @@
 package monnef.jaffas.power.client.common;
 
 import monnef.core.MonnefCorePlugin;
-import monnef.jaffas.power.block.common.ContainerMachine;
+import monnef.core.client.GuiContainerMachine;
+import monnef.core.block.ContainerMachine;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 

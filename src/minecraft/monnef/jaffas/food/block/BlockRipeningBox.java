@@ -37,11 +37,11 @@ public class BlockRipeningBox extends BlockContainerJaffas {
         ForgeDirection dir = ForgeDirection.getOrientation(side);
         switch (dir) {
             case UP:
-                return icons[1];
+                return getCustomIcon(1);
             case DOWN:
-                return icons[2];
+                return getCustomIcon(2);
             default:
-                return icons[0];
+                return getCustomIcon(0);
         }
     }
 }

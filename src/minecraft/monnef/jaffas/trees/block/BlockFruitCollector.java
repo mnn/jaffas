@@ -5,6 +5,7 @@
 
 package monnef.jaffas.trees.block;
 
+import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.food.block.BlockContainerJaffas;
@@ -33,7 +34,7 @@ public class BlockFruitCollector extends BlockContainerJaffas {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 
@@ -103,6 +104,6 @@ public class BlockFruitCollector extends BlockContainerJaffas {
     @Override
     public void registerIcons(IconRegister iconRegister) {
         super.registerIcons(iconRegister);
-        topIcon = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
+        topIcon = iconRegister.registerIcon(CustomIconHelper.generateShiftedId((ICustomIcon) this, 1));
     }
 }

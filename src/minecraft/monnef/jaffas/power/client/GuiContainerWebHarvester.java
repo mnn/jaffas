@@ -6,8 +6,8 @@
 package monnef.jaffas.power.client;
 
 import monnef.core.block.TileMachineWithInventory;
-import monnef.jaffas.power.block.common.ContainerMachine;
-import monnef.jaffas.power.client.common.GuiContainerMachine;
+import monnef.core.block.ContainerMachine;
+import monnef.core.client.GuiContainerMachine;
 import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiContainerWebHarvester extends GuiContainerMachine {

@@ -17,7 +17,7 @@ public class BlockPower extends BlockJaffas {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

@@ -8,6 +8,7 @@ package monnef.jaffas.trees.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.PlayerHelper;
@@ -384,7 +385,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 
@@ -392,7 +393,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     public void registerIcons(IconRegister iconRegister) {
         icons = new Icon[subCount];
         for (int i = 0; i < subCount; i++) {
-            icons[i] = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, i));
+            icons[i] = iconRegister.registerIcon(CustomIconHelper.generateShiftedId((ICustomIcon) this, i));
         }
         if (serialNumber == 0) plainLeavesIcon = icons[0];
     }

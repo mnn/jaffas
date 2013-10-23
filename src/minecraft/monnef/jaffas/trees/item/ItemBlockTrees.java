@@ -18,7 +18,7 @@ public class ItemBlockTrees extends ItemBlockJaffas {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

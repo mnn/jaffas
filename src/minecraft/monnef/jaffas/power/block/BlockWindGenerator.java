@@ -48,8 +48,8 @@ public class BlockWindGenerator extends BlockMachineWithInventory {
     }
 
     private Icon getIconFromRotation(int side, int meta, int rotation) {
-        if (DirectionHelper.isYAxis(side)) return icons[2];
-        return rotation == side ? icons[0] : icons[1];
+        if (DirectionHelper.isYAxis(side)) return getCustomIcon(2);
+        return rotation == side ? getCustomIcon(0) : getCustomIcon(1);
     }
 
     @Override

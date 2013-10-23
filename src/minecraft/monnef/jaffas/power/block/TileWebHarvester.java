@@ -16,7 +16,7 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-@ContainerRegistry.ContainerTag(slotsCount = 1, containerClassName = "monnef.jaffas.power.block.common.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerWebHarvester")
+@ContainerRegistry.ContainerTag(slotsCount = 1, containerClassName = "monnef.core.block.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerWebHarvester")
 public class TileWebHarvester extends TileMachineWithInventory implements ISidedInventory {
     public static final int WEB_HARVESTER_RADIUS = 5;
     public static final int WEB_HARVESTER_DIAMETER = 2 * WEB_HARVESTER_RADIUS;

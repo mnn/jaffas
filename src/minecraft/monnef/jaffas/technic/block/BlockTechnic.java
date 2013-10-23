@@ -18,7 +18,7 @@ public class BlockTechnic extends BlockJaffas {
     }
 
     @Override
-    public String getModName() {
+    public String getDefaultModName() {
         return Reference.ModName;
     }
 

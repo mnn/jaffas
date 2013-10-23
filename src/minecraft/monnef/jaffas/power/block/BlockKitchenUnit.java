@@ -47,7 +47,7 @@ public class BlockKitchenUnit extends BlockMachine {
         int shift = 2;
         if (side == ForgeDirection.UP.ordinal()) shift = 1;
         else if (side == ForgeDirection.DOWN.ordinal()) shift = 0;
-        return icons[base + shift];
+        return getCustomIcon(base + shift);
     }
 
     @Override
