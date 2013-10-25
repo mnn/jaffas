@@ -16,6 +16,7 @@ public class BlockLeavesBaseJaffas extends BlockJaffas {
     protected BlockLeavesBaseJaffas(int par1, int texture, Material par2Material, boolean par3) {
         super(par1, texture, par2Material);
         this.graphicsLevel = par3;
+        setupFromOldDefaultProperties();
     }
 
     @Override

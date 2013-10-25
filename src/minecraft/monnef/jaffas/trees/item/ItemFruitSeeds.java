@@ -7,6 +7,7 @@ package monnef.jaffas.trees.item;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -46,7 +47,7 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
         icons = new Icon[subCount];
         for (int i = 0; i < icons.length; i++) {
             if (firstInSequence && i == 0) continue;
-            icons[i] = register.registerIcon(CustomIconHelper.generateShiftedId(this, i));
+            icons[i] = register.registerIcon(CustomIconHelper.generateShiftedId((ICustomIcon) this, i));
         }
     }
 

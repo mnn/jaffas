@@ -31,6 +31,7 @@ public class BlockFruitCollector extends BlockContainerJaffas {
         setUnlocalizedName("blockFruitCollector");
         setCreativeTab(JaffasTrees.instance.creativeTab);
         setSheetNumber(1);
+        setupFromOldDefaultProperties();
     }
 
     @Override

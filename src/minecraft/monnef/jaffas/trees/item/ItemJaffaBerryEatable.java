@@ -13,6 +13,7 @@ public class ItemJaffaBerryEatable extends ItemJaffaFood {
     public ItemJaffaBerryEatable(int id) {
         super(id);
         setCreativeTab(JaffasTrees.instance.creativeTab);
+        setupFromOldDefaultProperties();
     }
 
     @Override

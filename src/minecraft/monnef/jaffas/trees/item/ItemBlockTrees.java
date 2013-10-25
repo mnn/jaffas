@@ -11,6 +11,7 @@ import monnef.jaffas.trees.common.Reference;
 public class ItemBlockTrees extends ItemBlockJaffas {
     public ItemBlockTrees(int id, int blockId) {
         super(id, blockId);
+        setupFromOldDefaultProperties();
     }
 
     public ItemBlockTrees(int par1) {
