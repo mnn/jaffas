@@ -41,6 +41,6 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
     @Override
     public Icon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, count);
-        return icons[(var2 % (count / 2))];
+        return getCustomIcon(var2 % (count / 2));
     }
 }
