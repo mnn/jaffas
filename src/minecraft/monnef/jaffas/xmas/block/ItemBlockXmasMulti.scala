@@ -5,11 +5,11 @@ import net.minecraft.item.ItemStack
 import cpw.mods.fml.common.registry.LanguageRegistry
 import cpw.mods.fml.relauncher.{SideOnly, Side}
 import net.minecraft.util.{MathHelper, Icon}
-import scala.Predef.String
 import monnef.core.common.CustomIconHelper
 import monnef.core.api.ICustomIcon
 import net.minecraft.client.renderer.texture.IconRegister
 import monnef.jaffas.xmas.common.IconDescriptorXmas
+import scala.runtime._
 
 abstract class ItemBlockXmasMulti(_id: Int) extends ItemBlockJaffas(_id) with IconDescriptorXmas {
   private var subTitles: Array[String] = null
@@ -24,15 +24,11 @@ abstract class ItemBlockXmasMulti(_id: Int) extends ItemBlockJaffas(_id) with Ic
   def getSubBlocksCount: Int = this.subNames.length
 
   def registerNames(block: BlockXmasMulti) {
-    {
-      var i: Int = 0
-      while (i < subNames.length) {
-        {
-          val multiBlockStack: ItemStack = new ItemStack(block, 1, i)
-          LanguageRegistry.addName(multiBlockStack, subTitles(multiBlockStack.getItemDamage))
-        }
-        i += 1
-      }
+    var i: Int = 0
+    while (i < subNames.length) {
+      val multiBlockStack: ItemStack = new ItemStack(block, 1, i)
+      LanguageRegistry.addName(multiBlockStack, subTitles(multiBlockStack.getItemDamage))
+      i += 1
     }
   }
 
@@ -51,11 +47,8 @@ abstract class ItemBlockXmasMulti(_id: Int) extends ItemBlockJaffas(_id) with Ic
   //override var icons: Array[Icon] = null
 
   override def registerIcons(register: IconRegister) {
-    icons = new Array[Icon](getSubBlocksCount)
-    var i: Int = 0
-    while (i < icons.length) {
-      icons(i) = register.registerIcon(CustomIconHelper.generateShiftedId(this.asInstanceOf[ICustomIcon], i))
-      i += 1
-    }
+    icons = (
+      for (i <- 0 until getSubBlocksCount) yield register.registerIcon(CustomIconHelper.generateShiftedId(this.asInstanceOf[ICustomIcon], i))
+      ).toArray
   }
 }

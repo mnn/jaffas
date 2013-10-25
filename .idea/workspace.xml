@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/BlockXmas.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/common/IconDescriptorXmas.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/ItemBlockXmasMulti.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/item/ItemXmas.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/item/ItemXmasFood.scala" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\monnef\jaffas\xmas\block\BlockXmas.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\monnef\jaffas\xmas\block\ItemBlockXmasMulti.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\monnef\jaffas\xmas\item\ItemXmas.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\monnef\jaffas\xmas\item\ItemXmasFood.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/ItemBlockPresent.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/ItemBlockPresent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/ItemBlockXmasMulti.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/ItemBlockXmasMulti.scala" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -862,7 +852,7 @@
     <file path="/ItemXmas.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382728370143" ignored="false" />
     <file path="/BlockXmas.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382728499321" ignored="false" />
     <file path="/ItemXmasFood.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382729003758" ignored="false" />
-    <file path="/ItemBlockXmasMulti.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382729846009" ignored="false" />
+    <file path="/ItemBlockXmasMulti.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382731102015" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -973,7 +963,7 @@
       <file leaf-file-name="ItemBlockXmasMulti.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/ItemBlockXmasMulti.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="96" selection-start="576" selection-end="576" vertical-scroll-proportion="-0.07476635">
+            <state line="50" column="48" selection-start="1581" selection-end="1623" vertical-scroll-proportion="1.0903426">
               <folding>
                 <element signature="e#34#81#0" expanded="true" />
               </folding>
@@ -2354,9 +2344,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/apps/scala-2.10.2/lib/scala-library.jar!/scala/runtime/RichInt.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="6" selection-start="463" selection-end="463" vertical-scroll-proportion="0.17555939">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/xmas/block/ItemBlockXmasMulti.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="96" selection-start="576" selection-end="576" vertical-scroll-proportion="-0.07476635">
+        <state line="50" column="48" selection-start="1581" selection-end="1623" vertical-scroll-proportion="1.0903426">
           <folding>
             <element signature="e#34#81#0" expanded="true" />
           </folding>
