@@ -7,7 +7,7 @@ import monnef.core.utils.BlockHelper;
 import monnef.core.utils.RandomHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -121,11 +121,16 @@ public class EntityLittleSpider extends EntityJaffaSpider {
         }
 
         @Override
-        public List<MobDrop> grind(World world, EntityLiving entity, Random random) {
+        public List<MobDrop> grind(World world, EntityLivingBase entity, Random random) {
             ArrayList<MobDrop> res = new ArrayList<MobDrop>();
             res.add(new MobDrop(3, new ItemStack(spiderMeat, 1, 0)));
             res.add(new MobDrop(2, new ItemStack(Item.silk, 1, 0)));
             return res;
+        }
+
+        @Override
+        public boolean processEntity(EntityLivingBase entity) {
+            return true;
         }
     }
 

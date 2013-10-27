@@ -68,7 +68,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
 import static monnef.jaffas.food.JaffasFood.instance;
@@ -239,8 +239,8 @@ public class ContentHolder {
         EntityHelper.registerEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, ContentHolder.duckEntityID, jf, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerGrindable(new EntityDuck.MFR());
-            FarmingRegistry.registerBreederFood(EntityDuck.class, new ItemStack(Item.seeds));
+            FactoryRegistry.registerGrindable(new EntityDuck.MFR());
+            FactoryRegistry.registerBreederFood(EntityDuck.class, new ItemStack(Item.seeds));
         }
     }
 
@@ -252,7 +252,7 @@ public class ContentHolder {
         EntityHelper.registerEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, ContentHolder.spiderEntityID, jf, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasSpider.name", "en_US", "Little Spider");
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerGrindable(new EntityLittleSpider.MFR());
+            FactoryRegistry.registerGrindable(new EntityLittleSpider.MFR());
             //FarmingRegistry.registerBreederFood(EntityLittleSpider.class, new ItemStack(Item.seeds));
         }
     }
@@ -318,9 +318,9 @@ public class ContentHolder {
         RegistryUtils.registerMultiBlock(ContentHolder.blockSwitchgrass, ItemBlockSwitchgrass.class, ContentHolder.blockSwitchgrass.subBlockNames);
         MinecraftForge.EVENT_BUS.register(new SwitchgrassBonemealHandler());
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerFertilizable(ContentHolder.blockSwitchgrass);
-            FarmingRegistry.registerHarvestable(ContentHolder.blockSwitchgrass);
-            FarmingRegistry.registerPlantable(ContentHolder.blockSwitchgrass);
+            FactoryRegistry.registerFertilizable(ContentHolder.blockSwitchgrass);
+            FactoryRegistry.registerHarvestable(ContentHolder.blockSwitchgrass);
+            FactoryRegistry.registerPlantable(ContentHolder.blockSwitchgrass);
         }
 
         ContentHolder.blockSwitchgrassSolid = new BlockSwitchgrassSolid(ContentHolder.blockSwitchgrassSolidID, 240, 2);

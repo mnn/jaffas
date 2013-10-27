@@ -69,7 +69,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -382,7 +382,7 @@ public class JaffasTrees extends JaffasModBase {
             RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
             seeds.setCustomIconIndex(info.seedsTexture);
             if (otherMods.isMineFactoryReloadedDetected()) {
-                FarmingRegistry.registerPlantable(seeds);
+                FactoryRegistry.registerPlantable(seeds);
             }
 
             info.itemSeeds = seeds;
@@ -408,8 +408,8 @@ public class JaffasTrees extends JaffasModBase {
                 MinecraftForge.EVENT_BUS.register(crops);
             }
             if (otherMods.isMineFactoryReloadedDetected()) {
-                FarmingRegistry.registerHarvestable(crops);
-                FarmingRegistry.registerFertilizable(crops);
+                FactoryRegistry.registerHarvestable(crops);
+                FactoryRegistry.registerFertilizable(crops);
             }
             if (ModuleManager.isModuleEnabled(technic)) {
                 CompostRegister.addStack(dropFromPlant, DEFAULT_FRUIT_COMPOSTING_VALUE);
@@ -571,8 +571,8 @@ public class JaffasTrees extends JaffasModBase {
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
         OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, ANY_DMG));
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerFertilizable(leaves.saplingBlock);
-            FarmingRegistry.registerPlantable(leaves.saplingBlock);
+            FactoryRegistry.registerFertilizable(leaves.saplingBlock);
+            FactoryRegistry.registerPlantable(leaves.saplingBlock);
         }
 
         leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
@@ -582,7 +582,7 @@ public class JaffasTrees extends JaffasModBase {
             LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
         }
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerPlantable(leaves.seedsItem);
+            FactoryRegistry.registerPlantable(leaves.seedsItem);
         }
 
         // bonemeal event

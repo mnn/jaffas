@@ -102,7 +102,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 import thermalexpansion.api.crafting.CraftingHelpers;
 
 import java.util.Map;
@@ -489,7 +489,7 @@ public class JaffasTechnic extends JaffasModBase {
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
         JaffasRegistryHelper.registerTileEntity(TileFungiBox.class, "jaffasFungiBox");
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerHarvestable(fungiBox);
+            FactoryRegistry.registerHarvestable(fungiBox);
         }
         if (otherMods.isForestryDetected()) {
             otherMods.insertFarmable(FORESTRY_FARM_FUNGAL, new MushroomCropProvider());
@@ -609,7 +609,7 @@ public class JaffasTechnic extends JaffasModBase {
         compost = new ItemCompost(itemCompostID, 29);
         RegistryUtils.registerItem(compost, "compost", "Compost");
         if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
-            FarmingRegistry.registerFertilizer(compost);
+            FactoryRegistry.registerFertilizer(compost);
         }
 
         if (!disableRedstoneGadgets) {

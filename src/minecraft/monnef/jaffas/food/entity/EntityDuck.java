@@ -8,7 +8,7 @@ package monnef.jaffas.food.entity;
 import monnef.core.client.ResourcePathHelper;
 import monnef.jaffas.food.client.Sounds;
 import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -201,11 +201,16 @@ public class EntityDuck extends EntityAnimal {
         }
 
         @Override
-        public List<MobDrop> grind(World world, EntityLiving entity, Random random) {
+        public List<MobDrop> grind(World world, EntityLivingBase entity, Random random) {
             ArrayList<MobDrop> res = new ArrayList<MobDrop>();
             res.add(new MobDrop(3, new ItemStack(rawMeat, 1, 0)));
             res.add(new MobDrop(1, new ItemStack(feather, 1, 0)));
             return res;
+        }
+
+        @Override
+        public boolean processEntity(EntityLivingBase entity) {
+            return true;
         }
     }
 
