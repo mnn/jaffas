@@ -22,18 +22,6 @@ public class GuiHandler implements IGuiHandler {
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        /*
-        if (tileEntity instanceof TileGenerator) {
-            return new ContainerMachine(player.inventory, (TileGenerator) tileEntity);
-        } else if (tileEntity instanceof TileEntityBasicProcessingMachine) {
-            return ContainerRegistry.createContainer((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
-        } else if (tileEntity instanceof TileWebHarvester) {
-            return new ContainerMachine(player.inventory, (TileWebHarvester) tileEntity);
-        } else if (tileEntity instanceof TileWindGenerator) {
-            return new ContainerMachine(player.inventory, (TileWindGenerator) tileEntity);
-        }
-        return null;
-        */
         return ContainerRegistry.createContainer(tileEntity, player.inventory);
     }
 
@@ -42,20 +30,6 @@ public class GuiHandler implements IGuiHandler {
     public Object getClientGuiElement(int id, EntityPlayer player, World world,
                                       int x, int y, int z) {
         TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
-        /*
-        if (tileEntity instanceof TileGenerator) {
-            return new GuiContainerGenerator(player.inventory, (TileGenerator) tileEntity, new ContainerMachine(player.inventory, (TileMachineWithInventory) tileEntity));
-        } else if (tileEntity instanceof TileEntityBasicProcessingMachine) {
-            return proxy.createGuiFromProcessingMachineRegistry((TileEntityBasicProcessingMachine) tileEntity, player.inventory);
-        } else if (tileEntity instanceof TileWebHarvester) {
-            GuiContainerMachine gui = new GuiContainerMachine(player.inventory, (TileWebHarvester) tileEntity, new ContainerMachine(player.inventory, (TileWebHarvester) tileEntity));
-            gui.setBackgroundTexture("guiwebharvester.png");
-            return gui;
-        } else if (tileEntity instanceof TileWindGenerator) {
-            return new GuiContainerWindGenerator(player.inventory, (TileWindGenerator) tileEntity, new ContainerMachine(player.inventory, (TileWindGenerator) tileEntity));
-        }
-        return null;
-        */
         return ContainerRegistry.createGui(tileEntity, player.inventory);
     }
 }

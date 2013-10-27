@@ -48,6 +48,8 @@ import monnef.jaffas.trees.common.EatableType;
 import monnef.jaffas.trees.common.ItemFromFruitResult;
 import monnef.jaffas.trees.common.JaffaCropProvider;
 import monnef.jaffas.trees.common.LeavesInfo;
+import monnef.jaffas.trees.item.ItemBagCollecting;
+import monnef.jaffas.trees.item.ItemBagPlanting;
 import monnef.jaffas.trees.item.ItemBlockFruitSapling;
 import monnef.jaffas.trees.item.ItemFruitSeeds;
 import monnef.jaffas.trees.item.ItemJaffaBerry;
@@ -251,6 +253,11 @@ public class JaffasTrees extends JaffasModBase {
     private int itemUnknownSeedsID;
     public static ItemTrees itemUnknownSeeds;
 
+    private int itemPlantingBagID;
+    private int itemCollectingBagID;
+    public static ItemBagPlanting itemPlantingBag;
+    public static ItemBagCollecting itemCollectingBag;
+
     public static BlockFruitLeavesDummy dummyLeaves;
 
     public static enum bushType {
@@ -266,7 +273,7 @@ public class JaffasTrees extends JaffasModBase {
         }
     }
 
-    public static EnumMap<bushType, BushInfo> BushesList = new EnumMap<bushType, BushInfo>(bushType.class);
+    public static EnumMap<bushType, BushInfo> bushesList = new EnumMap<bushType, BushInfo>(bushType.class);
 
     public JaffasTrees() {
         instance = this;
@@ -279,7 +286,7 @@ public class JaffasTrees extends JaffasModBase {
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
-        PopulateBushInfo();
+        populateBushInfo();
 
         try {
             config.load();
@@ -301,7 +308,7 @@ public class JaffasTrees extends JaffasModBase {
                 leavesList.add(new LeavesInfo(leavesID, saplingID, seedsID, i));
             }
 
-            for (EnumMap.Entry<bushType, BushInfo> entry : BushesList.entrySet()) {
+            for (EnumMap.Entry<bushType, BushInfo> entry : bushesList.entrySet()) {
                 BushInfo info = entry.getValue();
 
                 info.itemSeedsID = idProvider.getItemIDFromConfig(info.getSeedsConfigName());
@@ -324,6 +331,9 @@ public class JaffasTrees extends JaffasModBase {
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);
+
+            itemPlantingBagID = idProvider.getItemIDFromConfig("plantingBag");
+            itemCollectingBagID = idProvider.getItemIDFromConfig("collectingBag");
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
         } finally {
@@ -341,7 +351,7 @@ public class JaffasTrees extends JaffasModBase {
         return 3500;
     }
 
-    private void PopulateBushInfo() {
+    private void populateBushInfo() {
         AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 34, "Coffee Plant", 96, "Coffee Beans", 128, null, 2, 1, NotEatable, DropsFromGrass);
         AddBushInfo(bushType.Strawberry, "strawberry", "Strawberry Seeds", 34, "Strawberry Plant", 99, "Strawberry", 129, null, 2, 1, EatableNormal, DropsFromGrass);
 
@@ -375,7 +385,7 @@ public class JaffasTrees extends JaffasModBase {
 
     private void constructItemsInBushInfo() {
         boolean first = true;
-        for (EnumMap.Entry<bushType, BushInfo> entry : BushesList.entrySet()) {
+        for (EnumMap.Entry<bushType, BushInfo> entry : bushesList.entrySet()) {
             BushInfo info = entry.getValue();
 
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
@@ -438,7 +448,7 @@ public class JaffasTrees extends JaffasModBase {
         info.eatable = eatable;
         info.drop = drop;
 
-        BushesList.put(type, info);
+        bushesList.put(type, info);
     }
 
     @Mod.EventHandler
@@ -554,6 +564,11 @@ public class JaffasTrees extends JaffasModBase {
         itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
         itemUnknownSeeds.setCustomIconIndex(34);
         RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
+
+        itemPlantingBag = new ItemBagPlanting(itemPlantingBagID, 162);
+        RegistryUtils.registerItem(itemPlantingBag, "plantingBag", "Farmer's Planting Bag");
+        itemCollectingBag = new ItemBagCollecting(itemCollectingBagID, 162);
+        RegistryUtils.registerItem(itemCollectingBag, "collectingBag", "Farmer's Collecting Bag");
     }
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
@@ -650,17 +665,17 @@ public class JaffasTrees extends JaffasModBase {
                 new ItemStack(JaffasTrees.itemPlum));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.strawberries)),
-                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
-                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
-                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit),
-                new ItemStack(BushesList.get(bushType.Strawberry).itemFruit));
+                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit),
+                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit),
+                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit),
+                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit));
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.raspberries)),
-                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
-                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
-                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit),
-                new ItemStack(BushesList.get(bushType.Raspberry).itemFruit));
+                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit),
+                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit),
+                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit),
+                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit));
 
-        GameRegistry.addSmelting(BushesList.get(bushType.Coffee).itemFruit.itemID, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
+        GameRegistry.addSmelting(bushesList.get(bushType.Coffee).itemFruit.itemID, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
 
         RecipesBoard.addRecipe(getFruitStack(bushType.Paprika), new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
         RecipesBoard.addRecipe(getFruitStack(bushType.Tomato), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
@@ -727,7 +742,7 @@ public class JaffasTrees extends JaffasModBase {
     }
 
     public static Item getFruit(bushType type) {
-        return BushesList.get(type).itemFruit;
+        return bushesList.get(type).itemFruit;
     }
 
     public static ItemStack getFruitStack(bushType type) {

@@ -34,8 +34,8 @@ public class SeedsHelper {
                 int type = rand.nextInt(JaffasTrees.leavesTypesCount) + 1;
                 seed = JaffasTrees.getTreeSeeds(type);
             } else {
-                int type = rand.nextInt(JaffasTrees.BushesList.size());
-                seed = new ItemStack(JaffasTrees.BushesList.get(JaffasTrees.bushType.values()[type]).itemSeeds);
+                int type = rand.nextInt(JaffasTrees.bushesList.size());
+                seed = new ItemStack(JaffasTrees.bushesList.get(JaffasTrees.bushType.values()[type]).itemSeeds);
             }
         }
 
