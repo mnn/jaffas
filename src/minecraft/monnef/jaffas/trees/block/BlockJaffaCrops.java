@@ -70,6 +70,12 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
         return par1 == Block.tilledField.blockID;
     }
 
+    @Override
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        if (!super.canBlockStay(world, x, y, z)) return false;
+        return world.getBlockId(x, y - 1, z) == Block.tilledField.blockID;
+    }
+
     /**
      * Ticks the block if it's been scheduled
      */
