@@ -13,6 +13,7 @@ import java.util
 import monnef.core.item.ItemMonnefCore
 import monnef.core.MonnefCorePlugin
 import net.minecraft.block.Block
+import net.minecraftforge.common.{ForgeDirection, IPlantable}
 
 abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _texture) {
 
@@ -25,14 +26,6 @@ abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _text
       p.openGui(JaffasTrees.instance, getGuiId, world, p.posX.toInt, p.posY.toInt, p.posZ.toInt)
     }
     stack
-  }
-
-  override def onItemUse(par1ItemStack: ItemStack, par2EntityPlayer: EntityPlayer, par3World: World, x: Int, y: Int, z: Int, par7: Int, par8: Float, par9: Float, par10: Float): Boolean = {
-    if (par3World.getBlockId(x, y, z) == Block.grass.blockID) {
-      par3World.setBlock(x, y, z, Block.sand.blockID)
-      true
-    } else
-      super.onItemUse(par1ItemStack, par2EntityPlayer, par3World, x, y, z, par7, par8, par9, par10)
   }
 
   def getGuiId: Int

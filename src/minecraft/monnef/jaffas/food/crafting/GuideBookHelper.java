@@ -50,7 +50,7 @@ public class GuideBookHelper {
                     ItemStack output = recipe.getOutput();
                     bookWriter.addLine(String.format("%s -> %s", formatItemStack(input), formatItemStack(output)));
                     bookWriter.addBlankLine();
-                    if (counter++ > 4) {
+                    if (counter++ > 3) {
                         counter = 0;
                         bookWriter.endPage();
                     }

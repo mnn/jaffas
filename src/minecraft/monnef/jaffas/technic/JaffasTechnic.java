@@ -28,6 +28,7 @@ import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
 import monnef.jaffas.food.common.ModulesEnum;
+import monnef.jaffas.food.crafting.GuideBookHelper;
 import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.crafting.RecipesBoard;
@@ -482,6 +483,9 @@ public class JaffasTechnic extends JaffasModBase {
         if (omniWrenchId != 0) {
             Log.printInfo("Omni wrench detected (" + omniWrenchId + "), compatibility with pipe wrench engaged.");
         }
+
+        GuideBookHelper.generateGuideBook();
+        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrolNugget);
     }
 
     private void createFungiStuff() {
@@ -833,8 +837,6 @@ public class JaffasTechnic extends JaffasModBase {
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRaw));
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRefined));
         GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0);
-
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrolNugget);
 
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IJI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron);
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "I I", "JIJ", 'J', jaffarrol, 'I', Block.glass);

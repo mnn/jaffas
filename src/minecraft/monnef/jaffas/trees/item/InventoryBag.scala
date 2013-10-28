@@ -74,7 +74,10 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
 
   protected def setInventorySlotContentsInternal(slot: Int, itemstack: ItemStack) {
     inv(slot) = itemstack
-    if (itemstack != null && itemstack.stackSize > getInventoryStackLimit) itemstack.stackSize = getInventoryStackLimit
+    if (itemstack != null) {
+      if (itemstack.stackSize > getInventoryStackLimit) itemstack.stackSize = getInventoryStackLimit
+      if (itemstack.stackSize <= 0) inv(slot) = null
+    }
   }
 
   def getSizeInventory: Int = inv.size

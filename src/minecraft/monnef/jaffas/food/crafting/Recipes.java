@@ -424,8 +424,6 @@ public class Recipes {
 
         GameRegistry.addShapelessRecipe(getItemStack(cookingPot), getItem(cookingPotWater));
 
-        GuideBookHelper.generateGuideBook();
-
         RegistryUtils.registerBlockPackingRecipe(ItemHelper.getItemStackAnyDamage(blockSwitchgrass), new ItemStack(blockSwitchgrassSolid));
 
         GameRegistry.addShapedRecipe(getItemStack(meatDryer), "SSS", "SIS", "S S", 'S', Item.stick, 'I', Item.silk);

@@ -26,8 +26,6 @@ class ContainerBag(player: EntityPlayer) extends Container {
   bindPlayerInventory(player.inventory)
   player.setCurrentItemOrArmor(0, null)
 
-  private def doIfFine(f: => Unit) = f
-
   def canInteractWith(entityplayer: EntityPlayer): Boolean = true
 
   protected def bindPlayerInventory(inventoryPlayer: InventoryPlayer) {
@@ -46,12 +44,11 @@ class ContainerBag(player: EntityPlayer) extends Container {
   }
 
   protected def bindSlots() = {
-    for (i <- 0 until inv.getSizeInventory) addSlotToContainer(new Slot(inv, i, 12 + i * 18, 12))
+    for (i <- 0 until inv.getSizeInventory;x = i % 3;y = i / 3) addSlotToContainer(new Slot(inv, i, 62 + x * 18, 17 + y * 18))
   }
 
   override def onContainerClosed(player: EntityPlayer) {
     inv.saveToNBT()
-    //player.setCurrentItemOrArmor(0, stack)
     PlayerHelper.giveItemToPlayer(player, stack)
   }
 

@@ -25,6 +25,8 @@ public class GuiHandlerTrees implements IGuiHandler {
             return ContainerRegistry.createContainer(tile, player.inventory);
         } else if (id == GuiId.BAG_PLANTING.ordinal()) {
             return new ContainerBag(player);
+        } else if (id == GuiId.BAG_COLLECTING.ordinal()) {
+            return new ContainerBag(player);
         }
         return null;
     }
@@ -35,6 +37,8 @@ public class GuiHandlerTrees implements IGuiHandler {
         if (ContainerRegistry.containsRegistration(tile)) {
             return ContainerRegistry.createGui(tile, player.inventory);
         } else if (id == GuiId.BAG_PLANTING.ordinal()) {
+            return new GuiBag(new ContainerBag(player));
+        } else if (id == GuiId.BAG_COLLECTING.ordinal()) {
             return new GuiBag(new ContainerBag(player));
         }
         return null;
