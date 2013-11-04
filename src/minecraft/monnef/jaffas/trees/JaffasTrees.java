@@ -80,6 +80,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.logging.Level;
 
+import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.common.ModulesEnum.technic;
@@ -253,9 +254,9 @@ public class JaffasTrees extends JaffasModBase {
     private int itemUnknownSeedsID;
     public static ItemTrees itemUnknownSeeds;
 
-    private int itemPlantingBagID;
+    private int itemPlantingBagSmallID;
     private int itemCollectingBagID;
-    public static ItemBagPlanting itemPlantingBag;
+    public static ItemBagPlanting itemPlantingBagSmall;
     public static ItemBagCollecting itemCollectingBag;
 
     public static BlockFruitLeavesDummy dummyLeaves;
@@ -332,8 +333,13 @@ public class JaffasTrees extends JaffasModBase {
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);
 
-            itemPlantingBagID = idProvider.getItemIDFromConfig("plantingBag");
+            itemPlantingBagSmallID = idProvider.getItemIDFromConfig("plantingBag");
             itemCollectingBagID = idProvider.getItemIDFromConfig("collectingBag");
+
+            ItemBagPlanting.blackList().loadFromString(
+                    config.get(Configuration.CATEGORY_GENERAL, "plantingBagBlackList", "", "Planting bag will ignore these items. Format of item (separated by ',' or ';'): <id>[:meta]").getString()
+            );
+            Log.printInfo(ItemBagPlanting.blackList().toString());
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
         } finally {
@@ -565,8 +571,9 @@ public class JaffasTrees extends JaffasModBase {
         itemUnknownSeeds.setCustomIconIndex(34);
         RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
 
-        itemPlantingBag = new ItemBagPlanting(itemPlantingBagID, 162);
-        RegistryUtils.registerItem(itemPlantingBag, "plantingBag", "Farmer's Planting Bag");
+        itemPlantingBagSmall = new ItemBagPlanting(itemPlantingBagSmallID, 162, 1);
+        RegistryUtils.registerItem(itemPlantingBagSmall, "plantingBagSmall", "Small Farmer's Planting Bag");
+
         itemCollectingBag = new ItemBagCollecting(itemCollectingBagID, 162);
         RegistryUtils.registerItem(itemCollectingBag, "collectingBag", "Farmer's Collecting Bag");
     }

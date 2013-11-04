@@ -11,10 +11,16 @@ import net.minecraft.world.World
 import net.minecraft.item.ItemStack
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.block.Block
+import monnef.core.utils.ItemStackList
 
-class ItemBagPlanting(_id: Int, _texture: Int) extends ItemBagBase(_id, _texture) {
+object ItemBagPlanting {
+  val blackList = new ItemStackList("Planting Bag - Black-List")
+}
+
+class ItemBagPlanting(_id: Int, _texture: Int, radius: Int) extends ItemBagBase(_id, _texture) {
 
   import monnef.core.utils.scalautils._
+  import ItemBagPlanting._
 
   def getGuiId: Int = GuiHandlerTrees.GuiId.BAG_PLANTING.ordinal()
 
@@ -25,14 +31,15 @@ class ItemBagPlanting(_id: Int, _texture: Int) extends ItemBagBase(_id, _texture
       if s != null
       item = s.getItem
       if item.isInstanceOf[IPlantable]
+      if !blackList.contains(s)
     } yield i
 
   def plantCrop(w: World, x: Int, y: Int, z: Int, seed: ItemStack, p: EntityPlayer): Boolean = {
-    assert(w.getBlockId(x, y, z) == 0, "expecting air")
+    assert(w.isAirBlock(x, y, z), "expecting air")
     val seedItem = seed.getItem
     val oldSize = seed.stackSize
     seedItem.onItemUse(seed, p, w, x, y - 1, z, ForgeDirection.UP.ordinal(), 0, 0, 0)
-    if (w.getBlockId(x, y, z) != 0) {
+    if (!w.isAirBlock(x, y, z)) {
       assert(seed.stackSize != oldSize, "seeds count must be lowered after planting")
       true
     } else {
@@ -47,7 +54,7 @@ class ItemBagPlanting(_id: Int, _texture: Int) extends ItemBagBase(_id, _texture
       val bagItem = stack.getItem.asInstanceOf[ItemBagBase]
       val inv = bagItem.createInventory(stack)
       var plantedCount = 0
-      val radius = if (player.isSneaking) 2 else 1
+      //val radius = if (player.isSneaking) 2 else 1
       for {
         nx <- fx - radius to fx + radius
         nz <- fz - radius to fz + radius
