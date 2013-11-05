@@ -10,6 +10,7 @@ import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
@@ -22,13 +23,12 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 public class ItemHoeTechnic extends ItemTechnicTool {
 
     private static final int HOE_HARVEST_RADIUS = 3;
-    private static final int HOE_SWITCHGRASS_PLANT_RADIUS = 1;
-    private static final int HOE_SWITCHGRASS_PLANT_RADIUS_BIG = 4;
 
     public ItemHoeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
     }
 
+    @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int direction, float par8, float par9, float par10) {
         if (!player.canPlayerEdit(x, y, z, direction, stack)) {
             return false;
@@ -51,94 +51,70 @@ public class ItemHoeTechnic extends ItemTechnicTool {
             int blockAboveId = world.getBlockId(x, y + 1, z);
             Block block = Block.blocksList[blockId];
             if (canBeTilled(direction, blockAboveId, blockId)) {
-                Block newBlock = Block.tilledField;
-
-                if (world.isRemote) {
-                    return true;
-                } else {
-                    world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), newBlock.stepSound.getStepSound(), (newBlock.stepSound.getVolume() + 1.0F) / 2.0F, newBlock.stepSound.getPitch() * 0.8F);
-                    BlockHelper.setBlock(world, x, y, z, newBlock.blockID);
-                    damageTool(1, player, stack);
-                    if (player.isSneaking() && !nearlyDestroyed(stack)) {
-                        damageTool(1, player, stack);
-                        for (int xx = x - 1; xx <= x + 1; xx++) {
-                            for (int zz = z - 1; zz <= z + 1; zz++) {
-                                int bId = world.getBlockId(xx, y, zz);
-                                int bAboveId = world.getBlockId(xx, y + 1, zz);
-                                if (canBeTilled(direction, bAboveId, bId) && !nearlyDestroyed(stack)) {
-                                    BlockHelper.setBlock(world, xx, y, zz, newBlock.blockID);
-                                    damageTool(1, player, stack);
-                                }
-                            }
-                        }
-                    }
-                    return true;
-                }
+                return doTilling(stack, player, world, x, y, z, direction);
             } else if (canBeMassHarvested(block)) {
-                for (int xx = x - HOE_HARVEST_RADIUS; xx <= x + HOE_HARVEST_RADIUS; xx++) {
-                    for (int zz = z - HOE_HARVEST_RADIUS; zz <= z + HOE_HARVEST_RADIUS; zz++) {
-                        int currBlockId = world.getBlockId(xx, y, zz);
-                        boolean harvest = currBlockId == blockId;
-                        if (!harvest && player.isSneaking()) {
-                            harvest = canBeMassHarvested(Block.blocksList[currBlockId]);
-                        }
-                        if (harvest) {
-                            if (!world.isRemote) {
-                                world.destroyBlock(xx, y, zz, true);
-                            }
-                        }
-                    }
-                }
-                damageTool(5, player, stack);
-                return true;
+                return doHarvesting(stack, player, world, x, y, z, blockId);
             } else if (blockId == ContentHolder.blockSwitchgrassSolid.blockID) {
-                if (!world.isRemote) world.setBlockToAir(x, y, z);
-                BlockSwitchgrass switchgrass = ContentHolder.blockSwitchgrass;
-                int dmgCoef = 1;
-
-                int plantSize = HOE_SWITCHGRASS_PLANT_RADIUS;
-                if (allNeighboursAreSwitchgrass(world, x, y, z)) {
-                    plantSize = HOE_SWITCHGRASS_PLANT_RADIUS_BIG;
-                    for (int xx = x - 1; xx <= x + 1; xx++) {
-                        for (int zz = z - 1; zz <= z + 1; zz++) {
-                            if (!world.isRemote) world.setBlockToAir(xx, y, zz);
-                        }
-                    }
-                    dmgCoef = 3;
-                }
-
-                for (int xx = x - plantSize; xx <= x + plantSize; xx++) {
-                    for (int zz = z - plantSize; zz <= z + plantSize; zz++) {
-                        if (switchgrass.canPlaceBlockAt(world, xx, y, zz)) {
-                            if (!world.isRemote) {
-                                BlockHelper.setBlock(world, xx, y, zz, switchgrass.blockID, BlockSwitchgrass.VALUE_TOP);
-                            }
-                        } else {
-                            WorldHelper.dropBlockAsItemDo(world, xx, y, zz, switchgrass.blockID, BlockSwitchgrass.VALUE_TOP, 1);
-                        }
-                    }
-                }
-                damageTool(2 * dmgCoef, player, stack);
-                return true;
+                return ItemHoeTechnicHelper.doSwitchgrassPlanting(stack, player, world, x, y, z, this);
             } else {
                 return false;
             }
         }
     }
 
+    @Override
+    public void damageTool(int dmg, EntityLivingBase source, ItemStack stack) {
+        super.damageTool(dmg, source, stack);
+    }
+
+    private boolean doHarvesting(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int blockId) {
+        for (int xx = x - HOE_HARVEST_RADIUS; xx <= x + HOE_HARVEST_RADIUS; xx++) {
+            for (int zz = z - HOE_HARVEST_RADIUS; zz <= z + HOE_HARVEST_RADIUS; zz++) {
+                int currBlockId = world.getBlockId(xx, y, zz);
+                boolean harvest = currBlockId == blockId;
+                if (!harvest && player.isSneaking()) {
+                    harvest = canBeMassHarvested(Block.blocksList[currBlockId]);
+                }
+                if (harvest) {
+                    if (!world.isRemote) {
+                        world.destroyBlock(xx, y, zz, true);
+                    }
+                }
+            }
+        }
+        damageTool(5, player, stack);
+        return true;
+    }
+
+    private boolean doTilling(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int direction) {
+        Block newBlock = Block.tilledField;
+
+        if (world.isRemote) {
+            return true;
+        } else {
+            world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), newBlock.stepSound.getStepSound(), (newBlock.stepSound.getVolume() + 1.0F) / 2.0F, newBlock.stepSound.getPitch() * 0.8F);
+            BlockHelper.setBlock(world, x, y, z, newBlock.blockID);
+            damageTool(1, player, stack);
+            if (player.isSneaking() && !nearlyDestroyed(stack)) {
+                damageTool(1, player, stack);
+                for (int xx = x - 1; xx <= x + 1; xx++) {
+                    for (int zz = z - 1; zz <= z + 1; zz++) {
+                        int bId = world.getBlockId(xx, y, zz);
+                        int bAboveId = world.getBlockId(xx, y + 1, zz);
+                        if (canBeTilled(direction, bAboveId, bId) && !nearlyDestroyed(stack)) {
+                            BlockHelper.setBlock(world, xx, y, zz, newBlock.blockID);
+                            damageTool(1, player, stack);
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+    }
+
     private boolean canBeTilled(int direction, int blockAboveId, int blockId) {
         boolean tillableBlock = blockId == Block.dirt.blockID || blockId == Block.grass.blockID;
         return (direction != 0 && blockAboveId == 0 && tillableBlock);
-    }
-
-    private boolean allNeighboursAreSwitchgrass(World world, int x, int y, int z) {
-        for (int xx = x - 1; xx <= x + 1; xx++) {
-            for (int zz = z - 1; zz <= z + 1; zz++) {
-                if (xx == x && zz == z) continue; // skip already destroyed block
-                if (world.getBlockId(xx, y, zz) != ContentHolder.blockSwitchgrassSolid.blockID) return false;
-            }
-        }
-        return true;
     }
 
     private boolean canBeMassHarvested(Block block) {
