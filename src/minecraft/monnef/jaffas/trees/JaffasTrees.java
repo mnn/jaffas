@@ -339,7 +339,7 @@ public class JaffasTrees extends JaffasModBase {
             ItemBagPlanting.blackList().loadFromString(
                     config.get(Configuration.CATEGORY_GENERAL, "plantingBagBlackList", "", "Planting bag will ignore these items. Format of item (separated by ',' or ';'): <id>[:meta]").getString()
             );
-            Log.printInfo(ItemBagPlanting.blackList().toString());
+            ItemBagPlanting.blackList().printToLog(Log);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
         } finally {

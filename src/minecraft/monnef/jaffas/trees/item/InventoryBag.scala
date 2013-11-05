@@ -11,8 +11,12 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 import net.minecraft.entity.player.EntityPlayer
 import monnef.core.MonnefCorePlugin
 import cpw.mods.fml.common.FMLCommonHandler
+import monnef.core.utils.gameclassespimps._
 
 class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: ItemStack) extends IInventory {
+  final val INV_TAG_NAME = "Inventory"
+  final val SLOT_TAG_NAME = "Slot"
+
   val inv = new Array[ItemStack](slotsCount)
   loadFromNBT()
 
@@ -25,8 +29,7 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
   }
 
   def saveToNBT() {
-    if (!stack.hasTagCompound) stack.setTagCompound(new NBTTagCompound())
-    val tagCompound = stack.getTagCompound
+    val tagCompound = stack.getValidTagCompound()
     val itemList = new NBTTagList
 
     for {
@@ -35,11 +38,11 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
       if stack != null
     } {
       val tag = new NBTTagCompound
-      tag.setByte("Slot", i.asInstanceOf[Byte])
+      tag.setByte(SLOT_TAG_NAME, i.asInstanceOf[Byte])
       stack.writeToNBT(tag)
       itemList.appendTag(tag)
     }
-    tagCompound.setTag("Inventory", itemList)
+    tagCompound.setTag(INV_TAG_NAME, itemList)
     if (MonnefCorePlugin.debugEnv) {
       tagCompound.setString("DebugString", "xx")
       MonnefCorePlugin.Log.printInfo(s"Saving on ${FMLCommonHandler.instance().getEffectiveSide}. stack: $stack, debugStr: ${ItemBagBase.getDebugString(stack)}")
@@ -50,12 +53,11 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
     val tagCompound = stack.getTagCompound
 
     if (tagCompound != null) {
-      val tagList = tagCompound.getTagList("Inventory")
-      //for (i <- 0 until getSizeInventory) setInventorySlotContents(i, null)
+      val tagList = tagCompound.getTagList(INV_TAG_NAME)
       for {
         i <- 0 until tagList.tagCount()
         tag = tagList.tagAt(i).asInstanceOf[NBTTagCompound]
-        slot = tag.getByte("Slot")
+        slot = tag.getByte(SLOT_TAG_NAME)
         if slot >= 0 && slot < getSizeInventory
       } {
         setInventorySlotContentsInternal(slot, ItemStack.loadItemStackFromNBT(tag))
