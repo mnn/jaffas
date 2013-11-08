@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.item;
 
+import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.ColorEnum;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.DyeColor;
@@ -105,6 +106,11 @@ public class ItemWindTurbine extends ItemPower {
         } else {
             for (int i = 0; i < BASIC_COLOURS_COUNT; i++) {
                 list.add(constructColoredTurbine(i));
+                if (MonnefCorePlugin.debugEnv) {
+                    ItemStack damagedTurb = constructColoredTurbine(i);
+                    damagedTurb.setItemDamage(damagedTurb.getMaxDamage() - 2);
+                    list.add(damagedTurb);
+                }
             }
         }
     }

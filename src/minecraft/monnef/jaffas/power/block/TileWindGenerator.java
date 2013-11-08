@@ -38,6 +38,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
     public static final int DAMAGE_TIMER_BASE = TICKS_PER_MINUTE;
     public static final int DAMAGE_TIMER_SPREAD = DAMAGE_TIMER_BASE / 6;
     private static final String SPEED_TAG = "turbineSpeed";
+    public static final int WORK_EVERY_N_TICKS = 10;
     private int currentMaximalSpeed;
 
     private enum TurbineState {UNKNOWN, NO_TURBINE, TURBINE_SPAWNED}
@@ -68,7 +69,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
     private int ticksToDamageTurbine;
 
     public TileWindGenerator() {
-        slowingCoefficient = 10;
+        slowingCoefficient = WORK_EVERY_N_TICKS;
     }
 
     public void setCurrentMaximalSpeed(int currentMaximalSpeed) {
@@ -130,7 +131,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
 
     private void producePower() {
         float energyPerTick = turbine.getMaximalEnergyPerRainyTick() * ((float) turbineSpeed / TURBINE_MAX_SPEED);
-        lastPowerProduction = Math.round(energyPerTick * 10);
+        lastPowerProduction = Math.round(energyPerTick * WORK_EVERY_N_TICKS);
 
         if (customerState == CustomerState.NONE) {
             lookForCustomer();
@@ -141,7 +142,6 @@ public class TileWindGenerator extends TileMachineWithInventory {
                 IPowerReceptor tile = (IPowerReceptor) customerPos.getTile();
                 float energyTotal = energyPerTick * slowingCoefficient;
                 if (BuildCraftHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy(tile, dir)) {
-                    //tile.getPowerProvider().receiveEnergy(energyTotal, dir);
                     tile.getPowerReceiver(dir).receiveEnergy(PowerHandler.Type.ENGINE, energyTotal, dir);
                 } else {
                     // energy wasted
@@ -179,25 +179,6 @@ public class TileWindGenerator extends TileMachineWithInventory {
     private void updateSpeedOfTurbineEntity() {
         turbineEntity.updateStatus(getTurbineSpeed());
     }
-
-    /*
-    // OLD rigid impl
-    private void adjustCurrentSpeed() {
-        if (speedChangeCoolDown-- <= 0) {
-            int maxSpeed = getCurrentMaximalSpeed();
-            if (maxSpeed > TURBINE_NORMAL_SPEED && !worldObj.isRaining()) maxSpeed = TURBINE_NORMAL_SPEED;
-            int step = worldObj.isRaining() ? 3 : 1;
-            if (worldObj.isThundering()) step += 2;
-            if (turbineSpeed < maxSpeed) turbineSpeed += step;
-            else if (turbineSpeed > maxSpeed) turbineSpeed -= step;
-            if (worldObj.isRaining() || rand.nextInt(5) == 0) turbineSpeed += step * (rand.nextBoolean() ? 1 : -1);
-
-            if (turbineSpeed < 0) turbineSpeed = 0;
-            if (turbineSpeed > TURBINE_MAX_SPEED) turbineSpeed = TURBINE_MAX_SPEED;
-            speedChangeCoolDown = RandomHelper.generateRandomFromInterval(1, worldObj.isRaining() ? 3 : 6);
-        }
-    }
-    */
 
     private void adjustCurrentSpeed() {
         if (speedChangeCoolDown-- <= 0) {
@@ -401,7 +382,9 @@ public class TileWindGenerator extends TileMachineWithInventory {
     private void damageTurbineItem(int amount) {
         if (ItemHelper.damageItem(getStackInSlot(TURBINE_SLOT), amount)) {
             setInventorySlotContents(TURBINE_SLOT, null);
-            turbineEntity.breakTurbine();
+            if (turbineEntity != null) {
+                turbineEntity.breakTurbine();
+            }
         }
     }
 
