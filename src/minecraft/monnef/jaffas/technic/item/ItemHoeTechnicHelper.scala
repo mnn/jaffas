@@ -7,37 +7,34 @@ package monnef.jaffas.technic.item
 
 import monnef.jaffas.food.block.BlockSwitchgrass
 import monnef.jaffas.food.common.ContentHolder
-import monnef.core.utils.{WorldHelper, BlockHelper}
 import net.minecraft.item.ItemStack
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.world.World
+import monnef.core.utils.scalautils._
+import monnef.core.utils.{WorldHelper, BlockHelper}
 
 object ItemHoeTechnicHelper {
-  private final val HOE_SWITCHGRASS_PLANT_RADIUS: Int = 1
-  private final val HOE_SWITCHGRASS_PLANT_RADIUS_BIG: Int = 4
+  private final val SWITCHGRASS_PLANT_RADIUS_LIMIT: Int = 6
 
   def doSwitchgrassPlanting(stack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, hoe: ItemHoeTechnic): Boolean = {
-    if (!world.isRemote) world.setBlockToAir(x, y, z)
     val switchgrass: BlockSwitchgrass = ContentHolder.blockSwitchgrass
-    var dmgCoef: Int = 1
-    var plantSize: Int = HOE_SWITCHGRASS_PLANT_RADIUS
-    if (allNeighboursAreSwitchgrass(world, x, y, z)) {
-      plantSize = HOE_SWITCHGRASS_PLANT_RADIUS_BIG
-      var xx: Int = x - 1
-      while (xx <= x + 1) {
-        var zz: Int = z - 1
-        while (zz <= z + 1) {
-          if (!world.isRemote) world.setBlockToAir(xx, y, zz)
-          zz += 1
-        }
-        xx += 1
+    var dmg: Int = 1
+    val solidSwitchgrassRadiusOpt = computeSwitchgrassBlocksRadius(world, x, y, z)
+    if (solidSwitchgrassRadiusOpt.nonEmpty) {
+      val solidSwitchgrassRadius = solidSwitchgrassRadiusOpt.get
+      for {
+        xx <- x - solidSwitchgrassRadius to x + solidSwitchgrassRadius
+        zz <- z - solidSwitchgrassRadius to z + solidSwitchgrassRadius
+      } {
+        if (!world.isRemote) world.setBlockToAir(xx, y, zz)
+        dmg += 1
       }
-      dmgCoef = 3
-    }
-    var xx: Int = x - plantSize
-    while (xx <= x + plantSize) {
-      var zz: Int = z - plantSize
-      while (zz <= z + plantSize) {
+
+      val plantRadius = solidSwitchgrassRadius * 3 + 1
+      for {
+        xx <- x - plantRadius to x + plantRadius
+        zz <- z - plantRadius to z + plantRadius
+      } {
         if (switchgrass.canPlaceBlockAt(world, xx, y, zz)) {
           if (!world.isRemote)
             BlockHelper.setBlock(world, xx, y, zz, switchgrass.blockID, BlockSwitchgrass.VALUE_TOP)
@@ -45,28 +42,27 @@ object ItemHoeTechnicHelper {
         else {
           WorldHelper.dropBlockAsItemDo(world, xx, y, zz, switchgrass.blockID, BlockSwitchgrass.VALUE_TOP, 1)
         }
-        zz += 1
       }
-      xx += 1
-    }
-    hoe.damageTool(2 * dmgCoef, player, stack)
-    true
+      hoe.damageTool(dmg, player, stack)
+      true
+    } else false
   }
 
-  private def allNeighboursAreSwitchgrass(world: World, x: Int, y: Int, z: Int): Boolean = {
-    var xx: Int = x - 1
-    while (xx <= x + 1) {
-      var zz: Int = z - 1
-      while (zz <= z + 1) {
-        if (xx == x && zz == z) {
-          // continue
-        } else {
-          if (world.getBlockId(xx, y, zz) != ContentHolder.blockSwitchgrassSolid.blockID) return false
-        }
-        zz += 1
-      }
-      xx += 1
+  private def computeSwitchgrassBlocksRadius(w: World, x: Int, y: Int, z: Int): Option[Int] = {
+    def isSwitchgrassBlock(x: Int, z: Int): Boolean = w.getBlockId(x, y, z) == ContentHolder.blockSwitchgrassSolid.blockID
+    def loop(rad: Int): Option[Int] = {
+      if (rad < 0) throw new IllegalArgumentException
+      if (rad >= SWITCHGRASS_PLANT_RADIUS_LIMIT) None
+      val circle = centeredSquares(rad)
+      val largerCircle = centeredSquares(rad + 1)
+      val isSwitchgrassCircle: Boolean = circle.forall {case (sx, sz) => isSwitchgrassBlock(x + sx, z + sz)}
+      val switchgrassInLargerCircle: Int = largerCircle.count {case (sx, sz) => isSwitchgrassBlock(x + sx, z + sz)}
+      if (isSwitchgrassCircle) {
+        if (switchgrassInLargerCircle == 0) Some(rad)
+        else loop(rad + 1)
+      } else None
     }
-    true
+
+    loop(0)
   }
 }
