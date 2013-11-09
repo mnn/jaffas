@@ -12,8 +12,8 @@ import monnef.jaffas.trees.JaffasTrees
 import java.util
 import monnef.core.item.ItemMonnefCore
 import monnef.core.MonnefCorePlugin
-import net.minecraft.block.Block
-import net.minecraftforge.common.{ForgeDirection, IPlantable}
+import monnef.core.utils.InventoryUtils
+import scala.collection.mutable.ArrayBuffer
 
 abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _texture) {
 
@@ -41,6 +41,16 @@ abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _text
     if (t.hasKey("Inventory")) c = t.getTagList("Inventory").tagCount()
     l.add(s"$c / ${ItemBagBase.farmerBagsSlotsCount}")
     if (MonnefCorePlugin.debugEnv) l.add(getDebugString(stack))
+  }
+
+  def tryFillBag(stack: ItemStack, toInsert: Seq[ItemStack]): Seq[ItemStack] = {
+    val inv = createInventory(stack)
+    var leftovers = ArrayBuffer[ItemStack]()
+    for {a <- toInsert} {
+      val left = InventoryUtils.insertStackToExternalInventory(inv, a, 0)
+      if (left != null) leftovers += left
+    }
+    leftovers
   }
 }
 

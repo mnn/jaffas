@@ -12,6 +12,11 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.world.World
 import monnef.core.utils.scalautils._
 import monnef.core.utils.{WorldHelper, BlockHelper}
+import net.minecraft.block.Block
+import net.minecraftforge.common.IPlantable
+import net.minecraft.enchantment.EnchantmentHelper
+import monnef.core.utils.gameclassespimps._
+import monnef.jaffas.trees.item.ItemBagCollecting
 
 object ItemHoeTechnicHelper {
   private final val SWITCHGRASS_PLANT_RADIUS_LIMIT: Int = 6
@@ -65,4 +70,58 @@ object ItemHoeTechnicHelper {
 
     loop(0)
   }
+
+  private final val HOE_HARVEST_RADIUS: Int = 3
+
+  private def tryFillCollectingBags(player: EntityPlayer, loot: Seq[ItemStack]): Seq[ItemStack] = {
+    val collectingBags = player.hotBarStacks.zipWithIndexFirst.filter {
+      case (i, s: ItemStack) => s != null && s.getItem.isInstanceOf[ItemBagCollecting]
+      case _ => false
+    }
+    var rest = loot
+    for {
+      (slotIndex, bagStack: ItemStack) <- collectingBags
+      bagItem = bagStack.getItem.asInstanceOf[ItemBagCollecting]
+      if rest.nonEmpty
+    } {
+      rest = bagItem.tryFillBag(bagStack, rest)
+    }
+    player.inventoryContainer.detectAndSendChanges()
+    rest
+  }
+
+  def doHarvesting(stack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, blockId: Int, hoe: ItemHoeTechnic): Boolean = {
+    var skipBag = false
+    for {
+      xx <- x - HOE_HARVEST_RADIUS to x + HOE_HARVEST_RADIUS
+      zz <- z - HOE_HARVEST_RADIUS to z + HOE_HARVEST_RADIUS
+    } {
+      val currBlockId: Int = world.getBlockId(xx, y, zz)
+      var harvest: Boolean = currBlockId == blockId
+      val blockToHarvest = Block.blocksList(currBlockId)
+      if (!harvest && player.isSneaking) {
+        harvest = canBeMassHarvested(blockToHarvest)
+      }
+      if (harvest) {
+        if (!world.isRemote) {
+          if (!skipBag) {
+            val loot = blockToHarvest.getBlockDropped(world, xx, y, zz, world.getBlockMetadata(xx, y, zz), EnchantmentHelper.getFortuneModifier(player)).toArray.toVector.asInstanceOf[Vector[ItemStack]]
+            if (loot.nonEmpty) {
+              val leftovers = tryFillCollectingBags(player, loot)
+              if (leftovers.nonEmpty) {
+                skipBag = true
+                leftovers.foreach {WorldHelper.dropItem(world, xx, y, zz, _)}
+              }
+            }
+          }
+          val dropItems = skipBag
+          world.destroyBlock(xx, y, zz, dropItems)
+        }
+      }
+    }
+    hoe.damageTool(5, player, stack)
+    true
+  }
+
+  def canBeMassHarvested(block: Block): Boolean = block.isInstanceOf[IPlantable]
 }

@@ -6,8 +6,6 @@
 package monnef.jaffas.technic.item;
 
 import monnef.core.utils.BlockHelper;
-import monnef.core.utils.WorldHelper;
-import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,14 +13,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 
-public class ItemHoeTechnic extends ItemTechnicTool {
+import static monnef.jaffas.technic.item.ItemHoeTechnicHelper.canBeMassHarvested;
+import static monnef.jaffas.technic.item.ItemHoeTechnicHelper.doHarvesting;
+import static monnef.jaffas.technic.item.ItemHoeTechnicHelper.doSwitchgrassPlanting;
 
-    private static final int HOE_HARVEST_RADIUS = 3;
+public class ItemHoeTechnic extends ItemTechnicTool {
 
     public ItemHoeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
@@ -53,9 +52,9 @@ public class ItemHoeTechnic extends ItemTechnicTool {
             if (canBeTilled(direction, blockAboveId, blockId)) {
                 return doTilling(stack, player, world, x, y, z, direction);
             } else if (canBeMassHarvested(block)) {
-                return doHarvesting(stack, player, world, x, y, z, blockId);
+                return doHarvesting(stack, player, world, x, y, z, blockId, this);
             } else if (blockId == ContentHolder.blockSwitchgrassSolid.blockID) {
-                return ItemHoeTechnicHelper.doSwitchgrassPlanting(stack, player, world, x, y, z, this);
+                return doSwitchgrassPlanting(stack, player, world, x, y, z, this);
             } else {
                 return false;
             }
@@ -65,25 +64,6 @@ public class ItemHoeTechnic extends ItemTechnicTool {
     @Override
     public void damageTool(int dmg, EntityLivingBase source, ItemStack stack) {
         super.damageTool(dmg, source, stack);
-    }
-
-    private boolean doHarvesting(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int blockId) {
-        for (int xx = x - HOE_HARVEST_RADIUS; xx <= x + HOE_HARVEST_RADIUS; xx++) {
-            for (int zz = z - HOE_HARVEST_RADIUS; zz <= z + HOE_HARVEST_RADIUS; zz++) {
-                int currBlockId = world.getBlockId(xx, y, zz);
-                boolean harvest = currBlockId == blockId;
-                if (!harvest && player.isSneaking()) {
-                    harvest = canBeMassHarvested(Block.blocksList[currBlockId]);
-                }
-                if (harvest) {
-                    if (!world.isRemote) {
-                        world.destroyBlock(xx, y, zz, true);
-                    }
-                }
-            }
-        }
-        damageTool(5, player, stack);
-        return true;
     }
 
     private boolean doTilling(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int direction) {
@@ -115,9 +95,5 @@ public class ItemHoeTechnic extends ItemTechnicTool {
     private boolean canBeTilled(int direction, int blockAboveId, int blockId) {
         boolean tillableBlock = blockId == Block.dirt.blockID || blockId == Block.grass.blockID;
         return (direction != 0 && blockAboveId == 0 && tillableBlock);
-    }
-
-    private boolean canBeMassHarvested(Block block) {
-        return block instanceof IPlantable;
     }
 }

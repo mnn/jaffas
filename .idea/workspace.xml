@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagBase.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagBase.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
     <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383904092131" ignored="false" />
-    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383901527447" ignored="false" />
+    <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383989935736" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372606222178" ignored="false" />
     <file path="/TileEntityJaffaMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374156004628" ignored="false" />
@@ -160,7 +163,7 @@
     <file path="/IIntegerCoordinates.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1375440657292" ignored="false" />
     <file path="/IntegerCoordinates.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1376218456217" ignored="false" />
     <file path="/TileEntityMachineWithInventory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381067659810" ignored="false" />
-    <file path="/InventoryUtils.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1364056799270" ignored="false" />
+    <file path="/InventoryUtils.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383994492917" ignored="false" />
     <file path="/BlockMachineWithInventory.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1373556969409" ignored="false" />
     <file path="/ContainerMachine.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382425768875" ignored="false" />
     <file path="/ContainerGenerator.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372603735052" ignored="false" />
@@ -245,7 +248,7 @@
     <file path="/BlockPower.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1368528270609" ignored="false" />
     <file path="/LightningConductor.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362390418004" ignored="false" />
     <file path="/BlockLightningConductor.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1363005377627" ignored="false" />
-    <file path="/WorldHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381010377563" ignored="false" />
+    <file path="/WorldHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383928506060" ignored="false" />
     <file path="/PathHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374261264802" ignored="false" />
     <file path="/ItemJaffaT.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1362424591927" ignored="false" />
     <file path="/ItemJaffaSeeds.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367436535512" ignored="false" />
@@ -302,7 +305,7 @@
     <file path="/ItemSwordTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1374441234046" ignored="false" />
     <file path="/ItemAxeTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372872703153" ignored="false" />
     <file path="/ItemCentralUnit.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365108608309" ignored="false" />
-    <file path="/ItemHoeTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383640277756" ignored="false" />
+    <file path="/ItemHoeTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383928778916" ignored="false" />
     <file path="/EntityLiving.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365333061160" ignored="false" />
     <file path="$PROJECT_DIR$/../../dawn/build/mcp/src/minecraft/net/minecraft/entity/EntityLiving.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365333061160" ignored="false" />
     <file path="$PROJECT_DIR$/../../dawn/build/mcp/src/minecraft/net/minecraft/client/entity/EntityPlayerSP.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365333103072" ignored="false" />
@@ -861,16 +864,16 @@
     <file path="/BlockPower.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382813110284" ignored="false" />
     <file path="/ItemPower.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382813181325" ignored="false" />
     <file path="/IconDescriptorPower.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382813327831" ignored="false" />
-    <file path="/ItemBagBase.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382962993206" ignored="false" />
+    <file path="/ItemBagBase.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383994795781" ignored="false" />
     <file path="/ItemBagPlanting.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383582056206" ignored="false" />
     <file path="/GuiBag.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382974016263" ignored="false" />
     <file path="/ContainerBag.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382973764100" ignored="false" />
     <file path="/ItemBagCollecting.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382872631994" ignored="false" />
     <file path="/InventoryBag.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383638889826" ignored="false" />
-    <file path="/package.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383910939432" ignored="false" />
+    <file path="/package.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383993366183" ignored="false" />
     <file path="/ItemStackList.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383635415073" ignored="false" />
     <file path="/ItemStackListTest.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383583957763" ignored="false" />
-    <file path="/ItemHoeTechnicHelper.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383921701596" ignored="false" />
+    <file path="/ItemHoeTechnicHelper.scala" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383995908380" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -976,25 +979,27 @@
       <file leaf-file-name="ItemHoeTechnic.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="83" column="43" selection-start="3246" selection-end="3246" vertical-scroll-proportion="0.0">
+            <state line="47" column="52" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemWindTurbine.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java">
+      <file leaf-file-name="ItemHoeTechnicHelper.scala" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="111" column="42" selection-start="3733" selection-end="3733" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="88" column="52" selection-start="3432" selection-end="3432" vertical-scroll-proportion="0.61285007">
+              <folding>
+                <element signature="e#82#130#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TileWindGenerator.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
+      <file leaf-file-name="ItemBagBase.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagBase.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="362" column="40" selection-start="13340" selection-end="13340" vertical-scroll-proportion="1.0185186">
+            <state line="45" column="6" selection-start="1437" selection-end="1437" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1003,7 +1008,25 @@
       <file leaf-file-name="package.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/scalautils/package.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="71" column="3" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.0">
+            <state line="72" column="35" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/gameclassespimps/package.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="30" column="72" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InventoryPlayer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/player/InventoryPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="22" selection-start="956" selection-end="956" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -1028,22 +1051,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/RegistryUtils.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/block/BlockJaffaCrops.java" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/Config.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/CustomCloaksHandler.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagPlanting.scala" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/test/ItemStackListTest.scala" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ItemStackList.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/package.scala" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/gameclassespimps/package.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/InventoryBag.scala" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala" />
-        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/scalautils/package.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/WorldHelper.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/gameclassespimps/package.scala" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/scalautils/package.scala" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/utils/InventoryUtils.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagBase.scala" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala" />
       </list>
     </option>
   </component>
@@ -1176,6 +1199,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1522,8 +1547,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1543,9 +1566,9 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.31578946" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.31578946" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1962,12 +1985,12 @@
       <item index="2" class="java.lang.String" itemvalue="Application.client 2" />
       <item index="3" class="java.lang.String" itemvalue="JUnit.monnef.core.test in mcp725_jaffas" />
       <item index="4" class="java.lang.String" itemvalue="JUnit.ItemStackListTest" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.IntCoordsTest" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.SpaceHashMapTest.testMap" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.CallerClassNameFinderTest" />
-      <item index="8" class="java.lang.String" itemvalue="JUnit.CallerClassNameFinderTest.testMyPackage" />
-      <item index="9" class="java.lang.String" itemvalue="JUnit.CallerClassNameFinderTest.testMyClass" />
-      <item index="10" class="java.lang.String" itemvalue="Scala Console.scalaConsole" />
+      <item index="5" class="java.lang.String" itemvalue="Scala Console.scalaConsole" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.IntCoordsTest" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.SpaceHashMapTest.testMap" />
+      <item index="8" class="java.lang.String" itemvalue="JUnit.CallerClassNameFinderTest" />
+      <item index="9" class="java.lang.String" itemvalue="JUnit.CallerClassNameFinderTest.testMyPackage" />
+      <item index="10" class="java.lang.String" itemvalue="JUnit.CallerClassNameFinderTest.testMyClass" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -2079,7 +2102,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
+    <frame x="-4" y="-4" width="1928" height="1044" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
@@ -2195,115 +2218,113 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/InventoryBag.scala">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/world/World.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="30" selection-start="862" selection-end="862" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/ItemJaffaTool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="4" selection-start="3110" selection-end="3110" vertical-scroll-proportion="-0.50623053">
+        <state line="704" column="44" selection-start="24120" selection-end="24120" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockCrops.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="317" selection-end="317" vertical-scroll-proportion="0.11724138">
-          <folding />
-        </state>
+        <state line="182" column="40" selection-start="5512" selection-end="5512" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/GuiHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockFlowerPot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="303" selection-end="303" vertical-scroll-proportion="0.11724138">
-          <folding />
-        </state>
+        <state line="147" column="33" selection-start="4625" selection-end="4625" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/client/GuiHandlerTrees.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="363" selection-end="363" vertical-scroll-proportion="0.11724138">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="409" selection-end="409" vertical-scroll-proportion="-0.113793105">
+        <state line="1140" column="57" selection-start="63507" selection-end="63543" vertical-scroll-proportion="0.71728593">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/WorldHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="23" selection-start="1785" selection-end="1785" vertical-scroll-proportion="0.6678161">
+        <state line="61" column="0" selection-start="2513" selection-end="2513" vertical-scroll-proportion="0.8045977">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/player/InventoryPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="45" selection-start="2567" selection-end="2567" vertical-scroll-proportion="0.7841845">
-          <folding>
-            <element signature="e#82#130#0" expanded="true" />
-          </folding>
+        <state line="26" column="22" selection-start="956" selection-end="956" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/player/EntityPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2382" column="80" selection-start="78018" selection-end="78018" vertical-scroll-proportion="0.3722287">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/apps/scala-2.10.2/lib/scala-library.jar!/scala/collection/generic/CanBuildFrom.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="6" selection-start="190" selection-end="190" vertical-scroll-proportion="0.040236685">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/gameclassespimps/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="72" selection-start="836" selection-end="836" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/scalautils/package.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="3" selection-start="1802" selection-end="1802" vertical-scroll-proportion="0.0">
+        <state line="72" column="35" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/apps/scala-2.10.2/lib/scala-library.jar!/scala/collection/IterableLike.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="29" selection-start="31" selection-end="54" vertical-scroll-proportion="0.020432692">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="43" selection-start="3246" selection-end="3246" vertical-scroll-proportion="0.0">
+        <state line="47" column="52" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/tileentity/TileEntityHopper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="42" selection-start="3733" selection-end="3733" vertical-scroll-proportion="0.0">
+        <state line="402" column="28" selection-start="12146" selection-end="12146" vertical-scroll-proportion="0.21353559">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/RandomHelper.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/InventoryUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="22" selection-start="1445" selection-end="1445" vertical-scroll-proportion="0.7199341">
+        <state line="79" column="40" selection-start="2780" selection-end="2780" vertical-scroll-proportion="0.8241379">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/entity/EntityWindTurbine.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagBase.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="293" column="16" selection-start="10237" selection-end="10237" vertical-scroll-proportion="0.0">
+        <state line="45" column="6" selection-start="1437" selection-end="1437" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/block/TileMachineWithInventory.scala">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="18" selection-start="1372" selection-end="1372" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/tileentity/TileEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="16" selection-start="5226" selection-end="5226" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileWindGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="362" column="40" selection-start="13340" selection-end="13340" vertical-scroll-proportion="1.0185186">
-          <folding />
+        <state line="88" column="52" selection-start="3432" selection-end="3432" vertical-scroll-proportion="0.61285007">
+          <folding>
+            <element signature="e#82#130#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
