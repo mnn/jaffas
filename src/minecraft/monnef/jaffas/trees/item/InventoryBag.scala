@@ -11,7 +11,7 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 import net.minecraft.entity.player.EntityPlayer
 import monnef.core.MonnefCorePlugin
 import cpw.mods.fml.common.FMLCommonHandler
-import monnef.core.utils.gameclassespimps._
+import monnef.core.utils.scalagameutils._
 
 class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: ItemStack) extends IInventory {
   final val INV_TAG_NAME = "Inventory"

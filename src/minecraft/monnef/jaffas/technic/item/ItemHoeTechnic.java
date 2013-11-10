@@ -22,6 +22,8 @@ import static monnef.jaffas.technic.item.ItemHoeTechnicHelper.doHarvesting;
 import static monnef.jaffas.technic.item.ItemHoeTechnicHelper.doSwitchgrassPlanting;
 
 public class ItemHoeTechnic extends ItemTechnicTool {
+    public static boolean falloutScanAllowed = true;
+    public static int falloutScanRadius = 7;
 
     public ItemHoeTechnic(int id, int textureOffset, EnumToolMaterial material) {
         super(id, textureOffset, material);
