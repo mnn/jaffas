@@ -440,6 +440,12 @@ public class Recipes {
         PersistentItemsCraftingHandler.AddPersistentItem(potatesSlicedInTin, false, cakeTin);
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.paper, 2), "xxx", "xxx", 'x', new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP));
+
+        addLollipopRecipe(lollipopRed, jamR);
+    }
+
+    public static void addLollipopRecipe(JaffaItem lollipop, JaffaItem jam) {
+        GameRegistry.addShapedRecipe(getItemStack(lollipop, 4), " JS", " SS", "I  ", 'I', Item.stick, 'S', Item.sugar, 'J', getItemStack(jam));
     }
 
     public static void addPackRecipe(JaffaItem item) {

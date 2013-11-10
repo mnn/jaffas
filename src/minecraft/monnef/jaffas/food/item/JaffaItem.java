@@ -39,5 +39,5 @@ public enum JaffaItem {
     cocoBarWrapper, cocoBar, cupCocoa, cookingPot, cookingPotCocoaCold, cookingPotCocoaHot, eggHardBoiled, cookingPotWater, cookingPotEggsRaw, cookingPotEggs,
     bananaInChocolate, fruitSalad, friedMushroomsInTinRaw, friedMushroomsInTinCooked, friedMushrooms,
     shroomburger, shroomburgerInBun, shroomburgerInBunWithCheese, mincedMushrooms, shroomburgerRaw, fryingPanShroomburgerRaw, fryingPanShroomburger,
-    flyAgaricChopped, meatDryer, driedMeat, beerMugEmpty, beerMugFull, potatesSliced, potatesSlicedInTinRaw, potatesSlicedInTin, crisps, cheeseRaw, cream, _last
+    flyAgaricChopped, meatDryer, driedMeat, beerMugEmpty, beerMugFull, potatesSliced, potatesSlicedInTinRaw, potatesSlicedInTin, crisps, cheeseRaw, cream, lollipopRed, _last
 }

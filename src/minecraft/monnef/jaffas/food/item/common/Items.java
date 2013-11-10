@@ -389,6 +389,8 @@ public class Items extends ItemManagerAccessor {
 
         AddItemInfo(JaffaItem.cheeseRaw, "Raw Cheese", 257);
         AddItemInfo(JaffaItem.cream, "Cream", 258);
+
+        AddItemInfo(JaffaItem.lollipopRed, "Lollipop", 259);
     }
 
     private void registerWolfFood(JaffaItem item) {
@@ -725,11 +727,17 @@ public class Items extends ItemManagerAccessor {
         createJaffaItem(cream);
         createJaffaItem(cheeseRaw).setMaxStackSize(1);
 
+        createLollipop(lollipopRed);
+
         createItemsOreDictRegistration();
 
         addMeatsToDryerDatabase();
 
         markJaffasRare();
+    }
+
+    private void createLollipop(JaffaItem lollipop) {
+        createJaffaFood(lollipop, 3, 1.2f).setAlwaysEdible().setReturnItem(new ItemStack(Item.stick)).setPotionEffect(Potion.regeneration.id, 15, 0, 0.33f).setMaxStackSize(16);
     }
 
     private void markJaffasRare() {
