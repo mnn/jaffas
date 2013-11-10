@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -338,7 +336,7 @@
     <file path="$PROJECT_DIR$/../../dawn/src/monnef/dawn/item/ItemBlunderbass.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365349496334" ignored="false" />
     <file path="$PROJECT_DIR$/../../dawn/src/monnef/dawn/item/ItemBlunderbuss.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365354427763" ignored="false" />
     <file path="/JaffasFood.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381350693349" ignored="false" />
-    <file path="/JaffasTrees.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1383635459137" ignored="false" />
+    <file path="/JaffasTrees.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1384080796724" ignored="false" />
     <file path="$PROJECT_DIR$/src/minecraft/monnef/core/utils/WorldHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365502657863" ignored="false" />
     <file path="$PROJECT_DIR$/src/minecraft/monnef/core/utils/UrlHelper.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365502657863" ignored="false" />
     <file path="$PROJECT_DIR$/src/minecraft/monnef/core/utils/TimeUtils.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1365502657863" ignored="false" />
@@ -396,7 +394,7 @@
     <file path="/JaffasPower.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1382216848420" ignored="false" />
     <file path="/ItemSpadeTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372872815288" ignored="false" />
     <file path="/ItemPickaxeTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372866123154" ignored="false" />
-    <file path="/JaffasTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1381321669894" ignored="false" />
+    <file path="/JaffasTechnic.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1384081250428" ignored="false" />
     <file path="/ItemDuckEgg.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367437975479" ignored="false" />
     <file path="/TileEntityFruitLeavesRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367687647501" ignored="false" />
     <file path="/LeavesBlockRenderer.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1367700128493" ignored="false" />
@@ -984,10 +982,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Items.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Items.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="729" column="0" selection-start="37177" selection-end="37177" vertical-scroll-proportion="0.3047776">
+            <state line="737" column="52" selection-start="37326" selection-end="37326" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JaffasTrees.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="759" column="0" selection-start="37055" selection-end="37055" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JaffasTechnic.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="944" column="65" selection-start="50717" selection-end="50717" vertical-scroll-proportion="0.44107744">
               <folding />
             </state>
           </provider>
@@ -1030,9 +1046,7 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/src/monnef/core/test/ItemStackListTest.scala" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ItemStackList.scala" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/package.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/InventoryBag.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/item/ItemWindTurbine.java" />
@@ -1046,6 +1060,8 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
       </list>
     </option>
   </component>
@@ -1311,7 +1327,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
+              <option name="myItemId" value="trees" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1341,7 +1357,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
+              <option name="myItemId" value="trees" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -1375,49 +1391,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="item" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas_1.6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="minecraft" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monnef" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="food" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="crafting" />
+              <option name="myItemId" value="technic" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2269,28 +2243,11 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/BlockFlowerPot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="33" selection-start="4625" selection-end="4625" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/block/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1140" column="57" selection-start="63507" selection-end="63543" vertical-scroll-proportion="0.71728593">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/WorldHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="0" selection-start="2513" selection-end="2513" vertical-scroll-proportion="0.8045977">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/player/EntityPlayer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2382" column="80" selection-start="78018" selection-end="78018" vertical-scroll-proportion="0.3722287" />
+        <state line="2382" column="80" selection-start="78018" selection-end="78018" vertical-scroll-proportion="0.3722287">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="jar://D:/apps/scala-2.10.2/lib/scala-library.jar!/scala/collection/generic/CanBuildFrom.class">
@@ -2317,19 +2274,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnicHelper.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="45" selection-start="3446" selection-end="3446" vertical-scroll-proportion="0.4275862" />
+        <state line="91" column="45" selection-start="3446" selection-end="3446" vertical-scroll-proportion="0.4275862">
+          <folding>
+            <element signature="e#82#130#0" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/item/ItemHoeTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="47" column="52" selection-start="1685" selection-end="1685" vertical-scroll-proportion="0.01983664">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagBase.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="6" selection-start="1437" selection-end="1437" vertical-scroll-proportion="0.47241378">
           <folding />
         </state>
       </provider>
@@ -2353,6 +2307,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="737" column="52" selection-start="37326" selection-end="37326" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagBase.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="16" selection-start="1800" selection-end="1800" vertical-scroll-proportion="0.76551723">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemBagPlanting.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="72" selection-start="547" selection-end="547" vertical-scroll-proportion="0.1954023">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="445" column="35" selection-start="31394" selection-end="31394" vertical-scroll-proportion="0.0">
@@ -2360,9 +2335,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="729" column="0" selection-start="37177" selection-end="37177" vertical-scroll-proportion="0.3047776">
+        <state line="759" column="0" selection-start="37055" selection-end="37055" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="944" column="65" selection-start="50717" selection-end="50717" vertical-scroll-proportion="0.44107744">
           <folding />
         </state>
       </provider>

@@ -143,6 +143,7 @@ import static monnef.jaffas.food.item.JaffaItem.shroomburgerRaw;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneBig;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneLittle;
 import static monnef.jaffas.food.item.JaffaItem.spawnStoneMedium;
+import static monnef.jaffas.food.item.JaffaItem.wolfSkin;
 import static monnef.jaffas.food.item.JaffaItem.woodenBowl;
 import static monnef.jaffas.technic.Reference.ModId;
 import static monnef.jaffas.technic.Reference.ModName;
@@ -928,6 +929,18 @@ public class JaffasTechnic extends JaffasModBase {
         addToolRecycleRecipe(axeJaffarrol, 3);
         addToolRecycleRecipe(spadeJaffarrol, 1);
         addToolRecycleRecipe(swordJaffarrol, 2);
+
+        if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
+            registerSmallBagRecipe(new ItemStack(Block.cloth, 1, OreDictionary.WILDCARD_VALUE));
+            registerSmallBagRecipe(getItemStack(wolfSkin));
+            registerSmallBagRecipe(new ItemStack(Item.leather));
+        }
+    }
+
+    private void registerSmallBagRecipe(ItemStack s) {
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagSmall), "  S", "WW ", "DW ", 'S', Item.silk, 'W', s, 'D', JaffasTechnic.limsew);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagMedium), " D ", "WBW", " W ", 'W', s, 'D', JaffasTechnic.limsew, 'B', JaffasTrees.itemPlantingBagSmall);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagBig), "DDD", "WBW", "WWW", 'W', s, 'D', JaffasTechnic.limsew, 'B', JaffasTrees.itemPlantingBagMedium);
     }
 
     private void addToolRecycleRecipe(Item tool, int ingotsUsedForCreation) {
