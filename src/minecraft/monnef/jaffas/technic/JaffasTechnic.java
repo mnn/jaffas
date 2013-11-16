@@ -418,6 +418,7 @@ public class JaffasTechnic extends JaffasModBase {
             TileCobbleBreaker.setTimer(config.get(Configuration.CATEGORY_GENERAL, "cobbleBreakerTimer", 12).getInt());
 
             jaffarrolNuggetID = idProvider.getItemIDFromConfig("jaffarrolNugget");
+            ItemHoeTechnic.falloutScanAllowed = config.get(Configuration.CATEGORY_GENERAL, "hoeHarvestingFalloutScanAllowed", true).getBoolean(true);
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
         } finally {

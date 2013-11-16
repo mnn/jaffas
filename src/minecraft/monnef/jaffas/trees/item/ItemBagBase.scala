@@ -39,7 +39,8 @@ abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _text
     var c = -1
     val t = stack.getTagCompound
     if (t.hasKey("Inventory")) c = t.getTagList("Inventory").tagCount()
-    l.add(s"$c / ${ItemBagBase.farmerBagsSlotsCount}")
+    val cText = if (c == -1) "?" else c
+    l.add(s"$cText / ${ItemBagBase.farmerBagsSlotsCount}")
     if (MonnefCorePlugin.debugEnv) l.add(getDebugString(stack))
   }
 
