@@ -66,9 +66,9 @@ public class JaffasHelper {
         for (JaffaItem ji : titles.keySet()) {
             Item item = JaffasFood.getItem(ji);
             if (isFilled(ji)) {
-                OreDictionary.registerOre(Items.JAFFA_FILLED, item);
+                OreDictionary.registerOre(Items.JAFFA_FILLED(), item);
             }
-            OreDictionary.registerOre(Items.JAFFA, item);
+            OreDictionary.registerOre(Items.JAFFA(), item);
         }
     }
 }

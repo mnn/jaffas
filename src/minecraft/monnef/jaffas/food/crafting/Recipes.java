@@ -18,6 +18,7 @@ import monnef.jaffas.food.item.ItemPack;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
+import monnef.jaffas.food.item.common.JuiceItemsEnum;
 import monnef.jaffas.power.block.TileGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -50,7 +51,7 @@ public class Recipes {
     public static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
 
     public static void postLoadInstallRecipes() {
-        TileGrinder.addOreDictRecipe(Items.MINCEABLEMEAT, getItemStack(mincedMeat, 2), 100);
+        TileGrinder.addOreDictRecipe(Items.MINCEABLEMEAT(), getItemStack(mincedMeat, 2), 100);
     }
 
     public static void installRecipes() {
@@ -349,9 +350,9 @@ public class Recipes {
 
         // 15 ~ white
         GameRegistry.addRecipe(new ItemStack(blockColumn), "SSS", "DSD", "SSS", 'S', Block.stone, 'D', new ItemStack(Item.dyePowder, 1, 15));
-        addRecipe(new ShapedOreRecipe(blockJaffaStatue, "JIJ", "III", "JIJ", 'J', Items.JAFFA, 'I', Item.ingotIron));
+        addRecipe(new ShapedOreRecipe(blockJaffaStatue, "JIJ", "III", "JIJ", 'J', Items.JAFFA(), 'I', Item.ingotIron));
 
-        for (Items.Juice juice : Items.Juice.values()) {
+        for (JuiceItemsEnum juice : JuiceItemsEnum.values()) {
             PersistentItemsCraftingHandler.AddPersistentItem(juice.juiceBottle, false, juiceBottle);
             GameRegistry.addShapelessRecipe(getItemStack(juice.glass, 3), getItem(juice.juiceBottle), getItem(glassEmpty), getItem(glassEmpty), getItem(glassEmpty));
         }
@@ -359,8 +360,8 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(getItemStack(glassMilk, 2), getItem(milkBoxFull), getItem(glassEmpty), getItem(glassEmpty));
 
         addRecipe(new ShapedOreRecipe(getItemStack(woodenBowl, 2), "W W", " S ", 'W', WOOD_PLANK, 'S', WOOD_SLAB));
-        addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM));
-        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(cookedMushroomsRaw), 3), getItem(woodenBowl), getItem(woodenBowl), getItem(woodenBowl), Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM, Items.MUSHROOM));
+        addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), Items.MUSHROOM(), Items.MUSHROOM(), Items.MUSHROOM()));
+        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(cookedMushroomsRaw), 3), getItem(woodenBowl), getItem(woodenBowl), getItem(woodenBowl), Items.MUSHROOM(), Items.MUSHROOM(), Items.MUSHROOM(), Items.MUSHROOM(), Items.MUSHROOM(), Items.MUSHROOM()));
         GameRegistry.addSmelting(getItem(cookedMushroomsRaw).itemID, getItemStack(cookedMushrooms), 0.3f);
 
         GameRegistry.addSmelting(getItem(pepperStuffedRaw).itemID, getItemStack(pepperStuffed), 0.2f);
@@ -412,7 +413,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(Item.paper), getItem(crumpledPaper), getItem(crumpledPaper));
         GameRegistry.addRecipe(getItemStack(cocoBar, 3), "cC ", " Cc", "WWW", 'c', getItem(coconutPowder), 'C', getItem(chocolate), 'W', getItem(cocoBarWrapper));
 
-        addRecipe(new ShapedOreRecipe(getItemStack(cookingPotEggsRaw), "EEE", "EEE", " P ", 'E', Items.EGG, 'P', getItem(cookingPotWater)));
+        addRecipe(new ShapedOreRecipe(getItemStack(cookingPotEggsRaw), "EEE", "EEE", " P ", 'E', Items.EGG(), 'P', getItem(cookingPotWater)));
         GameRegistry.addSmelting(getItem(cookingPotEggsRaw).itemID, getItemStack(cookingPotEggs), 3f);
         PersistentItemsCraftingHandler.AddPersistentItem(cookingPotEggs, false, cookingPot);
         GameRegistry.addShapelessRecipe(getItemStack(eggHardBoiled, 6), getItem(cookingPotEggs));
@@ -534,7 +535,7 @@ public class Recipes {
     }
 
     public static void addMalletShapedRecipe(ItemStack output, ItemStack input) {
-        addRecipe(new ShapedOreRecipe(output, "M", "O", 'M', Items.MALLET, 'O', input));
+        addRecipe(new ShapedOreRecipe(output, "M", "O", 'M', Items.MALLET(), 'O', input));
     }
 
     public static Item getItem(JaffaItem item) {

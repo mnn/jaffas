@@ -12,7 +12,7 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import net.minecraft.item.Item;
 
-public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
+public abstract class ItemManagerAccessor {
     protected int currentSheetNumber = 1;
 
     public abstract ModulesEnum getMyModule();
@@ -49,7 +49,7 @@ public abstract class ItemManagerAccessor<IT extends ItemJaffaBase> {
         ItemManager.LoadItemsFromConfig(this.getMyModule(), idProvider);
     }
 
-    public void RegisterItemType(JaffaItemType type, Class<? extends IT> clazz) {
+    public void RegisterItemType(JaffaItemType type, Class<? extends ItemJaffaBase> clazz) {
         ItemManager.RegisterItemTypeForModule(this.getMyModule(), type, clazz);
     }
 
