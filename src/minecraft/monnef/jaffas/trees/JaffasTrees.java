@@ -576,6 +576,7 @@ public class JaffasTrees extends JaffasModBase {
 
         itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
         itemUnknownSeeds.setCustomIconIndex(34);
+        itemUnknownSeeds.setInfo("Magnifier is needed for identification");
         RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
 
         itemPlantingBagSmall = new ItemBagPlanting(itemPlantingBagSmallID, 164, 1);
