@@ -9,7 +9,7 @@ class ItemJaffaFoodMultiple(__id: Int, val subNames: Seq[String], val subTitles:
 }
 
 object ItemJaffaFoodMultiple {
-  def fromMap(id: Int, nameTitles: Seq[(String, String)]): ItemJaffaFoodMultiple = {
+  def fromPair(id: Int, nameTitles: Seq[(String, String)]): ItemJaffaFoodMultiple = {
     val names = nameTitles.map(_._1)
     val titles = nameTitles.map(_._2)
     new ItemJaffaFoodMultiple(id, names, titles)

@@ -279,7 +279,7 @@ class Items extends ItemManagerAccessor {
     AddItemInfo(JaffaItem.crisps, "Crisps", 256)
     AddItemInfo(JaffaItem.cheeseRaw, "Raw Cheese", 257)
     AddItemInfo(JaffaItem.cream, "Cream", 258)
-    AddItemInfo(JaffaItem.lollipopRed, "Lollipop", 259)
+    AddItemInfo(JaffaItem.lollipopRed, "Lollipop", 260)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -548,13 +548,16 @@ class Items extends ItemManagerAccessor {
     markJaffasRare()
   }
 
+  import Items._
+
   private def createLollipops() {
     val info = ItemManager.getItemInfo(lollipopRed)
-    val nameTitleList = List("red" -> "Red", "orange" -> "Orange").map {case (n, t) => (n, s"$t Lollipop")}
-    val item = food.item.ItemJaffaFoodMultiple.fromMap(info.getId, nameTitleList)
+    val nameTitleList = lollipops map {_.nameTitlePair}
+    val item = food.item.ItemJaffaFoodMultiple.fromPair(info.getId, nameTitleList)
     val metaLollipop = createJaffaItemManual(lollipopRed, item)
     metaLollipop.Setup(3, 1.2f)
-    metaLollipop.setAlwaysEdible().setReturnItem(new ItemStack(Item.stick)).addPotionEffect(Potion.regeneration.id, 15, 0, 0.33f).setMaxStackSize(16)
+    metaLollipop.setAlwaysEdible().setReturnItem(new ItemStack(Item.stick)).addPotionEffect(Potion.regeneration.id, 15, 0, 0.33f).addPotionEffect(Potion.moveSpeed.id, 5, 2, 0.33f).setMaxStackSize(16)
+    metaLollipop.setItemUseDuration(2f)
     metaLollipop.registerNames()
   }
 
@@ -613,10 +616,38 @@ class Items extends ItemManagerAccessor {
 }
 
 object Items {
+
+  import monnef.core.utils.scalautils._
+  import JaffaItem._
+
   val MINCEABLEMEAT: String = "jaffasMinceAbleMeat"
   val JAFFA: String = "jaffasAny"
   val JAFFA_FILLED: String = "jaffasFilled"
   val MUSHROOM: String = "jaffasMushroom"
   val EGG: String = "jaffasEgg"
   val MALLET: String = "jaffasMallet"
+
+  case class LollipopRecord(name: String, title: String, id: Int, jam: JaffaItem) {
+    def nameTitlePair: (String, String) = name -> title
+  }
+
+  var currLollipopDmg = 0
+
+  def createLollipopRecord(name: String, jam: JaffaItem): LollipopRecord = {
+    val title = name.insertSpaceOnLowerUpperCaseChange.makeFirstCapital + " Lollipop"
+    val lr = LollipopRecord(name, title, currLollipopDmg, jam)
+    currLollipopDmg += 1
+    lr
+  }
+
+  val lollipops = List(
+    createLollipopRecord("strawberry", jamStrawberry),
+    createLollipopRecord("vanilla", jamV),
+    createLollipopRecord("plum", jamP),
+    createLollipopRecord("lemon", jamL),
+    createLollipopRecord("orange", jamO),
+    createLollipopRecord("raspberry", jamRaspberry),
+    createLollipopRecord("apple", jamR),
+    createLollipopRecord("chocolate", chocolate)
+  )
 }

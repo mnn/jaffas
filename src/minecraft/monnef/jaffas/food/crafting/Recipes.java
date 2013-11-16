@@ -8,6 +8,7 @@ package monnef.jaffas.food.crafting;
 import cpw.mods.fml.common.registry.GameRegistry;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.ItemHelper;
+import monnef.core.utils.ListConverter;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.common.ConfigurationManager;
@@ -442,8 +443,9 @@ public class Recipes {
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.paper, 2), "xxx", "xxx", 'x', new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP));
 
-        addLollipopRecipe(0, jamR);
-        addLollipopRecipe(1, jamO);
+        for (Items.LollipopRecord lollipop : ListConverter.toJava(Items.lollipops())) {
+            addLollipopRecipe(lollipop.id(), lollipop.jam());
+        }
     }
 
     public static void addLollipopRecipe(int dmg, JaffaItem jam) {

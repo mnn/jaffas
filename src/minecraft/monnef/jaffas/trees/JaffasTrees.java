@@ -578,14 +578,14 @@ public class JaffasTrees extends JaffasModBase {
         itemUnknownSeeds.setCustomIconIndex(34);
         RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
 
-        itemPlantingBagSmall = new ItemBagPlanting(itemPlantingBagSmallID, 162, 1);
+        itemPlantingBagSmall = new ItemBagPlanting(itemPlantingBagSmallID, 164, 1);
         RegistryUtils.registerItem(itemPlantingBagSmall, "plantingBagSmall", "Small Farmer's Planting Bag");
-        itemPlantingBagMedium = new ItemBagPlanting(itemPlantingBagMediumID, 162, 2);
+        itemPlantingBagMedium = new ItemBagPlanting(itemPlantingBagMediumID, 165, 2);
         RegistryUtils.registerItem(itemPlantingBagMedium, "plantingBagMedium", "Medium Farmer's Planting Bag");
-        itemPlantingBagBig = new ItemBagPlanting(itemPlantingBagBigID, 162, 3);
+        itemPlantingBagBig = new ItemBagPlanting(itemPlantingBagBigID, 166, 3);
         RegistryUtils.registerItem(itemPlantingBagBig, "plantingBagBig", "Big Farmer's Planting Bag");
 
-        itemCollectingBag = new ItemBagCollecting(itemCollectingBagID, 162);
+        itemCollectingBag = new ItemBagCollecting(itemCollectingBagID, 167);
         RegistryUtils.registerItem(itemCollectingBag, "collectingBag", "Farmer's Collecting Bag");
     }
 
