@@ -932,16 +932,17 @@ public class JaffasTechnic extends JaffasModBase {
         addToolRecycleRecipe(swordJaffarrol, 2);
 
         if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
-            registerSmallBagRecipe(new ItemStack(Block.cloth, 1, OreDictionary.WILDCARD_VALUE));
-            registerSmallBagRecipe(getItemStack(wolfSkin));
-            registerSmallBagRecipe(new ItemStack(Item.leather));
+            registerPlantingBagRecipes(new ItemStack(Block.cloth, 1, OreDictionary.WILDCARD_VALUE));
+            registerPlantingBagRecipes(getItemStack(wolfSkin));
+            registerPlantingBagRecipes(new ItemStack(Item.leather));
         }
     }
 
-    private void registerSmallBagRecipe(ItemStack s) {
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagSmall), "  S", "WW ", "DW ", 'S', Item.silk, 'W', s, 'D', JaffasTechnic.limsew);
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagMedium), " D ", "WBW", " W ", 'W', s, 'D', JaffasTechnic.limsew, 'B', JaffasTrees.itemPlantingBagSmall);
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagBig), "DDD", "WBW", "WWW", 'W', s, 'D', JaffasTechnic.limsew, 'B', JaffasTrees.itemPlantingBagMedium);
+    private void registerPlantingBagRecipes(ItemStack s) {
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagSmall), " S ", "WDW", "WMW", 'S', Item.silk, 'W', s, 'D', JaffasTechnic.limsew, 'M', Item.ingotIron);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagMedium), " S ", "WBW", "DWM", 'S', Item.silk, 'W', s, 'M', Item.ingotGold, 'B', JaffasTrees.itemPlantingBagSmall, 'D', JaffasTechnic.limsew);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagBig), " S ", "WBW", "DMD", 'S', Item.silk, 'W', s, 'M', Item.diamond, 'B', JaffasTrees.itemPlantingBagMedium, 'D', JaffasTechnic.limsew);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemCollectingBag), " S ", "WBW", "WWW", 'S', Item.silk, 'W', s, 'B', JaffasTrees.itemPlantingBagSmall);
     }
 
     private void addToolRecycleRecipe(Item tool, int ingotsUsedForCreation) {

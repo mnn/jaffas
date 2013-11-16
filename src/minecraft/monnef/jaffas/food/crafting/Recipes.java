@@ -442,11 +442,12 @@ public class Recipes {
 
         GameRegistry.addShapedRecipe(new ItemStack(Item.paper, 2), "xxx", "xxx", 'x', new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP));
 
-        addLollipopRecipe(lollipopRed, jamR);
+        addLollipopRecipe(0, jamR);
+        addLollipopRecipe(1, jamO);
     }
 
-    public static void addLollipopRecipe(JaffaItem lollipop, JaffaItem jam) {
-        GameRegistry.addShapedRecipe(getItemStack(lollipop, 4), " JS", " SS", "I  ", 'I', Item.stick, 'S', Item.sugar, 'J', getItemStack(jam));
+    public static void addLollipopRecipe(int dmg, JaffaItem jam) {
+        GameRegistry.addShapedRecipe(getItemStack(lollipopRed, 4, dmg), " JS", " SS", "I  ", 'I', Item.stick, 'S', Item.sugar, 'J', getItemStack(jam));
     }
 
     public static void addPackRecipe(JaffaItem item) {
@@ -518,6 +519,12 @@ public class Recipes {
 
     public static ItemStack getItemStackAnyDamage(JaffaItem item) {
         return new ItemStack(getItem(item), 1, WILDCARD_VALUE);
+    }
+
+    public static ItemStack getItemStack(JaffaItem item, int size, int dmg) {
+        ItemStack stack = getItemStack(item, size);
+        stack.setItemDamage(dmg);
+        return stack;
     }
 
     public static ItemStack getItemStack(JaffaItem item, int size) {

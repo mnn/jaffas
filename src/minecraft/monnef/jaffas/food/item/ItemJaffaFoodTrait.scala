@@ -10,10 +10,10 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.world.World
 import net.minecraft.entity.player.EntityPlayer
 import monnef.core.utils.PlayerHelper
-import net.minecraft.potion.PotionEffect
 import monnef.core.item.ItemMonnefCore
 import monnef.jaffas.food.item.common.IItemFood
 import java.util.Random
+import net.minecraft.potion.PotionEffect
 
 trait ItemJaffaFoodTrait[Self <: ItemMonnefCore] extends IItemFood {
   this: ItemMonnefCore with ItemJaffaFoodTrait[Self] =>
@@ -25,33 +25,40 @@ trait ItemJaffaFoodTrait[Self <: ItemMonnefCore] extends IItemFood {
   def ret = this.asInstanceOf[RETURN]
 
   private var returnItem: ItemStack = null
-  private var isDrink: Boolean = _
-  private var healAmount: Int = _
-  private var saturation: Float = _
-  private var returnChance: Float = _
-  private var itemUseDuration: Int = _
-  private var alwaysEdible: Boolean = _
-  private var potionId: Int = _
-  private var potionDuration: Int = _
-  private var potionAmplifier: Int = _
-  private var potionEffectProbability: Float = _
+  private var isDrink: Boolean = false
+  private var healAmount: Int = 0
+  private var saturation: Float = 0
+  private var returnChance: Float = 0
+  private var itemUseDuration: Int = BASE_USE_DURATION
+  private var alwaysEdible: Boolean = false
+
+  case class FoodPotionEffect(potionId: Int, potionDuration: Int, potionAmplifier: Int, potionEffectProbability: Float)
+
+  private var potionEffects = List.empty[FoodPotionEffect]
 
   initialize()
 
   private def initialize(): Unit = {
     setMaxStackSize(64)
-    this.itemUseDuration = 32
     this.setSecondCreativeTab(CreativeTabs.tabFood)
   }
 
   def asItem: ItemJaffaFood = this.asInstanceOf[ItemJaffaFood]
 
+  def addPotionEffect(id: Int, duration: Int, amplifier: Int, probability: Float): RETURN = {
+    potionEffects ::= FoodPotionEffect(id, duration, amplifier, probability)
+    ret
+  }
+
   def onFoodEaten(stack: ItemStack, world: World, player: EntityPlayer): Unit = {
     if (this.returnItem != null && this.returnChance > rand.nextFloat()) {
       PlayerHelper.giveItemToPlayer(player, returnItem.copy())
     }
-    if (!world.isRemote && this.potionId > 0 && world.rand.nextFloat() < this.potionEffectProbability) {
-      player.addPotionEffect(new PotionEffect(this.potionId, this.potionDuration * 20, this.potionAmplifier))
+    if (!world.isRemote) {
+      for {
+        e <- potionEffects
+        if e.potionId > 0 && world.rand.nextFloat() < e.potionEffectProbability
+      } player.addPotionEffect(new PotionEffect(e.potionId, e.potionDuration * 20, e.potionAmplifier))
     }
   }
 
@@ -100,20 +107,18 @@ trait ItemJaffaFoodTrait[Self <: ItemMonnefCore] extends IItemFood {
     stack
   }
 
-  def setPotionEffect(potionId: Int, duration: Int, amplifier: Int, probability: Float): RETURN = {
-    this.potionId = potionId
-    this.potionDuration = duration
-    this.potionAmplifier = amplifier
-    this.potionEffectProbability = probability
+  def setAlwaysEdible(): RETURN = {
+    this.alwaysEdible = true
     ret
   }
 
-  def setAlwaysEdible(): RETURN = {
-    this.alwaysEdible = true
+  def setItemUseDuration(rel: Float): RETURN = {
+    this.itemUseDuration = (BASE_USE_DURATION * rel).round
     ret
   }
 }
 
 object ItemJaffaFoodTrait {
+  val BASE_USE_DURATION = 32
   val rand = new Random
 }
