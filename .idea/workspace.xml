@@ -1,20 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\assets\jaffas and more!\textures\items\01_268.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\assets\jaffas and more!\textures\items\01_269.png" afterPath="" />
-      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\bin_data\assets\jaffas and more!\textures\items\01_270.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł" />
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1384602283565" ignored="false" />
+    <file path="/fragment.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1384694139385" ignored="false" />
     <file path="/Dummy.txt" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1384684591006" ignored="false" />
     <file path="/BlockFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1366993833296" ignored="false" />
     <file path="/TileEntityFridge.java" changelist="d443db7d-9629-4d3a-84d0-1a1a1a197e05" time="1372606222178" ignored="false" />
@@ -1022,10 +1012,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Items.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Items.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="622" column="0" selection-start="36695" selection-end="36695" vertical-scroll-proportion="0.0">
+            <state line="295" column="33" selection-start="18594" selection-end="18594" vertical-scroll-proportion="0.79242176">
               <folding />
             </state>
           </provider>
@@ -1042,10 +1032,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Recipes.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Recipes.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="469" column="67" selection-start="32883" selection-end="32883" vertical-scroll-proportion="0.47643098">
+            <state line="469" column="28" selection-start="32883" selection-end="32883" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="e#0#39009#0" expanded="true" />
               </folding>
@@ -2436,13 +2426,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="622" column="0" selection-start="36695" selection-end="36695" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemStack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="92" column="17" selection-start="2671" selection-end="2671" vertical-scroll-proportion="0.56228954">
@@ -2452,10 +2435,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="469" column="67" selection-start="32883" selection-end="32883" vertical-scroll-proportion="0.47643098">
+        <state line="469" column="28" selection-start="32883" selection-end="32883" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="e#0#39009#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="295" column="33" selection-start="18594" selection-end="18594" vertical-scroll-proportion="0.79242176">
+          <folding />
         </state>
       </provider>
     </entry>
