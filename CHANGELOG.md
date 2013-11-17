@@ -1,3 +1,16 @@
+## 0.6.1
+- added fish fillet, fish sticks (fingers)
+- added lollipops
+- added soups - fish, tomato and pea
+- added collecting farmer's bag - when harvesting crops with our hoe the bag will try to suck up all the loot
+- added planting farmer's bags - fill with seeds and you can sow your field with one click
+- implemented new MFR API
+- rewritten switchgrass planting with our hoe (now supports much larger patterns, also it won't allow planting when switchgrass square is touching another switgrass block - to protect player from mistakes)
+- modified crafting-handlers as suggested (place leftovers to player's inventory, I hope it won't be crashing other auto-crafting mods)
+- fixed crash when turbine breaks
+- fixed dying of crops when no farmland block is under it
+- under the hood: alot of refactoring and rewring, mainly containers, items and blocks now uses icondescriptor trait, some cleaning of Items class, machines and BC API moved to core
+
 ## 0.6.0
 - ported to 1.6.4
 - buffed recipe: switchgrass → paper

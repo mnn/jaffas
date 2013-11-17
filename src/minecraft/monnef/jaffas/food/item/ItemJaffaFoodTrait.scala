@@ -43,7 +43,7 @@ trait ItemJaffaFoodTrait[Self <: ItemMonnefCore] extends IItemFood {
     this.setSecondCreativeTab(CreativeTabs.tabFood)
   }
 
-  def asItem: ItemJaffaFood = this.asInstanceOf[ItemJaffaFood]
+  def asItem: Self = this.asInstanceOf[Self]
 
   def addPotionEffect(id: Int, duration: Int, amplifier: Int, probability: Float): RETURN = {
     potionEffects ::= FoodPotionEffect(id, duration, amplifier, probability)
@@ -102,7 +102,7 @@ trait ItemJaffaFoodTrait[Self <: ItemMonnefCore] extends IItemFood {
 
   override def onItemRightClick(stack: ItemStack, world: World, player: EntityPlayer): ItemStack = {
     if (player.canEat(this.alwaysEdible)) {
-      player.setItemInUse(stack, this.getMaxItemUseDuration(stack))
+      player.setItemInUse(stack, asItem.getMaxItemUseDuration(stack))
     }
     stack
   }
