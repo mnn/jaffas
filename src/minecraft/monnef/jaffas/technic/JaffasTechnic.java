@@ -118,10 +118,13 @@ import static monnef.jaffas.food.item.JaffaItem._last;
 import static monnef.jaffas.food.item.JaffaItem.beerMugEmpty;
 import static monnef.jaffas.food.item.JaffaItem.bottleKetchup;
 import static monnef.jaffas.food.item.JaffaItem.bottleMustard;
+import static monnef.jaffas.food.item.JaffaItem.breadCrumbs;
+import static monnef.jaffas.food.item.JaffaItem.bun;
 import static monnef.jaffas.food.item.JaffaItem.cakeTin;
 import static monnef.jaffas.food.item.JaffaItem.cheeseSlice;
 import static monnef.jaffas.food.item.JaffaItem.cookedMushroomsRaw;
 import static monnef.jaffas.food.item.JaffaItem.cookingPot;
+import static monnef.jaffas.food.item.JaffaItem.fishFillet;
 import static monnef.jaffas.food.item.JaffaItem.flyAgaricChopped;
 import static monnef.jaffas.food.item.JaffaItem.friedMushrooms;
 import static monnef.jaffas.food.item.JaffaItem.friedMushroomsInTinCooked;
@@ -135,6 +138,7 @@ import static monnef.jaffas.food.item.JaffaItem.juiceBottle;
 import static monnef.jaffas.food.item.JaffaItem.mincedMushrooms;
 import static monnef.jaffas.food.item.JaffaItem.onionSliced;
 import static monnef.jaffas.food.item.JaffaItem.plate;
+import static monnef.jaffas.food.item.JaffaItem.roll;
 import static monnef.jaffas.food.item.JaffaItem.sausage;
 import static monnef.jaffas.food.item.JaffaItem.shroomburger;
 import static monnef.jaffas.food.item.JaffaItem.shroomburgerInBun;
@@ -936,6 +940,11 @@ public class JaffasTechnic extends JaffasModBase {
             registerPlantingBagRecipes(getItemStack(wolfSkin));
             registerPlantingBagRecipes(new ItemStack(Item.leather));
         }
+
+        TileGrinder.addRecipe(new ItemStack(Item.fishRaw), getItemStack(fishFillet), 400);
+        TileGrinder.addRecipe(new ItemStack(Item.bread), getItemStack(breadCrumbs), 1500);
+        TileGrinder.addRecipe(getItemStack(roll), getItemStack(breadCrumbs), 400);
+        TileGrinder.addRecipe(getItemStack(bun), getItemStack(breadCrumbs), 400);
     }
 
     private void registerPlantingBagRecipes(ItemStack s) {

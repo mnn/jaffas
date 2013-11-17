@@ -279,7 +279,19 @@ class Items extends ItemManagerAccessor {
     AddItemInfo(JaffaItem.crisps, "Crisps", 256)
     AddItemInfo(JaffaItem.cheeseRaw, "Raw Cheese", 257)
     AddItemInfo(JaffaItem.cream, "Cream", 258)
-    AddItemInfo(JaffaItem.lollipopRed, "Lollipop", 260)
+    AddItemInfo(JaffaItem.lollipop, "Lollipop", 260)
+    AddItemInfo(JaffaItem.fishFillet, "Fish Fillet", 280)
+    AddItemInfo(JaffaItem.fishStickRaw, "Fish Stick Raw", 281)
+    AddItemInfo(JaffaItem.fishStickCooked, "Fish Stick", 282)
+    AddItemInfo(JaffaItem.fryingPanFishStickRaw, "Frying Pan Fish Stick Raw", 283, "Raw Fish Stick in Frying Pan")
+    AddItemInfo(JaffaItem.fryingPanFishStick, "Frying Pan Fish Stick", 283, "Fish Stick in Frying Pan")
+    AddItemInfo(JaffaItem.soupPeaRaw, "Raw Pea Soup", 284)
+    AddItemInfo(JaffaItem.soupPeaCooked, "Pea Soup", 285)
+    AddItemInfo(JaffaItem.soupFishRaw, "Raw Fish Soup", 286)
+    AddItemInfo(JaffaItem.soupFishCooked, "Fish Soup", 287)
+    AddItemInfo(JaffaItem.soupTomatoRaw, "Raw Tomato Soup", 288)
+    AddItemInfo(JaffaItem.soupTomatoCooked, "Tomato Soup", 289)
+    AddItemInfo(JaffaItem.breadCrumbs, "Breadcrumbs", 290)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -543,18 +555,29 @@ class Items extends ItemManagerAccessor {
     createJaffaItem(cream)
     createJaffaItem(cheeseRaw).setMaxStackSize(1)
     createLollipops()
+
+    createJaffaItems(fishFillet, fishStickRaw, fishStickCooked, fryingPanFishStickRaw, fryingPanFishStick, soupPeaRaw, soupFishRaw, soupTomatoRaw, breadCrumbs)
+    createJaffaFood(soupPeaCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.resistance.id, 25, 0, 0.1f).setMaxStackSize(32)
+    createJaffaFood(soupFishCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.resistance.id, 30, 0, 0.1f).setMaxStackSize(32)
+    createJaffaFood(soupTomatoCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.fireResistance.id, 30, 0, 0.1f).setMaxStackSize(32)
+    createJaffaFood(fishStickCooked, 5, 0.95f)
+
     createItemsOreDictRegistration()
     addMeatsToDryerDatabase()
     markJaffasRare()
   }
 
+  private def createJaffaItems(items: JaffaItem*) {
+    for (item <- items) createJaffaItem(item)
+  }
+
   import Items._
 
   private def createLollipops() {
-    val info = ItemManager.getItemInfo(lollipopRed)
+    val info = ItemManager.getItemInfo(lollipop)
     val nameTitleList = lollipops map {_.nameTitlePair}
     val item = food.item.ItemJaffaFoodMultiple.fromPair(info.getId, nameTitleList)
-    val metaLollipop = createJaffaItemManual(lollipopRed, item)
+    val metaLollipop = createJaffaItemManual(lollipop, item)
     metaLollipop.Setup(3, 1.2f)
     metaLollipop.setAlwaysEdible().setReturnItem(new ItemStack(Item.stick)).addPotionEffect(Potion.regeneration.id, 15, 0, 0.33f).addPotionEffect(Potion.moveSpeed.id, 5, 2, 0.33f).setMaxStackSize(16)
     metaLollipop.setItemUseDuration(2f)
@@ -597,7 +620,6 @@ class Items extends ItemManagerAccessor {
 
   private def createItemsOreDictRegistration() {
     OreDictionary.registerOre(MINCEABLEMEAT, Item.porkRaw)
-    OreDictionary.registerOre(MINCEABLEMEAT, Item.fishRaw)
     OreDictionary.registerOre(MINCEABLEMEAT, Item.beefRaw)
     OreDictionary.registerOre(MINCEABLEMEAT, Item.chickenRaw)
     OreDictionary.registerOre(MINCEABLEMEAT, getItem(muttonRaw))

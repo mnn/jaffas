@@ -446,10 +446,42 @@ public class Recipes {
         for (Items.LollipopRecord lollipop : ListConverter.toJava(Items.lollipops())) {
             addLollipopRecipe(lollipop.id(), lollipop.jam());
         }
+
+        addFryingPanRecipe(fishStickRaw, fryingPanFishStickRaw, fryingPanFishStick, fishStickCooked);
+        addRecipe(new ShapelessOreRecipe(getItemStack(fishStickRaw, 2), Items.EGG(), getItem(breadCrumbs), getItem(flour), getItem(fishFillet), getItem(fishFillet)));
+
+        addSoupRecipes(fishFillet, soupFishRaw, soupFishCooked, true);
+    }
+
+    public static void addSoupRecipes(JaffaItem inputIngredient, JaffaItem rawSoup, JaffaItem cookedSoup, boolean useCheaperFormat) {
+        addSoupRecipes(getItem(inputIngredient), getItem(rawSoup), getItem(cookedSoup), useCheaperFormat);
+    }
+
+    public static void addSoupRecipes(Item inputIngredient, JaffaItem rawSoup, JaffaItem cookedSoup, boolean useCheaperFormat) {
+        addSoupRecipes(inputIngredient, getItem(rawSoup), getItem(cookedSoup), useCheaperFormat);
+    }
+
+    public static void addSoupRecipes(Item inputIngredient, Item rawSoup, Item cookedSoup, boolean useCheaperFormat) {
+        if (useCheaperFormat) {
+            GameRegistry.addShapelessRecipe(new ItemStack(rawSoup), getItem(woodenBowl), inputIngredient);
+        } else {
+            GameRegistry.addShapelessRecipe(new ItemStack(rawSoup), getItem(woodenBowl), inputIngredient, inputIngredient, inputIngredient);
+        }
+
+        if (useCheaperFormat) {
+            GameRegistry.addShapelessRecipe(new ItemStack(rawSoup, 3), getItem(woodenBowl), getItem(woodenBowl), getItem(woodenBowl), inputIngredient, inputIngredient);
+        } else {
+            GameRegistry.addShapelessRecipe(new ItemStack(rawSoup, 3),
+                    getItem(woodenBowl), getItem(woodenBowl), getItem(woodenBowl),
+                    inputIngredient, inputIngredient, inputIngredient,
+                    inputIngredient, inputIngredient, inputIngredient);
+        }
+
+        GameRegistry.addSmelting(rawSoup.itemID, new ItemStack(cookedSoup), 0.1f);
     }
 
     public static void addLollipopRecipe(int dmg, JaffaItem jam) {
-        GameRegistry.addShapedRecipe(getItemStack(lollipopRed, 4, dmg), " JS", " SS", "I  ", 'I', Item.stick, 'S', Item.sugar, 'J', getItemStack(jam));
+        GameRegistry.addShapedRecipe(getItemStack(lollipop, 4, dmg), " JS", " SS", "I  ", 'I', Item.stick, 'S', Item.sugar, 'J', getItemStack(jam));
     }
 
     public static void addPackRecipe(JaffaItem item) {

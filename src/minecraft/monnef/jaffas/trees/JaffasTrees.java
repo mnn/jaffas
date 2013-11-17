@@ -30,7 +30,6 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
-import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
@@ -117,6 +116,10 @@ import static monnef.jaffas.food.item.JaffaItem.pieStrawberryRaw;
 import static monnef.jaffas.food.item.JaffaItem.pieVanillaRaw;
 import static monnef.jaffas.food.item.JaffaItem.plate;
 import static monnef.jaffas.food.item.JaffaItem.plateDuckOrange;
+import static monnef.jaffas.food.item.JaffaItem.soupPeaCooked;
+import static monnef.jaffas.food.item.JaffaItem.soupPeaRaw;
+import static monnef.jaffas.food.item.JaffaItem.soupTomatoCooked;
+import static monnef.jaffas.food.item.JaffaItem.soupTomatoRaw;
 import static monnef.jaffas.food.item.JaffaItem.tinDuckOrange;
 import static monnef.jaffas.food.item.JaffaItem.tinDuckOrangeRaw;
 import static monnef.jaffas.food.item.JaffaItem.tomatoChopped;
@@ -758,6 +761,9 @@ public class JaffasTrees extends JaffasModBase {
 
         addRecipe(new ShapedOreRecipe(getItemStack(fruitSalad), "FFF", " B ", 'B', getItem(woodenBowl), 'F', FRUIT));
         addRecipe(new ShapedOreRecipe(getItemStack(fruitSalad, 3), "FFF", "FFF", "BBB", 'B', getItem(woodenBowl), 'F', FRUIT));
+
+        Recipes.addSoupRecipes(getFruit(bushType.Pea), soupPeaRaw, soupPeaCooked, false);
+        Recipes.addSoupRecipes(getFruit(bushType.Tomato), soupTomatoRaw, soupTomatoCooked, false);
     }
 
     public static Item getFruit(bushType type) {
