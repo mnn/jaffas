@@ -5,8 +5,15 @@
 
 package monnef.jaffas.food.entity;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.item.JaffaItem;
+import net.minecraft.client.particle.EntityBreakingFX;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
+import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
@@ -46,12 +53,21 @@ public class EntityDuckEgg extends EntityThrowable {
             }
         }
 
-        for (int i = 0; i < 8; ++i) {
-            this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+        if (worldObj.isRemote) {
+            for (int i = 0; i < 8; ++i) {
+                //this.worldObj.spawnParticle("snowballpoof", this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+                spawnBreakingParticles(worldObj, this.posX, this.posY, this.posZ, JaffasFood.getItem(JaffaItem.duckEgg));
+            }
         }
 
         if (!this.worldObj.isRemote) {
             this.setDead();
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void spawnBreakingParticles(World world, double x, double y, double z, Item item) {
+        EntityBreakingFX e = new EntityBreakingFX(world, x, y, z, item);
+        FMLClientHandler.instance().getClient().effectRenderer.addEffect(e);
     }
 }
