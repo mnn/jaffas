@@ -15,7 +15,7 @@ echo "--==============================--"
 echo
 
 printDoing "Preparing directories"
-indir="../../../bin_data/mods"
+indir="../../../bin_data/assets"
 output=out
 outputB=outB
 tmpdir=tmp
@@ -45,7 +45,7 @@ printDone
 #---
 
 printDoing "Copying png files"
-find "$indir" -type f | grep -Ei 'mods/.*/textures/.*\.png' | xargs -I {} cp {} "$tmpdir"
+find "$indir" -type f | grep -Ei 'assets/.*/textures/items/.*\.png' | xargs -I {} cp {} "$tmpdir"
 printDone
 
 #---
