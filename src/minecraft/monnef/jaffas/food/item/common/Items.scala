@@ -628,12 +628,14 @@ class Items extends ItemManagerAccessor {
     JaffasHelper.registerJaffasInOreDict()
     OreDictionary.registerOre(MUSHROOM, Block.mushroomBrown)
     OreDictionary.registerOre(MUSHROOM, Block.mushroomRed)
-    OreDictionary.registerOre(EGG, Item.egg)
-    OreDictionary.registerOre(EGG, getItem(duckEgg))
+    OreDictionary.registerOre(ANY_EGG, Item.egg)
+    OreDictionary.registerOre(ANY_EGG, getItem(duckEgg))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(mallet))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletStone))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletIron))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletDiamond))
+    OreDictionary.registerOre(ANY_MILK, Item.bucketMilk)
+    OreDictionary.registerOre(ANY_MILK, getItem(milkBoxFull))
   }
 }
 
@@ -646,8 +648,9 @@ object Items {
   val JAFFA: String = "jaffasAny"
   val JAFFA_FILLED: String = "jaffasFilled"
   val MUSHROOM: String = "jaffasMushroom"
-  val EGG: String = "jaffasEgg"
+  val ANY_EGG: String = "jaffasEgg"
   val MALLET: String = "jaffasMallet"
+  val ANY_MILK: String = "jaffasMilk"
 
   case class LollipopRecord(name: String, title: String, id: Int, jam: JaffaItem) {
     def nameTitlePair: (String, String) = name -> title

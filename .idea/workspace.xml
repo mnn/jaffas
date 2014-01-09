@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -108,48 +109,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="VersionHelper.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VersionHelper.java">
+      <file leaf-file-name="Recipes.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="47" column="30" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.41707718" vertical-offset="409" max-vertical-offset="1326">
+            <state line="556" column="24" selection-start="36647" selection-end="36647" vertical-scroll-proportion="0.34731543" vertical-offset="8650" max-vertical-offset="9792">
               <folding>
-                <element signature="e#1386#1394#0" expanded="true" />
+                <element signature="e#0#38629#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WebHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/WebHelper.java">
+      <file leaf-file-name="Items.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="0" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.0" vertical-offset="358" max-vertical-offset="1139">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientTickHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientTickHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="96" column="57" selection-start="2969" selection-end="2969" vertical-scroll-proportion="0.0" vertical-offset="1015" max-vertical-offset="2720">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ThreadVersionCheck.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ThreadVersionCheck.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="56" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Reference.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Reference.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="31" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+            <state line="637" column="38" selection-start="37667" selection-end="37667" vertical-scroll-proportion="0.0" vertical-offset="10108" max-vertical-offset="11305">
               <folding />
             </state>
           </provider>
@@ -179,8 +153,6 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/JaffaItem.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/JaffasTrees.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/Reference.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/CallerFinder.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/client/PackageToModIdRegistry.java" />
@@ -191,6 +163,8 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuckEgg.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/common/ContainerRegistry.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/Reference.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
       </list>
     </option>
   </component>
@@ -323,8 +297,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -457,7 +429,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="power" />
+              <option name="myItemId" value="food" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -487,11 +459,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="power" />
+              <option name="myItemId" value="food" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="block" />
+              <option name="myItemId" value="item" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -521,11 +493,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="power" />
+              <option name="myItemId" value="food" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="block" />
+              <option name="myItemId" value="item" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -543,7 +515,69 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="food" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="item" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="common" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Items.scala" />
+              <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="food" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="crafting" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -558,66 +592,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas_1.6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mod" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jaffas_1.6" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="mcp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="client" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -641,6 +615,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -663,6 +639,7 @@
     <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.31578946" />
     <property name="dynamic.classpath" value="false" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1204,9 +1181,9 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2650334" sideWeight="0.49359658" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26391983" sideWeight="0.49359658" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.7109375" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29287305" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29287305" sideWeight="0.4914621" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29464287" sideWeight="0.5117396" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17075774" sideWeight="0.38058037" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924107" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1275,6 +1252,41 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VersionHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="30" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1326">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/WebHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="0" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1292">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/ClientTickHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="57" selection-start="2969" selection-end="2969" vertical-scroll-proportion="0.0" vertical-offset="1632" max-vertical-offset="3026">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ThreadVersionCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="56" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0" vertical-offset="289" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="31" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="493">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/ContainerRegistry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="75" column="54" selection-start="3130" selection-end="3130" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4760">
@@ -1284,9 +1296,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/external/eu/infomas/annotation/AnnotationDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="312" column="16" selection-start="12387" selection-end="12387" vertical-scroll-proportion="0.0" vertical-offset="5304" max-vertical-offset="11050">
-          <folding />
-        </state>
+        <state line="312" column="16" selection-start="12387" selection-end="12387" vertical-scroll-proportion="0.0" vertical-offset="5304" max-vertical-offset="11050" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/entity/EntityDuck.java">
@@ -1425,9 +1435,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/external/eu/infomas/annotation/AnnotationDetector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="312" column="16" selection-start="12387" selection-end="12387" vertical-scroll-proportion="0.0" vertical-offset="4385" max-vertical-offset="10472">
-          <folding />
-        </state>
+        <state line="312" column="16" selection-start="12387" selection-end="12387" vertical-scroll-proportion="0.0" vertical-offset="4385" max-vertical-offset="10472" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/ContainerRegistry.java">
@@ -1439,28 +1447,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/BookWriter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="274" selection-end="274" vertical-scroll-proportion="0.008009153" vertical-offset="95" max-vertical-offset="969">
+        <state line="13" column="13" selection-start="274" selection-end="274" vertical-scroll-proportion="0.008009153" vertical-offset="95" max-vertical-offset="969" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="0.58456486" vertical-offset="103" max-vertical-offset="867" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="31" selection-start="469" selection-end="469" vertical-scroll-proportion="0.23340961" vertical-offset="0" max-vertical-offset="874">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/ThreadVersionCheck.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="56" selection-start="488" selection-end="488" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/StringsHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="0" selection-start="827" selection-end="827" vertical-scroll-proportion="0.58456486" vertical-offset="103" max-vertical-offset="867">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/Reference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="31" selection-start="469" selection-end="469" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
+        <state line="17" column="56" selection-start="488" selection-end="488" vertical-scroll-proportion="0.21395881" vertical-offset="0" max-vertical-offset="874">
           <folding />
         </state>
       </provider>
@@ -1474,16 +1478,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/utils/WebHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="0" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.0" vertical-offset="358" max-vertical-offset="1139">
+        <state line="42" column="0" selection-start="1192" selection-end="1192" vertical-scroll-proportion="0.33867276" vertical-offset="265" max-vertical-offset="1139">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VersionHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="30" selection-start="1428" selection-end="1428" vertical-scroll-proportion="0.41707718" vertical-offset="409" max-vertical-offset="1326">
+        <state line="42" column="35" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.14416476" vertical-offset="452" max-vertical-offset="1326">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="637" column="38" selection-start="37667" selection-end="37667" vertical-scroll-proportion="0.0" vertical-offset="10108" max-vertical-offset="11305">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="556" column="24" selection-start="36647" selection-end="36647" vertical-scroll-proportion="0.34731543" vertical-offset="8650" max-vertical-offset="9792">
           <folding>
-            <element signature="e#1386#1394#0" expanded="true" />
+            <element signature="e#0#38629#0" expanded="true" />
           </folding>
         </state>
       </provider>

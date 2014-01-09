@@ -56,10 +56,13 @@ public class Recipes {
     }
 
     public static void installRecipes() {
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(pastrySweet)), new ItemStack(Item.sugar),
-                new ItemStack(Item.egg), new ItemStack(getItem(butter)), new ItemStack(getItem(flour)), new ItemStack(getItem(flour)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(
+                new ItemStack(getItem(pastrySweet)), Item.sugar, Items.ANY_EGG(), getItem(butter), getItem(flour), getItem(flour)
+        ));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(pastry)), new ItemStack(Item.egg), new ItemStack(getItem(butter)), new ItemStack(getItem(flour)), new ItemStack(getItem(flour)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(
+                new ItemStack(getItem(pastry)), Items.ANY_EGG(), getItem(butter), getItem(flour), getItem(flour)
+        ));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(sweetBeans)),
                 new ItemStack(getItem(beans)),
@@ -127,15 +130,11 @@ public class Recipes {
         addMalletShapedRecipe(new ItemStack(getItem(cheeseRaw)), getItemStack(milkBoxFull));
         addMalletShapedRecipe(new ItemStack(getItem(cakeTin)), new ItemStack(Item.ingotIron));
 
-        // moved to the trees module because of the peanut
-//        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), new ItemStack(getItem(JaffaItem.peanut)),
-//                new ItemStack(getItem(JaffaItem.pastrySweet)), new ItemStack(getItem(JaffaItem.chocolate)));
-
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(puffPastry)), new ItemStack(getItem(butter)),
-                new ItemStack(getItem(butter)), new ItemStack(getItem(butter)), new ItemStack(Item.egg),
-                new ItemStack(getItem(flour)), new ItemStack(getItem(flour)));
-
-        //GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.peanut)), "SSS", 'S', new ItemStack(Item.seeds));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(
+                new ItemStack(getItem(puffPastry)),
+                getItem(butter), getItem(butter), getItem(butter),
+                Items.ANY_EGG(), getItem(flour), getItem(flour)
+        ));
 
         GameRegistry.addRecipe(new ItemStack(getItem(browniesInTinRaw)), "P", "T", 'P', new ItemStack(getItem(browniesPastry)), 'T', new ItemStack(getItem(cakeTin)));
         GameRegistry.addSmelting(getItem(browniesInTinRaw).itemID, new ItemStack(getItem(browniesInTin)), 1F);
@@ -146,8 +145,9 @@ public class Recipes {
 
         GameRegistry.addSmelting(getItem(sweetRollRaw).itemID, new ItemStack(getItem(sweetRoll)), 0.2F);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(creamSweet), 4), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.sugar), getItem(milkBoxFull));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(creamSweet), 4), getItemStack(duckEgg), getItemStack(duckEgg), new ItemStack(Item.sugar), getItem(milkBoxFull));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(creamSweet), 4),
+                Items.ANY_EGG(), getItemStack(duckEgg), Item.sugar, getItem(milkBoxFull)
+        ));
 
         GameRegistry.addRecipe(new ItemStack(getItem(creamRoll)), "RC", 'R', new ItemStack(getItem(sweetRoll)), 'C', new ItemStack(getItem(creamSweet)));
 
@@ -225,8 +225,10 @@ public class Recipes {
                 getItem(jamP)), 0.5F);
 
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(sprinkles), 16), new ItemStack(Item.sugar), new ItemStack(Item.sugar), new ItemStack(Item.sugar),
-                new ItemStack(getItem(jamMix)), new ItemStack(Item.egg));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(sprinkles), 16),
+                Item.sugar, Item.sugar, Item.sugar,
+                getItem(jamMix), Items.ANY_EGG()
+        ));
 
         GameRegistry.addRecipe(new ItemStack(getItem(magnifier)), "GG ", "GG ", "  I", 'G', new ItemStack(Block.glass), 'I', new ItemStack(Item.ingotIron));
 
@@ -278,10 +280,8 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(getItem(rollRaw), 8), " P", "P ", 'P', new ItemStack(getItem(pastry)));
         GameRegistry.addSmelting(getItem(rollRaw).itemID, new ItemStack(getItem(roll)), 0.5F);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(omeletteRaw), 3), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
-                new ItemStack(getItem(tomatoChopped)));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(omeletteRaw), 3), new ItemStack(Item.egg), new ItemStack(Item.egg), new ItemStack(Item.egg),
-                new ItemStack(getItem(paprikaChopped)));
+        addOmeletRecipe(tomatoChopped);
+        addOmeletRecipe(paprikaChopped);
         GameRegistry.addSmelting(getItem(omeletteRaw).itemID, new ItemStack(getItem(omelette)), 1.5F);
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(brownPastry)), new ItemStack(getItem(pastrySweet)), new ItemStack(getItem(chocolate)));
@@ -414,7 +414,7 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(Item.paper), getItem(crumpledPaper), getItem(crumpledPaper));
         GameRegistry.addRecipe(getItemStack(cocoBar, 3), "cC ", " Cc", "WWW", 'c', getItem(coconutPowder), 'C', getItem(chocolate), 'W', getItem(cocoBarWrapper));
 
-        addRecipe(new ShapedOreRecipe(getItemStack(cookingPotEggsRaw), "EEE", "EEE", " P ", 'E', Items.EGG(), 'P', getItem(cookingPotWater)));
+        addRecipe(new ShapedOreRecipe(getItemStack(cookingPotEggsRaw), "EEE", "EEE", " P ", 'E', Items.ANY_EGG(), 'P', getItem(cookingPotWater)));
         GameRegistry.addSmelting(getItem(cookingPotEggsRaw).itemID, getItemStack(cookingPotEggs), 3f);
         PersistentItemsCraftingHandler.AddPersistentItem(cookingPotEggs, false, cookingPot);
         GameRegistry.addShapelessRecipe(getItemStack(eggHardBoiled, 6), getItem(cookingPotEggs));
@@ -448,9 +448,23 @@ public class Recipes {
         }
 
         addFryingPanRecipe(fishStickRaw, fryingPanFishStickRaw, fryingPanFishStick, fishStickCooked);
-        addRecipe(new ShapelessOreRecipe(getItemStack(fishStickRaw, 2), Items.EGG(), getItem(breadCrumbs), getItem(flour), getItem(fishFillet), getItem(fishFillet)));
+        addRecipe(new ShapelessOreRecipe(getItemStack(fishStickRaw, 2), Items.ANY_EGG(), getItem(breadCrumbs), getItem(flour), getItem(fishFillet), getItem(fishFillet)));
 
         addSoupRecipes(fishFillet, soupFishRaw, soupFishCooked, true);
+
+        // vanilla egg recipes
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(new ItemStack(Item.cake), "MMM", "SES", "WWW", 'W', Item.wheat, 'S', Item.sugar, 'E', Items.ANY_EGG(), 'M', Item.bucketMilk)
+        );
+        GameRegistry.addRecipe(
+                new ShapelessOreRecipe(new ItemStack(Item.pumpkinPie), Item.sugar, Items.ANY_EGG(), Block.pumpkin)
+        );
+    }
+
+    private static void addOmeletRecipe(JaffaItem choppedItem) {
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(omeletteRaw), 3),
+                Items.ANY_EGG(), Items.ANY_EGG(), Items.ANY_EGG(), getItem(choppedItem)
+        ));
     }
 
     public static void addSoupRecipes(JaffaItem inputIngredient, JaffaItem rawSoup, JaffaItem cookedSoup, boolean useCheaperFormat) {
