@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class BlockJaffaBomb extends BlockJaffas {
 
-    private float blastStrengh = 0.2F;
+    private float blastStrength = 0.2F;
     private static Random rand = new Random();
     private static int itemCount = 15;
     private Icon specialTexture;
@@ -60,7 +60,7 @@ public class BlockJaffaBomb extends BlockJaffas {
 
     private void detonate(World w, int x, int y, int z) {
         w.setBlockToAir(x, y, z);
-        w.createExplosion(null, x, y, z, blastStrengh, true);
+        w.createExplosion(null, x, y, z, blastStrength, true);
 
         for (int i = 0; i < itemCount; i++) {
             int counter = 0;
