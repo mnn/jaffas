@@ -440,6 +440,7 @@ public class JaffasTechnic extends JaffasModBase {
         return 3450;
     }
 
+    @Override
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);

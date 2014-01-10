@@ -22,6 +22,7 @@ public class TilePieRenderer extends TileSpecialJaffaRenderer {
         return new String[]{"jaffas_pie01.png", "jaffas_pie02.png", "jaffas_pie04.png", "jaffas_pie03.png"};
     }
 
+    @Override
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
         renderModelAt((TilePie) tile, par2, par4, par6, par8);
     }

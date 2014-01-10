@@ -5,7 +5,6 @@
 
 package monnef.jaffas.technic.block;
 
-import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;

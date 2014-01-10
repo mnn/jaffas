@@ -49,6 +49,7 @@ public class WorldGenFruitTrees extends WorldGenerator {
         this.leavesID = leavesID;
     }
 
+    @Override
     public boolean generate(World world, Random random, int x, int y, int z) {
         int treeHeight = random.nextInt(3) + this.minTreeHeight;
         boolean doGenerate = true;

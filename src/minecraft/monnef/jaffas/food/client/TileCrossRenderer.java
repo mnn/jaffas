@@ -22,6 +22,7 @@ public class TileCrossRenderer extends TileSpecialJaffaRenderer {
         return new String[]{"jaffas_01.png"};
     }
 
+    @Override
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
         renderModelAt((TileCross) tile, par2, par4, par6, par8);
     }

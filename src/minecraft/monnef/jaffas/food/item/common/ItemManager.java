@@ -118,7 +118,7 @@ public class ItemManager {
     public static Item createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {
         JaffaItemInfo info = itemsInfo.get(ji);
 
-        Item newJaffaItem = null;
+        Item newJaffaItem;
         try {
             Class<? extends Item> clazz = ClassMapping.get(module).get(type);
             Constructor<? extends Item> constructor = clazz.getConstructor(int.class);
@@ -142,7 +142,7 @@ public class ItemManager {
 
     public static <T extends Item> T createJaffaItemManual(JaffaItem ji, Class<T> item) {
         JaffaItemInfo info = itemsInfo.get(ji);
-        T newJaffaItem = null;
+        T newJaffaItem;
         try {
             newJaffaItem = item.getConstructor(int.class).newInstance(info.getId());
         } catch (Exception e) {

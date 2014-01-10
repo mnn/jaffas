@@ -7,7 +7,6 @@ package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import monnef.core.MonnefCorePlugin;
 import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.ColorHelper;
@@ -102,7 +101,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
             }
         }
 
-        if (this.haveFruit(world, x, y, z)) {
+        if (haveFruit(world, x, y, z)) {
             return harvest(world, x, y, z, 0, null);
         }
 

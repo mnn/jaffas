@@ -25,6 +25,7 @@ public class BlockBasicProcessingMachine extends BlockMachineWithInventory {
         return true;
     }
 
+    @Override
     public TileEntity createTileEntity(World world, int meta) {
         return createBasicProcessingMachineTileEntity(world, meta);
     }

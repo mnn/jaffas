@@ -88,7 +88,7 @@ public class BlockFridge extends BlockContainerJaffas {
      */
     @Override
     public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
-        int front = 0;
+        int front;
 
         front = access.getBlockMetadata(x, y, z);
 

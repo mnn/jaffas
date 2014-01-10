@@ -53,7 +53,7 @@ public class NEIJaffasConfig implements IConfigureNEI {
         int wrapperCounter = 0;
         String className = ProcessingMachineRecipeHandlerWrapper.class.getName();
 
-        CtClass classCopy = null;
+        CtClass classCopy;
         try {
             classCopy = pool.getAndRename(className, getNextWrapperClassName(wrapperCounter));
         } catch (NotFoundException e) {

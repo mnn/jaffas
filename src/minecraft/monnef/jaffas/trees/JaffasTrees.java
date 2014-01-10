@@ -467,6 +467,7 @@ public class JaffasTrees extends JaffasModBase {
         bushesList.put(type, info);
     }
 
+    @Override
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);

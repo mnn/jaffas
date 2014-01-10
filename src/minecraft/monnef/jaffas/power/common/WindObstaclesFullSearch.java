@@ -107,6 +107,7 @@ public class WindObstaclesFullSearch extends WindObstaclesBase {
         return obstacles.get(rx, ry, rz);
     }
 
+    @Override
     protected void resetSpace() {
         obstacles = new SpaceHashMap<Integer, Float>();
     }

@@ -35,6 +35,7 @@ public class ItemLocomotive extends ItemTechnic {
      * Callback for item usage. If the item does something special on right clicking, he will have one of those. Return
      * True if something happen and false if it don't. This is for ITEMS, not BLOCKS
      */
+    @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int par4, int par5, int par6, int par7, float par8, float par9, float par10) {
         int var11 = world.getBlockId(par4, par5, par6);
 

@@ -18,6 +18,7 @@ public class TileToasterRenderer extends TileSpecialJaffaRenderer {
         toaster = new ModelToaster();
     }
 
+    @Override
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
         renderModelAt((TileToaster) tile, par2, par4, par6, par8);
     }

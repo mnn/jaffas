@@ -50,6 +50,7 @@ public class BlockPie extends BlockJaffas {
         icons = new Icon[textureIndexFromMeta.length];
     }
 
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
         return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2 + f3), (double) par3, (double) ((float) par4 + f3), (double) ((float) par2 + f3d), (double) ((float) par3 + f3), (double) ((float) par4 + f3d));
     }
@@ -122,6 +123,7 @@ public class BlockPie extends BlockJaffas {
         return 0;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int idPicked(World par1World, int par2, int par3, int par4) {
         return ContentHolder.blockPie.blockID;

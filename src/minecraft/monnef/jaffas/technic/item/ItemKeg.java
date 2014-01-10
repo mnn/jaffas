@@ -37,6 +37,7 @@ public class ItemKeg extends ItemTechnic {
         setHasSubtypes(true);
     }
 
+    @Override
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
         if (world.isRemote) {
             return true;

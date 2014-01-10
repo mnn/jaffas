@@ -6,7 +6,9 @@
   </component>
   <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" compilerSelect="AUTO" />
   <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+    <entry_points version="2.0">
+      <entry_point TYPE="method" FQNAME="monnef.jaffas.power.block.BlockToaster BlockToaster(int id, int index, java.lang.Class&lt;? extends monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine&gt; tileClass, monnef.jaffas.power.client.GuiHandler.GuiId guiId, boolean customRenderer, boolean customRenderingId)" />
+    </entry_points>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/eclipse/Minecraft/bin" />

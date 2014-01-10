@@ -39,7 +39,7 @@ public class PacketHandler implements IPacketHandler {
 
         byte newState;
         int x, y, z;
-        double ix = 0, iy = 0, iz = 0;
+        double ix, iy, iz;
 
         try {
             x = inputStream.readInt();

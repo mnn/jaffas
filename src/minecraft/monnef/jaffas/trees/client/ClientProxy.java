@@ -6,10 +6,8 @@
 package monnef.jaffas.trees.client;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
-import monnef.jaffas.trees.block.TileFruitCollector;
 import monnef.jaffas.trees.common.CommonProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
@@ -31,7 +29,7 @@ public class ClientProxy extends CommonProxy {
     public void addEffect(String s, World world, double d1, double d2, double d3, double d4, double d5, double d6) {
         EntityFX efx = null;
 
-        if (s == "sucking") {
+        if (s.equals("sucking")) {
             efx = new EntitySuckingFX(world, d1, d2, d3, d4, d5, d6);
         }
 

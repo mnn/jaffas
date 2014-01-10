@@ -22,6 +22,7 @@ public class ItemGiantCandy extends ItemXmas {
         //setCreativeTab(CreativeTabs.tabDecorations);
     }
 
+    @Override
     public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
         if (world.isRemote) {
             return true;
@@ -54,6 +55,7 @@ public class ItemGiantCandy extends ItemXmas {
         }
     }
 
+    @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
         super.addInformation(stack, player, result, par4);
         result.add("Do NOT eat!");

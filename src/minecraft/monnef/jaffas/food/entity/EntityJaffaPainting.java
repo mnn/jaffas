@@ -174,6 +174,7 @@ public class EntityJaffaPainting extends Entity {
     /**
      * Called to update the entity's position/logic.
      */
+    @Override
     public void onUpdate() {
         if (this.tickCounter1++ == 100) {
             this.tickCounter1 = 0;
@@ -223,7 +224,7 @@ public class EntityJaffaPainting extends Entity {
             int var1 = this.art.sizeX / 16;
             int var2 = this.art.sizeY / 16;
             int var3 = this.xPosition;
-            int var4 = this.yPosition;
+            int var4;
             int var5 = this.zPosition;
 
             if (this.direction == 0) {

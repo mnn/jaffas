@@ -52,6 +52,7 @@ public abstract class BlockMachine extends BlockPower {
         }
     }
 
+    @Override
     public abstract TileEntity createTileEntity(World world, int meta);
 
     public TileMachine getTile(IBlockAccess world, int x, int y, int z) {

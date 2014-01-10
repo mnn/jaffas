@@ -117,7 +117,7 @@ public class TechnicWorldGen implements IWorldGenerator {
 
     private boolean generateSwitchgrass(int x, int z, int radius, int radiusVert) {
         int y = 127;
-        Block block = null;
+        Block block;
         do {
             block = Block.blocksList[world.getBlockId(x, y, z)];
             if (block != null && !block.isLeaves(world, x, y, z)) {

@@ -134,9 +134,10 @@ public class TileFruitCollector extends TileMachineWithInventory {
         CollectorStates oldState = this.state;
         this.state = OrdinalToState[newState];
 
-        ((BlockFruitCollector) this.getBlockType()).spawnParticlesOfTargetedItem(worldObj, this.rand, xCoord, yCoord, zCoord, true);
+        ((BlockFruitCollector) this.getBlockType()).spawnParticlesOfTargetedItem(worldObj, rand, xCoord, yCoord, zCoord, true);
     }
 
+    @Override
     public void updateEntity() {
         super.updateEntity();
         tickCounter++;
@@ -224,7 +225,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
 
     private void playQueuedSound() {
         if (this.soundToRun != null) {
-            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, this.soundVolume, this.rand.nextFloat() * 0.1F + 0.9F);
+            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, this.soundVolume, rand.nextFloat() * 0.1F + 0.9F);
             this.soundToRun = null;
         }
     }

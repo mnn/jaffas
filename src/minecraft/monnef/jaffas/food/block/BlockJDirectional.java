@@ -219,7 +219,7 @@ public class BlockJDirectional extends BlockJaffas {
         if (dir == ForgeDirection.UNKNOWN) {
             throw new RuntimeException("unknown direction detected");
         }
-        int textureIndex = -1;
+        int textureIndex;
 
         switch (type) {
             case LOG_LIKE:

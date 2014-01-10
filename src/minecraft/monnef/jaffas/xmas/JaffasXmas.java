@@ -111,6 +111,7 @@ public class JaffasXmas extends JaffasModBase {
         return 3650;
     }
 
+    @Override
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);

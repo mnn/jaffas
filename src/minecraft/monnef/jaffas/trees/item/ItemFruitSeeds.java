@@ -59,10 +59,10 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
             dmg = 0;
         }
 
-        String name = super.getUnlocalizedName() + "." + dmg;
-        return name;
+        return super.getUnlocalizedName() + "." + dmg;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)

@@ -5,17 +5,10 @@
 
 package monnef.jaffas.technic.client;
 
-import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import monnef.core.common.ContainerRegistry;
-import monnef.jaffas.food.block.TileBoard;
-import monnef.jaffas.food.block.TileRipeningBox;
 import monnef.jaffas.food.client.CustomBlockRenderer;
-import monnef.jaffas.food.client.GuiBoard;
-import monnef.jaffas.food.client.GuiRipeningBox;
 import monnef.jaffas.technic.JaffasTechnic;
-import monnef.jaffas.technic.block.TileCobbleBreaker;
 import monnef.jaffas.technic.block.TileCompostCore;
 import monnef.jaffas.technic.block.TileFermenter;
 import monnef.jaffas.technic.block.TileFungiBox;
@@ -24,7 +17,6 @@ import monnef.jaffas.technic.block.TileKeg;
 import monnef.jaffas.technic.client.fungi.TileEntityFungiBoxRenderer;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.entity.EntityLocomotive;
-import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {

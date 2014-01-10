@@ -36,6 +36,7 @@ public class EntityLampLightFX extends EntityFX {
         particleBlue = blue;
     }
 
+    @Override
     public void onUpdate() {
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;

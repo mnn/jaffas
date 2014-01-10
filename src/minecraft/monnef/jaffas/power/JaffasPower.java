@@ -192,6 +192,7 @@ public class JaffasPower extends JaffasModBase {
         return 3750;
     }
 
+    @Override
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);

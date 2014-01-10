@@ -24,6 +24,7 @@ public class TileLightningConductorRenderer extends TileSpecialJaffaRenderer {
         return new String[]{"jaffas_conductor.png"};
     }
 
+    @Override
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
         renderModelAt((TileLightningConductor) tile, par2, par4, par6, par8);
     }
@@ -49,6 +50,7 @@ public class TileLightningConductorRenderer extends TileSpecialJaffaRenderer {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
+    @Override
     public void setTileEntityRenderer(TileEntityRenderer par1TileEntityRenderer) {
         super.setTileEntityRenderer(par1TileEntityRenderer);
     }

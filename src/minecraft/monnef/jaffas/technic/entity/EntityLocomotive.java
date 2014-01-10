@@ -32,6 +32,7 @@ public class EntityLocomotive extends EntityMinecart {
         super(w);
     }
 
+    @Override
     protected void writeEntityToNBT(NBTTagCompound tag) {
         super.writeEntityToNBT(tag);
         tag.setDouble("PushX", this.pushX);
@@ -45,6 +46,7 @@ public class EntityLocomotive extends EntityMinecart {
         return 297;
     }
 
+    @Override
     protected void readEntityFromNBT(NBTTagCompound tag) {
         super.readEntityFromNBT(tag);
         this.pushX = tag.getDouble("PushX");
@@ -120,6 +122,7 @@ public class EntityLocomotive extends EntityMinecart {
     public double pushX;
     public double pushZ;
 
+    @Override
     protected void entityInit() {
         super.entityInit();
         this.dataWatcher.addObject(16, new Byte((byte) 0));

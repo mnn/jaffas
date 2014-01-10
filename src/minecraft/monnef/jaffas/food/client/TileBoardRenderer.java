@@ -24,6 +24,7 @@ public class TileBoardRenderer extends TileSpecialJaffaRenderer {
         return new String[]{"jaffas_board.png"};
     }
 
+    @Override
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
         renderModelAt((TileBoard) tile, par2, par4, par6, par8);
     }

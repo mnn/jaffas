@@ -40,6 +40,7 @@ public class TileMeatDryerRenderer extends TileSpecialJaffaRenderer {
         return new String[]{"jaffas_meat_rack.png", "jaffas_meat_zombie_1.png", "jaffas_meat_zombie_2.png", "jaffas_meat_norm_1.png", "jaffas_meat_norm_2.png", "jaffas_meat_final.png"};
     }
 
+    @Override
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
         renderModelAt((TileMeatDryer) tile, par2, par4, par6, par8);
     }

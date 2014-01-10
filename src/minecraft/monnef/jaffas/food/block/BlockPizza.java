@@ -35,6 +35,7 @@ public class BlockPizza extends BlockJaffas {
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f2, 1.0F);
     }
 
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
         return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2), (double) par3, (double) ((float) par4), (double) ((float) par2), (double) ((float) par3 + f2), (double) ((float) par4));
     }
@@ -98,6 +99,7 @@ public class BlockPizza extends BlockJaffas {
         return super.canPlaceBlockAt(par1World, par2, par3, par4) && super.canPlaceBlockAt(par1World, par2, par3 + 1, par4);
     }
 
+    @Override
     public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
         this.eatPizzaSlice(par1World, par2, par3, par4, par5EntityPlayer);
         return true;
@@ -121,6 +123,7 @@ public class BlockPizza extends BlockJaffas {
     }
 
     //from cake block
+    @Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         if (!this.canBlockStay(par1World, par2, par3, par4)) {
             this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
@@ -128,14 +131,17 @@ public class BlockPizza extends BlockJaffas {
         }
     }
 
+    @Override
     public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
         return par1World.getBlockMaterial(par2, par3 - 1, par4).isSolid();
     }
 
+    @Override
     public int idDropped(int par1, Random par2Random, int par3) {
         return 0;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public int idPicked(World par1World, int par2, int par3, int par4) {
         return getItem(JaffaItem.pizza).itemID;

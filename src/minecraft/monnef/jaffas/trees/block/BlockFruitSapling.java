@@ -116,7 +116,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     public boolean growTree(World world, int x, int y, int z, Random random) {
         int metadata = world.getBlockMetadata(x, y, z);
         metadata = BlockFruitLeaves.getLeavesType(metadata);
-        Object gen = null;
+        Object gen;
         int xShift = 0;
         int yShift = 0;
 
@@ -136,6 +136,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
         return BlockFruitLeaves.getLeavesType(damage);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < subCount; i++) par3List.add(new ItemStack(par1, 1, i));

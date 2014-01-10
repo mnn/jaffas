@@ -37,6 +37,7 @@ public class BlockPresent extends BlockXmasMulti {
         setBurnProperties(blockID, 30, 100);
     }
 
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
 
@@ -47,6 +48,7 @@ public class BlockPresent extends BlockXmasMulti {
         }
     }
 
+    @Override
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
 

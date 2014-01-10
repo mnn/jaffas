@@ -23,6 +23,7 @@ public class TileCompostTankRenderer extends TileSpecialJaffaRenderer {
         return new String[]{"jaffas_composttank.png"};
     }
 
+    @Override
     public void renderTileEntityAt(TileEntity tile, double par2, double par4, double par6, float par8) {
         renderModelAt((TileCompostCore) tile, par2, par4, par6, par8);
     }

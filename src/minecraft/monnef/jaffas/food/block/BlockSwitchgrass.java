@@ -62,6 +62,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     // inspired by cactus
+    @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         if (world.isRemote) return;
         tryGrow(world, x, y, z, rand);

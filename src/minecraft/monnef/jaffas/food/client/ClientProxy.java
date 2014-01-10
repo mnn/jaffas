@@ -77,6 +77,7 @@ public class ClientProxy extends CommonProxy {
         return new RenderJaffaSpider(0.33f);
     }
 
+    @Override
     public int addArmor(String name) {
         return RenderingRegistry.addNewArmourRendererPrefix(name);
     }

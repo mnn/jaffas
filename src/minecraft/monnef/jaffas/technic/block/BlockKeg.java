@@ -1,6 +1,5 @@
 package monnef.jaffas.technic.block;
 
-import monnef.core.MonnefCorePlugin;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.material.Material;

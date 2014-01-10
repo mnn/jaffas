@@ -62,6 +62,7 @@ public class BlockCandy extends BlockXmas {
         return super.canPlaceBlockAt(par1World, par2, par3, par4) && super.canPlaceBlockAt(par1World, par2, par3 + 1, par4);
     }
 
+    @Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
 
@@ -115,6 +116,7 @@ public class BlockCandy extends BlockXmas {
     public final static float f1 = unit * 1;
     public final static float f1d = 1f - unit * 1f;
 
+    @Override
     public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
         BoundsHelper b = new BoundsHelper(meta);
@@ -122,6 +124,7 @@ public class BlockCandy extends BlockXmas {
         this.setBlockBounds(b.x1, 0f, b.y1, b.x2, b.top, b.y2);
     }
 
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
         BoundsHelper b = new BoundsHelper(meta);

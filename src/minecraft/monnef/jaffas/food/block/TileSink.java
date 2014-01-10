@@ -58,7 +58,7 @@ public class TileSink extends TileEntity {
 
     private void playQueuedSound() {
         if (this.soundToRun != null) {
-            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, this.soundVolume, this.rand.nextFloat() * 0.1F + 0.9F);
+            worldObj.playSoundEffect(xCoord, yCoord, zCoord, this.soundToRun, this.soundVolume, rand.nextFloat() * 0.1F + 0.9F);
             this.soundToRun = null;
         }
     }

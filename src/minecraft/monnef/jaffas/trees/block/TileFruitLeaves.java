@@ -82,6 +82,7 @@ public class TileFruitLeaves extends TileEntity {
     /**
      * Gets the block type at the location of this entity (client-only).
      */
+    @Override
     public Block getBlockType() {
         if (this.blockType == null) {
             this.blockType = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord)];
@@ -90,6 +91,7 @@ public class TileFruitLeaves extends TileEntity {
         return this.blockType;
     }
 
+    @Override
     public void updateEntity() {
         if (!checked) {
             try {
@@ -115,7 +117,7 @@ public class TileFruitLeaves extends TileEntity {
         if (timer >= timerMax) {
 
             timer = 0;
-            if (this.rand.nextDouble() < this.turnChance * this.turnChanceMultiplier) {
+            if (rand.nextDouble() < turnChance * turnChanceMultiplier) {
                 if (this.fruit != JaffasTrees.FruitType.Vanilla || rand.nextInt(3) == 0) {
                     if (this.getBlockType().blockID == JaffasTrees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
                         ChangeBlockAndRespawnMe(this.leavesID, this.leavesMeta);
@@ -142,6 +144,7 @@ public class TileFruitLeaves extends TileEntity {
     /**
      * Writes a tile entity to NBT.
      */
+    @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
         super.writeToNBT(par1NBTTagCompound);
 
@@ -155,6 +158,7 @@ public class TileFruitLeaves extends TileEntity {
     /**
      * Reads a tile entity from NBT.
      */
+    @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
 
@@ -180,7 +184,7 @@ public class TileFruitLeaves extends TileEntity {
         if (rand.nextDouble() < chanceForSecondFruit) fruits++;
 
         for (int i = 0; i < fruits; i++)
-            this.generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, this.rand, this.leavesMeta, player);
+            this.generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, rand, this.leavesMeta, player);
 
         ChangeBlockAndRespawnMe(JaffasTrees.leavesList.get(0).leavesID, 0);
 
