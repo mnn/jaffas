@@ -1,3 +1,12 @@
+## 0.6.2
+- duck eggs are now fully supported by all vanilla and jaffas recipes
+- updated to Forge #953
+- updated BuildCraft API
+- fixed texture of item in air renderer
+- fixed duck not following when holding seeds
+- changed version check to use jaffasfiles.tk (moxo.cz hosting was frequently down)
+- made class scanning more resilient
+
 ## 0.6.1
 - added fish fillet, fish sticks (fingers)
 - added lollipops
