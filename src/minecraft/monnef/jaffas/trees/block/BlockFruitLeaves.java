@@ -374,7 +374,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
 
     @Override
     public boolean isOpaqueCube() {
-        return !this.graphicsLevel;
+        return !this.graphicsLevel();
     }
 
     @Override
@@ -399,14 +399,14 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
 
     @SideOnly(Side.CLIENT)
     public void setGraphicsLevel(boolean par1) {
-        this.graphicsLevel = par1;
+        this.graphicsLevel_$eq(par1);
         //this.blockIndexInTexture = this.baseIndexInPNG + (par1 ? 0 : 1);
     }
 
     @Override
     public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
         int var6 = par1IBlockAccess.getBlockId(par2, par3, par4);
-        return !this.graphicsLevel && var6 == this.blockID ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+        return !this.graphicsLevel() && var6 == this.blockID ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
     }
 
     @SideOnly(Side.CLIENT)
