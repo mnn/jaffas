@@ -17,6 +17,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.liquids.LiquidContainerRegistry;
 import net.minecraftforge.liquids.LiquidDictionary;
 
@@ -87,7 +89,6 @@ public class BlockSink extends BlockJaffas {
 
     static {
         fillableItems = new HashMap<Integer, Integer>();
-        //fillableItems.put(Item.bucketEmpty.itemID, Item.bucketWater.itemID);
     }
 
     public static void addFillableItem(Item empty, Item full) {
@@ -118,8 +119,8 @@ public class BlockSink extends BlockJaffas {
                 doItemSwap(world, player, currentItem, new ItemStack(filledItem, 1, 0));
                 return true;
             } else {
-                if (LiquidContainerRegistry.isEmptyContainer(currentItem)) {
-                    ItemStack filledContainer = LiquidContainerRegistry.fillLiquidContainer(LiquidDictionary.getCanonicalLiquid(LIQUID_WATER), currentItem);
+                if (FluidContainerRegistry.isEmptyContainer(currentItem)) {
+                    ItemStack filledContainer = FluidContainerRegistry.fillFluidContainer(FluidRegistry.getFluidStack(FluidRegistry.WATER.getName(), FluidContainerRegistry.BUCKET_VOLUME * 2), currentItem);
                     if (filledContainer != null) {
                         changeStateToNoWater(world, x, y, z, meta);
                         doItemSwap(world, player, currentItem, filledContainer);
@@ -139,9 +140,7 @@ public class BlockSink extends BlockJaffas {
 
     private void doItemSwap(World world, EntityPlayer player, ItemStack currentItem, ItemStack filledItem) {
         currentItem.stackSize--;
-        if (!world.isRemote) {
-            PlayerHelper.giveItemToPlayer(player, filledItem);
-        }
+        PlayerHelper.giveItemToPlayer(player, filledItem);
     }
 
     private void changeStateToNoWater(World world, int x, int y, int z, int meta) {
