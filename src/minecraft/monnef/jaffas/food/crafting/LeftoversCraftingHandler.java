@@ -71,6 +71,11 @@ public class LeftoversCraftingHandler implements ICraftingHandler {
         if (disabled) return;
         Container c = new HelperCraftingContainer(craftMatrix);
 
+        if (!JaffasCraftingHelper.doesCraftingTableSupportCraftingHandlers(craftMatrix.getClass().getName())) {
+            // do nothing when dealing with broken crafter
+            return;
+        }
+
         Option<Integer> squareSizeOpt = MathHelper.getIntSquareRootJava(craftMatrix.getSizeInventory());
         if (!squareSizeOpt.isDefined()) {
             JaffasFood.Log.printFine(String.format("Ignoring non-square (%d) crafting matrix %s.", craftMatrix.getSizeInventory(), craftMatrix.getClass().getName()));

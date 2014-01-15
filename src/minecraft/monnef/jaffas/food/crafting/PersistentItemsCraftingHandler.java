@@ -60,6 +60,11 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
     @Override
     public void onCrafting(EntityPlayer player, ItemStack item,
                            IInventory craftMatrix) {
+        if (!JaffasCraftingHelper.doesCraftingTableSupportCraftingHandlers(craftMatrix.getClass().getName())) {
+            // do nothing when dealing with broken crafter
+            return;
+        }
+
         handleRolls(craftMatrix);
 
         handlePersistentItems(craftMatrix, player);

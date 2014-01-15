@@ -5,9 +5,14 @@
 
 package monnef.jaffas.food.common;
 
+import codechicken.core.ArrayUtils;
+import com.google.common.base.Joiner;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import net.minecraftforge.common.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ConfigurationManager {
     public static String jaffasTitle;
@@ -31,6 +36,15 @@ public class ConfigurationManager {
     public static boolean dungeonLootEnabled;
     public static boolean disableAutoUnEquip;
     public static boolean useOldConfigItemNames;
+    public static String[] craftingTablesWithBrokenCraftingHandlerSupport;
+
+    private static final String[] craftingTablesWithBrokenCraftingHandlerSupportDefault;
+
+    static {
+        craftingTablesWithBrokenCraftingHandlerSupportDefault = new String[]{
+                "thaumcraft.common.tiles.TileArcaneWorkbench"
+        };
+    }
 
     public static void loadSettings(Configuration config) {
         showUpdateMessages = config.get(Configuration.CATEGORY_GENERAL, "showUpdateMessages", true).getBoolean(true);
@@ -55,5 +69,7 @@ public class ConfigurationManager {
         disableAutoUnEquip = config.get(Configuration.CATEGORY_GENERAL, "disableAutoUnEquip", false).getBoolean(false);
         AchievementsHandler.setStartingId(config.get(Configuration.CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
         useOldConfigItemNames = config.get(Configuration.CATEGORY_GENERAL, "useOldConfigItemNames", false, "If you're updating and you want to use your world save then set this option to true.").getBoolean(false);
+        craftingTablesWithBrokenCraftingHandlerSupport = config.get(Configuration.CATEGORY_GENERAL, "craftingTablesWithBrokenCraftingHandlerSupport", craftingTablesWithBrokenCraftingHandlerSupportDefault,
+                "Custom crafting tables (classes implementing IInventory) with broken or none support for crafting handlers. Default values: " + Joiner.on(", ").join(craftingTablesWithBrokenCraftingHandlerSupportDefault)).getStringList();
     }
 }
