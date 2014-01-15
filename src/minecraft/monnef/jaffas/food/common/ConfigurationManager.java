@@ -20,7 +20,6 @@ public class ConfigurationManager {
     public static int spawnStoneBigCD;
     public static boolean spawnStoneMultidimensional;
     public static boolean transferItemsFromCraftingMatrix;
-    public static boolean ignoreBuildCraftsTables;
     public static boolean genDisabled;
     public static boolean genDisabledForNonStandardDimensions;
     public static boolean achievementsDisabled;
@@ -42,7 +41,6 @@ public class ConfigurationManager {
         spawnStoneBigCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
         spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", true).getBoolean(true);
         transferItemsFromCraftingMatrix = config.get(Configuration.CATEGORY_GENERAL, "transferItemsFromCraftingMatrix", true, "Transfers items created after craft directly to a player (e.g. crumpled paper), without this enabled there can be problems with BC crafters").getBoolean(true);
-        ignoreBuildCraftsTables = config.get(Configuration.CATEGORY_GENERAL, "ignoreBuildCraftsTables", true, "BC tables has broken recipes handling - wrong stack size or crash on craft").getBoolean(true);
         genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
         genDisabledForNonStandardDimensions = config.get(Configuration.CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
         achievementsDisabled = config.get(Configuration.CATEGORY_GENERAL, "achievementsDisabled", false).getBoolean(false);

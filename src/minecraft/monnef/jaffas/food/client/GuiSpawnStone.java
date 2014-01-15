@@ -55,7 +55,7 @@ public class GuiSpawnStone extends GuiScreen {
         StringBuilder text = new StringBuilder("   Home Stone\n\nStone's cool-down: ");
         text.append(coolDownText);
         text.append("m\nYour active cool-down: ");
-        text.append(MathHelper.oneDecimalPlace.format(CoolDownRegistry.getRemainingCoolDownInSeconds(player.getEntityName(), CoolDownType.SPAWN_STONE) / 60f));
+        text.append(MathHelper.oneDecimalPlace().format(CoolDownRegistry.getRemainingCoolDownInSeconds(player.getEntityName(), CoolDownType.SPAWN_STONE) / 60f));
         text.append("m");
 
         //fontRenderer.drawString(text.toString(), posX + 10, posY + 20, 4210752);

@@ -8,6 +8,8 @@ package monnef.jaffas.food.crafting;
 import cpw.mods.fml.common.ICraftingHandler;
 import monnef.core.utils.CraftingHelper;
 import monnef.core.utils.ItemHelper;
+import monnef.core.utils.MathHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ConfigurationManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -19,7 +21,9 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import scala.Option;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -66,10 +70,15 @@ public class LeftoversCraftingHandler implements ICraftingHandler {
     public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) {
         if (disabled) return;
         Container c = new HelperCraftingContainer(craftMatrix);
-        int w = 3, h = 3;
-        if (craftMatrix instanceof ContainerPlayer) {
-            w = h = 2;
+
+        Option<Integer> squareSizeOpt = MathHelper.getIntSquareRootJava(craftMatrix.getSizeInventory());
+        if (!squareSizeOpt.isDefined()) {
+            JaffasFood.Log.printFine(String.format("Ignoring non-square (%d) crafting matrix %s.", craftMatrix.getSizeInventory(), craftMatrix.getClass().getName()));
+            return;
         }
+        int squareSize = squareSizeOpt.get();
+
+        int w = squareSize, h = squareSize;
         InventoryCrafting invCraft = new InventoryCrafting(c, w, h);
         for (int i = 0; i < craftMatrix.getSizeInventory(); i++) {
             ItemStack stack = craftMatrix.getStackInSlot(i);

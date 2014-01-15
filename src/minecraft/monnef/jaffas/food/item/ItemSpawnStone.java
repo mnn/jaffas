@@ -59,7 +59,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
             info.append("Stone is ready");
         } else {
             info.append("Cool-down remaining: ");
-            info.append(MathHelper.oneDecimalPlace.format(cd / 60f));
+            info.append(MathHelper.oneDecimalPlace().format(cd / 60f));
             info.append("m");
         }
         return info.toString();
