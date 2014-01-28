@@ -5,14 +5,14 @@
 
 package monnef.jaffas.power.block;
 
-import monnef.jaffas.power.block.common.BlockMachine;
-import monnef.jaffas.power.block.common.WrenchAction;
+import monnef.core.block.WrenchAction;
+import monnef.jaffas.power.block.common.BlockPowerMachine;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 
-public class BlockAntenna extends BlockMachine {
+public class BlockAntenna extends BlockPowerMachine {
     public BlockAntenna(int par1, int par2) {
         super(par1, par2, Material.rock, true, true);
         setUnlocalizedName("antenna");

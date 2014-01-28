@@ -6,9 +6,18 @@ import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import monnef.jaffas.food.common.IconDescriptorJaffas
 
+trait BlockWithCustomName {
+  def setUnlocalizedName(name: String): Block
+}
 
-class BlockJaffas(_id: Int, _texture: Int, _material: Material) extends BlockMonnefCore(_id, _texture, _material) with IconDescriptorJaffas {
+trait BlockJaffasLike extends BlockWithCustomName with IconDescriptorJaffas {
+  this: BlockMonnefCore =>
+
   setCreativeTab(JaffasFood.instance.creativeTab)
 
-  override def setUnlocalizedName(par1Str: String): Block = super.setUnlocalizedName("jaffas." + par1Str)
+  abstract override def setUnlocalizedName(in: String): Block = super.setUnlocalizedName("jaffas." + in)
 }
+
+class BlockJaffas(_id: Int, _texture: Int, _material: Material) extends BlockMonnefCore(_id, _texture, _material) with BlockJaffasLike {
+}
+

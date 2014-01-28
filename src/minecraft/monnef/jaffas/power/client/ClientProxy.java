@@ -7,6 +7,7 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.core.mod.MonnefCoreNormalMod;
 import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileAntenna;
@@ -21,7 +22,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
-        JaffasPower.renderID = RenderingRegistry.getNextAvailableRenderId();
         ClientRegistry.bindTileEntitySpecialRenderer(TileGenerator.class, new TileGeneratorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileAntenna.class, new TileAntennaRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileLightningConductor.class, new TileLightningConductorRenderer());

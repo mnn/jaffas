@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public abstract class BlockMachineWithInventory extends BlockMachine {
+public abstract class BlockMachineWithInventory extends BlockPowerMachine {
     public BlockMachineWithInventory(int id, int index, Material material, boolean customRenderer, boolean useCustomRenderingId) {
         super(id, index, material, customRenderer, useCustomRenderingId);
     }

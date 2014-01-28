@@ -7,7 +7,7 @@ package monnef.jaffas.power.item;
 
 import monnef.core.block.TileMachine;
 import monnef.core.utils.PlayerHelper;
-import monnef.jaffas.power.api.IMachineTool;
+import monnef.core.power.IMachineTool;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

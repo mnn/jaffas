@@ -7,7 +7,7 @@ package monnef.jaffas.power.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import monnef.core.block.TileMachine;
-import monnef.jaffas.power.api.IMachineTool;
+import monnef.core.power.IMachineTool;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

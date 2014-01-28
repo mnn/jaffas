@@ -92,8 +92,6 @@ public class JaffasPower extends JaffasModBase {
     private int ItemDebugID;
     public static ItemDebug ItemDebug;
 
-    public static int renderID;
-
     public static BlockGenerator generator;
     private int blockGeneratorID;
 

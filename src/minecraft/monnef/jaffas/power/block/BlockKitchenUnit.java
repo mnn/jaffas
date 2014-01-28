@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.block;
 
-import monnef.jaffas.power.block.common.BlockMachine;
+import monnef.jaffas.power.block.common.BlockPowerMachine;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ import net.minecraftforge.common.ForgeDirection;
 
 import java.util.List;
 
-public class BlockKitchenUnit extends BlockMachine {
+public class BlockKitchenUnit extends BlockPowerMachine {
 
     public static final int ICONS_PER_TYPE = 3;
     public static final String KITCHEN_UNIT_TITLE = "Kitchen Unit";

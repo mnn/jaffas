@@ -36,6 +36,7 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.power.block.TileGrinder;
+import monnef.core.power.WrenchHelper;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
@@ -489,6 +490,7 @@ public class JaffasTechnic extends JaffasModBase {
         omniWrenchId = ItemHelper.findItemIdByName("omniwrench");
         if (omniWrenchId != 0) {
             Log.printInfo("Omni wrench detected (" + omniWrenchId + "), compatibility with pipe wrench engaged.");
+            WrenchHelper.registerWrenchItem(omniWrenchId);
         }
 
         GuideBookHelper.generateGuideBook();
