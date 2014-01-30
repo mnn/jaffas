@@ -16,7 +16,7 @@ import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.network.AchievementPacket;
-import monnef.jaffas.food.network.NetworkHelper;
+import monnef.core.network.NetworkHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

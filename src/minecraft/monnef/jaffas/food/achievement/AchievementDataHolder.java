@@ -10,7 +10,7 @@ import monnef.core.utils.EventCalendarWrapper;
 import monnef.core.utils.StringsHelper;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.network.AchievementPacket;
-import monnef.jaffas.food.network.NetworkHelper;
+import monnef.core.network.NetworkHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
