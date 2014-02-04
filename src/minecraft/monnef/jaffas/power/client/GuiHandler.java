@@ -16,7 +16,9 @@ public class GuiHandler implements IGuiHandler {
         GENERATOR,
         GRINDER,
         TOASTER,
-        WIND_GENERATOR, WEB_HARVESTER
+        WIND_GENERATOR,
+        WEB_HARVESTER,
+        JUICE_MAKER
     }
 
     @Override
@@ -25,7 +27,6 @@ public class GuiHandler implements IGuiHandler {
         return ContainerRegistry.createContainer(tileEntity, player.inventory);
     }
 
-    //returns an instance of the Gui you made earlier
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world,
                                       int x, int y, int z) {

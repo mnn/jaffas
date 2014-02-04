@@ -35,6 +35,7 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.power.block.BlockAntenna;
 import monnef.jaffas.power.block.BlockGenerator;
 import monnef.jaffas.power.block.BlockGrinder;
+import monnef.jaffas.power.block.BlockJuiceMaker;
 import monnef.jaffas.power.block.BlockKitchenUnit;
 import monnef.jaffas.power.block.BlockLightningConductor;
 import monnef.jaffas.power.block.BlockToaster;
@@ -43,6 +44,7 @@ import monnef.jaffas.power.block.BlockWindGenerator;
 import monnef.jaffas.power.block.TileAntenna;
 import monnef.jaffas.power.block.TileGenerator;
 import monnef.jaffas.power.block.TileGrinder;
+import monnef.jaffas.power.block.TileJuiceMaker;
 import monnef.jaffas.power.block.TileKitchenUnit;
 import monnef.jaffas.power.block.TileLightningConductor;
 import monnef.jaffas.power.block.TileToaster;
@@ -136,6 +138,9 @@ public class JaffasPower extends JaffasModBase {
     public static ItemTurbineBlade turbineBlade;
     private int itemTurbineBladeID;
 
+    public static BlockJuiceMaker juiceMaker;
+    private int blockJuiceMakerID;
+
     @Mod.EventHandler
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
@@ -171,6 +176,8 @@ public class JaffasPower extends JaffasModBase {
                 windTurbineEntityID = idProvider.getEntityIDFromConfig("windTurbine");
                 itemTurbineBladeID = idProvider.getItemIDFromConfig("turbineBlade");
             }
+
+            blockJuiceMakerID = idProvider.getBlockIDFromConfig("juiceMaker");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
         } catch (Exception e) {
@@ -289,6 +296,11 @@ public class JaffasPower extends JaffasModBase {
 
             turbineBlade = new ItemTurbineBlade(itemTurbineBladeID, 58);
         }
+
+        TileEntityBasicProcessingMachine.registerMachine(TileJuiceMaker.class, TileJuiceMaker.getRecipeHandler(), TileEntityBasicProcessingMachine.getDefaultGuiBackgroundTexture(), "Juice Maker 1000");
+        juiceMaker = new BlockJuiceMaker(blockJuiceMakerID, 51, TileJuiceMaker.class, GuiHandler.GuiId.JUICE_MAKER);
+        RegistryUtils.registerBlock(juiceMaker, "juiceMaker", "Juice Maker 1000");
+        registerTileEntity(TileJuiceMaker.class, "juiceMaker");
     }
 
     private Object clientWrapper(Object a) {
@@ -335,6 +347,7 @@ public class JaffasPower extends JaffasModBase {
         }
 
         TileToaster.addRecipe(TileToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
+        TileJuiceMaker.addJuiceRecipe(new ItemStack(Item.appleRed, 4), new ItemStack(JaffasFood.getItem(JaffaItem.juiceApple)));
     }
 
     private void addKitchenUnitRecipe(int unitId, ItemStack planks) {
