@@ -6,13 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockJuiceMaker.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -140,10 +135,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="TileEntityBasicProcessingMachine.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="271" column="25" selection-start="9669" selection-end="9669" vertical-scroll-proportion="0.0" vertical-offset="3839" max-vertical-offset="4437">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ContainerDoubleBasicProcessingMachine.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="54" selection-start="710" selection-end="710" vertical-scroll-proportion="0.44517186" vertical-offset="0" max-vertical-offset="611">
+            <state line="19" column="62" selection-start="718" selection-end="718" vertical-scroll-proportion="0.44517186" vertical-offset="0" max-vertical-offset="611">
               <folding>
                 <element signature="e#88#157#0" expanded="true" />
               </folding>
@@ -154,7 +158,7 @@
       <file leaf-file-name="JaffasPower.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="349" column="126" selection-start="16972" selection-end="16972" vertical-scroll-proportion="0.0" vertical-offset="3990" max-vertical-offset="4913">
+            <state line="299" column="132" selection-start="12866" selection-end="12866" vertical-scroll-proportion="0.0" vertical-offset="3450" max-vertical-offset="4913">
               <folding />
             </state>
           </provider>
@@ -236,8 +240,8 @@
         <option value="$PROJECT_DIR$/core/src/monnef/core/network/NetworkHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockJuiceMaker.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" />
       </list>
     </option>
@@ -1641,13 +1645,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="22" selection-start="774" selection-end="774" vertical-scroll-proportion="0.13853317" vertical-offset="0" max-vertical-offset="4437">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/apps/Java/jdk1.7.0_25/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="118" column="8" selection-start="4519" selection-end="4519" vertical-scroll-proportion="0.33224222" vertical-offset="1412" max-vertical-offset="9911">
@@ -1750,16 +1747,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="271" column="25" selection-start="9669" selection-end="9669" vertical-scroll-proportion="0.0" vertical-offset="3839" max-vertical-offset="4437">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="349" column="126" selection-start="16972" selection-end="16972" vertical-scroll-proportion="0.0" vertical-offset="3990" max-vertical-offset="4913">
+        <state line="299" column="132" selection-start="12866" selection-end="12866" vertical-scroll-proportion="0.0" vertical-offset="3450" max-vertical-offset="4913">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="54" selection-start="710" selection-end="710" vertical-scroll-proportion="0.44517186" vertical-offset="0" max-vertical-offset="611">
+        <state line="19" column="62" selection-start="718" selection-end="718" vertical-scroll-proportion="0.44517186" vertical-offset="0" max-vertical-offset="611">
           <folding>
             <element signature="e#88#157#0" expanded="true" />
           </folding>

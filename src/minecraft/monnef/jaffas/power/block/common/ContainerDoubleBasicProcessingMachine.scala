@@ -16,8 +16,8 @@ class ContainerDoubleBasicProcessingMachine(_invPlayer: InventoryPlayer, _te: Ti
   final val SLOT_OUTPUT = 2
 
   override def constructSlots(inv: IInventory) {
-    addSlotToContainer(new Slot(inv, SLOT_INPUT_EDIBLE, 42, 35))
-    addSlotToContainer(new Slot(inv, SLOT_INPUT_BOTTLE, 42, 55))
+    addSlotToContainer(new Slot(inv, SLOT_INPUT_EDIBLE, 42, 25))
+    addSlotToContainer(new Slot(inv, SLOT_INPUT_BOTTLE, 42, 45))
     addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 111, 35))
   }
 

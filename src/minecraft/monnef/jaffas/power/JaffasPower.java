@@ -297,7 +297,7 @@ public class JaffasPower extends JaffasModBase {
             turbineBlade = new ItemTurbineBlade(itemTurbineBladeID, 58);
         }
 
-        TileEntityBasicProcessingMachine.registerMachine(TileJuiceMaker.class, TileJuiceMaker.getRecipeHandler(), TileEntityBasicProcessingMachine.getDefaultGuiBackgroundTexture(), "Juice Maker 1000");
+        TileEntityBasicProcessingMachine.registerMachine(TileJuiceMaker.class, TileJuiceMaker.getRecipeHandler(), "guijuicemaker.png", "Juice Maker 1000");
         juiceMaker = new BlockJuiceMaker(blockJuiceMakerID, 51, TileJuiceMaker.class, GuiHandler.GuiId.JUICE_MAKER);
         RegistryUtils.registerBlock(juiceMaker, "juiceMaker", "Juice Maker 1000");
         registerTileEntity(TileJuiceMaker.class, "juiceMaker");
