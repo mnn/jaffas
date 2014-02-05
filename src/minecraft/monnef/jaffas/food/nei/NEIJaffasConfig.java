@@ -33,6 +33,7 @@ public class NEIJaffasConfig implements IConfigureNEI {
 
     static {
         ignoredClasses.add(TileBPMDummy.class);
+        ignoredClasses.add(TileDBPMDummy.class);
     }
 
     @Override

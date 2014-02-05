@@ -6,8 +6,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileDBPMDummy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerBasicProcessingMachine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerBasicProcessingMachine.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/NEIJaffasConfig.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/NEIJaffasConfig.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandler.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileBPMDummy.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileBPMDummy.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,6 +106,21 @@
         <option name="CONDITION" value="" />
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
+      <breakpoint url="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandler.java" line="40" class="monnef.jaffas.food.nei.ProcessingMachineRecipeHandler" package="monnef.jaffas.food.nei">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
     </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
@@ -113,24 +136,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TileJuiceMaker.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="TileJuiceMaker.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="0" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0" vertical-offset="314" max-vertical-offset="969">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <element signature="e#81#124#0" expanded="true" />
-                <element signature="e#850#890#0" expanded="true" />
-              </folding>
+            <state line="24" column="25" selection-start="890" selection-end="890" vertical-scroll-proportion="0.41247833" vertical-offset="0" max-vertical-offset="731">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiContainerBasicProcessingMachine.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerBasicProcessingMachine.java">
+      <file leaf-file-name="ProcessingMachineRecipeHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="35" selection-start="1226" selection-end="1226" vertical-scroll-proportion="0.0" vertical-offset="29" max-vertical-offset="901">
-              <folding />
+            <state line="124" column="67" selection-start="4943" selection-end="4943" vertical-scroll-proportion="0.0" vertical-offset="1225" max-vertical-offset="1938">
+              <folding>
+                <element signature="e#4106#4123#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -138,19 +159,17 @@
       <file leaf-file-name="TileEntityBasicProcessingMachine.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="271" column="25" selection-start="9669" selection-end="9669" vertical-scroll-proportion="0.0" vertical-offset="3839" max-vertical-offset="4437">
+            <state line="74" column="32" selection-start="2636" selection-end="2636" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="4641">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContainerDoubleBasicProcessingMachine.scala" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ContainerDoubleBasicProcessingMachine.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="62" selection-start="718" selection-end="718" vertical-scroll-proportion="0.44517186" vertical-offset="0" max-vertical-offset="611">
-              <folding>
-                <element signature="e#88#157#0" expanded="true" />
-              </folding>
+            <state line="12" column="110" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -158,16 +177,34 @@
       <file leaf-file-name="JaffasPower.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="299" column="132" selection-start="12866" selection-end="12866" vertical-scroll-proportion="0.0" vertical-offset="3450" max-vertical-offset="4913">
+            <state line="299" column="0" selection-start="12734" selection-end="12734" vertical-scroll-proportion="0.0" vertical-offset="3477" max-vertical-offset="4913">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProcessingRecipe.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipe.java">
+      <file leaf-file-name="IProcessingRecipe.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/IProcessingRecipe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="54" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="1258">
+            <state line="12" column="23" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NEIJaffasConfig.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/NEIJaffasConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="35" column="48" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1700">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProcessingMachineRecipeHandlerWrapper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandlerWrapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="6" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
               <folding />
             </state>
           </provider>
@@ -192,12 +229,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/src/monnef/core/common/ContainerRegistry.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/common/Items.scala" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/crafting/Recipes.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/item/ItemFruitSeeds.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/client/ClientProxy.java" />
-        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/TechnicWorldGen.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/utils/ItemStackList.scala" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/item/ItemMonnefCore.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/achievement/AchievementDataHolder.java" />
@@ -240,8 +271,14 @@
         <option value="$PROJECT_DIR$/core/src/monnef/core/network/NetworkHelper.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockJuiceMaker.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileBPMDummy.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileDBPMDummy.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandler.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/NEIJaffasConfig.java" />
+        <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerBasicProcessingMachine.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" />
       </list>
     </option>
@@ -378,6 +415,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -711,6 +749,44 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="TileJuiceMaker.scala" />
+              <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="power" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="block" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="common" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -755,6 +831,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="minecraft" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="food" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nei" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1.6" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mcp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="core" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -779,7 +911,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -791,7 +922,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="options.lastSelected" value="org.jetbrains.plugins.scala.compiler.ScalaApplicationSettingsForm" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/jars/libraries/net/minecraft/launchwrapper/1.8/launchwrapper-1.8.jar!/" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -1443,21 +1574,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/block/BlockJaffas.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="75" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/block/WrenchAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="12" selection-start="86" selection-end="86" vertical-scroll-proportion="0.07798165" vertical-offset="0" max-vertical-offset="872" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/power/IMachineTool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="179" selection-end="179" vertical-scroll-proportion="0.116972476" vertical-offset="0" max-vertical-offset="872" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/power/IPipeWrench.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="23" selection-start="137" selection-end="137" vertical-scroll-proportion="0.116972476" vertical-offset="0" max-vertical-offset="872" />
@@ -1547,9 +1663,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/GuiHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="16" selection-start="355" selection-end="355" vertical-scroll-proportion="0.13950762" vertical-offset="0" max-vertical-offset="853">
-          <folding />
-        </state>
+        <state line="14" column="16" selection-start="355" selection-end="355" vertical-scroll-proportion="0.13950762" vertical-offset="0" max-vertical-offset="853" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/BlockPowerMachine.scala">
@@ -1575,9 +1689,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/block/TileMachineWithInventory.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="19" selection-start="818" selection-end="818" vertical-scroll-proportion="0.49675325" vertical-offset="0" max-vertical-offset="3281">
-          <folding />
-        </state>
+        <state line="24" column="19" selection-start="818" selection-end="818" vertical-scroll-proportion="0.49675325" vertical-offset="0" max-vertical-offset="3281" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/block/TileCobbleBreaker.java">
@@ -1589,23 +1701,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/client/GuiHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="37" selection-start="877" selection-end="877" vertical-scroll-proportion="0.38636363" vertical-offset="51" max-vertical-offset="1122">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileBPMDummy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="436" selection-end="436" vertical-scroll-proportion="0.1973466" vertical-offset="0" max-vertical-offset="603">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="31" selection-start="1833" selection-end="1833" vertical-scroll-proportion="0.50706434" vertical-offset="0" max-vertical-offset="1717">
-          <folding />
-        </state>
+        <state line="26" column="37" selection-start="877" selection-end="877" vertical-scroll-proportion="0.38636363" vertical-offset="51" max-vertical-offset="1122" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/GuiHandler.java">
@@ -1647,9 +1743,7 @@
     </entry>
     <entry file="jar://D:/apps/Java/jdk1.7.0_25/src.zip!/java/util/List.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="118" column="8" selection-start="4519" selection-end="4519" vertical-scroll-proportion="0.33224222" vertical-offset="1412" max-vertical-offset="9911">
-          <folding />
-        </state>
+        <state line="118" column="8" selection-start="4519" selection-end="4519" vertical-scroll-proportion="0.33224222" vertical-offset="1412" max-vertical-offset="9911" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/inventory/Container.java">
@@ -1666,13 +1760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/IProcessingRecipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="17" selection-start="138" selection-end="138" vertical-scroll-proportion="0.116972476" vertical-offset="0" max-vertical-offset="872">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipeHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="23" column="36" selection-start="628" selection-end="628" vertical-scroll-proportion="0.27293578" vertical-offset="0" max-vertical-offset="872">
@@ -1680,18 +1767,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="54" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.0" vertical-offset="363" max-vertical-offset="1258">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/monnef/core/client/GuiContainerMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="394" selection-end="394" vertical-scroll-proportion="0.083715595" vertical-offset="29" max-vertical-offset="1105">
-          <folding />
-        </state>
+        <state line="16" column="13" selection-start="394" selection-end="394" vertical-scroll-proportion="0.083715595" vertical-offset="29" max-vertical-offset="1105" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
@@ -1708,20 +1786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerBasicProcessingMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="83" selection-start="301" selection-end="301" vertical-scroll-proportion="0.07798165" vertical-offset="0" max-vertical-offset="872">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileToaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="23" selection-start="1287" selection-end="1287" vertical-scroll-proportion="0.4458673" vertical-offset="25" max-vertical-offset="884">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/item/ItemStack.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="89" column="36" selection-start="2605" selection-end="2605" vertical-scroll-proportion="0.3329453" vertical-offset="734" max-vertical-offset="14790">
@@ -1731,42 +1795,101 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/client/common/GuiContainerBasicProcessingMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="35" selection-start="1226" selection-end="1226" vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="901">
+        <state line="32" column="35" selection-start="1226" selection-end="1226" vertical-scroll-proportion="0.45537758" vertical-offset="27" max-vertical-offset="901">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/ProcessingRecipe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="0" selection-start="1133" selection-end="1133" vertical-scroll-proportion="0.0" vertical-offset="314" max-vertical-offset="969">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#81#124#0" expanded="true" />
-            <element signature="e#850#890#0" expanded="true" />
-          </folding>
+        <state line="59" column="54" selection-start="1526" selection-end="1526" vertical-scroll-proportion="0.51373" vertical-offset="384" max-vertical-offset="1258">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java">
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/IProcessingRecipe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="271" column="25" selection-start="9669" selection-end="9669" vertical-scroll-proportion="0.0" vertical-offset="3839" max-vertical-offset="4437">
+        <state line="12" column="23" selection-start="217" selection-end="217" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="493">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileToaster.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="13" selection-start="772" selection-end="772" vertical-scroll-proportion="0.20623916" vertical-offset="0" max-vertical-offset="884">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileDBPMDummy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="30" selection-start="198" selection-end="198" vertical-scroll-proportion="0.09895227" vertical-offset="0" max-vertical-offset="859">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandlerWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="6" selection-start="575" selection-end="575" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="578">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/TileBPMDummy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="37" selection-start="460" selection-end="460" vertical-scroll-proportion="0.19899665" vertical-offset="0" max-vertical-offset="598">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/JaffasPower.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="299" column="132" selection-start="12866" selection-end="12866" vertical-scroll-proportion="0.0" vertical-offset="3450" max-vertical-offset="4913">
+        <state line="299" column="0" selection-start="12734" selection-end="12734" vertical-scroll-proportion="0.0" vertical-offset="3477" max-vertical-offset="4913">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/NEIJaffasConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="48" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/TileEntityBasicProcessingMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="74" column="32" selection-start="2636" selection-end="2636" vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="4641">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerBasicProcessingMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="108" selection-start="543" selection-end="575" vertical-scroll-proportion="0.28911564" vertical-offset="0" max-vertical-offset="588">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/nei/ProcessingMachineRecipeHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="124" column="67" selection-start="4943" selection-end="4943" vertical-scroll-proportion="0.0" vertical-offset="1225" max-vertical-offset="1938">
+          <folding>
+            <element signature="e#4106#4123#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="62" selection-start="718" selection-end="718" vertical-scroll-proportion="0.44517186" vertical-offset="0" max-vertical-offset="611">
-          <folding>
-            <element signature="e#88#157#0" expanded="true" />
-          </folding>
+        <state line="12" column="110" selection-start="407" selection-end="407" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="391">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/TileJuiceMaker.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="25" selection-start="890" selection-end="890" vertical-scroll-proportion="0.41247833" vertical-offset="0" max-vertical-offset="731">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1835,11 +1958,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Scala|jaffas_1.6</last-edited>
+          <last-edited>jaffas_1.6</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

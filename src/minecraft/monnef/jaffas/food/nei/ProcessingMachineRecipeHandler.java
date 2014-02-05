@@ -40,7 +40,20 @@ public class ProcessingMachineRecipeHandler extends TemplateRecipeHandler implem
         if (machine == null) {
             throw new RuntimeException("No record for machine " + machineClazz.getName() + ".");
         }
-        this.fakeTile = new TileBPMDummy();
+        this.fakeTile = createFakeTile();
+    }
+
+    private TileEntityBasicProcessingMachine createFakeTile() {
+        switch (machine.getInvType()) {
+            case BASIC:
+                return new TileBPMDummy();
+
+            case DOUBLE:
+                return new TileDBPMDummy();
+
+            default:
+                throw new RuntimeException("Not supported machine inventory type.");
+        }
     }
 
     @Override

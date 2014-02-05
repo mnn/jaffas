@@ -12,8 +12,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 
 public class ContainerBasicProcessingMachine extends ContainerMachine {
-    public static final int SLOT_INPUT = 0;
-    public static final int SLOT_OUTPUT = 1;
+    private static final int SLOT_INPUT = 0;
+    private static final int SLOT_OUTPUT = 1;
 
     public ContainerBasicProcessingMachine(InventoryPlayer inventoryPlayer, TileEntityBasicProcessingMachine te) {
         super(inventoryPlayer, te);

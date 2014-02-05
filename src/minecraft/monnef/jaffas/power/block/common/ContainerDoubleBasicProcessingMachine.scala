@@ -10,7 +10,7 @@ import net.minecraft.entity.player.InventoryPlayer
 import net.minecraft.inventory.{IInventory, Slot}
 import monnef.core.client.SlotOutput
 
-class ContainerDoubleBasicProcessingMachine(_invPlayer: InventoryPlayer, _te: TileMachineWithInventory) extends ContainerMachine(_invPlayer, _te) {
+class ContainerDoubleBasicProcessingMachine(_invPlayer: InventoryPlayer, _te: TileEntityBasicProcessingMachine) extends ContainerBasicProcessingMachine(_invPlayer, _te) {
   final val SLOT_INPUT_EDIBLE = 0
   final val SLOT_INPUT_BOTTLE = 1
   final val SLOT_OUTPUT = 2
@@ -20,8 +20,4 @@ class ContainerDoubleBasicProcessingMachine(_invPlayer: InventoryPlayer, _te: Ti
     addSlotToContainer(new Slot(inv, SLOT_INPUT_BOTTLE, 42, 45))
     addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 111, 35))
   }
-
-  def getOutputSlot(outputNumber: Int): Slot = getSlot(getStartIndexOfOutput + outputNumber)
-
-  def getInputSlot(number: Int): Slot = getSlot(number)
 }

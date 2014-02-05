@@ -37,11 +37,17 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
         private IProcessingRecipeHandler recipeHandler;
         private String guiBackgroundTexture;
         private String title;
+        private InvType invType;
 
-        private MachineRecord(IProcessingRecipeHandler recipeHandler, String guiBackgroundTexture, String title) {
+        public enum InvType {
+            BASIC, DOUBLE
+        }
+
+        private MachineRecord(IProcessingRecipeHandler recipeHandler, String guiBackgroundTexture, String title, InvType invType) {
             this.recipeHandler = recipeHandler;
             this.guiBackgroundTexture = guiBackgroundTexture;
             this.title = title;
+            this.invType = invType;
         }
 
         public IProcessingRecipeHandler getRecipeHandler() {
@@ -55,6 +61,10 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
         public String getTitle() {
             return title;
         }
+
+        public InvType getInvType() {
+            return invType;
+        }
     }
 
     @Override
@@ -67,13 +77,17 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
     }
 
     public static void registerMachine(Class<? extends TileEntityBasicProcessingMachine> clazz, IProcessingRecipeHandler handler, String backgroundTexture, String title) {
+        registerMachine(clazz, handler, backgroundTexture, title, MachineRecord.InvType.BASIC);
+    }
+
+    public static void registerMachine(Class<? extends TileEntityBasicProcessingMachine> clazz, IProcessingRecipeHandler handler, String backgroundTexture, String title, MachineRecord.InvType invType) {
         if (machineRecords.containsKey(clazz)) {
             throw new RuntimeException("Re-registering recipe handler for class " + clazz.getName() + ".");
         }
         if (clazz == null || handler == null) {
             throw new NullPointerException("class or handler");
         }
-        machineRecords.put(clazz, new MachineRecord(handler, backgroundTexture, title));
+        machineRecords.put(clazz, new MachineRecord(handler, backgroundTexture, title, invType));
     }
 
     protected TileEntityBasicProcessingMachine() {
