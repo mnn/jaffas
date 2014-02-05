@@ -18,6 +18,7 @@ import net.minecraft.potion.Potion
 import net.minecraftforge.oredict.OreDictionary
 import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food
+import monnef.jaffas.food.item.juice.ItemJuice
 
 class Items extends ItemManagerAccessor {
 
@@ -292,6 +293,7 @@ class Items extends ItemManagerAccessor {
     AddItemInfo(JaffaItem.soupTomatoRaw, "Raw Tomato Soup", 288)
     AddItemInfo(JaffaItem.soupTomatoCooked, "Tomato Soup", 289)
     AddItemInfo(JaffaItem.breadCrumbs, "Breadcrumbs", 290)
+    AddItemInfo(juiceInBottle, "[NOT USED] Juice In Bottle", 181)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -561,6 +563,9 @@ class Items extends ItemManagerAccessor {
     createJaffaFood(soupFishCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.resistance.id, 30, 0, 0.1f).setMaxStackSize(32)
     createJaffaFood(soupTomatoCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.fireResistance.id, 30, 0, 0.1f).setMaxStackSize(32)
     createJaffaFood(fishStickCooked, 5, 0.95f)
+
+    createJaffaItemManual(juiceInBottle, new ItemJuice(ItemManager.getItemInfo(juiceInBottle).getId))
+    getItem(juiceInBottle).asInstanceOf[ItemJuice].registerNames()
 
     createItemsOreDictRegistration()
     addMeatsToDryerDatabase()
