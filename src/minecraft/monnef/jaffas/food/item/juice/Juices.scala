@@ -10,7 +10,11 @@ object Juices {
     JuiceInfo.create(0, "Lemon Juice", 186),
     JuiceInfo.create(1, "Orange Juice", 187),
     JuiceInfo.create(2, "Apple Juice", 188),
-    JuiceInfo.create(3, "Raspberry Juice", 189)
+    JuiceInfo.create(3, "Raspberry Juice", 189),
+    JuiceInfo.create(2, "Tomato Juice", 189),
+    JuiceInfo.create(1, "Carrot Juice", 189),
+    JuiceInfo.create(3, "Melon Juice", 189),
+    JuiceInfo.create(3, "Strawberry Juice", 189)
   )
 
   val juiceCount: Int = list length
