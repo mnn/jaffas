@@ -18,7 +18,7 @@ import net.minecraft.potion.Potion
 import net.minecraftforge.oredict.OreDictionary
 import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food
-import monnef.jaffas.food.item.juice.ItemJuice
+import monnef.jaffas.food.item.juice.{ItemJuiceGlass, ItemJuice}
 
 class Items extends ItemManagerAccessor {
 
@@ -202,8 +202,8 @@ class Items extends ItemManagerAccessor {
     AddItemInfo(JaffaItem.jaffarrolLeggins, "Jarmor Leggings", 179, "")
     AddItemInfo(JaffaItem.juiceBottle, "Juice Bottle", 180, "")
     for (juice <- JuiceItemsEnum.values()) {
-      AddItemInfo(juice.juiceBottle, juice.juiceBottle.toString().toLowerCase(), juice.textureIndex, juice.title)
-      AddItemInfo(juice.glass, juice.glass.toString().toLowerCase(), juice.textureIndexGlass, juice.glassTitle)
+      AddItemInfo(juice.juiceBottle, juice.juiceBottle.toString().toLowerCase(), juice.textureIndex, "[Obsolete] " + juice.title)
+      AddItemInfo(juice.glass, juice.glass.toString().toLowerCase(), juice.textureIndexGlass, "[Obsolete] " + juice.glassTitle)
     }
     AddItemInfo(JaffaItem.glassEmpty, "Glass", 185, "")
     AddItemInfo(JaffaItem.glassMilk, "glassMilk", 190, "Glass of Milk")
@@ -293,7 +293,8 @@ class Items extends ItemManagerAccessor {
     AddItemInfo(JaffaItem.soupTomatoRaw, "Raw Tomato Soup", 288)
     AddItemInfo(JaffaItem.soupTomatoCooked, "Tomato Soup", 289)
     AddItemInfo(JaffaItem.breadCrumbs, "Breadcrumbs", 290)
-    AddItemInfo(juiceInBottle, "[NOT USED] Juice In Bottle", 181)
+    AddItemInfo(juiceInBottle, "Juice In Bottle", 181)
+    AddItemInfo(juiceGlass, "Juice Glass", 186)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -566,6 +567,9 @@ class Items extends ItemManagerAccessor {
 
     createJaffaItemManual(juiceInBottle, new ItemJuice(ItemManager.getItemInfo(juiceInBottle).getId))
     getItem(juiceInBottle).asInstanceOf[ItemJuice].registerNames()
+
+    createJaffaItemManual(juiceGlass, new ItemJuiceGlass(ItemManager.getItemInfo(juiceGlass).getId))
+    getItem(juiceGlass).asInstanceOf[ItemJuiceGlass].registerNames()
 
     createItemsOreDictRegistration()
     addMeatsToDryerDatabase()

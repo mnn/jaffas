@@ -86,6 +86,12 @@ trait ItemJaffaFoodTrait[Self <: ItemMonnefCore] extends IItemFood {
     this
   }
 
+  def setupFoodValues(healAmount: Int, saturation: Float): RETURN = {
+    this.healAmount = healAmount
+    this.saturation = saturation
+    ret
+  }
+
   override def getHealAmount(): Int = this.healAmount
 
   override def getSaturationModifier(): Float = this.saturation
