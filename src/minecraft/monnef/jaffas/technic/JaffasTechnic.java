@@ -35,6 +35,7 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.core.power.WrenchHelper;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;

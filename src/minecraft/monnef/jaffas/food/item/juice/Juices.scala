@@ -43,6 +43,10 @@ object Juices {
 
   lazy val juiceItem = JaffasFood.getItem(JaffaItem.juiceInBottle)
   lazy val juiceEmptyBottle = JaffasFood.getItem(JaffaItem.juiceBottle)
+  lazy val glassItem = JaffasFood.getItem(JaffaItem.juiceGlass)
+  lazy val glassEmpty = JaffasFood.getItem(JaffaItem.glassEmpty)
+
+  val glassesPerBottle = 3
 
   private var recipesAreBeingProcessed = false
 
@@ -53,12 +57,15 @@ object Juices {
     for {
       i <- 0 until list.length
       curr = list(i)
-      recipe <- curr.recipes
     } {
-      val p = Seq(new ItemStack(juiceEmptyBottle)) ++ recipe.recipeList
-      val out = new ItemStack(juiceItem, 1, i)
-      GameRegistry.addShapelessRecipe(out.copy(), p: _*)
-      TileJuiceMaker.addJuiceRecipe(recipe.edible, out.copy())
+      val p = Seq(new ItemStack(juiceItem, 1, i)) ++ Seq.fill(glassesPerBottle)(glassEmpty)
+      GameRegistry.addShapelessRecipe(new ItemStack(glassItem, glassesPerBottle, i), p: _*)
+      for {recipe <- curr.recipes} {
+        val p = Seq(new ItemStack(juiceEmptyBottle)) ++ recipe.recipeList
+        val out = new ItemStack(juiceItem, 1, glassesPerBottle)
+        GameRegistry.addShapelessRecipe(out.copy(), p: _*)
+        TileJuiceMaker.addJuiceRecipe(recipe.edible, out.copy())
+      }
     }
   }
 }

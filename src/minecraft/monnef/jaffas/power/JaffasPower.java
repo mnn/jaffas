@@ -347,6 +347,8 @@ public class JaffasPower extends JaffasModBase {
         }
 
         TileToaster.addRecipe(TileToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
+
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasPower.juiceMaker), "GAG", "GPG", "NCN", 'A', Item.axeIron, 'G', Block.glass, 'N', JaffasTechnic.jaffarrolNugget, 'C', JaffasTechnic.itemCasingRefined, 'P', createCentralUnitStack(CentralUnitEnum.SIMPLE));
     }
 
     private void addKitchenUnitRecipe(int unitId, ItemStack planks) {
