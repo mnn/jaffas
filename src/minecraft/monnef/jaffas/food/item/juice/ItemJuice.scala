@@ -33,6 +33,8 @@ class ItemJuice(_id: Int) extends ItemJaffaMultiBase(_id) with JuiceLike with It
       l.add("* NEW *")
     }
   }
+
+  def getMultiItemIconOffset(dmg: Int): Int = Juices.juiceOffsets(dmg)
 }
 
 trait JuiceLikeBase {
@@ -49,10 +51,12 @@ trait JuiceLike extends JuiceLikeBase {
     setIconsCount(Juices.juiceMaxOffset + 1)
   }
 
+  def getMultiItemIconOffset(dmg: Int): Int
+
   @SideOnly(Side.CLIENT)
   abstract override def getIconFromDamage(damage: Int): Icon = {
     val dmg = MathHelper.clamp_int(damage, 0, Juices.juiceCount)
-    val iconNum = MathHelper.clamp_int(Juices.juiceOffsets(dmg), 0, getSubItemsCount)
+    val iconNum = MathHelper.clamp_int(getMultiItemIconOffset(dmg), 0, getSubItemsCount)
     getCustomIcon(iconNum)
   }
 }

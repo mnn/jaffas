@@ -30,6 +30,7 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
+import monnef.jaffas.food.item.juice.Juices$;
 import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.trees.block.BlockFruitCollector;
 import monnef.jaffas.trees.block.BlockFruitLeaves;
@@ -98,11 +99,6 @@ import static monnef.jaffas.food.item.JaffaItem.jamP;
 import static monnef.jaffas.food.item.JaffaItem.jamRaspberry;
 import static monnef.jaffas.food.item.JaffaItem.jamStrawberry;
 import static monnef.jaffas.food.item.JaffaItem.jamV;
-import static monnef.jaffas.food.item.JaffaItem.juiceApple;
-import static monnef.jaffas.food.item.JaffaItem.juiceBottle;
-import static monnef.jaffas.food.item.JaffaItem.juiceLemon;
-import static monnef.jaffas.food.item.JaffaItem.juiceOrange;
-import static monnef.jaffas.food.item.JaffaItem.juiceRaspberry;
 import static monnef.jaffas.food.item.JaffaItem.lambWithPeas;
 import static monnef.jaffas.food.item.JaffaItem.lambWithPeasInTin;
 import static monnef.jaffas.food.item.JaffaItem.lambWithPeasInTinRaw;
@@ -730,10 +726,15 @@ public class JaffasTrees extends JaffasModBase {
         addPieRecipe(null, pieVanillaRaw, TilePie.PieType.VANILLA, true, getItem(jamV));
         addPieRecipe(itemPlum, piePlumRaw, TilePie.PieType.PLUM, true, getItem(jamP));
 
+        /*
+        // old juice recipes
         addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceOrange)), getItem(juiceBottle), ORANGE, ORANGE, ORANGE, ORANGE));
         addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), LEMON, LEMON, LEMON, LEMON));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceApple)), getItem(juiceBottle), Item.appleRed, Item.appleRed, Item.appleRed, Item.appleRed);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceRaspberry)), getItem(juiceBottle), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry));
+        */
+        // new juice recipes
+        Juices$.MODULE$.addRecipes();
 
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(peanutsSugar)), Item.sugar, getFruit(bushType.Peanuts));
         GameRegistry.addRecipe(new ItemStack(getItem(pepperStuffedRaw)), "M", "P", 'M', getItem(mincedMeat), 'P', getFruit(bushType.Paprika));

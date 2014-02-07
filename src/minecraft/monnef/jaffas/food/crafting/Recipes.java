@@ -353,10 +353,13 @@ public class Recipes {
         GameRegistry.addRecipe(new ItemStack(blockColumn), "SSS", "DSD", "SSS", 'S', Block.stone, 'D', new ItemStack(Item.dyePowder, 1, 15));
         addRecipe(new ShapedOreRecipe(blockJaffaStatue, "JIJ", "III", "JIJ", 'J', Items.JAFFA(), 'I', Item.ingotIron));
 
+        /*
+        // disabled old juice recipes
         for (JuiceItemsEnum juice : JuiceItemsEnum.values()) {
             PersistentItemsCraftingHandler.AddPersistentItem(juice.juiceBottle, false, juiceBottle);
             GameRegistry.addShapelessRecipe(getItemStack(juice.glass, 3), getItem(juice.juiceBottle), getItem(glassEmpty), getItem(glassEmpty), getItem(glassEmpty));
         }
+        */
         GameRegistry.addRecipe(getItemStack(glassEmpty, 4), "G G", "GGG", 'G', Block.glass);
         GameRegistry.addShapelessRecipe(getItemStack(glassMilk, 2), getItem(milkBoxFull), getItem(glassEmpty), getItem(glassEmpty));
 

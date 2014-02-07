@@ -347,7 +347,6 @@ public class JaffasPower extends JaffasModBase {
         }
 
         TileToaster.addRecipe(TileToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
-        TileJuiceMaker.addJuiceRecipe(new ItemStack(Item.appleRed, 4), new ItemStack(JaffasFood.getItem(JaffaItem.juiceApple)));
     }
 
     private void addKitchenUnitRecipe(int unitId, ItemStack planks) {

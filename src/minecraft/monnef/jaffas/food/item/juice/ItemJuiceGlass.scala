@@ -31,4 +31,6 @@ class ItemJuiceGlass(_id: Int) extends ItemJaffaMultiBase(_id) with JuiceLike wi
       l.add("* NEW *")
     }
   }
+
+  def getMultiItemIconOffset(dmg: Int): Int = Juices.glassOffsets(dmg)
 }
