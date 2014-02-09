@@ -23,6 +23,7 @@ import monnef.jaffas.trees.common.BushInfo
 import scala.collection.JavaConverters._
 
 class VillagersTradeHandler extends IVillageTradeHandler {
+
   def manipulateTradesForVillager(villager: EntityVillager, recipeList: MerchantRecipeList, random: Random) {
     if (ConfigurationManager.villagerTrades) {
       villager.getProfession match {
@@ -36,7 +37,8 @@ class VillagersTradeHandler extends IVillageTradeHandler {
         case 3 =>
         // smithVillager
         case 4 =>
-        // butcherVillager
+          // butcherVillager
+          handleButcher()
         case _ =>
       }
     }
@@ -58,6 +60,21 @@ class VillagersTradeHandler extends IVillageTradeHandler {
         }
       }
     }
+
+    def handleButcher() {
+      addTradeBuys(recipeList, getItem(duckRaw), 14, 17, 1)
+      addTradeBuys(recipeList, getItem(wolfMeatRaw), 14, 17, 1)
+      addTradeBuys(recipeList, getItem(muttonRaw), 14, 17, 1)
+      addTradeBuys(recipeList, getItem(spiderLegRaw), 18, 25, 1)
+
+      addTradeSells(recipeList, getItem(duck), 6, 7, 1)
+      addTradeSells(recipeList, getItem(wolfMeat), 6, 7, 1)
+      addTradeSells(recipeList, getItem(mutton), 6, 7, 1)
+      addTradeSells(recipeList, getItem(spiderLeg), 6, 7, 1)
+
+      if (random.nextFloat() < 0.33f) addTradeSells(recipeList, getItem(meatCleaver), 1, 2)
+    }
+
   }
 
   private def addTradeBuys(list: MerchantRecipeList, in: ItemStack, itemCountLow: Int, itemCountHigh: Int, buysForEmeraldCount: Int) {
@@ -85,5 +102,19 @@ class VillagersTradeHandler extends IVillageTradeHandler {
 
   private def addTradeBuys(list: MerchantRecipeList, in: Block, itemCountLow: Int, itemCountHigh: Int, buysForEmeraldCount: Int) {
     addTradeBuys(list, in, RandomHelper.generateRandomFromInterval(itemCountLow, itemCountHigh), buysForEmeraldCount)
+  }
+
+  private def addTradeSells(list: MerchantRecipeList, in: ItemStack, sellsForEmeraldCount: Int): MerchantRecipe = {
+    val recipe = new MerchantRecipe(new ItemStack(Item.emerald, sellsForEmeraldCount), in)
+    list.addToListWithCheck(recipe)
+    recipe
+  }
+
+  private def addTradeSells(list: MerchantRecipeList, in: Item, itemCount: Int, sellsForEmeraldCount: Int): MerchantRecipe = {
+    addTradeSells(list, new ItemStack(in, itemCount), sellsForEmeraldCount)
+  }
+
+  private def addTradeSells(list: MerchantRecipeList, in: Item, itemCountLow: Int, itemCountHigh: Int, sellsForEmeraldCount: Int): MerchantRecipe = {
+    addTradeSells(list, in, RandomHelper.generateRandomFromInterval(itemCountLow, itemCountHigh), sellsForEmeraldCount)
   }
 }

@@ -226,7 +226,7 @@ public class JaffasFood extends JaffasModBase {
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
         Recipes.postLoadInstallRecipes();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i <= 4; i++) {
             VillagerRegistry.instance().registerVillageTradeHandler(i, new VillagersTradeHandler());
         }
     }
