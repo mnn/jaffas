@@ -20,6 +20,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.CustomLogger;
@@ -41,6 +42,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
+import monnef.jaffas.food.common.VillagersTradeHandler;
 import monnef.jaffas.food.crafting.LeftoversCraftingHandler;
 import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
@@ -118,7 +120,7 @@ public class JaffasFood extends JaffasModBase {
 
     @Override
     protected void fillModuleSpecificMetadata(ModMetadata data) {
-        data.description = "Adding famous Jaffa Cakes and a lot more into Minecraft (recipes are quite complex).";
+        data.description = "Adding famous Jaffa Cakes, tons of foods, new trees, crops and a lot more into Minecraft (recipes are quite complex).";
     }
 
     @SidedProxy(clientSide = "monnef.jaffas.food.client.ClientProxy", serverSide = "monnef.jaffas.food.common.CommonProxy")
@@ -224,6 +226,9 @@ public class JaffasFood extends JaffasModBase {
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
         Recipes.postLoadInstallRecipes();
+        for (int i = 0; i < 4; i++) {
+            VillagerRegistry.instance().registerVillageTradeHandler(i, new VillagersTradeHandler());
+        }
     }
 
     private void registerHandlers() {

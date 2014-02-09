@@ -5,14 +5,12 @@
 
 package monnef.jaffas.food.common;
 
-import codechicken.core.ArrayUtils;
 import com.google.common.base.Joiner;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import net.minecraftforge.common.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
+import static net.minecraftforge.common.Configuration.CATEGORY_GENERAL;
 
 public class ConfigurationManager {
     public static String jaffasTitle;
@@ -37,6 +35,7 @@ public class ConfigurationManager {
     public static boolean disableAutoUnEquip;
     public static boolean useOldConfigItemNames;
     public static String[] craftingTablesWithBrokenCraftingHandlerSupport;
+    public static boolean villagerTrades;
 
     private static final String[] craftingTablesWithBrokenCraftingHandlerSupportDefault;
 
@@ -47,29 +46,30 @@ public class ConfigurationManager {
     }
 
     public static void loadSettings(Configuration config) {
-        showUpdateMessages = config.get(Configuration.CATEGORY_GENERAL, "showUpdateMessages", true).getBoolean(true);
-        lastVersionShown = config.get(Configuration.CATEGORY_GENERAL, JaffasFood.LAST_VERSION_SHOWN, "").getString();
-        spawnStonesEnabled = config.get(Configuration.CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
-        spawnStoneLittleCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
-        spawnStoneMediumCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMediumCD", 17).getInt();
-        spawnStoneBigCD = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
-        spawnStoneMultidimensional = config.get(Configuration.CATEGORY_GENERAL, "spawnStoneMultidimensional", true).getBoolean(true);
-        transferItemsFromCraftingMatrix = config.get(Configuration.CATEGORY_GENERAL, "transferItemsFromCraftingMatrix", true, "Transfers items created after craft directly to a player (e.g. crumpled paper), without this enabled there can be problems with BC crafters").getBoolean(true);
-        genDisabled = config.get(Configuration.CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
-        genDisabledForNonStandardDimensions = config.get(Configuration.CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
-        achievementsDisabled = config.get(Configuration.CATEGORY_GENERAL, "achievementsDisabled", false).getBoolean(false);
-        duckSpawnProbabilityLow = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityLow", 10).getInt();
-        duckSpawnProbabilityMed = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityMed", 12).getInt();
-        duckSpawnProbabilityHigh = config.get(Configuration.CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
-        FuelHandler.switchgrassBurnValue = config.get(Configuration.CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
-        slimeSpawningEnabled = config.get(Configuration.CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
-        JaffasRegistryHelper.compatibilityMode = config.get(Configuration.CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
-        vanillaRecipesEnabled = config.get(Configuration.CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
-        dungeonLootEnabled = config.get(Configuration.CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
-        disableAutoUnEquip = config.get(Configuration.CATEGORY_GENERAL, "disableAutoUnEquip", false).getBoolean(false);
-        AchievementsHandler.setStartingId(config.get(Configuration.CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
-        useOldConfigItemNames = config.get(Configuration.CATEGORY_GENERAL, "useOldConfigItemNames", false, "If you're updating and you want to use your world save then set this option to true.").getBoolean(false);
-        craftingTablesWithBrokenCraftingHandlerSupport = config.get(Configuration.CATEGORY_GENERAL, "craftingTablesWithBrokenCraftingHandlerSupport", craftingTablesWithBrokenCraftingHandlerSupportDefault,
+        showUpdateMessages = config.get(CATEGORY_GENERAL, "showUpdateMessages", true).getBoolean(true);
+        lastVersionShown = config.get(CATEGORY_GENERAL, JaffasFood.LAST_VERSION_SHOWN, "").getString();
+        spawnStonesEnabled = config.get(CATEGORY_GENERAL, "spawnStonesEnable", true).getBoolean(true);
+        spawnStoneLittleCD = config.get(CATEGORY_GENERAL, "spawnStoneLittleCD", 27).getInt();
+        spawnStoneMediumCD = config.get(CATEGORY_GENERAL, "spawnStoneMediumCD", 17).getInt();
+        spawnStoneBigCD = config.get(CATEGORY_GENERAL, "spawnStoneBigCD", 7).getInt();
+        spawnStoneMultidimensional = config.get(CATEGORY_GENERAL, "spawnStoneMultidimensional", true).getBoolean(true);
+        transferItemsFromCraftingMatrix = config.get(CATEGORY_GENERAL, "transferItemsFromCraftingMatrix", true, "Transfers items created after craft directly to a player (e.g. crumpled paper), without this enabled there can be problems with BC crafters").getBoolean(true);
+        genDisabled = config.get(CATEGORY_GENERAL, "genDisabled", false, "This option applies to all modules").getBoolean(false);
+        genDisabledForNonStandardDimensions = config.get(CATEGORY_GENERAL, "genDisabledForNonStandardDimensions", false, "This option applies to all modules").getBoolean(false);
+        achievementsDisabled = config.get(CATEGORY_GENERAL, "achievementsDisabled", false).getBoolean(false);
+        duckSpawnProbabilityLow = config.get(CATEGORY_GENERAL, "duckSpawnProbabilityLow", 10).getInt();
+        duckSpawnProbabilityMed = config.get(CATEGORY_GENERAL, "duckSpawnProbabilityMed", 12).getInt();
+        duckSpawnProbabilityHigh = config.get(CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
+        FuelHandler.switchgrassBurnValue = config.get(CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
+        slimeSpawningEnabled = config.get(CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
+        JaffasRegistryHelper.compatibilityMode = config.get(CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
+        vanillaRecipesEnabled = config.get(CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
+        dungeonLootEnabled = config.get(CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
+        disableAutoUnEquip = config.get(CATEGORY_GENERAL, "disableAutoUnEquip", false).getBoolean(false);
+        AchievementsHandler.setStartingId(config.get(CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
+        useOldConfigItemNames = config.get(CATEGORY_GENERAL, "useOldConfigItemNames", false, "If you're updating and you want to use your world save then set this option to true.").getBoolean(false);
+        craftingTablesWithBrokenCraftingHandlerSupport = config.get(CATEGORY_GENERAL, "craftingTablesWithBrokenCraftingHandlerSupport", craftingTablesWithBrokenCraftingHandlerSupportDefault,
                 "Custom crafting tables (classes implementing IInventory) with broken or none support for crafting handlers. Default values: " + Joiner.on(", ").join(craftingTablesWithBrokenCraftingHandlerSupportDefault)).getStringList();
+        villagerTrades = config.get(CATEGORY_GENERAL, "Custom villager trades enabled", true).getBoolean(true);
     }
 }
