@@ -10,6 +10,7 @@ import monnef.core.block.TileMachine;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileAntenna;
 import monnef.jaffas.power.block.TileGenerator;
+import monnef.jaffas.power.block.TileJuiceMaker;
 import monnef.jaffas.power.block.TileLightningConductor;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -24,12 +25,14 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     private static TileGenerator generator;
     private static TileLightningConductor conductor;
     private static TileAntenna antenna;
+    private static TileJuiceMaker juiceMaker;
 
     static {
         TileMachine.enableDummyCreationPhase();
         generator = new TileGenerator();
         antenna = new TileAntenna();
         conductor = new TileLightningConductor();
+        juiceMaker = new TileJuiceMaker();
         TileMachine.disableDummyCreationPhase();
     }
 
@@ -42,6 +45,8 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
             entityRenderer.renderTileEntityAt(antenna, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         } else if (JaffasPower.lightningConductorEnabled && modelID == lightningConductor.getRenderType()) {
             entityRenderer.renderTileEntityAt(conductor, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+        } else if (modelID == JaffasPower.juiceMaker.getRenderType()) {
+            entityRenderer.renderTileEntityAt(juiceMaker, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         }
     }
 
