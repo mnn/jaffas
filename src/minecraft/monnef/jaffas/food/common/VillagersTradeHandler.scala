@@ -21,6 +21,8 @@ import monnef.jaffas.trees.block.TileFruitLeaves
 import monnef.jaffas.trees.JaffasTrees.FruitType
 import monnef.jaffas.trees.common.BushInfo
 import scala.collection.JavaConverters._
+import monnef.jaffas.technic.JaffasTechnic
+import RandomHelper.generateRandomFromInterval
 
 class VillagersTradeHandler extends IVillageTradeHandler {
 
@@ -35,7 +37,8 @@ class VillagersTradeHandler extends IVillageTradeHandler {
         case 2 =>
         // priestVillager
         case 3 =>
-        // smithVillager
+          // smithVillager
+          handleBlacksmith()
         case 4 =>
           // butcherVillager
           handleButcher()
@@ -43,20 +46,39 @@ class VillagersTradeHandler extends IVillageTradeHandler {
       }
     }
 
-    def handleFarmer() {
-      for {
-        fruit <- JaffasTrees.FruitType.values()
-        if fruit.doesGenerateFruitAndSeeds() // skips "normal" (~ blank) type
-        if fruit != FruitType.Cocoa // no dye!
-      } {
-        if (random.nextFloat() < 0.2f) {
-          val fres = TileFruitLeaves.getItemFromFruit(fruit)
-          if (fres.getStack != null) addTradeBuys(recipeList, fres.getStack, 20, 30, 1)
-        }
+    def handleBlacksmith() {
+      if (ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
+        addTradeBuys(recipeList, JaffasTechnic.jaffarrol, 8, 9, 1)
+
+        addTradeSellsEquip(recipeList, getItem(jaffarrolChest), 16, 19)
+        addTradeSellsEquip(recipeList, getItem(jaffarrolHelmet), 6, 9)
+        addTradeSellsEquip(recipeList, getItem(jaffarrolLeggins), 11, 14)
+        addTradeSellsEquip(recipeList, getItem(jaffarrolBoots), 6, 9)
+
+        addTradeSellsEquip(recipeList, JaffasTechnic.swordJaffarrol, 12, 15)
+        addTradeSellsEquip(recipeList, JaffasTechnic.axeJaffarrol, 9, 12)
+        addTradeSellsEquip(recipeList, JaffasTechnic.pickaxeJaffarrol, 10, 12)
+        addTradeSellsEquip(recipeList, JaffasTechnic.spadeJaffarrol, 7, 8)
+        addTradeSellsEquip(recipeList, JaffasTechnic.hoeJaffarrol, 7, 8)
       }
-      for {bush: BushInfo <- JaffasTrees.bushesList.values().toArray(Array[BushInfo]())} {
-        if (random.nextFloat() < 0.2f) {
-          addTradeBuys(recipeList, bush.itemFruit, 18, 28, 1)
+    }
+
+    def handleFarmer() {
+      if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
+        for {
+          fruit <- JaffasTrees.FruitType.values()
+          if fruit.doesGenerateFruitAndSeeds() // skips "normal" (~ blank) type
+          if fruit != FruitType.Cocoa // no dye!
+        } {
+          if (random.nextFloat() < 0.2f) {
+            val fres = TileFruitLeaves.getItemFromFruit(fruit)
+            if (fres.getStack != null) addTradeBuys(recipeList, fres.getStack, 20, 30, 1)
+          }
+        }
+        for {bush: BushInfo <- JaffasTrees.bushesList.values().toArray(Array[BushInfo]())} {
+          if (random.nextFloat() < 0.2f) {
+            addTradeBuys(recipeList, bush.itemFruit, 18, 28, 1)
+          }
         }
       }
     }
@@ -116,5 +138,9 @@ class VillagersTradeHandler extends IVillageTradeHandler {
 
   private def addTradeSells(list: MerchantRecipeList, in: Item, itemCountLow: Int, itemCountHigh: Int, sellsForEmeraldCount: Int): MerchantRecipe = {
     addTradeSells(list, in, RandomHelper.generateRandomFromInterval(itemCountLow, itemCountHigh), sellsForEmeraldCount)
+  }
+
+  private def addTradeSellsEquip(list: MerchantRecipeList, in: Item, emeraldCountLow: Int, emeraldCountHigh: Int, equipCount: Int = 1): MerchantRecipe = {
+    addTradeSells(list, in, equipCount, generateRandomFromInterval(emeraldCountLow, emeraldCountHigh))
   }
 }
