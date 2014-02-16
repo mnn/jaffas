@@ -60,12 +60,12 @@ object Juices {
       i <- 0 until list.length
       curr = list(i)
     } {
-      val p = Seq(new ItemStack(juiceItem, 1, i)) ++ Seq.fill(glassesPerBottle)(glassEmpty)
-      GameRegistry.addShapelessRecipe(new ItemStack(glassItem, glassesPerBottle, i), p: _*)
+      val glassJuiceIngredients = Seq(new ItemStack(juiceItem, 1, i)) ++ Seq.fill(glassesPerBottle)(glassEmpty)
+      GameRegistry.addShapelessRecipe(new ItemStack(glassItem, glassesPerBottle, i), glassJuiceIngredients: _*)
       for {recipe <- curr.recipes} {
-        val p = Seq(new ItemStack(juiceEmptyBottle)) ++ recipe.recipeList
-        val out = new ItemStack(juiceItem, glassesPerBottle, i)
-        GameRegistry.addShapelessRecipe(out.copy(), p: _*)
+        val juiceBottleIngredients = Seq(juiceEmptyBottle) ++ recipe.recipeList
+        val out = new ItemStack(juiceItem, 1, i)
+        GameRegistry.addShapelessRecipe(out.copy(), juiceBottleIngredients: _*)
         val juicerInput = recipe.edible.copy()
         juicerInput.stackSize -= 1
         TileJuiceMaker.addJuiceRecipe(juicerInput, out.copy())
