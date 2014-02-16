@@ -12,9 +12,10 @@ import net.minecraft.item.ItemStack
 import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food.item.JaffaItem
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine
+import monnef.jaffas.power.api.IKitchenUnitAppliance
 
 @ContainerRegistry.ContainerTag(slotsCount = 3, containerClassName = "monnef.jaffas.power.block.common.ContainerDoubleBasicProcessingMachine", guiClassName = "monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine")
-class TileJuiceMaker extends TileEntityBasicProcessingMachine {
+class TileJuiceMaker extends TileEntityBasicProcessingMachine with IKitchenUnitAppliance {
   def getInvName: String = "jaffas.power.grinder"
 }
 

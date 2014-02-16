@@ -62,9 +62,11 @@ object Juices {
       GameRegistry.addShapelessRecipe(new ItemStack(glassItem, glassesPerBottle, i), p: _*)
       for {recipe <- curr.recipes} {
         val p = Seq(new ItemStack(juiceEmptyBottle)) ++ recipe.recipeList
-        val out = new ItemStack(juiceItem, 1, glassesPerBottle)
+        val out = new ItemStack(juiceItem, glassesPerBottle, i)
         GameRegistry.addShapelessRecipe(out.copy(), p: _*)
-        TileJuiceMaker.addJuiceRecipe(recipe.edible, out.copy())
+        val juicerInput = recipe.edible.copy()
+        juicerInput.stackSize -= 1
+        TileJuiceMaker.addJuiceRecipe(juicerInput, out.copy())
       }
     }
   }
