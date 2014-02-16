@@ -13,6 +13,7 @@ import cpw.mods.fml.common.registry.GameRegistry
 import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food.item.JaffaItem
 import monnef.jaffas.power.block.TileJuiceMaker
+import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler
 
 object Juices {
   val list: List[JuiceInfo] = {
@@ -54,6 +55,7 @@ object Juices {
 
   def addRecipes() {
     recipesAreBeingProcessed = true
+    PersistentItemsCraftingHandler.AddPersistentItem(JaffaItem.juiceInBottle, false, JaffaItem.juiceBottle)
     for {
       i <- 0 until list.length
       curr = list(i)
