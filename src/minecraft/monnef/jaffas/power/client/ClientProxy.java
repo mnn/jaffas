@@ -36,6 +36,7 @@ public class ClientProxy extends CommonProxy {
         if (JaffasPower.lightningConductorEnabled) {
             RenderingRegistry.registerBlockHandler(JaffasPower.lightningConductor.getRenderType(), handler);
         }
+        RenderingRegistry.registerBlockHandler(JaffasPower.juiceMaker.getRenderType(), handler);
 
         MinecraftForgeClient.registerItemRenderer(JaffasPower.kitchenUnit.blockID, new CustomBlockRenderer());
 

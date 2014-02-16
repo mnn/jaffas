@@ -10,7 +10,12 @@ import monnef.jaffas.power.client.GuiHandler
 import cpw.mods.fml.client.registry.RenderingRegistry
 
 class BlockJuiceMaker(_id: Int, _idx: Int, _tc: Class[_ <: TileEntityBasicProcessingMachine], _guiId: GuiHandler.GuiId) extends BlockBasicProcessingMachine(_id, _idx, _tc, _guiId, true, true) {
-  private val renderId = RenderingRegistry.getNextAvailableRenderId
+  private final val U: Float = 1f / 16f
+  private final val BORDER_LEFT: Float = 5 * U
+  private final val BORDER_BACK: Float = 2 * U
+  private final val BORDER_RIGHT: Float = 4 * U
+  private final val BORDER_FRONT: Float = 4 * U
+  private final val TOP: Float = 1 * U
 
-  override def getRenderType: Int = renderId
+  setCustomRotationSensitiveBoundingBox(BORDER_LEFT, 0, BORDER_BACK, 1 - BORDER_RIGHT, 1 - TOP, 1 - BORDER_FRONT)
 }

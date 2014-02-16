@@ -231,6 +231,7 @@ public class ContentHolder {
 
     protected static void createPainting() {
         ContentHolder.itemPainting = new ItemJaffaPainting(itemPaintingID);
+        GameRegistry.registerItem(ContentHolder.itemPainting, ContentHolder.itemPainting.getUnlocalizedName());
         LanguageRegistry.addName(ContentHolder.itemPainting, "Painting");
         EntityHelper.registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, ContentHolder.jaffaPaintingEntityID, jf);
     }

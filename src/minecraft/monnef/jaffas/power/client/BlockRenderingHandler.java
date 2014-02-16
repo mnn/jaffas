@@ -16,6 +16,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.world.IBlockAccess;
+import org.lwjgl.opengl.GL11;
 
 import static monnef.jaffas.power.JaffasPower.lightningConductor;
 
@@ -46,7 +47,11 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
         } else if (JaffasPower.lightningConductorEnabled && modelID == lightningConductor.getRenderType()) {
             entityRenderer.renderTileEntityAt(conductor, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         } else if (modelID == JaffasPower.juiceMaker.getRenderType()) {
+            GL11.glPushMatrix();
+            float s = 1.5f;
+            GL11.glScalef(s, s, s);
             entityRenderer.renderTileEntityAt(juiceMaker, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
+            GL11.glPopMatrix();
         }
     }
 
