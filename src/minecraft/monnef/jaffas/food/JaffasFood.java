@@ -43,6 +43,7 @@ import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.VillagersTradeHandler;
+import monnef.jaffas.food.common.VillagersTradeHandlerWrapper;
 import monnef.jaffas.food.crafting.LeftoversCraftingHandler;
 import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
@@ -227,7 +228,7 @@ public class JaffasFood extends JaffasModBase {
     public void postLoad(FMLPostInitializationEvent event) {
         Recipes.postLoadInstallRecipes();
         for (int i = 0; i <= 4; i++) {
-            VillagerRegistry.instance().registerVillageTradeHandler(i, new VillagersTradeHandler());
+            VillagerRegistry.instance().registerVillageTradeHandler(i, new VillagersTradeHandlerWrapper(new VillagersTradeHandler()));
         }
     }
 
