@@ -1,3 +1,14 @@
+## 0.6.3
+- juice maker (juicer, with NEI support)
+- more juice kinds (carrot, melon, strawberry and tomato)
+- custom villager trading (buys fruits and crops, jaffarrol ingots, sells tools and armours)
+- rewritten juice and juice glass item (deprecated ones will be removed in next release)
+- rewritten sink to use the new fluids registry
+- fixed not refreshing of player's inventory when using sink with full hotbar
+- fixed improper handling of custom sized (modded) crafting matrices
+- banned use of arcane workbench from Thaumcraft by crafting handlers (in current form it crashes game) - can be disabled in config
+- internal changes (mainly moved some machines code to core, multi-item trait)
+
 ## 0.6.2
 - duck eggs are now fully supported by all vanilla and jaffas recipes
 - updated to Forge #953
