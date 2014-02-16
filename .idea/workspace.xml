@@ -6,11 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d443db7d-9629-4d3a-84d0-1a1a1a197e05" name="Default" comment="Ł">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandlerWrapper.java" />
+      <change type="DELETED" beforePath="D:\workspace\mc\env\1.6\jaffas\mcp\src\minecraft\monnef\jaffas\food\common\VillagersTradeHandlerWrapper.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core" afterPath="$PROJECT_DIR$/core" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockJuiceMaker.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/block/BlockJuiceMaker.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandler.scala" afterPath="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandler.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="mcp725.iws" />
@@ -135,46 +133,19 @@
       <file leaf-file-name="VillagersTradeHandler.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandler.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="0" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="2618">
+            <state line="27" column="0" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0" vertical-offset="459" max-vertical-offset="2312">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VillagersTradeHandlerWrapper.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandlerWrapper.java">
+      <file leaf-file-name="JaffasFood.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="63" selection-start="380" selection-end="380" vertical-scroll-proportion="0.30605564" vertical-offset="0" max-vertical-offset="611">
+            <state line="230" column="93" selection-start="9392" selection-end="9392" vertical-scroll-proportion="6.4531775" vertical-offset="0" max-vertical-offset="4998">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JaffasFood.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="230" column="0" selection-start="9306" selection-end="9306" vertical-scroll-proportion="0.0" vertical-offset="3910" max-vertical-offset="5049">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MerchantRecipeListWrapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/MerchantRecipeListWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="76" selection-start="220" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="476">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IMerchantRecipeListWrapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/IMerchantRecipeListWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="51" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="306">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -207,7 +178,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/core/src/monnef/core/power/IMachineTool.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/power/IPipeWrench.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/power/common/WrenchHelper.java" />
         <option value="$PROJECT_DIR$/core/src/monnef/core/power/WrenchHelper.java" />
@@ -258,6 +228,7 @@
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandler.scala" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java" />
         <option value="$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandlerWrapper.java" />
+        <option value="$PROJECT_DIR$/core/src/monnef/core/common/VillagersTradeHandlerWrapper.java" />
       </list>
     </option>
   </component>
@@ -691,15 +662,15 @@
       <recent name="monnef.jaffas.food.block" />
       <recent name="monnef.jaffas.food.item" />
     </key>
-    <key name="IntroduceConstantDialog.RECENTS_KEY">
-      <recent name="monnef.core.MonnefCorePlugin" />
-    </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
       <recent name="monnef.core.mod.MonnefCoreNormalMod" />
       <recent name="monnef.core.utils.CraftingHelper" />
       <recent name="monnef.core.item.ItemMonnefCore" />
       <recent name="monnef.jaffas.food.ConfigurationManager" />
       <recent name="monnef.jaffas.food.ContentHolder" />
+    </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="monnef.core.MonnefCorePlugin" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="monnef.jaffas.power.client" />
@@ -709,11 +680,11 @@
       <recent name="monnef.jaffas.food.nei" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="monnef.core.common" />
       <recent name="monnef.jaffas.food.item.juice" />
       <recent name="monnef.core.network" />
       <recent name="monnef.core.power" />
       <recent name="monnef.core.block" />
-      <recent name="monnef.core.client" />
     </key>
   </component>
   <component name="RunManager" selected="Application.client">
@@ -1263,7 +1234,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32850778" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
@@ -1373,7 +1344,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/technic/JaffasTechnic.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="951" column="0" selection-start="51016" selection-end="51016" vertical-scroll-proportion="0.3043478" vertical-offset="13384" max-vertical-offset="14110" />
+        <state line="951" column="0" selection-start="51016" selection-end="51016" vertical-scroll-proportion="0.3043478" vertical-offset="13384" max-vertical-offset="14110">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/item/juice/Juices.scala">
@@ -1393,7 +1366,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/entity/passive/EntityVillager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="297" column="24" selection-start="10612" selection-end="10612" vertical-scroll-proportion="0.49522293" vertical-offset="3905" max-vertical-offset="12546" />
+        <state line="297" column="24" selection-start="10612" selection-end="10612" vertical-scroll-proportion="0.49522293" vertical-offset="3905" max-vertical-offset="12546">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/trees/common/ItemFromFruitResult.java">
@@ -1563,19 +1538,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/net/minecraft/village/MerchantRecipeList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="13" selection-start="404" selection-end="404" vertical-scroll-proportion="0.079161815" vertical-offset="0" max-vertical-offset="2482" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/MerchantRecipeListWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="76" selection-start="220" selection-end="246" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/IMerchantRecipeListWrapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="51" selection-start="218" selection-end="218" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+        <state line="13" column="13" selection-start="404" selection-end="404" vertical-scroll-proportion="0.079161815" vertical-offset="0" max-vertical-offset="2482">
           <folding />
         </state>
       </provider>
@@ -1587,6 +1550,15 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/VillagersTradeHandlerWrapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="24" selection-start="493" selection-end="493" vertical-scroll-proportion="0.3617021" vertical-offset="0" max-vertical-offset="611">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandler.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="0" selection-start="977" selection-end="977" vertical-scroll-proportion="0.0" vertical-offset="46" max-vertical-offset="2567">
@@ -1594,16 +1566,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/IMerchantRecipeListWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="230" column="0" selection-start="9306" selection-end="9306" vertical-scroll-proportion="0.0" vertical-offset="2298" max-vertical-offset="3723">
+        <state line="10" column="51" selection-start="218" selection-end="218" vertical-scroll-proportion="0.19476268" vertical-offset="0" max-vertical-offset="611">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/common/VillagersTradeHandlerWrapper.java">
+    <entry file="file://$PROJECT_DIR$/core/src/monnef/core/common/MerchantRecipeListWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="63" selection-start="380" selection-end="380" vertical-scroll-proportion="0.30605564" vertical-offset="0" max-vertical-offset="611">
+        <state line="8" column="88" selection-start="168" selection-end="168" vertical-scroll-proportion="0.111292966" vertical-offset="0" max-vertical-offset="611">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/minecraft/monnef/jaffas/food/JaffasFood.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="230" column="93" selection-start="9392" selection-end="9392" vertical-scroll-proportion="6.4531775" vertical-offset="0" max-vertical-offset="4998">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
