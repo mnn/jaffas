@@ -36,6 +36,7 @@ public class ConfigurationManager {
     public static boolean useOldConfigItemNames;
     public static String[] craftingTablesWithBrokenCraftingHandlerSupport;
     public static boolean villagerTrades;
+    public static boolean disableThermalExpansionIntegration;
 
     private static final String[] craftingTablesWithBrokenCraftingHandlerSupportDefault;
 
@@ -71,5 +72,6 @@ public class ConfigurationManager {
         craftingTablesWithBrokenCraftingHandlerSupport = config.get(CATEGORY_GENERAL, "craftingTablesWithBrokenCraftingHandlerSupport", craftingTablesWithBrokenCraftingHandlerSupportDefault,
                 "Custom crafting tables (classes implementing IInventory) with broken or none support for crafting handlers. Default values: " + Joiner.on(", ").join(craftingTablesWithBrokenCraftingHandlerSupportDefault)).getStringList();
         villagerTrades = config.get(CATEGORY_GENERAL, "Custom villager trades enabled", true).getBoolean(true);
+        disableThermalExpansionIntegration = config.get(CATEGORY_GENERAL, "disableThermalExpansionIntegration", false).getBoolean(false);
     }
 }

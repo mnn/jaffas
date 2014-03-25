@@ -131,16 +131,17 @@ public class JaffasFood extends JaffasModBase {
     @Mod.EventHandler
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
-        otherMods = new OtherModsHelper();
-        if (otherMods.isIDResolverDetected()) {
-            Log.printSevere("ID Resolver detected, do *not* use ID moving or face consequences.");
-            Log.printSevere("I warned you.");
-        }
 
         try {
             config.load();
-            idProvider.linkWithConfig(config);
             ConfigurationManager.loadSettings(config);
+            otherMods = new OtherModsHelper();
+            if (otherMods.isIDResolverDetected()) {
+                Log.printSevere("ID Resolver detected, do *not* use ID moving or face consequences.");
+                Log.printSevere("I warned you.");
+            }
+
+            idProvider.linkWithConfig(config);
 
             initializeModuleManager();
 

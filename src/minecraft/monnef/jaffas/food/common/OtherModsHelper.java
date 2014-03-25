@@ -78,7 +78,7 @@ public class OtherModsHelper {
     }
 
     private void checkTE() {
-        TEDetected = Loader.isModLoaded("ThermalExpansion");
+        TEDetected = Loader.isModLoaded("ThermalExpansion") && !ConfigurationManager.disableThermalExpansionIntegration;
     }
 
     public boolean insertFarmable(String category, IFarmable farmable) {
