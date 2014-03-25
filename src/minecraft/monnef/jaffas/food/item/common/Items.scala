@@ -559,7 +559,7 @@ class Items extends ItemManagerAccessor {
     createJaffaItem(cheeseRaw).setMaxStackSize(1)
     createLollipops()
 
-    createJaffaItems(fishFillet, fishStickRaw, fishStickCooked, fryingPanFishStickRaw, fryingPanFishStick, soupPeaRaw, soupFishRaw, soupTomatoRaw, breadCrumbs)
+    createJaffaItems(fishFillet, fishStickRaw, fryingPanFishStickRaw, fryingPanFishStick, soupPeaRaw, soupFishRaw, soupTomatoRaw, breadCrumbs)
     createJaffaFood(soupPeaCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.resistance.id, 25, 0, 0.1f).setMaxStackSize(32)
     createJaffaFood(soupFishCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.resistance.id, 30, 0, 0.1f).setMaxStackSize(32)
     createJaffaFood(soupTomatoCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.fireResistance.id, 30, 0, 0.1f).setMaxStackSize(32)
