@@ -15,10 +15,12 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import monnef.core.power.WrenchHelper;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
+import monnef.external.ThermalExpansionHelper;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
@@ -35,9 +37,7 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.block.TileGrinder;
-import monnef.core.power.WrenchHelper;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
 import monnef.jaffas.technic.block.BlockConstruction;
@@ -106,7 +106,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
-import thermalexpansion.api.crafting.CraftingHelpers;
 
 import java.util.Map;
 import java.util.logging.Level;
@@ -525,11 +524,11 @@ public class JaffasTechnic extends JaffasModBase {
     private void installThermalExpansionSupport() {
         if (JaffasFood.otherMods.isTEDetected()) {
             try {
-                CraftingHelpers.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
-                CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrol), new ItemStack(jaffarrolDust));
-                CraftingHelpers.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrolRefined), new ItemStack(jaffarrolDust));
-                CraftingHelpers.addSmelterDustToIngotsRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
-                CraftingHelpers.addSmelterOreToIngotsRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrol));
+                ThermalExpansionHelper.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
+                ThermalExpansionHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrol), new ItemStack(jaffarrolDust));
+                ThermalExpansionHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrolRefined), new ItemStack(jaffarrolDust));
+                ThermalExpansionHelper.addSmelterDustToIngotsRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
+                ThermalExpansionHelper.addSmelterOreToIngotsRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrol));
             } catch (Exception e) {
                 Log.printSevere("Thermal Expansion integration failed - the API may have changed.");
                 e.printStackTrace();
