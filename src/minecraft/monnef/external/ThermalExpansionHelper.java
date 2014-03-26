@@ -3,6 +3,7 @@ package monnef.external;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
@@ -18,11 +19,19 @@ public class ThermalExpansionHelper {
     private static ItemStack slagRich = createTEStack("slagRich");
     private static ItemStack blockSand = new ItemStack(Block.sand);
 
-    private ThermalExpansionHelper() {
+    public static void init() {
+        sawdust = createTEStack("sawdust");
+        slag = createTEStack("slag");
+        slagRich = createTEStack("slagRich");
+        blockSand = new ItemStack(Block.sand);
     }
 
     private static ItemStack createTEStack(String itemName) {
-        return new ItemStack(GameRegistry.findItem(ThermalExpansionModId, itemName));
+        ItemStack stack = GameRegistry.findItemStack(ThermalExpansionModId, itemName, 1);
+        if (stack == null) {
+            throw new RuntimeException("Cannot find TE item \"" + itemName + "\".");
+        }
+        return stack;
     }
 
     public static void addFurnaceRecipe(int energy, ItemStack input, ItemStack output) {
@@ -96,14 +105,16 @@ public class ThermalExpansionHelper {
         toSend.setInteger("energy", energy);
         toSend.setCompoundTag("input", new NBTTagCompound());
         toSend.setCompoundTag("primaryOutput", new NBTTagCompound());
-        toSend.setCompoundTag("secondaryOutput", new NBTTagCompound());
+        if (secondaryOutput != null) toSend.setCompoundTag("secondaryOutput", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         primaryOutput.writeToNBT(toSend.getCompoundTag("primaryOutput"));
-        secondaryOutput.writeToNBT(toSend.getCompoundTag("secondaryOutput"));
+        if (secondaryOutput != null) secondaryOutput.writeToNBT(toSend.getCompoundTag("secondaryOutput"));
         toSend.setInteger("secondaryChance", secondaryChance);
 
-        FMLInterModComms.sendMessage("ThermalExpansion", "PulverizerRecipe", toSend);
+        if (!FMLInterModComms.sendMessage("ThermalExpansion", "PulverizerRecipe", toSend)) {
+            throw new RuntimeException("Pulverizer recipe registration failed.");
+        }
     }
 
     public static void addSawmillRecipe(int energy, ItemStack input, ItemStack primaryOutput) {
@@ -157,7 +168,9 @@ public class ThermalExpansionHelper {
         secondaryOutput.writeToNBT(toSend.getCompoundTag("secondaryOutput"));
         toSend.setInteger("secondaryChance", secondaryChance);
 
-        FMLInterModComms.sendMessage("ThermalExpansion", "SmelterRecipe", toSend);
+        if (!FMLInterModComms.sendMessage("ThermalExpansion", "SmelterRecipe", toSend)) {
+            throw new RuntimeException("Pulverizer recipe registration failed.");
+        }
     }
 
     /**

@@ -1,3 +1,8 @@
+## 0.6.3d
+- implemented use of ThermalExpansion 3 API (IMC)
+- fixed double fishStickCooked creation
+- added config option to disable ThermalExpansion integration
+
 ## 0.6.3
 - juice maker (juicer, with NEI support)
 - more juice kinds (carrot, melon, strawberry and tomato)

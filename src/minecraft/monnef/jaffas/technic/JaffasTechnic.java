@@ -471,7 +471,6 @@ public class JaffasTechnic extends JaffasModBase {
         GameRegistry.registerWorldGenerator(generator);
 
         installThermalExpansionSupport();
-
         JaffasFood.PrintInitialized(ModulesEnum.technic);
     }
 
@@ -524,6 +523,7 @@ public class JaffasTechnic extends JaffasModBase {
     private void installThermalExpansionSupport() {
         if (JaffasFood.otherMods.isTEDetected()) {
             try {
+                ThermalExpansionHelper.init();
                 ThermalExpansionHelper.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
                 ThermalExpansionHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrol), new ItemStack(jaffarrolDust));
                 ThermalExpansionHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrolRefined), new ItemStack(jaffarrolDust));
