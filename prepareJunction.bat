@@ -1,3 +1,5 @@
-mklink /J src\minecraft\monnef\core core\src\monnef\core
-mklink /J src\minecraft\buildcraft core\src\buildcraft
+mklink /J src\main\java\monnef\core core\src\main\java\monnef\core
+mklink /J src\main\scala\monnef\core core\src\main\scala\monnef\core
+mklink /J src\main\java\buildcraft core\src\main\java\buildcraft
+
 pause
