@@ -6,6 +6,7 @@
 package monnef.jaffas.food;
 
 import com.google.common.base.Joiner;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.ModMetadata;
@@ -23,6 +24,7 @@ import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.achievement.AchievementsHandler;
@@ -42,6 +44,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
+import monnef.jaffas.food.common.SwitchgrassBiomeRegistrar;
 import monnef.jaffas.food.common.VillagersTradeHandler;
 import monnef.core.common.VillagersTradeHandlerWrapper;
 import monnef.jaffas.food.crafting.LeftoversCraftingHandler;
@@ -65,6 +68,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.src.ModLoader;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -206,10 +210,9 @@ public class JaffasFood extends JaffasModBase {
         creativeTab.setup(JaffaItem.jaffaP);
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
 
-        GameRegistry.registerPlayerTracker(new PlayerTracker());
+        FMLCommonHandler.instance().bus().register(new PlayerTracker());
 
-
-        MinecraftForge.addGrassPlant(blockSwitchgrass, BlockSwitchgrass.VALUE_TOP, 5);
+        SwitchgrassBiomeRegistrar.register();
 
         printInitializedMessage();
     }

@@ -1,21 +1,21 @@
 package monnef.jaffas.food.common;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import monnef.jaffas.food.block.BlockSwitchgrass;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
 public class SwitchgrassBonemealHandler {
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onBonemeal(BonemealEvent event) {
         BlockSwitchgrass block = ContentHolder.blockSwitchgrass;
 
-        if (event.ID != block.blockID) {
+        if (event.block != block) {
             return;
         }
 
-        if (block.tryBonemeal(event.world, event.X, event.Y, event.Z)) {
+        if (block.tryBonemeal(event.world, event.x, event.y, event.z)) {
             event.setResult(Event.Result.ALLOW);
         }
     }

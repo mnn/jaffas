@@ -5,14 +5,12 @@
 
 package monnef.jaffas.food.server;
 
-import cpw.mods.fml.common.IPlayerTracker;
-import monnef.jaffas.food.achievement.AchievementsHandler;
-import net.minecraft.entity.player.EntityPlayer;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
 
-public class PlayerTracker implements IPlayerTracker {
-    @Override
-    public void onPlayerLogin(EntityPlayer player) {
-        SpawnStoneServerPacketSender.sendSyncPacket(player, false);
-        AchievementsHandler.synchronizeAchievements(player);
+public class PlayerTracker {
+    @SubscribeEvent
+    public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent evt) {
+        SpawnStoneServerPacketSender.sendSyncPacket(evt.player, false);
     }
 }
