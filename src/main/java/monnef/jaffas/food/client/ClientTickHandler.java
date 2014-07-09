@@ -5,9 +5,10 @@
 
 package monnef.jaffas.food.client;
 
-import cpw.mods.fml.common.IScheduledTickHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.relauncher.Side;
+import monnef.core.common.ScheduledTicker;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.Reference;
@@ -16,20 +17,20 @@ import monnef.jaffas.food.common.VersionHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraftforge.common.Configuration;
-
-import java.util.EnumSet;
+import net.minecraftforge.common.config.Configuration;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 
-public class ClientTickHandler implements IScheduledTickHandler {
+public class ClientTickHandler extends ScheduledTicker {
+    private static final String monnefUUID = "b208f35f-7358-4da8-a73e-d625fce4cc32";
+
     private boolean checked = false;
     private boolean first = true;
     private int tries = 0;
     private final static int aLotOfTicks = 20 * 60 * 60 * 24;
 
     public static String data = null;
-    public static String name = "";
+    public static String playerUUID = "";
     public static String clientVersionString;
     public static Thread versionThread;
 
@@ -41,34 +42,13 @@ public class ClientTickHandler implements IScheduledTickHandler {
     }
 
     @Override
-    public void tickStart(EnumSet<TickType> type, Object... tickData) {
-    }
-
-    @Override
-    public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-        if (type.equals(EnumSet.of(TickType.RENDER))) {
-            onRenderTick();
-        } else if (type.equals(EnumSet.of(TickType.CLIENT))) {
-            GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
-            if (guiscreen != null) {
-                onTickInGUI(guiscreen);
-            } else {
-                onTickInGame();
-            }
+    public void onClientTickEnd() {
+        GuiScreen guiscreen = Minecraft.getMinecraft().currentScreen;
+        if (guiscreen != null) {
+            onTickInGUI(guiscreen);
+        } else {
+            onTickInGame();
         }
-    }
-
-    @Override
-    public EnumSet<TickType> ticks() {
-        return EnumSet.of(TickType.RENDER, TickType.CLIENT);
-    }
-
-    @Override
-    public String getLabel() {
-        return null;
-    }
-
-    public void onRenderTick() {
     }
 
     public void onTickInGUI(GuiScreen guiscreen) {
@@ -89,7 +69,7 @@ public class ClientTickHandler implements IScheduledTickHandler {
             }
 
             synchronized (lock) {
-                name = player.username;
+                playerUUID = player.getUniqueID().toString();
                 clientVersionString = JaffasFood.class.getAnnotation(Mod.class).version();
                 if (data == null) {
                     if ((versionThread != null && !versionThread.isAlive()) || versionThread == null) {
@@ -129,8 +109,8 @@ public class ClientTickHandler implements IScheduledTickHandler {
                                 Log.printInfo("New version available, but message was already once shown, skipping.");
                             }
                         } else if (cmp == 1) {
-                            if (name.toLowerCase().equals("monnef")) {
-                                player.addChatMessage(String.format(
+                            if (playerUUID.toLowerCase().equals(monnefUUID)) {
+                                PlayerHelper.addMessage(player, String.format(
                                         "Local version - §6%s§r is newer than remote - §6%s§r, did you forget to update version file? ",
                                         VersionHelper.versionToString(thisVersion),
                                         VersionHelper.versionToString(remoteVersion)
@@ -153,12 +133,12 @@ public class ClientTickHandler implements IScheduledTickHandler {
     }
 
     private void showNewVersionMessage(EntityClientPlayerMP player) {
-        player.addChatMessage("New version §e" + cachedVersionString + "§r of \"§5" + Reference.ModName + "§r\" is available.");
-        player.addChatMessage("This message will not be shown again, if you want more details use /jam command.");
+        PlayerHelper.addMessage(player, "New version §e" + cachedVersionString + "§r of \"§5" + Reference.ModName + "§r\" is available.");
+        PlayerHelper.addMessage(player, "This message will not be shown again, if you want more details use /jam command.");
     }
 
     @Override
-    public int nextTickSpacing() {
+    public int nextTickSpacing(Side side) {
         if (first) {
             first = Minecraft.getMinecraft().currentScreen != null;
             return 20 * 5;

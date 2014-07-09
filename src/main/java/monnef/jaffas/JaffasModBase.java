@@ -11,10 +11,9 @@ import cpw.mods.fml.common.ModMetadata;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import monnef.core.client.PackageToModIdRegistry;
-import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.Reference;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 
 import java.util.Arrays;
 

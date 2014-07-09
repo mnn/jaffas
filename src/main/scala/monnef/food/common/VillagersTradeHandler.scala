@@ -22,10 +22,6 @@ import monnef.jaffas.technic.JaffasTechnic
 import RandomHelper.generateRandomFromInterval
 import monnef.core.common.IMerchantRecipeListWrapper
 
-trait IScalaVillagersTradeHandler {
-  def manipulateTradesForVillager(villager: EntityVillager, recipeList: IMerchantRecipeListWrapper, random: Random)
-}
-
 class VillagersTradeHandler extends IScalaVillagersTradeHandler {
 
   def manipulateTradesForVillager(villager: EntityVillager, recipeList: IMerchantRecipeListWrapper, random: Random) {
