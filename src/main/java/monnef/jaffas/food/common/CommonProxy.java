@@ -5,7 +5,7 @@
 
 package monnef.jaffas.food.common;
 
-import cpw.mods.fml.common.network.Player;
+import net.minecraft.entity.player.EntityPlayer;
 
 public class CommonProxy {
     public void registerRenderThings() {
@@ -21,7 +21,7 @@ public class CommonProxy {
     public void registerTickHandler() {
     }
 
-    public void handleSyncPacket(Player player, int secondsRemaining, boolean openGUI) {
+    public void handleSyncPacket(EntityPlayer player, int secondsRemaining, boolean openGUI) {
     }
 
     public void registerEggRendering() {

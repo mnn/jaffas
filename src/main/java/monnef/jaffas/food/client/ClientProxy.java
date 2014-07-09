@@ -8,9 +8,6 @@ package monnef.jaffas.food.client;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.Player;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 import monnef.core.client.RenderItemInAir;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileBoard;
@@ -34,6 +31,8 @@ import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -65,7 +64,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new DirectionalBlockRenderer());
         RenderingRegistry.registerBlockHandler(new CustomBlockRenderer());
 
-        MinecraftForgeClient.registerItemRenderer(ContentHolder.blockTable.blockID, new CustomBlockRenderer());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ContentHolder.blockTable), new CustomBlockRenderer());
     }
 
     private Render constructLittleSpiderRenderer() {
@@ -89,13 +88,13 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerTickHandler() {
-        TickRegistry.registerScheduledTickHandler(new ClientTickHandler(), Side.CLIENT);
+        new ClientTickHandler().register();
     }
 
     @Override
-    public void handleSyncPacket(Player player, int secondsRemaining, boolean openGUI) {
+    public void handleSyncPacket(EntityPlayer player, int secondsRemaining, boolean openGUI) {
         EntityClientPlayerMP p = (EntityClientPlayerMP) player;
-        CoolDownRegistry.setCoolDown(p.getEntityName(), SPAWN_STONE, secondsRemaining);
+        CoolDownRegistry.setCoolDown(p.getUniqueID(), SPAWN_STONE, secondsRemaining);
         if (openGUI) {
             ItemSpawnStone stone = SpawnStonePacketUtils.getSpawnStone(p);
             if (stone != null) {
