@@ -21,7 +21,6 @@ public abstract class JaffasModBase {
     public JaffaCreativeTab creativeTab;
     public Configuration config;
 
-    protected IDProvider idProvider;
     protected boolean thisIsMainModule = false;
 
     private ModMetadata metaData;
@@ -65,12 +64,7 @@ public abstract class JaffasModBase {
 
     public void preLoad(FMLPreInitializationEvent event) {
         handleMetadata();
-        idProvider = new IDProvider(getStartOfBlocksIdInterval(), getStartOfItemsIdInterval(), metaData.name);
         config = new Configuration(
                 event.getSuggestedConfigurationFile());
     }
-
-    protected abstract int getStartOfItemsIdInterval();
-
-    protected abstract int getStartOfBlocksIdInterval();
 }

@@ -47,12 +47,6 @@ public class ItemManager {
 
             if (info.getModule() == module) {
                 String configName = info.getName();
-                // TODO: remove in future; maybe in/after 1.6 update
-                if (ConfigurationManager.useOldConfigItemNames) {
-                    if (configName.equals(item.toString())) {
-                        configName = info.getTitle();
-                    }
-                }
                 int id = idProvider.getItemIDFromConfig(configName);
                 info.setId(id);
             }

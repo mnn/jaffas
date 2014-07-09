@@ -8,9 +8,9 @@ package monnef.jaffas.food.common;
 import com.google.common.base.Joiner;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.achievement.AchievementsHandler;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 
-import static net.minecraftforge.common.Configuration.CATEGORY_GENERAL;
+import static net.minecraftforge.common.config.Configuration.CATEGORY_GENERAL;
 
 public class ConfigurationManager {
     public static String jaffasTitle;
@@ -33,7 +33,6 @@ public class ConfigurationManager {
     public static boolean vanillaRecipesEnabled;
     public static boolean dungeonLootEnabled;
     public static boolean disableAutoUnEquip;
-    public static boolean useOldConfigItemNames;
     public static String[] craftingTablesWithBrokenCraftingHandlerSupport;
     public static boolean villagerTrades;
     public static boolean disableThermalExpansionIntegration;
@@ -63,12 +62,10 @@ public class ConfigurationManager {
         duckSpawnProbabilityHigh = config.get(CATEGORY_GENERAL, "duckSpawnProbabilityHigh", 16).getInt();
         FuelHandler.switchgrassBurnValue = config.get(CATEGORY_GENERAL, "switchgrassBurnValue", 100).getInt();
         slimeSpawningEnabled = config.get(CATEGORY_GENERAL, "slimeSpawningEnabled", true).getBoolean(true);
-        JaffasRegistryHelper.compatibilityMode = config.get(CATEGORY_GENERAL, "dontPrefixTileEntityIDs", false, "Set to true if you're playing map created with 0.4.20 or older. Do not use in new worlds, because it will be eventually removed.").getBoolean(false);
         vanillaRecipesEnabled = config.get(CATEGORY_GENERAL, "vanillaRecipesEnabled", true, "These are recipes producing vanilla items/blocks from vanilla items/blocks - e.g. grass block").getBoolean(true);
         dungeonLootEnabled = config.get(CATEGORY_GENERAL, "dungeonLootEnabled", true).getBoolean(true);
         disableAutoUnEquip = config.get(CATEGORY_GENERAL, "disableAutoUnEquip", false).getBoolean(false);
         AchievementsHandler.setStartingId(config.get(CATEGORY_GENERAL, "achievementOffset", 9790).getInt());
-        useOldConfigItemNames = config.get(CATEGORY_GENERAL, "useOldConfigItemNames", false, "If you're updating and you want to use your world save then set this option to true.").getBoolean(false);
         craftingTablesWithBrokenCraftingHandlerSupport = config.get(CATEGORY_GENERAL, "craftingTablesWithBrokenCraftingHandlerSupport", craftingTablesWithBrokenCraftingHandlerSupportDefault,
                 "Custom crafting tables (classes implementing IInventory) with broken or none support for crafting handlers. Default values: " + Joiner.on(", ").join(craftingTablesWithBrokenCraftingHandlerSupportDefault)).getStringList();
         villagerTrades = config.get(CATEGORY_GENERAL, "Custom villager trades enabled", true).getBoolean(true);
