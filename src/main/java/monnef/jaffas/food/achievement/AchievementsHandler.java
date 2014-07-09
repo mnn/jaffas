@@ -6,23 +6,20 @@
 package monnef.jaffas.food.achievement;
 
 import com.google.common.collect.HashMultimap;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.relauncher.Side;
-import monnef.core.utils.AchievementsHelper;
 import monnef.core.utils.CallerFinder;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.network.AchievementPacket;
-import monnef.core.network.NetworkHelper;
 import net.minecraft.block.Block;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
-import net.minecraftforge.common.IExtendedEntityProperties;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.HashMap;
@@ -30,7 +27,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static monnef.jaffas.food.JaffasFood.Log;
-import static monnef.jaffas.food.achievement.AchievementDataHolder.ACHIEVEMENT_DATA_HOLDER;
 import static monnef.jaffas.food.common.ContentHolder.getItem;
 import static monnef.jaffas.food.item.JaffaItem.butter;
 import static monnef.jaffas.food.item.JaffaItem.flour;
@@ -52,13 +48,13 @@ public class AchievementsHandler {
     private static AchievementPage page;
 
     // item id -> achiev
-    private static HashMap<Integer, Achievement> craftAchievement = new HashMap<Integer, Achievement>();
+    private static HashMap<Item, Achievement> craftAchievement = new HashMap<Item, Achievement>();
 
     // achiev ID -> achiev
-    private static HashMap<Integer, Achievement> allAchievements = new HashMap<Integer, Achievement>();
+    private static HashMap<String, Achievement> allAchievements = new HashMap<String, Achievement>();
 
     // one of needed achievements -> combined achievement
-    private static HashMultimap<Integer, CombinedAchievement> combinedAchievementLookupMap = HashMultimap.create();
+    private static HashMultimap<String, CombinedAchievement> combinedAchievementLookupMap = HashMultimap.create();
 
     private static int idCounter = -1;
     private static boolean initialized = false;
@@ -76,7 +72,6 @@ public class AchievementsHandler {
         }
 
         AchievementHooksHandler handler = new AchievementHooksHandler();
-        GameRegistry.registerCraftingHandler(handler);
         MinecraftForge.EVENT_BUS.register(handler);
 
         createAchievements();
@@ -113,32 +108,24 @@ public class AchievementsHandler {
         addCombinedAchievement("LordOfToolsAch", 5, 11, getItem(knifeKitchen), null, true, "Lord Of Tools", "", getCraftingAchievementIdsFromJaffaItems(knifeKitchen, fryingPan, meatCleaver));
     }
 
-    private static Integer[] getCraftingAchievementIdsFromJaffaItems(JaffaItem... items) {
-        Integer[] res = new Integer[items.length];
+    private static String[] getCraftingAchievementIdsFromJaffaItems(JaffaItem... items) {
+        String[] res = new String[items.length];
         for (int i = 0; i < items.length; i++) res[i] = getAchievementFromJaffaItem(items[i]).statId;
         return res;
     }
 
     private static Achievement getAchievementFromJaffaItem(JaffaItem item) {
-        return craftAchievement.get(getItemID(item));
-    }
-
-    public static Achievement addAchievement(int itemId, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
-        Achievement ach = generateAndRegisterAchievement(name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
-
-        if (craftAchievement.containsKey(itemId)) {
-            throw new RuntimeException("overriding crafting achievement with item #" + itemId + ", name \"" + title + "\"");
-        }
-        craftAchievement.put(itemId, ach);
-        return ach;
-    }
-
-    public static Achievement addAchievement(Block block, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
-        return addAchievement(block.blockID, name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
+        return craftAchievement.get(getItem(item));
     }
 
     public static Achievement addAchievement(Item item, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
-        return addAchievement(item.itemID, name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
+        Achievement ach = generateAndRegisterAchievement(name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
+
+        if (craftAchievement.containsKey(item)) {
+            throw new RuntimeException("overriding crafting achievement with item #" + item.getUnlocalizedName() + ", name \"" + title + "\"");
+        }
+        craftAchievement.put(item, ach);
+        return ach;
     }
 
     private static Achievement addAchievement(JaffaItem item, String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
@@ -147,7 +134,7 @@ public class AchievementsHandler {
 
     private static Achievement generateAndRegisterAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
         Achievement ach = null;
-        int newId = generateAchievementId();
+        String newId = "achievement.jaffas." + name;
 
         if (icon instanceof Item) {
             ach = new Achievement(newId, name, xCoord, yCoord, (Item) icon, requiredInTree);
@@ -157,8 +144,8 @@ public class AchievementsHandler {
         if (ach == null) throw new JaffasException("wrong icon object");
 
         if (special) ach.setSpecial();
-        AchievementsHelper.removeAchievementFromStatList(ach.statId);
-        ach.registerAchievement();
+        //AchievementsHelper.removeAchievementFromStatList(ach.statId);
+        ach.registerStat();
 
         addAchievementName(name, title);
         addAchievementDesc(name, desc);
@@ -170,20 +157,24 @@ public class AchievementsHandler {
         return idCounter++;
     }
 
-    public static void addCombinedAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc, Integer[] achievementsNeeded) {
+    public static void addCombinedAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc, String[] achievementsNeeded) {
         Achievement ach = generateAndRegisterAchievement(name, xCoord, yCoord, icon, requiredInTree, special, title, desc);
         CombinedAchievement ca = new CombinedAchievement(ach.statId, achievementsNeeded);
-        for (int num : achievementsNeeded) {
+        for (String num : achievementsNeeded) {
             combinedAchievementLookupMap.put(num, ca);
         }
     }
 
+    @Deprecated
     private static void addAchievementName(String ach, String name) {
         LanguageRegistry.instance().addStringLocalization("achievement." + ach, "en_US", name);
+        JaffasFood.Log.printInfo("Localization data: " + "achievement." + ach + "=" + name);
     }
 
+    @Deprecated
     private static void addAchievementDesc(String ach, String desc) {
         LanguageRegistry.instance().addStringLocalization("achievement." + ach + ".desc", "en_US", desc);
+        JaffasFood.Log.printInfo("Localization data: " + "achievement." + ach + ".desc=" + desc);
     }
 
     private static void createPage() {
@@ -196,50 +187,38 @@ public class AchievementsHandler {
         AchievementPage.registerAchievementPage(page);
     }
 
-    private static int getItemID(JaffaItem jItem) {
-        return getItem(jItem).itemID;
+    public static boolean hasPlayerAchievement(EntityPlayer player, String achievId) {
+        return hasPlayerAchievement(player, getAchievement(achievId));
     }
 
-    public static boolean hasPlayerAchievement(EntityPlayer player, int achievId) {
-        return getAchievementHolder(player).hasAchievement(achievId);
+    public static boolean hasPlayerAchievement(EntityPlayer player, Achievement achievement) {
+        if (player instanceof EntityPlayerMP) {
+            return ((EntityPlayerMP) player).func_147099_x().hasAchievementUnlocked(achievement);
+        } else if (player instanceof EntityPlayerSP) {
+            return ((EntityClientPlayerMP) player).getStatFileWriter().hasAchievementUnlocked(achievement);
+        }
+        throw new RuntimeException("Can only check EntityPlayerMP and EntityPlayerSP.");
     }
 
-    public static boolean craftAchievementExists(int itemId) {
-        return getCraftAchievement(itemId) != null;
+    public static boolean craftAchievementExists(Item item) {
+        return getCraftAchievement(item) != null;
     }
 
-    public static Achievement getCraftAchievement(int itemId) {
-        return craftAchievement.get(itemId);
+    public static Achievement getCraftAchievement(Item item) {
+        return craftAchievement.get(item);
     }
 
-    public static void craftAchievementCompleted(int itemId, EntityPlayer player) {
-        Achievement achievement = getCraftAchievement(itemId);
+    public static void craftAchievementCompleted(Item item, EntityPlayer player) {
+        Achievement achievement = getCraftAchievement(item);
         if (achievement == null) {
-            Log.printSevere(String.format("Achievement for item #%d not found!", itemId));
+            Log.printSevere(String.format("Achievement for item %s not found!", item.getUnlocalizedName()));
             return;
         }
 
         completeAchievement(achievement, player);
     }
 
-    private static AchievementDataHolder getAchievementHolder(EntityPlayer player) {
-        if (player == null) {
-            throw new NullPointerException("player");
-        }
-
-        IExtendedEntityProperties properties = player.getExtendedProperties(ACHIEVEMENT_DATA_HOLDER);
-        if (properties == null) {
-            throw new NullPointerException("properties");
-        }
-
-        return (AchievementDataHolder) properties;
-    }
-
-    public static Achievement getAchievement(int id) {
-        return allAchievements.get(id);
-    }
-
-    public static void completeAchievement(int id, EntityPlayer player) {
+    public static void completeAchievement(String id, EntityPlayer player) {
         Achievement ach = getAchievement(id);
         if (ach == null) {
             throw new NullPointerException("achievement not found, server sent corrupted information?");
@@ -250,7 +229,6 @@ public class AchievementsHandler {
 
     public static void completeAchievement(Achievement ach, EntityPlayer player) {
         player.addStat(ach, 1);
-        getAchievementHolder(player).markAchievementCompleted(ach.statId);
 
         Set<CombinedAchievement> suspects = combinedAchievementLookupMap.get(ach.statId);
         for (CombinedAchievement suspect : suspects) {
@@ -260,51 +238,7 @@ public class AchievementsHandler {
         }
     }
 
-    public static void removeAchievement(int id, EntityPlayer player) {
-        Achievement ach = getAchievement(id);
-        if (ach == null) {
-            throw new NullPointerException("achievement not found, server sent corrupted information?");
-        }
-
-        removeAchievement(ach, player);
-    }
-
-    public static void removeAchievement(Achievement ach, EntityPlayer player) {
-        if (ach == null) {
-            throw new NullPointerException("achievement");
-        }
-        if (player == null) {
-            throw new NullPointerException("player");
-        }
-
-        //player.addStat(ach, 0);
-        getAchievementHolder(player).markAchievementNotCompleted(ach.statId);
-        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
-            AchievementsHelper.removeAchievementFromStatsFile(ach);
-        } else {
-            NetworkHelper.sendToClient((new AchievementPacket(ach.statId, AchievementPacket.Operation.Remove)).makePacket(), player);
-        }
-    }
-
-    public static void removeAllJaffasAchievements(EntityPlayer player) {
-        for (Achievement ach : allAchievements.values()) {
-            removeAchievement(ach, player);
-        }
-    }
-
-    // called from server side
-    public static void synchronizeAchievements(EntityPlayer player) {
-        //getAchievementHolder(player).sendSyncPackets();
-        if (!ConfigurationManager.achievementsDisabled) {
-            getAchievementHolder(player).recreateAchievements();
-        }
-    }
-
-    public static void corrupt(EntityPlayer player) {
-        getAchievementHolder(player).corrupt();
-    }
-
-    public static void setStartingId(int offset) {
-        idCounter = offset;
+    public static Achievement getAchievement(String id) {
+        return allAchievements.get(id);
     }
 }

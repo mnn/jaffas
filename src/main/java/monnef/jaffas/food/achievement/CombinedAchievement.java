@@ -11,23 +11,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 class CombinedAchievement {
-    private final int achievementId;
-    public ArrayList<Integer> required;
+    private final String achievementId;
+    public ArrayList<String> required;
 
-    CombinedAchievement(int achievementId, Integer... achievementsNeeded) {
+    CombinedAchievement(String achievementId, String... achievementsNeeded) {
         this.achievementId = achievementId;
-        required = new ArrayList<Integer>();
+        required = new ArrayList<String>();
 
         Collections.addAll(required, achievementsNeeded);
     }
 
     public boolean checkPlayer(EntityPlayer player) {
-        for (int achivId : required)
+        for (String achivId : required)
             if (!AchievementsHandler.hasPlayerAchievement(player, achivId)) return false;
         return true;
     }
 
-    public int getAchievementId() {
+    public String getAchievementId() {
         return achievementId;
     }
 }

@@ -24,6 +24,7 @@ import java.util.Set;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.rand;
 
+@Deprecated
 public class AchievementDataHolder implements IExtendedEntityProperties {
     public static final String ACHIEVEMENT_DATA_HOLDER = "jaffas_achievs_holder";
     public static final String JAFFAS_ACHIEVEMENTS_TAG = "jaffasAchievements";

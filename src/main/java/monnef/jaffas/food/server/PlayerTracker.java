@@ -15,16 +15,4 @@ public class PlayerTracker implements IPlayerTracker {
         SpawnStoneServerPacketSender.sendSyncPacket(player, false);
         AchievementsHandler.synchronizeAchievements(player);
     }
-
-    @Override
-    public void onPlayerLogout(EntityPlayer player) {
-    }
-
-    @Override
-    public void onPlayerChangedDimension(EntityPlayer player) {
-    }
-
-    @Override
-    public void onPlayerRespawn(EntityPlayer player) {
-    }
 }

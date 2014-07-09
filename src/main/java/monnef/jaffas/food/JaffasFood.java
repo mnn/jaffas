@@ -179,17 +179,6 @@ public class JaffasFood extends JaffasModBase {
         }
     }
 
-
-    @Override
-    protected int getStartOfItemsIdInterval() {
-        return 24744;
-    }
-
-    @Override
-    protected int getStartOfBlocksIdInterval() {
-        return 3600;
-    }
-
     @Override
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
@@ -218,6 +207,7 @@ public class JaffasFood extends JaffasModBase {
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
 
         GameRegistry.registerPlayerTracker(new PlayerTracker());
+
 
         MinecraftForge.addGrassPlant(blockSwitchgrass, BlockSwitchgrass.VALUE_TOP, 5);
 
