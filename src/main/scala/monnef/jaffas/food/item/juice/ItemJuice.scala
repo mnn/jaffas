@@ -10,13 +10,13 @@ import net.minecraft.item.ItemStack
 import net.minecraft.entity.player.EntityPlayer
 import java.util
 import monnef.core.MonnefCorePlugin
-import net.minecraft.util.{MathHelper, Icon}
+import net.minecraft.util.{IIcon, MathHelper}
 import cpw.mods.fml.relauncher.{SideOnly, Side}
 import monnef.jaffas.food.item.ItemJaffaFoodTrait
 import monnef.jaffas.food.item.JaffaItem._
 import monnef.jaffas.food.JaffasFood.getItem
 
-class ItemJuice(_id: Int) extends ItemJaffaMultiBase(_id) with JuiceLike with ItemJaffaFoodTrait[ItemJuice] {
+class ItemJuice extends ItemJaffaMultiBase with JuiceLike with ItemJaffaFoodTrait[ItemJuice] {
   // TODO: proper names
   val getSubNames: Array[String] = Juices.juiceTitles.toArray
 
@@ -40,7 +40,7 @@ class ItemJuice(_id: Int) extends ItemJaffaMultiBase(_id) with JuiceLike with It
 trait JuiceLikeBase {
   def initMulti()
 
-  def getIconFromDamage(damage: Int): Icon
+  def getIconFromDamage(damage: Int): IIcon
 }
 
 trait JuiceLike extends JuiceLikeBase {
@@ -54,7 +54,7 @@ trait JuiceLike extends JuiceLikeBase {
   def getMultiItemIconOffset(dmg: Int): Int
 
   @SideOnly(Side.CLIENT)
-  abstract override def getIconFromDamage(damage: Int): Icon = {
+  abstract override def getIconFromDamage(damage: Int): IIcon = {
     val dmg = MathHelper.clamp_int(damage, 0, Juices.juiceCount)
     val iconNum = MathHelper.clamp_int(getMultiItemIconOffset(dmg), 0, getSubItemsCount)
     getCustomIcon(iconNum)

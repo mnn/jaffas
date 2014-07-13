@@ -7,12 +7,12 @@ package monnef.jaffas.food.item
 
 import monnef.core.item.ItemMonnefCore
 import cpw.mods.fml.relauncher.{SideOnly, Side}
-import net.minecraft.util.{MathHelper, Icon}
+import net.minecraft.util.{MathHelper, IIcon}
 import cpw.mods.fml.common.registry.LanguageRegistry
 import net.minecraft.item.ItemStack
 import net.minecraft.creativetab.CreativeTabs
 
-trait ItemJaffaFoodMultipleTrait[Self <: ItemMonnefCore] extends ItemJaffaFoodTrait[Self] {
+trait ItemJaffaFoodMultipleTrait[Self <: ItemMonnefCore] extends ItemJaffaFoodTrait[Self] with GetSubItemsMethodProviderTrait {
   this: ItemMonnefCore with ItemJaffaFoodTrait[Self] =>
 
   init()
@@ -28,7 +28,7 @@ trait ItemJaffaFoodMultipleTrait[Self <: ItemMonnefCore] extends ItemJaffaFoodTr
   def subTitles: Seq[String]
 
   @SideOnly(Side.CLIENT)
-  override def getIconFromDamage(dmg: Int): Icon = {
+  override def getIconFromDamage(dmg: Int): IIcon = {
     val idx = MathHelper.clamp_int(dmg, 0, subNames.length)
     getCustomIcon(idx)
   }
@@ -44,8 +44,13 @@ trait ItemJaffaFoodMultipleTrait[Self <: ItemMonnefCore] extends ItemJaffaFoodTr
   }
 
   @SideOnly(Side.CLIENT)
-  override def getSubItems(itemId: Int, tab: CreativeTabs, list: java.util.List[_]) {
+  abstract override def getSubItems(itemId: Int, tab: CreativeTabs, list: java.util.List[_]) {
     val l = list.asInstanceOf[java.util.List[ItemStack]]
-    for (i <- 0 until subNames.size) l.add(new ItemStack(itemId, 1, i))
+    for (i <- 0 until subNames.size) l.add(new ItemStack(this, 1, i))
   }
+}
+
+trait GetSubItemsMethodProviderTrait {
+  @SideOnly(Side.CLIENT)
+  def getSubItems(itemId: Int, tab: CreativeTabs, list: java.util.List[_]): Unit
 }

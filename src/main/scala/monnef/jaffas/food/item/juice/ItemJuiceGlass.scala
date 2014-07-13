@@ -14,7 +14,7 @@ import monnef.jaffas.food.item.ItemJaffaFoodTrait
 import monnef.jaffas.food.item.JaffaItem._
 import monnef.jaffas.food.JaffasFood.getItem
 
-class ItemJuiceGlass(_id: Int) extends ItemJaffaMultiBase(_id) with JuiceLike with ItemJaffaFoodTrait[ItemJuiceGlass] {
+class ItemJuiceGlass extends ItemJaffaMultiBase with JuiceLike with ItemJaffaFoodTrait[ItemJuiceGlass] {
   // TODO: proper names
   val getSubNames: Array[String] = Juices.glassTitles.toArray
 

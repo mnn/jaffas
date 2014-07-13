@@ -11,13 +11,13 @@ import monnef.jaffas.food.JaffasFood
 import net.minecraft.item.Item
 import monnef.jaffas.food.common.IconDescriptorJaffas
 
-class ItemJaffaBase(_id: Int) extends ItemMonnefCore(_id) with IItemJaffa with IconDescriptorJaffas {
+class ItemJaffaBase extends ItemMonnefCore with IItemJaffa with IconDescriptorJaffas {
   maxStackSize = 64
   this.setCreativeTab(JaffasFood.instance.creativeTab)
   setCustomIconIndex(-1)
 
-  def this(id: Int, textureIndex: Int) {
-    this(id)
+  def this(textureIndex: Int) {
+    this()
     setCustomIconIndex(textureIndex)
   }
 

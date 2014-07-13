@@ -10,8 +10,7 @@ import monnef.jaffas.food.common.ContentHolder
 import monnef.jaffas.food.common.ModulesEnum
 import monnef.jaffas.food.crafting.Recipes
 import monnef.jaffas.food.item._
-import net.minecraft.block.Block
-import net.minecraft.item.EnumArmorMaterial
+import net.minecraft.item.ItemArmor.ArmorMaterial
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.potion.Potion
@@ -19,6 +18,7 @@ import net.minecraftforge.oredict.OreDictionary
 import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food
 import monnef.jaffas.food.item.juice.{ItemJuiceGlass, ItemJuice}
+import net.minecraft.init.Blocks
 
 class Items extends ItemManagerAccessor {
 
@@ -440,7 +440,7 @@ class Items extends ItemManagerAccessor {
     createJaffaItem(bottleBrownMustard)
     createJaffaItem(mincedMeat)
     var cleaverInfo: JaffaItemInfo = ItemManager.getItemInfo(meatCleaver)
-    createJaffaItemManual(meatCleaver, new ItemCleaver(cleaverInfo.getId(), cleaverInfo.getIconIndex(), ContentHolder.EnumToolMaterialCleaver))
+    createJaffaItemManual(meatCleaver, new ItemCleaver(cleaverInfo.getIconIndex, ContentHolder.EnumToolMaterialCleaver))
     createJaffaItemManual(sink, classOf[ItemSink])
     createJaffaItem(coneRaw)
     createJaffaItem(waferIcecreamRaw)
@@ -565,10 +565,10 @@ class Items extends ItemManagerAccessor {
     createJaffaFood(soupTomatoCooked, 6, 0.5f).setReturnItem(new ItemStack(getItem(woodenBowl))).addPotionEffect(Potion.fireResistance.id, 30, 0, 0.1f).setMaxStackSize(32)
     createJaffaFood(fishStickCooked, 5, 0.95f)
 
-    createJaffaItemManual(juiceInBottle, new ItemJuice(ItemManager.getItemInfo(juiceInBottle).getId))
+    createJaffaItemManual(juiceInBottle, new ItemJuice)
     getItem(juiceInBottle).asInstanceOf[ItemJuice].registerNames()
 
-    createJaffaItemManual(juiceGlass, new ItemJuiceGlass(ItemManager.getItemInfo(juiceGlass).getId))
+    createJaffaItemManual(juiceGlass, new ItemJuiceGlass)
     getItem(juiceGlass).asInstanceOf[ItemJuiceGlass].registerNames()
 
     createItemsOreDictRegistration()
@@ -581,14 +581,15 @@ class Items extends ItemManagerAccessor {
   }
 
   import Items._
+  import net.minecraft.init.{Items => VanillaItems}
 
   private def createLollipops() {
     val info = ItemManager.getItemInfo(lollipop)
     val nameTitleList = lollipops map {_.nameTitlePair}
-    val item = food.item.ItemJaffaFoodMultiple.fromPair(info.getId, nameTitleList)
+    val item = food.item.ItemJaffaFoodMultiple.fromPair(nameTitleList)
     val metaLollipop = createJaffaItemManual(lollipop, item)
     metaLollipop.Setup(3, 1.2f)
-    metaLollipop.setAlwaysEdible().setReturnItem(new ItemStack(Item.stick)).addPotionEffect(Potion.regeneration.id, 15, 0, 0.33f).addPotionEffect(Potion.moveSpeed.id, 5, 2, 0.33f).setMaxStackSize(16)
+    metaLollipop.setAlwaysEdible().setReturnItem(new ItemStack(VanillaItems.stick)).addPotionEffect(Potion.regeneration.id, 15, 0, 0.33f).addPotionEffect(Potion.moveSpeed.id, 5, 2, 0.33f).setMaxStackSize(16)
     metaLollipop.setItemUseDuration(2f)
     metaLollipop.registerNames()
   }
@@ -608,16 +609,16 @@ class Items extends ItemManagerAccessor {
     TileMeatDryer.addZombieMeat(Recipes.getItem(JaffaItem.spiderLegRaw))
   }
 
-  def createJaffaArmor(item: JaffaItem, material: EnumArmorMaterial, renderIndex: Int, __kwd_type: ItemJaffaPlate.ArmorType, texture: String, repairItem: Item) {
+  def createJaffaArmor(item: JaffaItem, material: ArmorMaterial, renderIndex: Int, __kwd_type: ItemJaffaPlate.ArmorType, texture: String, repairItem: Item) {
     var info: JaffaItemInfo = ItemManager.getItemInfo(item)
-    createJaffaItemManual(item, new ItemJaffaPlate(info.getId(), material, renderIndex, __kwd_type, texture, repairItem, info.getIconIndex()))
+    createJaffaItemManual(item, new ItemJaffaPlate(material, renderIndex, __kwd_type, texture, repairItem, info.getIconIndex))
   }
 
-  def createJaffaArmor(item: JaffaItem, material: EnumArmorMaterial, renderIndex: Int, __kwd_type: ItemJaffaPlate.ArmorType, texture: String, repairItem: JaffaItem) {
+  def createJaffaArmor(item: JaffaItem, material: ArmorMaterial, renderIndex: Int, __kwd_type: ItemJaffaPlate.ArmorType, texture: String, repairItem: JaffaItem) {
     createJaffaArmor(item, material, renderIndex, __kwd_type, texture, if (repairItem == null || repairItem == _last) null else getItem(repairItem))
   }
 
-  def createJaffaArmorSet(renderName: String, material: EnumArmorMaterial, file1: String, file2: String, repairItem: Item, pieces: Array[JaffaItem]) {
+  def createJaffaArmorSet(renderName: String, material: ArmorMaterial, file1: String, file2: String, repairItem: Item, pieces: Array[JaffaItem]) {
     var renderIndex: Int = JaffasFood.proxy.addArmor(renderName)
     createJaffaArmor(pieces(0), material, renderIndex, ItemJaffaPlate.ArmorType.helm, file1, repairItem)
     createJaffaArmor(pieces(1), material, renderIndex, ItemJaffaPlate.ArmorType.chest, file1, repairItem)
@@ -626,24 +627,25 @@ class Items extends ItemManagerAccessor {
   }
 
   import monnef.jaffas.food.item.common.Items._
+  import net.minecraft.init.{Items => VanillaItems}
 
   private def createItemsOreDictRegistration() {
-    OreDictionary.registerOre(MINCEABLEMEAT, Item.porkRaw)
-    OreDictionary.registerOre(MINCEABLEMEAT, Item.beefRaw)
-    OreDictionary.registerOre(MINCEABLEMEAT, Item.chickenRaw)
+    OreDictionary.registerOre(MINCEABLEMEAT, VanillaItems.porkchop)
+    OreDictionary.registerOre(MINCEABLEMEAT, VanillaItems.beef)
+    OreDictionary.registerOre(MINCEABLEMEAT, VanillaItems.chicken)
     OreDictionary.registerOre(MINCEABLEMEAT, getItem(muttonRaw))
     OreDictionary.registerOre(MINCEABLEMEAT, getItem(wolfMeatRaw))
     OreDictionary.registerOre(MINCEABLEMEAT, getItem(duckRaw))
     JaffasHelper.registerJaffasInOreDict()
-    OreDictionary.registerOre(MUSHROOM, Block.mushroomBrown)
-    OreDictionary.registerOre(MUSHROOM, Block.mushroomRed)
-    OreDictionary.registerOre(ANY_EGG, Item.egg)
+    OreDictionary.registerOre(MUSHROOM, Blocks.brown_mushroom)
+    OreDictionary.registerOre(MUSHROOM, Blocks.red_mushroom)
+    OreDictionary.registerOre(ANY_EGG, VanillaItems.egg)
     OreDictionary.registerOre(ANY_EGG, getItem(duckEgg))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(mallet))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletStone))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletIron))
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletDiamond))
-    OreDictionary.registerOre(ANY_MILK, Item.bucketMilk)
+    OreDictionary.registerOre(ANY_MILK, VanillaItems.milk_bucket)
     OreDictionary.registerOre(ANY_MILK, getItem(milkBoxFull))
   }
 }
