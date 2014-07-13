@@ -36,23 +36,6 @@ public class ItemManager {
         idToJaffaItem = new HashMap<Integer, JaffaItem>();
     }
 
-    public static void LoadItemsFromConfig(ModulesEnum module, IDProvider idProvider) {
-        for (JaffaItem item : JaffaItem.values()) {
-            if (item == JaffaItem._last) continue;
-
-            JaffaItemInfo info = ItemManager.itemsInfo.get(item);
-            if (info == null) {
-                throw new RuntimeException("got null in item list - " + item);
-            }
-
-            if (info.getModule() == module) {
-                String configName = info.getName();
-                int id = idProvider.getItemIDFromConfig(configName);
-                info.setId(id);
-            }
-        }
-    }
-
     public static void RegisterItemTypeForModule(ModulesEnum module, JaffaItemType type, Class<? extends ItemMonnefCore> clazz) {
         if (!ClassMapping.containsKey(module)) {
             ClassMapping.put(module, new Hashtable<JaffaItemType, Class<? extends ItemMonnefCore>>());

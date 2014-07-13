@@ -20,7 +20,8 @@ import monnef.jaffas.trees.JaffasTrees.FruitType
 import monnef.jaffas.trees.common.BushInfo
 import monnef.jaffas.technic.JaffasTechnic
 import RandomHelper.generateRandomFromInterval
-import monnef.core.common.IMerchantRecipeListWrapper
+import monnef.core.common.{IScalaVillagersTradeHandler, IMerchantRecipeListWrapper}
+import net.minecraft.init.Items
 
 class VillagersTradeHandler extends IScalaVillagersTradeHandler {
 
@@ -104,7 +105,7 @@ class VillagersTradeHandler extends IScalaVillagersTradeHandler {
   }
 
   private def addTradeBuys(list: IMerchantRecipeListWrapper, in: ItemStack, buysForEmeraldCount: Int) {
-    val recipe = new MerchantRecipe(in, new ItemStack(Item.emerald, buysForEmeraldCount))
+    val recipe = new MerchantRecipe(in, new ItemStack(Items.emerald, buysForEmeraldCount))
     list.addToListWithCheck(recipe)
   }
 
@@ -125,7 +126,7 @@ class VillagersTradeHandler extends IScalaVillagersTradeHandler {
   }
 
   private def addTradeSells(list: IMerchantRecipeListWrapper, in: ItemStack, sellsForEmeraldCount: Int): MerchantRecipe = {
-    val recipe = new MerchantRecipe(new ItemStack(Item.emerald, sellsForEmeraldCount), in)
+    val recipe = new MerchantRecipe(new ItemStack(Items.emerald, sellsForEmeraldCount), in)
     list.addToListWithCheck(recipe)
     recipe
   }

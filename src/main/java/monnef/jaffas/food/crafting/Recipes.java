@@ -19,7 +19,6 @@ import monnef.jaffas.food.item.ItemPack;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
-import monnef.jaffas.food.item.common.JuiceItemsEnum;
 import monnef.jaffas.power.block.TileGrinder;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -321,7 +320,7 @@ public class Recipes {
         GameRegistry.addRecipe(getItemStack(wolfLeggins), "SCS", "S S", "C C", 'S', getItem(wolfSkin), 'C', Item.leather);
         GameRegistry.addRecipe(getItemStack(wolfBoots), "S S", "S S", 'S', getItem(wolfSkin));
 
-        PersistentItemsCraftingHandler.AddPersistentItem(milkBoxFull, false, crumpledPaper).SetSubstituteItemsCount(2);
+        PersistentItemsCraftingHandler.AddPersistentItem(milkBoxFull, false, crumpledPaper).setSubstituteItemsCount(2);
 
         GameRegistry.addRecipe(getItemStack(milkBoxEmpty, 3), "PP", "PP", "PP", 'P', Item.paper);
         ItemStack milkStack = getItemStack(milkBoxFull, 2);

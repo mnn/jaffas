@@ -13,7 +13,7 @@ import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.item.ItemStack;
 
-import static monnef.jaffas.food.JaffasFood.itemsHaveSameID;
+import static monnef.jaffas.food.JaffasFood.itemsAreSame;
 
 @ContainerRegistry.ContainerTag(slotsCount = 9, containerClassName = "monnef.jaffas.food.block.ContainerRipeningBox", guiClassName = "monnef.jaffas.food.client.GuiRipeningBox")
 public class TileRipeningBox extends TileWithInventory {
@@ -111,12 +111,12 @@ public class TileRipeningBox extends TileWithInventory {
     }
 
     public int getRipeningSpeed(ItemStack stack) {
-        if (itemsHaveSameID(JaffaItem.cheeseRaw, stack)) return 1;
+        if (itemsAreSame(JaffaItem.cheeseRaw, stack)) return 1;
         return 0;
     }
 
     public ItemStack getRipeningProduct(ItemStack stack) {
-        if (itemsHaveSameID(JaffaItem.cheeseRaw, stack)) return Recipes.getItemStack(JaffaItem.cheese);
+        if (itemsAreSame(JaffaItem.cheeseRaw, stack)) return Recipes.getItemStack(JaffaItem.cheese);
         return null;
     }
 }

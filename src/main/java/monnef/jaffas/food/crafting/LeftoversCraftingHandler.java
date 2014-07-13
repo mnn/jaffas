@@ -5,7 +5,7 @@
 
 package monnef.jaffas.food.crafting;
 
-import cpw.mods.fml.common.ICraftingHandler;
+import monnef.core.common.MonnefCoreCraftingHandler;
 import monnef.core.utils.CraftingHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.MathHelper;
@@ -13,7 +13,6 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ConfigurationManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ContainerPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -23,14 +22,13 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import scala.Option;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LeftoversCraftingHandler implements ICraftingHandler {
+public class LeftoversCraftingHandler extends MonnefCoreCraftingHandler {
     public static boolean disabled = false;
 
     private static Map<IRecipe, List<ItemStack>> db = new LinkedHashMap<IRecipe, List<ItemStack>>();

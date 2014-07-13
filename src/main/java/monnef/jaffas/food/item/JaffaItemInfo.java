@@ -9,7 +9,6 @@ import monnef.jaffas.food.common.ModulesEnum;
 import net.minecraft.item.Item;
 
 public class JaffaItemInfo {
-    private int id;
     private String name;
     private Item item;
     private String title;
@@ -19,14 +18,6 @@ public class JaffaItemInfo {
 
     public JaffaItemInfo(String name) {
         this.setName(name);
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return this.id;
     }
 
     public void setName(String name) {

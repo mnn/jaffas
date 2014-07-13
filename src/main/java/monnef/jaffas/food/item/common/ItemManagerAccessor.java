@@ -45,10 +45,6 @@ public abstract class ItemManagerAccessor {
         return ItemManager.createJaffaItemManual(ji, item);
     }
 
-    public void LoadItemsFromConfig(IDProvider idProvider) {
-        ItemManager.LoadItemsFromConfig(this.getMyModule(), idProvider);
-    }
-
     public void RegisterItemType(JaffaItemType type, Class<? extends ItemJaffaBase> clazz) {
         ItemManager.RegisterItemTypeForModule(this.getMyModule(), type, clazz);
     }

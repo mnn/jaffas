@@ -5,13 +5,14 @@
 
 package monnef.jaffas.food.crafting;
 
-import cpw.mods.fml.common.ICraftingHandler;
+import monnef.core.common.MonnefCoreCraftingHandler;
 import monnef.core.utils.CraftingHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,39 +23,40 @@ import java.util.HashSet;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 
-public class PersistentItemsCraftingHandler implements ICraftingHandler {
+// TODO: fix method names - remove starting capitals
+public class PersistentItemsCraftingHandler extends MonnefCoreCraftingHandler {
 
     private boolean debug = false;
 
-    private static HashMap<Integer, PersistentItemInfo> persistentItems = new HashMap<Integer, PersistentItemInfo>();
+    private static HashMap<Item, PersistentItemInfo> persistentItems = new HashMap<Item, PersistentItemInfo>();
 
     public PersistentItemsCraftingHandler() {
         debug = JaffasFood.debug;
     }
 
-    public static PersistentItemInfo AddPersistentItem(int ID) {
-        return AddPersistentItem(ID, false, -1);
+    public static PersistentItemInfo AddPersistentItem(Item item) {
+        return AddPersistentItem(item, false, null);
     }
 
     public static PersistentItemInfo AddPersistentItem(JaffaItem item) {
-        return AddPersistentItem(ItemManager.getItem(item).itemID);
+        return AddPersistentItem(ItemManager.getItem(item));
     }
 
-    public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, int substituteItem) {
-        return AddPersistentItem(ItemManager.getItem(item).itemID, takesDamage, substituteItem);
+    public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, Item substituteItem) {
+        return AddPersistentItem(ItemManager.getItem(item), takesDamage, substituteItem);
     }
 
-    public static PersistentItemInfo AddPersistentItem(int ID, boolean takesDamage, int substituteItem) {
-        PersistentItemInfo info = new PersistentItemInfo(ID);
-        if (takesDamage) info.SetDamageCopies();
-        if (substituteItem > -1) info.SetSubstituteItem(substituteItem);
+    public static PersistentItemInfo AddPersistentItem(Item item, boolean takesDamage, Item substituteItem) {
+        PersistentItemInfo info = new PersistentItemInfo(item);
+        if (takesDamage) info.setDamageCopies();
+        info.setSubstituteItem(substituteItem);
 
-        persistentItems.put(ID, info);
+        persistentItems.put(item, info);
         return info;
     }
 
     public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, JaffaItem substitude) {
-        return AddPersistentItem(item, takesDamage, ItemManager.getItem(substitude).itemID);
+        return AddPersistentItem(item, takesDamage, ItemManager.getItem(substitude));
     }
 
     @Override
@@ -78,7 +80,7 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
             if (matrix.getStackInSlot(i) != null && !processedSlots.contains(i)) {
                 ingredientsCount++;
                 ItemStack item = matrix.getStackInSlot(i);
-                PersistentItemInfo info = persistentItems.get(item.itemID);
+                PersistentItemInfo info = persistentItems.get(item);
                 if (info != null) {
                     if (info.damage) {
                         ItemStack newItem = item.copy();
@@ -88,10 +90,10 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
                         if (newDamage < item.getMaxDamage()) {
                             newItem.setItemDamage(newDamage);
                             matrix.setInventorySlotContents(i, newItem);
-                        } else if (info.substituteItemID > -1) {
+                        } else if (info.substituteItem != null) {
                             doSubstitution(matrix, processedSlots, info, player);
                         }
-                    } else if (info.substituteItemID > -1) {
+                    } else if (info.substituteItem != null) {
                         doSubstitution(matrix, processedSlots, info, player);
                     } else {
                         item.stackSize++;
@@ -102,7 +104,7 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
     }
 
     private void doSubstitution(IInventory matrix, HashSet<Integer> processedSlots, PersistentItemInfo info, EntityPlayer player) {
-        Option<Object> ret = CraftingHelper.returnLeftover(new ItemStack(info.substituteItemID, info.substituteItemsCount, 0), matrix, player, ConfigurationManager.transferItemsFromCraftingMatrix);
+        Option<Object> ret = CraftingHelper.returnLeftover(new ItemStack(info.substituteItem, info.substituteItemsCount, 0), matrix, player, ConfigurationManager.transferItemsFromCraftingMatrix);
         if (ret.isDefined()) processedSlots.add((Integer) ret.get());
     }
 
@@ -117,10 +119,10 @@ public class PersistentItemsCraftingHandler implements ICraftingHandler {
         for (int i = 0; i < matrix.getSizeInventory(); i++) {
             if (matrix.getStackInSlot(i) != null) {
                 ingredientsCount++;
-                ItemStack item = matrix.getStackInSlot(i);
-                if (item.itemID == ItemManager.getItem(JaffaItem.puffPastry).itemID) {
+                ItemStack stack = matrix.getStackInSlot(i);
+                if (stack.getItem() == ItemManager.getItem(JaffaItem.puffPastry)) {
                     foundPuff = true;
-                } else if (item.itemID == Item.stick.itemID) {
+                } else if (stack.getItem() == Items.stick) { // TODO: accept any stick (oredict)
                     stickSlot = i;
                 }
             }

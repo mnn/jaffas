@@ -21,7 +21,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.server.FMLServerHandler;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.common.VillagersTradeHandlerWrapper;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.achievement.AchievementsHandler;
@@ -42,7 +44,6 @@ import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.common.SwitchgrassBiomeRegistrar;
 import monnef.jaffas.food.common.VillagersTradeHandler;
-import monnef.core.common.VillagersTradeHandlerWrapper;
 import monnef.jaffas.food.crafting.LeftoversCraftingHandler;
 import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler;
 import monnef.jaffas.food.crafting.Recipes;
@@ -62,18 +63,15 @@ import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import org.apache.logging.log4j.Level;
 
 import java.util.Random;
-import java.util.logging.Level;
 
 import static monnef.jaffas.food.common.ContentHolder.addDungeonLoot;
 import static monnef.jaffas.food.common.ContentHolder.createBlocks;
 import static monnef.jaffas.food.common.ContentHolder.createJaffaArmorAndSword;
-import static monnef.jaffas.food.common.ContentHolder.itemJaffaPlateID;
-import static monnef.jaffas.food.common.ContentHolder.itemJaffaSwordID;
-import static monnef.jaffas.food.common.ContentHolder.itemPaintingID;
 import static monnef.jaffas.food.common.ContentHolder.initEntityIDs;
 import static monnef.jaffas.food.common.ContentHolder.registerCleaverRecords;
 import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
@@ -142,13 +140,12 @@ public class JaffasFood extends JaffasModBase {
             ConfigurationManager.jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").getString();
             ConfigurationManager.jaffaTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffaTitle", "Jaffa").getString();
             items.InitializeItemInfos();
-            items.LoadItemsFromConfig(idProvider);
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
             initEntityIDs();
         } catch (Exception e) {
-            FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
+            FMLLog.log(Level.FATAL, e, "Mod Jaffas can't read config file.");
         } finally {
             config.save();
         }
@@ -212,13 +209,14 @@ public class JaffasFood extends JaffasModBase {
 
     private void registerHandlers() {
         proxy.registerTickHandler();
-        TickRegistry.registerTickHandler(new ServerTickHandler(), Side.SERVER);
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.SERVER)
+            FMLCommonHandler.instance().bus().register(new ServerTickHandler());
 
         guiHandler = new GuiHandler();
-        NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
 
-        GameRegistry.registerCraftingHandler(new PersistentItemsCraftingHandler());
-        GameRegistry.registerCraftingHandler(new LeftoversCraftingHandler());
+        FMLCommonHandler.instance().bus().register(new PersistentItemsCraftingHandler());
+        FMLCommonHandler.instance().bus().register(new LeftoversCraftingHandler());
 
         proxy.registerRenderThings();
         GameRegistry.registerFuelHandler(new FuelHandler());
@@ -239,7 +237,7 @@ public class JaffasFood extends JaffasModBase {
 
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
-        server = ModLoader.getMinecraftServerInstance();
+        server = FMLServerHandler.instance().getServer();
         ICommandManager commandManager = server.getCommandManager();
         ServerCommandManager serverCommandManager = ((ServerCommandManager) commandManager);
         addCommands(serverCommandManager);
@@ -262,8 +260,8 @@ public class JaffasFood extends JaffasModBase {
         return ContentHolder.getItem(item);
     }
 
-    public static boolean itemsHaveSameID(JaffaItem item, ItemStack stack) {
+    public static boolean itemsAreSame(JaffaItem item, ItemStack stack) {
         if (stack == null) return false;
-        return getItem(item).itemID == stack.itemID;
+        return getItem(item) == stack.getItem();
     }
 }
