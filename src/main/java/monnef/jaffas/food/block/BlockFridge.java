@@ -11,11 +11,13 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
@@ -24,25 +26,16 @@ import net.minecraft.world.World;
 import static monnef.core.common.CustomIconHelper.generateId;
 
 public class BlockFridge extends BlockContainerJaffas {
-    /*
-        private static Icon FridgeBottom = 43;
-        private static Icon FridgeTopTop = 40;
-        private static Icon FridgeTopBottom = 41;
-        private static Icon FridgeLeft = 38;
-        private static Icon FridgeRight = 39;
-        private static Icon FridgeFront = 37;
-        private static Icon FridgeBack = 42;
-      */
-    private static Icon FridgeBottom;
-    private static Icon FridgeTopTop;
-    private static Icon FridgeTopBottom;
-    private static Icon FridgeLeft;
-    private static Icon FridgeRight;
-    private static Icon FridgeFront;
-    private static Icon FridgeBack;
+    private static IIcon FridgeBottom;
+    private static IIcon FridgeTopTop;
+    private static IIcon FridgeTopBottom;
+    private static IIcon FridgeLeft;
+    private static IIcon FridgeRight;
+    private static IIcon FridgeFront;
+    private static IIcon FridgeBack;
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IIconRegister iconRegister) {
         FridgeBottom = iconRegister.registerIcon(generateId(this, 43));
         FridgeTopTop = iconRegister.registerIcon(generateId(this, 40));
         FridgeTopBottom = iconRegister.registerIcon(generateId(this, 41));
@@ -52,18 +45,18 @@ public class BlockFridge extends BlockContainerJaffas {
         FridgeBack = iconRegister.registerIcon(generateId(this, 42));
     }
 
-    public BlockFridge(int id) {
-        super(id, 0, Material.rock);
+    public BlockFridge() {
+        super(0, Material.rock);
         setHardness(2.0F);
         setResistance(5.0F);
-        setUnlocalizedName("blockFridge");
+        setBlockName("blockFridge");
         // setRequiresSelfNotify();
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z,
                                     EntityPlayer player, int idk, float what, float these, float are) {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking()) {
             return false;
         }
@@ -73,9 +66,9 @@ public class BlockFridge extends BlockContainerJaffas {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         InventoryUtils.dropItems(world, x, y, z);
-        super.breakBlock(world, x, y, z, par5, par6);
+        super.breakBlock(world, x, y, z, block, meta);
     }
 
     @Override

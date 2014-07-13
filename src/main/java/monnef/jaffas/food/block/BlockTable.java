@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.Icon;
 import net.minecraftforge.common.ForgeDirection;
 
@@ -19,15 +20,15 @@ import java.util.List;
 public class BlockTable extends BlockJaffas {
     private static final int NUMBER_OF_TABLES = 3;
     private static final int SIDES_COUNT = 4;
-    private Icon[][] icons;
+    private IIcon[][] icons;
 
     public static final String[] multiBlockNames = new String[]{"Table with Red Tablecloth", "Table with Green Tablecloth", "Table with Blue Tablecloth"};
 
 
-    public BlockTable(int par1, int par2, Material par3Material) {
-        super(par1, par2, par3Material);
+    public BlockTable(int texture, Material material) {
+        super(texture, material);
         setHardness(2f);
-        setUnlocalizedName("blockJTable");
+        setBlockName("blockJTable");
         setBurnProperties(blockID, 5, 5);
     }
 

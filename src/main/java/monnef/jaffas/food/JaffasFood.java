@@ -16,19 +16,15 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
 import monnef.core.MonnefCorePlugin;
-import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.achievement.AchievementsHandler;
-import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
@@ -59,7 +55,6 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
-import monnef.jaffas.food.network.JaffasPacketHandler;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import net.minecraft.command.ICommandManager;
@@ -67,22 +62,19 @@ import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.ModLoader;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Random;
 import java.util.logging.Level;
 
 import static monnef.jaffas.food.common.ContentHolder.addDungeonLoot;
-import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrass;
 import static monnef.jaffas.food.common.ContentHolder.createBlocks;
 import static monnef.jaffas.food.common.ContentHolder.createJaffaArmorAndSword;
 import static monnef.jaffas.food.common.ContentHolder.itemJaffaPlateID;
 import static monnef.jaffas.food.common.ContentHolder.itemJaffaSwordID;
 import static monnef.jaffas.food.common.ContentHolder.itemPaintingID;
-import static monnef.jaffas.food.common.ContentHolder.loadBlockIDs;
+import static monnef.jaffas.food.common.ContentHolder.initEntityIDs;
 import static monnef.jaffas.food.common.ContentHolder.registerCleaverRecords;
 import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
 
@@ -144,14 +136,7 @@ public class JaffasFood extends JaffasModBase {
                 Log.printSevere("I warned you.");
             }
 
-            idProvider.linkWithConfig(config);
-
             initializeModuleManager();
-
-            itemJaffaPlateID = idProvider.getItemIDFromConfig("jaffaPlate");
-            itemJaffaSwordID = idProvider.getItemIDFromConfig("jaffaSword");
-
-            itemPaintingID = idProvider.getItemIDFromConfig("painting");
 
             // careful - order is important!
             ConfigurationManager.jaffasTitle = config.get(Configuration.CATEGORY_GENERAL, "jaffasTitle", "Jaffas").getString();
@@ -161,7 +146,7 @@ public class JaffasFood extends JaffasModBase {
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
-            loadBlockIDs(idProvider);
+            initEntityIDs();
         } catch (Exception e) {
             FMLLog.log(Level.SEVERE, e, "Mod Jaffas can't read config file.");
         } finally {

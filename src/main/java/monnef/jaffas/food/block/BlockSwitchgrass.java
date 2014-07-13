@@ -44,20 +44,20 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     private static final float border = 3f * 1f / 16f;
     private static final float borderComplement = 1f - border;
     public static int maximalHeight = 4;
-    private static Icon bodyIcon;
+    private static IIcon bodyIcon;
     public static final int VALUE_TOP = BitHelper.setBit(0, BIT_TOP);
 
     public String[] subBlockNames;
 
-    public BlockSwitchgrass(int id, int icon) {
-        super(id, icon, Material.plants);
+    public BlockSwitchgrass(int icon) {
+        super(icon, Material.plants);
         this.setTickRandomly(true);
         subBlockNames = new String[16];
         for (int i = 0; i < subBlockNames.length; i++) {
             subBlockNames[i] = "Switchgrass";
         }
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
-        setUnlocalizedName("blockJSwitchgrass");
+        setBlockName("blockJSwitchgrass");
         setBurnProperties(blockID, 60, 100);
     }
 

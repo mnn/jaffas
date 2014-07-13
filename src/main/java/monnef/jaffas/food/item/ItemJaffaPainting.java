@@ -9,7 +9,7 @@ import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -17,18 +17,17 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemJaffaPainting extends Item {
-    public ItemJaffaPainting(int par1) {
-        super(par1);
+    public ItemJaffaPainting() {
+        super();
         this.setCreativeTab(CreativeTabs.tabDecorations);
         this.setUnlocalizedName("jaffaPainting");
-        //this.setIconIndex(1);
         this.setCreativeTab(JaffasFood.instance.creativeTab);
     }
 
 
     @Override
-    public void registerIcons(IconRegister par1IconRegister) {
-        itemIcon = par1IconRegister.registerIcon(CustomIconHelper.generateId(Reference.ModName, 1, 1));
+    public void registerIcons(IIconRegister iconRegister) {
+        itemIcon = iconRegister.registerIcon(CustomIconHelper.generateId(Reference.ModName, 1, 1));
     }
 
     @Override

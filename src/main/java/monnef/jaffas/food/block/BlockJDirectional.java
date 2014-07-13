@@ -69,15 +69,15 @@ public class BlockJDirectional extends BlockJaffas {
 
     }
 
-    public BlockJDirectional(int id, int textureStart, int texturesCountPerSet, Material material, TextureMappingType type) {
-        super(id, textureStart, material);
+    public BlockJDirectional(int textureStart, int texturesCountPerSet, Material material, TextureMappingType type) {
+        super(textureStart, material);
         this.type = type;
         this.multipleTextureSets = false;
         setIconsCount(texturesCountPerSet);
     }
 
-    public BlockJDirectional(int id, int textureStart, int texturesCountPerSet, Material material, TextureMappingType type, int textureSetsCount) {
-        this(id, textureStart, texturesCountPerSet, material, type);
+    public BlockJDirectional(int textureStart, int texturesCountPerSet, Material material, TextureMappingType type, int textureSetsCount) {
+        this(textureStart, texturesCountPerSet, material, type);
         this.texturesCountPerSet = texturesCountPerSet;
         this.textureSetsCount = textureSetsCount;
         this.multipleTextureSets = textureSetsCount > 1;

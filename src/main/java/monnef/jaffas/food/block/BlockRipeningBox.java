@@ -5,25 +5,25 @@ import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockRipeningBox extends BlockContainerJaffas {
-    public BlockRipeningBox(int id, int index, Material material) {
-        super(id, index, material);
+    public BlockRipeningBox(int index, Material material) {
+        super(index, material);
         setIconsCount(3);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileRipeningBox();
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z,
                                     EntityPlayer player, int idk, float what, float these, float are) {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking()) {
             return false;
         }
@@ -33,7 +33,7 @@ public class BlockRipeningBox extends BlockContainerJaffas {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         ForgeDirection dir = ForgeDirection.getOrientation(side);
         switch (dir) {
             case UP:

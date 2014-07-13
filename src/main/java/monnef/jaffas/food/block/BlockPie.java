@@ -17,6 +17,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -32,11 +33,11 @@ public class BlockPie extends BlockJaffas {
     public static final float f3d = 1F - f3;
     public static final String[] multiBlockNames = new String[]{"Strawberry Pie", "Raspberry Pie", "Vanilla Pie", "Plum Pie"};
     public static final int[] textureIndexFromMeta = new int[]{156, 157, 159, 158};
-    public static Icon[] icons;
+    public static IIcon[] icons;
 
-    public BlockPie(int par1, int par2) {
-        super(par1, par2, Material.cake);
-        setUnlocalizedName("blockJPie");
+    public BlockPie(int texture) {
+        super(texture, Material.cake);
+        setBlockName("blockJPie");
         setBlockBounds(f3, 0, f3, f3d, f3, f3d);
         setHardness(0.5f);
 
@@ -47,7 +48,7 @@ public class BlockPie extends BlockJaffas {
         if (TilePie.PieType.values().length != textureIndexFromMeta.length) {
             throw new RuntimeException("pie types number != texture types title number");
         }
-        icons = new Icon[textureIndexFromMeta.length];
+        icons = new IIcon[textureIndexFromMeta.length];
     }
 
     @Override
@@ -73,7 +74,7 @@ public class BlockPie extends BlockJaffas {
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setBlockTileEntity(par2, par3, par4, createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
+        par1World.setTileEntity(par2, par3, par4, createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
     }
 
     @Override

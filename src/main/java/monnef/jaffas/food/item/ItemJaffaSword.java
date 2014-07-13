@@ -8,15 +8,17 @@ package monnef.jaffas.food.item;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemJaffaSword extends ItemJaffaTool {
 
-    public ItemJaffaSword(int ItemID, int textureOffset, EnumToolMaterial material) {
-        super(ItemID, textureOffset, material);
+    public ItemJaffaSword(int textureOffset, ToolMaterial material) {
+        super(textureOffset, material);
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
         this.durabilityLossOnBlockBreak = 4;
@@ -28,14 +30,14 @@ public class ItemJaffaSword extends ItemJaffaTool {
     // mostly from ItemSword
 
     @Override
-    public float getStrVsBlock(ItemStack stack, Block block) {
+    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
         if (nearlyDestroyed(stack)) return 1f;
 
-        if (block.blockID == Block.web.blockID) {
+        if (block == Blocks.web) {
             return 15.0F;
         } else {
-            Material material = block.blockMaterial;
-            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.pumpkin ? 1.0F : 1.5F;
+            Material material = block.getMaterial();
+            return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.gourd ? 1.0F : 1.5F;
         }
     }
 
@@ -56,8 +58,7 @@ public class ItemJaffaSword extends ItemJaffaTool {
     }
 
     @Override
-    public boolean canHarvestBlock(Block par1Block) {
-        return par1Block.blockID == Block.web.blockID;
+    public boolean canHarvestBlock(Block par1Block, ItemStack stack) {
+        return par1Block == Blocks.web;
     }
-
 }

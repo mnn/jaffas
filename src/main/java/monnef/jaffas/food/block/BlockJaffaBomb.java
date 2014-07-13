@@ -16,6 +16,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.Icon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -27,19 +28,19 @@ public class BlockJaffaBomb extends BlockJaffas {
     private float blastStrength = 0.2F;
     private static Random rand = new Random();
     private static int itemCount = 15;
-    private Icon specialTexture;
+    private IIcon specialTexture;
 
-    public BlockJaffaBomb(int par1, int index, Material par3Material) {
-        super(par1, index, par3Material);
+    public BlockJaffaBomb(int index, Material par3Material) {
+        super(index, par3Material);
         setCreativeTab(CreativeTabs.tabRedstone);
-        setUnlocalizedName("Jaffa BOMB");
+        setBlockName("Jaffa BOMB");
         setHardness(0.1F);
         setResistance(0.1F);
         this.setCreativeTab(JaffasFood.instance.creativeTab);
     }
 
     @Override
-    public Icon getIcon(int par1, int par2) {
+    public IIcon getIcon(int par1, int par2) {
         return (par1 == 0 || par1 == 1) ? specialTexture : blockIcon;
     }
 

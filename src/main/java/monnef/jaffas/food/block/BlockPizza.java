@@ -27,8 +27,8 @@ public class BlockPizza extends BlockJaffas {
     public static final int BIT_ROTATION = 3;
     public static final float f2 = 2F / 16F;
 
-    public BlockPizza(int par1, int par2, Material par3Material) {
-        super(par1, par2, par3Material);
+    public BlockPizza(int par2, Material par3Material) {
+        super(par2, par3Material);
         setCreativeTab(null);
         setHardness(0.5f);
         setUnlocalizedName("blockPizza");

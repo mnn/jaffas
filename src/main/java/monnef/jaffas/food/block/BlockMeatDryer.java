@@ -19,8 +19,8 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockMeatDryer extends BlockJaffas {
-    public BlockMeatDryer(int id, int texture) {
-        super(id, texture, Material.wood);
+    public BlockMeatDryer(int texture) {
+        super(texture, Material.wood);
         setBurnProperties(id, 15, 100);
         setHardness(0.25f);
         setCreativeTab(null);

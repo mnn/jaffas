@@ -33,8 +33,8 @@ public class ItemJaffaPlate extends ItemArmor {
         helm, chest, leggings, boots
     }
 
-    public ItemJaffaPlate(int id, EnumArmorMaterial material, int renderIndex, ArmorType type, String armorTexture, Item repairItem, int customIconIndex) {
-        super(id, material, renderIndex, type.ordinal());
+    public ItemJaffaPlate(ArmorMaterial material, int renderIndex, ArmorType type, String armorTexture, Item repairItem, int customIconIndex) {
+        super(material, renderIndex, type.ordinal());
         this.armorTexture = ResourcePathHelper.assemble(armorTexture, ARMOR);
         this.repairItem = repairItem;
         this.customIconIndex = customIconIndex;

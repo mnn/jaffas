@@ -11,10 +11,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockColumn extends BlockJaffas {
-    public BlockColumn(int par1, int par2, Material par3Material) {
-        super(par1, par2, par3Material);
+    public BlockColumn(int texture, Material material) {
+        super(texture, material);
         //setRequiresSelfNotify();
-        setUnlocalizedName("blockColumn");
+        setBlockName("blockColumn");
         setHardness(1f);
         setResistance(10f);
     }
@@ -37,7 +37,7 @@ public class BlockColumn extends BlockJaffas {
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setBlockTileEntity(par2, par3, par4, createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
+        par1World.setTileEntity(par2, par3, par4, createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
     }
 
     @Override

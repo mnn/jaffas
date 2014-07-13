@@ -19,8 +19,8 @@ import java.util.Random;
 import static monnef.jaffas.food.JaffasFood.Log;
 
 public class BlockSwitchgrassSolid extends BlockJDirectional {
-    public BlockSwitchgrassSolid(int id, int textureStart, int texturesCountPerSet) {
-        super(id, textureStart, texturesCountPerSet, Material.grass, TextureMappingType.LOG_LIKE);
+    public BlockSwitchgrassSolid(int textureStart, int texturesCountPerSet) {
+        super(textureStart, texturesCountPerSet, Material.grass, TextureMappingType.LOG_LIKE);
         Block.setBurnProperties(id, 15, 100);
         setStepSound(Block.soundGrassFootstep);
         setResistance(5);
