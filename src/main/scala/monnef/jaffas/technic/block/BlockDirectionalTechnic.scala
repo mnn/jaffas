@@ -9,7 +9,7 @@ class BlockDirectionalTechnic(_textureStart: Int, _texturesCountPerSet: Int, _ma
 BlockJDirectional(_textureStart, _texturesCountPerSet, _material, _type, _textureSetsCount) with IconDescriptorTechnic {
   setCreativeTab(JaffasTechnic.instance.creativeTab)
 
-  def this(id: Int, textureStart: Int, texturesCountPerSet: Int, material: Material, `type`: BlockJDirectional.TextureMappingType) {
-    this(id, textureStart, texturesCountPerSet, material, `type`, 1)
+  def this(textureStart: Int, texturesCountPerSet: Int, material: Material, `type`: BlockJDirectional.TextureMappingType) {
+    this(textureStart, texturesCountPerSet, material, `type`, 1)
   }
 }

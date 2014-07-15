@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -29,7 +30,7 @@ public class ItemJaffaTool extends ItemJaffaBase {
     protected int durabilityLossOnBlockBreak = 1;
     protected boolean disableRepairing = true;
 
-    public ItemJaffaTool(int textureIndex, ToolMaterial material) {
+    public ItemJaffaTool(int textureIndex, Item.ToolMaterial material) {
         super(textureIndex);
         this.toolMaterial = material;
         this.maxStackSize = 1;
@@ -68,9 +69,17 @@ public class ItemJaffaTool extends ItemJaffaBase {
 
     private static final int UNKNOWN_METADATA = 0;
 
-    // func_150893_a getStrVsBlock
+    /**
+     * getStrVsBlock, do not override unless you need really special behaviour.
+     * In that case don't forget to implement nearlyDestroyed state.
+     *
+     * @param stack Tool.
+     * @param block Used on this.
+     * @return Effectiveness.
+     */
+
     @Override
-    public final float func_150893_a(ItemStack stack, Block block) {
+    public float func_150893_a(ItemStack stack, Block block) {
         if (nearlyDestroyed(stack)) {
             return 0;
         }
@@ -78,10 +87,10 @@ public class ItemJaffaTool extends ItemJaffaBase {
         if (ForgeHooks.isToolEffective(stack, block, UNKNOWN_METADATA)) {
             return efficiencyOnProperMaterial;
         }
-        return getCustomStrVsBlock(stack, block, UNKNOWN_METADATA);
+        return getCustomStrVsBlock(stack, block);
     }
 
-    protected float getCustomStrVsBlock(ItemStack stack, Block block, int meta) {
+    protected float getCustomStrVsBlock(ItemStack stack, Block block) {
         return super.func_150893_a(stack, block);
     }
 

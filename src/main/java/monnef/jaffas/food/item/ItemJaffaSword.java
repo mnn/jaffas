@@ -10,14 +10,13 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemJaffaSword extends ItemJaffaTool {
 
-    public ItemJaffaSword(int textureOffset, ToolMaterial material) {
+    public ItemJaffaSword(int textureOffset, Item.ToolMaterial material) {
         super(textureOffset, material);
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
@@ -29,8 +28,9 @@ public class ItemJaffaSword extends ItemJaffaTool {
     // ---------------
     // mostly from ItemSword
 
+    // getStrVsBlock
     @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+    public float func_150893_a(ItemStack stack, Block block) {
         if (nearlyDestroyed(stack)) return 1f;
 
         if (block == Blocks.web) {
