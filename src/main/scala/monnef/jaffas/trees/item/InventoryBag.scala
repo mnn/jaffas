@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer
 import monnef.core.MonnefCorePlugin
 import cpw.mods.fml.common.FMLCommonHandler
 import monnef.core.utils.scalagameutils._
+import monnef.core.utils.NBTHelper
 
 class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: ItemStack) extends IInventory {
   final val INV_TAG_NAME = "Inventory"
@@ -20,7 +21,7 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
   val inv = new Array[ItemStack](slotsCount)
   loadFromNBT()
 
-  override def onInventoryChanged() {
+  override def markDirty() {
     for (i <- 0 until getSizeInventory)
       if (this.getStackInSlot(i) != null && this.getStackInSlot(i).stackSize <= 0)
         this.setInventorySlotContents(i, null)
@@ -53,10 +54,10 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
     val tagCompound = stack.getTagCompound
 
     if (tagCompound != null) {
-      val tagList = tagCompound.getTagList(INV_TAG_NAME)
+      val tagList = tagCompound.getTagList(INV_TAG_NAME, NBTHelper.TagTypes.TAG_Compound)
       for {
         i <- 0 until tagList.tagCount()
-        tag = tagList.tagAt(i).asInstanceOf[NBTTagCompound]
+        tag = tagList.getCompoundTagAt(i)
         slot = tag.getByte(SLOT_TAG_NAME)
         if slot >= 0 && slot < getSizeInventory
       } {
@@ -65,13 +66,13 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
     }
   }
 
-  def closeChest() {}
+  def closeInventory() {}
 
-  def openChest() {}
+  def openInventory() {}
 
   def setInventorySlotContents(slot: Int, itemstack: ItemStack) {
     setInventorySlotContentsInternal(slot, itemstack)
-    onInventoryChanged()
+    markDirty()
   }
 
   protected def setInventorySlotContentsInternal(slot: Int, itemstack: ItemStack) {
@@ -91,7 +92,7 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
     if (stack != null) {
       if (stack.stackSize > amount) {
         stack = stack.splitStack(amount)
-        this.onInventoryChanged()
+        markDirty()
       }
       else {
         setInventorySlotContents(slot, null)
@@ -107,7 +108,7 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
 
   def getInvName: String = name
 
-  def isInvNameLocalized: Boolean = false
+  def hasCustomInventoryName: Boolean = false
 
   def getInventoryStackLimit: Int = 64
 

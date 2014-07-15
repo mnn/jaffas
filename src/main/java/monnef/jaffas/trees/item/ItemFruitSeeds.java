@@ -38,8 +38,8 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage(int par1) {
-        return icons[par1];
+    public Icon getIconFromDamage(int meta) {
+        return icons[meta];
     }
 
     @Override

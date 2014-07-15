@@ -25,8 +25,8 @@ class GuiBag(container: ContainerBag) extends GuiContainer(container) {
 
   protected override def drawGuiContainerForegroundLayer(par1: Int, par2: Int) {
     super.drawGuiContainerForegroundLayer(par1, par2)
-    fontRenderer.drawString(container.stack.getDisplayName, 8, 4, COLOR_DARK_GRAY)
-    fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 4, COLOR_DARK_GRAY)
+    fontRendererObj.drawString(container.stack.getDisplayName, 8, 4, COLOR_DARK_GRAY)
+    fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 4, COLOR_DARK_GRAY)
   }
 
   protected def refreshXY() {

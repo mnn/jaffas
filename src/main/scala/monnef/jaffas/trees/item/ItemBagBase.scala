@@ -12,7 +12,7 @@ import monnef.jaffas.trees.JaffasTrees
 import java.util
 import monnef.core.item.ItemMonnefCore
 import monnef.core.MonnefCorePlugin
-import monnef.core.utils.InventoryUtils
+import monnef.core.utils.{NBTHelper, InventoryUtils}
 import scala.collection.mutable.ArrayBuffer
 
 abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _texture) {
@@ -38,7 +38,7 @@ abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _text
     ItemMonnefCore.initNBT(stack)
     var c = -1
     val t = stack.getTagCompound
-    if (t.hasKey("Inventory")) c = t.getTagList("Inventory").tagCount()
+    if (t.hasKey("Inventory")) c = t.getTagList("Inventory", NBTHelper.TagTypes.TAG_Compound).tagCount()
     val cText = if (c == -1) "?" else c
     l.add(s"$cText / ${ItemBagBase.farmerBagsSlotsCount}")
     if (MonnefCorePlugin.debugEnv) l.add(getDebugString(stack))

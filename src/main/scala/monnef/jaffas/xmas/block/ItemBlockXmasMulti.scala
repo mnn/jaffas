@@ -4,12 +4,12 @@ import monnef.jaffas.food.block.ItemBlockJaffas
 import net.minecraft.item.ItemStack
 import cpw.mods.fml.common.registry.LanguageRegistry
 import cpw.mods.fml.relauncher.{SideOnly, Side}
-import net.minecraft.util.{MathHelper, Icon}
+import net.minecraft.util.{IIcon, MathHelper}
 import monnef.core.common.CustomIconHelper
 import monnef.core.api.ICustomIcon
-import net.minecraft.client.renderer.texture.IconRegister
 import monnef.jaffas.xmas.common.IconDescriptorXmas
 import scala.runtime._
+import net.minecraft.client.renderer.texture.IIconRegister
 
 abstract class ItemBlockXmasMulti(_id: Int) extends ItemBlockJaffas(_id) with IconDescriptorXmas {
   private var subTitles: Array[String] = null
@@ -32,7 +32,7 @@ abstract class ItemBlockXmasMulti(_id: Int) extends ItemBlockJaffas(_id) with Ic
     }
   }
 
-  @SideOnly(Side.CLIENT) override def getIconFromDamage(dmg: Int): Icon = {
+  @SideOnly(Side.CLIENT) override def getIconFromDamage(dmg: Int): IIcon = {
     val idx: Int = MathHelper.clamp_int(dmg, 0, subNames.length)
     icons(idx)
   }
@@ -43,10 +43,7 @@ abstract class ItemBlockXmasMulti(_id: Int) extends ItemBlockJaffas(_id) with Ic
 
   def getParentBlock: BlockXmasMulti
 
-  // TODO: refactor to use parent's stuff?
-  //override var icons: Array[Icon] = null
-
-  override def registerIcons(register: IconRegister) {
+  override def registerIcons(register: IIconRegister) {
     icons = (
       for (i <- 0 until getSubBlocksCount) yield register.registerIcon(CustomIconHelper.generateShiftedId(this.asInstanceOf[ICustomIcon], i))
       ).toArray

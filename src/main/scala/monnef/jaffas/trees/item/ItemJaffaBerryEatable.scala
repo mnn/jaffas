@@ -5,7 +5,7 @@ import monnef.jaffas.trees.JaffasTrees
 import monnef.jaffas.trees.common.Reference
 
 
-class ItemJaffaBerryEatable(__id: Int) extends ItemJaffaFood(__id) {
+class ItemJaffaBerryEatable extends ItemJaffaFood {
   setCreativeTab(JaffasTrees.instance.creativeTab)
   setupFromOldDefaultProperties()
 

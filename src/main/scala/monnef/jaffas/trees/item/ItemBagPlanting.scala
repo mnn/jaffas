@@ -6,12 +6,14 @@
 package monnef.jaffas.trees.item
 
 import monnef.jaffas.trees.client.GuiHandlerTrees
-import net.minecraftforge.common.{ForgeDirection, IPlantable}
+import net.minecraftforge.common.IPlantable
 import net.minecraft.world.World
 import net.minecraft.item.ItemStack
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.block.Block
 import monnef.core.utils.ItemStackList
+import net.minecraftforge.common.util.ForgeDirection
+import net.minecraft.init.Blocks
 
 object ItemBagPlanting {
   val blackList = new ItemStackList("Planting Bag - Black-List")
@@ -48,7 +50,7 @@ class ItemBagPlanting(_id: Int, _texture: Int, radius: Int) extends ItemBagBase(
   }
 
   override def onItemUse(stack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, side: Int, par8: Float, par9: Float, par10: Float): Boolean = {
-    if (side == ForgeDirection.UP.ordinal() && world.getBlockId(x, y, z) == Block.tilledField.blockID) {
+    if (side == ForgeDirection.UP.ordinal() && world.getBlock(x, y, z) == Blocks.farmland) {
       val (fx, fy, fz) = (x, y + 1, z)
       var seedsExhausted = false
       val bagItem = stack.getItem.asInstanceOf[ItemBagBase]
@@ -61,7 +63,7 @@ class ItemBagPlanting(_id: Int, _texture: Int, radius: Int) extends ItemBagBase(
         ny = fy
         if !seedsExhausted
         if world.isAirBlock(nx, ny, nz)
-        if world.getBlockId(nx, ny - 1, nz) == Block.tilledField.blockID
+        if world.getBlock(nx, ny - 1, nz) == Blocks.farmland
       } {
         val seedStackSlots = getCropSeedSlots(inv)
         if (seedStackSlots.nonEmpty) {
