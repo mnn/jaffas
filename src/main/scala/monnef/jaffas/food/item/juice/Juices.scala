@@ -14,6 +14,7 @@ import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food.item.JaffaItem
 import monnef.jaffas.power.block.TileJuiceMaker
 import monnef.jaffas.food.crafting.PersistentItemsCraftingHandler
+import net.minecraft.init.Items
 
 object Juices {
   val list: List[JuiceInfo] = {
@@ -23,11 +24,11 @@ object Juices {
     List(
       JuiceInfo.create(0, "Lemon Juice", {JuiceRecipe.create(JaffasTrees.LEMON, treeItemCount)()}),
       JuiceInfo.create(1, "Orange Juice", JuiceRecipe.create(JaffasTrees.ORANGE, treeItemCount)()),
-      JuiceInfo.create(2, "Apple Juice", JuiceRecipe.create(Item.appleRed, treeItemCount)),
+      JuiceInfo.create(2, "Apple Juice", JuiceRecipe.create(Items.apple, treeItemCount)),
       JuiceInfo.create(3, "Raspberry Juice", JuiceRecipe.create(Raspberry, cropItemCount)),
       JuiceInfo.create(2, "Tomato Juice", JuiceRecipe.create(Tomato, cropItemCount)),
-      JuiceInfo.create(1, "Carrot Juice", JuiceRecipe.create(Item.carrot, cropItemCount)),
-      JuiceInfo.create(3, "Melon Juice", JuiceRecipe.create(Item.melon, cropItemCount)),
+      JuiceInfo.create(1, "Carrot Juice", JuiceRecipe.create(Items.carrot, cropItemCount)),
+      JuiceInfo.create(3, "Melon Juice", JuiceRecipe.create(Items.melon, cropItemCount)),
       JuiceInfo.create(3, "Strawberry Juice", JuiceRecipe.create(Strawberry, cropItemCount))
     )
   }

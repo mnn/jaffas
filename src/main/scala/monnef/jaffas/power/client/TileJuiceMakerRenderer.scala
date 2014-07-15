@@ -20,7 +20,7 @@ class TileJuiceMakerRenderer extends TileSpecialJaffaRenderer {
   def renderTileEntityAt(tile: TileEntity, x: Double, y: Double, z: Double, f: Float) {
     var rotation: Int = tile.asInstanceOf[TileJuiceMaker].getRotation.ordinal
     // fix for inventory rendering
-    if (tile.worldObj == null) rotation = 0
+    if (tile.getWorldObj == null) rotation = 0
 
     val angle: Float =
       rotation match {

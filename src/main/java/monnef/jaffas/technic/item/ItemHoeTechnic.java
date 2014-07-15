@@ -5,16 +5,17 @@
 
 package monnef.jaffas.technic.item;
 
+import cpw.mods.fml.common.eventhandler.Event;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 import static monnef.jaffas.technic.item.ItemHoeTechnicHelper.canBeMassHarvested;
@@ -25,8 +26,8 @@ public class ItemHoeTechnic extends ItemTechnicTool {
     public static boolean falloutScanAllowed = true;
     public static int falloutScanRadius = 7;
 
-    public ItemHoeTechnic(int id, int textureOffset, EnumToolMaterial material) {
-        super(id, textureOffset, material);
+    public ItemHoeTechnic(int textureOffset, ToolMaterial material) {
+        super(textureOffset, material);
     }
 
     @Override
@@ -48,14 +49,14 @@ public class ItemHoeTechnic extends ItemTechnicTool {
                 return true;
             }
 
-            int blockId = world.getBlockId(x, y, z);
-            int blockAboveId = world.getBlockId(x, y + 1, z);
-            Block block = Block.blocksList[blockId];
-            if (canBeTilled(direction, blockAboveId, blockId)) {
+            int aboveY = y + 1;
+            Block blockAbove = world.getBlock(x, aboveY, z);
+            Block block = world.getBlock(x, y, z);
+            if (canBeTilled(world, direction, blockAbove, x, aboveY, z, block)) {
                 return doTilling(stack, player, world, x, y, z, direction);
             } else if (canBeMassHarvested(block)) {
-                return doHarvesting(stack, player, world, x, y, z, blockId, this);
-            } else if (blockId == ContentHolder.blockSwitchgrassSolid.blockID) {
+                return doHarvesting(stack, player, world, x, y, z, block, this);
+            } else if (block == ContentHolder.blockSwitchgrassSolid) {
                 return doSwitchgrassPlanting(stack, player, world, x, y, z, this);
             } else {
                 return false;
@@ -69,22 +70,22 @@ public class ItemHoeTechnic extends ItemTechnicTool {
     }
 
     private boolean doTilling(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int direction) {
-        Block newBlock = Block.tilledField;
+        Block newBlock = Blocks.farmland;
 
         if (world.isRemote) {
             return true;
         } else {
-            world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), newBlock.stepSound.getStepSound(), (newBlock.stepSound.getVolume() + 1.0F) / 2.0F, newBlock.stepSound.getPitch() * 0.8F);
-            BlockHelper.setBlock(world, x, y, z, newBlock.blockID);
+            world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), newBlock.stepSound.getStepResourcePath(), (newBlock.stepSound.getVolume() + 1.0F) / 2.0F, newBlock.stepSound.getPitch() * 0.8F);
+            BlockHelper.setBlock(world, x, y, z, newBlock);
             damageTool(1, player, stack);
             if (player.isSneaking() && !nearlyDestroyed(stack)) {
                 damageTool(1, player, stack);
                 for (int xx = x - 1; xx <= x + 1; xx++) {
                     for (int zz = z - 1; zz <= z + 1; zz++) {
-                        int bId = world.getBlockId(xx, y, zz);
-                        int bAboveId = world.getBlockId(xx, y + 1, zz);
-                        if (canBeTilled(direction, bAboveId, bId) && !nearlyDestroyed(stack)) {
-                            BlockHelper.setBlock(world, xx, y, zz, newBlock.blockID);
+                        Block b = world.getBlock(xx, y, zz);
+                        Block bAbove = world.getBlock(xx, y + 1, zz);
+                        if (canBeTilled(world, direction, bAbove, xx, y + 1, zz, b) && !nearlyDestroyed(stack)) {
+                            BlockHelper.setBlock(world, xx, y, zz, newBlock);
                             damageTool(1, player, stack);
                         }
                     }
@@ -94,8 +95,8 @@ public class ItemHoeTechnic extends ItemTechnicTool {
         }
     }
 
-    private boolean canBeTilled(int direction, int blockAboveId, int blockId) {
-        boolean tillableBlock = blockId == Block.dirt.blockID || blockId == Block.grass.blockID;
-        return (direction != 0 && blockAboveId == 0 && tillableBlock);
+    private boolean canBeTilled(IBlockAccess world, int direction, Block blockAbove, int aboveX, int aboveY, int aboveZ, Block block) {
+        boolean tillableBlock = block == Blocks.dirt || block == Blocks.grass;
+        return (direction != 0 && blockAbove.isAir(world, aboveX, aboveY, aboveZ) && tillableBlock);
     }
 }

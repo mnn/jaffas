@@ -13,7 +13,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -25,13 +24,13 @@ import java.util.List;
 public class ItemJaffaTool extends ItemJaffaBase {
     public float efficiencyOnProperMaterial = 4.0F;
     public float damageVsEntity;
-    protected EnumToolMaterial toolMaterial;
+    protected ToolMaterial toolMaterial;
     protected int durabilityLossOnEntityHit = 2;
     protected int durabilityLossOnBlockBreak = 1;
     protected boolean disableRepairing = true;
 
-    public ItemJaffaTool(int id, int textureIndex, EnumToolMaterial material) {
-        super(id, textureIndex);
+    public ItemJaffaTool(int textureIndex, ToolMaterial material) {
+        super(textureIndex);
         this.toolMaterial = material;
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
@@ -46,17 +45,17 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack par1ItemStack, World par2World, int par3, int par4, int par5, int par6, EntityLivingBase par7EntityLiving) {
-        if ((double) Block.blocksList[par3].getBlockHardness(par2World, par4, par5, par6) != 0.0D) {
-            damageTool(durabilityLossOnBlockBreak, par7EntityLiving, par1ItemStack);
+    public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
+        if ((double) block.getBlockHardness(world, x, y, z) != 0.0D) {
+            damageTool(durabilityLossOnBlockBreak, entity, stack);
         }
 
         return true;
     }
 
     @Override
-    public Multimap getItemAttributeModifiers() {
-        Multimap multimap = super.getItemAttributeModifiers();
+    public Multimap getAttributeModifiers(ItemStack stack) {
+        Multimap multimap = super.getAttributeModifiers(stack);
         multimap.put(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), new AttributeModifier(field_111210_e, "Weapon modifier", (double) this.damageVsEntity, 0));
         return multimap;
     }
@@ -67,20 +66,23 @@ public class ItemJaffaTool extends ItemJaffaBase {
         return true;
     }
 
+    private static final int UNKNOWN_METADATA = 0;
+
+    // func_150893_a getStrVsBlock
     @Override
-    public final float getStrVsBlock(ItemStack stack, Block block, int meta) {
+    public final float func_150893_a(ItemStack stack, Block block) {
         if (nearlyDestroyed(stack)) {
             return 0;
         }
 
-        if (ForgeHooks.isToolEffective(stack, block, meta)) {
+        if (ForgeHooks.isToolEffective(stack, block, UNKNOWN_METADATA)) {
             return efficiencyOnProperMaterial;
         }
-        return getCustomStrVsBlock(stack, block, meta);
+        return getCustomStrVsBlock(stack, block, UNKNOWN_METADATA);
     }
 
     protected float getCustomStrVsBlock(ItemStack stack, Block block, int meta) {
-        return super.getStrVsBlock(stack, block, meta);
+        return super.func_150893_a(stack, block);
     }
 
     public static boolean nearlyDestroyed(ItemStack stack) {
@@ -124,7 +126,7 @@ public class ItemJaffaTool extends ItemJaffaBase {
     @Override
     public boolean getIsRepairable(ItemStack stack, ItemStack material) {
         if (this.disableRepairing) return false;
-        return this.toolMaterial.getToolCraftingMaterial() == material.itemID || super.getIsRepairable(stack, material);
+        return this.toolMaterial.customCraftingMaterial == material.getItem() || super.getIsRepairable(stack, material);
     }
 
     @Override

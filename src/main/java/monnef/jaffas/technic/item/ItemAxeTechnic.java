@@ -6,19 +6,18 @@
 package monnef.jaffas.technic.item;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class ItemAxeTechnic extends ItemTechnicTool {
-    public ItemAxeTechnic(int id, int textureOffset, EnumToolMaterial material) {
-        super(id, textureOffset, material);
+    public ItemAxeTechnic(int textureOffset, ToolMaterial material) {
+        super(textureOffset, material);
         this.damageVsEntity += 3;
     }
 
     @Override
     protected float getCustomStrVsBlock(ItemStack stack, Block block, int meta) {
-        return Item.axeDiamond.getStrVsBlock(stack, block, meta);
+        return Items.diamond_axe.func_150893_a(stack, block);
     }
 }
 

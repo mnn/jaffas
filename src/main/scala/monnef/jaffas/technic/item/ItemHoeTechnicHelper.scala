@@ -44,10 +44,10 @@ object ItemHoeTechnicHelper {
       } {
         if (switchgrass.canPlaceBlockAt(world, xx, y, zz)) {
           if (!world.isRemote)
-            BlockHelper.setBlock(world, xx, y, zz, switchgrass.blockID, BlockSwitchgrass.VALUE_TOP)
+            BlockHelper.setBlock(world, xx, y, zz, switchgrass, BlockSwitchgrass.VALUE_TOP)
         }
         else {
-          WorldHelper.dropBlockAsItemDo(world, xx, y, zz, switchgrass.blockID, BlockSwitchgrass.VALUE_TOP, 1)
+          WorldHelper.dropBlockAsItemDo(world, xx, y, zz, switchgrass, BlockSwitchgrass.VALUE_TOP, 1)
         }
       }
       hoe.damageTool(dmg, player, stack)
@@ -56,14 +56,14 @@ object ItemHoeTechnicHelper {
   }
 
   private def computeSwitchgrassBlocksRadius(w: World, x: Int, y: Int, z: Int): Option[Int] = {
-    def isSwitchgrassBlock(x: Int, z: Int): Boolean = w.getBlockId(x, y, z) == ContentHolder.blockSwitchgrassSolid.blockID
+    def isSwitchgrassBlock(x: Int, z: Int): Boolean = w.getBlock(x, y, z) == ContentHolder.blockSwitchgrassSolid
     def loop(rad: Int): Option[Int] = {
       if (rad < 0) throw new IllegalArgumentException
       if (rad >= SWITCHGRASS_PLANT_RADIUS_LIMIT) None
       val circle = centeredSquares(rad)
       val largerCircle = centeredSquares(rad + 1)
-      val isSwitchgrassCircle: Boolean = circle.forall {case (sx, sz) => isSwitchgrassBlock(x + sx, z + sz)}
-      val switchgrassInLargerCircle: Int = largerCircle.count {case (sx, sz) => isSwitchgrassBlock(x + sx, z + sz)}
+      val isSwitchgrassCircle: Boolean = circle.forall { case (sx, sz) => isSwitchgrassBlock(x + sx, z + sz)}
+      val switchgrassInLargerCircle: Int = largerCircle.count { case (sx, sz) => isSwitchgrassBlock(x + sx, z + sz)}
       if (isSwitchgrassCircle) {
         if (switchgrassInLargerCircle == 0) Some(rad)
         else loop(rad + 1)
@@ -92,42 +92,44 @@ object ItemHoeTechnicHelper {
     rest
   }
 
-  def doHarvesting(stack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, blockId: Int, hoe: ItemHoeTechnic): Boolean = {
+  def doHarvesting(stack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, activatedBlock: Block, hoe: ItemHoeTechnic): Boolean = {
     var skipBag = false
     for {
       xx <- x - HOE_HARVEST_RADIUS to x + HOE_HARVEST_RADIUS
       zz <- z - HOE_HARVEST_RADIUS to z + HOE_HARVEST_RADIUS
     } {
-      val currBlockId: Int = world.getBlockId(xx, y, zz)
-      var harvest: Boolean = currBlockId == blockId
-      val blockToHarvest = Block.blocksList(currBlockId)
+      val currBlock: Block = world.getBlock(xx, y, zz)
+      var harvest: Boolean = currBlock == activatedBlock
+      val blockToHarvest = currBlock
       if (!harvest && player.isSneaking) {
         harvest = canBeMassHarvested(blockToHarvest)
       }
       if (harvest) {
         if (!world.isRemote) {
           if (!skipBag) {
-            val loot = blockToHarvest.getBlockDropped(world, xx, y, zz, world.getBlockMetadata(xx, y, zz), EnchantmentHelper.getFortuneModifier(player)).toArray.toVector.asInstanceOf[Vector[ItemStack]]
+            val loot = blockToHarvest.getDrops(world, xx, y, zz, world.getBlockMetadata(xx, y, zz), EnchantmentHelper.getFortuneModifier(player)).toArray.toVector.asInstanceOf[Vector[ItemStack]]
             skipBag = !processLoot(loot, player, world, xx, y, zz)
           }
           val dropItems = skipBag
           val scanForFallout = !dropItems && ItemHoeTechnic.falloutScanAllowed
-          val itemsBefore = if (scanForFallout) world.findEntitiesInRangeOfType(xx, y, zz, ItemHoeTechnic.falloutScanRadius, classOf[EntityItem]) filter {case e => e != null && e.getEntityItem != null && !e.isDead} else List()
-          world.destroyBlock(xx, y, zz, dropItems)
+          val itemsBefore = if (scanForFallout) world.findEntitiesInRangeOfType(xx, y, zz, ItemHoeTechnic.falloutScanRadius, classOf[EntityItem]) filter { case e => e != null && e.getEntityItem != null && !e.isDead} else List()
+
+          world.func_147480_a(xx, y, zz, dropItems) // destroyBlock
+
           if (scanForFallout) {
             var itemsBeforeRemain: Set[EntityItem] = itemsBefore.toSet
-            val itemsAfter = world.findEntitiesInRangeOfType(xx, y, zz, ItemHoeTechnic.falloutScanRadius, classOf[EntityItem]) filter {case e => !e.isDead}
+            val itemsAfter = world.findEntitiesInRangeOfType(xx, y, zz, ItemHoeTechnic.falloutScanRadius, classOf[EntityItem]) filter { case e => !e.isDead}
             var filtered = ArrayBuffer[EntityItem]()
             for {
               i <- itemsAfter
               if i.getEntityItem != null
-              bef = itemsBeforeRemain.filter {case b => b.getEntityItem.isItemEqual(i.getEntityItem)}
+              bef = itemsBeforeRemain.filter { case b => b.getEntityItem.isItemEqual(i.getEntityItem)}
             } {
               if (bef.nonEmpty) itemsBeforeRemain -= bef.head
               else filtered += i
             }
-            val lootSecondary = filtered map {case ei => ei.getEntityItem}
-            filtered foreach {case ei => ei.setDead()}
+            val lootSecondary = filtered map { case ei => ei.getEntityItem}
+            filtered foreach { case ei => ei.setDead()}
             skipBag = !processLoot(lootSecondary.toVector, player, world, xx, y, zz)
           }
         }
