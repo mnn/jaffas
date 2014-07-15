@@ -10,10 +10,9 @@ import monnef.core.client.ResourcePathHelper;
 import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.Reference;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -54,11 +53,11 @@ public class ItemJaffaPlate extends ItemArmor {
 
     @Override
     public boolean getIsRepairable(ItemStack armor, ItemStack material) {
-        return repairItem != null && repairItem.itemID == material.itemID;
+        return repairItem != null && repairItem == material.getItem();
     }
 
     @Override
-    public void registerIcons(IconRegister register) {
+    public void registerIcons(IIconRegister register) {
         String id = CustomIconHelper.generateId(Reference.ModName, 1, customIconIndex);
         itemIcon = register.registerIcon(id);
     }
@@ -69,10 +68,10 @@ public class ItemJaffaPlate extends ItemArmor {
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs par2CreativeTabs, List par3List) {
-        super.getSubItems(id, par2CreativeTabs, par3List);
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List par3List) {
+        super.getSubItems(item, par2CreativeTabs, par3List);
         if (MonnefCorePlugin.debugEnv) {
-            par3List.add(new ItemStack(id, 1, getMaxDamage() - 10));
+            par3List.add(new ItemStack(item, 1, getMaxDamage() - 10));
         }
     }
 

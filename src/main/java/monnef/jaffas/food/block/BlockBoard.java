@@ -11,6 +11,7 @@ import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.common.ContentHolder;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,19 +41,19 @@ public class BlockBoard extends BlockContainerJaffas {
 
     protected static final int knifeBit = 2;
 
-    public BlockBoard(int index, Material par3Material) {
-        super(index, par3Material);
+    public BlockBoard(int index, Material material) {
+        super(index, material);
         //setRequiresSelfNotify();
         setCreativeTab(JaffasFood.instance.creativeTab);
         setHardness(0.2f);
         setBlockName("blockBoard");
-        setBurnProperties(blockID, 5, 5);
+        setBurnProperties(5, 5);
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z,
                                     EntityPlayer player, int idk, float what, float these, float are) {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
         if (tileEntity == null || player.isSneaking()) {
             return false;
         }
@@ -62,13 +63,13 @@ public class BlockBoard extends BlockContainerJaffas {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         InventoryUtils.dropItems(world, x, y, z);
-        super.breakBlock(world, x, y, z, par5, par6);
+        super.breakBlock(world, x, y, z, block, meta);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileBoard();
     }
 
@@ -102,9 +103,9 @@ public class BlockBoard extends BlockContainerJaffas {
     }
 
     @Override
-    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-        super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setBlockTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
+    public void onBlockAdded(World world, int x, int y, int z) {
+        super.onBlockAdded(world, x, y, z);
+        world.setTileEntity(x, y, z, this.createTileEntity(world, world.getBlockMetadata(x, y, z)));
     }
 
     @Override
@@ -118,41 +119,39 @@ public class BlockBoard extends BlockContainerJaffas {
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
-        int meta = par1World.getBlockMetadata(par2, par3, par4);
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
         int side = meta & 3;
-        //return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) par2 + 0), (double) ((float) par3 + 0), (double) ((float) par4 + 0), (double) ((float) par2 + 1), (double) ((float) par3 + 0.5), (double) ((float) par4 + 1));
-        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2 + 0), (double) ((float) par3 + 0), (double) ((float) par4 + 0), (double) ((float) par2 + 1), (double) ((float) par3 + 0.5), (double) ((float) par4 + 1));
+        //return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) x + 0), (double) ((float) y + 0), (double) ((float) z + 0), (double) ((float) x + 1), (double) ((float) y + 0.5), (double) ((float) z + 1));
+        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) x + 0), (double) ((float) y + 0), (double) ((float) z + 0), (double) ((float) x + 1), (double) ((float) y + 0.5), (double) ((float) z + 1));
     }
 
     @Override
-    public void setBlockBoundsBasedOnState(IBlockAccess par1IBlockAccess, int par2, int par3, int par4) {
-        int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+    public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, int x, int y, int z) {
+        int meta = blockAccess.getBlockMetadata(x, y, z);
         int side = meta & 3;
 
         this.setBlockBounds(0, 0, 0, 1, 0.5f, 1);
     }
 
     @Override
-    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-        return super.canPlaceBlockAt(par1World, par2, par3, par4) && par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4);
+    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+        return super.canPlaceBlockAt(world, x, y, z) && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z);
     }
 
     @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         boolean destroy = false;
 
-        if (!par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4)) {
+        if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) {
             destroy = true;
         }
 
         if (destroy) {
-            BlockHelper.setBlock(par1World, par2, par3, par4, 0);
-            if (!par1World.isRemote) {
-                this.dropBlockAsItem(par1World, par2, par3, par4, 0, 0);
+            BlockHelper.setAir(world, x, y, z);
+            if (!world.isRemote) {
+                this.dropBlockAsItem(world, x, y, z, 0, 0);
             }
         }
     }
-
-
 }
