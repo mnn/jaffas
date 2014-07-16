@@ -12,13 +12,11 @@ import monnef.jaffas.food.client.GuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -72,7 +70,7 @@ public class BlockFridge extends BlockContainerJaffas {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world) {
+    public TileEntity createNewTileEntity(World world, int meta) {
         return new TileFridge();
     }
 
@@ -80,7 +78,7 @@ public class BlockFridge extends BlockContainerJaffas {
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
     @Override
-    public Icon getBlockTexture(IBlockAccess access, int x, int y, int z, int side) {
+    public IIcon getIcon(IBlockAccess access, int x, int y, int z, int side) {
         int front;
 
         front = access.getBlockMetadata(x, y, z);
@@ -143,11 +141,11 @@ public class BlockFridge extends BlockContainerJaffas {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         return getTextureFromSide(side);
     }
 
-    private Icon getTextureFromSide(int side) {
+    private IIcon getTextureFromSide(int side) {
         switch (side) {
             case 0:
                 return FridgeBottom;
@@ -170,27 +168,27 @@ public class BlockFridge extends BlockContainerJaffas {
      * set a blocks direction
      */
     private void setDefaultDirection(World par1World, int par2, int par3, int par4) {
-        TileEntity blockEntity = par1World.getBlockTileEntity(par2, par3, par4);
+        TileEntity blockEntity = par1World.getTileEntity(par2, par3, par4);
         if (par1World.isRemote) {
             return;
         }
 
-        int i = par1World.getBlockId(par2, par3, par4 - 1);
-        int j = par1World.getBlockId(par2, par3, par4 + 1);
-        int k = par1World.getBlockId(par2 - 1, par3, par4);
-        int l = par1World.getBlockId(par2 + 1, par3, par4);
+        Block i = par1World.getBlock(par2, par3, par4 - 1);
+        Block j = par1World.getBlock(par2, par3, par4 + 1);
+        Block k = par1World.getBlock(par2 - 1, par3, par4);
+        Block l = par1World.getBlock(par2 + 1, par3, par4);
         byte byte0 = 3;
 
-        if (Block.opaqueCubeLookup[i] && !Block.opaqueCubeLookup[j]) {
+        if (i.isOpaqueCube() && !j.isOpaqueCube()) {
             byte0 = 3;
         }
-        if (Block.opaqueCubeLookup[j] && !Block.opaqueCubeLookup[i]) {
+        if (j.isOpaqueCube() && !i.isOpaqueCube()) {
             byte0 = 2;
         }
-        if (Block.opaqueCubeLookup[k] && !Block.opaqueCubeLookup[l]) {
+        if (k.isOpaqueCube() && !l.isOpaqueCube()) {
             byte0 = 5;
         }
-        if (Block.opaqueCubeLookup[l] && !Block.opaqueCubeLookup[k]) {
+        if (l.isOpaqueCube() && !k.isOpaqueCube()) {
             byte0 = 4;
         }
 
@@ -207,7 +205,7 @@ public class BlockFridge extends BlockContainerJaffas {
     public void onBlockPlacedBy(World w, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         int var = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-        TileEntity blockEntity = w.getBlockTileEntity(x, y, z);
+        TileEntity blockEntity = w.getTileEntity(x, y, z);
         int front = 0;
 
         switch (var) {
@@ -232,7 +230,7 @@ public class BlockFridge extends BlockContainerJaffas {
         ((TileFridge) blockEntity).setFront(front);
         w.setBlockMetadataWithNotify(x, y, z, front, 2 + 4);
 
-        w.notifyBlockChange(x, y, z, blockID);
-        w.notifyBlocksOfNeighborChange(x, y, z, this.blockID);
+        w.notifyBlockChange(x, y, z, this);
+        w.notifyBlocksOfNeighborChange(x, y, z, this);
     }
 }

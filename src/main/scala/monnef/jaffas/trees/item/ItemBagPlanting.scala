@@ -7,19 +7,18 @@ package monnef.jaffas.trees.item
 
 import monnef.jaffas.trees.client.GuiHandlerTrees
 import net.minecraftforge.common.IPlantable
-import net.minecraft.world.World
-import net.minecraft.item.ItemStack
-import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.block.Block
 import monnef.core.utils.ItemStackList
 import net.minecraftforge.common.util.ForgeDirection
 import net.minecraft.init.Blocks
+import net.minecraft.world.World
+import net.minecraft.item.ItemStack
+import net.minecraft.entity.player.EntityPlayer
 
 object ItemBagPlanting {
   val blackList = new ItemStackList("Planting Bag - Black-List")
 }
 
-class ItemBagPlanting(_id: Int, _texture: Int, radius: Int) extends ItemBagBase(_id, _texture) {
+class ItemBagPlanting(_texture: Int, radius: Int) extends ItemBagBase(_texture) {
 
   import monnef.core.utils.scalautils._
   import ItemBagPlanting._

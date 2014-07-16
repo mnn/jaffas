@@ -12,8 +12,8 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.block.redstone.BlockMultiLamp;
 import monnef.jaffas.technic.client.EntityLampLightFX;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockLampDummy extends BlockTechnic {
@@ -45,12 +45,12 @@ public class BlockLampDummy extends BlockTechnic {
         }
     }
 
-    public BlockLampDummy(int id, int textureID) {
-        super(id, textureID, Material.air);
+    public BlockLampDummy(int textureID) {
+        super(textureID, Material.air);
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         return BlockMultiLamp.shadeIcon;
     }
 
@@ -70,6 +70,6 @@ public class BlockLampDummy extends BlockTechnic {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
     }
 }

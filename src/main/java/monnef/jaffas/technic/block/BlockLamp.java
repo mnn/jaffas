@@ -15,30 +15,31 @@ import monnef.core.utils.StringsHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.client.EntityLampLightFX;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
 
 public class BlockLamp extends BlockTechnic {
-    public static Icon shadeIcon;
+    public static IIcon shadeIcon;
     private int shadeTextureID;
 
-    public BlockLamp(int id, int textureID) {
-        super(id, textureID, Material.rock);
+    public BlockLamp(int textureID) {
+        super(textureID, Material.rock);
         setHardness(1f);
         setResistance(1);
-        stepSound = soundGlassFootstep;
-        setLightValue(1);
-        setUnlocalizedName("decoLamp");
+        setStepSound(soundTypeGlass);
+        setLightLevel(1);
+        setBlockName("decoLamp");
     }
 
-    public BlockLamp(int id, int textureID, int shadeTextureID) {
-        this(id, textureID);
+    public BlockLamp(int textureID, int shadeTextureID) {
+        this(textureID);
         this.shadeTextureID = shadeTextureID;
     }
 
@@ -48,8 +49,8 @@ public class BlockLamp extends BlockTechnic {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
-        super.registerIcons(iconRegister);
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        super.registerBlockIcons(iconRegister);
         if (getClass() == BlockLamp.class) {
             shadeIcon = iconRegister.registerIcon(CustomIconHelper.generateId(this, shadeTextureID));
         }
@@ -75,10 +76,10 @@ public class BlockLamp extends BlockTechnic {
     }
 
     @Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
-        if (blockID == JaffasTechnic.lampDeco.blockID) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+        if (this == JaffasTechnic.lampDeco) {
             for (int i = 0; i < 16; i++) {
-                par3List.add(new ItemStack(blockID, 1, i));
+                par3List.add(new ItemStack(this, 1, i));
             }
         } else {
             super.getSubBlocks(par1, par2CreativeTabs, par3List);

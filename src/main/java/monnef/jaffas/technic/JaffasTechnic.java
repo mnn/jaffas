@@ -11,13 +11,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.power.WrenchHelper;
 import monnef.core.utils.DyeColor;
 import monnef.core.utils.DyeHelper;
+import monnef.core.utils.EntityHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.external.ThermalExpansionHelper;
@@ -96,19 +96,19 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
-import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import org.apache.logging.log4j.Level;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 import java.util.Map;
-import java.util.logging.Level;
 
 import static monnef.core.utils.RegistryUtils.registerMultiBlock;
 import static monnef.jaffas.food.JaffasFood.Log;
@@ -157,7 +157,6 @@ import static monnef.jaffas.technic.common.FungiCatalog.PARASOL_ID;
 import static monnef.jaffas.technic.common.FungiCatalog.PORCINO_ID;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas;after:Jaffas-Trees")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class JaffasTechnic extends JaffasModBase {
     private static final int NUGGETS_COUT_FOR_EACH_INGOT_IN_RECYCLE = 5;
     @Mod.Instance(ModId)
@@ -170,56 +169,21 @@ public class JaffasTechnic extends JaffasModBase {
     public static final String MUSHROOMS_EATABLE = "jaffasMushroomEatable";
     public boolean debug;
 
-    private int JaffarrolID;
     public static ItemTechnic jaffarrol;
-
-    private int JaffarrolRawID;
     public static ItemTechnic jaffarrolRaw;
-
-    private int JaffarrolRefinedID;
     public static ItemTechnic jaffarrolRefined;
-
-    private int LimsewID;
     public static ItemTechnic limsew;
-
-    private int jaffarrolDustID;
     public static ItemTechnic jaffarrolDust;
-
-    private int BlockJaffarrolID;
     public static BlockTechnic blockJaffarrol;
-
-    private int jaffarrolNuggetID;
     public static ItemTechnic jaffarrolNugget;
-
-    private int BlockLimsewID;
     public static BlockTechnic blockLimsew;
-
-    private int ItemCentralUnitID;
     public static ItemCentralUnit itemCentralUnit;
-
-    private int FunnelID;
     public static ItemTechnic funnel;
-
-    private int ItemCasingID;
     public static ItemTechnic itemCasing;
-
-    private int ItemCasingRefinedID;
     public static ItemTechnic itemCasingRefined;
-
-    private int BlockJaffarrolOreID;
     public static BlockOre blockJaffarrolOre;
-
-    private int BlockLimsewOreID;
     public static BlockOre blockLimsewOre;
-
-    private int itemCompostID;
     public static ItemCompost compost;
-
-    private int ItemJAxeID;
-    private int ItemJSpadeID;
-    private int ItemJPickaxeID;
-    private int ItemJHoeID;
-    private int ItemJSwordID;
 
     public static ItemAxeTechnic axeJaffarrol;
     public static ItemPickaxeTechnic pickaxeJaffarrol;
@@ -233,83 +197,39 @@ public class JaffasTechnic extends JaffasModBase {
 
     private int LocomotiveEntityID;
 
-    private int ItemLocomotiveID;
     public static ItemLocomotive itemLocomotive;
-
-    private int blockFungiBoxID;
     public static BlockFungiBox fungiBox;
-
-    private int ItemFungusID;
     public static ItemFungus fungus;
-
-    private int ItemMushroomKnifeID;
     public static ItemMushroomKnife mushroomKnife;
 
-    private int blockConstructionID;
     public static BlockConstruction constructionBlock;
-    private int blockConstructionDummyID;
     public static BlockConstructionDummy dummyConstructionBlock;
-    private int blockCompostCoreID;
     public static BlockCompostCore compostCore;
 
-    private int blockMultiLampID;
-    private int blockDecoLampID;
     public static BlockMultiLamp lamp;
     public static BlockLampDummy lampDummy;
     public static BlockLamp lampDeco;
 
-    private int itemRainbowDustID;
     public static ItemTechnic rainbowDust;
-
-    private int itemGemsID;
     public static ItemTechnic gems;
 
-    private int blockHighPlantID;
     public static BlockHighPlant highPlant;
-
-    private int itemHighPlantPostID;
     public static ItemHightPlantPost highPlantPost;
-
-    private int itemHopID;
     public static ItemTechnic hop;
-
-    private int itemProcessedHopID;
     public static ItemTechnic processedHop;
-
-    private int itemProcessedHopInBucketID;
     public static ItemTechnic processedHopInBucket;
-
-    private int itemBrewedHopInBucketID;
     public static ItemTechnic brewedHopInBucket;
-
-    private int itemHopWeatMixtureID;
     public static ItemTechnic hopWeatMixture;
-
-    private int itemCobbleBreakerID;
-    public static BlockCobbleBreaker cobbleBreaker;
-
-    private int itemHopSeedsID;
     public static ItemTechnic hopSeeds;
-
-    private int itemKegID;
     public static ItemKeg itemKeg;
-
-    private int blockKegID;
     public static BlockKeg keg;
-
-    private int itemFermenterID;
     public static ItemFermenter itemFermenter;
-
-    private int blockFermenterID;
     public static BlockFermenter fermenter;
 
-    private int blockRepeaterID;
+    public static BlockCobbleBreaker cobbleBreaker;
+
     public static BlockAnalogRepeater repeater;
-
-    private int blockSamplerID;
     public static BlockSampler sampler;
-
-    private int blockRandomizerID;
     public static BlockRandomizer randomizer;
 
     /*
@@ -319,13 +239,11 @@ public class JaffasTechnic extends JaffasModBase {
     EMERALD(3, 1561, 8.0F, 3, 10),
     GOLD(0, 32, 12.0F, 0, 22);
     */
-    public static EnumToolMaterial EnumToolMaterialJaffarrol = EnumHelper.addToolMaterial("Jaffarrol", 3, 1000, 9.0F, 3, 12);
+    public static Item.ToolMaterial EnumToolMaterialJaffarrol = EnumHelper.addToolMaterial("Jaffarrol", 3, 1000, 9.0F, 3, 12);
 
     public static int lampRenderID;
     private boolean disableRedstoneGadgets;
     public static boolean disableLampParticles;
-
-    public static int omniWrenchId;
 
     @Mod.EventHandler
     @Override
@@ -334,82 +252,14 @@ public class JaffasTechnic extends JaffasModBase {
 
         try {
             config.load();
-            idProvider.linkWithConfig(config);
-
-            JaffarrolID = idProvider.getItemIDFromConfig("jaffarrol");
-            JaffarrolRawID = idProvider.getItemIDFromConfig("jaffarrolRaw");
-            JaffarrolRefinedID = idProvider.getItemIDFromConfig("jaffarrolRefined");
-            LimsewID = idProvider.getItemIDFromConfig("limsew");
-
-            jaffarrolDustID = idProvider.getItemIDFromConfig("jaffarrolDust");
-
-            BlockJaffarrolID = idProvider.getBlockIDFromConfig("jaffarrolBlock");
-            BlockLimsewID = idProvider.getBlockIDFromConfig("limsewBlock");
-
-            ItemCentralUnitID = idProvider.getItemIDFromConfig("central unit");
-
-            ItemCasingID = idProvider.getItemIDFromConfig("casing");
-            ItemCasingRefinedID = idProvider.getItemIDFromConfig("casingRefined");
-
-            FunnelID = idProvider.getItemIDFromConfig("funnel");
-
-            BlockJaffarrolOreID = idProvider.getBlockIDFromConfig("jaffarrolOre");
-            BlockLimsewOreID = idProvider.getBlockIDFromConfig("limsewOre");
-
-            blockFungiBoxID = idProvider.getBlockIDFromConfig("fungiBox");
-
-            ItemJAxeID = idProvider.getItemIDFromConfig("jaffarrolAxe");
-            ItemJPickaxeID = idProvider.getItemIDFromConfig("jaffarrolPickaxe");
-            ItemJHoeID = idProvider.getItemIDFromConfig("jaffarrolHow");
-            ItemJSpadeID = idProvider.getItemIDFromConfig("jaffarrolSpade");
-            ItemJSwordID = idProvider.getItemIDFromConfig("jaffarrolSword");
-            ItemLocomotiveID = idProvider.getBlockIDFromConfig("locomotive");
-
-            LocomotiveEntityID = idProvider.getEntityIDFromConfig("locomotive");
-
-            ItemFungusID = idProvider.getItemIDFromConfig("fungus");
-            ItemMushroomKnifeID = idProvider.getItemIDFromConfig("mushroomKnife");
-
-            blockConstructionID = idProvider.getBlockIDFromConfig("contructionBlock");
-            blockConstructionDummyID = idProvider.getBlockIDFromConfig("dummyContructionBlock");
-            blockCompostCoreID = idProvider.getBlockIDFromConfig("compostCore");
+            LocomotiveEntityID = EntityHelper.getNextFreeEntityID();
 
             disableRedstoneGadgets = config.get(Configuration.CATEGORY_GENERAL, "disableRedstoneGadgets", false).getBoolean(false);
 
             if (!disableRedstoneGadgets) {
                 // multi lamp
-                blockMultiLampID = idProvider.getBlockIDFromConfig("multiLamp");
-                blockDecoLampID = idProvider.getBlockIDFromConfig("decoLamp");
-                int lampDummyId = idProvider.getTempBlockId();
-                lampDummy = new BlockLampDummy(lampDummyId, 41);
-                idProvider.safelyRemoveTempBlock(lampDummyId, lampDummy);
-                itemRainbowDustID = idProvider.getItemIDFromConfig("rainbowDust");
-                itemGemsID = idProvider.getItemIDFromConfig("gems");
-                blockRepeaterID = idProvider.getBlockIDFromConfig("repeater");
-                blockSamplerID = idProvider.getBlockIDFromConfig("sampler");
-                blockRandomizerID = idProvider.getBlockIDFromConfig("randomizer");
+                lampDummy = new BlockLampDummy(41);
             }
-
-            itemCompostID = idProvider.getItemIDFromConfig("compost");
-
-            blockHighPlantID = idProvider.getBlockIDFromConfig("highPlant");
-            itemHighPlantPostID = idProvider.getItemIDFromConfig("highPlantPost");
-
-            itemHopID = idProvider.getItemIDFromConfig("hop");
-            itemProcessedHopID = idProvider.getItemIDFromConfig("processedHop");
-            itemProcessedHopInBucketID = idProvider.getItemIDFromConfig("processedHopBucket");
-            itemBrewedHopInBucketID = idProvider.getItemIDFromConfig("brewedHopBucket");
-            itemHopSeedsID = idProvider.getItemIDFromConfig("hopSeeds");
-
-            itemCobbleBreakerID = idProvider.getBlockIDFromConfig("cobbleBreaker");
-
-            itemKegID = idProvider.getItemIDFromConfig("itemKeg");
-            blockKegID = idProvider.getBlockIDFromConfig("keg");
-
-            itemFermenterID = idProvider.getItemIDFromConfig("itemFermenter");
-            blockFermenterID = idProvider.getBlockIDFromConfig("fermenter");
-
-            itemHopWeatMixtureID = idProvider.getItemIDFromConfig("hopWheatMixture");
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
 
@@ -422,23 +272,12 @@ public class JaffasTechnic extends JaffasModBase {
             disableLampParticles = config.get(Configuration.CATEGORY_GENERAL, "disableLampParticles", false).getBoolean(false);
             TileCobbleBreaker.setTimer(config.get(Configuration.CATEGORY_GENERAL, "cobbleBreakerTimer", 12).getInt());
 
-            jaffarrolNuggetID = idProvider.getItemIDFromConfig("jaffarrolNugget");
             ItemHoeTechnic.falloutScanAllowed = config.get(Configuration.CATEGORY_GENERAL, "hoeHarvestingFalloutScanAllowed", true).getBoolean(true);
         } catch (Exception e) {
-            FMLLog.log(Level.SEVERE, e, "Mod Jaffas (technic) can't read config file.");
+            FMLLog.log(Level.FATAL, e, "Mod Jaffas (technic) can't read config file.");
         } finally {
             config.save();
         }
-    }
-
-    @Override
-    protected int getStartOfItemsIdInterval() {
-        return 26244;
-    }
-
-    @Override
-    protected int getStartOfBlocksIdInterval() {
-        return 3450;
     }
 
     @Override
@@ -486,18 +325,18 @@ public class JaffasTechnic extends JaffasModBase {
 
     @Mod.EventHandler
     public void postLoad(FMLPostInitializationEvent event) {
-        omniWrenchId = ItemHelper.findItemIdByName("omniwrench");
-        if (omniWrenchId != 0) {
-            Log.printInfo("Omni wrench detected (" + omniWrenchId + "), compatibility with pipe wrench engaged.");
-            WrenchHelper.registerWrenchItem(omniWrenchId);
+        Item omniWrench = ItemHelper.findItemByName("omniwrench");
+        if (omniWrench != null) {
+            Log.printInfo("Omni wrench detected, compatibility with pipe wrench engaged.");
+            WrenchHelper.registerWrenchItem(omniWrench);
         }
 
         GuideBookHelper.generateGuideBook();
-        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Item.writableBook, jaffarrolNugget);
+        GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Items.writable_book, jaffarrolNugget);
     }
 
     private void createFungiStuff() {
-        fungiBox = new BlockFungiBox(blockFungiBoxID, 27);
+        fungiBox = new BlockFungiBox(27);
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
         JaffasRegistryHelper.registerTileEntity(TileFungiBox.class, "jaffasFungiBox");
         if (otherMods.isMineFactoryReloadedDetected()) {
@@ -507,7 +346,7 @@ public class JaffasTechnic extends JaffasModBase {
             otherMods.insertFarmable(FORESTRY_FARM_FUNGAL, new MushroomCropProvider());
         }
 
-        fungus = new ItemFungus(ItemFungusID, 99);
+        fungus = new ItemFungus(99);
         RegistryUtils.registerItem(fungus, "jaffasFungus", "Fungus");
         for (Map.Entry<Integer, FungusInfo> item : FungiCatalog.catalog.entrySet()) {
             if (item.getValue().ordinalItemBind) {
@@ -516,7 +355,7 @@ public class JaffasTechnic extends JaffasModBase {
         }
         FungiCatalog.registerShroomGroups();
 
-        mushroomKnife = new ItemMushroomKnife(ItemMushroomKnifeID, 28);
+        mushroomKnife = new ItemMushroomKnife(28);
         RegistryUtils.registerItem(mushroomKnife, "knifeMushroom", "Mushroom Knife");
     }
 
@@ -548,41 +387,41 @@ public class JaffasTechnic extends JaffasModBase {
     }
 
     private void createItemsAndBlocks() {
-        jaffarrol = new ItemTechnic(JaffarrolID, 0);
+        jaffarrol = new ItemTechnic(0);
         RegistryUtils.registerItem(jaffarrol, "jaffarrol", "Jaffarrol Ingot");
 
-        jaffarrolRaw = new ItemTechnic(JaffarrolRawID, 1);
+        jaffarrolRaw = new ItemTechnic(1);
         RegistryUtils.registerItem(jaffarrolRaw, "jaffarrolRaw", "Raw Jaffarrol");
 
-        jaffarrolRefined = new ItemTechnic(JaffarrolRefinedID, 2);
+        jaffarrolRefined = new ItemTechnic(2);
         jaffarrolRefined.setUnlocalizedName("jaffarrolRefined");
         LanguageRegistry.addName(jaffarrolRefined, "Refined Jaffarrol");
 
-        limsew = new ItemTechnic(LimsewID, 3);
+        limsew = new ItemTechnic(3);
         limsew.setUnlocalizedName("limsewDust");
         LanguageRegistry.addName(limsew, "Limsew Dust");
 
-        blockJaffarrol = new BlockTechnic(BlockJaffarrolID, 4, Material.iron);
-        blockJaffarrol.setUnlocalizedName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
+        blockJaffarrol = new BlockTechnic(4, Material.iron);
+        blockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
         RegistryUtils.registerBlock(blockJaffarrol);
         LanguageRegistry.addName(blockJaffarrol, "Block of Jaffarrol");
 
-        blockLimsew = new BlockTechnic(BlockLimsewID, 5, Material.iron);
-        blockLimsew.setUnlocalizedName("blockOfLimsew").setHardness(4f).setResistance(7f);
+        blockLimsew = new BlockTechnic(5, Material.iron);
+        blockLimsew.setBlockName("blockOfLimsew").setHardness(4f).setResistance(7f);
         RegistryUtils.registerBlock(blockLimsew);
         LanguageRegistry.addName(blockLimsew, "Block of Limsew");
 
-        itemCentralUnit = new ItemCentralUnit(ItemCentralUnitID, 6);
+        itemCentralUnit = new ItemCentralUnit(6);
 
-        funnel = new ItemTechnic(FunnelID, 16);
+        funnel = new ItemTechnic(16);
         funnel.setUnlocalizedName("funnel");
         LanguageRegistry.addName(funnel, "Funnel");
 
-        itemCasing = new ItemTechnic(ItemCasingID, 13);
+        itemCasing = new ItemTechnic(13);
         itemCasing.setUnlocalizedName("casing");
         LanguageRegistry.addName(itemCasing, "Casing");
 
-        itemCasingRefined = new ItemTechnic(ItemCasingRefinedID, 14);
+        itemCasingRefined = new ItemTechnic(14);
         itemCasingRefined.setUnlocalizedName("casingRefined");
         LanguageRegistry.addName(itemCasingRefined, "Refined Casing");
 
@@ -593,115 +432,115 @@ public class JaffasTechnic extends JaffasModBase {
         JaffasFood.instance.items.createJaffaArmor(jaffarrolLeggins, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.leggings, "jaffas_jarmor2.png", _last);
         JaffasFood.instance.items.createJaffaArmor(jaffarrolBoots, ContentHolder.EnumArmorMaterialJaffarrol, renderIndexJaffarrol, ItemJaffaPlate.ArmorType.boots, "jaffas_jarmor1.png", _last);
 
-        blockJaffarrolOre = new BlockOre(BlockJaffarrolOreID, 17);
-        MinecraftForge.setBlockHarvestLevel(blockJaffarrolOre, "pickaxe", 2);
+        blockJaffarrolOre = new BlockOre(17);
+        blockJaffarrolOre.setHarvestLevel("pickaxe", 2);
         RegistryUtils.registerBlock(blockJaffarrolOre, "jaffarrolOre", "Jaffarrol Ore");
 
-        blockLimsewOre = new BlockOre(BlockLimsewOreID, 18);
-        MinecraftForge.setBlockHarvestLevel(blockLimsewOre, "pickaxe", 2);
+        blockLimsewOre = new BlockOre(18);
+        blockLimsewOre.setHarvestLevel("pickaxe", 2);
         RegistryUtils.registerBlock(blockLimsewOre, "limsewOre", "Limsew Ore");
 
-        itemLocomotive = new ItemLocomotive(ItemLocomotiveID, 24);
+        itemLocomotive = new ItemLocomotive(24);
         LanguageRegistry.addName(itemLocomotive, "Mini-Locomotive");
 
-        jaffarrolDust = new ItemTechnic(jaffarrolDustID, 25);
+        jaffarrolDust = new ItemTechnic(25);
         RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
 
-        constructionBlock = new BlockConstruction(blockConstructionID, 30);
+        constructionBlock = new BlockConstruction(30);
         registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
 
         JaffasRegistryHelper.registerTileEntity(TileConstructionDummy.class, "jaffasConstructionDummy");
         JaffasRegistryHelper.registerTileEntity(TileCompostCore.class, "jaffasCompostCore");
 
-        dummyConstructionBlock = new BlockConstructionDummy(blockConstructionDummyID, 17);
+        dummyConstructionBlock = new BlockConstructionDummy(17);
         RegistryUtils.registerBlock(dummyConstructionBlock, "dummyConstruction", "Dummy Construction Block - are you a cheater?");
 
-        compostCore = new BlockCompostCore(blockCompostCoreID, 35, Material.iron);
+        compostCore = new BlockCompostCore(35, Material.iron);
         RegistryUtils.registerBlock(compostCore, "compostCore", "Compost Core Block");
 
-        compost = new ItemCompost(itemCompostID, 29);
+        compost = new ItemCompost(29);
         RegistryUtils.registerItem(compost, "compost", "Compost");
         if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.registerFertilizer(compost);
         }
 
         if (!disableRedstoneGadgets) {
-            lampDeco = new BlockLamp(blockDecoLampID, 37, 38);
+            lampDeco = new BlockLamp(37, 38);
             registerMultiBlock(lampDeco, ItemBlockJaffas.class, lampDeco.generateTitles(), lampDeco.generateSubNames());
             Item.itemsList[lampDeco.blockID].setFull3D();
 
-            lamp = new BlockMultiLamp(blockMultiLampID, 37);
+            lamp = new BlockMultiLamp(37);
             registerRedstoneBlock(lamp, "multiLamp", "Multi-Lamp");
 
-            gems = new ItemTechnic(itemGemsID, 40);
+            gems = new ItemTechnic(40);
             RegistryUtils.registerItem(gems, "colourfulGems", "Colourful Gems");
             gems.setMaxStackSize(16);
 
-            rainbowDust = new ItemTechnic(itemRainbowDustID, 39);
+            rainbowDust = new ItemTechnic(39);
             RegistryUtils.registerItem(rainbowDust, "rainbowDust", "Rainbow Dust");
             rainbowDust.setInfo("Maybe a key to the secret cow level?");
 
-            repeater = new BlockAnalogRepeater(blockRepeaterID, 52, 3);
+            repeater = new BlockAnalogRepeater(52, 3);
             registerRedstoneBlock(repeater, "repeater", "Analog Repeater");
             JaffasRegistryHelper.registerTileEntity(TileAnalogRepeater.class, "repeater");
 
-            sampler = new BlockSampler(blockSamplerID, 60, 3);
+            sampler = new BlockSampler(60, 3);
             registerRedstoneBlock(sampler, "sampler", "Sample-and-hold");
             JaffasRegistryHelper.registerTileEntity(TileSampler.class, "sampler");
 
-            randomizer = new BlockRandomizer(blockRandomizerID, 63, 3);
+            randomizer = new BlockRandomizer(63, 3);
             registerRedstoneBlock(randomizer, "randomizer", "Randomizer");
             JaffasRegistryHelper.registerTileEntity(TileRandomizer.class, "randomizer");
         }
 
-        highPlant = new BlockHighPlant(blockHighPlantID, 44);
+        highPlant = new BlockHighPlant(44);
         RegistryUtils.registerBlock(highPlant, "highPlant", "High Plant");
 
-        highPlantPost = new ItemHightPlantPost(itemHighPlantPostID, 44);
+        highPlantPost = new ItemHightPlantPost(44);
         RegistryUtils.registerItem(highPlantPost, "highPlantPost", "Plant Post");
         JaffasRegistryHelper.registerTileEntity(TileHighPlant.class, "highPlantPost");
 
-        hop = new ItemTechnic(itemHopID, 45);
+        hop = new ItemTechnic(45);
         RegistryUtils.registerItem(hop, "hop", "Hop");
 
-        processedHop = new ItemTechnic(itemProcessedHopID, 47);
+        processedHop = new ItemTechnic(47);
         RegistryUtils.registerItem(processedHop, "hopProcessed", "Beer Mixture");
 
-        processedHopInBucket = new ItemTechnic(itemProcessedHopInBucketID, 48);
+        processedHopInBucket = new ItemTechnic(48);
         RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket", "Beer Mixture In Bucket");
         processedHopInBucket.setContainerItem(Item.bucketEmpty);
 
-        brewedHopInBucket = new ItemTechnic(itemBrewedHopInBucketID, 49);
+        brewedHopInBucket = new ItemTechnic(49);
         RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Hopped Wort");
-        brewedHopInBucket.setContainerItem(Item.bucketEmpty);
+        brewedHopInBucket.setContainerItem(Items.bucket);
 
-        hopSeeds = new ItemTechnic(itemHopSeedsID, 46);
+        hopSeeds = new ItemTechnic(46);
         RegistryUtils.registerItem(hopSeeds, "hopSeeds", "Hop Seeds");
 
-        hopWeatMixture = new ItemTechnic(itemHopWeatMixtureID, 50);
+        hopWeatMixture = new ItemTechnic(50);
         RegistryUtils.registerItem(hopWeatMixture, "hopWeatMixture", "Mixture of Hop and Wheat");
 
-        cobbleBreaker = new BlockCobbleBreaker(itemCobbleBreakerID, 50, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
+        cobbleBreaker = new BlockCobbleBreaker(50, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
         RegistryUtils.registerBlock(cobbleBreaker, "cobbleBreaker", "Cobble Breaker");
         JaffasRegistryHelper.registerTileEntity(TileCobbleBreaker.class, "cobbleBreaker");
 
-        itemKeg = new ItemKeg(itemKegID, 42);
+        itemKeg = new ItemKeg(42);
         RegistryUtils.registerItem(itemKeg, "itemKeg", "Keg");
         itemKeg.registerTexts();
 
-        keg = new BlockKeg(blockKegID, 42);
+        keg = new BlockKeg(42);
         RegistryUtils.registerBlock(keg, "keg", "Keg");
         JaffasRegistryHelper.registerTileEntity(TileKeg.class, "keg");
 
-        itemFermenter = new ItemFermenter(itemFermenterID, 43);
+        itemFermenter = new ItemFermenter(43);
         RegistryUtils.registerItem(itemFermenter, "itemFermenter", "Fermenter");
 
-        fermenter = new BlockFermenter(blockFermenterID, 43);
+        fermenter = new BlockFermenter(43);
         RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
         JaffasRegistryHelper.registerTileEntity(TileFermenter.class, "fermenter");
         JaffasRegistryHelper.registerTileEntity(TileFermenterInventoryRouter.class, "fermenterInvRouter");
 
-        jaffarrolNugget = new ItemTechnic(jaffarrolNuggetID, 103);
+        jaffarrolNugget = new ItemTechnic(103);
         RegistryUtils.registerItem(jaffarrolNugget, "jaffarrolNugget", "Jaffarrol Nugget");
 
         createTools();
@@ -714,23 +553,23 @@ public class JaffasTechnic extends JaffasModBase {
     private void createTools() {
         EnumToolMaterialJaffarrol.customCraftingMaterial = jaffarrol;
 
-        axeJaffarrol = new ItemAxeTechnic(ItemJAxeID, 21, EnumToolMaterialJaffarrol);
+        axeJaffarrol = new ItemAxeTechnic(21, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(axeJaffarrol, "axeJaffarrol", "Jaffarrol Axe");
         MinecraftForge.setToolClass(axeJaffarrol, "axe", 3);
 
-        pickaxeJaffarrol = new ItemPickaxeTechnic(ItemJPickaxeID, 20, EnumToolMaterialJaffarrol);
+        pickaxeJaffarrol = new ItemPickaxeTechnic(20, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(pickaxeJaffarrol, "pickaxeJaffarrol", "Jaffarrol Pickaxe");
         MinecraftForge.setToolClass(pickaxeJaffarrol, "pickaxe", 3);
         TileCobbleBreaker.registerJaffarrolTool(pickaxeJaffarrol);
 
-        spadeJaffarrol = new ItemSpadeTechnic(ItemJSpadeID, 19, EnumToolMaterialJaffarrol);
+        spadeJaffarrol = new ItemSpadeTechnic(19, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(spadeJaffarrol, "spadeJaffarrol", "Jaffarrol Shovel");
         MinecraftForge.setToolClass(spadeJaffarrol, "shovel", 3);
 
-        hoeJaffarrol = new ItemHoeTechnic(ItemJHoeID, 22, EnumToolMaterialJaffarrol);
+        hoeJaffarrol = new ItemHoeTechnic(22, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(hoeJaffarrol, "hoeJaffarrol", "Jaffarrol Hoe");
 
-        swordJaffarrol = new ItemSwordTechnic(ItemJSwordID, 23, EnumToolMaterialJaffarrol);
+        swordJaffarrol = new ItemSwordTechnic(23, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(swordJaffarrol, "swordJaffarrol", "Jaffarrol Sword");
     }
 
@@ -742,8 +581,8 @@ public class JaffasTechnic extends JaffasModBase {
                     new ItemStack(Item.redstone));
         }
 
-        GameRegistry.addSmelting(jaffarrolRaw.itemID, new ItemStack(jaffarrol), 1f);
-        GameRegistry.addSmelting(jaffarrol.itemID, new ItemStack(jaffarrolRefined), 0);
+        GameRegistry.addSmelting(jaffarrolRaw, new ItemStack(jaffarrol), 1f);
+        GameRegistry.addSmelting(jaffarrol, new ItemStack(jaffarrolRefined), 0);
 
         GameRegistry.addShapelessRecipe(new ItemStack(blockJaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol),
                 new ItemStack(jaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol), new ItemStack(jaffarrol),
@@ -768,7 +607,7 @@ public class JaffasTechnic extends JaffasModBase {
 
         GameRegistry.addRecipe(new ItemStack(funnel), "I I", "J J", " J ", 'I', Item.ingotIron, 'J', jaffarrol);
         GameRegistry.addRecipe(new ItemStack(itemCasing, 1, 0), "JJJ", "J J", "JJJ", 'J', jaffarrol);
-        GameRegistry.addSmelting(itemCasing.itemID, new ItemStack(itemCasingRefined), 1f);
+        GameRegistry.addSmelting(itemCasing, new ItemStack(itemCasingRefined), 1f);
 
         GameRegistry.addRecipe(new ItemStack(ContentHolder.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
                 '&', itemCasing, 'J', jaffarrol, 'B', Block.fenceIron, 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
@@ -800,8 +639,8 @@ public class JaffasTechnic extends JaffasModBase {
 
         GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', jaffarrolNugget);
 
-        GameRegistry.addSmelting(blockJaffarrolOre.blockID, new ItemStack(jaffarrol), 1f);
-        GameRegistry.addSmelting(blockLimsewOre.blockID, new ItemStack(limsew), 1f);
+        GameRegistry.addSmelting(blockJaffarrolOre, new ItemStack(jaffarrol), 1f);
+        GameRegistry.addSmelting(blockLimsewOre, new ItemStack(limsew), 1f);
 
         GameRegistry.addRecipe(new ItemStack(swordJaffarrol), "J", "J", "G", 'J', jaffarrol, 'G', Item.ingotGold);
         GameRegistry.addRecipe(new ItemStack(hoeJaffarrol), "JJ", " S", " S", 'J', jaffarrol, 'S', Item.stick);
@@ -845,7 +684,7 @@ public class JaffasTechnic extends JaffasModBase {
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRaw));
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRefined));
-        GameRegistry.addSmelting(jaffarrolDust.itemID, new ItemStack(jaffarrol), 0);
+        GameRegistry.addSmelting(jaffarrolDust, new ItemStack(jaffarrol), 0);
 
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IJI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron);
         GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "I I", "JIJ", 'J', jaffarrol, 'I', Block.glass);
@@ -890,7 +729,7 @@ public class JaffasTechnic extends JaffasModBase {
                     JaffasTechnic.limsew,
                     JaffasTechnic.jaffarrolDust
             );
-            GameRegistry.addSmelting(rainbowDust.itemID, new ItemStack(gems), 7f);
+            GameRegistry.addSmelting(rainbowDust, new ItemStack(gems), 7f);
 
             GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBL", "IRI", 'L', Item.glowstone, 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
 
@@ -910,7 +749,7 @@ public class JaffasTechnic extends JaffasModBase {
         TileGrinder.addRecipe(new ItemStack(hopWeatMixture), new ItemStack(processedHop), 400);
 
         GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
-        GameRegistry.addSmelting(processedHopInBucket.itemID, new ItemStack(brewedHopInBucket), 1f);
+        GameRegistry.addSmelting(processedHopInBucket, new ItemStack(brewedHopInBucket), 1f);
         GameRegistry.addShapelessRecipe(new ItemStack(hopSeeds), hop);
         Recipes.addRecipe(new ShapedOreRecipe(itemKeg, "PSP", "PJP", "PSP", 'P', "plankWood", 'S', "slabWood", 'J', jaffarrol));
         GameRegistry.addShapedRecipe(new ItemStack(getItem(beerMugEmpty), 2), "GG ", "GGG", "GG ", 'G', Block.glass);

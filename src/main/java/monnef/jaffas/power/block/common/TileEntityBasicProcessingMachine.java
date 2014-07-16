@@ -8,6 +8,7 @@ package monnef.jaffas.power.block.common;
 import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.ItemHelper;
+import monnef.core.utils.NBTHelper;
 import monnef.jaffas.power.common.IProcessingRecipe;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
 import net.minecraft.item.ItemStack;
@@ -123,7 +124,7 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
 
         if (isWorking()) {
             processTime++;
-            float power = consumeNeededPower();
+            double power = consumeNeededPower();
             if (power < powerNeeded) {
                 Log.printWarning("Inconsistency detected in power framework! " + getClass().getSimpleName());
             } else {
@@ -252,9 +253,9 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
         this.processTime = tag.getInteger(PROCESS_TIME_TAG_NAME);
         this.processItemTime = tag.getInteger(PROCESS_ITEM_TIME_TAG_NAME);
 
-        NBTTagList tagList = tag.getTagList(PROCESSING_INV_TAG);
+        NBTTagList tagList = tag.getTagList(PROCESSING_INV_TAG, NBTHelper.TagTypes.TAG_Compound);
         for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound innerTag = (NBTTagCompound) tagList.tagAt(i);
+            NBTTagCompound innerTag = tagList.getCompoundTagAt(i);
             byte slot = innerTag.getByte(SLOT_TAG);
             if (slot >= 0 && slot < processingInv.length) {
                 processingInv[slot] = ItemStack.loadItemStackFromNBT(innerTag);

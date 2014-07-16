@@ -44,13 +44,12 @@ trait ItemJaffaFoodMultipleTrait[Self <: ItemMonnefCore] extends ItemJaffaFoodTr
   }
 
   @SideOnly(Side.CLIENT)
-  abstract override def getSubItems(itemId: Int, tab: CreativeTabs, list: java.util.List[_]) {
-    val l = list.asInstanceOf[java.util.List[ItemStack]]
-    for (i <- 0 until subNames.size) l.add(new ItemStack(this, 1, i))
+  override def getSubItemsCustom(itemId: Int, tab: CreativeTabs, list: java.util.List[ItemStack]) {
+    for (i <- 0 until subNames.size) list.add(new ItemStack(this, 1, i))
   }
 }
 
 trait GetSubItemsMethodProviderTrait {
   @SideOnly(Side.CLIENT)
-  def getSubItems(itemId: Int, tab: CreativeTabs, list: java.util.List[_]): Unit
+  def getSubItemsCustom(itemId: Int, tab: CreativeTabs, list: java.util.List[ItemStack]): Unit
 }

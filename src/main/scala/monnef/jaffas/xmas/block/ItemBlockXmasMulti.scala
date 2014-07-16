@@ -8,10 +8,10 @@ import net.minecraft.util.{IIcon, MathHelper}
 import monnef.core.common.CustomIconHelper
 import monnef.core.api.ICustomIcon
 import monnef.jaffas.xmas.common.IconDescriptorXmas
-import scala.runtime._
 import net.minecraft.client.renderer.texture.IIconRegister
+import net.minecraft.block.Block
 
-abstract class ItemBlockXmasMulti(_id: Int) extends ItemBlockJaffas(_id) with IconDescriptorXmas {
+abstract class ItemBlockXmasMulti(_block: Block) extends ItemBlockJaffas(_block) with IconDescriptorXmas {
   private var subTitles: Array[String] = null
 
   setHasSubtypes(true)

@@ -12,12 +12,12 @@ import monnef.jaffas.food.item.JaffasHelper;
 import monnef.jaffas.food.item.common.ItemManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.Icon;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
@@ -45,8 +45,8 @@ public class BlockJaffaBomb extends BlockJaffas {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
-        super.registerIcons(iconRegister);
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        super.registerBlockIcons(iconRegister);
         specialTexture = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
     }
 
@@ -73,7 +73,7 @@ public class BlockJaffaBomb extends BlockJaffas {
                 pY = y + 1 + rand.nextGaussian() * 0.5;
                 pZ = z + rand.nextGaussian();
 
-                notAir = w.getBlockId((int) Math.floor(pX), (int) Math.floor(pY), (int) Math.floor(pZ)) != 0;
+                notAir = !w.isAirBlock((int) Math.floor(pX), (int) Math.floor(pY), (int) Math.floor(pZ));
                 counter++;
             } while (notAir && counter < 5);
 
@@ -101,14 +101,14 @@ public class BlockJaffaBomb extends BlockJaffas {
     }
 
     private void testNeighbourForBomb(World w, int x, int y, int z) {
-        if (w.getBlockId(x, y, z) == this.blockID) {
+        if (w.getBlock(x, y, z) == this) {
             this.detonate(w, x, y, z);
         }
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourId) {
-        if (neighbourId > 0 && Block.blocksList[neighbourId].canProvidePower() && world.isBlockIndirectlyGettingPowered(x, y, z)) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
+        if (neighbour.canProvidePower() && world.isBlockIndirectlyGettingPowered(x, y, z)) {
             detonate(world, x, y, z);
         }
     }
@@ -119,13 +119,13 @@ public class BlockJaffaBomb extends BlockJaffas {
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return 0;
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return Item.getItemById(0);
     }
 
     @Override
     public void onBlockDestroyedByPlayer(World par1World, int par2, int par3, int par4, int par5) {
-        this.dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(ContentHolder.blockJaffaBomb));
+        dropBlockAsItem(par1World, par2, par3, par4, new ItemStack(ContentHolder.blockJaffaBomb));
     }
 
     @Override

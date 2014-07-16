@@ -17,7 +17,7 @@ import monnef.jaffas.food.item.juice.Juices
 
 @ContainerRegistry.ContainerTag(slotsCount = 3, containerClassName = "monnef.jaffas.power.block.common.ContainerDoubleBasicProcessingMachine", guiClassName = "monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine")
 class TileJuiceMaker extends TileEntityBasicProcessingMachine with IKitchenUnitAppliance {
-  def getInvName: String = "jaffas.power.grinder"
+  def getInventoryName: String = "jaffas.power.grinder"
 }
 
 object TileJuiceMaker {

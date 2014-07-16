@@ -5,14 +5,17 @@
 
 package monnef.jaffas.technic.item;
 
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.block.TileFungiBox;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.FungusInfo;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
@@ -20,20 +23,20 @@ import java.util.List;
 import java.util.Map;
 
 public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
-    public ItemFungus(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemFungus(int textureIndex) {
+        super(textureIndex);
         setIconsCount(FungiCatalog.getMaxId() + 1); // maximal id to count
         setHasSubtypes(true);
     }
 
     @Override
-    public Icon getIconFromDamage(int meta) {
+    public IIcon getIconFromDamage(int meta) {
         return getCustomIcon(meta);
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
-        super.addInformation(stack, player, result, par4);
+    public void addInformationCustom(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformationCustom(stack, player, result, par4);
         FungusInfo info = FungiCatalog.get(stack.getItemDamage());
         String subTitle = info.subTitle;
         if (subTitle != null && !subTitle.isEmpty()) {
@@ -42,7 +45,7 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
     }
 
     @Override
-    public void getSubItems(int par1, CreativeTabs tabs, List list) {
+    public void getSubItemsCustom(Item par1, CreativeTabs tabs, List<ItemStack> list) {
         for (Map.Entry<Integer, FungusInfo> fungus : FungiCatalog.catalog.entrySet()) {
             if (fungus.getValue().ordinalItemBind) {
                 list.add(new ItemStack(this, 1, fungus.getKey()));
@@ -76,9 +79,9 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        int id = world.getBlockId(x, y - 1, z);
-        if (id != JaffasTechnic.fungiBox.blockID) return false;
-        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y - 1, z);
+        Block block = world.getBlock(x, y - 1, z);
+        if (block != JaffasTechnic.fungiBox) return false;
+        TileFungiBox tile = (TileFungiBox) world.getTileEntity(x, y - 1, z);
         return !tile.mushroomPlanted();
     }
 
@@ -88,10 +91,10 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
 
     @Override
     public void postPlant(World world, int x, int y, int z, ItemStack stack) {
-        int id = world.getBlockId(x, y - 1, z);
-        world.setBlock(x, y, z, 0);
-        if (id != JaffasTechnic.fungiBox.blockID) return;
-        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y - 1, z);
+        Block block = world.getBlock(x, y - 1, z);
+        BlockHelper.setAir(world, x, y, z);
+        if (block != JaffasTechnic.fungiBox) return;
+        TileFungiBox tile = (TileFungiBox) world.getTileEntity(x, y - 1, z);
         tile.tryPlant(stack);
     }
 }

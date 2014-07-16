@@ -8,21 +8,25 @@ package monnef.jaffas.food.block;
 import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
@@ -34,7 +38,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.core.utils.BlockHelper.setBlockWithoutNotify;
 
@@ -58,7 +61,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         }
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
         setBlockName("blockJSwitchgrass");
-        setBurnProperties(blockID, 60, 100);
+        setBurnProperties(60, 100);
     }
 
     // inspired by cactus
@@ -73,11 +76,11 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         for (int xx = x - 1; xx <= x + 1; xx++) {
             for (int yy = y - 1; yy <= y + 1; yy++) {
                 for (int zz = z - 1; zz <= z + 1; zz++) {
-                    int bId = world.getBlockId(xx, yy, zz);
-                    if (BlockHelper.isWinterBlock(bId)) {
+                    Block b = world.getBlock(xx, yy, zz);
+                    if (BlockHelper.isWinterBlock(b)) {
                         destroyWithDrop(world, x, y, z);
                         if (JaffasFood.rand.nextInt(3) == 0) {
-                            world.setBlock(x, y, z, Block.snow.blockID);
+                            BlockHelper.setBlock(world, x, y, z, Blocks.snow);
                         }
                     }
                 }
@@ -90,7 +93,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         int myMeta = world.getBlockMetadata(x, y, z);
         if (isTop(myMeta) && world.isAirBlock(x, y + 1, z)) {
             int height = 1;
-            while (world.getBlockId(x, y - height, z) == this.blockID) height++;
+            while (world.getBlock(x, y - height, z) == this) height++;
             int light = world.getBlockLightValue(x, y + 1, z);
             boolean onRain = world.canLightningStrikeAt(x, y + 1, z);
 
@@ -102,7 +105,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
                     setBlockMetadata(world, x, y, z, newMeta);
                     //Log.printDebug(myMeta + " -> " + newMeta);
                 } else {
-                    setBlockWithoutNotify(world, x, y + 1, z, this.blockID, VALUE_TOP);
+                    setBlockWithoutNotify(world, x, y + 1, z, this, VALUE_TOP);
                     setBlockMetadata(world, x, y, z, 0); // no longer the top one
                     world.markBlockForUpdate(x, y + 1, z);
                 }
@@ -152,7 +155,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
      * their own) Args: x, y, z, neighbor blockID
      */
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int id) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         if (!this.canBlockStay(world, x, y, z)) {
             destroyWithDrop(world, x, y, z);
         }
@@ -160,77 +163,77 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     private void destroyWithDrop(World world, int x, int y, int z) {
         this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        setBlock(world, x, y, z, 0);
+        BlockHelper.setAir(world, x, y, z);
     }
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
         int myMeta = world.getBlockMetadata(x, y, z);
-        int myId = world.getBlockId(x, y, z);
-        int topBlock = world.getBlockId(x, y + 1, z);
-        int bottomBlock = world.getBlockId(x, y - 1, z);
+        Block me = world.getBlock(x, y, z);
+        Block topBlock = world.getBlock(x, y + 1, z);
+        Block bottomBlock = world.getBlock(x, y - 1, z);
 
         boolean top = false;
         boolean bottom = false;
 
         if (isTop(myMeta)) {
-            if (topBlock == 0) {
+            if (world.isAirBlock(x, y + 1, z)) {
                 top = true;
             }
         } else {
-            if (topBlock == blockID) {
+            if (topBlock == this) {
                 top = true;
             }
         }
 
-        if (bottomBlock == blockID || floorCanSustainPlant(world, x, y, z)) {
+        if (bottomBlock == this || floorCanSustainPlant(world, x, y, z)) {
             bottom = true;
         }
 
         // fix for Forge grass planting (it calls this method on an air block)
-        if (bottom && myId == 0) return true;
+        if (bottom && me == null) return true;
 
         return top && bottom;
     }
 
     public boolean floorCanSustainPlant(World world, int x, int y, int z) {
-        int blockId = world.getBlockId(x, y - 1, z);
-        return blocksList[blockId] != null && blocksList[blockId].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
+        Block floor = world.getBlock(x, y - 1, z);
+        return floor.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
     }
 
     @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z) {
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
         return EnumPlantType.Plains;
     }
 
     @Override
-    public int getPlantID(World world, int x, int y, int z) {
-        return blockID;
+    public Block getPlant(IBlockAccess world, int x, int y, int z) {
+        return this;
     }
 
     @Override
-    public int getPlantMetadata(World world, int x, int y, int z) {
+    public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
         return -1;
     }
 
     @Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
         par3List.add(new ItemStack(this, 1, VALUE_TOP));
     }
 
     @Override
-    public Icon getIcon(int par1, int par2) {
+    public IIcon getIcon(int par1, int par2) {
         return isTop(par2) ? blockIcon : bodyIcon;
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
         if (JaffasFood.debug) {
-            int meta = par1World.getBlockMetadata(par2, par3, par4);
-            if (par5EntityPlayer.isSneaking()) {
-                setBlockMetadata(par1World, par2, par3, par4, MAX_AGE | (isTop(meta) ? 8 : 0));
+            int meta = world.getBlockMetadata(x, y, z);
+            if (player.isSneaking()) {
+                setBlockMetadata(world, x, y, z, MAX_AGE | (isTop(meta) ? 8 : 0));
             }
-            par5EntityPlayer.addChatMessage("meta: " + meta);
+            PlayerHelper.addMessage(player, "meta: " + meta);
         }
 
         return false;
@@ -258,8 +261,8 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
-        super.registerIcons(iconRegister);
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        super.registerBlockIcons(iconRegister);
         bodyIcon = iconRegister.registerIcon(CustomIconHelper.generateShiftedId(this, 1));
     }
 
@@ -297,7 +300,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     public int getBaseY(World w, int x, int y, int z) {
         int lowerY = y;
-        while (w.getBlockId(x, lowerY, z) == blockID) {
+        while (w.getBlock(x, lowerY, z) == this) {
             lowerY--;
             if (y - lowerY > maximalHeight) break;
         }
@@ -307,7 +310,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     public int getTopY(World w, int x, int y, int z) {
         int higherY = y;
-        while (!isTop(w.getBlockMetadata(x, higherY, z)) && w.getBlockId(x, higherY, z) == blockID) {
+        while (!isTop(w.getBlockMetadata(x, higherY, z)) && w.getBlock(x, higherY, z) == block) {
             higherY++;
             if (higherY - y > maximalHeight) break;
         }
@@ -315,16 +318,18 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     public int calculateHeight(World w, int x, int y, int z) {
-        if (w.getBlockId(x, y, z) != blockID) return 0;
+        if (w.getBlock(x, y, z) != this) return 0;
         int lowerY = getBaseY(w, x, y, z);
         int higherY = getTopY(w, x, y, z);
         return higherY - lowerY + 1;
     }
 
+
+    // TODO: new MFR API
     // MFR
     @Override
     public int getFertilizableBlockId() {
-        return blockID;
+        return 0;
     }
 
     @Override
@@ -378,7 +383,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         int lowerY = getBaseY(world, x, y, z);
         int topY = getTopY(world, x, y, z);
         for (int i = lowerY; i <= topY; i++)
-            setBlockWithoutNotify(world, x, i, z, 0, 0);
+            setBlockWithoutNotify(world, x, i, z, Blocks.air, 0);
         for (int i = lowerY; i <= topY; i++)
             world.markBlockForUpdate(x, i, z);
     }
@@ -400,7 +405,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        return world.getBlockId(x, y, z) == 0 && floorCanSustainPlant(world, x, y, z);
+        return world.isAirBlock(x, y, z) && floorCanSustainPlant(world, x, y, z);
     }
 
     @Override

@@ -12,7 +12,7 @@ import monnef.core.utils.TileEntityHelper;
 import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.common.BuildCraftHelper;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileKitchenUnit extends TileMachine {
     public static final ForgeDirection INPUT_SIDE_OF_APPLIANCE = ForgeDirection.DOWN;
@@ -30,7 +30,7 @@ public class TileKitchenUnit extends TileMachine {
         } else {
             skipCounter = 0;
 
-            TileEntity te = worldObj.getBlockTileEntity(xCoord, yCoord + 1, zCoord);
+            TileEntity te = worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
             if (te != null && te instanceof IKitchenUnitAppliance) {
                 if (!BuildCraftHelper.isPowerTile(te)) {
                     throw new RuntimeException("is KUAppliance but doesn't accept power? my pos: " + TileEntityHelper.getFormattedCoordinates(this));
@@ -38,7 +38,7 @@ public class TileKitchenUnit extends TileMachine {
                 IPowerReceptor teReceptor = (IPowerReceptor) te;
                 PowerHandler.PowerReceiver appliancePowerReceiver = teReceptor.getPowerReceiver(INPUT_SIDE_OF_APPLIANCE);
                 if (BuildCraftHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy(appliancePowerReceiver)) {
-                    float extracted = powerHandler.useEnergy(5, powerNeeded, true);
+                    double extracted = powerHandler.useEnergy(5, powerNeeded, true);
                     appliancePowerReceiver.receiveEnergy(PowerHandler.Type.STORAGE, extracted, INPUT_SIDE_OF_APPLIANCE);
                 } else {
                     skipCounter = 20;

@@ -8,21 +8,23 @@ package monnef.jaffas.technic.block;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BlockHelper;
+import monnef.core.utils.NBTHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.technic.common.MultiBlockHelper;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import static monnef.jaffas.technic.JaffasTechnic.compost;
 import static monnef.jaffas.technic.block.ContainerCompost.SLOT_INPUT;
@@ -90,9 +92,9 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
                     int wy = y + yCoord;
                     int wz = z + zCoord;
 
-                    worldObj.setBlock(wx, wy, wz, JaffasTechnic.dummyConstructionBlock.blockID);
+                    worldObj.setBlock(wx, wy, wz, JaffasTechnic.dummyConstructionBlock);
                     worldObj.markBlockForUpdate(wx, wy, wz);
-                    TileConstructionDummy dummyTE = (TileConstructionDummy) worldObj.getBlockTileEntity(wx, wy, wz);
+                    TileConstructionDummy dummyTE = (TileConstructionDummy) worldObj.getTileEntity(wx, wy, wz);
                     dummyTE.setCore(this);
                 }
             }
@@ -114,9 +116,9 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
                     int wx = x + xCoord;
                     int wy = y + yCoord;
                     int wz = z + zCoord;
-                    int blockId = worldObj.getBlockId(wx, wy, wz);
+                    Block blockCurrent = worldObj.getBlock(wx, wy, wz);
 
-                    if (blockId != JaffasTechnic.dummyConstructionBlock.blockID)
+                    if (blockCurrent != JaffasTechnic.dummyConstructionBlock)
                         continue;
 
                     MultiBlockHelper.setBlockByMark(template[y][z + 1][x + 1], worldObj, wx, wy, wz);
@@ -177,16 +179,16 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this &&
+        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this &&
                 player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
     }
 
     @Override
-    public void openChest() {
+    public void closeInventory() {
     }
 
     @Override
-    public void closeChest() {
+    public void openInventory() {
     }
 
     @Override
@@ -198,9 +200,9 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
 
-        NBTTagList tagList = tagCompound.getTagList("Inventory");
+        NBTTagList tagList = tagCompound.getTagList("Inventory", NBTHelper.TagTypes.TAG_Compound);
         for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+            NBTTagCompound tag = tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < inv.length) {
                 inv[slot] = ItemStack.loadItemStackFromNBT(tag);
@@ -242,12 +244,12 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.board";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -291,13 +293,13 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
     public Packet getDescriptionPacket() {
         NBTTagCompound tag = new NBTTagCompound();
         writeToNBTIsValid(tag);
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.data;
+        NBTTagCompound tag = pkt.func_148857_g();
         readFromNBTIsValid(tag);
     }
 
@@ -375,7 +377,7 @@ public class TileCompostCore extends TileEntity implements IInventory, ISidedInv
     public boolean canProduceCompost() {
         ItemStack outputStack = inv[SLOT_OUTPUT];
         if (outputStack == null) return true;
-        return outputStack.itemID == compost.itemID && outputStack.stackSize + NUMBER_OF_COMPOST_PRODUCED <= outputStack.getMaxStackSize();
+        return outputStack.getItem() == compost && outputStack.stackSize + NUMBER_OF_COMPOST_PRODUCED <= outputStack.getMaxStackSize();
     }
 
     public int getMaxWork() {

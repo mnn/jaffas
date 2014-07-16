@@ -4,6 +4,6 @@ import monnef.jaffas.food.item.ItemJaffaFood
 import monnef.jaffas.xmas.common.IconDescriptorXmas
 import monnef.jaffas.xmas.JaffasXmas
 
-class ItemXmasFood(_id: Int) extends ItemJaffaFood(_id) with IconDescriptorXmas {
+class ItemXmasFood extends ItemJaffaFood with IconDescriptorXmas {
   setCreativeTab(JaffasXmas.instance.creativeTab)
 }

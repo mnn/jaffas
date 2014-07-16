@@ -21,6 +21,7 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
   val inv = new Array[ItemStack](slotsCount)
   loadFromNBT()
 
+  // TODO: name collision?
   override def markDirty() {
     for (i <- 0 until getSizeInventory)
       if (this.getStackInSlot(i) != null && this.getStackInSlot(i).stackSize <= 0)
@@ -66,11 +67,11 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
     }
   }
 
-  def closeInventory() {}
+  override def closeInventory() {}
 
-  def openInventory() {}
+  override def openInventory() {}
 
-  def setInventorySlotContents(slot: Int, itemstack: ItemStack) {
+  override def setInventorySlotContents(slot: Int, itemstack: ItemStack) {
     setInventorySlotContentsInternal(slot, itemstack)
     markDirty()
   }
@@ -83,11 +84,11 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
     }
   }
 
-  def getSizeInventory: Int = inv.size
+  override def getSizeInventory: Int = inv.size
 
-  def getStackInSlot(i: Int): ItemStack = inv(i)
+  override def getStackInSlot(i: Int): ItemStack = inv(i)
 
-  def decrStackSize(slot: Int, amount: Int): ItemStack = {
+  override def decrStackSize(slot: Int, amount: Int): ItemStack = {
     var stack = getStackInSlot(slot)
     if (stack != null) {
       if (stack.stackSize > amount) {
@@ -101,18 +102,18 @@ class InventoryBag(name: String, isLocalized: Boolean, slotsCount: Int, stack: I
     stack
   }
 
-  def getStackInSlotOnClosing(slot: Int): ItemStack = {
+  override def getStackInSlotOnClosing(slot: Int): ItemStack = {
     setInventorySlotContents(slot, null)
     getStackInSlot(slot)
   }
 
-  def getInvName: String = name
+  override def getInventoryName: String = name
 
-  def hasCustomInventoryName: Boolean = false
+  override def hasCustomInventoryName: Boolean = false
 
-  def getInventoryStackLimit: Int = 64
+  override def getInventoryStackLimit: Int = 64
 
-  def isUseableByPlayer(entityplayer: EntityPlayer): Boolean = true
+  override def isUseableByPlayer(entityplayer: EntityPlayer): Boolean = true
 
-  def isItemValidForSlot(i: Int, itemstack: ItemStack): Boolean = true
+  override def isItemValidForSlot(i: Int, itemstack: ItemStack): Boolean = true
 }

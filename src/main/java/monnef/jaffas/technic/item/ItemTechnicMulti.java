@@ -9,8 +9,9 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public abstract class ItemTechnicMulti extends ItemTechnic {
 
     public abstract String[] getSubTitles();
 
-    public ItemTechnicMulti(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemTechnicMulti(int textureIndex) {
+        super(textureIndex);
         setMaxDamage(0);
         setHasSubtypes(true);
         setIconsCount(getSubNames().length);
@@ -29,7 +30,7 @@ public abstract class ItemTechnicMulti extends ItemTechnic {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage(int par1) {
+    public IIcon getIconFromDamage(int par1) {
         int var2 = MathHelper.clamp_int(par1, 0, getSubNames().length);
         return getCustomIcon(var2);
     }
@@ -48,7 +49,7 @@ public abstract class ItemTechnicMulti extends ItemTechnic {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItemsCustom(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < getSubNames().length; i++) {
             par3List.add(new ItemStack(par1, 1, i));
         }

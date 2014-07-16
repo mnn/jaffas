@@ -19,8 +19,8 @@ public class ItemCentralUnit extends ItemTechnicMulti {
         return subTitles;
     }
 
-    public ItemCentralUnit(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemCentralUnit( int textureIndex) {
+        super(textureIndex);
         setUnlocalizedName("centralUnit");
         setMaxStackSize(16);
     }

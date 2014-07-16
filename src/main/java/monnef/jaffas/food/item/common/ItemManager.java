@@ -8,8 +8,6 @@ package monnef.jaffas.food.item.common;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.api.ICustomIcon;
 import monnef.core.item.ItemMonnefCore;
-import monnef.core.utils.IDProvider;
-import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemInfo;
@@ -23,7 +21,7 @@ import java.util.LinkedHashMap;
 
 public class ItemManager {
     protected static LinkedHashMap<JaffaItem, JaffaItemInfo> itemsInfo;
-    protected static HashMap<Integer, JaffaItem> idToJaffaItem;
+    protected static HashMap<Item, JaffaItem> itemToJaffaItem;
 
     public static JaffaItem[] mallets;
     public static JaffaItem[] malletHeads;
@@ -33,7 +31,7 @@ public class ItemManager {
     static {
         itemsInfo = new LinkedHashMap<JaffaItem, JaffaItemInfo>();
         ClassMapping = new Hashtable<ModulesEnum, Hashtable<JaffaItemType, Class<? extends ItemMonnefCore>>>();
-        idToJaffaItem = new HashMap<Integer, JaffaItem>();
+        itemToJaffaItem = new HashMap<Item, JaffaItem>();
     }
 
     public static void RegisterItemTypeForModule(ModulesEnum module, JaffaItemType type, Class<? extends ItemMonnefCore> clazz) {
@@ -61,8 +59,8 @@ public class ItemManager {
         return itemsInfo.get(item);
     }
 
-    public static JaffaItem getJaffaItem(int itemId) {
-        return idToJaffaItem.get(itemId);
+    public static JaffaItem getJaffaItem(Item item) {
+        return itemToJaffaItem.get(item);
     }
 
     public static void addItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
@@ -89,7 +87,7 @@ public class ItemManager {
         }
         info.setItem(item);
         LanguageRegistry.addName(item, info.getTitle());
-        idToJaffaItem.put(item.itemID, ji);
+        itemToJaffaItem.put(item, ji);
     }
 
     public static Item createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {
@@ -99,7 +97,7 @@ public class ItemManager {
         try {
             Class<? extends Item> clazz = ClassMapping.get(module).get(type);
             Constructor<? extends Item> constructor = clazz.getConstructor(int.class);
-            newJaffaItem = constructor.newInstance(info.getId());
+            newJaffaItem = constructor.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -121,7 +119,7 @@ public class ItemManager {
         JaffaItemInfo info = itemsInfo.get(ji);
         T newJaffaItem;
         try {
-            newJaffaItem = item.getConstructor(int.class).newInstance(info.getId());
+            newJaffaItem = item.newInstance();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException(e);

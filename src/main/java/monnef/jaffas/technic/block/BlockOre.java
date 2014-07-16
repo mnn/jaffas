@@ -8,6 +8,7 @@ package monnef.jaffas.technic.block;
 import monnef.core.utils.RandomHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -19,16 +20,16 @@ public class BlockOre extends BlockTechnic {
 
     public static final int NATURAL_META = 1;
 
-    public BlockOre(int id, int textureID) {
-        super(id, textureID, Material.rock);
-        setStepSound(soundStoneFootstep);
+    public BlockOre(int textureID) {
+        super(textureID, Material.rock);
+        setStepSound(soundTypeStone);
         setHardness(3);
         setResistance(5);
     }
 
     @Override
     public int quantityDropped(Random par1Random) {
-        if (blockID == blockLimsewOre.blockID) {
+        if (this == blockLimsewOre) {
             return 1 + (par1Random.nextDouble() > 0.8 ? 1 : 0);
         }
 
@@ -36,11 +37,11 @@ public class BlockOre extends BlockTechnic {
     }
 
     @Override
-    public int idDropped(int id, Random random, int fortune) {
-        if (blockID == blockLimsewOre.blockID) {
-            return JaffasTechnic.limsew.itemID;
+    public Item getItemDropped(int meta, Random random, int fortune) {
+        if (this == blockLimsewOre) {
+            return JaffasTechnic.limsew;
         }
-        return super.idDropped(id, random, fortune);
+        return super.getItemDropped(meta, random, fortune);
     }
 
     @Override
@@ -49,9 +50,9 @@ public class BlockOre extends BlockTechnic {
 
         int xpAmount = 0;
 
-        if (blockID == blockLimsewOre.blockID) {
+        if (this == blockLimsewOre) {
             xpAmount = RandomHelper.generateRandomFromInterval(4, 10);
-        } else if (blockID == blockJaffarrolOre.blockID && meta == NATURAL_META) {
+        } else if (this == blockJaffarrolOre && meta == NATURAL_META) {
             xpAmount = RandomHelper.generateRandomFromInterval(1, 4);
         }
 

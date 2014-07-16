@@ -4,12 +4,13 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.DirectionHelper;
 import monnef.core.utils.IntegerCoordinates;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.HashMap;
 
@@ -108,7 +109,7 @@ public class BlockJDirectional extends BlockJaffas {
                 int meta = world.getBlockMetadata(x, y, z);
                 int rotation = getRotation(meta);
                 int idx = getCustomIconMapping(side, rotation, getCustomData(meta));
-                player.addChatMessage(String.format("meta: %d, side: %d, rot: %d, gcim: %d", meta, side, rotation, idx));
+                PlayerHelper.addMessage(player, String.format("meta: %d, side: %d, rot: %d, gcim: %d", meta, side, rotation, idx));
             }
         }
 
@@ -165,7 +166,7 @@ public class BlockJDirectional extends BlockJaffas {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         int idx = getCustomIconMapping(side, getRotation(meta), getCustomData(meta));
 
         return getCustomIcon(idx);

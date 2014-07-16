@@ -29,16 +29,16 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
 
     private static final float U = 1f / 16;
 
-    public BlockFungiBox(int id, int textureID) {
-        super(id, textureID, material);
-        Block.setBurnProperties(id, 5, 20);
+    public BlockFungiBox(int textureID) {
+        super(textureID, material);
+        setBurnProperties(5, 20);
         setBlockBounds(0, 0, 0, 16 * U, 6 * U, 16 * U);
         setHardness(0.25f);
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        TileFungiBox te = (TileFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox te = (TileFungiBox) world.getTileEntity(x, y, z);
         boolean res = te.playerActivatedBox(player);
         if (MonnefCorePlugin.debugEnv) {
             te.printDebugInfo(player);
@@ -74,7 +74,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
-        return world.getBlockMaterial(x, y - 1, z).isSolid();
+        return world.getBlock(x, y - 1, z).getMaterial().isSolid();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int par5) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         boolean drop = false;
         if (!canBlockStay(world, x, y, z)) {
             drop = true;
@@ -91,7 +91,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
 
         if (drop) {
             dropBlockAsItem(world, x, y, z, 0, 0); // metadata, fortune
-            BlockHelper.setBlock(world, x, y, z, 0);
+            BlockHelper.setAir(world, x, y, z);
         }
     }
 
@@ -119,7 +119,7 @@ public class BlockFungiBox extends BlockTechnic implements IFactoryHarvestable {
                 return;
             }
 
-            TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
+            TileFungiBox tile = (TileFungiBox) world.getTileEntity(x, y, z);
             tile.onFallUpon();
         }
     }

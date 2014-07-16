@@ -11,16 +11,16 @@ import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.item.JaffaItem;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.liquids.LiquidContainerRegistry;
-import net.minecraftforge.liquids.LiquidDictionary;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -76,23 +76,23 @@ public class BlockSink extends BlockJaffas {
     }
 
     @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-        if (par1World.getBlockId(par2, par3 + 1, par4) != 0) {
-            par1World.setBlock(par2, par3, par4, 0);
-            if (!par1World.isRemote) {
-                this.dropBlockAsItem(par1World, par2, par3, par4, 0, 0);
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+        if (!world.isAirBlock(x, y + 1, z)) {
+            BlockHelper.setAir(world, x, y, z);
+            if (!world.isRemote) {
+                this.dropBlockAsItem(world, x, y, z, 0, 0);
             }
         }
     }
 
-    private static final HashMap<Integer, Integer> fillableItems;
+    private static final HashMap<Item, Item> fillableItems;
 
     static {
-        fillableItems = new HashMap<Integer, Integer>();
+        fillableItems = new HashMap<Item, Item>();
     }
 
     public static void addFillableItem(Item empty, Item full) {
-        fillableItems.put(empty.itemID, full.itemID);
+        fillableItems.put(empty, full);
     }
 
     @Override
@@ -113,7 +113,7 @@ public class BlockSink extends BlockJaffas {
 
         ItemStack currentItem = player.getCurrentEquippedItem();
         if (currentItem != null) {
-            Integer filledItem = fillableItems.get(currentItem.itemID);
+            Item filledItem = fillableItems.get(currentItem);
             if (filledItem != null) {
                 changeStateToNoWater(world, x, y, z, meta);
                 doItemSwap(world, player, currentItem, new ItemStack(filledItem, 1, 0));
@@ -144,7 +144,7 @@ public class BlockSink extends BlockJaffas {
     }
 
     private void changeStateToNoWater(World world, int x, int y, int z, int meta) {
-        world.setBlockMetadataWithNotify(x, y, z, BitHelper.unsetBit(meta, waterBit), BlockHelper.NOTIFY_ALL);
+        world.setBlockMetadataWithNotify(x, y, z, BitHelper.unsetBit(meta, waterBit), BlockHelper.NOTIFY_ALL());
     }
 
     public static boolean isWaterReady(int meta) {
@@ -152,12 +152,12 @@ public class BlockSink extends BlockJaffas {
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return JaffasFood.getItem(JaffaItem.sink).itemID;
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return JaffasFood.getItem(JaffaItem.sink);
     }
 
     @Override
-    public int idPicked(World par1World, int par2, int par3, int par4) {
-        return JaffasFood.getItem(JaffaItem.sink).itemID;
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(JaffasFood.getItem(JaffaItem.sink));
     }
 }

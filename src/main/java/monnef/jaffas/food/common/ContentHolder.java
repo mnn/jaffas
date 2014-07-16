@@ -68,6 +68,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
+import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
+import static monnef.core.utils.EntityHelper.getNextFreeEntityID;
 import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.JaffasFood.proxy;
@@ -78,7 +80,6 @@ import static monnef.jaffas.food.common.ConfigurationManager.dungeonLootEnabled;
 import static monnef.jaffas.food.common.JaffasRegistryHelper.registerTileEntity;
 import static net.minecraft.item.Item.ToolMaterial;
 import static net.minecraft.item.ItemArmor.ArmorMaterial;
-import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
 
 public class ContentHolder {
     public static BlockJaffaBomb blockJaffaBomb;
@@ -321,10 +322,6 @@ public class ContentHolder {
 
     public static Item getItem(JaffaItem item) {
         return ItemManager.getItem(item);
-    }
-
-    private static int getNextFreeEntityID() {
-        return EntityRegistry.findGlobalUniqueEntityId();
     }
 
     public static void initEntityIDs() {

@@ -8,12 +8,12 @@ package monnef.jaffas.food.block;
 import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.Icon;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
@@ -29,14 +29,14 @@ public class BlockTable extends BlockJaffas {
         super(texture, material);
         setHardness(2f);
         setBlockName("blockJTable");
-        setBurnProperties(blockID, 5, 5);
+        setBurnProperties(5, 5);
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
-        icons = new Icon[NUMBER_OF_TABLES][];
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        icons = new IIcon[NUMBER_OF_TABLES][];
         for (int color = 0; color < NUMBER_OF_TABLES; color++) {
-            icons[color] = new Icon[SIDES_COUNT];
+            icons[color] = new IIcon[SIDES_COUNT];
             int index = this.getCustomIconIndex() + SIDES_COUNT * color;
             for (int side = 0; side < SIDES_COUNT; side++) {
                 int idx = index + side;
@@ -46,7 +46,7 @@ public class BlockTable extends BlockJaffas {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         ForgeDirection s = ForgeDirection.getOrientation(side);
 
         switch (s) {
@@ -75,9 +75,9 @@ public class BlockTable extends BlockJaffas {
     }
 
     @Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item item, CreativeTabs tabs, List result) {
         for (int i = 0; i < NUMBER_OF_TABLES; i++) {
-            par3List.add(new ItemStack(this, 1, i));
+            result.add(new ItemStack(this, 1, i));
         }
     }
 }

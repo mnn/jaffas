@@ -15,7 +15,7 @@ import monnef.core.MonnefCorePlugin
 import monnef.core.utils.{NBTHelper, InventoryUtils}
 import scala.collection.mutable.ArrayBuffer
 
-abstract class ItemBagBase(_id: Int, _texture: Int) extends ItemTrees(_id, _texture) {
+abstract class ItemBagBase(_texture: Int) extends ItemTrees(_texture) {
 
   import ItemBagBase._
 

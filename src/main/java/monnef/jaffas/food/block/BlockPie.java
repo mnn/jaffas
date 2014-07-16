@@ -9,22 +9,24 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.common.ContentHolder;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.Icon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.setAir;
 import static monnef.core.utils.BlockHelper.setBlock;
 
 public class BlockPie extends BlockJaffas {
@@ -88,40 +90,40 @@ public class BlockPie extends BlockJaffas {
     }
 
     @Override
-    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase entity, ItemStack stack) {
+    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
         int rotation = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
-        if (!par1World.isRemote) {
-            TilePie tile = (TilePie) par1World.getBlockTileEntity(par2, par3, par4);
-            int meta = par1World.getBlockMetadata(par2, par3, par4);
+        if (!world.isRemote) {
+            TilePie tile = (TilePie) world.getTileEntity(x, y, z);
+            int meta = world.getBlockMetadata(x, y, z);
             tile.init(rotation, meta);
         }
     }
 
     @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        TilePie te = (TilePie) par1World.getBlockTileEntity(par2, par3, par4);
-        te.eatPiece(par5EntityPlayer);
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+        TilePie te = (TilePie) world.getTileEntity(x, y, z);
+        te.eatPiece(player);
         return true;
     }
 
     //from cake block
     @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-        if (!this.canBlockStay(par1World, par2, par3, par4)) {
-            this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-            setBlock(par1World, par2, par3, par4, 0);
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+        if (!this.canBlockStay(world, x, y, z)) {
+            this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+            setAir(world, x, y, z);
         }
     }
 
     @Override
-    public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
-        return par1World.getBlockMaterial(par2, par3 - 1, par4).isSolid();
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        return world.getBlock(x, y - 1, z).getMaterial().isSolid();
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return 0;
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return null;
     }
 
     @Override
@@ -142,19 +144,19 @@ public class BlockPie extends BlockJaffas {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(int unknown, CreativeTabs tab, List subItems) {
+    public void getSubBlocks(Item item, CreativeTabs tabs, List result) {
         for (int ix = 0; ix < TilePie.PieType.values().length; ix++) {
-            subItems.add(new ItemStack(this, 1, ix));
+            result.add(new ItemStack(this, 1, ix));
         }
     }
 
     @Override
-    public Icon getIcon(int side, int metadata) {
+    public IIcon getIcon(int side, int metadata) {
         return icons[metadata];
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerIcons(IIconRegister iconRegister) {
         for (int i = 0; i < textureIndexFromMeta.length; i++) {
             icons[i] = iconRegister.registerIcon(CustomIconHelper.generateId(this, textureIndexFromMeta[i]));
         }
