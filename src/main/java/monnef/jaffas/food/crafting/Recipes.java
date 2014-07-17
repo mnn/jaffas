@@ -47,6 +47,8 @@ public class Recipes {
     public static final String WOOD_SLAB = "slabWood";
     public static final String TREE_SAPLING = "treeSapling";
     public static final String TREE_LEAVES = "treeLeaves";
+    public static final String WOOD_STICK = "stickWood";
+    public static final String STONE = "stone";
     public static final int JAFFAS_PACK_CONTENT_SIZE = 8;
     public static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;
 
@@ -589,6 +591,18 @@ public class Recipes {
 
     public static void addRecipe(IRecipe recipe) {
         CraftingManager.getInstance().getRecipeList().add(recipe);
+    }
+
+    public static void addOreRecipe(Block result, Object... recipe) {
+        addRecipe(new ShapedOreRecipe(result, recipe));
+    }
+
+    public static void addOreRecipe(Item result, Object... recipe) {
+        addRecipe(new ShapedOreRecipe(result, recipe));
+    }
+
+    public static void addOreRecipe(ItemStack result, Object... recipe) {
+        addRecipe(new ShapedOreRecipe(result, recipe));
     }
 
     public static void addMalletShapedRecipe(ItemStack output, ItemStack input) {

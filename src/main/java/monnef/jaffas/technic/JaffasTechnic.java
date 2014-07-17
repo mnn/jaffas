@@ -96,10 +96,10 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
@@ -576,9 +576,9 @@ public class JaffasTechnic extends JaffasModBase {
     private void installRecipes() {
         if (!disableOreRecipes) {
             GameRegistry.addShapelessRecipe(new ItemStack(jaffarrolRaw, 4),
-                    new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron), new ItemStack(Item.ingotIron),
-                    new ItemStack(Item.ingotIron), new ItemStack(Item.ingotGold), new ItemStack(Item.ingotGold),
-                    new ItemStack(Item.redstone));
+                    new ItemStack(Items.iron_ingot), new ItemStack(Items.iron_ingot), new ItemStack(Items.iron_ingot),
+                    new ItemStack(Items.iron_ingot), new ItemStack(Items.gold_ingot), new ItemStack(Items.gold_ingot),
+                    new ItemStack(Items.redstone));
         }
 
         GameRegistry.addSmelting(jaffarrolRaw, new ItemStack(jaffarrol), 1f);
@@ -593,36 +593,36 @@ public class JaffasTechnic extends JaffasModBase {
                 new ItemStack(limsew), new ItemStack(limsew), new ItemStack(limsew));
 
         if (!disableOreRecipes) {
-            GameRegistry.addShapelessRecipe(new ItemStack(limsew, 2), new ItemStack(Item.diamond), new ItemStack(Item.glowstone),
-                    new ItemStack(Item.glowstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone),
-                    new ItemStack(Item.redstone), new ItemStack(Item.redstone), new ItemStack(Item.redstone));
+            GameRegistry.addShapelessRecipe(new ItemStack(limsew, 2), new ItemStack(Items.diamond), new ItemStack(Items.glowstone_dust),
+                    new ItemStack(Items.glowstone_dust), new ItemStack(Items.redstone), new ItemStack(Items.redstone), new ItemStack(Items.redstone),
+                    new ItemStack(Items.redstone), new ItemStack(Items.redstone), new ItemStack(Items.redstone));
         }
 
         GameRegistry.addShapelessRecipe(new ItemStack(limsew, 9), new ItemStack(blockLimsew));
         GameRegistry.addShapelessRecipe(new ItemStack(jaffarrol, 9), new ItemStack(blockJaffarrol));
 
-        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 0), "JRJ", "RLR", "JRJ", 'J', jaffarrolNugget, 'R', Item.redstone, 'L', limsew);
-        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 1), "JRJ", "CLC", "JRJ", 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew, 'C', new ItemStack(itemCentralUnit, 1, 0));
-        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 2), "LJL", "CLC", "LJL", 'J', jaffarrolRefined, 'R', Item.redstone, 'L', limsew, 'C', new ItemStack(itemCentralUnit, 1, 1));
+        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 0), "JRJ", "RLR", "JRJ", 'J', jaffarrolNugget, 'R', Items.redstone, 'L', limsew);
+        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 1), "JRJ", "CLC", "JRJ", 'J', jaffarrolRefined, 'R', Items.redstone, 'L', limsew, 'C', new ItemStack(itemCentralUnit, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(itemCentralUnit, 1, 2), "LJL", "CLC", "LJL", 'J', jaffarrolRefined, 'R', Items.redstone, 'L', limsew, 'C', new ItemStack(itemCentralUnit, 1, 1));
 
-        GameRegistry.addRecipe(new ItemStack(funnel), "I I", "J J", " J ", 'I', Item.ingotIron, 'J', jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(funnel), "I I", "J J", " J ", 'I', Items.iron_ingot, 'J', jaffarrol);
         GameRegistry.addRecipe(new ItemStack(itemCasing, 1, 0), "JJJ", "J J", "JJJ", 'J', jaffarrol);
         GameRegistry.addSmelting(itemCasing, new ItemStack(itemCasingRefined), 1f);
 
-        GameRegistry.addRecipe(new ItemStack(ContentHolder.blockFridge), "I&I", "JBJ", "ICI", 'I', Item.ingotIron,
-                '&', itemCasing, 'J', jaffarrol, 'B', Block.fenceIron, 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
+        GameRegistry.addRecipe(new ItemStack(ContentHolder.blockFridge), "I&I", "JBJ", "ICI", 'I', Items.iron_ingot,
+                '&', itemCasing, 'J', jaffarrol, 'B', Blocks.iron_bars, 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
         GameRegistry.addRecipe(new ItemStack(JaffasTrees.blockFruitCollector), "JFJ", "J@J", "JCJ",
                 'J', jaffarrol, 'F', funnel, '@', itemCasing, 'C', createCentralUnitStack(CentralUnitEnum.ADVANCED));
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Item.ingotIron, 'J', JaffasTechnic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.fryingPan)), "  J", "II ", "II ", 'I', Items.iron_ingot, 'J', JaffasTechnic.jaffarrol);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.meatCleaver)), "II", "II", " J", 'I', Items.iron_ingot, 'J', JaffasTechnic.jaffarrol);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', JaffasTechnic.jaffarrol, 'W', Item.bucketEmpty, 'I', Block.blockIron);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.sink)), "J", "W", "I", 'J', JaffasTechnic.jaffarrol, 'W', Items.bucket, 'I', Blocks.iron_block);
 
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', JaffasTechnic.jaffarrol, 'I', Item.ingotIron);
-        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', JaffasTechnic.jaffarrolNugget, 'G', Block.glass);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.grater)), " J ", "III", "III", 'J', JaffasTechnic.jaffarrol, 'I', Items.iron_ingot);
+        GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.bottleEmpty), 4), " J ", "G G", "GGG", 'J', JaffasTechnic.jaffarrolNugget, 'G', Blocks.glass);
 
-        GameRegistry.addRecipe(new ItemStack(ContentHolder.blockBoard), "  W", "JJ ", "JJ ", 'W', Block.wood, 'J', JaffasTechnic.jaffarrol);
+        Recipes.addOreRecipe(new ItemStack(ContentHolder.blockBoard), "  W", "JJ ", "JJ ", 'W', Recipes.WOOD_LOG, 'J', JaffasTechnic.jaffarrol);
 
         // jarmor
         GameRegistry.addRecipe(new ItemStack(getItem(jaffarrolHelmet)), "JJJ", "J J", 'J', jaffarrol);
@@ -632,31 +632,31 @@ public class JaffasTechnic extends JaffasModBase {
 
         // spawn stones
         if (ConfigurationManager.spawnStonesEnabled) {
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Item.ingotIron, 'J', blockJaffarrol);
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "LGR", "GSG", "RGL", 'G', Item.ingotGold, 'S', getItem(spawnStoneLittle), 'R', Item.redstone, 'L', limsew);
-            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "DLB", "GSL", "BGD", 'L', limsew, 'B', Item.blazePowder, 'D', Item.diamond, 'G', Item.glowstone, 'S', getItem(spawnStoneMedium));
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneLittle)), " I ", "IJI", " I ", 'I', Items.iron_ingot, 'J', blockJaffarrol);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneMedium)), "LGR", "GSG", "RGL", 'G', Items.gold_ingot, 'S', getItem(spawnStoneLittle), 'R', Items.redstone, 'L', limsew);
+            GameRegistry.addRecipe(new ItemStack(getItem(spawnStoneBig)), "DLB", "GSL", "BGD", 'L', limsew, 'B', Items.blaze_powder, 'D', Items.diamond, 'G', Items.glowstone_dust, 'S', getItem(spawnStoneMedium));
         }
 
-        GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Block.glass, 'J', jaffarrolNugget);
+        GameRegistry.addRecipe(new ItemStack(getItem(juiceBottle), 2), "GJG", "G G", "GGG", 'G', Blocks.glass, 'J', jaffarrolNugget);
 
         GameRegistry.addSmelting(blockJaffarrolOre, new ItemStack(jaffarrol), 1f);
         GameRegistry.addSmelting(blockLimsewOre, new ItemStack(limsew), 1f);
 
-        GameRegistry.addRecipe(new ItemStack(swordJaffarrol), "J", "J", "G", 'J', jaffarrol, 'G', Item.ingotGold);
-        GameRegistry.addRecipe(new ItemStack(hoeJaffarrol), "JJ", " S", " S", 'J', jaffarrol, 'S', Item.stick);
-        GameRegistry.addRecipe(new ItemStack(spadeJaffarrol), "J", "S", "S", 'J', jaffarrol, 'S', Item.stick);
-        GameRegistry.addRecipe(new ItemStack(axeJaffarrol), "JJ ", "JS ", " S ", 'J', jaffarrol, 'S', Item.stick);
+        Recipes.addOreRecipe(swordJaffarrol, "J", "J", "G", 'J', jaffarrol, 'G', Items.gold_ingot);
+        Recipes.addOreRecipe(hoeJaffarrol, "JJ", " S", " S", 'J', jaffarrol, 'S', Recipes.WOOD_STICK);
+        Recipes.addOreRecipe(spadeJaffarrol, "J", "S", "S", 'J', jaffarrol, 'S', Recipes.WOOD_STICK);
+        Recipes.addOreRecipe(axeJaffarrol, "JJ ", "JS ", " S ", 'J', jaffarrol, 'S', Recipes.WOOD_STICK);
 
-        GameRegistry.addRecipe(ItemHelper.constructDamagedItemStack(pickaxeJaffarrol, .25f), "JJJ", " S ", " S ", 'J', jaffarrol, 'S', Item.stick);
-        GameRegistry.addRecipe(ItemHelper.constructDamagedItemStack(pickaxeJaffarrol, .5f), "JJJ", "DS ", " S ", 'J', jaffarrol, 'S', Item.stick, 'D', limsew);
-        GameRegistry.addRecipe(new ItemStack(pickaxeJaffarrol, 1, 0), "JJJ", "DSD", " S ", 'J', jaffarrol, 'S', Item.stick, 'D', limsew);
+        Recipes.addOreRecipe(ItemHelper.constructDamagedItemStack(pickaxeJaffarrol, .25f), "JJJ", " S ", " S ", 'J', jaffarrol, 'S', Recipes.WOOD_STICK);
+        Recipes.addOreRecipe(ItemHelper.constructDamagedItemStack(pickaxeJaffarrol, .5f), "JJJ", "DS ", " S ", 'J', jaffarrol, 'S', Recipes.WOOD_STICK, 'D', limsew);
+        Recipes.addOreRecipe(pickaxeJaffarrol, "JJJ", "DSD", " S ", 'J', jaffarrol, 'S', Recipes.WOOD_STICK, 'D', limsew);
 
-        GameRegistry.addRecipe(getItemStack(cookingPot), "I I", "I I", "IJI", 'I', Item.ingotIron, 'J', jaffarrol);
+        GameRegistry.addRecipe(getItemStack(cookingPot), "I I", "I I", "IJI", 'I', Items.iron_ingot, 'J', jaffarrol);
 
         OreDictionary.registerOre("oreJaffarrol", blockJaffarrolOre);
         OreDictionary.registerOre("oreLimsew", blockLimsewOre);
 
-        GameRegistry.addRecipe(new ItemStack(itemLocomotive), "I F", "BCB", "III", 'F', funnel, 'I', Item.ingotIron, 'B', Block.blockIron, 'C', itemCasingRefined);
+        GameRegistry.addRecipe(new ItemStack(itemLocomotive), "I F", "BCB", "III", 'F', funnel, 'I', Items.iron_ingot, 'B', Blocks.iron_block, 'C', itemCasingRefined);
 
         GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.swordJaffarrol), 333));
         GameRegistry.addRecipe(new RepairRecipe(3, 1, new ItemStack(JaffasTechnic.axeJaffarrol), 333));
@@ -669,16 +669,16 @@ public class JaffasTechnic extends JaffasModBase {
         GameRegistry.addRecipe(new RepairRecipe(4, 1, getItemStack(jaffarrolBoots), 250));
         GameRegistry.addRecipe(new RepairRecipe(7, 1, getItemStack(jaffarrolChest), 250));
 
-        addEnchantRecipe(swordJaffarrol, Item.swordGold);
-        addEnchantRecipe(axeJaffarrol, Item.axeGold);
-        addEnchantRecipe(hoeJaffarrol, Item.hoeGold);
-        addEnchantRecipe(pickaxeJaffarrol, Item.pickaxeGold);
-        addEnchantRecipe(spadeJaffarrol, Item.shovelGold);
+        addEnchantRecipe(swordJaffarrol, Items.golden_sword);
+        addEnchantRecipe(axeJaffarrol, Items.golden_axe);
+        addEnchantRecipe(hoeJaffarrol, Items.golden_hoe);
+        addEnchantRecipe(pickaxeJaffarrol, Items.golden_pickaxe);
+        addEnchantRecipe(spadeJaffarrol, Items.golden_shovel);
 
-        addEnchantRecipe(getItem(jaffarrolLeggins), Item.legsGold);
-        addEnchantRecipe(getItem(jaffarrolHelmet), Item.helmetGold);
-        addEnchantRecipe(getItem(jaffarrolBoots), Item.bootsGold);
-        addEnchantRecipe(getItem(jaffarrolChest), Item.plateGold);
+        addEnchantRecipe(getItem(jaffarrolLeggins), Items.golden_leggings);
+        addEnchantRecipe(getItem(jaffarrolHelmet), Items.golden_helmet);
+        addEnchantRecipe(getItem(jaffarrolBoots), Items.golden_boots);
+        addEnchantRecipe(getItem(jaffarrolChest), Items.golden_chestplate);
 
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(blockJaffarrolOre));
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
@@ -686,25 +686,25 @@ public class JaffasTechnic extends JaffasModBase {
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRefined));
         GameRegistry.addSmelting(jaffarrolDust, new ItemStack(jaffarrol), 0);
 
-        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IJI", "JIJ", 'J', jaffarrol, 'I', Item.ingotIron);
-        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "I I", "JIJ", 'J', jaffarrol, 'I', Block.glass);
+        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 0), "JIJ", "IJI", "JIJ", 'J', jaffarrol, 'I', Items.iron_ingot);
+        GameRegistry.addRecipe(new ItemStack(constructionBlock, 8, 1), "JIJ", "I I", "JIJ", 'J', jaffarrol, 'I', Blocks.glass);
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(mushroomKnife), " J", "W ", 'J', jaffarrol, 'W', "plankWood"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fungiBox), " W ", "PDP", "PPP", 'W', Item.bucketWater, 'D', Block.dirt, 'P', "plankWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(fungiBox), " W ", "PDP", "PPP", 'W', Items.water_bucket, 'D', Blocks.dirt, 'P', "plankWood"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(compostCore), "JPJ", "PCP", "JPJ", 'J', jaffarrol, 'P', "plankWood", 'C', createCentralUnitStack(CentralUnitEnum.NORMAL)));
 
         // temporal recipes
-        GameRegistry.addShapelessRecipe(new ItemStack(Block.mushroomBrown),
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.brown_mushroom),
                 new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID), new ItemStack(fungus, 1, PORCINO_ID));
-        GameRegistry.addShapelessRecipe(new ItemStack(Block.mushroomBrown),
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.brown_mushroom),
                 new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID), new ItemStack(fungus, 1, PARASOL_ID));
 
         Recipes.addRecipe(new ShapelessOreRecipe(getItem(cookedMushroomsRaw), getItem(woodenBowl), MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE));
         Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(cookedMushroomsRaw), 3), getItem(woodenBowl), getItem(woodenBowl), getItem(woodenBowl), MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE, MUSHROOMS_EATABLE));
 
         Recipes.addRecipe(new ShapedOreRecipe(getItem(friedMushroomsInTinRaw), "MSM", "PPP", " T ", 'M', MUSHROOMS_EATABLE, 'S', getItem(sausage), 'P', JaffasTrees.getFruit(JaffasTrees.bushType.Pea), 'T', getItem(cakeTin)));
-        GameRegistry.addSmelting(getItem(friedMushroomsInTinRaw).itemID, getItemStack(friedMushroomsInTinCooked), 2f);
+        GameRegistry.addSmelting(getItem(friedMushroomsInTinRaw), getItemStack(friedMushroomsInTinCooked), 2f);
         PersistentItemsCraftingHandler.AddPersistentItem(friedMushroomsInTinCooked, false, cakeTin);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(friedMushrooms), 3), getItem(plate), getItem(plate), getItem(plate), getItem(friedMushroomsInTinCooked));
         //Recipes.addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(mincedMushrooms), 2), MUSHROOMS_EATABLE, getItem(grinderMeat)));
@@ -731,38 +731,38 @@ public class JaffasTechnic extends JaffasModBase {
             );
             GameRegistry.addSmelting(rainbowDust, new ItemStack(gems), 7f);
 
-            GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBL", "IRI", 'L', Item.glowstone, 'I', Item.ingotIron, 'R', Item.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
+            GameRegistry.addShapedRecipe(new ItemStack(lamp), "IGI", "RBL", "IRI", 'L', Items.glowstone_dust, 'I', Items.iron_ingot, 'R', Items.redstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY));
 
-            GameRegistry.addShapedRecipe(new ItemStack(repeater, 2), " R ", "JCJ", 'C', Item.redstoneRepeater, 'R', Item.redstone, 'J', jaffarrolRefined);
-            GameRegistry.addShapedRecipe(new ItemStack(sampler), " R ", "JCJ", 'C', Item.comparator, 'R', Item.netherQuartz, 'J', jaffarrolRefined);
+            GameRegistry.addShapedRecipe(new ItemStack(repeater, 2), " R ", "JCJ", 'C', Items.repeater, 'R', Items.redstone, 'J', jaffarrolRefined);
+            GameRegistry.addShapedRecipe(new ItemStack(sampler), " R ", "JCJ", 'C', Items.comparator, 'R', Items.quartz, 'J', jaffarrolRefined);
 
             for (int i = 0; i <= 15; i++) {
                 GameRegistry.addShapedRecipe(new ItemStack(lampDeco, 2, i), "IGI", "RBR", "IDI",
-                        'I', Item.ingotIron, 'R', Item.glowstone, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY),
+                        'I', Items.iron_ingot, 'R', Items.glowstone_dust, 'G', gems, 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_GLASSY),
                         'D', DyeHelper.getDye(i));
             }
 
-            GameRegistry.addShapedRecipe(new ItemStack(randomizer), "SQS", "RJT", "SSS", 'S', Block.stone, 'Q', Item.netherQuartz, 'R', Item.redstone, 'J', jaffarrolRefined, 'T', Block.torchRedstoneActive);
+            Recipes.addOreRecipe(randomizer, "SQS", "RJT", "SSS", 'S', Recipes.STONE, 'Q', Items.quartz, 'R', Items.redstone, 'J', jaffarrolRefined, 'T', Blocks.redstone_torch);
         }
 
         //GameRegistry.addShapelessRecipe(new ItemStack(processedHop), getItem(grinderMeat), hop, Item.wheat);
         TileGrinder.addRecipe(new ItemStack(hopWeatMixture), new ItemStack(processedHop), 400);
 
-        GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Item.bucketWater, Item.bucketEmpty, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
+        GameRegistry.addShapelessRecipe(new ItemStack(processedHopInBucket), Items.water_bucket, Items.bucket, processedHop, processedHop, processedHop, processedHop, processedHop, processedHop);
         GameRegistry.addSmelting(processedHopInBucket, new ItemStack(brewedHopInBucket), 1f);
         GameRegistry.addShapelessRecipe(new ItemStack(hopSeeds), hop);
         Recipes.addRecipe(new ShapedOreRecipe(itemKeg, "PSP", "PJP", "PSP", 'P', "plankWood", 'S', "slabWood", 'J', jaffarrol));
-        GameRegistry.addShapedRecipe(new ItemStack(getItem(beerMugEmpty), 2), "GG ", "GGG", "GG ", 'G', Block.glass);
+        GameRegistry.addShapedRecipe(new ItemStack(getItem(beerMugEmpty), 2), "GG ", "GGG", "GG ", 'G', Blocks.glass);
 
-        GameRegistry.addShapedRecipe(new ItemStack(cobbleBreaker), "SSS", "JLJ", "TFT", 'S', Item.stick, 'J', jaffarrolRefined, 'L', Item.slimeBall, 'T', DyeHelper.getDye(DyeColor.YELLOW), 'F', Block.furnaceIdle);
+        Recipes.addOreRecipe(cobbleBreaker, "SSS", "JLJ", "TFT", 'S', Recipes.WOOD_STICK, 'J', jaffarrolRefined, 'L', Items.slime_ball, 'T', DyeHelper.getDye(DyeColor.YELLOW), 'F', Blocks.furnace);
         GameRegistry.addShapedRecipe(new ItemStack(itemFermenter), "BFB", "CAC", "BBB",
                 'B', new ItemStack(constructionBlock, 1, BlockConstruction.META_ALLOY), 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE),
                 'F', funnel, 'A', itemCasingRefined);
 
-        GameRegistry.addShapedRecipe(new ItemStack(Item.shears), " J", "J ", 'J', jaffarrol);
-        GameRegistry.addShapedRecipe(new ItemStack(highPlantPost), "SSS", " S ", " S ", 'S', Item.stick);
-        GameRegistry.addShapelessRecipe(new ItemStack(hopWeatMixture), hop, Item.wheat);
-        GameRegistry.addShapedRecipe(ItemHelper.constructDamagedItemStack(Item.flintAndSteel, 0.33f), "J ", " F", 'J', jaffarrolRefined, 'F', Item.flint);
+        GameRegistry.addShapedRecipe(new ItemStack(Items.shears), " J", "J ", 'J', jaffarrol);
+        Recipes.addOreRecipe(highPlantPost, "SSS", " S ", " S ", 'S', Recipes.WOOD_STICK);
+        GameRegistry.addShapelessRecipe(new ItemStack(hopWeatMixture), hop, Items.wheat);
+        GameRegistry.addShapedRecipe(ItemHelper.constructDamagedItemStack(Items.flint_and_steel, 0.33f), "J ", " F", 'J', jaffarrolRefined, 'F', Items.flint);
 
         GameRegistry.addShapelessRecipe(new ItemStack(jaffarrolNugget, 9), jaffarrol);
         GameRegistry.addShapelessRecipe(new ItemStack(jaffarrol), ItemHelper.constructStackArray(new ItemStack(jaffarrolNugget), 9));
@@ -778,22 +778,22 @@ public class JaffasTechnic extends JaffasModBase {
         addToolRecycleRecipe(swordJaffarrol, 2);
 
         if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
-            registerPlantingBagRecipes(new ItemStack(Block.cloth, 1, OreDictionary.WILDCARD_VALUE));
+            registerPlantingBagRecipes(new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE));
             registerPlantingBagRecipes(getItemStack(wolfSkin));
-            registerPlantingBagRecipes(new ItemStack(Item.leather));
+            registerPlantingBagRecipes(new ItemStack(Items.leather));
         }
 
-        TileGrinder.addRecipe(new ItemStack(Item.fishRaw), getItemStack(fishFillet), 400);
-        TileGrinder.addRecipe(new ItemStack(Item.bread), getItemStack(breadCrumbs), 1500);
+        TileGrinder.addRecipe(new ItemStack(Items.fish), getItemStack(fishFillet), 400);
+        TileGrinder.addRecipe(new ItemStack(Items.bread), getItemStack(breadCrumbs), 1500);
         TileGrinder.addRecipe(getItemStack(roll), getItemStack(breadCrumbs), 400);
         TileGrinder.addRecipe(getItemStack(bun), getItemStack(breadCrumbs), 400);
     }
 
     private void registerPlantingBagRecipes(ItemStack s) {
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagSmall), " S ", "WDW", "WMW", 'S', Item.silk, 'W', s, 'D', JaffasTechnic.limsew, 'M', Item.ingotIron);
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagMedium), " S ", "WBW", "DWM", 'S', Item.silk, 'W', s, 'M', Item.ingotGold, 'B', JaffasTrees.itemPlantingBagSmall, 'D', JaffasTechnic.limsew);
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagBig), " S ", "WBW", "DMD", 'S', Item.silk, 'W', s, 'M', Item.diamond, 'B', JaffasTrees.itemPlantingBagMedium, 'D', JaffasTechnic.limsew);
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemCollectingBag), " S ", "WBW", "WWW", 'S', Item.silk, 'W', s, 'B', JaffasTrees.itemPlantingBagSmall);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagSmall), " S ", "WDW", "WMW", 'S', Items.string, 'W', s, 'D', JaffasTechnic.limsew, 'M', Items.iron_ingot);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagMedium), " S ", "WBW", "DWM", 'S', Items.string, 'W', s, 'M', Items.gold_ingot, 'B', JaffasTrees.itemPlantingBagSmall, 'D', JaffasTechnic.limsew);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemPlantingBagBig), " S ", "WBW", "DMD", 'S', Items.string, 'W', s, 'M', Items.diamond, 'B', JaffasTrees.itemPlantingBagMedium, 'D', JaffasTechnic.limsew);
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasTrees.itemCollectingBag), " S ", "WBW", "WWW", 'S', Items.string, 'W', s, 'B', JaffasTrees.itemPlantingBagSmall);
     }
 
     private void addToolRecycleRecipe(Item tool, int ingotsUsedForCreation) {
