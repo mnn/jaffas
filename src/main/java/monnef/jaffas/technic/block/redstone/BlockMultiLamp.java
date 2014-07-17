@@ -7,6 +7,7 @@ package monnef.jaffas.technic.block.redstone;
 
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.technic.block.BlockLamp;
+import net.minecraft.block.Block;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -14,8 +15,8 @@ import java.util.Random;
 
 public class BlockMultiLamp extends BlockLamp {
 
-    public BlockMultiLamp(int id, int textureID) {
-        super(id, textureID);
+    public BlockMultiLamp(int textureID) {
+        super(textureID);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class BlockMultiLamp extends BlockLamp {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int neightbourBlockId) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neightbourBlockId) {
         super.onNeighborBlockChange(world, x, y, z, neightbourBlockId);
         onChange(world, x, y, z);
     }
@@ -60,20 +61,20 @@ public class BlockMultiLamp extends BlockLamp {
 
     protected void refreshMetadata(World world, int x, int y, int z) {
         int power = getPower(world, x, y, z);
-        int bId = world.getBlockId(x, y, z);
-        if (bId == blockID) {
+        Block block = world.getBlock(x, y, z);
+        if (block == this) {
             BlockHelper.setBlockMetadata(world, x, y, z, power);
             // some magic is happening down here...
             world.markBlockForUpdate(x, y, z);
-            world.updateAllLightTypes(x, y, z);
+            world.func_147451_t(x, y, z); // updateAllLightTypes
         }
     }
 
     @Override
     public int getLightValue(IBlockAccess world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
-        int currBlockId = world.getBlockId(x, y, z);
-        if (currBlockId != blockID) {
+        Block currBlock = world.getBlock(x, y, z);
+        if (currBlock != this) {
             // not lamp
             return 0;
             //return super.getLightValue(world, x, y, z);

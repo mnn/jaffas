@@ -9,19 +9,22 @@ import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.IWorldAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockCompostCore extends BlockTechnic {
-    private Icon blankIcon;
+    private IIcon blankIcon;
 
-    public BlockCompostCore(int id, int textureID, Material material) {
-        super(id, textureID, material);
+    public BlockCompostCore(int textureID, Material material) {
+        super(textureID, material);
         setHardness(5);
         setResistance(15);
         setIconsCount(2);
@@ -32,7 +35,7 @@ public class BlockCompostCore extends BlockTechnic {
         if (player.isSneaking())
             return false;
 
-        TileCompostCore tileEntity = (TileCompostCore) world.getBlockTileEntity(x, y, z);
+        TileCompostCore tileEntity = (TileCompostCore) world.getTileEntity(x, y, z);
 
         if (tileEntity != null) {
             if (!tileEntity.getIsValidMultiblock()) {
@@ -60,8 +63,8 @@ public class BlockCompostCore extends BlockTechnic {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        TileCompostCore tileEntity = (TileCompostCore) world.getBlockTileEntity(x, y, z);
+    public void breakBlock(World world, int x, int y, int z, Block par5, int par6) {
+        TileCompostCore tileEntity = (TileCompostCore) world.getTileEntity(x, y, z);
 
         if (tileEntity != null)
             tileEntity.invalidateMultiblock();
@@ -70,7 +73,7 @@ public class BlockCompostCore extends BlockTechnic {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         if (!isCompostTankFormed(meta)) {
             if (side == ForgeDirection.UP.ordinal()) return getCustomIcon(0);
             return getCustomIcon(1);
@@ -80,8 +83,8 @@ public class BlockCompostCore extends BlockTechnic {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
-        super.registerIcons(iconRegister);
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        super.registerBlockIcons(iconRegister);
         blankIcon = iconRegister.registerIcon(CustomIconHelper.generateId((ICustomIcon) this, 99));
     }
 
@@ -96,7 +99,7 @@ public class BlockCompostCore extends BlockTechnic {
     }
 
     @Override
-    public int getLightOpacity(World world, int x, int y, int z) {
+    public int getLightOpacity(IBlockAccess world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         return isCompostTankFormed(meta) ? 0 : 255;
     }

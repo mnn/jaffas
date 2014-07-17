@@ -10,6 +10,7 @@ import monnef.jaffas.technic.block.TileKeg;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -23,8 +24,8 @@ public class ItemKeg extends ItemTechnic {
     protected String[] subNames;
     protected String[] subTitles;
 
-    public ItemKeg(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemKeg(int textureIndex) {
+        super(textureIndex);
         subNames = new String[TileKeg.KegType.values().length];
         subTitles = new String[TileKeg.KegType.values().length];
 
@@ -45,11 +46,10 @@ public class ItemKeg extends ItemTechnic {
             //not the top of a block
             return false;
         } else {
-            int activatedBlockId = world.getBlockId(x, y, z);
-            Block activatedBlock = Block.blocksList[activatedBlockId];
+            Block activatedBlock = world.getBlock(x, y, z);
             boolean replacing = false;
 
-            if (activatedBlock != null && activatedBlock.isBlockReplaceable(world, x, y, z)) {
+            if (activatedBlock != null && activatedBlock.isReplaceable(world, x, y, z)) {
                 replacing = true;
             } else {
                 y++;
@@ -62,11 +62,11 @@ public class ItemKeg extends ItemTechnic {
             if (player.canPlayerEdit(x, y, z, side, item)) {
                 if (world.isAirBlock(x, y, z) || replacing) {
                     if (world.isAirBlock(x, y + 1, z)) {
-                        setBlock(world, x, y, z, blockToPlace.blockID, 0);
+                        setBlock(world, x, y, z, blockToPlace, 0);
 
                         --item.stackSize;
 
-                        TileKeg tile = (TileKeg) world.getBlockTileEntity(x, y, z);
+                        TileKeg tile = (TileKeg) world.getTileEntity(x, y, z);
                         tile.initNewKeg(TileKeg.KegType.values()[item.getItemDamage()]);
                         return true;
 
@@ -83,9 +83,9 @@ public class ItemKeg extends ItemTechnic {
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs tabs, List list) {
+    public void getSubItems(Item item, CreativeTabs tabs, List list) {
         for (int i = 0; i < TileKeg.KegType.values().length; i++) {
-            list.add(new ItemStack(id, 1, i));
+            list.add(new ItemStack(item, 1, i));
         }
     }
 

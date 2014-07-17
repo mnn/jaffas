@@ -307,7 +307,7 @@ public class JaffasTechnic extends JaffasModBase {
         itemCentralUnit.registerNames();
 
         TechnicWorldGen generator = new TechnicWorldGen();
-        GameRegistry.registerWorldGenerator(generator);
+        GameRegistry.registerWorldGenerator(generator, 100); // not a clue what weight should be
 
         installThermalExpansionSupport();
         JaffasFood.PrintInitialized(ModulesEnum.technic);
@@ -467,7 +467,7 @@ public class JaffasTechnic extends JaffasModBase {
         if (!disableRedstoneGadgets) {
             lampDeco = new BlockLamp(37, 38);
             registerMultiBlock(lampDeco, ItemBlockJaffas.class, lampDeco.generateTitles(), lampDeco.generateSubNames());
-            Item.itemsList[lampDeco.blockID].setFull3D();
+            Item.getItemFromBlock(lampDeco).setFull3D();
 
             lamp = new BlockMultiLamp(37);
             registerRedstoneBlock(lamp, "multiLamp", "Multi-Lamp");
@@ -508,7 +508,7 @@ public class JaffasTechnic extends JaffasModBase {
 
         processedHopInBucket = new ItemTechnic(48);
         RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket", "Beer Mixture In Bucket");
-        processedHopInBucket.setContainerItem(Item.bucketEmpty);
+        processedHopInBucket.setContainerItem(Items.bucket);
 
         brewedHopInBucket = new ItemTechnic(49);
         RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Hopped Wort");
@@ -555,16 +555,16 @@ public class JaffasTechnic extends JaffasModBase {
 
         axeJaffarrol = new ItemAxeTechnic(21, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(axeJaffarrol, "axeJaffarrol", "Jaffarrol Axe");
-        MinecraftForge.setToolClass(axeJaffarrol, "axe", 3);
+        axeJaffarrol.setHarvestLevel("axe", 3);
 
         pickaxeJaffarrol = new ItemPickaxeTechnic(20, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(pickaxeJaffarrol, "pickaxeJaffarrol", "Jaffarrol Pickaxe");
-        MinecraftForge.setToolClass(pickaxeJaffarrol, "pickaxe", 3);
+        pickaxeJaffarrol.setHarvestLevel("pickaxe", 3);
         TileCobbleBreaker.registerJaffarrolTool(pickaxeJaffarrol);
 
         spadeJaffarrol = new ItemSpadeTechnic(19, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(spadeJaffarrol, "spadeJaffarrol", "Jaffarrol Shovel");
-        MinecraftForge.setToolClass(spadeJaffarrol, "shovel", 3);
+        spadeJaffarrol.setHarvestLevel("shovel", 3);
 
         hoeJaffarrol = new ItemHoeTechnic(22, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(hoeJaffarrol, "hoeJaffarrol", "Jaffarrol Hoe");

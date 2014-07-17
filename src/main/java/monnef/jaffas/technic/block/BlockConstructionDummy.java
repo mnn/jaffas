@@ -6,6 +6,7 @@
 package monnef.jaffas.technic.block;
 
 import monnef.jaffas.food.common.ContentHolder;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -14,8 +15,8 @@ import net.minecraft.world.World;
 import java.util.Random;
 
 public class BlockConstructionDummy extends BlockTechnic {
-    public BlockConstructionDummy(int id, int textureID) {
-        super(id, textureID, Material.iron);
+    public BlockConstructionDummy(int textureID) {
+        super(textureID, Material.iron);
         setHardness(5);
         setResistance(15);
         setCreativeTab(null);
@@ -53,8 +54,8 @@ public class BlockConstructionDummy extends BlockTechnic {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
-        TileConstructionDummy dummy = (TileConstructionDummy) world.getBlockTileEntity(x, y, z);
+    public void breakBlock(World world, int x, int y, int z, Block par5, int par6) {
+        TileConstructionDummy dummy = (TileConstructionDummy) world.getTileEntity(x, y, z);
 
         if (dummy != null && dummy.getCore() != null)
             dummy.getCore().invalidateMultiblock();
@@ -67,7 +68,7 @@ public class BlockConstructionDummy extends BlockTechnic {
         if (player.isSneaking())
             return false;
 
-        TileConstructionDummy dummy = (TileConstructionDummy) world.getBlockTileEntity(x, y, z);
+        TileConstructionDummy dummy = (TileConstructionDummy) world.getTileEntity(x, y, z);
 
         if (dummy != null && dummy.getCore() != null) {
             TileCompostCore core = dummy.getCore();

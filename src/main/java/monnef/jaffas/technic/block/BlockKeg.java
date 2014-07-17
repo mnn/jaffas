@@ -4,6 +4,7 @@ import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
@@ -13,14 +14,14 @@ public class BlockKeg extends BlockTechnic {
     private static final float border = 3f * 1f / 16f;
     private static final float borderComplement = 1f - border;
 
-    public BlockKeg(int id, int textureID) {
-        super(id, textureID, Material.wood);
+    public BlockKeg(int textureID) {
+        super(textureID, Material.wood);
         removeFromCreativeTab();
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
     }
 
     public TileKeg getTile(World world, int x, int y, int z) {
-        return (TileKeg) world.getBlockTileEntity(x, y, z);
+        return (TileKeg) world.getTileEntity(x, y, z);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class BlockKeg extends BlockTechnic {
     }
 
     @Override
-    public int idDropped(int id, Random par2Random, int par3) {
-        return JaffasTechnic.itemKeg.itemID;
+    public Item getItemDropped(int meta, Random random, int par3) {
+        return JaffasTechnic.itemKeg;
     }
 }

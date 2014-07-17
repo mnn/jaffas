@@ -7,9 +7,11 @@ package monnef.jaffas.technic.block;
 
 import monnef.core.utils.BitHelper;
 import monnef.core.utils.BlockHelper;
+import monnef.core.utils.BreakableIronMaterial;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.technic.JaffasTechnic;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -19,8 +21,6 @@ import net.minecraft.world.World;
 
 import java.util.ArrayList;
 
-import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
-
 public class BlockFermenter extends BlockTechnic {
     private static final int SLAVE_BIT = 3;
     private static final int BLOCK_ACTIVATION_RADIUS = 2;
@@ -29,8 +29,8 @@ public class BlockFermenter extends BlockTechnic {
     private static final float topBorder = 8f * 1f / 16f;
     private static final float topBorderComplement = 1f - topBorder;
 
-    public BlockFermenter(int id, int textureID) {
-        super(id, textureID, breakableIronMaterial);
+    public BlockFermenter(int textureID) {
+        super(textureID, BreakableIronMaterial.breakableIronMaterial());
         setHardness(3f);
         removeFromCreativeTab();
     }
@@ -62,14 +62,14 @@ public class BlockFermenter extends BlockTechnic {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int meta) {
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         planIntegrityCheckBellow(world, x, y, z);
-        super.breakBlock(world, x, y, z, par5, meta);
+        super.breakBlock(world, x, y, z, block, meta);
     }
 
     private void planIntegrityCheckBellow(World world, int x, int y, int z) {
         int cy = y - 1;
-        TileEntity tile = world.getBlockTileEntity(x, cy, z);
+        TileEntity tile = world.getTileEntity(x, cy, z);
         if (tile instanceof TileFermenter) {
             ((TileFermenter) tile).planIntegrityCheck();
         }
@@ -82,7 +82,7 @@ public class BlockFermenter extends BlockTechnic {
         int ny = y;
         int tested = 0;
         while (!(te instanceof TileFermenter) && tested < BLOCK_ACTIVATION_RADIUS) {
-            te = world.getBlockTileEntity(x, ny, z);
+            te = world.getTileEntity(x, ny, z);
             ny--;
             tested++;
         }
@@ -123,7 +123,7 @@ public class BlockFermenter extends BlockTechnic {
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
-        return isMaster(meta) || world.getBlockId(x, y - 1, z) == blockID;
+        return isMaster(meta) || world.getBlock(x, y - 1, z) == this;
     }
 
     @Override
@@ -132,7 +132,7 @@ public class BlockFermenter extends BlockTechnic {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int par5) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         boolean drop = false;
         if (!canBlockStay(world, x, y, z)) {
             drop = true;
@@ -140,12 +140,12 @@ public class BlockFermenter extends BlockTechnic {
 
         if (drop && !world.isRemote) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0); // metadata, fortune
-            BlockHelper.setBlock(world, x, y, z, 0);
+            BlockHelper.setAir(world, x, y, z);
         }
     }
 
     @Override
-    public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune) {
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> res = new ArrayList<ItemStack>();
 
         if (isMaster(metadata)) {

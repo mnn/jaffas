@@ -8,8 +8,8 @@ import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizer;
 
 public class ItemCompost extends ItemTechnic implements IFactoryFertilizer {
-    public ItemCompost(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemCompost(int textureIndex) {
+        super(textureIndex);
     }
 
     @Override

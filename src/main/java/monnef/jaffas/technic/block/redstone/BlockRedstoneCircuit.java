@@ -7,12 +7,13 @@ package monnef.jaffas.technic.block.redstone;
 
 import monnef.core.utils.DirectionHelper;
 import monnef.jaffas.technic.block.BlockDirectionalTechnic;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.Random;
 
@@ -20,10 +21,10 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     public static final int WAIT_TICKS = 2;
     public static final Material circuitBlock = new Material(MapColor.airColor);
 
-    public BlockRedstoneCircuit(int id, int textureStart, int texturesCountPerSet, TextureMappingType type) {
-        super(id, textureStart, texturesCountPerSet, circuitBlock, type);
+    public BlockRedstoneCircuit(int textureStart, int texturesCountPerSet, TextureMappingType type) {
+        super(textureStart, texturesCountPerSet, circuitBlock, type);
         setHardness(0.5f);
-        setStepSound(soundStoneFootstep);
+        setStepSound(soundTypeStone);
     }
 
     @Override
@@ -45,7 +46,7 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     public abstract TileEntity createTileEntity(World world, int metadata);
 
     public TileRedstoneCircuit getTile(IBlockAccess world, int x, int y, int z) {
-        return (TileRedstoneCircuit) world.getBlockTileEntity(x, y, z);
+        return (TileRedstoneCircuit) world.getTileEntity(x, y, z);
     }
 
     public void recalculatePower(World world, int x, int y, int z) {
@@ -55,8 +56,8 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int neighbourBlockID) {
-        super.onNeighborBlockChange(world, x, y, z, neighbourBlockID);
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
+        super.onNeighborBlockChange(world, x, y, z, neighbour);
         recalculatePower(world, x, y, z);
     }
 
@@ -67,7 +68,7 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     }
 
     private void scheduleNeighboursUpdate(World world, int x, int y, int z) {
-        world.scheduleBlockUpdate(x, y, z, blockID, WAIT_TICKS);
+        world.scheduleBlockUpdate(x, y, z, this, WAIT_TICKS);
     }
 
     @Override
@@ -93,9 +94,9 @@ public abstract class BlockRedstoneCircuit extends BlockDirectionalTechnic {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int meta) {
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         getTile(world, x, y, z).forceUpdateNeighbours();
-        super.breakBlock(world, x, y, z, par5, meta);
+        super.breakBlock(world, x, y, z, block, meta);
     }
 
     @Override

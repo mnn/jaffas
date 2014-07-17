@@ -14,8 +14,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.ArrayList;
 
@@ -28,8 +28,8 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
     private static final float U = 1 / 16f;
     private static final float topComplement = 1f - 4 * U;
 
-    public BlockHighPlant(int id, int textureID) {
-        super(id, textureID, Material.plants);
+    public BlockHighPlant(int textureID) {
+        super(textureID, Material.plants);
         setHardness(0.33f);
         removeFromCreativeTab();
     }
@@ -59,15 +59,15 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int meta) {
+    public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         planIntegrityCheckBellow(world, x, y, z);
-        super.breakBlock(world, x, y, z, par5, meta);
+        super.breakBlock(world, x, y, z, block, meta);
     }
 
     private void planIntegrityCheckBellow(World world, int x, int y, int z) {
         for (int cy = y; cy > y - INTEGRITY_CHECK_RADIUS; cy--) {
             if (cy < 0) break;
-            TileEntity tile = world.getBlockTileEntity(x, cy, z);
+            TileEntity tile = world.getTileEntity(x, cy, z);
             if (tile instanceof TileHighPlant) {
                 ((TileHighPlant) tile).planIntegrityCheck();
             }
@@ -81,7 +81,7 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
         int ny = y;
         int tested = 0;
         while (te == null && tested < BLOCK_ACTIVATION_RADIUS) {
-            te = (TileHighPlant) world.getBlockTileEntity(x, ny, z);
+            te = (TileHighPlant) world.getTileEntity(x, ny, z);
             ny--;
             tested++;
         }
@@ -121,11 +121,11 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
-        return validSoil(world, x, y - 1, z) || world.getBlockId(x, y - 1, z) == blockID;
+        return validSoil(world, x, y - 1, z) || world.getBlock(x, y - 1, z) == this;
     }
 
     public boolean validSoil(World world, int x, int y, int z) {
-        Block bellow = Block.blocksList[world.getBlockId(x, y, z)];
+        Block bellow = world.getBlock(x, y, z);
         if (bellow == null) return false;
         return bellow.canSustainPlant(world, x, y, z, ForgeDirection.UP, this);
     }
@@ -136,7 +136,7 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int par5) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block neighbour) {
         boolean drop = false;
         if (!canBlockStay(world, x, y, z)) {
             drop = true;
@@ -144,27 +144,27 @@ public class BlockHighPlant extends BlockTechnic implements IPlantable {
 
         if (drop && !world.isRemote) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0); // metadata, fortune
-            BlockHelper.setBlock(world, x, y, z, 0);
+            BlockHelper.setAir(world, x, y, z);
         }
     }
 
     @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z) {
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
         return EnumPlantType.Plains;
     }
 
     @Override
-    public int getPlantID(World world, int x, int y, int z) {
-        return blockID;
+    public Block getPlant(IBlockAccess world, int x, int y, int z) {
+        return this;
     }
 
     @Override
-    public int getPlantMetadata(World world, int x, int y, int z) {
+    public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
         return world.getBlockMetadata(x, y, z);
     }
 
     @Override
-    public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune) {
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> res = new ArrayList<ItemStack>();
 
         if (isMaster(metadata)) {

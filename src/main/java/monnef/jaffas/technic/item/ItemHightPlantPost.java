@@ -16,8 +16,8 @@ import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.jaffas.technic.JaffasTechnic.highPlant;
 
 public class ItemHightPlantPost extends ItemTechnic {
-    public ItemHightPlantPost(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemHightPlantPost(int textureIndex) {
+        super(textureIndex);
     }
 
     @Override
@@ -28,11 +28,10 @@ public class ItemHightPlantPost extends ItemTechnic {
             //not the top of a block
             return false;
         } else {
-            int activatedBlockId = world.getBlockId(x, y, z);
-            Block activatedBlock = Block.blocksList[activatedBlockId];
+            Block activatedBlock = world.getBlock(x, y, z);
             boolean replacing = false;
 
-            if (activatedBlock != null && activatedBlock.isBlockReplaceable(world, x, y, z)) {
+            if (activatedBlock != null && activatedBlock.isReplaceable(world, x, y, z)) {
                 replacing = true;
             } else {
                 y++;
@@ -49,14 +48,14 @@ public class ItemHightPlantPost extends ItemTechnic {
                     if (world.isAirBlock(x, y + 1, z)) {
                         int masterMeta1 = highPlant.setDirection(0, direction);
                         int masterMeta2 = highPlant.setMaster(masterMeta1);
-                        setBlock(world, x, y, z, blockToPlace.blockID, masterMeta2);
+                        setBlock(world, x, y, z, blockToPlace, masterMeta2);
 
                         int slaveMeta = highPlant.setSlave(0);
-                        setBlock(world, x, y + 1, z, blockToPlace.blockID, slaveMeta);
+                        setBlock(world, x, y + 1, z, blockToPlace, slaveMeta);
 
                         --item.stackSize;
 
-                        TileHighPlant tile = (TileHighPlant) world.getBlockTileEntity(x, y, z);
+                        TileHighPlant tile = (TileHighPlant) world.getTileEntity(x, y, z);
                         tile.setStructureHeight(2);
                         return true;
 

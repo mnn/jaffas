@@ -11,11 +11,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockCobbleBreaker extends BlockDirectionalTechnic {
-    public BlockCobbleBreaker(int id, int textureStart, int texturesCountPerSet, Material material, TextureMappingType type) {
-        super(id, textureStart, texturesCountPerSet, material, type);
+    public BlockCobbleBreaker(int textureStart, int texturesCountPerSet, Material material, TextureMappingType type) {
+        super(textureStart, texturesCountPerSet, material, type);
         setHardness(2f);
         setResistance(10f);
     }

@@ -10,8 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public class BlockRandomizer extends BlockRedstoneCircuit {
-    public BlockRandomizer(int id, int textureStart, int texturesCountPerSet) {
-        super(id, textureStart, texturesCountPerSet, BlockJDirectional.TextureMappingType.ALL_SIDES);
+    public BlockRandomizer(int textureStart, int texturesCountPerSet) {
+        super(textureStart, texturesCountPerSet, BlockJDirectional.TextureMappingType.ALL_SIDES);
     }
 
     @Override

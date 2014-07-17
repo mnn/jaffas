@@ -9,6 +9,7 @@ import cpw.mods.fml.common.IWorldGenerator;
 import monnef.jaffas.food.world.WorldGenHelper;
 import monnef.jaffas.technic.block.BlockOre;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -19,7 +20,6 @@ import java.util.Random;
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrass;
-import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrassID;
 
 public class TechnicWorldGen implements IWorldGenerator {
     private final WorldGenMinable jaffarrolGenRich;
@@ -35,10 +35,10 @@ public class TechnicWorldGen implements IWorldGenerator {
     private IChunkProvider generator;
 
     public TechnicWorldGen() {
-        jaffarrolGenRich = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre.blockID, BlockOre.NATURAL_META, 10, Block.stone.blockID);
-        jaffarrolGenSmall = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre.blockID, BlockOre.NATURAL_META, 4, Block.stone.blockID);
-        limsewGenSmall = new WorldGenMinable(JaffasTechnic.blockLimsewOre.blockID, 2);
-        limsewGenRich = new WorldGenMinable(JaffasTechnic.blockLimsewOre.blockID, 5);
+        jaffarrolGenRich = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre, BlockOre.NATURAL_META, 10, Blocks.stone);
+        jaffarrolGenSmall = new WorldGenMinable(JaffasTechnic.blockJaffarrolOre, BlockOre.NATURAL_META, 4, Blocks.stone);
+        limsewGenSmall = new WorldGenMinable(JaffasTechnic.blockLimsewOre, 2);
+        limsewGenRich = new WorldGenMinable(JaffasTechnic.blockLimsewOre, 5);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class TechnicWorldGen implements IWorldGenerator {
         int y = 127;
         Block block;
         do {
-            block = Block.blocksList[world.getBlockId(x, y, z)];
+            block = world.getBlock(x, y, z);
             if (block != null && !block.isLeaves(world, x, y, z)) {
                 break;
             }
@@ -140,7 +140,7 @@ public class TechnicWorldGen implements IWorldGenerator {
             int cZ = z + rand.nextInt(radius) - rand.nextInt(radius);
 
             if (world.isAirBlock(cX, cY, cZ) && blockSwitchgrass.canPlaceBlockAt(world, cX, cY, cZ)) {
-                setBlock(world, cX, cY, cZ, blockSwitchgrassID, 8);
+                setBlock(world, cX, cY, cZ, blockSwitchgrass, 8);
                 hit++;
             }
         }
@@ -151,8 +151,8 @@ public class TechnicWorldGen implements IWorldGenerator {
         for (int cx = x - radius; cx <= x + radius; cx++) {
             for (int cy = y - radiusVertical; cy <= y + radiusVertical; cy++) {
                 for (int cz = z - radius; cz <= z + radius; cz++) {
-                    int id = world.getBlockId(cx, cy, cz);
-                    if (id == Block.snow.blockID || id == Block.ice.blockID || id == Block.blockSnow.blockID) {
+                    Block b = world.getBlock(cx, cy, cz);
+                    if (b == Blocks.snow || b == Blocks.ice || b == Blocks.snow_layer) {
                         return true;
                     }
                 }
@@ -166,8 +166,8 @@ public class TechnicWorldGen implements IWorldGenerator {
         for (int cx = x - radius; cx <= x + radius; cx++) {
             for (int cy = y - radiusVertical; cy <= y + radiusVertical; cy++) {
                 for (int cz = z - radius; cz <= z + radius; cz++) {
-                    int id = world.getBlockId(cx, cy, cz);
-                    if (id == Block.waterStill.blockID || id == Block.waterMoving.blockID) {
+                    Block b = world.getBlock(cx, cy, cz);
+                    if (b == Blocks.water || b == Blocks.flowing_water) {
                         return true;
                     }
                 }

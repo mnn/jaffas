@@ -15,8 +15,8 @@ import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.jaffas.technic.JaffasTechnic.fermenter;
 
 public class ItemFermenter extends ItemTechnic {
-    public ItemFermenter(int id, int texture) {
-        super(id, texture);
+    public ItemFermenter(int texture) {
+        super(texture);
     }
 
     @Override
@@ -27,11 +27,10 @@ public class ItemFermenter extends ItemTechnic {
             //not the top of a block
             return false;
         } else {
-            int activatedBlockId = world.getBlockId(x, y, z);
-            Block activatedBlock = Block.blocksList[activatedBlockId];
+            Block activatedBlock = world.getBlock(x, y, z);
             boolean replacing = false;
 
-            if (activatedBlock != null && activatedBlock.isBlockReplaceable(world, x, y, z)) {
+            if (activatedBlock != null && activatedBlock.isReplaceable(world, x, y, z)) {
                 replacing = true;
             } else {
                 y++;
@@ -47,10 +46,10 @@ public class ItemFermenter extends ItemTechnic {
                     if (world.isAirBlock(x, y + 1, z)) {
                         int masterMeta1 = fermenter.setDirection(0, direction);
                         int masterMeta2 = fermenter.setMaster(masterMeta1);
-                        setBlock(world, x, y, z, blockToPlace.blockID, masterMeta2);
+                        setBlock(world, x, y, z, blockToPlace, masterMeta2);
 
                         int slaveMeta = fermenter.setSlave(0);
-                        setBlock(world, x, y + 1, z, blockToPlace.blockID, slaveMeta);
+                        setBlock(world, x, y + 1, z, blockToPlace, slaveMeta);
 
                         --item.stackSize;
 

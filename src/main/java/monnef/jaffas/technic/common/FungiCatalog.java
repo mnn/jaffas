@@ -11,6 +11,7 @@ import monnef.core.utils.Interval;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -22,7 +23,7 @@ import static monnef.jaffas.technic.common.FungusInfo.NeedCompostEnum.NEVER;
 public class FungiCatalog {
     private static final int TPS = 20;
     private static int maxId = 0;
-    private static HashMap<Integer, Multiset<Integer>> blockIdToMushroom;
+    private static HashMap<Block, Multiset<Integer>> blockToMushroom;
 
     public static HashMap<Integer, FungusInfo> catalog;
 
@@ -39,10 +40,10 @@ public class FungiCatalog {
         createSpecie("Parasol", "Macrolepiota Procera", PARASOL_ID, 3, 10, 35, 1, 10, 1, 3, 1, 80, 3, 4, Interval.fromArray(1, 3, 3, 5, 3, 5, 3, 5)).markEatableForRecipes();
         createSpecie("Fly Agaric", "Amanita Muscaria", FLYAGARIC_ID, 3, 15, 25, 3, 15, 1, 2, 2, 70, 2, 4, Interval.fromArray(2, 3, 1, 5, 1, 7, 1, 2));
 
-        blockIdToMushroom = new HashMap<Integer, Multiset<Integer>>();
-        addMushroomDropFromBlock(Block.mushroomBrown.blockID, PORCINO_ID, 3);
-        addMushroomDropFromBlock(Block.mushroomBrown.blockID, PARASOL_ID, 2);
-        addMushroomDropFromBlock(Block.mushroomRed.blockID, FLYAGARIC_ID, 2);
+        blockToMushroom = new HashMap<Block, Multiset<Integer>>();
+        addMushroomDropFromBlock(Blocks.brown_mushroom, PORCINO_ID, 3);
+        addMushroomDropFromBlock(Blocks.brown_mushroom, PARASOL_ID, 2);
+        addMushroomDropFromBlock(Blocks.red_mushroom, FLYAGARIC_ID, 2);
     }
 
     public static void registerShroomGroups() {
@@ -58,21 +59,21 @@ public class FungiCatalog {
         }
     }
 
-    public static void addMushroomDropFromBlock(int blockId, int mushroomId) {
-        addMushroomDropFromBlock(blockId, mushroomId, 1);
+    public static void addMushroomDropFromBlock(Block block, int mushroomId) {
+        addMushroomDropFromBlock(block, mushroomId, 1);
     }
 
-    public static void addMushroomDropFromBlock(int blockId, int mushroomId, int times) {
-        if (!blockIdToMushroom.containsKey(blockId)) {
-            blockIdToMushroom.put(blockId, HashMultiset.<Integer>create());
+    public static void addMushroomDropFromBlock(Block block, int mushroomId, int times) {
+        if (!blockToMushroom.containsKey(block)) {
+            blockToMushroom.put(block, HashMultiset.<Integer>create());
         }
-        Multiset<Integer> recordForBlock = blockIdToMushroom.get(blockId);
+        Multiset<Integer> recordForBlock = blockToMushroom.get(block);
         recordForBlock.add(mushroomId, times);
     }
 
-    public static ItemStack getRandomDropFromBlock(int blockId) {
+    public static ItemStack getRandomDropFromBlock(Block block) {
         // TODO: optimize?
-        Multiset<Integer> found = blockIdToMushroom.get(blockId);
+        Multiset<Integer> found = blockToMushroom.get(block);
         if (found == null || found.size() == 0) return null;
         int i = JaffasFood.rand.nextInt(found.size());
         return get(found.toArray(new Integer[]{})[i]).createLootOneItem();
@@ -135,7 +136,7 @@ public class FungiCatalog {
             } else {
                 toCompare = value.specialItemBind.copy();
             }
-            if (toCompare.itemID == stack.itemID && toCompare.getItemDamage() == stack.getItemDamage()) {
+            if (toCompare.getItem() == stack.getItem() && toCompare.getItemDamage() == stack.getItemDamage()) {
                 return value;
             }
         }

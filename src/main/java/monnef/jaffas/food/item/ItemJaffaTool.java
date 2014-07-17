@@ -147,8 +147,8 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
-        super.addInformation(stack, player, result, par4);
+    public void addInformationCustom(ItemStack stack, EntityPlayer player, List<String> result, boolean par4) {
+        super.addInformationCustom(stack, player, result, par4);
         if (nearlyDestroyed(stack)) result.add("Broken");
     }
 }
