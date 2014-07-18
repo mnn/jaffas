@@ -13,6 +13,7 @@ import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.ItemHelper;
+import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.JaffasFood;
@@ -27,7 +28,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
@@ -304,13 +305,13 @@ public class TileWindGenerator extends TileMachineWithInventory {
     }
 
     @Override
-    public void onInventoryChanged() {
-        super.onInventoryChanged();
+    public void markDirty() {
+        super.markDirty();
         refreshTurbineItem();
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.power.windGenerator";
     }
 
@@ -423,6 +424,6 @@ public class TileWindGenerator extends TileMachineWithInventory {
     @Override
     public void onItemDebug(EntityPlayer player) {
         if (worldObj.isRemote) return;
-        player.addChatMessage(String.format("ObsVolumeCached: %.2f, ObsDebug: %.2f, cMaxSpeed: %d, totRad: %d", obstacles.getObstaclesVolumeWorstScenario(), obstacles.debugCompute(), getCurrentMaximalSpeed(), obstacles.getTotalRadius()));
+        PlayerHelper.addMessage(player, String.format("ObsVolumeCached: %.2f, ObsDebug: %.2f, cMaxSpeed: %d, totRad: %d", obstacles.getObstaclesVolumeWorstScenario(), obstacles.debugCompute(), getCurrentMaximalSpeed(), obstacles.getTotalRadius()));
     }
 }

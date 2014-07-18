@@ -17,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -24,7 +25,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class EntityWindTurbine extends Entity {
     public ItemWindTurbine getItemPrototype() {
         int id = dataWatcher.getWatchableObjectInt(ITEM_PROTOTYPE_WID);
         if (id <= 0) return null;
-        return (ItemWindTurbine) Item.itemsList[id];
+        return (ItemWindTurbine) Item.getItemById(id);
     }
 
     public void configure(ForgeDirection rotation, ItemStack stack, TileWindGenerator tileWindGenerator) {
@@ -105,7 +106,7 @@ public class EntityWindTurbine extends Entity {
     }
 
     private void setItemPrototype(ItemWindTurbine item) {
-        dataWatcher.updateObject(ITEM_PROTOTYPE_WID, item != null ? item.itemID : 0);
+        dataWatcher.updateObject(ITEM_PROTOTYPE_WID, item != null ? item : 0);
     }
 
     private void setTurbineRotations(ForgeDirection rotation) {
@@ -279,10 +280,9 @@ public class EntityWindTurbine extends Entity {
             for (int xx = x1; xx <= x2; ++xx) {
                 for (int yy = y1; yy <= y2; ++yy) {
                     for (int zz = z1; zz <= z2; ++zz) {
-                        int blockId = this.worldObj.getBlockId(xx, yy, zz);
-                        if (blockId != 0) {
+                        if (!worldObj.isAirBlock(xx, yy, zz)) {
                             breakTurbine();
-                            if (MonnefCorePlugin.debugEnv) worldObj.setBlock(xx, yy, zz, Block.blockGold.blockID);
+                            if (MonnefCorePlugin.debugEnv) worldObj.setBlock(xx, yy, zz, Blocks.gold_block);
                             return;
                         }
                     }

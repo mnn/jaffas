@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.ItemHelper;
+import monnef.core.utils.NBTHelper;
 import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.common.ContentHolder.blockBoard;
@@ -69,7 +70,7 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
             }
 
             if (updateInventory) {
-                onInventoryChanged();
+                markDirty();
             }
         }
     }
@@ -97,7 +98,7 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
             setInventorySlotContents(SLOT_INPUT, null);
         }
 
-        onInventoryChanged();
+        markDirty();
     }
 
     private boolean canChop() {
@@ -112,7 +113,7 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
         if (itemInOutputSlot == null) return true;
 
         // in output slot isn't item from recipe
-        if (itemInOutputSlot.itemID != recipeOutput.itemID) return false;
+        if (itemInOutputSlot.getItem() != recipeOutput.getItem()) return false;
 
         // overflow in output slot
         if (itemInOutputSlot.getMaxStackSize() < recipeOutput.stackSize + itemInOutputSlot.stackSize) return false;
@@ -125,7 +126,7 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
         if (item == null) {
             return false;
         }
-        if (item.itemID != getItem(JaffaItem.knifeKitchen).itemID) {
+        if (item.getItem() != getItem(JaffaItem.knifeKitchen)) {
             return false;
         }
 
@@ -182,16 +183,16 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this &&
+        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this &&
                 player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
     }
 
     @Override
@@ -203,9 +204,9 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
     public void readFromNBT(NBTTagCompound tagCompound) {
         super.readFromNBT(tagCompound);
 
-        NBTTagList tagList = tagCompound.getTagList("Inventory");
+        NBTTagList tagList = tagCompound.getTagList("Inventory", NBTHelper.TagTypes.TAG_Compound);
         for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound tag = (NBTTagCompound) tagList.tagAt(i);
+            NBTTagCompound tag = (NBTTagCompound) tagList.getCompoundTagAt(i);
             byte slot = tag.getByte("Slot");
             if (slot >= 0 && slot < inv.length) {
                 inv[slot] = ItemStack.loadItemStackFromNBT(tag);
@@ -231,12 +232,12 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.board";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 
@@ -252,7 +253,7 @@ public class TileBoard extends TileEntity implements IInventory, ISidedInventory
     public void checkKnife() {
         boolean isKnifePresent = false;
         ItemStack slotItem = getStackInSlot(SLOT_KNIFE);
-        if (slotItem != null && slotItem.itemID == getItem(JaffaItem.knifeKitchen).itemID) {
+        if (slotItem != null && slotItem.getItem() == getItem(JaffaItem.knifeKitchen)) {
             isKnifePresent = true;
         }
 

@@ -7,9 +7,8 @@ package monnef.jaffas.food.client;
 
 import monnef.core.client.ResourcePathHelper;
 import monnef.jaffas.food.common.Reference;
-import net.minecraftforge.client.event.sound.SoundLoadEvent;
-import net.minecraftforge.event.ForgeSubscribe;
 
+/* Parts are obsolete, because Mojang introduced those bothering json files. */
 public class Sounds {
     public enum SoundsEnum {
         COLLECTOR_NOISE("sharpener.wav"),
@@ -44,21 +43,6 @@ public class Sounds {
 
         public String getSoundName() {
             return soundName;
-        }
-    }
-
-    @ForgeSubscribe
-    public void onSound(SoundLoadEvent event) {
-        try {
-            for (SoundsEnum sound : SoundsEnum.values()) {
-                String[] names = sound.getFileNames();
-                for (int i = 0; i < names.length; i++) {
-                    String tag = ResourcePathHelper.assemble(names[i], Reference.ModName.toLowerCase(), ResourcePathHelper.ResourceTextureType.SOUND);
-                    event.manager.soundPoolSounds.addSound(tag);
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to register one or more sounds.");
         }
     }
 }

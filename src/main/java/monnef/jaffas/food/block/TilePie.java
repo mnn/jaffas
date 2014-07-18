@@ -7,14 +7,14 @@ package monnef.jaffas.food.block;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setAir;
 import static monnef.jaffas.food.JaffasFood.Log;
 
 public class TilePie extends TileEntity {
@@ -76,7 +76,7 @@ public class TilePie extends TileEntity {
         }
 
         // all pieces eaten, destroy
-        setBlock(worldObj, xCoord, yCoord, zCoord, 0);
+        setAir(worldObj, xCoord, yCoord, zCoord);
         this.invalidate();
     }
 
@@ -120,20 +120,21 @@ public class TilePie extends TileEntity {
         type = PieType.values()[tag.getByte("type")];
     }
 
+
     @Override
     public Packet getDescriptionPacket() {
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
+        S35PacketUpdateTileEntity packet = (S35PacketUpdateTileEntity) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.func_148857_g() : new NBTTagCompound();
 
         addInfoToNBT(tag);
 
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.data;
+        NBTTagCompound tag = pkt.func_148857_g();
         loadInfoFromNBT(tag);
         checkGotPieces();
     }

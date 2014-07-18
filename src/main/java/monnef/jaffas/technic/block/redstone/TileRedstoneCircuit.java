@@ -11,7 +11,7 @@ import monnef.jaffas.technic.block.BlockDirectionalTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import static monnef.core.utils.DirectionHelper.opposite;
 
@@ -19,7 +19,7 @@ public abstract class TileRedstoneCircuit extends TileEntity {
     protected int cachedOutputPower = 0;
     private int outputSide = -1;
     private int inputSide = -1;
-    private int myBlockId;
+    private Block myBlock;
     private boolean initialized = false;
     private boolean recalculatePowerInNextTick;
 
@@ -45,14 +45,14 @@ public abstract class TileRedstoneCircuit extends TileEntity {
     }
 
     public void forceUpdateNeighbours() {
-        worldObj.notifyBlocksOfNeighborChange(xCoord + 1, yCoord, zCoord, getMyBlockId());
-        worldObj.notifyBlocksOfNeighborChange(xCoord - 1, yCoord, zCoord, getMyBlockId());
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord + 1, getMyBlockId());
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord - 1, getMyBlockId());
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord - 1, zCoord, getMyBlockId());
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord + 1, zCoord, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord + 1, yCoord, zCoord, getMyBlock());
+        worldObj.notifyBlocksOfNeighborChange(xCoord - 1, yCoord, zCoord, getMyBlock());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord + 1, getMyBlock());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord - 1, getMyBlock());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord - 1, zCoord, getMyBlock());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord + 1, zCoord, getMyBlock());
 
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getMyBlock());
     }
 
     public void notifyOutputNeighbour() {
@@ -60,7 +60,7 @@ public abstract class TileRedstoneCircuit extends TileEntity {
         int nx = xCoord + outDir.offsetX;
         int ny = yCoord + outDir.offsetY;
         int nz = zCoord + outDir.offsetZ;
-        worldObj.notifyBlocksOfNeighborChange(nx, ny, nz, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(nx, ny, nz, getMyBlock());
     }
 
     public void notifyOutputNeighbourTwo() {
@@ -68,11 +68,11 @@ public abstract class TileRedstoneCircuit extends TileEntity {
         int nx = xCoord + 2 * outDir.offsetX;
         int ny = yCoord + 2 * outDir.offsetY;
         int nz = zCoord + 2 * outDir.offsetZ;
-        worldObj.notifyBlocksOfNeighborChange(nx, ny, nz, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(nx, ny, nz, getMyBlock());
     }
 
     public void notifyBlocksOfMyChange() {
-        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getMyBlockId());
+        worldObj.notifyBlocksOfNeighborChange(xCoord, yCoord, zCoord, getMyBlock());
     }
 
     @Override
@@ -99,12 +99,12 @@ public abstract class TileRedstoneCircuit extends TileEntity {
         }
     }
 
-    public int getMyBlockId() {
-        if (myBlockId == -1) {
-            myBlockId = getMyBlockUncached().blockID;
+    public Block getMyBlock() {
+        if (myBlock == null) {
+            myBlock = getMyBlockUncached();
         }
 
-        return myBlockId;
+        return myBlock;
     }
 
     protected abstract Block getMyBlockUncached();

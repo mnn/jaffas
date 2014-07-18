@@ -9,7 +9,7 @@ import buildcraft.api.power.IPowerReceptor;
 import buildcraft.api.power.PowerHandler;
 import monnef.core.api.IIntegerCoordinates;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BuildCraftHelper {
     public static boolean gotFreeSpaceInEnergyStorage(IPowerReceptor receptor, ForgeDirection from) {

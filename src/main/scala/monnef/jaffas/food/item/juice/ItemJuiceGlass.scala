@@ -24,8 +24,8 @@ class ItemJuiceGlass extends ItemJaffaMultiBase with JuiceLike with ItemJaffaFoo
 
   override def getSubItemsCount: Int = Juices.juiceCount
 
-  override def addInformation(stack: ItemStack, player: EntityPlayer, result: util.List[_], par4: Boolean) {
-    super.addInformation(stack, player, result, par4)
+  override def addInformationCustom(stack: ItemStack, player: EntityPlayer, result: util.List[String], par4: Boolean) {
+    super.addInformationCustom(stack, player, result, par4)
     if (MonnefCorePlugin.debugEnv) {
       val l = result.asInstanceOf[util.List[String]]
       l.add("* NEW *")

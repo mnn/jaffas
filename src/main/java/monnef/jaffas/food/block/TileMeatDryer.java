@@ -6,16 +6,18 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.utils.Interval;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.crafting.Recipes;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.HashMap;
@@ -30,15 +32,15 @@ public class TileMeatDryer extends TileEntity {
 
     private int counter = 0;
     private MeatStatus[] meats = new MeatStatus[MEAT_COUNT];
-    private static final HashMap<Integer, MeatState> itemIdToMeatType = new HashMap<Integer, MeatState>();
+    private static final HashMap<Item, MeatState> itemIdToMeatType = new HashMap<Item, MeatState>();
     private static final HashMap<MeatState, ItemStack> finishedMeatToItemStack = new HashMap<MeatState, ItemStack>();
 
     static {
-        addNormalMeat(Item.beefRaw);
-        addNormalMeat(Item.fishRaw);
-        addNormalMeat(Item.porkRaw);
-        addNormalMeat(Item.chickenRaw);
-        addZombieMeat(Item.rottenFlesh);
+        addNormalMeat(Items.beef);
+        addNormalMeat(Items.fish);
+        addNormalMeat(Items.porkchop);
+        addNormalMeat(Items.chicken);
+        addZombieMeat(Items.rotten_flesh);
 
         finishedMeatToItemStack.put(MeatState.NORMAL_DONE, Recipes.getItemStack(JaffaItem.driedMeat));
         finishedMeatToItemStack.put(MeatState.ZOMBIE_DONE, Recipes.getItemStack(JaffaItem.driedMeat));
@@ -52,7 +54,7 @@ public class TileMeatDryer extends TileEntity {
             throw new RuntimeException("State cannot be null, error occurred during meat registration in a drying rack TE.");
         }
 
-        itemIdToMeatType.put(item.itemID, state);
+        itemIdToMeatType.put(item, state);
     }
 
     public static void addNormalMeat(Item item) {
@@ -239,7 +241,7 @@ public class TileMeatDryer extends TileEntity {
         for (int i = 0; i < meats.length; i++) {
             NBTTagCompound comp = new NBTTagCompound();
             meats[i].saveToNBT(comp);
-            tag.setCompoundTag(MEAT_TAG + i, comp);
+            tag.setTag(MEAT_TAG + i, comp);
         }
     }
 
@@ -276,7 +278,7 @@ public class TileMeatDryer extends TileEntity {
 
     private MeatState getMeatStateFromStack(ItemStack stack) {
         if (stack == null) return null;
-        return itemIdToMeatType.get(stack.itemID);
+        return itemIdToMeatType.get(stack.getItem());
     }
 
     public boolean isStackValidInput(ItemStack stack) {
@@ -327,16 +329,17 @@ public class TileMeatDryer extends TileEntity {
 
     @Override
     public Packet getDescriptionPacket() {
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
+        S35PacketUpdateTileEntity packet = (S35PacketUpdateTileEntity) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.func_148857_g() : new NBTTagCompound();
+
         writeToNBT(tag);
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.data;
+        NBTTagCompound tag = pkt.func_148857_g();
         readFromNBT(tag);
     }
 
@@ -349,6 +352,6 @@ public class TileMeatDryer extends TileEntity {
         for (int i = 0; i < meats.length; i++) {
             m += meats[i].toString() + " ";
         }
-        player.addChatMessage(m);
+        PlayerHelper.addMessage(player, m);
     }
 }
