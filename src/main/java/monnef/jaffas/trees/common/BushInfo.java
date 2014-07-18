@@ -11,13 +11,10 @@ import monnef.jaffas.trees.item.ItemJaffaSeeds;
 import net.minecraft.item.Item;
 
 public class BushInfo {
-    public int itemSeedsID;
     public ItemJaffaSeeds itemSeeds;
 
-    public int blockID;
     public BlockJaffaCrops block;
 
-    public int itemFruitID;
     public Item itemFruit;
 
     public String name;

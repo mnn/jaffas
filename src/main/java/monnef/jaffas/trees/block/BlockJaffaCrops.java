@@ -5,23 +5,27 @@
 
 package monnef.jaffas.trees.block;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.block.BlockMonnefCore$;
 import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.HarvestType;
@@ -39,16 +43,16 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
     //TODO rewrite to inherit from BlockJaffas
 
     private int phasesMax; // 7
-    private Item product = Item.wheat;
-    private Item seeds = Item.seeds;
+    private Item product = Items.wheat;
+    private Item seeds = Items.wheat_seeds;
 
     // 1 - "Crossed Squares" (Flowers, reeds, etc)
     // 6 - Crops
     private int renderer;
     private int baseTexture;
 
-    public BlockJaffaCrops(int blockID, int textureIndex, int phasesMax, Item product, Item seeds, int renderer) {
-        super(blockID);
+    public BlockJaffaCrops(int textureIndex, int phasesMax, Item product, Item seeds, int renderer) {
+        super(0); // TODO: rewrite to inherit from our blocks
         baseTexture = textureIndex;
         this.setTickRandomly(true);
         float var3 = 0.5F;
@@ -58,27 +62,20 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
         this.product = product;
         this.seeds = seeds;
         this.renderer = renderer;
-        setBurnProperties(blockID, 60, 100);
+        BlockMonnefCore$.MODULE$.setBurnProperties(this, 60, 100);
     }
 
-    /**
-     * Gets passed in the blockID of the block below and supposed to return true if its allowed to grow on the type of
-     * blockID passed in. Args: blockID
-     */
     @Override
-    protected boolean canThisPlantGrowOnThisBlockID(int par1) {
-        return par1 == Block.tilledField.blockID;
+    protected boolean canPlaceBlockOn(Block p_149854_1_) {
+        return p_149854_1_ == Blocks.farmland;
     }
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
         if (!super.canBlockStay(world, x, y, z)) return false;
-        return world.getBlockId(x, y - 1, z) == Block.tilledField.blockID;
+        return world.getBlock(x, y - 1, z) == Blocks.farmland;
     }
 
-    /**
-     * Ticks the block if it's been scheduled
-     */
     @Override
     public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random) {
         super.updateTick(par1World, par2, par3, par4, par5Random);
@@ -112,13 +109,13 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
         return false;
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onBonemeal(BonemealEvent event) {
-        if (!(Block.blocksList[event.ID] instanceof BlockJaffaCrops)) {
+        if (!(event.block instanceof BlockJaffaCrops)) {
             return;
         }
 
-        if (tryBonemeal(event.world, event.X, event.Y, event.Z)) {
+        if (tryBonemeal(event.world, event.x, event.y, event.z)) {
             event.setResult(Event.Result.ALLOW);
         }
     }
@@ -140,24 +137,24 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
      */
     private float getGrowthRate(World par1World, int par2, int par3, int par4) {
         float res = 1.0F;
-        int var6 = par1World.getBlockId(par2, par3, par4 - 1);
-        int var7 = par1World.getBlockId(par2, par3, par4 + 1);
-        int var8 = par1World.getBlockId(par2 - 1, par3, par4);
-        int var9 = par1World.getBlockId(par2 + 1, par3, par4);
-        int var10 = par1World.getBlockId(par2 - 1, par3, par4 - 1);
-        int var11 = par1World.getBlockId(par2 + 1, par3, par4 - 1);
-        int var12 = par1World.getBlockId(par2 + 1, par3, par4 + 1);
-        int var13 = par1World.getBlockId(par2 - 1, par3, par4 + 1);
-        boolean var14 = var8 == this.blockID || var9 == this.blockID;
-        boolean var15 = var6 == this.blockID || var7 == this.blockID;
-        boolean var16 = var10 == this.blockID || var11 == this.blockID || var12 == this.blockID || var13 == this.blockID;
+        Block var6 = par1World.getBlock(par2, par3, par4 - 1);
+        Block var7 = par1World.getBlock(par2, par3, par4 + 1);
+        Block var8 = par1World.getBlock(par2 - 1, par3, par4);
+        Block var9 = par1World.getBlock(par2 + 1, par3, par4);
+        Block var10 = par1World.getBlock(par2 - 1, par3, par4 - 1);
+        Block var11 = par1World.getBlock(par2 + 1, par3, par4 - 1);
+        Block var12 = par1World.getBlock(par2 + 1, par3, par4 + 1);
+        Block var13 = par1World.getBlock(par2 - 1, par3, par4 + 1);
+        boolean var14 = var8 == this || var9 == this;
+        boolean var15 = var6 == this || var7 == this;
+        boolean var16 = var10 == this || var11 == this || var12 == this || var13 == this;
 
         for (int var17 = par2 - 1; var17 <= par2 + 1; ++var17) {
             for (int var18 = par4 - 1; var18 <= par4 + 1; ++var18) {
-                int var19 = par1World.getBlockId(var17, par3 - 1, var18);
+                Block var19 = par1World.getBlock(var17, par3 - 1, var18);
                 float neighbourBonus = 0.0F;
 
-                if (var19 == Block.tilledField.blockID) {
+                if (var19 == Blocks.farmland) {
                     neighbourBonus = 1.0F;
 
                     if (par1World.getBlockMetadata(var17, par3 - 1, var18) > 0) {
@@ -184,7 +181,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
     @Override
-    public Icon getIcon(int par1, int par2) {
+    public IIcon getIcon(int par1, int par2) {
         if (par2 < 0) {
             par2 = phasesMax;
         }
@@ -192,12 +189,12 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
         return icons[par2];
     }
 
-    private Icon[] icons;
+    private IIcon[] icons;
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister register) {
-        icons = new Icon[phasesMax + 1];
+    public void registerBlockIcons(IIconRegister register) {
+        icons = new IIcon[phasesMax + 1];
         for (int i = 0; i <= phasesMax; i++) {
             icons[i] = register.registerIcon(CustomIconHelper.generateId(Reference.ModName, 2, baseTexture + i));
         }
@@ -220,7 +217,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
     }
 
     @Override
-    public ArrayList<ItemStack> getBlockDropped(World world, int x, int y, int z, int metadata, int fortune) {
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
         if (metadata == phasesMax) {
             ret.add(new ItemStack(product));
@@ -236,8 +233,8 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return par1 == phasesMax ? product.itemID : -1;
+    public Item getItemDropped(int par1, Random par2Random, int par3) {
+        return par1 == phasesMax ? product : null;
     }
 
     @Override
@@ -247,8 +244,8 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
 
     @SideOnly(Side.CLIENT)
     @Override
-    public int idPicked(World par1World, int par2, int par3, int par4) {
-        return seeds.itemID;
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(seeds);
     }
 
     public int getPhasesMax() {
@@ -258,7 +255,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setBlockTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
+        par1World.setTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
     }
 
     public TileEntity createNewTileEntity(World world) {
@@ -293,7 +290,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
 
     @Override
     public List<ItemStack> getDrops(World world, Random rand, Map<String, Boolean> harvesterSettings, int x, int y, int z) {
-        return getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+        return getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
     }
 
     @Override

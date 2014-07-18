@@ -9,11 +9,14 @@ import com.google.common.collect.HashMultimap;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BlockHelper;
+import monnef.core.utils.NBTHelper;
 import monnef.core.utils.StringsHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.technic.JaffasTechnic;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
@@ -22,7 +25,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -123,45 +126,45 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
     }
 
     public static class InputLiquidEntry {
-        public final int itemID;
+        public final Item item;
         public final FermentedLiquid liquid;
         public final int amount;
         public final ItemStack returnItem;
 
-        public InputLiquidEntry(int itemID, FermentedLiquid liquid, int amount, ItemStack returnItem) {
+        public InputLiquidEntry(Item item, FermentedLiquid liquid, int amount, ItemStack returnItem) {
             this.liquid = liquid;
             this.amount = amount;
-            this.itemID = itemID;
+            this.item = item;
             this.returnItem = returnItem.copy();
         }
     }
 
     public static class OutputLiquidEntry {
-        public int containerItemID;
+        public Item containerItem;
         public FermentedLiquid liquid;
         public int amount;
         public ItemStack output;
 
-        public OutputLiquidEntry(int containerItemID, FermentedLiquid liquid, int amount, ItemStack output) {
-            this.containerItemID = containerItemID;
+        public OutputLiquidEntry(Item containerItem, FermentedLiquid liquid, int amount, ItemStack output) {
+            this.containerItem = containerItem;
             this.liquid = liquid;
             this.amount = amount;
             this.output = output;
         }
     }
 
-    private static HashMap<Integer, InputLiquidEntry> inputDatabase;
-    private static HashMultimap<Integer, OutputLiquidEntry> outputDatabase;
+    private static HashMap<Item, InputLiquidEntry> inputDatabase;
+    private static HashMultimap<Item, OutputLiquidEntry> outputDatabase;
 
     static {
-        inputDatabase = new HashMap<Integer, InputLiquidEntry>();
-        int brewedHopId = JaffasTechnic.brewedHopInBucket.itemID;
-        inputDatabase.put(brewedHopId, new InputLiquidEntry(brewedHopId, BEER_RAW, FERMENTER_HALF_CAPACITY, new ItemStack(Item.bucketEmpty)));
+        inputDatabase = new HashMap<Item, InputLiquidEntry>();
+        Item brewedHop = JaffasTechnic.brewedHopInBucket;
+        inputDatabase.put(brewedHop, new InputLiquidEntry(brewedHop, BEER_RAW, FERMENTER_HALF_CAPACITY, new ItemStack(Items.bucket)));
 
         outputDatabase = HashMultimap.create();
-        int kegId = JaffasTechnic.itemKeg.itemID;
-        outputDatabase.put(kegId, new OutputLiquidEntry(kegId, BEER, FERMENTER_CAPACITY, new ItemStack(kegId, 1, KegType.BEER.ordinal())));
-        outputDatabase.put(kegId, new OutputLiquidEntry(kegId, WINE, FERMENTER_CAPACITY, new ItemStack(kegId, 1, KegType.WINE.ordinal())));
+        Item keg = JaffasTechnic.itemKeg;
+        outputDatabase.put(keg, new OutputLiquidEntry(keg, BEER, FERMENTER_CAPACITY, new ItemStack(keg, 1, KegType.BEER.ordinal())));
+        outputDatabase.put(keg, new OutputLiquidEntry(keg, WINE, FERMENTER_CAPACITY, new ItemStack(keg, 1, KegType.WINE.ordinal())));
     }
 
     public TileFermenter() {
@@ -218,7 +221,7 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
         ItemStack outStack = inv[SLOT_OUTPUT];
         if (kegStack == null) return false;
         if (outStack != null) return false;
-        Set<OutputLiquidEntry> found = outputDatabase.get(kegStack.itemID);
+        Set<OutputLiquidEntry> found = outputDatabase.get(kegStack.getItem());
         for (OutputLiquidEntry item : found) {
             if (item.liquid == liquid) {
                 if (item.amount > liquidAmount) continue;
@@ -242,7 +245,7 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
         ItemStack input = inv[SLOT_INPUT];
         if (input == null) return false;
         if (isFull()) return false;
-        InputLiquidEntry found = inputDatabase.get(input.itemID);
+        InputLiquidEntry found = inputDatabase.get(input.getItem());
         if (found == null) return false;
         if (!isEmpty() && liquid != found.liquid) return false;
         ItemStack output = inv[SLOT_OUTPUT];
@@ -275,8 +278,8 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
             boolean failure = false;
             boolean removeBlock = false;
 
-            int bId = worldObj.getBlockId(xCoord, yCoord + 1, zCoord);
-            if (bId != getBlockType().blockID) {
+            Block upperBlock = worldObj.getBlock(xCoord, yCoord + 1, zCoord);
+            if (upperBlock != getBlockType()) {
                 failure = true;
             } else {
                 int meta = worldObj.getBlockMetadata(xCoord, yCoord + 1, zCoord);
@@ -288,10 +291,10 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
 
             if (failure) {
                 if (removeBlock) {
-                    BlockHelper.setBlock(worldObj, xCoord, yCoord + 1, zCoord, 0);
+                    BlockHelper.setAir(worldObj, xCoord, yCoord + 1, zCoord);
                 }
                 int myMeta = getBlockMetadata();
-                BlockHelper.setBlock(worldObj, xCoord, yCoord, zCoord, 0);
+                BlockHelper.setAir(worldObj, xCoord, yCoord, zCoord);
                 invalidate();
                 fermenter.dropBlockAsItem(worldObj, xCoord, yCoord, zCoord, myMeta, 0); // last param is fortune
             }
@@ -353,16 +356,16 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this &&
+        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this &&
                 player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
     }
 
     @Override
@@ -374,9 +377,9 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
 
-        NBTTagList tagList = tag.getTagList("Inventory");
+        NBTTagList tagList = tag.getTagList("Inventory", NBTHelper.TagTypes.TAG_Compound);
         for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound innerTag = (NBTTagCompound) tagList.tagAt(i);
+            NBTTagCompound innerTag = tagList.getCompoundTagAt(i);
             byte slot = innerTag.getByte("Slot");
             if (slot >= 0 && slot < inv.length) {
                 inv[slot] = ItemStack.loadItemStackFromNBT(innerTag);
@@ -409,12 +412,12 @@ public class TileFermenter extends TileEntity implements IInventory, ISidedInven
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.fermenter";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 

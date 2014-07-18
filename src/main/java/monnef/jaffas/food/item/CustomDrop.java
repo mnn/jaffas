@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.item;
 
+import com.google.common.eventbus.Subscribe;
 import monnef.core.utils.EntityHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
@@ -14,9 +15,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 
 import java.util.ArrayList;
@@ -44,8 +45,7 @@ public class CustomDrop {
 
         addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 1f);
         addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 0.5f);
-        addDrop(EntitySpider.class, new ItemStack(Item.monsterPlacer, 1, ContentHolder.spiderEntityID), 0.07f);
-
+        addDrop(EntitySpider.class, new ItemStack(Items.spawn_egg, 1, ContentHolder.spiderEntityID), 0.07f);
     }
 
     public static CustomDropEntry addDrop(Class<? extends EntityLiving> clazz, JaffaItem item, float chance) {
@@ -65,7 +65,7 @@ public class CustomDrop {
         return newEntry;
     }
 
-    @ForgeSubscribe
+    @Subscribe
     public void entityDrop(LivingDropsEvent event) {
         EntityLivingBase mob = event.entityLiving;
 

@@ -12,7 +12,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -61,17 +60,18 @@ import monnef.jaffas.trees.item.ItemTrees;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.src.ModLoader;
-import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import org.apache.logging.log4j.Level;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 import java.security.InvalidParameterException;
@@ -79,7 +79,6 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.logging.Level;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.getItem;
@@ -130,7 +129,6 @@ import static monnef.jaffas.trees.common.Reference.ModName;
 import static monnef.jaffas.trees.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false, channels = JaffasTrees.channel, packetHandler = PacketHandler.class)
 public class JaffasTrees extends JaffasModBase {
     public static final String FORESTRY_FARM_VEGETABLES = "farmVegetables";
     private static MinecraftServer server;
@@ -145,7 +143,6 @@ public class JaffasTrees extends JaffasModBase {
     private static IGuiHandler guiHandler;
 
     public static BlockFruitCollector blockFruitCollector;
-    public static int blockFruitCollectorID;
     private static final int SEEDS_WEIGHT = 20;
     public static ArrayList<ItemStack> seedsList = new ArrayList<ItemStack>();
     public static int leavesRenderID;
@@ -228,36 +225,21 @@ public class JaffasTrees extends JaffasModBase {
 
     public static boolean debug;
 
-    private int itemLemonID;
-    private int itemOrangeID;
-    private int itemPlumID;
-    private int itemCoconutID;
-    private int itemBananaID;
     public static ItemJaffaBase itemLemon;
     public static ItemJaffaBase itemOrange;
     public static ItemJaffaBase itemPlum;
     public static ItemJaffaBase itemCoconut;
     public static ItemJaffaBase itemBanana;
 
-    private int itemDebugID;
     public static ItemJaffaTreeDebugTool itemDebug;
 
-    private int itemStickID;
     public static ItemTrees itemStick;
-    private int itemRodID;
     public static ItemTrees itemRod;
-    private int itemFruitPickerID;
     public static ItemTrees itemFruitPicker;
-    private int itemFruitPickerHeadID;
     public static ItemTrees itemFruitPickerHead;
 
-    private int itemUnknownSeedsID;
     public static ItemTrees itemUnknownSeeds;
 
-    private int itemPlantingBagSmallID;
-    private int itemPlantingBagMediumID;
-    private int itemPlantingBagBigID;
-    private int itemCollectingBagID;
     public static ItemBagPlanting itemPlantingBagSmall;
     public static ItemBagPlanting itemPlantingBagMedium;
     public static ItemBagPlanting itemPlantingBagBig;
@@ -295,72 +277,21 @@ public class JaffasTrees extends JaffasModBase {
 
         try {
             config.load();
-            idProvider.linkWithConfig(config);
 
-            itemLemonID = idProvider.getItemIDFromConfig("lemon");
-            itemOrangeID = idProvider.getItemIDFromConfig("orange");
-            itemPlumID = idProvider.getItemIDFromConfig("plum");
-            itemCoconutID = idProvider.getItemIDFromConfig("coconut");
-            itemBananaID = idProvider.getItemIDFromConfig("banana");
-
-            blockFruitCollectorID = idProvider.getBlockIDFromConfig("fruit collector");
-
-            for (int i = 0; i < leavesBlocksAllocated; i++) {
-                int leavesID = idProvider.getBlockIDFromConfig("fruit leaves " + i);
-                int saplingID = idProvider.getBlockIDFromConfig("fruit tree sapling " + i);
-                int seedsID = idProvider.getItemIDFromConfig("fruit seeds " + i);
-
-                leavesList.add(new LeavesInfo(leavesID, saplingID, seedsID, i));
-            }
-
-            for (EnumMap.Entry<bushType, BushInfo> entry : bushesList.entrySet()) {
-                BushInfo info = entry.getValue();
-
-                info.itemSeedsID = idProvider.getItemIDFromConfig(info.getSeedsConfigName());
-                info.blockID = idProvider.getBlockIDFromConfig(info.getBlockConfigName());
-                info.itemFruitID = idProvider.getItemIDFromConfig(info.getFruitConfigName());
-            }
-
-            itemDebugID = idProvider.getItemIDFromConfig("debug tool");
-
-            itemStickID = idProvider.getItemIDFromConfig("stick");
-            itemRodID = idProvider.getItemIDFromConfig("rod");
-            itemFruitPickerID = idProvider.getItemIDFromConfig("fruit picker");
-            itemFruitPickerHeadID = idProvider.getItemIDFromConfig("fruit picker head");
-            itemUnknownSeedsID = idProvider.getItemIDFromConfig("unknownSeeds");
-
-            int tempBlockId = idProvider.getTempBlockId();
-            dummyLeaves = new BlockFruitLeavesDummy(tempBlockId);
-            idProvider.safelyRemoveTempBlock(tempBlockId, dummyLeaves);
-            JaffasFood.Log.printFinest(String.format("dummyLeaves used ID %d, successfully released record in Block class.", tempBlockId));
+            dummyLeaves = new BlockFruitLeavesDummy();
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);
-
-            itemPlantingBagSmallID = idProvider.getItemIDFromConfig("plantingBagSmall");
-            itemPlantingBagMediumID = idProvider.getItemIDFromConfig("plantingBagMedium");
-            itemPlantingBagBigID = idProvider.getItemIDFromConfig("plantingBagBig");
-            itemCollectingBagID = idProvider.getItemIDFromConfig("collectingBag");
 
             ItemBagPlanting.blackList().loadFromString(
                     config.get(Configuration.CATEGORY_GENERAL, "plantingBagBlackList", "", "Planting bag will ignore these items. Format of item (separated by ',' or ';'): <id>[:meta]").getString()
             );
             ItemBagPlanting.blackList().printToLog(Log);
         } catch (Exception e) {
-            FMLLog.log(Level.SEVERE, e, "Mod Jaffas (trees) can't read config file.");
+            FMLLog.log(Level.FATAL, e, "Mod Jaffas (trees) can't read config file.");
         } finally {
             config.save();
         }
-    }
-
-    @Override
-    protected int getStartOfItemsIdInterval() {
-        return 25244;
-    }
-
-    @Override
-    protected int getStartOfBlocksIdInterval() {
-        return 3500;
     }
 
     private void populateBushInfo() {
@@ -379,12 +310,12 @@ public class JaffasTrees extends JaffasModBase {
         AddBushInfo(bushType.Bean, "bean", "Little Beans", 34, "Bean Plant", 123, "Beans", 137, null, 2, 1, NotEatable, DropsFromGrass);
     }
 
-    private ItemJaffaBase constructFruit(int id, EatableType type, int textureOffset, String name, String title) {
+    private ItemJaffaBase constructFruit(EatableType type, int textureOffset, String name, String title) {
         ItemJaffaBase res;
         if (type == NotEatable) {
-            res = new ItemJaffaBerry(id);
+            res = new ItemJaffaBerry();
         } else if (type == EatableNormal) {
-            res = (ItemJaffaBase) (new ItemJaffaBerryEatable(id)).Setup(2, 0.2f);
+            res = (ItemJaffaBase) (new ItemJaffaBerryEatable()).Setup(2, 0.2f);
         } else {
             throw new RuntimeException("unknown eatable type");
         }
@@ -400,7 +331,7 @@ public class JaffasTrees extends JaffasModBase {
         for (EnumMap.Entry<bushType, BushInfo> entry : bushesList.entrySet()) {
             BushInfo info = entry.getValue();
 
-            ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.itemSeedsID, info.blockID, Block.tilledField.blockID);
+            ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.block, Blocks.farmland);
             RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
             seeds.setCustomIconIndex(info.seedsTexture);
             if (otherMods.isMineFactoryReloadedDetected()) {
@@ -412,7 +343,7 @@ public class JaffasTrees extends JaffasModBase {
                 seedsList.add(new ItemStack(seeds));
             }
 
-            Item fruit = constructFruit(info.itemFruitID, info.eatable, info.fruitTexture, info.getFruitLanguageName(), info.fruitTitle);
+            Item fruit = constructFruit(info.eatable, info.fruitTexture, info.getFruitLanguageName(), info.fruitTitle);
             fruit.setCreativeTab(creativeTab);
             info.itemFruit = fruit;
             if (bushType.isFruit(entry.getKey())) {
@@ -420,8 +351,8 @@ public class JaffasTrees extends JaffasModBase {
             }
 
             Item dropFromPlant = info.product == null ? info.itemFruit : info.product;
-            BlockJaffaCrops crops = new BlockJaffaCrops(info.blockID, info.plantTexture, info.phases, dropFromPlant, info.itemSeeds, info.renderer);
-            crops.setUnlocalizedName(info.getPlantLanguageName());
+            BlockJaffaCrops crops = new BlockJaffaCrops(info.plantTexture, info.phases, dropFromPlant, info.itemSeeds, info.renderer);
+            crops.setBlockName(info.getPlantLanguageName());
             GameRegistry.registerBlock(crops, info.name);
             LanguageRegistry.addName(crops, info.plantTitle);
             info.block = crops;
