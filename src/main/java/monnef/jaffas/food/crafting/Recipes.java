@@ -605,6 +605,18 @@ public class Recipes {
         addRecipe(new ShapedOreRecipe(result, recipe));
     }
 
+    public static void addShapelessOreRecipe(Block result, Object... recipe) {
+        addRecipe(new ShapelessOreRecipe(result, recipe));
+    }
+
+    public static void addShapelessOreRecipe(Item result, Object... recipe) {
+        addRecipe(new ShapelessOreRecipe(result, recipe));
+    }
+
+    public static void addShapelessOreRecipe(ItemStack result, Object... recipe) {
+        addRecipe(new ShapelessOreRecipe(result, recipe));
+    }
+
     public static void addMalletShapedRecipe(ItemStack output, ItemStack input) {
         addRecipe(new ShapedOreRecipe(output, "M", "O", 'M', Items.MALLET(), 'O', input));
     }

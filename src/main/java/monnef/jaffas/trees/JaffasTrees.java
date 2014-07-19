@@ -40,7 +40,6 @@ import monnef.jaffas.trees.block.TileFruitCollector;
 import monnef.jaffas.trees.block.TileFruitLeaves;
 import monnef.jaffas.trees.block.TileJaffaCrops;
 import monnef.jaffas.trees.client.GuiHandlerTrees;
-import monnef.jaffas.trees.client.PacketHandler;
 import monnef.jaffas.trees.common.BushInfo;
 import monnef.jaffas.trees.common.CommonProxy;
 import monnef.jaffas.trees.common.DropType;
@@ -61,6 +60,7 @@ import net.minecraft.block.Block;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -404,7 +404,7 @@ public class JaffasTrees extends JaffasModBase {
 
         creativeTab = new JaffaCreativeTab("jaffas.trees");
         guiHandler = new GuiHandlerTrees();
-        NetworkRegistry.instance().registerGuiHandler(this, guiHandler);
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
 
         JaffasRegistryHelper.registerTileEntity(TileFruitLeaves.class, "fruitLeaves");
         JaffasRegistryHelper.registerTileEntity(TileJaffaCrops.class, "jaffaCrops");
@@ -447,24 +447,24 @@ public class JaffasTrees extends JaffasModBase {
             seedsList.add(getTreeSeeds(i));
         }
 
-        itemLemon = constructFruit(itemLemonID, NotEatable, 68, "lemon", "Lemon");
+        itemLemon = constructFruit(NotEatable, 68, "lemon", "Lemon");
         OreDictionary.registerOre(LEMON, itemLemon);
         registerFruitItem(itemLemon);
 
-        itemOrange = constructFruit(itemOrangeID, EatableNormal, 69, "orange", "Orange");
+        itemOrange = constructFruit(EatableNormal, 69, "orange", "Orange");
         OreDictionary.registerOre(ORANGE, itemOrange);
         registerFruitItem(itemOrange);
 
-        itemPlum = constructFruit(itemPlumID, EatableNormal, 70, "plum", "Plum");
+        itemPlum = constructFruit(EatableNormal, 70, "plum", "Plum");
         registerFruitItem(itemPlum);
 
-        itemCoconut = constructFruit(itemCoconutID, NotEatable, 71, "coconut", "Coconut");
+        itemCoconut = constructFruit(NotEatable, 71, "coconut", "Coconut");
         registerFruitItem(itemCoconut);
 
-        itemBanana = constructFruit(itemBananaID, EatableNormal, 72, "banana", "Banana");
+        itemBanana = constructFruit(EatableNormal, 72, "banana", "Banana");
         registerFruitItem(itemBanana);
 
-        registerFruitItem(Item.appleRed);
+        registerFruitItem(Items.apple);
 
         if (ModuleManager.isModuleEnabled(technic)) {
             CompostRegister.addStack(itemLemon, DEFAULT_FRUIT_COMPOSTING_VALUE);
@@ -476,63 +476,63 @@ public class JaffasTrees extends JaffasModBase {
 
         constructItemsInBushInfo();
 
-        blockFruitCollector = new BlockFruitCollector(blockFruitCollectorID);
+        blockFruitCollector = new BlockFruitCollector();
         GameRegistry.registerBlock(blockFruitCollector, "blockFruitCollector");
         LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
         JaffasRegistryHelper.registerTileEntity(TileFruitCollector.class, "fruitcollector");
 
-        itemDebug = new ItemJaffaTreeDebugTool(itemDebugID);
+        itemDebug = new ItemJaffaTreeDebugTool();
         itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");
         LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
 
-        itemStick = new ItemTrees(itemStickID);
+        itemStick = new ItemTrees();
         itemStick.setUnlocalizedName("stickImpregnated");
         itemStick.setCustomIconIndex(160);
         LanguageRegistry.addName(itemStick, "Impregnated Stick");
 
-        itemRod = new ItemTrees(itemRodID);
+        itemRod = new ItemTrees();
         itemRod.setUnlocalizedName("rod").setMaxStackSize(1).setMaxDamage(64);
         itemRod.setCustomIconIndex(161);
         LanguageRegistry.addName(itemRod, "Reinforced Rod");
 
-        itemFruitPickerHead = new ItemTrees(itemFruitPickerHeadID);
+        itemFruitPickerHead = new ItemTrees();
         itemFruitPickerHead.setUnlocalizedName("fruitPickerHead");
         itemFruitPickerHead.setCustomIconIndex(162);
         LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
 
-        itemFruitPicker = new ItemTrees(itemFruitPickerID);
+        itemFruitPicker = new ItemTrees();
         itemFruitPicker.setUnlocalizedName("fruitPicker").setMaxStackSize(1).setMaxDamage(256);
         itemFruitPicker.setCustomIconIndex(163);
         LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
 
-        itemUnknownSeeds = new ItemTrees(itemUnknownSeedsID);
+        itemUnknownSeeds = new ItemTrees();
         itemUnknownSeeds.setCustomIconIndex(34);
         itemUnknownSeeds.setInfo("Magnifier is needed for identification");
         RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
 
-        itemPlantingBagSmall = new ItemBagPlanting(itemPlantingBagSmallID, 164, 1);
+        itemPlantingBagSmall = new ItemBagPlanting(164, 1);
         RegistryUtils.registerItem(itemPlantingBagSmall, "plantingBagSmall", "Small Farmer's Planting Bag");
-        itemPlantingBagMedium = new ItemBagPlanting(itemPlantingBagMediumID, 165, 2);
+        itemPlantingBagMedium = new ItemBagPlanting(165, 2);
         RegistryUtils.registerItem(itemPlantingBagMedium, "plantingBagMedium", "Medium Farmer's Planting Bag");
-        itemPlantingBagBig = new ItemBagPlanting(itemPlantingBagBigID, 166, 3);
+        itemPlantingBagBig = new ItemBagPlanting(166, 3);
         RegistryUtils.registerItem(itemPlantingBagBig, "plantingBagBig", "Big Farmer's Planting Bag");
 
-        itemCollectingBag = new ItemBagCollecting(itemCollectingBagID, 167);
+        itemCollectingBag = new ItemBagCollecting(167);
         RegistryUtils.registerItem(itemCollectingBag, "collectingBag", "Farmer's Collecting Bag");
     }
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
         LeavesInfo leaves = leavesList.get(i);
-        leaves.leavesBlock = new BlockFruitLeaves(leaves.leavesID, leavesTexture, subCount);
+        leaves.leavesBlock = new BlockFruitLeaves(leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;
-        leaves.leavesBlock.setUnlocalizedName("fruitLeaves" + i).setCreativeTab(creativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep);
+        leaves.leavesBlock.setBlockName("fruitLeaves" + i).setCreativeTab(creativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass);
         RegistryUtils.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
         leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15, subCount);
         leaves.saplingBlock.serialNumber = i;
         String saplingBlockName = "fruitSapling" + i;
-        leaves.saplingBlock.setUnlocalizedName(saplingBlockName).setCreativeTab(creativeTab);
+        leaves.saplingBlock.setBlockName(saplingBlockName).setCreativeTab(creativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
         OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, ANY_DMG));
         if (otherMods.isMineFactoryReloadedDetected()) {
@@ -583,7 +583,7 @@ public class JaffasTrees extends JaffasModBase {
 
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
-        server = ModLoader.getMinecraftServerInstance();
+        server = event.getServer();
         ICommandManager commandManager = server.getCommandManager();
         ServerCommandManager serverCommandManager = ((ServerCommandManager) commandManager);
         addCommands(serverCommandManager);
@@ -625,7 +625,7 @@ public class JaffasTrees extends JaffasModBase {
                 new ItemStack(bushesList.get(bushType.Raspberry).itemFruit),
                 new ItemStack(bushesList.get(bushType.Raspberry).itemFruit));
 
-        GameRegistry.addSmelting(bushesList.get(bushType.Coffee).itemFruit.itemID, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
+        GameRegistry.addSmelting(bushesList.get(bushType.Coffee).itemFruit, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
 
         RecipesBoard.addRecipe(getFruitStack(bushType.Paprika), new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
         RecipesBoard.addRecipe(getFruitStack(bushType.Tomato), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
@@ -633,14 +633,14 @@ public class JaffasTrees extends JaffasModBase {
 
         if (!ModuleManager.isModuleEnabled(technic)) {
             GameRegistry.addRecipe(new ItemStack(blockFruitCollector), "IDI", "DRD", "IGI",
-                    'I', new ItemStack(Block.blockIron), 'D', new ItemStack(Item.diamond), 'R', new ItemStack(Block.torchRedstoneActive), 'G', new ItemStack(Block.blockGold));
+                    'I', new ItemStack(Blocks.iron_block), 'D', new ItemStack(Items.diamond), 'R', new ItemStack(Blocks.redstone_torch), 'G', new ItemStack(Blocks.gold_block));
         }
 
         installFruitSeedsRecipes();
 
-        GameRegistry.addShapelessRecipe(new ItemStack(itemStick, 4), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.stick), new ItemStack(Item.slimeBall));
-        GameRegistry.addRecipe(new ItemStack(itemRod), " S ", "ISI", " S ", 'S', new ItemStack(itemStick), 'I', new ItemStack(Item.ingotIron));
-        GameRegistry.addRecipe(new ItemStack(itemFruitPickerHead), "III", "WWW", " W ", 'I', new ItemStack(Item.ingotIron), 'W', new ItemStack(Block.cloth, 1, ANY_DMG));
+        Recipes.addShapelessOreRecipe(new ItemStack(itemStick, 4), Recipes.WOOD_STICK, Recipes.WOOD_STICK, Recipes.WOOD_STICK, Recipes.WOOD_STICK, Items.slime_ball);
+        GameRegistry.addRecipe(new ItemStack(itemRod), " S ", "ISI", " S ", 'S', itemStick, 'I', Items.iron_ingot);
+        GameRegistry.addRecipe(new ItemStack(itemFruitPickerHead), "III", "WWW", " W ", 'I', Items.iron_ingot, 'W', new ItemStack(Blocks.wool, 1, ANY_DMG));
         GameRegistry.addRecipe(new ItemStack(itemFruitPicker), "H ", " R", 'H', new ItemStack(itemFruitPickerHead), 'R', new ItemStack(itemRod));
 
         Recipes.addMalletShapedRecipe(new ItemStack(getJaffaItem(JaffaItem.coconutPowder)), new ItemStack(itemCoconut));
@@ -649,7 +649,7 @@ public class JaffasTrees extends JaffasModBase {
                 new ItemStack(getItem(JaffaItem.pastrySweet)), new ItemStack(getItem(JaffaItem.chocolate)));
 
         RecipesBoard.addRecipe(JaffasTrees.getFruitStack(JaffasTrees.bushType.Onion), new ItemStack(getItem(JaffaItem.onionSliced)));
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Item.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(bushType.Tomato), getFruitStack(bushType.Tomato));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Items.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(bushType.Tomato), getFruitStack(bushType.Tomato));
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bottleMustard)), getItem(JaffaItem.bottleEmpty), getFruit(bushType.Mustard), getFruit(bushType.Mustard));
 
         addPieRecipe(getFruit(bushType.Strawberry), pieStrawberryRaw, TilePie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
@@ -667,28 +667,28 @@ public class JaffasTrees extends JaffasModBase {
         // new juice recipes
         Juices$.MODULE$.addRecipes();
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(peanutsSugar)), Item.sugar, getFruit(bushType.Peanuts));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(peanutsSugar)), Items.sugar, getFruit(bushType.Peanuts));
         GameRegistry.addRecipe(new ItemStack(getItem(pepperStuffedRaw)), "M", "P", 'M', getItem(mincedMeat), 'P', getFruit(bushType.Paprika));
 
         // raw mutton
         // pea         -> raw lamb with peas => lamb with peas (in tin) | + plate -> lamb with peas (plate) + tin
         // tin
         GameRegistry.addRecipe(getItemStack(lambWithPeasInTinRaw), " M ", "PPP", " T ", 'M', getItem(muttonRaw), 'P', getFruit(bushType.Pea), 'T', getItem(cakeTin));
-        GameRegistry.addSmelting(getItem(lambWithPeasInTinRaw).itemID, getItemStack(lambWithPeasInTin), 5f);
+        GameRegistry.addSmelting(getItem(lambWithPeasInTinRaw), getItemStack(lambWithPeasInTin), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(lambWithPeas, 3), getItemStack(lambWithPeasInTin), getItem(plate), getItem(plate), getItem(plate));
-        PersistentItemsCraftingHandler.AddPersistentItem(lambWithPeasInTin, false, getItem(cakeTin).itemID);
+        PersistentItemsCraftingHandler.AddPersistentItem(lambWithPeasInTin, false, getItem(cakeTin));
 
         // beans
         // chopped tomatoes   ->  raw beans with tomato sauce => baked beans with tomato sauce
         // dish
         GameRegistry.addRecipe(getItemStack(beansWithTomatoRaw), "B", "T", "D", 'B', getFruit(bushType.Bean), 'T', getItem(tomatoChopped), 'D', getItem(woodenBowl));
-        GameRegistry.addSmelting(getItem(beansWithTomatoRaw).itemID, getItemStack(beansWithTomato), 3f);
+        GameRegistry.addSmelting(getItem(beansWithTomatoRaw), getItemStack(beansWithTomato), 3f);
 
-        addRecipe(new ShapedOreRecipe(getItemStack(tinDuckOrangeRaw), "OSO", "ODO", " T ", 'D', getItem(duckRaw), 'O', ORANGE, 'S', Item.sugar, 'T', getItem(cakeTin)));
+        addRecipe(new ShapedOreRecipe(getItemStack(tinDuckOrangeRaw), "OSO", "ODO", " T ", 'D', getItem(duckRaw), 'O', ORANGE, 'S', Items.sugar, 'T', getItem(cakeTin)));
 
-        GameRegistry.addSmelting(getItem(tinDuckOrangeRaw).itemID, getItemStack(tinDuckOrange), 5f);
+        GameRegistry.addSmelting(getItem(tinDuckOrangeRaw), getItemStack(tinDuckOrange), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(plateDuckOrange, 3), getItemStack(tinDuckOrange), getItem(plate), getItem(plate), getItem(plate));
-        PersistentItemsCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin).itemID);
+        PersistentItemsCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin));
 
         GameRegistry.addShapelessRecipe(getItemStack(bananaInChocolate, 2), itemBanana, getItem(chocolate), itemBanana);
 

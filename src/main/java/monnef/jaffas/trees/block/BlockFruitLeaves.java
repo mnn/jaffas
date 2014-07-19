@@ -16,12 +16,13 @@ import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -29,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setAir;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
 public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
@@ -44,11 +45,11 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     int[] adjacentTreeBlocks;
     private int subCount;
     private static Random rand = new Random();
-    private Icon[] icons;
-    private static Icon plainLeavesIcon;
+    private IIcon[] icons;
+    private static IIcon plainLeavesIcon;
 
-    public BlockFruitLeaves(int par1, int index, int subCount) {
-        super(par1, index, Material.leaves, false);
+    public BlockFruitLeaves(int index, int subCount) {
+        super(index, Material.leaves, false);
         this.setTickRandomly(true);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         JaffasTrees.proxy.setFancyGraphicsLevel(this, true);
@@ -56,11 +57,11 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         //this.setGraphicsLevel(true);
         setCreativeTab(JaffasTrees.instance.creativeTab);
         setSheetNumber(2);
-        setBurnProperties(blockID, 30, 60);
+        setBurnProperties(30, 60);
         removeFromCreativeTab();
     }
 
-    public Icon getFruitIcon(int meta) {
+    public IIcon getFruitIcon(int meta) {
         return icons[getLeavesType(meta)];
     }
 
@@ -70,16 +71,16 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
 
         ItemStack handItem = player.getCurrentEquippedItem();
         if (handItem != null) {
-            int itemId = handItem.getItem().itemID;
-            if (itemId == JaffasTrees.itemDebug.itemID) {
-                int bid = world.getBlockId(x, y, z);
+            Item item = handItem.getItem();
+            if (item == JaffasTrees.itemDebug) {
+                Block block = world.getBlock(x, y, z);
                 int bmeta = world.getBlockMetadata(x, y, z);
 
-                TileEntity e = world.getBlockTileEntity(x, y, z);
-                player.addChatMessage(x + "," + y + "," + z + "~" + bid + ":" + bmeta);
+                TileEntity e = world.getTileEntity(x, y, z);
+                PlayerHelper.addMessage(player, x + "," + y + "," + z + "~" + block.getUnlocalizedName() + ":" + bmeta);
                 String msg = "E~";
                 msg += e == null ? "NULL" : e.getClass();
-                player.addChatMessage(msg);
+                PlayerHelper.addMessage(player, msg);
 
                 return false;
             }
@@ -88,12 +89,12 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         if (world.isRemote) return true;
 
         if (handItem != null) {
-            if (handItem.getItem().itemID == JaffasTrees.itemRod.itemID) {
+            if (handItem.getItem() == JaffasTrees.itemRod) {
                 boolean harvested;
                 harvested = harvestArea(world, x, y, z, 0.10, null, 3);
                 if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
                 return harvested;
-            } else if (handItem.getItem().itemID == JaffasTrees.itemFruitPicker.itemID) {
+            } else if (handItem.getItem() == JaffasTrees.itemFruitPicker) {
                 boolean harvested;
                 harvested = harvestArea(world, x, y, z, 0.50, player, 5);
                 if (harvested || rand.nextInt(3) == 0) PlayerHelper.damageCurrentItem(player);
@@ -134,12 +135,12 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
                 bx = x + eightNeighbourWithMeTable[blockNum][0];
                 bz = z + eightNeighbourWithMeTable[blockNum][1];
 
-                int currentBlockID = world.getBlockId(bx, by, bz);
+                Block currentBlock = world.getBlock(bx, by, bz);
                 if (haveFruit(world, bx, by, bz))
                     found = true;
 
                 // on a solid block we make a mark to not test blocks above current block
-                if (!TileFruitLeaves.isThisBlockTransparentForFruit(currentBlockID) && currentBlockID != 0)
+                if (!TileFruitLeaves.isThisBlockTransparentForFruit(currentBlock) && !world.isAirBlock(bx, by, bz))
                     allowedPillar.set(blockNum, false);
 
                 if (found) break;
@@ -157,7 +158,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     public static boolean harvest(World world, int x, int y, int z, double critChance, EntityPlayer player) {
-        TileEntity e = world.getBlockTileEntity(x, y, z);
+        TileEntity e = world.getTileEntity(x, y, z);
         if (e == null || !(e instanceof TileFruitLeaves)) {
             //if (JaffasTrees.debug) System.err.println("null in TE, where are my leaves?");
             return false;
@@ -168,9 +169,8 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     public static boolean haveFruit(World world, int x, int y, int z) {
-        int blockId = world.getBlockId(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
-        Block b = Block.blocksList[blockId];
+        Block b = world.getBlock(x, y, z);
         if (!(b instanceof BlockFruitLeaves)) return false;
 
         BlockFruitLeaves leaves = (BlockFruitLeaves) b;
@@ -185,7 +185,8 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         }
     }
 
-    public TileEntity createNewTileEntity(World par1World) {
+    @Override
+    public TileEntity createTileEntity(World par1World, int metadata) {
         return new TileFruitLeaves();
     }
 
@@ -196,21 +197,18 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     @Override
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
-        byte var7 = 1;
-        int var8 = var7 + 1;
+    public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
+        byte radius = 1;
+        int chunkRadius = radius + 1;
 
-        par1World.removeBlockTileEntity(par2, par3, par4);
+        world.removeTileEntity(x, y, z);
 
-        if (par1World.checkChunksExist(par2 - var8, par3 - var8, par4 - var8, par2 + var8, par3 + var8, par4 + var8)) {
-            for (int var9 = -var7; var9 <= var7; ++var9) {
-                for (int var10 = -var7; var10 <= var7; ++var10) {
-                    for (int var11 = -var7; var11 <= var7; ++var11) {
-                        int var12 = par1World.getBlockId(par2 + var9, par3 + var10, par4 + var11);
-
-                        if (Block.blocksList[var12] != null) {
-                            Block.blocksList[var12].beginLeavesDecay(par1World, par2 + var9, par3 + var10, par4 + var11);
-                        }
+        if (world.checkChunksExist(x - chunkRadius, y - chunkRadius, z - chunkRadius, x + chunkRadius, y + chunkRadius, z + chunkRadius)) {
+            for (int sx = -radius; sx <= radius; ++sx) {
+                for (int sy = -radius; sy <= radius; ++sy) {
+                    for (int sz = -radius; sz <= radius; ++sz) {
+                        Block b = world.getBlock(x + sx, y + sy, z + sz);
+                        b.beginLeavesDecay(world, x + sx, y + sy, z + sz);
                     }
                 }
             }
@@ -243,9 +241,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
                     for (var12 = -var7; var12 <= var7; ++var12) {
                         for (var13 = -var7; var13 <= var7; ++var13) {
                             for (var14 = -var7; var14 <= var7; ++var14) {
-                                var15 = world.getBlockId(x + var12, y + var13, z + var14);
-
-                                Block block = Block.blocksList[var15];
+                                Block block = world.getBlock(x + var12, y + var13, z + var14);
 
                                 if (block != null && block.canSustainLeaves(world, x + var12, y + var13, z + var14)) {
                                     this.adjacentTreeBlocks[(var12 + var11) * var10 + (var13 + var11) * var9 + var14 + var11] = 0;
@@ -308,18 +304,18 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random) {
-        if (par1World.canLightningStrikeAt(par2, par3 + 1, par4) && !par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4) && par5Random.nextInt(15) == 1) {
-            double var6 = (double) ((float) par2 + par5Random.nextFloat());
-            double var8 = (double) par3 - 0.05D;
-            double var10 = (double) ((float) par4 + par5Random.nextFloat());
-            par1World.spawnParticle("dripWater", var6, var8, var10, 0.0D, 0.0D, 0.0D);
+    public void randomDisplayTick(World world, int x, int y, int z, Random random) {
+        if (world.canLightningStrikeAt(x, y + 1, z) && !World.doesBlockHaveSolidTopSurface(world, x, y - 1, z) && random.nextInt(15) == 1) {
+            double wx = (double) ((float) x + random.nextFloat());
+            double wy = (double) y - 0.05D;
+            double wz = (double) ((float) z + random.nextFloat());
+            world.spawnParticle("dripWater", wx, wy, wz, 0.0D, 0.0D, 0.0D);
         }
     }
 
     private void removeLeaves(World par1World, int par2, int par3, int par4) {
         this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-        setBlock(par1World, par2, par3, par4, 0);
+        setAir(par1World, par2, par3, par4);
     }
 
     @Override
@@ -378,7 +374,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         return plainLeavesIcon;
         //return icons[getLeavesType(meta)];
     }
@@ -389,8 +385,8 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     @Override
-    public void registerIcons(IconRegister iconRegister) {
-        icons = new Icon[subCount];
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        icons = new IIcon[subCount];
         for (int i = 0; i < subCount; i++) {
             icons[i] = iconRegister.registerIcon(CustomIconHelper.generateShiftedId((ICustomIcon) this, i));
         }
@@ -404,14 +400,14 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     @Override
-    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5) {
-        int var6 = par1IBlockAccess.getBlockId(par2, par3, par4);
-        return !this.graphicsLevel() && var6 == this.blockID ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+    public boolean shouldSideBeRendered(IBlockAccess par1IBlockAccess, int x, int y, int z, int meta) {
+        Block block = par1IBlockAccess.getBlock(x, y, z);
+        return !this.graphicsLevel() && block == this ? false : super.shouldSideBeRendered(par1IBlockAccess, x, y, z, meta);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < subCount; i++)
             par3List.add(new ItemStack(par1, 1, i));
     }
@@ -422,7 +418,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
     }
 
     @Override
-    public boolean isLeaves(World world, int x, int y, int z) {
+    public boolean isLeaves(IBlockAccess world, int x, int y, int z) {
         return true;
     }
 
@@ -440,7 +436,9 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         ColorHelper.IntColor weightedColor = new ColorHelper.IntColor();
         for (int zShift = -1; zShift <= 1; ++zShift) {
             for (int xShift = -1; xShift <= 1; ++xShift) {
-                int foliageColor = access.getBiomeGenForCoords(x + xShift, z + zShift).getBiomeFoliageColor();
+                int xBiome = x + xShift;
+                int zBiome = z + zShift;
+                int foliageColor = access.getBiomeGenForCoords(xBiome, zBiome).getBiomeFoliageColor(xBiome, y, zBiome);
                 ColorHelper.IntColor currentFoliageColor = ColorHelper.getColor(foliageColor);
                 red += currentFoliageColor.getRed();
                 green += currentFoliageColor.getGreen();

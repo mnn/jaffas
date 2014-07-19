@@ -14,6 +14,7 @@ import monnef.jaffas.trees.common.LeavesInfo;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -53,14 +54,15 @@ public class TileFruitLeaves extends TileEntity {
     private int leavesID;
     private int leavesMeta;
 
-    private static final HashSet<Integer> fruitFallThroughBlocks = new HashSet<Integer>();
+    private static final HashSet<Block> fruitFallThroughBlocks = new HashSet<Block>();
 
     static {
         for (LeavesInfo info : JaffasTrees.leavesList) {
-            fruitFallThroughBlocks.add(info.leavesID);
+            fruitFallThroughBlocks.add(info.leavesBlock);
         }
 
-        fruitFallThroughBlocks.add(Block.wood.blockID);
+        fruitFallThroughBlocks.add(Blocks.log);
+        fruitFallThroughBlocks.add(Blocks.log2);
     }
 
     public TileFruitLeaves() {
@@ -169,8 +171,8 @@ public class TileFruitLeaves extends TileEntity {
         this.leavesMeta = par1NBTTagCompound.getInteger("leavesMeta");
     }
 
-    public static boolean isThisBlockTransparentForFruit(int blockID) {
-        return fruitFallThroughBlocks.contains(blockID);
+    public static boolean isThisBlockTransparentForFruit(Block block) {
+        return fruitFallThroughBlocks.contains(block);
     }
 
     public boolean generateFruitAndDecay(double chanceForSecondFruit, EntityPlayer player) {
