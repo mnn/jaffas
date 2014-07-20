@@ -8,14 +8,15 @@ package monnef.jaffas.power.block.common;
 import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.power.JaffasPower;
 import monnef.jaffas.power.client.GuiHandler;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public abstract class BlockMachineWithInventory extends BlockPowerMachine {
-    public BlockMachineWithInventory(int id, int index, Material material, boolean customRenderer, boolean useCustomRenderingId) {
-        super(id, index, material, customRenderer, useCustomRenderingId);
+    public BlockMachineWithInventory(int index, Material material, boolean customRenderer, boolean useCustomRenderingId) {
+        super(index, material, customRenderer, useCustomRenderingId);
     }
 
     @Override
@@ -23,7 +24,7 @@ public abstract class BlockMachineWithInventory extends BlockPowerMachine {
         if (super.onBlockActivated(world, x, y, z, player, side, par7, par8, par9)) {
             return true;
         } else {
-            TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+            TileEntity tileEntity = world.getTileEntity(x, y, z);
             if (tileEntity == null || player.isSneaking()) {
                 return false;
             }
@@ -34,7 +35,7 @@ public abstract class BlockMachineWithInventory extends BlockPowerMachine {
     }
 
     @Override
-    public void breakBlock(World world, int x, int y, int z, int par5, int par6) {
+    public void breakBlock(World world, int x, int y, int z, Block par5, int par6) {
         InventoryUtils.dropItems(world, x, y, z);
         super.breakBlock(world, x, y, z, par5, par6);
     }

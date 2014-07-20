@@ -8,11 +8,12 @@ package monnef.jaffas.power.block;
 import monnef.jaffas.power.block.common.BlockPowerMachine;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
 
@@ -23,12 +24,12 @@ public class BlockKitchenUnit extends BlockPowerMachine {
     public static final String UNLOCALIZED_NAME = "kitchenUnit";
     private final int typesCount;
 
-    public BlockKitchenUnit(int id, int textureID, int typesCount) {
-        super(id, textureID, Material.wood, false, false);
+    public BlockKitchenUnit(int textureID, int typesCount) {
+        super(textureID, Material.wood, false, false);
         this.typesCount = typesCount;
         setHardness(0.5f);
         setIconsCount(ICONS_PER_TYPE * typesCount);
-        setUnlocalizedName(UNLOCALIZED_NAME);
+        setBlockName(UNLOCALIZED_NAME);
     }
 
     @Override
@@ -42,7 +43,7 @@ public class BlockKitchenUnit extends BlockPowerMachine {
     }
 
     @Override
-    public Icon getIcon(int side, int meta) {
+    public IIcon getIcon(int side, int meta) {
         int base = meta * ICONS_PER_TYPE;
         int shift = 2;
         if (side == ForgeDirection.UP.ordinal()) shift = 1;
@@ -51,9 +52,9 @@ public class BlockKitchenUnit extends BlockPowerMachine {
     }
 
     @Override
-    public void getSubBlocks(int id, CreativeTabs tabs, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
         for (int i = 0; i < typesCount; i++) {
-            ItemStack stack = new ItemStack(id, 1, i);
+            ItemStack stack = new ItemStack(item, 1, i);
             list.add(stack);
         }
     }

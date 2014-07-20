@@ -8,13 +8,14 @@ package monnef.jaffas.power.item;
 import buildcraft.api.power.PowerHandler;
 import monnef.core.block.TileMachine;
 import monnef.core.power.IMachineTool;
+import monnef.core.utils.PlayerHelper;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class ItemDebug extends ItemPower implements IMachineTool {
     private EntityPlayer player;
 
-    public ItemDebug(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemDebug(int textureIndex) {
+        super(textureIndex);
         setUnlocalizedName("debugPower");
     }
 
@@ -46,6 +47,6 @@ public class ItemDebug extends ItemPower implements IMachineTool {
     }
 
     private void print(String message) {
-        player.addChatMessage(message);
+        PlayerHelper.addMessage(player, message);
     }
 }

@@ -20,10 +20,10 @@ import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
 
 public class BlockGenerator extends BlockMachineWithInventory {
 
-    public BlockGenerator(int id, int texture) {
-        super(id, texture, breakableIronMaterial, true, true);
+    public BlockGenerator(int texture) {
+        super(texture, breakableIronMaterial(), true, true);
         setCreativeTab(JaffasPower.instance.creativeTab);
-        setUnlocalizedName("generator");
+        setBlockName("generator");
         setHardness(1.5f);
         setResistance(5);
     }

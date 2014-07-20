@@ -10,12 +10,12 @@ public class BlockBasicProcessingMachine extends BlockMachineWithInventory {
     private Class<? extends TileEntityBasicProcessingMachine> tileClass;
     private GuiHandler.GuiId guiId;
 
-    public BlockBasicProcessingMachine(int id, int index, Class<? extends TileEntityBasicProcessingMachine> tileClass, GuiHandler.GuiId guiId) {
-        this(id, index, tileClass, guiId, false, false);
+    public BlockBasicProcessingMachine(int index, Class<? extends TileEntityBasicProcessingMachine> tileClass, GuiHandler.GuiId guiId) {
+        this(index, tileClass, guiId, false, false);
     }
 
-    public BlockBasicProcessingMachine(int id, int index, Class<? extends TileEntityBasicProcessingMachine> tileClass, GuiHandler.GuiId guiId, boolean customRenderer, boolean customRenderingId) {
-        super(id, index, breakableIronMaterial, customRenderer, customRenderingId);
+    public BlockBasicProcessingMachine(int index, Class<? extends TileEntityBasicProcessingMachine> tileClass, GuiHandler.GuiId guiId, boolean customRenderer, boolean customRenderingId) {
+        super(index, breakableIronMaterial(), customRenderer, customRenderingId);
         this.tileClass = tileClass;
         this.guiId = guiId;
     }

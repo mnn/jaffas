@@ -5,7 +5,9 @@
 
 package monnef.jaffas.xmas.block;
 
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.xmas.JaffasXmas;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,11 +15,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setAir;
 
 public class BlockPresent extends BlockXmasMulti {
     public final static float unit = 1f / 16f;
@@ -33,8 +35,8 @@ public class BlockPresent extends BlockXmasMulti {
 
     public BlockPresent(int id, int textureID, Material material, int subBlocksCount) {
         super(id, textureID, material, subBlocksCount);
-        setUnlocalizedName("present");
-        setBurnProperties(blockID, 30, 100);
+        setBlockName("present");
+        setBurnProperties(30, 100);
     }
 
     @Override
@@ -77,7 +79,7 @@ public class BlockPresent extends BlockXmasMulti {
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setBlockTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
+        par1World.setTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
     }
 
     @Override
@@ -96,15 +98,15 @@ public class BlockPresent extends BlockXmasMulti {
             return true;
         }
 
-        TilePresent te = (TilePresent) par1World.getBlockTileEntity(par2, par3, par4);
+        TilePresent te = (TilePresent) par1World.getTileEntity(par2, par3, par4);
 
         if (player.isSneaking()) {
             ItemStack i = te.getContent();
             if (i != null) {
                 String q = i.stackSize > 1 ? " x" + i.stackSize : "";
-                player.addChatMessage("Inside present is " + i.getDisplayName() + q + ".");
+                PlayerHelper.addMessage(player, "Inside present is " + i.getDisplayName() + q + ".");
             } else {
-                player.addChatMessage("Present is empty.");
+                PlayerHelper.addMessage(player, "Present is empty.");
             }
         } else {
 
@@ -123,30 +125,30 @@ public class BlockPresent extends BlockXmasMulti {
     }
 
     @Override
-    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-        return super.canPlaceBlockAt(par1World, par2, par3, par4) && par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4);
+    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
+        return super.canPlaceBlockAt(world, x, y, z) && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z);
     }
 
     @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
         boolean destroy = false;
-        int meta = par1World.getBlockMetadata(par2, par3, par4);
+        int meta = world.getBlockMetadata(x, y, z);
 
-        if (!par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4)) {
+        if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) {
             destroy = true;
         }
 
         if (destroy) {
-            if (!par1World.isRemote) {
-                this.dropBlockAsItem(par1World, par2, par3, par4, meta, 0);
-                this.dropItems(par1World, par2, par3, par4);
+            if (!world.isRemote) {
+                this.dropBlockAsItem(world, x, y, z, meta, 0);
+                this.dropItems(world, x, y, z);
             }
-            setBlock(par1World, par2, par3, par4, 0);
+            setAir(world, x, y, z);
         }
     }
 
     private void dropItems(World world, int x, int y, int z) {
-        TilePresent te = (TilePresent) world.getBlockTileEntity(x, y, z);
+        TilePresent te = (TilePresent) world.getTileEntity(x, y, z);
         ItemStack item = te.getContent();
         if (item != null) {
             te.setContent(null);
@@ -156,12 +158,12 @@ public class BlockPresent extends BlockXmasMulti {
     }
 
     @Override
-    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6) {
-        dropItems(par1World, par2, par3, par4);
+    public void breakBlock(World world, int x, int y, int z, Block block, int par6) {
+        dropItems(world, x, y, z);
     }
 
     @Override
-    public Icon getIcon(int par1, int par2) {
-        return Item.itemsList[this.blockID].getIconFromDamage(par2);
+    public IIcon getIcon(int par1, int par2) {
+        return Item.getItemFromBlock(this).getIconFromDamage(par2);
     }
 }

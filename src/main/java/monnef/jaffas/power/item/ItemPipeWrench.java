@@ -12,8 +12,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 
 public class ItemPipeWrench extends ItemPower implements IPipeWrench {
-    public ItemPipeWrench(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemPipeWrench(int textureIndex) {
+        super(textureIndex);
         setUnlocalizedName("pipeWrench");
         setMaxStackSize(1);
         setSecondCreativeTab(CreativeTabs.tabTools);
@@ -30,7 +30,7 @@ public class ItemPipeWrench extends ItemPower implements IPipeWrench {
     }
 
     @Override
-    public boolean shouldPassSneakingClickToBlock(World world, int x, int y, int z) {
+    public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
         return true;
     }
 

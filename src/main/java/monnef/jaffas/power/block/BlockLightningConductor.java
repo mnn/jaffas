@@ -17,9 +17,9 @@ public class BlockLightningConductor extends BlockPower {
     private static final float border = 5.5f * 1f / 16f;
     private static final float borderComplement = 1f - border;
 
-    public BlockLightningConductor(int par1, int par2) {
-        super(par1, par2, Material.iron);
-        setUnlocalizedName("lightningConductor");
+    public BlockLightningConductor(int par2) {
+        super(par2, Material.iron);
+        setBlockName("lightningConductor");
         renderID = RenderingRegistry.getNextAvailableRenderId();
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
         setHardness(2f);

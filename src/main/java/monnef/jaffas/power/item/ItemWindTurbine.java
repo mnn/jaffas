@@ -13,6 +13,7 @@ import monnef.core.utils.DyeHelper;
 import monnef.jaffas.power.JaffasPower;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -36,8 +37,8 @@ public class ItemWindTurbine extends ItemPower {
     private int speedChangeInRainCoolDownMin;
     private int speedChangeInRainCoolDownMax;
 
-    public ItemWindTurbine(int id, int textureIndex, int durability, int model) {
-        super(id, textureIndex);
+    public ItemWindTurbine(int textureIndex, int durability, int model) {
+        super(textureIndex);
         this.model = model;
         setMaxDamage(durability);
         setMaxStackSize(1);
@@ -87,8 +88,8 @@ public class ItemWindTurbine extends ItemPower {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
-        super.addInformation(stack, player, result, par4);
+    public void addInformationCustom(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformationCustom(stack, player, result, par4);
         if (this != JaffasPower.windTurbineMill) result.add(BETA_WARNING_TEXT());
         result.add(String.format("Radius: §f%s.5m§r", getRadius()));
         if (usesColoring)
@@ -100,9 +101,9 @@ public class ItemWindTurbine extends ItemPower {
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List list) {
         if (!usesColoring) {
-            super.getSubItems(id, tab, list);
+            super.getSubItems(item, tab, list);
         } else {
             for (int i = 0; i < BASIC_COLOURS_COUNT; i++) {
                 list.add(constructColoredTurbine(i));
