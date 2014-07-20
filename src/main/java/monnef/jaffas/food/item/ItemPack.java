@@ -7,6 +7,7 @@ package monnef.jaffas.food.item;
 
 import monnef.core.utils.PlayerHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -41,18 +42,18 @@ public class ItemPack extends ItemJaffaBase {
 
     protected static ItemStack getContent(ItemStack stack) {
         NBTTagCompound tag = stack.getTagCompound();
-        return new ItemStack(tag.getInteger(CONTENT_ID_TAG), tag.getInteger(CONTENT_SIZE_TAG), tag.getInteger(CONTENT_META_TAG));
+        return new ItemStack(Item.getItemById(tag.getInteger(CONTENT_ID_TAG)), tag.getInteger(CONTENT_SIZE_TAG), tag.getInteger(CONTENT_META_TAG));
     }
 
     public static void setContent(ItemStack stack, ItemStack content) {
-        setContent(stack, content.itemID, content.stackSize, content.getItemDamage());
+        setContent(stack, content.getItem(), content.stackSize, content.getItemDamage());
     }
 
-    public static void setContent(ItemStack stack, int contentId, int contentSize, int contentMeta) {
+    public static void setContent(ItemStack stack, Item content, int contentSize, int contentMeta) {
         initNBT(stack);
 
         NBTTagCompound tag = stack.getTagCompound();
-        tag.setInteger(CONTENT_ID_TAG, contentId);
+        tag.setInteger(CONTENT_ID_TAG, Item.getIdFromItem(content));
         tag.setInteger(CONTENT_SIZE_TAG, contentSize);
         tag.setInteger(CONTENT_META_TAG, contentMeta);
     }

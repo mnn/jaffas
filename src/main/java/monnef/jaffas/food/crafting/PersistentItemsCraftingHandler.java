@@ -42,7 +42,11 @@ public class PersistentItemsCraftingHandler extends MonnefCoreCraftingHandler {
         return AddPersistentItem(ItemManager.getItem(item));
     }
 
-    public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, Item substituteItem) {
+    public static PersistentItemInfo AddPersistentItemWhichTakesDamage(JaffaItem item) {
+        return AddPersistentItem(ItemManager.getItem(item), true, null);
+    }
+
+    public static PersistentItemInfo AddPersistentItemRetuningNonJaffaItem(JaffaItem item, boolean takesDamage, Item substituteItem) {
         return AddPersistentItem(ItemManager.getItem(item), takesDamage, substituteItem);
     }
 
@@ -56,7 +60,7 @@ public class PersistentItemsCraftingHandler extends MonnefCoreCraftingHandler {
     }
 
     public static PersistentItemInfo AddPersistentItem(JaffaItem item, boolean takesDamage, JaffaItem substitude) {
-        return AddPersistentItem(item, takesDamage, ItemManager.getItem(substitude));
+        return AddPersistentItemRetuningNonJaffaItem(item, takesDamage, ItemManager.getItem(substitude));
     }
 
     @Override

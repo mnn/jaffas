@@ -676,7 +676,7 @@ public class JaffasTrees extends JaffasModBase {
         GameRegistry.addRecipe(getItemStack(lambWithPeasInTinRaw), " M ", "PPP", " T ", 'M', getItem(muttonRaw), 'P', getFruit(bushType.Pea), 'T', getItem(cakeTin));
         GameRegistry.addSmelting(getItem(lambWithPeasInTinRaw), getItemStack(lambWithPeasInTin), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(lambWithPeas, 3), getItemStack(lambWithPeasInTin), getItem(plate), getItem(plate), getItem(plate));
-        PersistentItemsCraftingHandler.AddPersistentItem(lambWithPeasInTin, false, getItem(cakeTin));
+        PersistentItemsCraftingHandler.AddPersistentItemRetuningNonJaffaItem(lambWithPeasInTin, false, getItem(cakeTin));
 
         // beans
         // chopped tomatoes   ->  raw beans with tomato sauce => baked beans with tomato sauce
@@ -688,7 +688,7 @@ public class JaffasTrees extends JaffasModBase {
 
         GameRegistry.addSmelting(getItem(tinDuckOrangeRaw), getItemStack(tinDuckOrange), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(plateDuckOrange, 3), getItemStack(tinDuckOrange), getItem(plate), getItem(plate), getItem(plate));
-        PersistentItemsCraftingHandler.AddPersistentItem(tinDuckOrange, false, getItem(cakeTin));
+        PersistentItemsCraftingHandler.AddPersistentItemRetuningNonJaffaItem(tinDuckOrange, false, getItem(cakeTin));
 
         GameRegistry.addShapelessRecipe(getItemStack(bananaInChocolate, 2), itemBanana, getItem(chocolate), itemBanana);
 
