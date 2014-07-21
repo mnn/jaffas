@@ -61,8 +61,8 @@ import monnef.jaffas.power.item.ItemTurbineBlade;
 import monnef.jaffas.power.item.ItemWindTurbine;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.item.CentralUnitEnum;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -241,34 +241,33 @@ public class JaffasPower extends JaffasModBase {
     private void installRecipes() {
         if (ModuleManager.isModuleEnabled(ModulesEnum.technic)) {
             if (lightningConductorEnabled) {
-                GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Block.blockIron);
+                GameRegistry.addRecipe(new ItemStack(lightningConductor), "J", "J", "B", 'J', JaffasTechnic.jaffarrol, 'B', Blocks.iron_block);
             }
             Recipes.addRecipe(new ShapedOreRecipe(wrench, "JJ ", "BJR", "  J", 'J', JaffasTechnic.jaffarrol, 'B', DyeHelper.getDye(DyeColor.BLACK), 'R', DyeHelper.getDye(DyeColor.RED)));
-            GameRegistry.addShapedRecipe(new ItemStack(generator, 2), " I ", "IFI", " C ", 'I', Item.ingotIron, 'F', Block.furnaceIdle, 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
+            GameRegistry.addShapedRecipe(new ItemStack(generator, 2), " I ", "IFI", " C ", 'I', Items.iron_ingot, 'F', Blocks.furnace, 'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
 
-            GameRegistry.addRecipe(new ItemStack(grinder), " FS", "III", "III", 'I', Item.ingotIron, 'F', JaffasTechnic.funnel, 'S', Item.stick);
+            Recipes.addOreRecipe(grinder, " FS", "III", "III", 'I', Items.iron_ingot, 'F', JaffasTechnic.funnel, 'S', Recipes.WOOD_STICK);
 
             GameRegistry.addShapedRecipe(new ItemStack(toaster), "CJ", "H ", 'C', JaffasTechnic.itemCasingRefined, 'J', JaffasTechnic.jaffarrolNugget, 'H', createCentralUnitStack(CentralUnitEnum.SIMPLE));
 
-            addKitchenUnitRecipe(0, new ItemStack(Block.planks, 1, 2));
-            addKitchenUnitRecipe(0, new ItemStack(Block.planks, 1, 0));
-            addKitchenUnitRecipe(1, new ItemStack(Block.planks, 1, 3));
-            addKitchenUnitRecipe(2, new ItemStack(Block.planks, 1, 1));
+            addKitchenUnitRecipe(0, new ItemStack(Blocks.planks, 1, 2));
+            addKitchenUnitRecipe(0, new ItemStack(Blocks.planks, 1, 0));
+            addKitchenUnitRecipe(1, new ItemStack(Blocks.planks, 1, 3));
+            addKitchenUnitRecipe(2, new ItemStack(Blocks.planks, 1, 1));
 
-            GameRegistry.addRecipe(new ItemStack(webHarvester), "SFS", "S@S", "JCJ",
-                    'J', JaffasTechnic.jaffarrol, 'F', JaffasTechnic.funnel, '@', JaffasTechnic.itemCasing, 'C', createCentralUnitStack(CentralUnitEnum.ADVANCED), 'S', Item.silk);
+            Recipes.addOreRecipe(webHarvester, "SFS", "S@S", "JCJ", 'J', JaffasTechnic.jaffarrol, 'F', JaffasTechnic.funnel, '@', JaffasTechnic.itemCasing, 'C', createCentralUnitStack(CentralUnitEnum.ADVANCED), 'S', Items.string);
 
             if (windGeneratorEnabled) {
                 GameRegistry.addShapedRecipe(new ItemStack(windGenerator), " J ", "iCi", "IUI", 'J',
-                        jaffarrol, 'I', Block.blockIron, 'i', Item.ingotIron, 'U', createCentralUnitStack(CentralUnitEnum.SIMPLE), 'C', itemCasing);
-                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), "iii", "iji", " j ", 'i', Item.ingotIron, 'j', jaffarrol);
+                        jaffarrol, 'I', Blocks.iron_block, 'i', Items.iron_ingot, 'U', createCentralUnitStack(CentralUnitEnum.SIMPLE), 'C', itemCasing);
+                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), "iii", "iji", " j ", 'i', Items.iron_ingot, 'j', jaffarrol);
                 GameRegistry.addRecipe(new ShapedOreRecipe(
                         turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.woodenBlade), "iii", "iji", " j ", 'i', Recipes.WOOD_PLANK, 'j', jaffarrol
                 ));
-                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.ironBlade), "i", "i", "j", 'i', Item.ingotIron, 'j', jaffarrol);
-                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.jaffarrolBlade), "jjj", "jij", " j ", 'i', Item.ingotIron, 'j', jaffarrol);
-                GameRegistry.addShapedRecipe(new ItemStack(windTurbineMill), " B ", "BiB", " B ", 'B', turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), 'i', Item.ingotIron);
-                GameRegistry.addShapedRecipe(new ItemStack(windTurbineMill), "B B", " i ", "B B", 'B', turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), 'i', Item.ingotIron);
+                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.ironBlade), "i", "i", "j", 'i', Items.iron_ingot, 'j', jaffarrol);
+                GameRegistry.addShapedRecipe(turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.jaffarrolBlade), "jjj", "jij", " j ", 'i', Items.iron_ingot, 'j', jaffarrol);
+                GameRegistry.addShapedRecipe(new ItemStack(windTurbineMill), " B ", "BiB", " B ", 'B', turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), 'i', Items.iron_ingot);
+                GameRegistry.addShapedRecipe(new ItemStack(windTurbineMill), "B B", " i ", "B B", 'B', turbineBlade.constructBlade(ItemTurbineBlade.TurbineBladeEnum.millBlade), 'i', Items.iron_ingot);
                 for (int i = 0; i < ItemWindTurbine.BASIC_COLOURS_COUNT; i++) {
                     ItemStack turbine = windTurbineMill.constructColoredTurbine(i);
                     GameRegistry.addShapelessRecipe(turbine, windTurbineMill, DyeHelper.getDye(i));
@@ -278,13 +277,12 @@ public class JaffasPower extends JaffasModBase {
 
         TileToaster.addRecipe(TileToaster.ToastLevel.MEDIUM, JaffaItem.breadSlice, JaffaItem.breadSliceToasted, 100);
 
-        GameRegistry.addShapedRecipe(new ItemStack(JaffasPower.juiceMaker), "GAG", "GPG", "NCN", 'A', Item.axeIron, 'G', Block.glass, 'N', JaffasTechnic.jaffarrolNugget, 'C', JaffasTechnic.itemCasingRefined, 'P', createCentralUnitStack(CentralUnitEnum.SIMPLE));
+        GameRegistry.addShapedRecipe(new ItemStack(JaffasPower.juiceMaker), "GAG", "GPG", "NCN", 'A', Items.iron_axe, 'G', Blocks.glass, 'N', JaffasTechnic.jaffarrolNugget, 'C', JaffasTechnic.itemCasingRefined, 'P', createCentralUnitStack(CentralUnitEnum.SIMPLE));
     }
 
     private void addKitchenUnitRecipe(int unitId, ItemStack planks) {
-        GameRegistry.addShapedRecipe(new ItemStack(kitchenUnit, 3, unitId), "QQQ", "PCP", "PSP",
-                'S', Block.stone, 'Q', new ItemStack(Block.stoneSingleSlab, 1, 7), 'P', planks,
-                'C', createCentralUnitStack(CentralUnitEnum.SIMPLE)
-        );
+        Recipes.addOreRecipe(new ItemStack(kitchenUnit, 3, unitId), "QQQ", "PCP", "PSP",
+                'S', Recipes.STONE, 'Q', new ItemStack(Blocks.stone_slab, 1, 7), 'P', planks,
+                'C', createCentralUnitStack(CentralUnitEnum.SIMPLE));
     }
 }
