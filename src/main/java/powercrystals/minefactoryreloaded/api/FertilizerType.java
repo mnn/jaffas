@@ -9,6 +9,10 @@ package powercrystals.minefactoryreloaded.api;
 public enum FertilizerType
 {
 	/**
+	 * The fertilizer will fertilize nothing.
+	 */
+	None,
+	/**
 	 * The fertilizer will fertilize grass.
 	 */
 	Grass,

@@ -11,14 +11,13 @@ import net.minecraft.world.World;
  *
  * Defines a grindable entity for the Grinder.
  */
-@SuppressWarnings("deprecation")
 public interface IFactoryGrindable
 {
 	/**
 	 * @return The class that this grindable instance is handling. This must be a subtype of EntityLivingBase or the entity will never
 	 * be noticed by the Grinder.
 	 */
-	public Class<?> getGrindableEntity();
+	public Class<? extends EntityLivingBase> getGrindableEntity();
 
 	/**
 	 * @param world The world this entity is in.

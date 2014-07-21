@@ -1,9 +1,9 @@
 package powercrystals.minefactoryreloaded.api;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandomItem;
+import net.minecraft.util.WeightedRandom;
 
-public class MobDrop extends WeightedRandomItem
+public class MobDrop extends WeightedRandom.Item
 {
 	private ItemStack _stack;
 	

@@ -4,9 +4,9 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public interface IRedNetLogicCircuit
 {
-	public int getInputCount();
+	public byte getInputCount();
 	
-	public int getOutputCount();
+	public byte getOutputCount();
 	
 	public int[] recalculateOutputValues(long worldTime, int[] inputValues);
 	

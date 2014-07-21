@@ -8,15 +8,19 @@ package powercrystals.minefactoryreloaded.api;
 public enum HarvestType
 {
 	/**
-	 * Just break the single block - no special action needed. Carrots, flowers, etc.
+	 * Just break the single block - no special action needed. e.g. Carrots, flowers, wheat.
 	 */
 	Normal,
+	/**
+	 * Search for harvestable blocks adjacent to this block but leave this block. e.g. Pumpkin, melon
+	 */
+	Gourd,
 	/**
 	 * Search for identical blocks above.
 	 */
 	Column,
 	/**
-	 * Search for identical blocks above but leave this bottom one for the future. Cactus and sugarcane.
+	 * Search for identical blocks above but leave the bottom one for the future. e.g. Cactus, sugarcane.
 	 */
 	LeaveBottom,
 	/**
@@ -24,11 +28,17 @@ public enum HarvestType
 	 */
 	Tree,
 	/**
-	 * This block is the base of the tree and the harvester should enter tree-cutting mode, but the tree grows upside-down.
+	 * This block is the base of the tree and the harvester should enter tree-cutting mode.
+	 * The tree is searched for in the negative y axis instead.
 	 */
 	TreeFlipped,
 	/**
-	 * This block is part of a tree as above, but leaves are cut before tree logs so that leaves do not decay more than necessary.
+	 * This block is part of a tree as above.
 	 */
-	TreeLeaf
+	TreeLeaf,
+	/**
+	 * This block is part of a tree as above, but fruits are cut before logs. e.g. cocoa
+	 * The tree is not searched for.
+	 */
+	TreeFruit
 }

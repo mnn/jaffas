@@ -3,6 +3,7 @@ package powercrystals.minefactoryreloaded.api;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -15,9 +16,9 @@ import net.minecraft.world.World;
 public interface IFactoryFruit
 {
 	/**
-	 * @return The block ID this fruit has in the world.
+	 * @return The block this fruit has in the world.
 	 */
-	public int getSourceBlockId();
+	public Block getPlant();
 	
 	/**
 	 * Used to determine if this fruit can be picked (is it ripe yet, etc) 
@@ -30,6 +31,11 @@ public interface IFactoryFruit
 	public boolean canBePicked(World world, int x, int y, int z);
 	
 	/**
+	 * @return Whether or not the Fruit Picker should break the block when harvesting. If false, no changes will be performed by the Fruit Picker itself.
+	 */
+	public boolean breakBlock();
+	
+	/**
 	 * Called by the Fruit Picker to determine what block to replace the picked block with. Only ID and meta/damage will be used.
 	 * At the time this method is called, the fruit still exists. Do not pass an item ID as the return value.
 	 * @param world The world where the fruit is being picked
@@ -38,7 +44,7 @@ public interface IFactoryFruit
 	 * @param z The z-coordinate of the fruit
 	 * @return The block to replace the fruit block with, or null for air.
 	 */
-	public ItemStack getReplacementBlock(World world, int x, int y, int z);
+	public ReplacementBlock getReplacementBlock(World world, int x, int y, int z);
 	
 	/**
 	 * Called by the Fruit Picker before the fruit is picked.

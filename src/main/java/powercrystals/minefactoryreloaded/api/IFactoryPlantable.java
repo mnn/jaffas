@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.api;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -11,9 +12,16 @@ import net.minecraft.world.World;
 public interface IFactoryPlantable
 {
 	/**
-	 * @return The block or item ID this plantable is managing.
+	 * @return The item this plantable is managing.
 	 */
-	public int getSeedId();
+	public Item getSeed();
+
+	/**
+	 * @param stack The stack being planted.
+	 * @param forFermenting True if this stack will be converted to biofuel
+	 * @return True if this plantable can be planted (useful for metadata items).
+	 */
+	public boolean canBePlanted(ItemStack stack, boolean forFermenting);
 	
 	/**
 	 * @param world The world instance this block or item will be placed into.
@@ -21,19 +29,9 @@ public interface IFactoryPlantable
 	 * @param y The destination Y coordinate.
 	 * @param z The destination Z coordinate.
 	 * @param stack The stack being planted.
-	 * @return The block ID that will be placed into the world.
+	 * @return The block that will be placed into the world.
 	 */
-	public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack);
-	
-	/**
-	 * @param world The world instance this block or item will be placed into.
-	 * @param x The destination X coordinate.
-	 * @param y The destination Y coordinate.
-	 * @param z The destination Z coordinate.
-	 * @param stack The stack being planted.
-	 * @return The block metadata that will be placed into the world.
-	 */
-	public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack);
+	public ReplacementBlock getPlantedBlock(World world, int x, int y, int z, ItemStack stack);
 	
 	/**
 	 * @param world The world instance this block or item will be placed into.

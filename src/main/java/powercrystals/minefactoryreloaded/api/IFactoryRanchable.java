@@ -16,7 +16,7 @@ public interface IFactoryRanchable
 	/**
 	 * @return The entity being ranched. Must be a subtype of EntityLivingBase.
 	 */
-	public Class<?> getRanchableEntity();
+	public Class<? extends EntityLivingBase> getRanchableEntity();
 	
 	/**
 	 * @param world The world this entity is in.

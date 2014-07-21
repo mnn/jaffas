@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
@@ -15,15 +16,14 @@ import net.minecraft.world.World;
 public interface IFactoryHarvestable
 {
 	/**
-	 * @return The block ID this harvestable instance is managing.
+	 * @return The block this harvestable instance is managing.
 	 */
-	public int getPlantId();
+	public Block getPlant();
 	
 	/**
 	 * @return The type of harvest the Harvester should perform on this block.
 	 */
 	public HarvestType getHarvestType();
-	
 	
 	/**
 	 * @return Whether or not the Harvester should break the block when harvesting. If false, no changes will be performed by the Harvester itself.

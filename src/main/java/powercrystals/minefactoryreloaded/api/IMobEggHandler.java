@@ -1,6 +1,6 @@
 package powercrystals.minefactoryreloaded.api;
 
-import net.minecraft.entity.EntityEggInfo;
+import net.minecraft.entity.EntityList.EntityEggInfo;
 import net.minecraft.item.ItemStack;
 
 /**

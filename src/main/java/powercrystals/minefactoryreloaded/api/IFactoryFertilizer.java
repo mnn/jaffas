@@ -1,5 +1,6 @@
 package powercrystals.minefactoryreloaded.api;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 /**
@@ -12,17 +13,12 @@ public interface IFactoryFertilizer
 	/**
 	 * @return The ID of this fertilizer item.
 	 */
-	int getFertilizerId();
-	
-	/**
-	 * @return The metadata of this fertilizer item.
-	 */
-	int getFertilizerMeta();
+	Item getFertilizer();
 	
 	/**
 	 * @return The type of fertilizer this is.
 	 */
-	FertilizerType getFertilizerType();
+	FertilizerType getFertilizerType(ItemStack stack);
 	
 	/**
 	 * Called when a fertilization is successful. If you set the ItemStack size to 0, it will be deleted by the fertilizer.

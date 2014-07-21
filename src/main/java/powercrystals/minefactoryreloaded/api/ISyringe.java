@@ -28,4 +28,19 @@ public interface ISyringe
 	 * @return True if injection was successful.
 	 */
 	public boolean inject(World world, EntityLivingBase entity, ItemStack syringe);
+	
+	/**
+	 * Called to check if a syringe is empty
+	 * @param syringe The syringe ItemStack.
+	 * @return True if the syringe is empty
+	 */
+	public boolean isEmpty(ItemStack syringe);
+	
+	/**
+	 * Called to get the empty syringe
+	 * Note: this will replace the syringe, max stacksize should be 1
+	 * @param syringe The syringe ItemStack.
+	 * @return An empty syringe ItemStack
+	 */
+	public ItemStack getEmptySyringe(ItemStack syringe);
 }

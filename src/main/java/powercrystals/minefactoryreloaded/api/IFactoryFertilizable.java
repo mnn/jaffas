@@ -2,6 +2,7 @@ package powercrystals.minefactoryreloaded.api;
 
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 /**
@@ -13,9 +14,9 @@ import net.minecraft.world.World;
 public interface IFactoryFertilizable
 {
 	/**
-	 * @return The block ID this instance is managing.
+	 * @return The block this instance is managing.
 	 */
-	public int getFertilizableBlockId();
+	public Block getPlant();
 	
 	/**
 	 * @param world The world this block belongs to.
@@ -25,7 +26,7 @@ public interface IFactoryFertilizable
 	 * @param fertilizerType The kind of fertilizer being used.
 	 * @return True if the block at (x,y,z) can be fertilized with the given type of fertilizer.
 	 */
-	public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType);
+	public boolean canFertilize(World world, int x, int y, int z, FertilizerType fertilizerType);
 	
 	/**
 	 * @param world The world this block belongs to.

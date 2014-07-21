@@ -1,8 +1,8 @@
 package powercrystals.minefactoryreloaded.api;
 
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.EntityLivingBase;
 
 public interface ILiquidDrinkHandler
 {
-	public void onDrink(EntityPlayer player);
+	public void onDrink(EntityLivingBase player);
 }
