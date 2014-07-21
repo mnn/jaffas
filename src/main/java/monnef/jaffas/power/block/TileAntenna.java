@@ -7,7 +7,7 @@ package monnef.jaffas.power.block;
 
 import monnef.core.block.TileMachine;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileAntenna extends TileMachine {
     private boolean lit;

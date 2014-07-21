@@ -12,12 +12,13 @@ import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.common.HighPlantCatalog;
 import monnef.jaffas.technic.common.HighPlantInfo;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 
@@ -118,9 +119,9 @@ public class TileHighPlant extends TileEntity {
             for (int i = 1; i < structureHeight; i++) {
                 if (failure) break;
                 int yc = yCoord + i;
-                int bId = worldObj.getBlockId(xCoord, yc, zCoord);
+                Block b = worldObj.getBlock(xCoord, yc, zCoord);
                 int currMeta = worldObj.getBlockMetadata(xCoord, yc, zCoord);
-                if (bId != getBlockType().blockID) {
+                if (b != getBlockType()) {
                     failure = true;
                     break;
                 }
@@ -132,12 +133,12 @@ public class TileHighPlant extends TileEntity {
             if (failure) {
                 for (int i = 1; i < structureHeight; i++) {
                     int yc = yCoord + i;
-                    if (worldObj.getBlockId(xCoord, yc, zCoord) == getBlockType().blockID) {
-                        BlockHelper.setBlock(worldObj, xCoord, yc, zCoord, 0);
+                    if (worldObj.getBlock(xCoord, yc, zCoord) == getBlockType()) {
+                        BlockHelper.setAir(worldObj, xCoord, yc, zCoord);
                     }
                 }
                 int myMeta = getBlockMetadata();
-                BlockHelper.setBlock(worldObj, xCoord, yCoord, zCoord, 0);
+                BlockHelper.setAir(worldObj, xCoord, yCoord, zCoord);
                 invalidate();
                 highPlant.dropBlockAsItem(worldObj, xCoord, yCoord, zCoord, myMeta, 0); // last param is fortune
             }
@@ -154,7 +155,7 @@ public class TileHighPlant extends TileEntity {
         structureHeight = tag.getByte(STRUCTURE_HEIGHT_TAG);
         if (structureHeight == 0) {
             Log.printWarning(String.format("TEHighPlant loaded incorrect data, self-destroying."));
-            BlockHelper.setBlock(worldObj, xCoord, yCoord, zCoord, 0);
+            BlockHelper.setAir(worldObj, xCoord, yCoord, zCoord);
             invalidate();
             return;
         }
@@ -175,17 +176,17 @@ public class TileHighPlant extends TileEntity {
 
     @Override
     public Packet getDescriptionPacket() {
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
+        S35PacketUpdateTileEntity packet = (S35PacketUpdateTileEntity) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.func_148857_g() : new NBTTagCompound();
         writeToNBT(tag);
         tag.setInteger(GROW_TIMER_TAG, 0); // don't let client know when it will grow
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.data;
+        NBTTagCompound tag = pkt.func_148857_g();
         readFromNBT(tag);
     }
 
@@ -193,7 +194,7 @@ public class TileHighPlant extends TileEntity {
         if (MonnefCorePlugin.debugEnv && !worldObj.isRemote) {
             ItemStack hand = player.getCurrentEquippedItem();
             if (hand != null) {
-                if (hand.itemID == JaffasTechnic.limsew.itemID) {
+                if (hand.getItem() == JaffasTechnic.limsew) {
                     growTimer = 30;
                     return false;
                 }
@@ -258,7 +259,7 @@ public class TileHighPlant extends TileEntity {
     public void printDebugInfo(EntityPlayer player) {
         String msg = String.format("Stage: %d, Plant: %d, Grow Timer: %d", stage, plantId, growTimer);
         if (!player.worldObj.isRemote) {
-            player.addChatMessage(msg);
+            PlayerHelper.addMessage(player, msg);
         } else {
             JaffasFood.Log.printDebug("Client: " + msg);
         }

@@ -14,7 +14,7 @@ import monnef.jaffas.power.block.TileJuiceMaker;
 import monnef.jaffas.power.block.TileLightningConductor;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.world.IBlockAccess;
 import org.lwjgl.opengl.GL11;
 
@@ -39,7 +39,7 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
-        TileEntityRenderer entityRenderer = TileEntityRenderer.instance;
+        TileEntityRendererDispatcher entityRenderer = TileEntityRendererDispatcher.instance;
         if (modelID == JaffasPower.generator.getRenderType()) {
             entityRenderer.renderTileEntityAt(generator, POSITION_FIX, POSITION_FIX, POSITION_FIX, 0.0F);
         } else if (modelID == JaffasPower.antenna.getRenderType()) {
@@ -61,7 +61,7 @@ public class BlockRenderingHandler implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean shouldRender3DInInventory() {
+    public boolean shouldRender3DInInventory(int modelId) {
         return true;
     }
 

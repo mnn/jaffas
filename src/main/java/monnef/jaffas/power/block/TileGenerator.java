@@ -14,11 +14,12 @@ import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.power.common.BuildCraftHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0, containerClassName = "monnef.core.block.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerGenerator")
 public class TileGenerator extends TileMachineWithInventory {
@@ -63,7 +64,7 @@ public class TileGenerator extends TileMachineWithInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.power.generator";
     }
 
@@ -204,7 +205,7 @@ public class TileGenerator extends TileMachineWithInventory {
             int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
             if (fuelBurnTime > 0) {
                 fuelStack.stackSize--;
-                isSwitchgrass = fuelStack.itemID == ContentHolder.blockSwitchgrass.blockID || fuelStack.itemID == ContentHolder.blockSwitchgrassSolid.blockID;
+                isSwitchgrass = fuelStack.getItem() == Item.getItemFromBlock(ContentHolder.blockSwitchgrass) || fuelStack.getItem() == Item.getItemFromBlock(ContentHolder.blockSwitchgrassSolid);
                 if (fuelStack.stackSize <= 0) {
                     setInventorySlotContents(SLOT_FUEL, null);
                 }
@@ -237,7 +238,7 @@ public class TileGenerator extends TileMachineWithInventory {
 
         if (worldObj != null && worldObj.isRemote) {
             if (lastIsBurning != isBurning()) {
-                worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
+                worldObj.func_147451_t(xCoord, yCoord, zCoord); // updateAllLightTypes
             }
         }
     }
