@@ -9,20 +9,19 @@ import monnef.core.api.IIntegerCoordinates;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileAnalogRepeater extends TileRedstoneCircuit {
     @Override
     public boolean recalculatePower() {
         ForgeDirection inputDir = ForgeDirection.getOrientation(getInputSide());
         IIntegerCoordinates pos = (new IntegerCoordinates(this)).shiftInDirectionBy(inputDir, 1);
-        int inputBlockId = pos.getBlockId();
 
         int oldPower = cachedOutputPower;
-        if (inputBlockId == 0) {
+        if (pos.isAir()) {
             cachedOutputPower = 0;
         } else {
-            Block inputBlock = Block.blocksList[inputBlockId];
+            Block inputBlock = pos.getBlock();
             if (inputBlock == null) {
                 cachedOutputPower = 0;
             } else {

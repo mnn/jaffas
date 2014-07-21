@@ -16,7 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3Pool;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
     private DummyBlockAccess dummyBlockAccess = new DummyBlockAccess();
@@ -99,7 +99,7 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean shouldRender3DInInventory() {
+    public boolean shouldRender3DInInventory(int modelId) {
         return true;
     }
 
@@ -110,12 +110,12 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
 
     private static class DummyBlockAccess implements IBlockAccess {
         @Override
-        public int getBlockId(int i, int j, int k) {
-            return 0;
+        public Block getBlock(int i, int j, int k) {
+            return null;
         }
 
         @Override
-        public TileEntity getBlockTileEntity(int i, int j, int k) {
+        public TileEntity getTileEntity(int i, int j, int k) {
             return null;
         }
 
@@ -129,28 +129,9 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
             return 0;
         }
 
-        @Override
-        public float getBrightness(int i, int j, int k, int l) {
-            return 0;
-        }
 
         @Override
-        public float getLightBrightness(int i, int j, int k) {
-            return 0;
-        }
-
-        @Override
-        public Material getBlockMaterial(int i, int j, int k) {
-            return Material.air;
-        }
-
-        @Override
-        public boolean isBlockOpaqueCube(int i, int j, int k) {
-            return false;
-        }
-
-        @Override
-        public boolean isBlockNormalCube(int i, int j, int k) {
+        public boolean isSideSolid(int x, int y, int z, ForgeDirection side, boolean _default) {
             return false;
         }
 
@@ -175,11 +156,6 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
         }
 
         @Override
-        public boolean doesBlockHaveSolidTopSurface(int i, int j, int k) {
-            return false;
-        }
-
-        @Override
         public Vec3Pool getWorldVec3Pool() {
             return null;
         }
@@ -187,11 +163,6 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
         @Override
         public int isBlockProvidingPowerTo(int i, int j, int k, int l) {
             return 0;
-        }
-
-        @Override
-        public boolean isBlockSolidOnSide(int x, int y, int z, ForgeDirection side, boolean _default) {
-            return false;
         }
     }
 }

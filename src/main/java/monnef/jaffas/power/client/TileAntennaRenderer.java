@@ -8,7 +8,7 @@ package monnef.jaffas.power.client;
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileAntenna;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
@@ -37,7 +37,7 @@ public class TileAntennaRenderer extends TileSpecialJaffaRenderer {
 
         ForgeDirection rotation = tile.getRotation().getOpposite();
         // inventory rendering
-        if (tile.worldObj == null) {
+        if (tile.getWorldObj() == null) {
             rotation = ForgeDirection.UP;
         }
         switch (rotation) {
@@ -113,7 +113,7 @@ public class TileAntennaRenderer extends TileSpecialJaffaRenderer {
 
         antenna.render(0.0625F, tile.isLit());
 
-        if (tile.worldObj != null) {
+        if (tile.getWorldObj() != null) {
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         }
         GL11.glPopMatrix();

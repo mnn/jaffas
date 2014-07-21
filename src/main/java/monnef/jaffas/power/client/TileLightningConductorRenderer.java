@@ -7,7 +7,7 @@ package monnef.jaffas.power.client;
 
 import monnef.jaffas.food.client.TileSpecialJaffaRenderer;
 import monnef.jaffas.power.block.TileLightningConductor;
-import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.tileentity.TileEntity;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -43,7 +43,7 @@ public class TileLightningConductorRenderer extends TileSpecialJaffaRenderer {
 
         conductor.render(0.0625F);
 
-        if (tile.worldObj != null) {
+        if (tile.hasWorldObj()) {
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         }
         GL11.glPopMatrix();
@@ -51,7 +51,7 @@ public class TileLightningConductorRenderer extends TileSpecialJaffaRenderer {
     }
 
     @Override
-    public void setTileEntityRenderer(TileEntityRenderer par1TileEntityRenderer) {
-        super.setTileEntityRenderer(par1TileEntityRenderer);
+    public void func_147497_a(TileEntityRendererDispatcher par1TileEntityRenderer) {
+        super.func_147497_a(par1TileEntityRenderer);
     }
 }

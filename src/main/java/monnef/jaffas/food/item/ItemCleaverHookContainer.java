@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.item;
 
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import monnef.core.utils.EntityHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
@@ -17,10 +18,10 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 
@@ -30,24 +31,16 @@ import java.util.Random;
 public class ItemCleaverHookContainer {
     private static String DamageSourcePlayer = "player";
 
-    private static int meatCleaverID = 0;
     private static Random rand = new Random();
 
     private static HashMap<Class<? extends EntityLivingBase>, ItemStack> AnimalToMeat;
 
     static {
         AnimalToMeat = new HashMap<Class<? extends EntityLivingBase>, ItemStack>();
-        AnimalToMeat.put(EntityCow.class, new ItemStack(Item.beefRaw));
-        AnimalToMeat.put(EntityPig.class, new ItemStack(Item.porkRaw));
-        AnimalToMeat.put(EntityChicken.class, new ItemStack(Item.chickenRaw));
-        AnimalToMeat.put(EntityMooshroom.class, new ItemStack(Item.beefRaw));
-
-        /*
-        AnimalToMeat.put(EntitySheep.class, new ItemStack(Item.bone));
-        AnimalToMeat.put(EntityWolf.class, new ItemStack(Item.bone));
-        AnimalToMeat.put(EntityOcelot.class, new ItemStack(Item.bone));
-        AnimalToMeat.put(EntitySquid.class, new ItemStack(Item.bone));
-        */
+        AnimalToMeat.put(EntityCow.class, new ItemStack(Items.beef));
+        AnimalToMeat.put(EntityPig.class, new ItemStack(Items.porkchop));
+        AnimalToMeat.put(EntityChicken.class, new ItemStack(Items.chicken));
+        AnimalToMeat.put(EntityMooshroom.class, new ItemStack(Items.beef));
     }
 
     private ItemStack getMeatFromAnimal(EntityCreature animal) {
@@ -62,14 +55,14 @@ public class ItemCleaverHookContainer {
         AnimalToMeat.put(animal, meat.copy());
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void entityHurt(LivingHurtEvent event) {
         DamageSource source = event.source;
         EntityLivingBase mob = event.entityLiving;
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
-            if (PlayerHelper.playerHasEquipped(player, getMeatCleaverID())) {
+            if (PlayerHelper.playerHasEquipped(player, getMeatCleaver())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
                     event.ammount += 10;
                 }
@@ -78,14 +71,14 @@ public class ItemCleaverHookContainer {
         }
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void entityDeath(LivingDeathEvent event) {
         DamageSource source = event.source;
         EntityLivingBase mob = event.entityLiving;
 
         if (SourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
-            if (PlayerHelper.playerHasEquipped(player, getMeatCleaverID())) {
+            if (PlayerHelper.playerHasEquipped(player, getMeatCleaver())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
                     EntityCreature animal = (EntityCreature) mob;
                     if (EntityHelper.animalIsAdult(animal)) {
@@ -110,11 +103,7 @@ public class ItemCleaverHookContainer {
         entity.worldObj.spawnEntityInWorld(item);
     }
 
-    private int getMeatCleaverID() {
-        if (meatCleaverID == 0) {
-            meatCleaverID = JaffasFood.getItem(JaffaItem.meatCleaver).itemID;
-        }
-
-        return meatCleaverID;
+    private Item getMeatCleaver() {
+        return JaffasFood.getItem(JaffaItem.meatCleaver);
     }
 }

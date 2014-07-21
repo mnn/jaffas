@@ -5,6 +5,8 @@
 
 package monnef.jaffas.power.common;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.event.LightningGeneratedEvent;
 import monnef.core.utils.IntegerCoordinates;
@@ -12,9 +14,8 @@ import monnef.core.utils.WorldHelper;
 import monnef.jaffas.power.JaffasPower;
 import net.minecraft.block.Block;
 import net.minecraft.entity.effect.EntityLightningBolt;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,29 +24,29 @@ import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.power.JaffasPower.lightningConductorRadius;
 
 public class LightingHandler {
-    @ForgeSubscribe
+    @SubscribeEvent
     public void HandleLightning(LightningGeneratedEvent event) {
         int x = event.x;
         int y = event.y;
         int z = event.z;
         World w = event.world;
-        int conductorId = JaffasPower.lightningConductor.blockID;
+        Block conductor = JaffasPower.lightningConductor;
 
         Log.printDebug(String.format("Lightning detected at %d, %d, %d.", x, y, z));
 
-        int blockIdUnderBoltTarget = w.getBlockId(x, y - 1, z);
-        if (blockIdUnderBoltTarget == conductorId) {
+        Block blockUnderBoltTarget = w.getBlock(x, y - 1, z);
+        if (blockUnderBoltTarget == conductor) {
             Log.printDebug("Conductor detected, skipping.");
             return;
         }
 
         if (MonnefCorePlugin.debugEnv) {
             // TODO remove debug this code
-            w.setBlock(x, y, z, Block.mycelium.blockID);
+            w.setBlock(x, y, z, Blocks.mycelium);
         }
 
         List<IntegerCoordinates> blockInBox = new ArrayList<IntegerCoordinates>();
-        WorldHelper.getBlocksInBox(blockInBox, w, x, y, z, lightningConductorRadius, -1, -1, conductorId, -1);
+        WorldHelper.getBlocksInBox(blockInBox, w, x, y, z, lightningConductorRadius, -1, -1, conductor, -1);
         if (blockInBox.size() == 0) return;
 
         ArrayList<IntegerCoordinates> blocksInBoxStrikeAble = new ArrayList<IntegerCoordinates>();
@@ -76,7 +77,7 @@ public class LightingHandler {
 
         if (MonnefCorePlugin.debugEnv) {
             // TODO remove debug this code
-            w.setBlock(x, y, z, Block.ice.blockID);
+            w.setBlock(x, y, z, Blocks.ice);
         }
     }
 }

@@ -14,15 +14,13 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 // Forestry compatibility
 public class JaffaCropProvider implements IFarmable {
     @Override
     public boolean isSaplingAt(World world, int x, int y, int z) {
-        int id = world.getBlockId(x, y, z);
-        Block block = Block.blocksList[id];
-        if (block == null) return false;
+        Block block = world.getBlock(x, y, z);
         if (block instanceof BlockJaffaCrops) {
             BlockJaffaCrops crop = (BlockJaffaCrops) block;
             return crop.canGrow(world.getBlockMetadata(x, y, z));
@@ -32,11 +30,10 @@ public class JaffaCropProvider implements IFarmable {
 
     @Override
     public ICrop getCropAt(World world, int x, int y, int z) {
-        int id = world.getBlockId(x, y, z);
-        Block block = Block.blocksList[id];
+        Block block = world.getBlock(x, y, z);
 
         if (block instanceof BlockJaffaCrops) {
-            TileEntity te = world.getBlockTileEntity(x, y, z);
+            TileEntity te = world.getTileEntity(x, y, z);
             BlockJaffaCrops crop = (BlockJaffaCrops) block;
             if (crop.canGrow(world.getBlockMetadata(x, y, z))) return null;
             if (te != null && te instanceof TileJaffaCrops) return (TileJaffaCrops) te;

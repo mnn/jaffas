@@ -6,8 +6,6 @@
 package monnef.jaffas.trees.block;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.network.PacketDispatcher;
-import cpw.mods.fml.common.network.Player;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.TileMachineWithInventory;
@@ -16,10 +14,10 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.util.AxisAlignedBB;
 
 import java.io.ByteArrayOutputStream;
@@ -33,7 +31,7 @@ import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_NOISE;
 import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_SUCK;
 
-@ContainerRegistry.ContainerTag(slotsCount = 4, outputSlotsCount = 4,containerClassName ="monnef.jaffas.trees.block.ContainerFruitCollector",guiClassName = "monnef.jaffas.trees.client.GuiFruitCollector")
+@ContainerRegistry.ContainerTag(slotsCount = 4, outputSlotsCount = 4, containerClassName = "monnef.jaffas.trees.block.ContainerFruitCollector", guiClassName = "monnef.jaffas.trees.client.GuiFruitCollector")
 public class TileFruitCollector extends TileMachineWithInventory {
 
     public static final int suckCost = 30;
@@ -46,7 +44,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
 
     public static int tickDivider = 20;
     private AxisAlignedBB box;
-    private static HashMap<Integer, Integer> fruitList;
+    private static HashMap<Item, Integer> fruitList;
 
     private static int collectorSyncDistance = 32;
 
@@ -82,18 +80,18 @@ public class TileFruitCollector extends TileMachineWithInventory {
     }
 
     private static void addToFruitList(Item item, int dmg) {
-        fruitList.put(item.itemID, dmg);
+        fruitList.put(item, dmg);
     }
 
     static {
-        fruitList = new HashMap<Integer, Integer>();
+        fruitList = new HashMap<Item, Integer>();
         addToFruitList(JaffasTrees.itemLemon);
         addToFruitList(JaffasTrees.itemOrange);
         addToFruitList(JaffasTrees.itemPlum);
         addToFruitList(ItemManager.getItem(JaffaItem.vanillaBeans));
-        addToFruitList(Item.appleRed);
+        addToFruitList(Items.apple);
         addToFruitList(JaffasTrees.itemLemon);
-        addToFruitList(Item.dyePowder, 3); // cocoa beans
+        addToFruitList(Items.dye, 3); // cocoa beans
         addToFruitList(JaffasTrees.itemCoconut);
 
         OrdinalToState = new CollectorStates[CollectorStates.values().length];
@@ -250,7 +248,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
             EntityItem item = null;
             while (notFound && it.hasNext()) {
                 item = it.next();
-                Integer itemDmg = fruitList.get(item.getEntityItem().itemID);
+                Integer itemDmg = fruitList.get(item.getEntityItem());
                 if (itemDmg != null && itemDmg == item.getEntityItem().getItemDamage() && canAddToInventory(item)) {
                     notFound = false;
                 }
@@ -308,12 +306,12 @@ public class TileFruitCollector extends TileMachineWithInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "container.fruitCollector";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 

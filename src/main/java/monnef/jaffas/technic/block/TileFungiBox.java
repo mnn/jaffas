@@ -20,9 +20,9 @@ import monnef.jaffas.technic.common.FungusInfo;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 import java.util.ArrayList;
@@ -193,7 +193,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
                 int randomNeighbour = rand.nextInt(8);
                 int sx = eightNeighbour[randomNeighbour][0];
                 int sz = eightNeighbour[randomNeighbour][1];
-                TileEntity tile = worldObj.getBlockTileEntity(xCoord + sx, yCoord, zCoord + sz);
+                TileEntity tile = worldObj.getTileEntity(xCoord + sx, yCoord, zCoord + sz);
                 if (tile == null || !(tile instanceof TileFungiBox)) continue;
                 neighbour = (TileFungiBox) tile;
                 if (!neighbour.canPlant()) continue;
@@ -265,18 +265,18 @@ public class TileFungiBox extends TileEntity implements ICrop {
 
     @Override
     public Packet getDescriptionPacket() {
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
+        S35PacketUpdateTileEntity packet = (S35PacketUpdateTileEntity) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.func_148857_g() : new NBTTagCompound();
         writeToNBT(tag);
         tag.setBoolean(TAG_SHOW_SPORES, showSporeEffect);
         if (showSporeEffect) showSporeEffect = false;
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.data;
+        NBTTagCompound tag = pkt.func_148857_g();
         readFromNBT(tag);
         showSporeEffect = tag.getBoolean(TAG_SHOW_SPORES);
     }
@@ -308,7 +308,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
         msg += String.format(" Time to: grow=%d, die=%d, humus=%d", timeToGrow, timeToDie, compostTicksLeft);
         msg += String.format(", spore=%d", timeToSpore);
         if (!player.worldObj.isRemote) {
-            player.addChatMessage(msg);
+            PlayerHelper.addMessage(player, msg);
         } else {
             JaffasFood.Log.printDebug("Client: " + msg);
         }
@@ -318,22 +318,22 @@ public class TileFungiBox extends TileEntity implements ICrop {
         if (player.isSneaking()) return false;
 
         if (MonnefCorePlugin.debugEnv) {
-            if (playerHasEquipped(player, JaffasTechnic.jaffarrolDust.itemID)) {
+            if (playerHasEquipped(player, JaffasTechnic.jaffarrolDust)) {
                 timeToGrow -= 20 * 60;
-            } else if (playerHasEquipped(player, JaffasTechnic.limsew.itemID)) {
+            } else if (playerHasEquipped(player, JaffasTechnic.limsew)) {
                 timeToDie -= 20 * 60;
-            } else if (playerHasEquipped(player, JaffasTechnic.jaffarrol.itemID)) {
+            } else if (playerHasEquipped(player, JaffasTechnic.jaffarrol)) {
                 timeToSpore -= 20 * 60;
-            } else if (playerHasEquipped(player, JaffasTechnic.swordJaffarrol.itemID)) {
+            } else if (playerHasEquipped(player, JaffasTechnic.swordJaffarrol)) {
                 compostTicksLeft -= 20 * 60;
             }
         }
 
-        if (playerHasEquipped(player, JaffasTechnic.mushroomKnife.itemID)) {
+        if (playerHasEquipped(player, JaffasTechnic.mushroomKnife)) {
             if (harvest(player)) {
                 return true;
             }
-        } else if (playerHasEquipped(player, JaffasTechnic.compost.itemID)) {
+        } else if (playerHasEquipped(player, JaffasTechnic.compost)) {
             if (fertilize(player)) {
                 return true;
             }
@@ -349,7 +349,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
         if (canFertilize) {
             if (player != null) {
                 ItemStack hand = player.getCurrentEquippedItem();
-                if (hand == null || hand.itemID != JaffasTechnic.compost.itemID) return false;
+                if (hand == null || hand.getItem() != JaffasTechnic.compost) return false;
                 hand.stackSize--;
                 if (hand.stackSize <= 0) player.setCurrentItemOrArmor(0, null);
             }
