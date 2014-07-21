@@ -22,6 +22,7 @@ import java.util.LinkedHashMap;
 public class ItemManager {
     protected static LinkedHashMap<JaffaItem, JaffaItemInfo> itemsInfo;
     protected static HashMap<Item, JaffaItem> itemToJaffaItem;
+    protected static HashMap<Integer, JaffaItem> itemIdToJaffaItem;
 
     public static JaffaItem[] mallets;
     public static JaffaItem[] malletHeads;
@@ -32,6 +33,7 @@ public class ItemManager {
         itemsInfo = new LinkedHashMap<JaffaItem, JaffaItemInfo>();
         ClassMapping = new Hashtable<ModulesEnum, Hashtable<JaffaItemType, Class<? extends ItemMonnefCore>>>();
         itemToJaffaItem = new HashMap<Item, JaffaItem>();
+        itemIdToJaffaItem = new HashMap<Integer, JaffaItem>();
     }
 
     public static void RegisterItemTypeForModule(ModulesEnum module, JaffaItemType type, Class<? extends ItemMonnefCore> clazz) {
@@ -63,6 +65,10 @@ public class ItemManager {
         return itemToJaffaItem.get(item);
     }
 
+    public static JaffaItem getJaffaItem(int itemId) {
+        return itemIdToJaffaItem.get(itemId);
+    }
+
     public static void addItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
         String newTitle = title;
         String newName = name;
@@ -88,6 +94,7 @@ public class ItemManager {
         info.setItem(item);
         LanguageRegistry.addName(item, info.getTitle());
         itemToJaffaItem.put(item, ji);
+        itemIdToJaffaItem.put(Item.getIdFromItem(item), ji);
     }
 
     public static Item createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {

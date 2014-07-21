@@ -5,7 +5,6 @@
 
 package monnef.jaffas.food.item.common;
 
-import monnef.core.utils.IDProvider;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.JaffaItem;

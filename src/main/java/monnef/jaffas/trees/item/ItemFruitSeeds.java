@@ -10,10 +10,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.trees.JaffasTrees;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
 
@@ -23,10 +25,10 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
     public int serialNumber = -1;
     private int subCount;
     private boolean firstInSequence = false;
-    private Icon[] icons;
+    private IIcon[] icons;
 
-    public ItemFruitSeeds(int itemID, int blockID, int textureOffset, int subCount) {
-        super(itemID, blockID);
+    public ItemFruitSeeds(Block block, int textureOffset, int subCount) {
+        super(block);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
         setCustomIconIndex(textureOffset);
@@ -38,13 +40,13 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage(int meta) {
+    public IIcon getIconFromDamage(int meta) {
         return icons[meta];
     }
 
     @Override
-    public void registerIcons(IconRegister register) {
-        icons = new Icon[subCount];
+    public void registerIcons(IIconRegister register) {
+        icons = new IIcon[subCount];
         for (int i = 0; i < icons.length; i++) {
             if (firstInSequence && i == 0) continue;
             icons[i] = register.registerIcon(CustomIconHelper.generateShiftedId((ICustomIcon) this, i));
@@ -67,10 +69,10 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
-    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < subCount; i++) {
             if (firstInSequence && i == 0) continue;
-            par3List.add(new ItemStack(par1, 1, i));
+            par3List.add(new ItemStack(item, 1, i));
         }
     }
 
@@ -95,7 +97,7 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        return world.getBlockId(x, y, z) == 0 && getBlock().canBlockStay(world, x, y, z);
+        return world.isAirBlock(x, y, z) && getBlock().canBlockStay(world, x, y, z);
     }
 
     @Override

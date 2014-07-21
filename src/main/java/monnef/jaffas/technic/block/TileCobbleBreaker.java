@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.IntegerCoordinates;
+import monnef.core.utils.NBTHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.jaffas.food.item.ItemJaffaTool;
 import monnef.jaffas.technic.JaffasTechnic;
@@ -18,18 +19,20 @@ import net.minecraft.block.Block;
 import net.minecraft.client.particle.EntityDiggingFX;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.HashMap;
 
@@ -54,15 +57,15 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     private static final int TICK_QUANTUM = 20;
     private static int WORK_EVERY_N_TICKS = 20 * timerInSeconds;
     private static int BURN_EVERY_N_TICKS = 10;
-    private static HashMap<Integer, ValidToolRecord> validToolIDs;
+    private static HashMap<Item, ValidToolRecord> validTools;
     private ContainerRegistry.ContainerDescriptor containerDescriptor;
 
     static {
-        validToolIDs = new HashMap<Integer, ValidToolRecord>();
-        registerTool(Item.pickaxeWood);
-        registerTool(Item.pickaxeStone);
-        registerTool(Item.pickaxeGold);
-        registerTool(Item.pickaxeDiamond);
+        validTools = new HashMap<Item, ValidToolRecord>();
+        registerTool(Items.wooden_pickaxe);
+        registerTool(Items.stone_pickaxe);
+        registerTool(Items.golden_pickaxe);
+        registerTool(Items.diamond_pickaxe);
 
         if (TICK_QUANTUM % BURN_EVERY_N_TICKS != 0) {
             throw new RuntimeException("TICK_QUANTUM must be dividable by BURN_EVERY_N_TICKS!");
@@ -73,20 +76,20 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     private IntegerCoordinates cachedFacingBlockCoords;
 
     private static class ValidToolRecord {
-        private final int itemId;
+        private final Item item;
         private final boolean jaffarrolTool;
 
-        private ValidToolRecord(int itemId) {
-            this(itemId, false);
+        private ValidToolRecord(Item item) {
+            this(item, false);
         }
 
-        private ValidToolRecord(int itemId, boolean jaffarrolTool) {
-            this.itemId = itemId;
+        private ValidToolRecord(Item item, boolean jaffarrolTool) {
+            this.item = item;
             this.jaffarrolTool = jaffarrolTool;
         }
 
-        private int getItemId() {
-            return itemId;
+        private Item getItem() {
+            return item;
         }
 
         private boolean isJaffarrolTool() {
@@ -116,9 +119,8 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     }
 
     public static void registerTool(Item item, boolean isJaffarrol) {
-        int id = item.itemID;
-        ValidToolRecord rec = new ValidToolRecord(id, isJaffarrol);
-        validToolIDs.put(id, rec);
+        ValidToolRecord rec = new ValidToolRecord(item, isJaffarrol);
+        validTools.put(item, rec);
     }
 
     public TileCobbleBreaker() {
@@ -234,7 +236,7 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
             float sx = RandomHelper.generateRandomFromSymmetricInterval(radius);
             float sy = RandomHelper.generateRandomFromSymmetricInterval(radius);
             float sz = RandomHelper.generateRandomFromSymmetricInterval(radius);
-            EntityFX fx = new EntityDiggingFX(worldObj, pos.getX() + .5 + sx, pos.getY() + .5 + sy, pos.getZ() + .5 + sz, mx, my, mz, Block.cobblestone, 0, 0);
+            EntityFX fx = new EntityDiggingFX(worldObj, pos.getX() + .5 + sx, pos.getY() + .5 + sy, pos.getZ() + .5 + sz, mx, my, mz, Blocks.cobblestone, 0, 0);
             FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
         }
     }
@@ -253,11 +255,11 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
 
     private void mineCobble() {
         IntegerCoordinates pos = getFacingBlockCachedCoordinates();
-        BlockHelper.setBlock(worldObj, pos.getX(), pos.getY(), pos.getZ(), 0);
+        BlockHelper.setAir(worldObj, pos.getX(), pos.getY(), pos.getZ());
         showBreakEffect = true;
         forceUpdate();
         ItemStack stack = inv[SLOT_OUTPUT];
-        if (stack == null) inv[SLOT_OUTPUT] = new ItemStack(Block.cobblestone);
+        if (stack == null) inv[SLOT_OUTPUT] = new ItemStack(Blocks.cobblestone);
         else inv[SLOT_OUTPUT].stackSize++;
     }
 
@@ -271,20 +273,20 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     private boolean spaceInOutputSlot() {
         ItemStack stack = inv[SLOT_OUTPUT];
         if (stack == null) return true;
-        if (stack.itemID != Block.cobblestone.blockID) return false;
+        if (stack.getItem() != Item.getItemFromBlock(Blocks.cobblestone)) return false;
         return stack.stackSize < stack.getMaxStackSize();
     }
 
     private boolean cobblePresent() {
         IntegerCoordinates pos = getFacingBlockCachedCoordinates();
-        int bId = worldObj.getBlockId(pos.getX(), pos.getY(), pos.getZ());
-        return bId == Block.cobblestone.blockID;
+        Block b = worldObj.getBlock(pos.getX(), pos.getY(), pos.getZ());
+        return b == Blocks.cobblestone;
     }
 
     private boolean isToolValid() {
         ItemStack stack = inv[SLOT_INPUT];
         if (stack == null) return false;
-        ValidToolRecord rec = validToolIDs.get(stack.itemID);
+        ValidToolRecord rec = validTools.get(stack.getItem());
         if (rec == null) return false;
         if (!rec.isJaffarrolTool()) return true;
         return !ItemJaffaTool.nearlyDestroyed(stack);
@@ -340,16 +342,16 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) == this &&
+        return worldObj.getTileEntity(xCoord, yCoord, zCoord) == this &&
                 player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) < 64;
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
     }
 
     @Override
@@ -361,9 +363,9 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
     public void readFromNBT(NBTTagCompound tag) {
         super.readFromNBT(tag);
 
-        NBTTagList tagList = tag.getTagList("Inventory");
+        NBTTagList tagList = tag.getTagList("Inventory", NBTHelper.TagTypes.TAG_Compound);
         for (int i = 0; i < tagList.tagCount(); i++) {
-            NBTTagCompound innerTag = (NBTTagCompound) tagList.tagAt(i);
+            NBTTagCompound innerTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
             byte slot = innerTag.getByte("Slot");
             if (slot >= 0 && slot < inv.length) {
                 inv[slot] = ItemStack.loadItemStackFromNBT(innerTag);
@@ -397,29 +399,29 @@ public class TileCobbleBreaker extends TileEntity implements IInventory, ISidedI
 
     @Override
     public Packet getDescriptionPacket() {
-        Packet132TileEntityData packet = (Packet132TileEntityData) super.getDescriptionPacket();
-        NBTTagCompound tag = packet != null ? packet.data : new NBTTagCompound();
+        S35PacketUpdateTileEntity packet = (S35PacketUpdateTileEntity) super.getDescriptionPacket();
+        NBTTagCompound tag = packet != null ? packet.func_148857_g() : new NBTTagCompound();
         writeToNBT(tag);
         tag.setBoolean(SHOW_EFFECT_TAG, showBreakEffect);
         if (showBreakEffect) showBreakEffect = false;
-        return new Packet132TileEntityData(xCoord, yCoord, zCoord, 1, tag);
+        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
     }
 
     @Override
-    public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
-        NBTTagCompound tag = pkt.data;
+        NBTTagCompound tag = pkt.func_148857_g();
         readFromNBT(tag);
         showBreakEffect = tag.getBoolean(SHOW_EFFECT_TAG);
     }
 
     @Override
-    public String getInvName() {
-        return "jaffas.board";
+    public String getInventoryName() {
+        return "jaffas.cobbleBreaker";
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         return false;
     }
 

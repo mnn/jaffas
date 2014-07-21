@@ -5,26 +5,30 @@
 
 package monnef.jaffas.trees.block;
 
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.block.BlockJaffas;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
 import monnef.jaffas.trees.common.WorldGenFruitTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
@@ -43,31 +47,31 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     private final int subCount;
     public int serialNumber = -1;
 
-    public BlockFruitSapling(int blockId, int blockIndexInTexture, int subCount) {
-        super(blockId, blockIndexInTexture, Material.plants);
+    public BlockFruitSapling(int blockIndexInTexture, int subCount) {
+        super(blockIndexInTexture, Material.plants);
         this.subCount = subCount;
         float var3 = 0.4F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, var3 * 2.0F, 0.5F + var3);
         this.setCreativeTab(CreativeTabs.tabDecorations);
         setCreativeTab(JaffasTrees.instance.creativeTab);
         this.setTickRandomly(true);
-        setBurnProperties(blockID, 30, 60);
+        setBurnProperties(30, 60);
     }
 
     public int getSubCount() {
         return subCount;
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void onBonemeal(BonemealEvent event) {
-        Block bonemealedBlock = Block.blocksList[event.ID];
-        if (bonemealedBlock == null || bonemealedBlock.blockID != this.blockID) {
+        Block bonemealedBlock = event.block;
+        if (bonemealedBlock == null || bonemealedBlock != this) {
             return;
         }
         if (JaffasTrees.bonemealingAllowed) {
             event.setResult(Event.Result.ALLOW);
             if (!event.world.isRemote /*&& JaffasFood.rand.nextFloat() < 0.30*/) {
-                tryGrow(event.world, event.X, event.Y, event.Z, rand);
+                tryGrow(event.world, event.x, event.y, event.z, rand);
             }
         }
     }
@@ -104,13 +108,13 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     }
 
     @Override
-    public Icon getIcon(int par1, int par2) {
-        return Block.sapling.getBlockTextureFromSide(1);
+    public IIcon getIcon(int par1, int par2) {
+        return Blocks.sapling.getBlockTextureFromSide(1);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
     }
 
     public boolean growTree(World world, int x, int y, int z, Random random) {
@@ -120,12 +124,12 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
         int xShift = 0;
         int yShift = 0;
 
-        world.setBlock(x, y, z, 0);
+        BlockHelper.setAir(world, x, y, z);
 
         gen = new WorldGenFruitTrees(true, 5, 0, metadata, false, JaffasTrees.leavesList.get(serialNumber).leavesID);
 
         if (!((WorldGenerator) gen).generate(world, random, x + xShift, y, z + yShift)) {
-            setBlock(world, x, y, z, this.blockID, metadata);
+            setBlock(world, x, y, z, this, metadata);
             return false;
         }
         return true;
@@ -138,7 +142,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
         for (int i = 0; i < subCount; i++) par3List.add(new ItemStack(par1, 1, i));
     }
 
@@ -148,23 +152,23 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     }
 
     @Override
-    public EnumPlantType getPlantType(World world, int x, int y, int z) {
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z) {
         return Plains;
     }
 
     @Override
-    public int getPlantID(World world, int x, int y, int z) {
-        return blockID;
+    public Block getPlant(IBlockAccess world, int x, int y, int z) {
+        return this;
     }
 
     @Override
-    public int getPlantMetadata(World world, int x, int y, int z) {
+    public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
         return world.getBlockMetadata(x, y, z);
     }
 
     @Override
     public boolean canBlockStay(World world, int x, int y, int z) {
-        Block soil = blocksList[world.getBlockId(x, y - 1, z)];
+        Block soil = world.getBlock(x, y - 1, z);
         return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z)) &&
                 (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
     }
@@ -232,7 +236,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {
-        return world.getBlockId(x, y, z) == 0 && canBlockStay(world, x, y, z);
+        return world.isAirBlock(x, y, z) && canBlockStay(world, x, y, z);
     }
 
     @Override
