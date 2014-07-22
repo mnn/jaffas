@@ -33,8 +33,8 @@ public class BlockPresent extends BlockXmasMulti {
     public final static float f7d = 1f - unit * 7f;
     public final static float f9d = 1f - unit * 9f;
 
-    public BlockPresent(int id, int textureID, Material material, int subBlocksCount) {
-        super(id, textureID, material, subBlocksCount);
+    public BlockPresent(int textureID, Material material, int subBlocksCount) {
+        super(textureID, material, subBlocksCount);
         setBlockName("present");
         setBurnProperties(30, 100);
     }

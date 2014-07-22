@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
@@ -16,8 +17,8 @@ import java.util.List;
 public class BlockXmasMulti extends BlockXmas {
     private final int subBlocksCount;
 
-    public BlockXmasMulti(int id, int textureID, Material material, int subBlocksCount) {
-        super(id, textureID, material);
+    public BlockXmasMulti(int textureID, Material material, int subBlocksCount) {
+        super(textureID, material);
         this.subBlocksCount = subBlocksCount;
     }
 
@@ -28,7 +29,7 @@ public class BlockXmasMulti extends BlockXmas {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(int unknown, CreativeTabs tab, List subItems) {
+    public void getSubBlocks(Item unknown, CreativeTabs tab, List subItems) {
         for (int ix = 0; ix < this.subBlocksCount; ix++) {
             subItems.add(new ItemStack(this, 1, ix));
         }

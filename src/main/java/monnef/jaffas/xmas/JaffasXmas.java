@@ -10,7 +10,6 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.RegistryUtils;
@@ -35,17 +34,15 @@ import monnef.jaffas.xmas.item.Items;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-
-import java.util.logging.Level;
+import org.apache.logging.log4j.Level;
 
 import static monnef.jaffas.xmas.common.Reference.ModId;
 import static monnef.jaffas.xmas.common.Reference.ModName;
 import static monnef.jaffas.xmas.common.Reference.Version;
 
 @Mod(modid = ModId, name = ModName, version = Version, dependencies = "required-after:Jaffas")
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class JaffasXmas extends JaffasModBase {
     @Mod.Instance(ModId)
     public static JaffasXmas instance;
@@ -55,13 +52,8 @@ public class JaffasXmas extends JaffasModBase {
 
     private boolean debug;
 
-    private int BlockCandyID;
     public static monnef.jaffas.xmas.block.BlockCandy BlockCandy;
-
-    private int ItemGiantCandyID;
     public static monnef.jaffas.xmas.item.ItemGiantCandy ItemGiantCandy;
-
-    private int BlockPresentID;
     public static monnef.jaffas.xmas.block.BlockPresent BlockPresent;
 
     public static String textureFile = "/jaffas_04.png";
@@ -83,32 +75,12 @@ public class JaffasXmas extends JaffasModBase {
 
         try {
             config.load();
-            idProvider.linkWithConfig(config);
-
-            BlockCandyID = idProvider.getBlockIDFromConfig("candy");
-            ItemGiantCandyID = idProvider.getItemIDFromConfig("giant candy");
-
-            BlockPresentID = idProvider.getBlockIDFromConfig("present");
-
-            items.LoadItemsFromConfig(idProvider);
-
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
-
         } catch (Exception e) {
-            FMLLog.log(Level.SEVERE, e, "Mod Jaffas (xmas) can't read config file.");
+            FMLLog.log(Level.FATAL, e, "Mod Jaffas (xmas) can't read config file.");
         } finally {
             config.save();
         }
-    }
-
-    @Override
-    protected int getStartOfItemsIdInterval() {
-        return 26444;
-    }
-
-    @Override
-    protected int getStartOfBlocksIdInterval() {
-        return 3650;
     }
 
     @Override
@@ -138,16 +110,16 @@ public class JaffasXmas extends JaffasModBase {
     }
 
     private void createItems() {
-        BlockCandy = new BlockCandy(BlockCandyID, 16, Material.wood);
-        BlockCandy.setUnlocalizedName("jaffas.candy");
+        BlockCandy = new BlockCandy(16, Material.wood);
+        BlockCandy.setBlockName("jaffas.candy");
         GameRegistry.registerBlock(BlockCandy, "blockCandy");
         LanguageRegistry.addName(BlockCandy, "Candy Cane");
 
-        ItemGiantCandy = new ItemGiantCandy(ItemGiantCandyID, 16);
+        ItemGiantCandy = new ItemGiantCandy(16);
         ItemGiantCandy.setUnlocalizedName("jaffas.giantCandy");
         LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
 
-        BlockPresent = new BlockPresent(BlockPresentID, 0, Material.cloth, ItemBlockPresent.count);
+        BlockPresent = new BlockPresent(0, Material.cloth, ItemBlockPresent.count);
         RegistryUtils.registerMultiBlock(BlockPresent, ItemBlockPresent.class, ItemBlockPresent.titles);
     }
 

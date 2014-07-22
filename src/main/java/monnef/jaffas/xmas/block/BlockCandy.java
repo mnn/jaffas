@@ -6,7 +6,9 @@
 package monnef.jaffas.xmas.block;
 
 import monnef.jaffas.xmas.JaffasXmas;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
@@ -14,16 +16,15 @@ import net.minecraft.world.World;
 
 import java.util.Random;
 
-import static monnef.core.utils.BlockHelper.setBlock;
+import static monnef.core.utils.BlockHelper.setAir;
 
 public class BlockCandy extends BlockXmas {
 
-    public BlockCandy(int id, int texture, Material material) {
-        super(id, texture, material);
-        //setRequiresSelfNotify();
+    public BlockCandy(int texture, Material material) {
+        super(texture, material);
         setHardness(0.5f);
         setCreativeTab(null);
-        setBurnProperties(blockID, 5,5);
+        setBurnProperties(5, 5);
     }
 
     @Override
@@ -42,9 +43,10 @@ public class BlockCandy extends BlockXmas {
     }
 
     @Override
-    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-        super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setBlockTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
+    public void onBlockAdded(World world, int x, int y, int z) {
+        super.onBlockAdded(world, x, y, z);
+        // TODO: necessary?
+        world.setTileEntity(x, y, z, this.createTileEntity(world, world.getBlockMetadata(x, y, z)));
     }
 
     @Override
@@ -63,27 +65,27 @@ public class BlockCandy extends BlockXmas {
     }
 
     @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-        int meta = par1World.getBlockMetadata(par2, par3, par4);
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+        int meta = world.getBlockMetadata(x, y, z);
 
         if (isBlockTopPart(meta)) {
-            if (par1World.getBlockId(par2, par3 - 1, par4) != this.blockID) {
-                setBlock(par1World, par2, par3, par4, 0);
+            if (world.getBlock(x, y - 1, z) != this) {
+                setAir(world, x, y, z);
             }
         } else {
             boolean destroy = false;
-            if (par1World.getBlockId(par2, par3 + 1, par4) != this.blockID) {
+            if (world.getBlock(x, y + 1, z) != this) {
                 destroy = true;
             }
 
-            if (!par1World.doesBlockHaveSolidTopSurface(par2, par3 - 1, par4)) {
+            if (!World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) {
                 destroy = true;
             }
 
             if (destroy) {
-                setBlock(par1World, par2, par3, par4, 0);
-                if (!par1World.isRemote) {
-                    this.dropBlockAsItem(par1World, par2, par3, par4, meta, 0);
+                setAir(world, x, y, z);
+                if (!world.isRemote) {
+                    this.dropBlockAsItem(world, x, y, z, meta, 0);
                 }
             }
 
@@ -95,13 +97,13 @@ public class BlockCandy extends BlockXmas {
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return isBlockTopPart(par1) ? 0 : JaffasXmas.ItemGiantCandy.itemID;
+    public Item getItemDropped(int meta, Random random, int fortune) {
+        return isBlockTopPart(meta) ? null : JaffasXmas.ItemGiantCandy;
     }
 
     @Override
-    public int idPicked(World par1World, int par2, int par3, int par4) {
-        return JaffasXmas.ItemGiantCandy.itemID;
+    public Item getItem(World world, int x, int y, int z) {
+        return JaffasXmas.ItemGiantCandy;
     }
 
     public final static float unit = 1f / 16f;
@@ -195,19 +197,4 @@ public class BlockCandy extends BlockXmas {
             }
         }
     }
-
-    /*
-    @Override
-    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9) {
-        if (par1World.isRemote) {
-            return false;
-
-        }
-
-        int meta = par1World.getBlockMetadata(par2, par3, par4);
-        par5EntityPlayer.sendChatToPlayer("meta: " + meta);
-
-        return true;
-    }
-    */
 }

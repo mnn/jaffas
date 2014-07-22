@@ -17,8 +17,8 @@ import java.util.List;
 import static monnef.core.utils.BlockHelper.setBlock;
 
 public class ItemGiantCandy extends ItemXmas {
-    public ItemGiantCandy(int id, int textureIndex) {
-        super(id, textureIndex);
+    public ItemGiantCandy(int textureIndex) {
+        super(textureIndex);
         //setCreativeTab(CreativeTabs.tabDecorations);
     }
 
@@ -37,11 +37,11 @@ public class ItemGiantCandy extends ItemXmas {
             direction = (direction + 1) % 4;
 
             if (player.canPlayerEdit(x, y, z, side, item) && player.canPlayerEdit(x, y + 1, z, side, item)) {
-                if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z) && world.doesBlockHaveSolidTopSurface(x, y - 1, z)) {
-                    setBlock(world, x, y, z, blockToPlace.blockID, direction);
+                if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z) && World.doesBlockHaveSolidTopSurface(world, x, y - 1, z)) {
+                    setBlock(world, x, y, z, blockToPlace, direction);
 
-                    if (world.getBlockId(x, y, z) == blockToPlace.blockID) {
-                        setBlock(world, x, y + 1, z, blockToPlace.blockID, direction | 8);
+                    if (world.getBlock(x, y, z) == blockToPlace) {
+                        setBlock(world, x, y + 1, z, blockToPlace, direction | 8);
                     }
 
                     --item.stackSize;
@@ -56,8 +56,8 @@ public class ItemGiantCandy extends ItemXmas {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
-        super.addInformation(stack, player, result, par4);
+    public void addInformationCustom(ItemStack stack, EntityPlayer player, List<String> result, boolean par4) {
+        super.addInformationCustom(stack, player, result, par4);
         result.add("Do NOT eat!");
     }
 
