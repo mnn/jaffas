@@ -10,13 +10,12 @@ import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.EntityEvent;
 
 public class AchievementHooksHandler {
     public void onCrafting(EntityPlayer player, ItemStack item, IInventory craftMatrix) {
-        if (AchievementsHandler.craftAchievementExists(item.itemID)) {
+        if (AchievementsHandler.craftAchievementExists(item.getItem())) {
             if (player != null) {
-                AchievementsHandler.craftAchievementCompleted(item.itemID, player);
+                AchievementsHandler.craftAchievementCompleted(item.getItem(), player);
             }
         }
     }
@@ -24,13 +23,6 @@ public class AchievementHooksHandler {
     @SubscribeEvent
     public void onCrafting(PlayerEvent.ItemCraftedEvent evt) {
         onCrafting(evt.player, evt.crafting, evt.craftMatrix);
-    }
-
-    @SubscribeEvent
-    public void onEntityConstructing(EntityEvent.EntityConstructing evt) {
-        if (evt.entity instanceof EntityPlayer) {
-            evt.entity.registerExtendedProperties(AchievementDataHolder.ACHIEVEMENT_DATA_HOLDER, new AchievementDataHolder((EntityPlayer) evt.entity));
-        }
     }
 }
 
