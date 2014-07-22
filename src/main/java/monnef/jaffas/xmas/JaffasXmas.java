@@ -30,8 +30,8 @@ import monnef.jaffas.xmas.common.CommonProxy;
 import monnef.jaffas.xmas.item.ItemGiantCandy;
 import monnef.jaffas.xmas.item.ItemXmas;
 import monnef.jaffas.xmas.item.ItemXmasFood;
-import monnef.jaffas.xmas.item.Items;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
@@ -59,10 +59,10 @@ public class JaffasXmas extends JaffasModBase {
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
 
-    private Items items;
+    private monnef.jaffas.food.item.common.Items items;
 
     public JaffasXmas() {
-        this.items = new Items();
+        this.items = new monnef.jaffas.food.item.common.Items();
         items.RegisterItemType(JaffaItemType.basic, ItemXmas.class);
         items.RegisterItemType(JaffaItemType.food, ItemXmasFood.class);
         items.InitializeItemInfos();
@@ -125,13 +125,13 @@ public class JaffasXmas extends JaffasModBase {
 
     private void installRecipes() {
         Recipes.addRecipe(new ShapedOreRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", "WB ", 'W',
-                Recipes.WOOD_PLANK, 'R', new ItemStack(Item.dyePowder, 1, 1), 'B', new ItemStack(Item.dyePowder, 1, 15)));
+                Recipes.WOOD_PLANK, 'R', new ItemStack(Items.dye, 1, 1), 'B', new ItemStack(Items.dye, 1, 15)));
 
-        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Item.dyePowder, 1, 1),
-                'S', Item.silk, 'P', Item.paper);
+        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Items.dye, 1, 1),
+                'S', Items.string, 'P', Items.paper);
 
-        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 6), "RS ", "PPP", 'R', new ItemStack(Item.dyePowder, 1, 1),
-                'S', Item.silk, 'P', Item.paper);
+        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 6), "RS ", "PPP", 'R', new ItemStack(Items.dye, 1, 1),
+                'S', Items.string, 'P', Items.paper);
 
         installPresentRecipe(2, 4, true, 1);
         installPresentRecipe(4, 11, true, 2);
@@ -153,24 +153,24 @@ public class JaffasXmas extends JaffasModBase {
 
         // star
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.pastrySweet));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandyStarRaw).itemID, new ItemStack(getItem(JaffaItem.xcandyStar)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyStarRaw), new ItemStack(getItem(JaffaItem.xcandyStar)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarChoco), 16), "C", "S", 'C', getItem(JaffaItem.chocolate), 'S', getItem(JaffaItem.xcandyStar));
         Item[] starJams = new Item[]{getItem(JaffaItem.jamR), getItem(JaffaItem.jamStrawberry), getItem(JaffaItem.jamRaspberry)};
         for (Item i : starJams) {
             GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyStarJam), 16), "S", "J", "S", 'S', getItem(JaffaItem.xcandyStar), 'J', i);
 
             // candy cane
-            GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyCane)), " W ", "WRW", "W  ", 'W', Item.sugar, 'R', i);
+            GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyCane)), " W ", "WRW", "W  ", 'W', Items.sugar, 'R', i);
         }
 
         // small roll
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollRaw)), "X ", " X", "X ", 'X', getItem(JaffaItem.pastrySweet));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw).itemID, new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandySmallRollRaw), new ItemStack(getItem(JaffaItem.xcandySmallRoll)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandySmallRollChoco), 6), "C", "R", "C", 'C', getItem(JaffaItem.chocolate), 'R', getItem(JaffaItem.xcandySmallRoll));
 
         // circle
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleRaw)), " X ", "XXX", " X ", 'X', getItem(JaffaItem.brownPastry));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandyChocoCircleRaw).itemID, new ItemStack(getItem(JaffaItem.xcandyChocoCircle)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyChocoCircleRaw), new ItemStack(getItem(JaffaItem.xcandyChocoCircle)), 0.2f);
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleCoated), 12), "C", "P", 'C', getItem(JaffaItem.chocolate), 'P', getItem(JaffaItem.xcandyChocoCircle));
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyChocoCircleSprinkled), 12), "S", "C", "P", 'C', getItem(JaffaItem.chocolate), 'P', getItem(JaffaItem.xcandyChocoCircle), 'S', getItem(JaffaItem.sprinkles));
 
@@ -180,7 +180,7 @@ public class JaffasXmas extends JaffasModBase {
 
         // gingerbread figure
         GameRegistry.addRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerFigureRaw)), "XXX", " X ", "X X", 'X', getItem(JaffaItem.gingerbread));
-        GameRegistry.addSmelting(getItem(JaffaItem.xcandyGingerFigureRaw).itemID, new ItemStack(getItem(JaffaItem.xcandyGingerFigure)), 0.2f);
+        GameRegistry.addSmelting(getItem(JaffaItem.xcandyGingerFigureRaw), new ItemStack(getItem(JaffaItem.xcandyGingerFigure)), 0.2f);
         GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.xcandyGingerCreamed), 26), getItem(JaffaItem.xcandyGingerFigure), getItem(JaffaItem.creamSweet));
     }
 
@@ -190,11 +190,11 @@ public class JaffasXmas extends JaffasModBase {
 
     private void installPresentRecipe(int ribbonColor, int color, boolean big, int presentMeta) {
         if (big) {
-            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", "PPP", 'A', new ItemStack(Item.dyePowder, 1, ribbonColor),
-                    'S', Item.silk, 'P', Item.paper, 'B', new ItemStack(Item.dyePowder, 1, color));
+            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", "PPP", 'A', new ItemStack(Items.dye, 1, ribbonColor),
+                    'S', Items.string, 'P', Items.paper, 'B', new ItemStack(Items.dye, 1, color));
         } else {
-            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", 'A', new ItemStack(Item.dyePowder, 1, ribbonColor),
-                    'S', Item.silk, 'P', Item.paper, 'B', new ItemStack(Item.dyePowder, 1, color));
+            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", 'A', new ItemStack(Items.dye, 1, ribbonColor),
+                    'S', Items.string, 'P', Items.paper, 'B', new ItemStack(Items.dye, 1, color));
         }
     }
 }

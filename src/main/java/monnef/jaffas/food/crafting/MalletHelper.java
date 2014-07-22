@@ -7,6 +7,7 @@ package monnef.jaffas.food.crafting;
 
 import monnef.jaffas.food.item.common.ItemManager;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class MalletHelper {
@@ -28,7 +29,7 @@ public class MalletHelper {
             ItemStack item = matrix.getStackInSlot(i);
             if (item != null) {
                 ingredientsCount++;
-                if (isMallet(item.itemID)) {
+                if (isMallet(item.getItem())) {
                     result = new MalletHelper(item, i, ingredientsCount);
                 }
             }
@@ -38,10 +39,9 @@ public class MalletHelper {
         return result;
     }
 
-    public static boolean isMallet(int itemID) {
+    public static boolean isMallet(Item item) {
         for (int i = 0; i < ItemManager.mallets.length; i++) {
-            //if (JaffasFood.itemsInfo.get(JaffasFood.mallets[i]).getItem().itemID == itemID){
-            if (ItemManager.getItem(ItemManager.mallets[i]).itemID == itemID) {
+            if (ItemManager.getItem(ItemManager.mallets[i]) == item) {
                 return true;
             }
         }

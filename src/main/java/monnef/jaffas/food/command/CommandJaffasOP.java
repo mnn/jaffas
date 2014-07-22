@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.command;
 
+import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.WeatherHelper;
 import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.common.CoolDownRegistry;
@@ -35,23 +36,7 @@ public class CommandJaffasOP extends CommandBase {
     @Override
     public void processCommand(ICommandSender commandsender, String[] parameters) {
         if (parameters.length <= 0) return;
-        else if (parameters.length == 2 && parameters[0].equals("ach_removeall") && parameters[1].length() > 0) {
-            EntityPlayer player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(parameters[1]);
-            if (player == null) {
-                addMessage(commandsender, "Player not found.");
-                return;
-            }
-            AchievementsHandler.removeAllJaffasAchievements(player);
-            addMessage(commandsender, String.format("Achievements of \"%s\" has been reset.", player.username));
-        } else if (parameters.length == 2 && parameters[0].equals("ach_corrupt") && parameters[1].length() > 0) {
-            EntityPlayer player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(parameters[1]);
-            if (player == null) {
-                addMessage(commandsender, "Player not found.");
-                return;
-            }
-            AchievementsHandler.corrupt(player);
-            addMessage(commandsender, String.format("Achievements of \"%s\" has been corrupted.", player.username));
-        } else if (parameters.length == 2 && parameters[0].equals("fun_speed")) {
+        else if (parameters.length == 2 && parameters[0].equals("fun_speed")) {
             int speed;
 
             try {
@@ -90,7 +75,7 @@ public class CommandJaffasOP extends CommandBase {
             String playerName;
             if (parameters.length == 1) {
                 if (commandsender instanceof EntityPlayer) {
-                    playerName = ((EntityPlayer) commandsender).getEntityName();
+                    playerName = ((EntityPlayer) commandsender).getDisplayName();
                 } else {
                     addMessage(commandsender, "Cannot issue this command on a non-player.");
                     return;
@@ -103,14 +88,14 @@ public class CommandJaffasOP extends CommandBase {
                 addMessage(commandsender, "Player not found.");
                 return;
             }
-            CoolDownRegistry.setCoolDown(player.getEntityName(), CoolDownType.SPAWN_STONE, 1);
+            CoolDownRegistry.setCoolDown(player.getUniqueID(), CoolDownType.SPAWN_STONE, 1);
             SpawnStoneServerPacketSender.sendSyncPacket(player, false);
             addMessage(commandsender, String.format("Cooldown on home stone has been cleared for a player %s.", playerName));
         }
     }
 
     private void printWeatherInfo(EntityPlayer commandsender) {
-        commandsender.addChatMessage(WeatherHelper.generateWeatherInfo(commandsender.worldObj));
+        PlayerHelper.addMessage(commandsender, WeatherHelper.generateWeatherInfo(commandsender.worldObj));
     }
 
     @Override

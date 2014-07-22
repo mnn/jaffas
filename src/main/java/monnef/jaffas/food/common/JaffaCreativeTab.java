@@ -30,4 +30,10 @@ public class JaffaCreativeTab extends CreativeTabs {
     public ItemStack getIconItemStack() {
         return iconStack;
     }
+
+    @Override
+    public Item getTabIconItem() {
+        // not used, icon comes from item stack
+        return null;
+    }
 }
