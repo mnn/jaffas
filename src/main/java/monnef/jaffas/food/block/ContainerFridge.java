@@ -60,7 +60,17 @@ public class ContainerFridge extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlots(IInventory inv) {
+    public int getSlotsCount() {
+        return inventorySize;
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 0;
+    }
+
+    @Override
+    public void constructSlotsFromInventory(IInventory inv) {
         int row, col;
         int colsPerRow = 4;
         for (int i = 0; i < inventorySize; i++) {
@@ -69,36 +79,4 @@ public class ContainerFridge extends ContainerMonnefCore {
             addSlotToContainer(new Slot(inv, i, 8 + col * 18, 13 + row * 18));
         }
     }
-
-    /*
-    @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int slot) {
-        ItemStack stack = null;
-        Slot slotObject = (Slot) inventorySlots.get(slot);
-
-        //null checks and checks if the item can be stacked (maxStackSize > 1)
-        if (slotObject != null && slotObject.getHasStack()) {
-            ItemStack stackInSlot = slotObject.getStack();
-            stack = stackInSlot.copy();
-
-            //merges the item into player inventory since its in the tileEntity
-            if (slot >= 0 && slot <= inventorySize + 1) {
-                if (!mergeItemStack(stackInSlot, inventorySize + 1, inventorySlots.size(), true)) {
-                    return null;
-                }
-                //places it into the tileEntity is possible since its in the player inventory
-            } else if (!mergeItemStack(stackInSlot, 0, inventorySize + 1, false)) {
-                return null;
-            }
-
-            if (stackInSlot.stackSize == 0) {
-                slotObject.putStack(null);
-            } else {
-                slotObject.onSlotChanged();
-            }
-        }
-
-        return stack;
-    }
-    */
 }

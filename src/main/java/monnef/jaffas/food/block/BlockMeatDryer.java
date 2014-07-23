@@ -12,8 +12,10 @@ import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -21,7 +23,7 @@ import java.util.Random;
 public class BlockMeatDryer extends BlockJaffas {
     public BlockMeatDryer(int texture) {
         super(texture, Material.wood);
-        setBurnProperties(id, 15, 100);
+        setBurnProperties(15, 100);
         setHardness(0.25f);
         setCreativeTab(null);
     }
@@ -53,7 +55,7 @@ public class BlockMeatDryer extends BlockJaffas {
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
-        TileMeatDryer tile = (TileMeatDryer) world.getBlockTileEntity(x, y, z);
+        TileMeatDryer tile = (TileMeatDryer) world.getTileEntity(x, y, z);
         ItemStack hand = player.getCurrentEquippedItem();
 
         if (!world.isRemote && MonnefCorePlugin.debugEnv) tile.printDebugInfo(player);
@@ -81,12 +83,12 @@ public class BlockMeatDryer extends BlockJaffas {
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return JaffasFood.getItem(JaffaItem.meatDryer).itemID;
+    public Item getItemDropped(int par1, Random par2Random, int par3) {
+        return JaffasFood.getItem(JaffaItem.meatDryer);
     }
 
     @Override
-    public int idPicked(World par1World, int par2, int par3, int par4) {
-        return JaffasFood.getItem(JaffaItem.meatDryer).itemID;
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(JaffasFood.getItem(JaffaItem.meatDryer));
     }
 }

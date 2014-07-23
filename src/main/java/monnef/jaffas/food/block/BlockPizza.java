@@ -10,18 +10,23 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.BitHelper;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.item.JaffaItem;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.setAir;
 import static monnef.core.utils.BlockHelper.setBlock;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
-import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.common.ContentHolder.blockPizza;
+
 
 public class BlockPizza extends BlockJaffas {
     public static final int BIT_ROTATION = 3;
@@ -31,7 +36,7 @@ public class BlockPizza extends BlockJaffas {
         super(par2, par3Material);
         setCreativeTab(null);
         setHardness(0.5f);
-        setUnlocalizedName("blockPizza");
+        setBlockName("blockPizza");
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f2, 1.0F);
     }
 
@@ -81,7 +86,7 @@ public class BlockPizza extends BlockJaffas {
     @Override
     public void onBlockAdded(World par1World, int par2, int par3, int par4) {
         super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setBlockTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
+        par1World.setTileEntity(par2, par3, par4, this.createTileEntity(par1World, par1World.getBlockMetadata(par2, par3, par4)));
     }
 
     @Override
@@ -115,35 +120,35 @@ public class BlockPizza extends BlockJaffas {
 
             if (slices > 0) {
                 setBlockMetadata(world, x, y, z, blockPizza.setPieces(meta, slices));
-                world.markBlockForRenderUpdate(x, y, z);
+                world.func_147479_m(x, y, z); // markBlockForRenderUpdate
             } else {
-                setBlock(world, x, y, z, 0);
+                setAir(world, x, y, z);
             }
         }
     }
 
     //from cake block
     @Override
-    public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5) {
-        if (!this.canBlockStay(par1World, par2, par3, par4)) {
-            this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
-            setBlock(par1World, par2, par3, par4, 0);
+    public void onNeighborBlockChange(World world, int x, int y, int z, Block block) {
+        if (!this.canBlockStay(world, x, y, z)) {
+            this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+            setAir(world, x, y, z);
         }
     }
 
     @Override
-    public boolean canBlockStay(World par1World, int par2, int par3, int par4) {
-        return par1World.getBlockMaterial(par2, par3 - 1, par4).isSolid();
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        return World.doesBlockHaveSolidTopSurface(world, x, y - 1, z);
     }
 
     @Override
-    public int idDropped(int par1, Random par2Random, int par3) {
-        return 0;
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_) {
+        return null;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int idPicked(World par1World, int par2, int par3, int par4) {
-        return getItem(JaffaItem.pizza).itemID;
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(ContentHolder.getItem(JaffaItem.pizza));
     }
 }

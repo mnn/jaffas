@@ -32,6 +32,7 @@ import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
+import powercrystals.minefactoryreloaded.api.ReplacementBlock;
 
 import java.util.Arrays;
 import java.util.List;
@@ -310,7 +311,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     public int getTopY(World w, int x, int y, int z) {
         int higherY = y;
-        while (!isTop(w.getBlockMetadata(x, higherY, z)) && w.getBlock(x, higherY, z) == block) {
+        while (!isTop(w.getBlockMetadata(x, higherY, z)) && w.getBlock(x, higherY, z) == this) {
             higherY++;
             if (higherY - y > maximalHeight) break;
         }
@@ -327,13 +328,9 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     // TODO: new MFR API
     // MFR
-    @Override
-    public int getFertilizableBlockId() {
-        return 0;
-    }
 
     @Override
-    public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType) {
+    public boolean canFertilize(World world, int x, int y, int z, FertilizerType fertilizerType) {
         return canGrow(world, x, y, z);
     }
 
@@ -343,8 +340,8 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     @Override
-    public int getPlantId() {
-        return blockID;
+    public Block getPlant() {
+        return this;
     }
 
     @Override
@@ -389,19 +386,22 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     @Override
-    public int getSeedId() {
-        return blockID;
+    public boolean canBePlanted(ItemStack stack, boolean forFermenting) {
+        return true;
     }
 
     @Override
-    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
-        return blockID;
+    public ReplacementBlock getPlantedBlock(World world, int x, int y, int z, ItemStack stack) {
+        ReplacementBlock planted = new ReplacementBlock(this);
+        planted.setMeta(VALUE_TOP);
+        return planted;
     }
 
     @Override
-    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
-        return VALUE_TOP;
+    public Item getSeed() {
+        return Item.getItemFromBlock(this);
     }
+
 
     @Override
     public boolean canBePlantedHere(World world, int x, int y, int z, ItemStack stack) {

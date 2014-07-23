@@ -21,6 +21,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -128,8 +129,8 @@ public class BlockPie extends BlockJaffas {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int idPicked(World par1World, int par2, int par3, int par4) {
-        return ContentHolder.blockPie.blockID;
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return new ItemStack(ContentHolder.blockPie);
     }
 
     @Override
@@ -156,7 +157,7 @@ public class BlockPie extends BlockJaffas {
     }
 
     @Override
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         for (int i = 0; i < textureIndexFromMeta.length; i++) {
             icons[i] = iconRegister.registerIcon(CustomIconHelper.generateId(this, textureIndexFromMeta[i]));
         }

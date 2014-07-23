@@ -12,6 +12,7 @@ import monnef.jaffas.food.common.ConfigurationManager;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.monster.EntitySlime;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -21,8 +22,8 @@ import static monnef.jaffas.food.JaffasFood.Log;
 public class BlockSwitchgrassSolid extends BlockJDirectional {
     public BlockSwitchgrassSolid(int textureStart, int texturesCountPerSet) {
         super(textureStart, texturesCountPerSet, Material.grass, TextureMappingType.LOG_LIKE);
-        Block.setBurnProperties(id, 15, 100);
-        setStepSound(Block.soundGrassFootstep);
+        setBurnProperties(15, 100);
+        setStepSound(soundTypeGrass);
         setResistance(5);
         setHardness(0.5f);
         setTickRandomly(true);
@@ -48,7 +49,7 @@ public class BlockSwitchgrassSolid extends BlockJDirectional {
                 } else {
                     sz = random.nextBoolean() ? -1 : 1;
                 }
-                BlockHelper.setBlock(world, x + sx, y + 1, z + sz, 0);
+                BlockHelper.setAir(world, x + sx, y + 1, z + sz);
 
                 Log.printDebug(String.format("Cube damaged - %d %d %d", x, y, z));
                 return;
@@ -58,7 +59,7 @@ public class BlockSwitchgrassSolid extends BlockJDirectional {
             for (int xx = x - 1; xx <= x + 1; xx++) {
                 for (int yy = y; yy <= y + 2; yy++) {
                     for (int zz = z - 1; zz <= z + 1; zz++) {
-                        BlockHelper.setBlock(world, xx, yy, zz, 0);
+                        BlockHelper.setAir(world, xx, yy, zz);
                     }
                 }
             }
@@ -90,14 +91,14 @@ public class BlockSwitchgrassSolid extends BlockJDirectional {
         for (int xx = x - 1; xx <= x + 1; xx++) {
             for (int yy = y; yy <= y + 2; yy++) {
                 for (int zz = z - 1; zz <= z + 1; zz++) {
-                    int currentBlockID = world.getBlockId(xx, yy, zz);
+                    Block currentBlock = world.getBlock(xx, yy, zz);
                     if (xx == x && yy == y + 1 && zz == z) {
                         //center
-                        if (currentBlockID != Block.waterStill.blockID) {
+                        if (currentBlock != Blocks.water) {
                             return false;
                         }
                     } else {
-                        if (currentBlockID != blockID) {
+                        if (currentBlock != this) {
                             return false;
                         }
                     }

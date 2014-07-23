@@ -37,6 +37,16 @@ public class ContainerBoard extends ContainerMonnefCore {
     }
 
     @Override
+    public int getSlotsCount() {
+        return 3;
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 1;
+    }
+
+    @Override
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
@@ -65,7 +75,7 @@ public class ContainerBoard extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlots(IInventory inv) {
+    public void constructSlotsFromInventory(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 56, 35)); //  input
         addSlotToContainer(new Slot(inv, SLOT_KNIFE, 22, 35)); //  knife
         addSlotToContainer(new Slot(inv, SLOT_OUTPUT, 116, 35)); // output
@@ -92,7 +102,7 @@ public class ContainerBoard extends ContainerMonnefCore {
             }
             //places it into the tileEntity is possible since its in the player inventory
             else {
-                if (stackInSlot.itemID == JaffasFood.getItem(JaffaItem.knifeKitchen).itemID) {
+                if (stackInSlot.getItem() == JaffasFood.getItem(JaffaItem.knifeKitchen)) {
                     if (!this.mergeItemStack(stackInSlot, 0, getInputSlotsCount(), true)) {
                         return null;
                     }
