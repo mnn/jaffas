@@ -241,4 +241,8 @@ public class AchievementsHandler {
     public static Achievement getAchievement(String id) {
         return allAchievements.get(id);
     }
+
+    public static void setStartingId(int offset) {
+        idCounter = offset;
+    }
 }

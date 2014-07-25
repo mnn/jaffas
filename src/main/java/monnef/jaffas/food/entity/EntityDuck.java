@@ -7,6 +7,7 @@ package monnef.jaffas.food.entity;
 
 import monnef.core.client.ResourcePathHelper;
 import monnef.jaffas.food.client.Sounds;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,6 +21,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
@@ -45,10 +47,10 @@ public class EntityDuck extends EntityAnimal {
     public float posOld;
     public float field_70889_i = 1.0F;
 
-    public static final int feather = getItem(featherDuck).itemID;
-    public static final int egg = getItem(duckEgg).itemID;
-    public static final int rawMeat = getItem(duckRaw).itemID;
-    public static final int cookedMeat = getItem(duck).itemID;
+    public static final Item feather = getItem(featherDuck);
+    public static final Item egg = getItem(duckEgg);
+    public static final Item rawMeat = getItem(duckRaw);
+    public static final Item cookedMeat = getItem(duck);
 
     /**
      * The time until the next egg is spawned.
@@ -62,7 +64,7 @@ public class EntityDuck extends EntityAnimal {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 1.4D));
         this.tasks.addTask(2, new EntityAIMate(this, 1.0D));
-        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Item.seeds.itemID, false));
+        this.tasks.addTask(3, new EntityAITempt(this, 1.0D, Items.wheat_seeds, false));
         this.tasks.addTask(4, new EntityAIFollowParent(this, 1.1D));
         this.tasks.addTask(5, new EntityAIWander(this, 1.0D));
         this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -80,8 +82,8 @@ public class EntityDuck extends EntityAnimal {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(5D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.25D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(5D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D);
     }
 
     /**
@@ -152,12 +154,12 @@ public class EntityDuck extends EntityAnimal {
     }
 
     @Override
-    protected void playStepSound(int par1, int par2, int par3, int par4) {
+    protected void func_145780_a(int par1, int par2, int par3, Block p_145780_4_) {
         this.playSound("mob.chicken.step", 0.15F, 1.0F);
     }
 
     @Override
-    protected int getDropItemId() {
+    protected Item getDropItem() {
         return feather;
     }
 
@@ -195,7 +197,7 @@ public class EntityDuck extends EntityAnimal {
 
     public static class MFR implements IFactoryGrindable {
         @Override
-        public Class<?> getGrindableEntity() {
+        public Class<? extends EntityLivingBase> getGrindableEntity() {
             return EntityDuck.class;
         }
 

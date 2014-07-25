@@ -7,9 +7,11 @@ package monnef.jaffas.food.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
@@ -31,8 +33,8 @@ public class EntityJaffaSpider extends EntityCreatureMob {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(16D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.8D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(16D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.8D);
     }
 
     public ResourceLocation getTexture() {
@@ -87,7 +89,7 @@ public class EntityJaffaSpider extends EntityCreatureMob {
     }
 
     @Override
-    protected void playStepSound(int par1, int par2, int par3, int par4) {
+    protected void func_145780_a(int p_145780_1_, int p_145780_2_, int p_145780_3_, Block p_145780_4_) {
         this.playSound("mob.spider.step", 0.15F, 1.0F);
     }
 
@@ -114,8 +116,8 @@ public class EntityJaffaSpider extends EntityCreatureMob {
     }
 
     @Override
-    protected int getDropItemId() {
-        return Item.silk.itemID;
+    protected Item getDropItem() {
+        return Items.string;
     }
 
     @Override
@@ -130,7 +132,7 @@ public class EntityJaffaSpider extends EntityCreatureMob {
 
     protected void dropSpiderEye(boolean killedByPlayer, int lootingLevel) {
         if (killedByPlayer && (this.rand.nextInt(3) == 0 || this.rand.nextInt(1 + lootingLevel) > 0)) {
-            this.dropItem(Item.spiderEye.itemID, 1);
+            this.dropItem(Items.spider_eye, 1);
         }
     }
 

@@ -9,6 +9,8 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,7 +29,7 @@ import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.item.JaffaItem.spiderLegRaw;
 
 public class EntityLittleSpider extends EntityJaffaSpider {
-    public static final int spiderMeat = getItem(spiderLegRaw).itemID;
+    public static final Item spiderMeat = getItem(spiderLegRaw);
     private static final String AGGRESSIVE_TIMER_TAG = "aggressiveTimer";
     private static final String WEB_TIMER_TAG = "webTimer";
     private static final String COLOR_TAG = "spiderColor";
@@ -68,8 +70,8 @@ public class EntityLittleSpider extends EntityJaffaSpider {
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(12D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(0.8D);
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(12D);
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.8D);
     }
 
     @Override
@@ -109,14 +111,15 @@ public class EntityLittleSpider extends EntityJaffaSpider {
 
     @Override
     protected void processAdditionalDrops(boolean killedByPlayer, int lootingLevel) {
+        super.processAdditionalDrops(killedByPlayer, lootingLevel);
         if (killedByPlayer && (this.rand.nextInt(2) == 0 || this.rand.nextInt(1 + lootingLevel) > 1)) {
-            this.dropItem(Item.silk.itemID, 1);
+            this.dropItem(Items.string, 1);
         }
     }
 
     public static class MFR implements IFactoryGrindable {
         @Override
-        public Class<?> getGrindableEntity() {
+        public Class<? extends EntityLivingBase> getGrindableEntity() {
             return EntityLittleSpider.class;
         }
 
@@ -124,7 +127,7 @@ public class EntityLittleSpider extends EntityJaffaSpider {
         public List<MobDrop> grind(World world, EntityLivingBase entity, Random random) {
             ArrayList<MobDrop> res = new ArrayList<MobDrop>();
             res.add(new MobDrop(3, new ItemStack(spiderMeat, 1, 0)));
-            res.add(new MobDrop(2, new ItemStack(Item.silk, 1, 0)));
+            res.add(new MobDrop(2, new ItemStack(Items.string, 1, 0)));
             return res;
         }
 
@@ -156,15 +159,15 @@ public class EntityLittleSpider extends EntityJaffaSpider {
             int x = (int) Math.round(posX);
             int y = (int) Math.round(posY);
             int z = (int) Math.round(posZ);
-            if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlockId(x, y, z) == Block.web.blockID) {
+            if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlock(x, y, z) == Blocks.web) {
                 y++;
-                if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlockId(x, y, z) == Block.web.blockID && rand.nextInt(2) == 0) {
+                if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlock(x, y, z) == Blocks.web && rand.nextInt(2) == 0) {
                     y++;
                 }
             }
             if (worldObj.isAirBlock(x, y, z)) {
                 this.timeUntilNextWeb = this.rand.nextInt(8000) + 4000;
-                BlockHelper.setBlock(worldObj, x, y, z, Block.web.blockID);
+                BlockHelper.setBlock(worldObj, x, y, z, Blocks.web);
                 playWebSound();
             } else {
                 // failed lookup for free space, trying again after some time

@@ -58,7 +58,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -207,8 +206,7 @@ public class ContentHolder {
         EntityHelper.registerEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, ContentHolder.duckEntityID, jf, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FactoryRegistry.registerGrindable(new EntityDuck.MFR());
-            FactoryRegistry.registerBreederFood(EntityDuck.class, new ItemStack(Items.wheat_seeds));
+            FactoryRegistry.sendMessage("registerGrindable", new EntityDuck.MFR());
         }
     }
 
@@ -220,8 +218,7 @@ public class ContentHolder {
         EntityHelper.registerEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, ContentHolder.spiderEntityID, jf, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasSpider.name", "en_US", "Little Spider");
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FactoryRegistry.registerGrindable(new EntityLittleSpider.MFR());
-            //FarmingRegistry.registerBreederFood(EntityLittleSpider.class, new ItemStack(Item.seeds));
+            FactoryRegistry.sendMessage("registerGrindable", new EntityLittleSpider.MFR());
         }
     }
 
@@ -286,9 +283,9 @@ public class ContentHolder {
         RegistryUtils.registerMultiBlock(ContentHolder.blockSwitchgrass, ItemBlockSwitchgrass.class, ContentHolder.blockSwitchgrass.subBlockNames);
         MinecraftForge.EVENT_BUS.register(new SwitchgrassBonemealHandler());
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FactoryRegistry.registerFertilizable(ContentHolder.blockSwitchgrass);
-            FactoryRegistry.registerHarvestable(ContentHolder.blockSwitchgrass);
-            FactoryRegistry.registerPlantable(ContentHolder.blockSwitchgrass);
+            FactoryRegistry.sendMessage("registerFertilizable", ContentHolder.blockSwitchgrass);
+            FactoryRegistry.sendMessage("registerHarvestable", ContentHolder.blockSwitchgrass);
+            FactoryRegistry.sendMessage("registerPlantable", ContentHolder.blockSwitchgrass);
         }
 
         ContentHolder.blockSwitchgrassSolid = new BlockSwitchgrassSolid(240, 2);
