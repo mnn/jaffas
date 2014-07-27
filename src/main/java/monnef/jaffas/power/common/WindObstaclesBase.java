@@ -79,8 +79,7 @@ public abstract class WindObstaclesBase implements IWindObstacles {
     }
 
     protected float getBlockObstacleValue(IIntegerCoordinates pos) {
-        Block block = Block.blocksList[pos.getBlockId()];
-        if (block == null) return 0;
+        Block block = pos.getBlock();
         if (block.isOpaqueCube()) return 1;
         if (block instanceof BlockWindGenerator) return 0;
         return 0.2f;

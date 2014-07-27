@@ -5,6 +5,7 @@
 
 package monnef.jaffas.technic.block;
 
+import monnef.core.utils.BlockHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
@@ -27,11 +28,11 @@ public class TileConstructionDummy extends TileEntity implements IInventory, ISi
 
     public TileCompostCore getCore() {
         if (core == null) {
-            core = (TileCompostCore) worldObj.getBlockTileEntity(coreX, coreY, coreZ);
+            core = (TileCompostCore) worldObj.getTileEntity(coreX, coreY, coreZ);
         }
 
         if (core == null) {
-            worldObj.setBlock(xCoord, yCoord, zCoord, 0); // self destruction when no core
+            BlockHelper.setAir(worldObj, xCoord, yCoord, zCoord); // self destruction when no core
         }
 
         return core;
@@ -98,15 +99,15 @@ public class TileConstructionDummy extends TileEntity implements IInventory, ISi
     }
 
     @Override
-    public void openChest() {
+    public void openInventory() {
         if (getCore() == null) return;
-        getCore().openChest();
+        getCore().openInventory();
     }
 
     @Override
-    public void closeChest() {
+    public void closeInventory() {
         if (getCore() == null) return;
-        getCore().closeChest();
+        getCore().closeInventory();
     }
 
     @Override
@@ -116,15 +117,15 @@ public class TileConstructionDummy extends TileEntity implements IInventory, ISi
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         if (getCore() == null) return "MISSING_CORE";
-        return getCore().getInvName();
+        return getCore().getInventoryName();
     }
 
     @Override
-    public boolean isInvNameLocalized() {
+    public boolean hasCustomInventoryName() {
         if (getCore() == null) return false;
-        return getCore().isInvNameLocalized();
+        return getCore().hasCustomInventoryName();
     }
 
     @Override

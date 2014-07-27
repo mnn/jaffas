@@ -7,6 +7,7 @@ package monnef.jaffas.food.crafting;
 
 import monnef.jaffas.food.common.JaffasException;
 import monnef.jaffas.food.item.JaffaItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -15,7 +16,7 @@ import java.util.HashMap;
 import static monnef.jaffas.food.JaffasFood.getItem;
 
 public class RecipesBoard {
-    public static HashMap<Integer, BoardRecipe> recipes = new HashMap<Integer, BoardRecipe>();
+    public static HashMap<Item, BoardRecipe> recipes = new HashMap<Item, BoardRecipe>();
 
     public static void addRecipeSimple(JaffaItem input, JaffaItem output) {
         addRecipe(input, 1, output, 1);
@@ -38,7 +39,7 @@ public class RecipesBoard {
             throw new JaffasException("wrong stack size");
         }
 
-        recipes.put(input.itemID, new BoardRecipe(input, output));
+        recipes.put(input.getItem(), new BoardRecipe(input, output));
     }
 
     public static boolean isRecipeFor(ItemStack input) {
@@ -55,7 +56,7 @@ public class RecipesBoard {
 
     private static ItemStack getRecipeOutputFor(ItemStack input, boolean copyOutput, boolean decreaseOutput) {
         if (input == null) return null;
-        BoardRecipe recipe = recipes.get(input.itemID);
+        BoardRecipe recipe = recipes.get(input.getItem());
 
         if (recipe == null) return null;
         int recipeItemInputDamage = recipe.getInput().getItemDamage();

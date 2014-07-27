@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.block;
 
+import monnef.core.common.CustomIconHelper;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

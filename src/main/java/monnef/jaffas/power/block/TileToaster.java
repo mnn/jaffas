@@ -11,6 +11,7 @@ import monnef.jaffas.power.api.IKitchenUnitAppliance;
 import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 import monnef.jaffas.power.common.IProcessingRecipeHandler;
 import monnef.jaffas.power.common.ProcessingRecipeHandler;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.HashMap;
@@ -36,12 +37,12 @@ public class TileToaster extends TileEntityBasicProcessingMachine implements IKi
     private ToastLevel currentLevel = ToastLevel.MEDIUM;
 
     public static void addRecipe(ToastLevel level, JaffaItem input, JaffaItem output, int duration) {
-        addRecipe(level, getItem(input).itemID, getItem(output).itemID, duration);
+        addRecipe(level, getItem(input), getItem(output), duration);
     }
 
-    public static void addRecipe(ToastLevel level, int inputId, int outputId, int duration) {
+    public static void addRecipe(ToastLevel level, Item input, Item output, int duration) {
         IProcessingRecipeHandler sub = recipes.get(level);
-        sub.addRecipe(new ItemStack[]{new ItemStack(inputId, 1, 0)}, new ItemStack[]{new ItemStack(outputId, 1, 0)}, duration);
+        sub.addRecipe(new ItemStack[]{new ItemStack(input, 1, 0)}, new ItemStack[]{new ItemStack(output, 1, 0)}, duration);
     }
 
     public TileToaster() {
@@ -53,7 +54,7 @@ public class TileToaster extends TileEntityBasicProcessingMachine implements IKi
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.power.toaster";
     }
 }

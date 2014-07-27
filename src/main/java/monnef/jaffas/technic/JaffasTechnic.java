@@ -340,7 +340,7 @@ public class JaffasTechnic extends JaffasModBase {
         RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
         JaffasRegistryHelper.registerTileEntity(TileFungiBox.class, "jaffasFungiBox");
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FactoryRegistry.registerHarvestable(fungiBox);
+            FactoryRegistry.sendMessage("registerHarvestable", fungiBox);
         }
         if (otherMods.isForestryDetected()) {
             otherMods.insertFarmable(FORESTRY_FARM_FUNGAL, new MushroomCropProvider());
@@ -461,7 +461,7 @@ public class JaffasTechnic extends JaffasModBase {
         compost = new ItemCompost(29);
         RegistryUtils.registerItem(compost, "compost", "Compost");
         if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
-            FactoryRegistry.registerFertilizer(compost);
+            FactoryRegistry.sendMessage("registerFertilizer", compost);
         }
 
         if (!disableRedstoneGadgets) {
