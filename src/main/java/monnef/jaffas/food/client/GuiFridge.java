@@ -23,15 +23,15 @@ public class GuiFridge extends GuiContainerMonnefCore {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        fontRenderer.drawString("Fridge", 8, 3, 4210752);
-        fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString("Fridge", 8, 3, 4210752);
+        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 
         if (TileFridge.tickDivider == 1) {
             String s = String.valueOf(tileEntity.getTemperature());
-            fontRenderer.drawString(s, 75, 3, 4210752);
+            fontRendererObj.drawString(s, 75, 3, 4210752);
 
             s = String.valueOf(tileEntity.getPowerHandler().getEnergyStored());
-            fontRenderer.drawString(s, 90, 15, 4210752);
+            fontRendererObj.drawString(s, 90, 15, 4210752);
         }
     }
 

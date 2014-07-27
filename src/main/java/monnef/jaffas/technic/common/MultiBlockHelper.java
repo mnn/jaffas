@@ -7,6 +7,7 @@ package monnef.jaffas.technic.common;
 
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.technic.JaffasTechnic;
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
 public class MultiBlockHelper {
@@ -64,17 +65,17 @@ public class MultiBlockHelper {
             return x == cx && y == cy && z == cz;
         }
 
-        int blockId = w.getBlockId(cx, cy, cz);
+        Block block = w.getBlock(cx, cy, cz);
         int meta = w.getBlockMetadata(cx, cy, cz);
         switch (mark) {
             case AIR:
-                return blockId == 0;
+                return block.isAir(w, cx, cy, cz);
 
             case CON_ALLOY:
-                return blockId == JaffasTechnic.constructionBlock.blockID && meta == 0;
+                return block == JaffasTechnic.constructionBlock && meta == 0;
 
             case CON_GLASS:
-                return blockId == JaffasTechnic.constructionBlock.blockID && meta == 1;
+                return block == JaffasTechnic.constructionBlock && meta == 1;
         }
 
         throw new RuntimeException("unknown mark");
@@ -86,15 +87,15 @@ public class MultiBlockHelper {
                 throw new RuntimeException("cannot set ME");
 
             case AIR:
-                w.setBlock(x, y, z, 0);
+                BlockHelper.setAir(w, x, y, z);
                 break;
 
             case CON_ALLOY:
-                BlockHelper.setBlock(w, x, y, z, JaffasTechnic.constructionBlock.blockID, 0);
+                BlockHelper.setBlock(w, x, y, z, JaffasTechnic.constructionBlock, 0);
                 break;
 
             case CON_GLASS:
-                BlockHelper.setBlock(w, x, y, z, JaffasTechnic.constructionBlock.blockID, 1);
+                BlockHelper.setBlock(w, x, y, z, JaffasTechnic.constructionBlock, 1);
                 break;
         }
     }

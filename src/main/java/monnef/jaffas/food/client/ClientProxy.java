@@ -8,6 +8,7 @@ package monnef.jaffas.food.client;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
+import monnef.core.client.ClientUtils;
 import monnef.core.client.RenderItemInAir;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileBoard;
@@ -64,7 +65,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new DirectionalBlockRenderer());
         RenderingRegistry.registerBlockHandler(new CustomBlockRenderer());
 
-        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ContentHolder.blockTable), new CustomBlockRenderer());
+        ClientUtils.registerItemRendererOfBlock(ContentHolder.blockTable, new CustomBlockRenderer());
     }
 
     private Render constructLittleSpiderRenderer() {

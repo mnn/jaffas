@@ -20,7 +20,7 @@ public class GuiHandlerTrees implements IGuiHandler {
 
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tile = world.getBlockTileEntity(x, y, z);
+        TileEntity tile = world.getTileEntity(x, y, z);
         if (ContainerRegistry.containsRegistration(tile)) {
             return ContainerRegistry.createContainer(tile, player.inventory);
         } else if (id == GuiId.BAG_PLANTING.ordinal()) {
@@ -33,7 +33,7 @@ public class GuiHandlerTrees implements IGuiHandler {
 
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tile = world.getBlockTileEntity(x, y, z);
+        TileEntity tile = world.getTileEntity(x, y, z);
         if (ContainerRegistry.containsRegistration(tile)) {
             return ContainerRegistry.createGui(tile, player.inventory);
         } else if (id == GuiId.BAG_PLANTING.ordinal()) {

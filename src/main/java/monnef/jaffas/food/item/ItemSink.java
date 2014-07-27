@@ -42,7 +42,7 @@ public class ItemSink extends ItemJaffaBase {
 
             if (player.canPlayerEdit(x, y, z, side, item) && player.canPlayerEdit(x, y + 1, z, side, item)) {
                 if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z)) {
-                    setBlock(world, x, y, z, blockToPlace.blockID, direction);
+                    setBlock(world, x, y, z, blockToPlace, direction);
 
                     --item.stackSize;
                     return true;
@@ -56,8 +56,8 @@ public class ItemSink extends ItemJaffaBase {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
-        super.addInformation(stack, player, result, par4);
+    public void addInformationCustom(ItemStack stack, EntityPlayer player, List<String> result, boolean par4) {
+        super.addInformationCustom(stack, player, result, par4);
         result.add("Construction kit");
     }
 }

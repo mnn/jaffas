@@ -20,8 +20,8 @@ public class GuiFruitCollector extends GuiContainerMonnefCore {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-        this.fontRenderer.drawString("Fruit Collector", 8, 5, 4210752);
-        fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString("Fruit Collector", 8, 5, 4210752);
+        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
     @Override

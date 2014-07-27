@@ -23,14 +23,14 @@ public class GuiHandler implements IGuiHandler {
 
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
         return ContainerRegistry.createContainer(tileEntity, player.inventory);
     }
 
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world,
                                       int x, int y, int z) {
-        TileEntity tileEntity = world.getBlockTileEntity(x, y, z);
+        TileEntity tileEntity = world.getTileEntity(x, y, z);
         return ContainerRegistry.createGui(tileEntity, player.inventory);
     }
 }

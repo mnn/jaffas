@@ -7,6 +7,7 @@ package monnef.jaffas.technic.client;
 
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import monnef.core.client.ClientUtils;
 import monnef.jaffas.food.client.CustomBlockRenderer;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.block.TileCompostCore;
@@ -30,13 +31,13 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileHighPlant.class, new TileHighPlantRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileFermenter.class, new TileFermenterRenderer());
 
-        MinecraftForgeClient.registerItemRenderer(JaffasTechnic.constructionBlock.blockID, new CustomBlockRenderer());
+        ClientUtils.registerItemRendererOfBlock(JaffasTechnic.constructionBlock, new CustomBlockRenderer());
 
         JaffasTechnic.lampRenderID = RenderingRegistry.getNextAvailableRenderId();
         LampBlockRenderer lampBlockRenderer = new LampBlockRenderer();
         RenderingRegistry.registerBlockHandler(lampBlockRenderer);
 
-        MinecraftForgeClient.registerItemRenderer(JaffasTechnic.lamp.blockID, lampBlockRenderer);
-        MinecraftForgeClient.registerItemRenderer(JaffasTechnic.lampDeco.blockID, lampBlockRenderer);
+        ClientUtils.registerItemRendererOfBlock(JaffasTechnic.lamp, lampBlockRenderer);
+        ClientUtils.registerItemRendererOfBlock(JaffasTechnic.lampDeco, lampBlockRenderer);
     }
 }

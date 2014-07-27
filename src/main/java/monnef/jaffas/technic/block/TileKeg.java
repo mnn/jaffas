@@ -9,6 +9,7 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -26,20 +27,20 @@ public class TileKeg extends TileEntity {
     private KegType type;
     private int liquidAmount;
 
-    private static HashMap<Integer, KegVesselEntry> vessel;
+    private static HashMap<Item, KegVesselEntry> vessel;
 
     static {
-        vessel = new HashMap<Integer, KegVesselEntry>();
+        vessel = new HashMap<Item, KegVesselEntry>();
 
-        addVessel(KegType.BEER, getItem(JaffaItem.beerMugEmpty).itemID, new ItemStack(getItem(JaffaItem.beerMugFull)));
+        addVessel(KegType.BEER, getItem(JaffaItem.beerMugEmpty), new ItemStack(getItem(JaffaItem.beerMugFull)));
     }
 
-    public static KegVesselEntry addVessel(KegType validFor, int itemID, ItemStack filledItem) {
+    public static KegVesselEntry addVessel(KegType validFor, Item item, ItemStack filledItem) {
         KegVesselEntry entry = new KegVesselEntry();
-        entry.itemID = itemID;
+        entry.item = item;
         entry.validFor = validFor;
         entry.filledVessel = filledItem;
-        vessel.put(itemID, entry);
+        vessel.put(item, entry);
         return entry;
     }
 
@@ -65,11 +66,11 @@ public class TileKeg extends TileEntity {
 
     public static boolean isValidVessel(ItemStack input) {
         if (input == null) return false;
-        return vessel.containsKey(input.itemID);
+        return vessel.containsKey(input);
     }
 
     public static KegVesselEntry getVessel(ItemStack input) {
-        return vessel.get(input.itemID);
+        return vessel.get(input);
     }
 
     public boolean onBlockActivated(EntityPlayer player) {
@@ -113,7 +114,7 @@ public class TileKeg extends TileEntity {
 
         if (MonnefCorePlugin.debugEnv) msg += " [" + liquidAmount + "]";
 
-        player.addChatMessage(msg);
+        PlayerHelper.addMessage(player, msg);
     }
 
     @Override
@@ -138,7 +139,7 @@ public class TileKeg extends TileEntity {
     private static class KegVesselEntry {
         public KegType validFor;
         public int capacity = 1;
-        public int itemID;
+        public Item item;
         public ItemStack filledVessel;
     }
 }

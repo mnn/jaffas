@@ -27,9 +27,19 @@ public class ContainerCompost extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlots(IInventory inv) {
+    public void constructSlotsFromInventory(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 21, 35));
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 136, 35));
+    }
+
+    @Override
+    public int getSlotsCount() {
+        return 2;
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 1;
     }
 
     @Override

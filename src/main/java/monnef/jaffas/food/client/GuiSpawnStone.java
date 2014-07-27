@@ -55,15 +55,15 @@ public class GuiSpawnStone extends GuiScreen {
         StringBuilder text = new StringBuilder("   Home Stone\n\nStone's cool-down: ");
         text.append(coolDownText);
         text.append("m\nYour active cool-down: ");
-        text.append(MathHelper.oneDecimalPlace().format(CoolDownRegistry.getRemainingCoolDownInSeconds(player.getEntityName(), CoolDownType.SPAWN_STONE) / 60f));
+        text.append(MathHelper.oneDecimalPlace().format(CoolDownRegistry.getRemainingCoolDownInSeconds(player.getUniqueID(), CoolDownType.SPAWN_STONE) / 60f));
         text.append("m");
 
         //fontRenderer.drawString(text.toString(), posX + 10, posY + 20, 4210752);
-        fontRenderer.drawSplitString(text.toString(), posX + 10, posY + 15, 150, 4210752);
+        fontRendererObj.drawSplitString(text.toString(), posX + 10, posY + 15, 150, 4210752);
 
-        buttonUse.enabled = !CoolDownRegistry.isCoolDownActive(player.getEntityName(), CoolDownType.SPAWN_STONE);
+        buttonUse.enabled = !CoolDownRegistry.isCoolDownActive(player.getUniqueID(), CoolDownType.SPAWN_STONE);
 
-        itemRenderer.renderItemIntoGUI(fontRenderer, this.mc.renderEngine, stack, posX + 90, posY + 10);
+        itemRenderer.renderItemIntoGUI(fontRendererObj, this.mc.renderEngine, stack, posX + 90, posY + 10);
 
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(GL11.GL_LIGHTING);
@@ -91,7 +91,7 @@ public class GuiSpawnStone extends GuiScreen {
 
     @Override
     protected void keyTyped(char par1, int par2) {
-        if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.keyCode) {
+        if (par2 == 1 || par2 == this.mc.gameSettings.keyBindInventory.getKeyCode()) {
             this.mc.thePlayer.closeScreen();
         }
     }

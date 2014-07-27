@@ -25,12 +25,12 @@ public class GuiBoard extends GuiContainerMonnefCore {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-        fontRenderer.drawString("Kitchen Board", 8, 6, 4210752);
-        fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString("Kitchen Board", 8, 6, 4210752);
+        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
 
         if (JaffasFood.debug) {
             String s = String.valueOf(board.getChopTimeScaled(board.chopTime));
-            fontRenderer.drawString(s, 100, 10, 4210752);
+            fontRendererObj.drawString(s, 100, 10, 4210752);
         }
     }
 

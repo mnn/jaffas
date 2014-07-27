@@ -1,6 +1,7 @@
 package monnef.jaffas.technic.item;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -29,18 +30,10 @@ public class ItemCompost extends ItemTechnic implements IFactoryFertilizer {
         return false;
     }
 
-    @Override
-    public int getFertilizerId() {
-        return itemID;
-    }
 
+    // MFR
     @Override
-    public int getFertilizerMeta() {
-        return 0;
-    }
-
-    @Override
-    public FertilizerType getFertilizerType() {
+    public FertilizerType getFertilizerType(ItemStack stack) {
         return FertilizerType.GrowPlant;
     }
 
@@ -48,4 +41,10 @@ public class ItemCompost extends ItemTechnic implements IFactoryFertilizer {
     public void consume(ItemStack fertilizer) {
         fertilizer.stackSize--;
     }
+
+    @Override
+    public Item getFertilizer() {
+        return this;
+    }
+
 }

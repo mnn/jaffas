@@ -2,8 +2,7 @@ package monnef.external;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
@@ -17,13 +16,13 @@ public class ThermalExpansionHelper {
     private static ItemStack sawdust = createTEStack("sawdust");
     private static ItemStack slag = createTEStack("slag");
     private static ItemStack slagRich = createTEStack("slagRich");
-    private static ItemStack blockSand = new ItemStack(Block.sand);
+    private static ItemStack blockSand = new ItemStack(Blocks.sand);
 
     public static void init() {
         sawdust = createTEStack("sawdust");
         slag = createTEStack("slag");
         slagRich = createTEStack("slagRich");
-        blockSand = new ItemStack(Block.sand);
+        blockSand = new ItemStack(Blocks.sand);
     }
 
     private static ItemStack createTEStack(String itemName) {
@@ -37,8 +36,8 @@ public class ThermalExpansionHelper {
     public static void addFurnaceRecipe(int energy, ItemStack input, ItemStack output) {
         NBTTagCompound toSend = new NBTTagCompound();
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("output", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("output", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         output.writeToNBT(toSend.getCompoundTag("output"));
@@ -103,9 +102,9 @@ public class ThermalExpansionHelper {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("primaryOutput", new NBTTagCompound());
-        if (secondaryOutput != null) toSend.setCompoundTag("secondaryOutput", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("primaryOutput", new NBTTagCompound());
+        if (secondaryOutput != null) toSend.setTag("secondaryOutput", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         primaryOutput.writeToNBT(toSend.getCompoundTag("primaryOutput"));
@@ -129,9 +128,9 @@ public class ThermalExpansionHelper {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("primaryOutput", new NBTTagCompound());
-        toSend.setCompoundTag("secondaryOutput", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("primaryOutput", new NBTTagCompound());
+        toSend.setTag("secondaryOutput", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         primaryOutput.writeToNBT(toSend.getCompoundTag("primaryOutput"));
@@ -157,10 +156,10 @@ public class ThermalExpansionHelper {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("primaryInput", new NBTTagCompound());
-        toSend.setCompoundTag("secondaryInput", new NBTTagCompound());
-        toSend.setCompoundTag("primaryOutput", new NBTTagCompound());
-        toSend.setCompoundTag("secondaryOutput", new NBTTagCompound());
+        toSend.setTag("primaryInput", new NBTTagCompound());
+        toSend.setTag("secondaryInput", new NBTTagCompound());
+        toSend.setTag("primaryOutput", new NBTTagCompound());
+        toSend.setTag("secondaryOutput", new NBTTagCompound());
 
         primaryInput.writeToNBT(toSend.getCompoundTag("primaryInput"));
         secondaryInput.writeToNBT(toSend.getCompoundTag("secondaryInput"));
@@ -195,8 +194,8 @@ public class ThermalExpansionHelper {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("output", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("output", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         output.writeToNBT(toSend.getCompoundTag("output"));
@@ -209,9 +208,9 @@ public class ThermalExpansionHelper {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("output", new NBTTagCompound());
-        toSend.setCompoundTag("fluid", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("output", new NBTTagCompound());
+        toSend.setTag("fluid", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         output.writeToNBT(toSend.getCompoundTag("output"));
@@ -226,9 +225,9 @@ public class ThermalExpansionHelper {
         NBTTagCompound toSend = new NBTTagCompound();
 
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("output", new NBTTagCompound());
-        toSend.setCompoundTag("fluid", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("output", new NBTTagCompound());
+        toSend.setTag("fluid", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         output.writeToNBT(toSend.getCompoundTag("output"));

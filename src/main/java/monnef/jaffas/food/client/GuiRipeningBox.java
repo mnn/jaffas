@@ -30,8 +30,8 @@ public class GuiRipeningBox extends GuiContainerMonnefCore {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-        fontRenderer.drawString("Ripening Box", 8, 6, 4210752);
-        fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString("Ripening Box", 8, 6, 4210752);
+        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
     }
 
     private void renderStatusBars() {
@@ -43,7 +43,7 @@ public class GuiRipeningBox extends GuiContainerMonnefCore {
                 int yPos = slot.yDisplayPosition + y;
                 if (MonnefCorePlugin.debugEnv) {
                     String status = String.format("%d", ripeningStatus);
-                    fontRenderer.drawString(status, xPos, yPos, 4210752);
+                    fontRendererObj.drawString(status, xPos, yPos, 4210752);
                     bindBackgroundTexture();
                     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
                 }

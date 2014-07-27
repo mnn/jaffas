@@ -49,7 +49,7 @@ public abstract class ItemTechnicMulti extends ItemTechnic {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItemsCustom(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItemsCustom(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
         for (int i = 0; i < getSubNames().length; i++) {
             par3List.add(new ItemStack(par1, 1, i));
         }
