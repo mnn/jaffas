@@ -8,6 +8,7 @@ package monnef.jaffas.trees.common;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.block.TileFruitLeaves;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -70,14 +71,12 @@ public class WorldGenFruitTrees extends WorldGenerator {
                 for (int xx = x - radius; xx <= x + radius && doGenerate; ++xx) {
                     for (int zz = z - radius; zz <= z + radius && doGenerate; ++zz) {
                         if (stemY >= 0 && stemY < 256) {
-                            int blockId = world.getBlockId(xx, stemY, zz);
+                            Block block = world.getBlock(xx, stemY, zz);
 
-                            Block block = Block.blocksList[blockId];
-
-                            if (blockId != 0 &&
+                            if (!block.isAir(world, xx, stemY, zz) &&
                                     !block.isLeaves(world, xx, stemY, zz) &&
-                                    blockId != Block.grass.blockID &&
-                                    blockId != Block.dirt.blockID &&
+                                    block != Blocks.grass &&
+                                    block != Blocks.dirt &&
                                     !block.isWood(world, xx, stemY, zz)) {
                                 doGenerate = false;
                             }
@@ -91,10 +90,12 @@ public class WorldGenFruitTrees extends WorldGenerator {
             if (!doGenerate) {
                 return false;
             } else {
-                int blockUnder = world.getBlockId(x, y - 1, z);
+                Block blockUnder = world.getBlock(x, y - 1, z);
 
-                if ((blockUnder == Block.grass.blockID || blockUnder == Block.dirt.blockID) && y < 256 - treeHeight - 1) {
-                    this.setBlock(world, x, y - 1, z, Block.dirt.blockID);
+                if ((blockUnder == Blocks.grass || blockUnder == Blocks.dirt) && y < 256 - treeHeight - 1) {
+                    // setBlockAndNotifyAdequately
+                    this.func_150515_a(world, x, y - 1, z, Blocks.dirt);
+
                     byte topHeight = 3;
                     byte var18 = 0;
                     int crownRadius;
@@ -109,7 +110,7 @@ public class WorldGenFruitTrees extends WorldGenerator {
                             for (int zz = z - crownRadius; zz <= z + crownRadius; ++zz) {
                                 int zzShift = zz - z;
 
-                                Block block = Block.blocksList[world.getBlockId(xx, yy, zz)];
+                                Block block = world.getBlock(xx, yy, zz);
 
                                 if ((Math.abs(xxShift) != crownRadius || Math.abs(zzShift) != crownRadius || random.nextInt(2) != 0 && currentTopLevel != 0) &&
                                         (block == null || block.canBeReplacedByLeaves(world, xx, yy, zz))) {
@@ -125,37 +126,35 @@ public class WorldGenFruitTrees extends WorldGenerator {
                                         chosenLeavesMeta = 0;
                                     }
 
-                                    this.setBlockAndMetadata(world, xx, yy, zz, JaffasTrees.leavesList.get(0).leavesID, 0);
+                                    this.setBlockAndNotifyAdequately(world, xx, yy, zz, JaffasTrees.leavesList.get(0).leavesBlock, 0);
                                     TileFruitLeaves te = new TileFruitLeaves(chosenLeavesID, chosenLeavesMeta);
-                                    world.setBlockTileEntity(xx, yy, zz, te);
+                                    world.setTileEntity(xx, yy, zz, te);
                                 }
                             }
                         }
                     }
 
                     for (int yy = 0; yy < treeHeight; ++yy) {
-                        int blockId = world.getBlockId(x, y + yy, z);
+                        Block block = world.getBlock(x, y + yy, z);
 
-                        Block block = Block.blocksList[blockId];
-
-                        if (blockId == 0 || block == null || block.isLeaves(world, x, y + yy, z)) {
-                            this.setBlockAndMetadata(world, x, y + yy, z, Block.wood.blockID, this.metaWood);
+                        if (block.isAir(world, x, y + yy, z) || block == null || block.isLeaves(world, x, y + yy, z)) {
+                            this.setBlockAndNotifyAdequately(world, x, y + yy, z, Blocks.log, this.metaWood);
 
                             if (this.vinesGrow && yy > 0) {
                                 if (random.nextInt(3) > 0 && world.isAirBlock(x - 1, y + yy, z)) {
-                                    this.setBlockAndMetadata(world, x - 1, y + yy, z, Block.vine.blockID, 8);
+                                    this.setBlockAndNotifyAdequately(world, x - 1, y + yy, z, Blocks.vine, 8);
                                 }
 
                                 if (random.nextInt(3) > 0 && world.isAirBlock(x + 1, y + yy, z)) {
-                                    this.setBlockAndMetadata(world, x + 1, y + yy, z, Block.vine.blockID, 2);
+                                    this.setBlockAndNotifyAdequately(world, x + 1, y + yy, z, Blocks.vine, 2);
                                 }
 
                                 if (random.nextInt(3) > 0 && world.isAirBlock(x, y + yy, z - 1)) {
-                                    this.setBlockAndMetadata(world, x, y + yy, z - 1, Block.vine.blockID, 1);
+                                    this.setBlockAndNotifyAdequately(world, x, y + yy, z - 1, Blocks.vine, 1);
                                 }
 
                                 if (random.nextInt(3) > 0 && world.isAirBlock(x, y + yy, z + 1)) {
-                                    this.setBlockAndMetadata(world, x, y + yy, z + 1, Block.vine.blockID, 4);
+                                    this.setBlockAndNotifyAdequately(world, x, y + yy, z + 1, Blocks.vine, 4);
                                 }
                             }
                         }
@@ -175,17 +174,17 @@ public class WorldGenFruitTrees extends WorldGenerator {
      * Grows vines downward from the given block for a given length. Args: World, x, starty, z, vine-length
      */
     private void growVines(World par1World, int par2, int par3, int par4, int par5) {
-        this.setBlockAndMetadata(par1World, par2, par3, par4, Block.vine.blockID, par5);
+        this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, Blocks.vine, par5);
         int var6 = 4;
 
         while (true) {
             --par3;
 
-            if (par1World.getBlockId(par2, par3, par4) != 0 || var6 <= 0) {
+            if (!par1World.isAirBlock(par2, par3, par4) || var6 <= 0) {
                 return;
             }
 
-            this.setBlockAndMetadata(par1World, par2, par3, par4, Block.vine.blockID, par5);
+            this.setBlockAndNotifyAdequately(par1World, par2, par3, par4, Blocks.vine, par5);
             --var6;
         }
     }

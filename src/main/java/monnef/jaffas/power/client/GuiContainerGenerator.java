@@ -39,7 +39,7 @@ public class GuiContainerGenerator extends GuiContainerMachine {
 
         if (JaffasFood.debug) {
             String s = String.valueOf(generator.burnTime);
-            fontRenderer.drawString(s, 100, 10, 4210752);
+            fontRendererObj.drawString(s, 100, 10, 4210752);
         }
     }
 

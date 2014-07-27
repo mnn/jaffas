@@ -5,11 +5,13 @@
 
 package monnef.jaffas.technic.entity;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRail;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -20,6 +22,7 @@ import static monnef.core.utils.MathHelper.degToRad;
 
 public class EntityLocomotive extends EntityMinecart {
     public static final String REVERSE_TAG_NAME = "isInReverse";
+    public static final int FIELD_NUMBER_ISINREVERSE = 0;
 
     public EntityLocomotive(World par1World, double par2, double par4, double par6) {
         super(par1World, par2, par4, par6);
@@ -38,7 +41,7 @@ public class EntityLocomotive extends EntityMinecart {
         tag.setDouble("PushX", this.pushX);
         tag.setDouble("PushZ", this.pushZ);
         tag.setShort("Fuel", (short) this.fuel);
-        tag.setBoolean(REVERSE_TAG_NAME, isInReverse);
+        tag.setBoolean(REVERSE_TAG_NAME, getIsInReverse());
     }
 
     @Override
@@ -52,7 +55,15 @@ public class EntityLocomotive extends EntityMinecart {
         this.pushX = tag.getDouble("PushX");
         this.pushZ = tag.getDouble("PushZ");
         this.fuel = tag.getShort("Fuel");
-        isInReverse = tag.getBoolean(REVERSE_TAG_NAME);
+        setIsInReverse(tag.getBoolean(REVERSE_TAG_NAME));
+    }
+
+    protected void setIsInReverse(Boolean value) {
+        ReflectionHelper.setPrivateValue(EntityMinecart.class, this, value, FIELD_NUMBER_ISINREVERSE);
+    }
+
+    public boolean getIsInReverse() {
+        return ReflectionHelper.getPrivateValue(EntityMinecart.class, this, FIELD_NUMBER_ISINREVERSE);
     }
 
     @Override
@@ -110,7 +121,7 @@ public class EntityLocomotive extends EntityMinecart {
         int y = MathHelper.floor_double(this.posY);
         int z = MathHelper.floor_double(this.posZ);
 
-        if (BlockRail.isRailBlockAt(this.worldObj, x, y - 1, z)) {
+        if (BlockRail.func_150049_b_(this.worldObj, x, y - 1, z)) { // isRailBlockAt
             return true;
             //--y;
         }
@@ -134,9 +145,10 @@ public class EntityLocomotive extends EntityMinecart {
         this.entityDropItem(new ItemStack(JaffasTechnic.itemLocomotive, 1), 0.0F);
     }
 
+    // updateOnTrack
     @Override
-    protected void updateOnTrack(int par1, int par2, int par3, double par4, double par6, int par8, int par9) {
-        super.updateOnTrack(par1, par2, par3, par4, par6, par8, par9);
+    protected void func_145821_a(int par1, int par2, int par3, double par4, double par6, Block par8, int par9) {
+        super.func_145821_a(par1, par2, par3, par4, par6, par8, par9);
         double d2 = this.pushX * this.pushX + this.pushZ * this.pushZ;
 
         if (d2 > 1.0E-4D && this.motionX * this.motionX + this.motionZ * this.motionZ > 0.001D) {
@@ -189,9 +201,10 @@ public class EntityLocomotive extends EntityMinecart {
         }
     }
 
+    // getDefaultDisplayTile
     @Override
-    public Block getDefaultDisplayTile() {
-        return Block.furnaceBurning;
+    public Block func_145820_n() {
+        return Blocks.lit_furnace;
     }
 
     @Override

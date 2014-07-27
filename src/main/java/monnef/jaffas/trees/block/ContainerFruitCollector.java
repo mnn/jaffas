@@ -26,7 +26,7 @@ public class ContainerFruitCollector extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlots(IInventory inv) {
+    public void constructSlotsFromInventory(IInventory inv) {
         int row, col;
         int colsPerRow = 2;
         for (int i = 0; i < getSlotsCount(); i++) {
@@ -34,6 +34,16 @@ public class ContainerFruitCollector extends ContainerMonnefCore {
             row = i / colsPerRow;
             addSlotToContainer(new Slot(inv, i, 45 + col * 18, 22 + row * 18));
         }
+    }
+
+    @Override
+    public int getSlotsCount() {
+        return 4;
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 4;
     }
 
     @Override

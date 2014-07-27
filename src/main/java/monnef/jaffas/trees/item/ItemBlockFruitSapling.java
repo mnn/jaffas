@@ -10,9 +10,9 @@ import monnef.jaffas.trees.block.BlockFruitSapling;
 import net.minecraft.block.Block;
 
 public class ItemBlockFruitSapling extends ItemBlockTrees {
-    public ItemBlockFruitSapling(int par1) {
-        super(par1);
-        BlockFruitSapling myBlock = ((BlockFruitSapling) Block.blocksList[this.getBlockID()]);
+    public ItemBlockFruitSapling(Block block) {
+        super(block);
+        BlockFruitSapling myBlock = (BlockFruitSapling) block;
         subNames = JaffasTrees.constructSubNames(JaffasTrees.saplingNames, myBlock.serialNumber, myBlock.getSubCount());
     }
 }

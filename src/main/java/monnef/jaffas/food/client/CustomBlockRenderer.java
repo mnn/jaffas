@@ -29,7 +29,7 @@ public class CustomBlockRenderer implements ISimpleBlockRenderingHandler, IItemR
     }
 
     @Override
-    public boolean shouldRender3DInInventory() {
+    public boolean shouldRender3DInInventory(int modelId) {
         return true;
     }
 
@@ -54,7 +54,7 @@ public class CustomBlockRenderer implements ISimpleBlockRenderingHandler, IItemR
             RenderBlocks render = (RenderBlocks) data[0];
             EntityLivingBase entity = (EntityLivingBase) data[1];
             GL11.glTranslatef(0.5f, 0.5f, 0.5f);
-            CustomBlockRenderingHelper.doRendering(render, Block.blocksList[item.itemID], 0, 0, 0, true, item.getItemDamage(), 1);
+            CustomBlockRenderingHelper.doRendering(render, Block.getBlockFromItem(item.getItem()), 0, 0, 0, true, item.getItemDamage(), 1);
         }
     }
 
