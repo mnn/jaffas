@@ -35,7 +35,7 @@ public class PowerLabels {
 
     public static void renderLabel(TileMachine tile, double x, double y, double z, boolean debug) {
         // skip label rendering when rendering in inventory/hand
-        if (tile.worldObj == null) return;
+        if (tile.getWorldObj() == null) return;
 
         instance.render(tile, x, y, z, debug);
     }

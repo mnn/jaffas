@@ -28,8 +28,8 @@ public class ItemJaffaPack extends ItemPack {
 
         packs = new LinkedHashMap<JaffaItem, ItemStack>();
         for (JaffaItem ji : JaffasHelper.getJaffas()) {
-            ItemStack stack = new ItemStack(JaffasFood.getItem(JaffaItem.jaffasPack).itemID, 1, 0);
-            setContent(stack, JaffasFood.getItem(ji).itemID, Recipes.JAFFAS_PACK_CONTENT_SIZE, 0);
+            ItemStack stack = new ItemStack(JaffasFood.getItem(JaffaItem.jaffasPack), 1, 0);
+            setContent(stack, JaffasFood.getItem(ji), Recipes.JAFFAS_PACK_CONTENT_SIZE, 0);
             packs.put(ji, stack);
         }
     }
@@ -44,10 +44,10 @@ public class ItemJaffaPack extends ItemPack {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
-        super.addInformation(stack, player, result, par4);
+    public void addInformationCustom(ItemStack stack, EntityPlayer player, List<String> result, boolean par4) {
+        super.addInformationCustom(stack, player, result, par4);
         if (properNBT(stack)) {
-            int contentId = getContent(stack).itemID;
+            int contentId = Item.getIdFromItem(getContent(stack).getItem());
             JaffaItem jaffaItem = JaffasFood.instance.items.getJaffaItem(contentId);
             String title = JaffasHelper.getTitle(jaffaItem);
             result.add("§f  " + title + "§r");
@@ -55,11 +55,11 @@ public class ItemJaffaPack extends ItemPack {
     }
 
     @Override
-    public void getSubItems(int id, CreativeTabs tab, List list) {
+    public void getSubItems(Item currentItem, CreativeTabs tab, List list) {
         for (JaffaItem jaffaItem : JaffasHelper.getJaffas()) {
-            Item item = JaffasFood.getItem(jaffaItem);
-            ItemStack stack = new ItemStack(id, 1, 0);
-            setContent(stack, item.itemID, Recipes.JAFFAS_PACK_CONTENT_SIZE, 0);
+            Item packItem = JaffasFood.getItem(jaffaItem);
+            ItemStack stack = new ItemStack(currentItem, 1, 0);
+            setContent(stack, packItem, Recipes.JAFFAS_PACK_CONTENT_SIZE, 0);
             list.add(stack);
         }
     }

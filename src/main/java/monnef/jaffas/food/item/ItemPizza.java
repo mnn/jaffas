@@ -40,7 +40,7 @@ public class ItemPizza extends ItemJaffaBase {
 
             if (player.canPlayerEdit(x, y, z, side, item) && player.canPlayerEdit(x, y + 1, z, side, item)) {
                 if (world.isAirBlock(x, y, z) && world.isAirBlock(x, y + 1, z)) {
-                    setBlock(world, x, y, z, blockToPlace.blockID, meta);
+                    setBlock(world, x, y, z, blockToPlace, meta);
                     --item.stackSize;
 
                     PlayerHelper.giveItemToPlayer(player, new ItemStack(getItem(JaffaItem.cakeTin)));

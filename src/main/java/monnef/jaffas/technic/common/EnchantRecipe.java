@@ -58,10 +58,10 @@ public class EnchantRecipe extends ShapelessRecipes {
             for (int j = 0; j < 3; ++j) {
                 ItemStack itemstack = inv.getStackInRowAndColumn(j, i);
                 if (itemstack != null) {
-                    if (itemstack.itemID == enchantBy.itemID) {
+                    if (itemstack.getItem() == enchantBy.getItem()) {
                         enchantedBy = itemstack;
                     }
-                    if (itemstack.itemID == toEnchantItem.itemID) {
+                    if (itemstack.getItem() == toEnchantItem.getItem()) {
                         inputItem = itemstack;
                     }
                 }
@@ -86,7 +86,7 @@ public class EnchantRecipe extends ShapelessRecipes {
                 String name = innerTag.getString(NAME_TAG);
                 NBTTagCompound newNameTag = new NBTTagCompound();
                 newNameTag.setString(NAME_TAG, name);
-                outputTag.setCompoundTag(DISPLAY_TAG, newNameTag);
+                outputTag.setTag(DISPLAY_TAG, newNameTag);
             }
         }
         return output;

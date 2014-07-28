@@ -250,9 +250,9 @@ public class EntityJaffaPainting extends Entity {
                     Material var8;
 
                     if (this.direction != 0 && this.direction != 2) {
-                        var8 = this.worldObj.getBlockMaterial(this.xPosition, var4 + var7, var5 + var6);
+                        var8 = this.worldObj.getBlock(this.xPosition, var4 + var7, var5 + var6).getMaterial();
                     } else {
-                        var8 = this.worldObj.getBlockMaterial(var3 + var6, var4 + var7, this.zPosition);
+                        var8 = this.worldObj.getBlock(var3 + var6, var4 + var7, this.zPosition).getMaterial();
                     }
 
                     if (!var8.isSolid()) {

@@ -31,7 +31,7 @@ public class TileGrinder extends TileEntityBasicProcessingMachine implements IKi
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.power.grinder";
     }
 

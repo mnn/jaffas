@@ -31,7 +31,7 @@ public class TileCandyRenderer extends TileSpecialJaffaRenderer {
 
     public void renderModelAt(TileCandy tile, double par2, double par4, double par6, float par8) {
 
-        int meta = tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+        int meta = tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
         if (BlockCandy.isBlockTopPart(meta)) return;
 
         float angle;

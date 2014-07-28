@@ -67,7 +67,7 @@ public class TileEntityFungiBoxRenderer extends TileSpecialJaffaRenderer {
             }
         }
 
-        if (tile.worldObj != null) {
+        if (tile.getWorldObj() != null) {
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         }
         GL11.glPopMatrix();

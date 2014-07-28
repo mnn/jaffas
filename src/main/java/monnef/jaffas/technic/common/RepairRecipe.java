@@ -107,7 +107,7 @@ public class RepairRecipe extends ShapelessRecipes {
             for (int j = 0; j < 3; ++j) {
                 ItemStack itemstack = inv.getStackInRowAndColumn(j, i);
                 if (itemstack != null) {
-                    if (itemstack.itemID == itemToRepair.itemID) {
+                    if (itemstack.getItem() == itemToRepair.getItem()) {
                         tool = itemstack;
                         break;
                     }

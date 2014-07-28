@@ -43,7 +43,7 @@ public class BoardRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadCraftingRecipes(ItemStack result) {
         for (BoardRecipe recipe : RecipesBoard.recipes.values()) {
-            if (recipe.getOutput().itemID == result.itemID) {
+            if (recipe.getOutput().getItem() == result.getItem()) {
                 arecipes.add(new CachedBoardRecipe(recipe));
             }
         }
@@ -52,7 +52,7 @@ public class BoardRecipeHandler extends TemplateRecipeHandler {
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
         for (BoardRecipe recipe : RecipesBoard.recipes.values()) {
-            if (recipe.getInput().itemID == ingredient.itemID) {
+            if (recipe.getInput().getItem() == ingredient.getItem()) {
                 arecipes.add(new CachedBoardRecipe(recipe));
             }
         }

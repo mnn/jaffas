@@ -34,7 +34,7 @@ public class TileRipeningBox extends TileWithInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "container.ripeningBox";
     }
 

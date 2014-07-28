@@ -5,12 +5,13 @@
 
 package monnef.jaffas.technic.block.redstone;
 
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 
 public class ItemBlockRedstone extends ItemBlock {
-    public ItemBlockRedstone(int id) {
-        super(id);
+    public ItemBlockRedstone(Block b) {
+        super(b);
     }
 
     @Override

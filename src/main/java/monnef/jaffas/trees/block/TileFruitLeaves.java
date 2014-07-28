@@ -15,7 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -51,7 +51,7 @@ public class TileFruitLeaves extends TileEntity {
     private static Random rand = new Random();
     private boolean checked = false;
     private JaffasTrees.FruitType fruit;
-    private int leavesID;
+    private Block leavesBlock;
     private int leavesMeta;
 
     private static final HashSet<Block> fruitFallThroughBlocks = new HashSet<Block>();
@@ -70,34 +70,22 @@ public class TileFruitLeaves extends TileEntity {
         timer = Math.abs(rand.nextInt()) % timerMax;
     }
 
-    public TileFruitLeaves(int leavesID, int leavesMeta) {
+    public TileFruitLeaves(Block leavesBlock, int leavesMeta) {
         this();
-        this.leavesID = leavesID;
+        this.leavesBlock = leavesBlock;
         this.leavesMeta = leavesMeta;
     }
 
     public TileFruitLeaves(TileFruitLeaves tileFruitLeaves) {
-        this(tileFruitLeaves.leavesID, tileFruitLeaves.leavesMeta);
+        this(tileFruitLeaves.leavesBlock, tileFruitLeaves.leavesMeta);
         this.timer = 0;
-    }
-
-    /**
-     * Gets the block type at the location of this entity (client-only).
-     */
-    @Override
-    public Block getBlockType() {
-        if (this.blockType == null) {
-            this.blockType = Block.blocksList[this.worldObj.getBlockId(this.xCoord, this.yCoord, this.zCoord)];
-        }
-
-        return this.blockType;
     }
 
     @Override
     public void updateEntity() {
         if (!checked) {
             try {
-                fruit = getActualLeavesType(Block.blocksList[this.leavesID], this.leavesMeta);
+                fruit = getActualLeavesType(this.leavesBlock, this.leavesMeta);
             } catch (RuntimeException ex) {
                 ex.printStackTrace();
                 this.invalidate();
@@ -121,8 +109,8 @@ public class TileFruitLeaves extends TileEntity {
             timer = 0;
             if (rand.nextDouble() < turnChance * turnChanceMultiplier) {
                 if (this.fruit != JaffasTrees.FruitType.Vanilla || rand.nextInt(3) == 0) {
-                    if (this.getBlockType().blockID == JaffasTrees.leavesList.get(0).leavesID || this.getBlockType().blockID == this.leavesID) {
-                        ChangeBlockAndRespawnMe(this.leavesID, this.leavesMeta);
+                    if (this.getBlockType() == JaffasTrees.leavesList.get(0).leavesBlock || this.getBlockType() == this.leavesBlock) {
+                        ChangeBlockAndRespawnMe(this.leavesBlock, this.leavesMeta);
                     } else {
                         // no leaves block on my position => something went wrong, kill myself
                         this.invalidate();
@@ -136,11 +124,11 @@ public class TileFruitLeaves extends TileEntity {
 
     }
 
-    private void ChangeBlockAndRespawnMe(int newBlock, int newMeta) {
+    private void ChangeBlockAndRespawnMe(Block newBlock, int newMeta) {
         BlockHelper.setBlock(worldObj, this.xCoord, this.yCoord, this.zCoord, newBlock, BlockFruitLeaves.getChangedTypeInMeta(newMeta, this.getBlockMetadata()));
         this.invalidate();
         TileFruitLeaves te = new TileFruitLeaves(this);
-        worldObj.setBlockTileEntity(this.xCoord, this.yCoord, this.zCoord, te);
+        worldObj.setTileEntity(this.xCoord, this.yCoord, this.zCoord, te);
     }
 
     /**
@@ -153,7 +141,7 @@ public class TileFruitLeaves extends TileEntity {
         par1NBTTagCompound.setInteger("age", this.age);
         par1NBTTagCompound.setInteger("myMaxAge", this.myMaxAge);
         par1NBTTagCompound.setInteger("timer", this.timer);
-        par1NBTTagCompound.setInteger("leavesID", this.leavesID);
+        par1NBTTagCompound.setInteger("leavesID", Block.getIdFromBlock(this.leavesBlock));
         par1NBTTagCompound.setInteger("leavesMeta", this.leavesMeta);
     }
 
@@ -167,7 +155,7 @@ public class TileFruitLeaves extends TileEntity {
         this.age = par1NBTTagCompound.getInteger("age");
         this.timer = par1NBTTagCompound.getInteger("timer");
         this.myMaxAge = par1NBTTagCompound.getInteger("myMaxAge");
-        this.leavesID = par1NBTTagCompound.getInteger("leavesID");
+        this.leavesBlock = Block.getBlockById(par1NBTTagCompound.getInteger("leavesID"));
         this.leavesMeta = par1NBTTagCompound.getInteger("leavesMeta");
     }
 
@@ -176,7 +164,7 @@ public class TileFruitLeaves extends TileEntity {
     }
 
     public boolean generateFruitAndDecay(double chanceForSecondFruit, EntityPlayer player) {
-        if (this.getBlockType().blockID != this.leavesID || BlockFruitLeaves.getLeavesType(this.getBlockMetadata()) != this.leavesMeta) {
+        if (this.getBlockType() != this.leavesBlock || BlockFruitLeaves.getLeavesType(this.getBlockMetadata()) != this.leavesMeta) {
             if (JaffasTrees.debug) Log.printInfo("not fruit block, no fruit generated");
             return false;
         }
@@ -188,7 +176,7 @@ public class TileFruitLeaves extends TileEntity {
         for (int i = 0; i < fruits; i++)
             this.generateFruit(this.worldObj, this.xCoord, this.yCoord, this.zCoord, rand, this.leavesMeta, player);
 
-        ChangeBlockAndRespawnMe(JaffasTrees.leavesList.get(0).leavesID, 0);
+        ChangeBlockAndRespawnMe(JaffasTrees.leavesList.get(0).leavesBlock, 0);
 
         return true;
     }
@@ -207,25 +195,25 @@ public class TileFruitLeaves extends TileEntity {
                 newZ = z;
 
                 // looking for a way through leaves
-                int currentBlockID;
+                Block currentBlock;
                 do {
                     tries++;
                     newY--;
-                    currentBlockID = world.getBlockId(newX, newY, newZ);
+                    currentBlock = world.getBlock(newX, newY, newZ);
 
-                    if (currentBlockID == 0) {
+                    if (world.isAirBlock(newX, newY, newZ)) {
                         found = true;
                     } else if (passNum == 1) {
                         // on a second pass we try harder
                         for (int i = 0; i < fourNeighbourTable.length && !found; i++) {
-                            if (world.getBlockId(newX + fourNeighbourTable[i][0], newY, newZ + fourNeighbourTable[i][1]) == 0) {
+                            if (world.isAirBlock(newX + fourNeighbourTable[i][0], newY, newZ + fourNeighbourTable[i][1])) {
                                 newX += fourNeighbourTable[i][0];
                                 newZ += fourNeighbourTable[i][1];
                                 found = true;
                             }
                         }
                     }
-                } while (tries <= 5 && !found && isThisBlockTransparentForFruit(currentBlockID));
+                } while (tries <= 5 && !found && isThisBlockTransparentForFruit(currentBlock));
             }
         } else {
             newX = (int) Math.round(player.posX);
@@ -246,13 +234,13 @@ public class TileFruitLeaves extends TileEntity {
                     world.spawnEntityInWorld(ent);
                 } else {
                     if (debug) {
-                        Log.printWarning("got null in stack: m~" + metadata + " b~" + this.getBlockType().blockID);
+                        Log.printWarning("got null in stack: m~" + metadata + " b~" + this.getBlockType().getUnlocalizedName());
                         debugPrintPos();
                     }
                 }
             } else {
                 if (debug) {
-                    Log.printWarning("got null in fruit: m~" + metadata + " b~" + this.getBlockType().blockID);
+                    Log.printWarning("got null in fruit: m~" + metadata + " b~" + this.getBlockType().getUnlocalizedName());
                     debugPrintPos();
                 }
             }
@@ -266,11 +254,11 @@ public class TileFruitLeaves extends TileEntity {
 
         switch (fruit) {
             case Apple:
-                res.setStack(new ItemStack(Item.appleRed));
+                res.setStack(new ItemStack(Items.apple));
                 break;
 
             case Cocoa:
-                res.setStack(new ItemStack(Item.dyePowder, 1, 3));
+                res.setStack(new ItemStack(Items.dye, 1, 3));
                 break;
 
             case Vanilla:
@@ -300,7 +288,7 @@ public class TileFruitLeaves extends TileEntity {
             default:
                 if (debug) {
                     res.setMessage("unknown type of tree");
-                    res.setStack(new ItemStack(Item.stick));
+                    res.setStack(new ItemStack(Items.stick));
                 } else
                     res.exception = new RuntimeException("unknown type of tree, don't have information about fruits: " + fruit);
         }

@@ -27,7 +27,7 @@ public class GuiContainerBasicProcessingMachine extends GuiContainerMachine {
         super.drawGuiContainerForegroundLayer(param1, param2);
 
         if (MonnefCorePlugin.debugEnv) {
-            fontRenderer.drawString(bpMachine.processTime + " / " + bpMachine.processItemTime, 8, 16, 4210752);
+            fontRendererObj.drawString(bpMachine.processTime + " / " + bpMachine.processItemTime, 8, 16, 4210752);
         }
     }
 

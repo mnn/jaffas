@@ -16,19 +16,19 @@ import net.minecraft.world.World;
 public class MushroomCropProvider implements IFarmable {
     @Override
     public boolean isSaplingAt(World world, int x, int y, int z) {
-        Block b = Block.blocksList[world.getBlockId(x, y, z)];
+        Block b = world.getBlock(x, y, z);
         if (b == null) return false;
         if (!(b instanceof BlockFungiBox)) return false;
-        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getTileEntity(x, y, z);
         return tile.mushroomPlanted() && !tile.canBeHarvested();
     }
 
     @Override
     public ICrop getCropAt(World world, int x, int y, int z) {
-        Block b = Block.blocksList[world.getBlockId(x, y, z)];
+        Block b = world.getBlock(x, y, z);
         if (b == null) return null;
         if (!(b instanceof BlockFungiBox)) return null;
-        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getTileEntity(x, y, z);
         if (!tile.mushroomPlanted() || !tile.canBeHarvested()) return null;
         return tile;
     }
@@ -46,10 +46,10 @@ public class MushroomCropProvider implements IFarmable {
 
     @Override
     public boolean plantSaplingAt(ItemStack germling, World world, int x, int y, int z) {
-        Block b = Block.blocksList[world.getBlockId(x, y, z)];
+        Block b = world.getBlock(x, y, z);
         if (b == null) return false;
         if (!(b instanceof BlockFungiBox)) return false;
-        TileFungiBox tile = (TileFungiBox) world.getBlockTileEntity(x, y, z);
+        TileFungiBox tile = (TileFungiBox) world.getTileEntity(x, y, z);
         if (tile.tryPlant(germling)) {
             return true;
         } else {

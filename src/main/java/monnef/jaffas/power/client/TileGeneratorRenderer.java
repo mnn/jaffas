@@ -33,7 +33,7 @@ public class TileGeneratorRenderer extends TileSpecialJaffaRenderer {
         int rotation = tile.getRotation().ordinal();
 
         // fix for inventory rendering
-        if (tile.worldObj == null) rotation = 0;
+        if (tile.getWorldObj() == null) rotation = 0;
 
         float angle;
         switch (rotation) {
@@ -69,7 +69,7 @@ public class TileGeneratorRenderer extends TileSpecialJaffaRenderer {
 
         generator.render(0.0625F, burning);
 
-        if (tile.worldObj != null) {
+        if (tile.getWorldObj() != null) {
             GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         }
         GL11.glPopMatrix();

@@ -56,7 +56,7 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
     }
 
     @Override
-    public boolean shouldRender3DInInventory() {
+    public boolean shouldRender3DInInventory(int modelId) {
         return true;
     }
 
@@ -88,7 +88,7 @@ public class LampBlockRenderer implements ISimpleBlockRenderingHandler, IItemRen
     }
 
     private BlockLamp getBlock(ItemStack stack) {
-        return (BlockLamp) Block.blocksList[stack.itemID];
+        return (BlockLamp) Block.getBlockFromItem(stack.getItem());
     }
 
     private static boolean isMyType(ItemRenderType type) {

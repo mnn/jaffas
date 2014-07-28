@@ -28,7 +28,7 @@ public class TileSink extends TileEntity {
     public void updateEntity() {
         playQueuedSound();
 
-        if (getBlockType().blockID != ContentHolder.blockSink.blockID) {
+        if (getBlockType() != ContentHolder.blockSink) {
             if (JaffasFood.debug) {
                 Log.printInfo("sink block not detected, ending - " + xCoord + "x" + yCoord + "x" + zCoord);
             }

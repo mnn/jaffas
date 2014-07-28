@@ -27,6 +27,16 @@ public class ContainerRipeningBox extends ContainerMonnefCore {
     }
 
     @Override
+    public int getSlotsCount() {
+        return RIPENING_SLOTS + 1;
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 1;
+    }
+
+    @Override
     public void addCraftingToCrafters(ICrafting par1ICrafting) {
         super.addCraftingToCrafters(par1ICrafting);
         for (int i = 0; i < RIPENING_SLOTS; i++) {
@@ -61,7 +71,7 @@ public class ContainerRipeningBox extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlots(IInventory inv) {
+    public void constructSlotsFromInventory(IInventory inv) {
         for (int i = 0; i < RIPENING_SLOTS; i++) {
             addSlotToContainer(new Slot(inv, i, 26 + (i % 4) * 20, 26 + (i / 4) * 20));
         }

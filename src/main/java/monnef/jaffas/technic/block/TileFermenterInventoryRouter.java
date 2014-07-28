@@ -16,7 +16,7 @@ public class TileFermenterInventoryRouter extends TileEntity implements IInvento
 
     public TileFermenter getMaster() {
         if (master == null) {
-            master = (TileFermenter) worldObj.getBlockTileEntity(xCoord, yCoord - 1, zCoord);
+            master = (TileFermenter) worldObj.getTileEntity(xCoord, yCoord - 1, zCoord);
         }
 
         return master;
@@ -58,13 +58,13 @@ public class TileFermenterInventoryRouter extends TileEntity implements IInvento
     }
 
     @Override
-    public void openChest() {
-        getMaster().openChest();
+    public void openInventory() {
+        getMaster().openInventory();
     }
 
     @Override
-    public void closeChest() {
-        getMaster().closeChest();
+    public void closeInventory() {
+        getMaster().closeInventory();
     }
 
     @Override
@@ -73,13 +73,13 @@ public class TileFermenterInventoryRouter extends TileEntity implements IInvento
     }
 
     @Override
-    public String getInvName() {
-        return getMaster().getInvName();
+    public String getInventoryName() {
+        return getMaster().getInventoryName();
     }
 
     @Override
-    public boolean isInvNameLocalized() {
-        return getMaster().isInvNameLocalized();
+    public boolean hasCustomInventoryName() {
+        return getMaster().hasCustomInventoryName();
     }
 
     @Override

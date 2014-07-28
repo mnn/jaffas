@@ -26,7 +26,7 @@ public class RenderDuck extends RenderLiving {
     }
 
     public void renderDuck(EntityDuck duck, double par2, double par4, double par6, float par8, float par9) {
-        super.doRenderLiving(duck, par2, par4, par6, par8, par9);
+        super.func_110827_b(duck, par2, par4, par6, par8, par9); // doRenderLiving
     }
 
     protected float getWingRotation(EntityDuck duck, float par2) {
@@ -44,7 +44,7 @@ public class RenderDuck extends RenderLiving {
     }
 
     @Override
-    public void doRenderLiving(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9) {
+    public void func_110827_b(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9) {
         this.renderDuck((EntityDuck) par1EntityLiving, par2, par4, par6, par8, par9);
     }
 

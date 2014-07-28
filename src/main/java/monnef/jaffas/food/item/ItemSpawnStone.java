@@ -6,6 +6,7 @@
 package monnef.jaffas.food.item;
 
 import monnef.core.utils.MathHelper;
+import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.client.Sounds;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.CoolDownRegistry;
@@ -31,7 +32,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
     }
 
     public ItemSpawnStone(JaffaItemInfo info, int coolDown) {
-        super(info.getId());
+        super(info.getIconIndex());
         this.coolDown = coolDown;
         setMaxStackSize(1);
     }
@@ -46,13 +47,13 @@ public class ItemSpawnStone extends ItemJaffaBase {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List result, boolean par4) {
-        super.addInformation(stack, player, result, par4);
+    public void addInformationCustom(ItemStack stack, EntityPlayer player, List result, boolean par4) {
+        super.addInformationCustom(stack, player, result, par4);
         result.add(getCoolDownText(player));
     }
 
-    public static String getCoolDownText(EntityPlayer par2EntityPlayer) {
-        int cd = CoolDownRegistry.getRemainingCoolDownInSeconds(par2EntityPlayer.getEntityName(), SPAWN_STONE);
+    public static String getCoolDownText(EntityPlayer player) {
+        int cd = CoolDownRegistry.getRemainingCoolDownInSeconds(player.getUniqueID(), SPAWN_STONE);
         StringBuilder info = new StringBuilder();
 
         if (cd == 0) {
@@ -74,7 +75,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
             if (ConfigurationManager.spawnStoneMultidimensional) {
                 MinecraftServer.getServer().getConfigurationManager().transferPlayerToDimension(player, 0);
             } else {
-                player.addChatMessage("Home stone works only in overworld.");
+                PlayerHelper.addMessage(player, "Home stone works only in overworld.");
                 return;
             }
         }
@@ -82,13 +83,13 @@ public class ItemSpawnStone extends ItemJaffaBase {
         ChunkCoordinates bed = player.getBedLocation(0);
         boolean success;
         if (bed == null) {
-            player.addChatMessage("You have no home.");
+            PlayerHelper.addMessage(player, "You have no home.");
             success = false;
         } else {
             if (checkRoomForPlayer(player.worldObj, bed)) {
                 success = true;
             } else {
-                player.addChatMessage("Cannot find free space.");
+                PlayerHelper.addMessage(player, "Cannot find free space.");
                 success = false;
             }
         }
@@ -96,7 +97,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
         if (success) {
             playWhooshEffect(player, world);
 
-            Log.printInfo(player.getEntityName() + " used home stone, porting to: " + bed.posX + ", " + bed.posY + ", " + bed.posZ);
+            Log.printInfo(player.getDisplayName() + " (" + player.getUniqueID() + ") used home stone, porting to: " + bed.posX + ", " + bed.posY + ", " + bed.posZ);
 
             ((WorldServer) player.worldObj).theChunkProviderServer.loadChunk((int) player.posX >> 4, (int) player.posZ >> 4);
             player.playerNetServerHandler.setPlayerLocation(bed.posX + 0.5f, bed.posY + 1.1f, bed.posZ + 0.5f, player.rotationYaw, player.rotationPitch);
@@ -105,7 +106,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
             player.motionY = 0.2;
 
             playWhooshEffect(player, world);
-            CoolDownRegistry.setCoolDown(player.getEntityName(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
+            CoolDownRegistry.setCoolDown(player.getUniqueID(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
         }
 
         SpawnStoneServerPacketSender.sendSyncPacket(player, false);
@@ -116,6 +117,6 @@ public class ItemSpawnStone extends ItemJaffaBase {
     }
 
     private boolean checkRoomForPlayer(World world, ChunkCoordinates spawn) {
-        return world.getBlockId(spawn.posX, spawn.posY + 1, spawn.posZ) == 0 && world.getBlockId(spawn.posX, spawn.posY + 2, spawn.posZ) == 0;
+        return world.isAirBlock(spawn.posX, spawn.posY + 1, spawn.posZ) && world.isAirBlock(spawn.posX, spawn.posY + 2, spawn.posZ);
     }
 }

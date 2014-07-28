@@ -27,7 +27,7 @@ public class SwitchgrassRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean shouldRender3DInInventory() {
+    public boolean shouldRender3DInInventory(int modelId) {
         return false;
     }
 
@@ -60,7 +60,7 @@ public class SwitchgrassRenderer implements ISimpleBlockRenderingHandler {
         double newY = (double) y;
         double newZ = (double) z;
 
-        if (block.blockID == ContentHolder.blockSwitchgrassID) {
+        if (block == ContentHolder.blockSwitchgrass) {
             long var17 = (long) (x * 3129871) ^ (long) z * 116129781L /*^ (long) y*/;
             var17 = var17 * var17 * 42317861L + var17 * 11L;
             newX += ((double) ((float) (var17 >> 16 & 15L) / 15.0F) - 0.5D) * 0.5D;
@@ -68,7 +68,7 @@ public class SwitchgrassRenderer implements ISimpleBlockRenderingHandler {
             newZ += ((double) ((float) (var17 >> 24 & 15L) / 15.0F) - 0.5D) * 0.5D;
         }
 
-        renderer.drawCrossedSquares(block, world.getBlockMetadata(x, y, z), newX, newY, newZ, 1.0F);
+        renderer.drawCrossedSquares(block.getIcon(0, 0), newX, newY, newZ, 1.0F);
         return true;
     }
 }
