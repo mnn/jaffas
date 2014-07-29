@@ -31,7 +31,17 @@ public class ContainerCobbleBreaker extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlots(IInventory inv) {
+    public int getSlotsCount() {
+        return 3;
+    }
+
+    @Override
+    public int getOutputSlotsCount() {
+        return 1;
+    }
+
+    @Override
+    public void constructSlotsFromInventory(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 57, 35));
         addSlotToContainer(new Slot(inv, SLOT_FUEL, 23, 35));
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 124, 35));

@@ -35,19 +35,19 @@ public class WorldGenFruitTrees extends WorldGenerator {
      */
     private final int metaLeaves;
 
-    private final int leavesID;
+    private final Block leavesBlock;
 
     public WorldGenFruitTrees(boolean par1) {
-        this(par1, 4, 0, 0, false, JaffasTrees.leavesList.get(0).leavesID);
+        this(par1, 4, 0, 0, false, JaffasTrees.leavesList.get(0).leavesBlock);
     }
 
-    public WorldGenFruitTrees(boolean notify, int minHeight, int metaWood, int metaLeaves, boolean vines, int leavesID) {
+    public WorldGenFruitTrees(boolean notify, int minHeight, int metaWood, int metaLeaves, boolean vines, Block leavesBlock) {
         super(notify);
         this.minTreeHeight = minHeight;
         this.metaWood = metaWood;
         this.metaLeaves = metaLeaves;
         this.vinesGrow = vines;
-        this.leavesID = leavesID;
+        this.leavesBlock = leavesBlock;
     }
 
     @Override
@@ -116,18 +116,18 @@ public class WorldGenFruitTrees extends WorldGenerator {
                                         (block == null || block.canBeReplacedByLeaves(world, xx, yy, zz))) {
 
                                     int chosenLeavesMeta;
-                                    int chosenLeavesID;
+                                    Block chosenLeavesBlock;
 
                                     if (random.nextInt(3) == 0) {
-                                        chosenLeavesID = this.leavesID;
+                                        chosenLeavesBlock = this.leavesBlock;
                                         chosenLeavesMeta = this.metaLeaves;
                                     } else {
-                                        chosenLeavesID = JaffasTrees.leavesList.get(0).leavesID;
+                                        chosenLeavesBlock = JaffasTrees.leavesList.get(0).leavesBlock;
                                         chosenLeavesMeta = 0;
                                     }
 
                                     this.setBlockAndNotifyAdequately(world, xx, yy, zz, JaffasTrees.leavesList.get(0).leavesBlock, 0);
-                                    TileFruitLeaves te = new TileFruitLeaves(chosenLeavesID, chosenLeavesMeta);
+                                    TileFruitLeaves te = new TileFruitLeaves(chosenLeavesBlock, chosenLeavesMeta);
                                     world.setTileEntity(xx, yy, zz, te);
                                 }
                             }

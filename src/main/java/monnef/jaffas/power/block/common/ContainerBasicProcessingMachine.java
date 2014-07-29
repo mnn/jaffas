@@ -20,7 +20,7 @@ public class ContainerBasicProcessingMachine extends ContainerMachine {
     }
 
     @Override
-    public void constructSlots(IInventory inv) {
+    public void constructSlotsFromInventory(IInventory inv) {
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 42, 35));
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 111, 35));
     }

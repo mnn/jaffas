@@ -31,7 +31,7 @@ public class TileBoardRenderer extends TileSpecialJaffaRenderer {
 
     public void renderModelAt(TileBoard tile, double par2, double par4, double par6, float par8) {
 
-        int meta = tile.worldObj.getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
+        int meta = tile.getWorldObj().getBlockMetadata(tile.xCoord, tile.yCoord, tile.zCoord);
 
         float angle;
         switch (meta & 3) {

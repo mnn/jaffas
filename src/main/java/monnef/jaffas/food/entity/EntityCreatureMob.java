@@ -10,10 +10,12 @@ import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
@@ -40,7 +42,7 @@ public abstract class EntityCreatureMob extends EntityCreature {
     public void onUpdate() {
         super.onUpdate();
 
-        if (shouldDespawnInPeaceful() && !this.worldObj.isRemote && this.worldObj.difficultySetting == 0) {
+        if (shouldDespawnInPeaceful() && !this.worldObj.isRemote && this.worldObj.difficultySetting == EnumDifficulty.PEACEFUL) {
             this.setDead();
         }
     }
@@ -110,9 +112,12 @@ public abstract class EntityCreatureMob extends EntityCreature {
                 entity.setFire(k * 4);
             }
 
-            if (entity instanceof EntityLiving) {
-                EnchantmentThorns.func_92096_a(this, (EntityLiving) entity, this.rand);
+            if (entity instanceof EntityLivingBase) {
+                //EnchantmentThorns.func_92096_a(this, (EntityLiving) entity, this.rand);
+                EnchantmentHelper.func_151384_a((EntityLivingBase) entity, this);
             }
+
+            EnchantmentHelper.func_151385_b(this, entity);
         }
 
         return flag;

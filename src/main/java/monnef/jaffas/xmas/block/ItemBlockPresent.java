@@ -17,7 +17,7 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
             "Small White Present", "Small Blue Present", "Small Yellow Present", "Small Black Present", "Small Magenta Present", "Small Present"};
 
     public ItemBlockPresent() {
-        super();
+        super(JaffasXmas.BlockPresent);
         setCustomIconIndex(0);
     }
 

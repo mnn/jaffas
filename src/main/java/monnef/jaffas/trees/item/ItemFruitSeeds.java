@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
+import powercrystals.minefactoryreloaded.api.ReplacementBlock;
 
 import java.util.List;
 
@@ -81,18 +82,20 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
     }
 
     @Override
-    public int getSeedId() {
-        return itemID;
+    public Item getSeed() {
+        return this;
     }
 
     @Override
-    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
-        return getBlockID();
+    public boolean canBePlanted(ItemStack stack, boolean forFermenting) {
+        return true;
     }
 
     @Override
-    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
-        return stack.getItemDamage();
+    public ReplacementBlock getPlantedBlock(World world, int x, int y, int z, ItemStack stack) {
+        ReplacementBlock repl = new ReplacementBlock(getBlock());
+        repl.setMeta(stack.getItemDamage());
+        return repl;
     }
 
     @Override

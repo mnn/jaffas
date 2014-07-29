@@ -5,9 +5,11 @@
 
 package monnef.jaffas.food.block;
 
+import net.minecraft.block.Block;
+
 public class ItemBlockSwitchgrass extends ItemBlockJaffas {
-    public ItemBlockSwitchgrass(int par1) {
-        super(par1);
+    public ItemBlockSwitchgrass(Block block) {
+        super(block);
         subNames = new String[16];
         for (int i = 0; i < subNames.length; i++) {
             subNames[i] = "sg" + i;

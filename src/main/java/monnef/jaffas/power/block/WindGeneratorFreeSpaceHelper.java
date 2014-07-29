@@ -75,7 +75,7 @@ public class WindGeneratorFreeSpaceHelper {
 
     private static IIntegerCoordinates checkCoords(TileWindGenerator tile, Coords c) {
         IIntegerCoordinates pos = new IntegerCoordinates(tile).applyRelativeCoordinates(tile.getRotation(), c.x, c.y, 1);
-        return pos.getBlockId() == 0 ? null : pos;
+        return pos.isAir() ? null : pos;
     }
 
 }
