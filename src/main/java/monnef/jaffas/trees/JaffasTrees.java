@@ -335,7 +335,7 @@ public class JaffasTrees extends JaffasModBase {
             RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
             seeds.setCustomIconIndex(info.seedsTexture);
             if (otherMods.isMineFactoryReloadedDetected()) {
-                FactoryRegistry.registerPlantable(seeds);
+                FactoryRegistry.sendMessage("registerPlantable", seeds);
             }
 
             info.itemSeeds = seeds;
@@ -361,8 +361,8 @@ public class JaffasTrees extends JaffasModBase {
                 MinecraftForge.EVENT_BUS.register(crops);
             }
             if (otherMods.isMineFactoryReloadedDetected()) {
-                FactoryRegistry.registerHarvestable(crops);
-                FactoryRegistry.registerFertilizable(crops);
+                FactoryRegistry.sendMessage("registerHarvestable", crops);
+                FactoryRegistry.sendMessage("registerFertilizable", crops);
             }
             if (ModuleManager.isModuleEnabled(technic)) {
                 CompostRegister.addStack(dropFromPlant, DEFAULT_FRUIT_COMPOSTING_VALUE);
@@ -529,25 +529,25 @@ public class JaffasTrees extends JaffasModBase {
         RegistryUtils.registerBlock(leaves.leavesBlock);
         LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
-        leaves.saplingBlock = new BlockFruitSapling(leaves.saplingID, 15, subCount);
+        leaves.saplingBlock = new BlockFruitSapling(15, subCount);
         leaves.saplingBlock.serialNumber = i;
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setBlockName(saplingBlockName).setCreativeTab(creativeTab);
         RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
         OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, ANY_DMG));
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FactoryRegistry.registerFertilizable(leaves.saplingBlock);
-            FactoryRegistry.registerPlantable(leaves.saplingBlock);
+            FactoryRegistry.sendMessage("registerFertilizable", leaves.saplingBlock);
+            FactoryRegistry.sendMessage("registerPlantable", leaves.saplingBlock);
         }
 
-        leaves.seedsItem = new ItemFruitSeeds(leaves.seedsID, leaves.saplingID, seedTexture, subCount);
+        leaves.seedsItem = new ItemFruitSeeds(leaves.saplingBlock, seedTexture, subCount);
         leaves.seedsItem.serialNumber = i;
         for (int j = 0; j < subCount; j++) {
             String combinedName = leaves.seedsItem.getUnlocalizedName() + "." + j + ".name";
             LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
         }
         if (otherMods.isMineFactoryReloadedDetected()) {
-            FactoryRegistry.registerPlantable(leaves.seedsItem);
+            FactoryRegistry.sendMessage("registerPlantable", leaves.seedsItem);
         }
 
         // bonemeal event

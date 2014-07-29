@@ -5,6 +5,8 @@ import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -17,7 +19,7 @@ import static monnef.jaffas.food.common.ContentHolder.blockSwitchgrassSolid;
 import static monnef.jaffas.food.crafting.Recipes.ANY_DMG;
 
 public class CompostRegister {
-    private static HashMultimap<Integer, CompostItem> compostItems;
+    private static HashMultimap<Item, CompostItem> compostItems;
 
     public static final int DEFAULT_FRUIT_COMPOSTING_VALUE = 50;
     public static final int DEFAULT_BLOCK_COMPOSTING_VALUE = 100;
@@ -26,14 +28,15 @@ public class CompostRegister {
         compostItems = HashMultimap.create();
 
         // vanilla
-        addStack(Item.appleRed, DEFAULT_FRUIT_COMPOSTING_VALUE);
-        addStack(Item.carrot, DEFAULT_FRUIT_COMPOSTING_VALUE);
-        addStack(Item.potato, DEFAULT_FRUIT_COMPOSTING_VALUE);
-        addStack(Item.melon, DEFAULT_FRUIT_COMPOSTING_VALUE);
-        addStack(Block.reed, DEFAULT_FRUIT_COMPOSTING_VALUE);
-        addStack(Block.pumpkin, DEFAULT_BLOCK_COMPOSTING_VALUE);
-        addStack(Block.cactus, DEFAULT_BLOCK_COMPOSTING_VALUE);
-        addStackAnyDamage(Block.leaves, DEFAULT_BLOCK_COMPOSTING_VALUE).overrideTitle("Leaves");
+        addStack(Items.apple, DEFAULT_FRUIT_COMPOSTING_VALUE);
+        addStack(Items.carrot, DEFAULT_FRUIT_COMPOSTING_VALUE);
+        addStack(Items.potato, DEFAULT_FRUIT_COMPOSTING_VALUE);
+        addStack(Items.melon, DEFAULT_FRUIT_COMPOSTING_VALUE);
+        addStack(Blocks.reeds, DEFAULT_FRUIT_COMPOSTING_VALUE);
+        addStack(Blocks.pumpkin, DEFAULT_BLOCK_COMPOSTING_VALUE);
+        addStack(Blocks.cactus, DEFAULT_BLOCK_COMPOSTING_VALUE);
+        addStackAnyDamage(Blocks.leaves, DEFAULT_BLOCK_COMPOSTING_VALUE).overrideTitle("Leaves");
+        addStackAnyDamage(Blocks.leaves2, DEFAULT_BLOCK_COMPOSTING_VALUE).overrideTitle("Leaves");
 
         // food module
         int switchgrassCompostValue = DEFAULT_FRUIT_COMPOSTING_VALUE + DEFAULT_FRUIT_COMPOSTING_VALUE / 10;
@@ -50,7 +53,7 @@ public class CompostRegister {
         }
 
         CompostItem item = new CompostItem(stack.copy(), compostingValue);
-        compostItems.put(stack.itemID, item);
+        compostItems.put(stack.getItem(), item);
         return item;
     }
 
@@ -59,7 +62,7 @@ public class CompostRegister {
             return 0;
         }
 
-        Set<CompostItem> found = compostItems.get(input.itemID);
+        Set<CompostItem> found = compostItems.get(input.getItem());
         int best = 0;
         for (CompostItem item : found) {
             if (ItemHelper.haveStacksSameIdAndDamage(item.item, input)) {

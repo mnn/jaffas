@@ -11,7 +11,7 @@ import monnef.jaffas.power.block.common.TileEntityBasicProcessingMachine;
 @ContainerRegistry.ContainerTag(slotsCount = 2, containerClassName = "monnef.jaffas.power.block.common.ContainerBasicProcessingMachine", guiClassName = "monnef.jaffas.power.client.common.GuiContainerBasicProcessingMachine")
 public class TileBPMDummy extends TileEntityBasicProcessingMachine {
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return this.getClass().getSimpleName();
     }
 }

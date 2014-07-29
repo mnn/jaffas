@@ -5,9 +5,11 @@
 
 package monnef.jaffas.food.block;
 
+import net.minecraft.block.Block;
+
 public class ItemBlockTable extends ItemBlockJaffas {
-    public ItemBlockTable(int par1) {
-        super(par1);
+    public ItemBlockTable(Block block) {
+        super(block);
         subNames = new String[]{"red", "green", "blue"};
         setUnlocalizedName("itemBlockJTable");
     }

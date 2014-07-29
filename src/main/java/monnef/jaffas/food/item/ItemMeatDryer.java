@@ -27,11 +27,10 @@ public class ItemMeatDryer extends ItemJaffaBase {
             //not the top of a block
             return false;
         } else {
-            int activatedBlockId = world.getBlockId(x, y, z);
-            Block activatedBlock = Block.blocksList[activatedBlockId];
+            Block activatedBlock = world.getBlock(x, y, z);
             boolean replacing = false;
 
-            if (activatedBlock != null && activatedBlock.isBlockReplaceable(world, x, y, z)) {
+            if (activatedBlock != null && activatedBlock.isReplaceable(world, x, y, z)) {
                 replacing = true;
             } else {
                 y++;
@@ -43,7 +42,7 @@ public class ItemMeatDryer extends ItemJaffaBase {
 
             if (player.canPlayerEdit(x, y, z, side, item)) {
                 if (world.isAirBlock(x, y, z) || replacing) {
-                    setBlock(world, x, y, z, blockToPlace.blockID, direction);
+                    setBlock(world, x, y, z, blockToPlace, direction);
 
                     --item.stackSize;
                     return true;

@@ -11,9 +11,9 @@ import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
-import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1, containerClassName = "monnef.core.block.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerWebHarvester")
@@ -41,7 +41,7 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "jaffas.power.webHarvester";
     }
 
@@ -64,10 +64,11 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
         if (consumeNeededPower() < powerNeeded) {
             return;
         }
-        worldObj.destroyBlock(web.getX(), web.getY(), web.getZ(), false);
+        worldObj.func_147480_a(web.getX(), web.getY(), web.getZ(), false); // destroyBlock
+
         ItemStack stack = getStackInSlot(0);
         if (stack == null) {
-            setInventorySlotContents(0, new ItemStack(Item.silk));
+            setInventorySlotContents(0, new ItemStack(Items.string));
         } else {
             stack.stackSize++;
         }
@@ -98,7 +99,7 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
             if (MonnefCorePlugin.debugEnv && DEBUG_PRINTS) {
                 JaffasFood.Log.printInfo(String.format("checking if cobweb - %d, %d, %d", x, y, z));
             }
-            found = worldObj.getBlockId(x, y, z) == Block.web.blockID;
+            found = worldObj.getBlock(x, y, z) == Blocks.web;
         } while (tryCount++ < MAX_SCANS_PER_TRY && !found);
         if (found) return new IntegerCoordinates(x, y, z, worldObj);
         return null;

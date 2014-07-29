@@ -7,6 +7,7 @@ package monnef.jaffas.food.common;
 
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.trees.JaffasTrees;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -18,7 +19,10 @@ public class SeedsHelper {
     public static ItemStack getRandomSeed() {
         ItemStack seed;
         if (rand.nextInt(2) == 0 || !ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
-            seed = new ItemStack(Item.seeds);
+            Item tmp = Items.wheat_seeds;
+            if (rand.nextInt(20) == 0) tmp = Items.melon_seeds;
+            if (rand.nextInt(20) == 0) tmp = Items.pumpkin_seeds;
+            seed = new ItemStack(tmp);
         } else {
             seed = getRandomJaffaSeed();
         }

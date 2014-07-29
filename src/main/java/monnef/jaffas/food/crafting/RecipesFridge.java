@@ -14,8 +14,8 @@ import java.util.HashMap;
 public class RecipesFridge {
     private static HashMap<Item, ItemStack> recipes = new HashMap<Item, ItemStack>();
 
-    public static ItemStack getCopyOfResult(int id) {
-        ItemStack res = recipes.get(id);
+    public static ItemStack getCopyOfResult(Item item) {
+        ItemStack res = recipes.get(item);
         return res != null ? res.copy() : null;
     }
 

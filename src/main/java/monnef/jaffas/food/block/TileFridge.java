@@ -10,6 +10,8 @@ import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.BiomeHelper;
 import monnef.jaffas.food.crafting.RecipesFridge;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -65,7 +67,7 @@ public class TileFridge extends TileMachineWithInventory implements IInventory {
     }
 
     private int computeEnvironmentTemperature() {
-        return Math.round(BiomeHelper.computeBiomeTemperatureInCelsius(worldObj.getBiomeGenForCoords(xCoord, zCoord)));
+        return Math.round(BiomeHelper.computeBiomeTemperatureInCelsius(worldObj.getBiomeGenForCoords(xCoord, zCoord), xCoord, yCoord, zCoord));
     }
 
     @Override
@@ -110,19 +112,19 @@ public class TileFridge extends TileMachineWithInventory implements IInventory {
 
                 stack = getStackInSlot(slotNum);
                 if (stack != null) {
-                    breakCycle = RecipesFridge.getCopyOfResult(getStackInSlot(slotNum).itemID) != null;
+                    breakCycle = RecipesFridge.getCopyOfResult(getStackInSlot(slotNum).getItem()) != null;
                 }
             } while (tries++ < 5 && !breakCycle);
 
 
             if (stack == null) {
                 if (rand.nextDouble() < 0.25) {
-                    ItemStack newItem = rand.nextDouble() < 0.5D ? new ItemStack(Block.ice) : new ItemStack(Item.snowball);
+                    ItemStack newItem = rand.nextDouble() < 0.25D ? new ItemStack(Blocks.ice) : new ItemStack(Items.snowball);
 
                     setInventorySlotContents(slotNum, newItem);
                     melt();
                 }
-            } else if (stack.itemID == Block.ice.blockID || stack.itemID == Item.snowball.itemID) {
+            } else if (stack.getItem() == Item.getItemFromBlock(Blocks.ice) || stack.getItem() == Items.snowball) {
                 if (rand.nextDouble() < 0.25) {
                     if (stack.stackSize < stack.getMaxStackSize()) {
                         stack.stackSize++;
@@ -130,7 +132,7 @@ public class TileFridge extends TileMachineWithInventory implements IInventory {
                     }
                 }
             } else {
-                ItemStack output = RecipesFridge.getCopyOfResult(stack.itemID);
+                ItemStack output = RecipesFridge.getCopyOfResult(stack.getItem());
 
                 if (output != null) {
                     int free = -1;
@@ -140,7 +142,7 @@ public class TileFridge extends TileMachineWithInventory implements IInventory {
                         if (getStackInSlot(i) == null) {
                             free = i;
                             i = getSizeInventory();
-                        } else if (getStackInSlot(i).itemID == output.itemID && getStackInSlot(i).stackSize < getStackInSlot(i).getMaxStackSize()) {
+                        } else if (getStackInSlot(i).getItem() == output.getItem() && getStackInSlot(i).stackSize < getStackInSlot(i).getMaxStackSize()) {
                             addToStack = true;
                             free = i;
                             i = getSizeInventory();
@@ -184,7 +186,7 @@ public class TileFridge extends TileMachineWithInventory implements IInventory {
     }
 
     @Override
-    public String getInvName() {
+    public String getInventoryName() {
         return "container.fridge";
     }
 

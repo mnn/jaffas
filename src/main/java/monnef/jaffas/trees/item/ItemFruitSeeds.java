@@ -9,6 +9,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.api.ICustomIcon;
 import monnef.core.common.CustomIconHelper;
+import monnef.jaffas.food.common.MfrHelper;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -93,9 +94,7 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
 
     @Override
     public ReplacementBlock getPlantedBlock(World world, int x, int y, int z, ItemStack stack) {
-        ReplacementBlock repl = new ReplacementBlock(getBlock());
-        repl.setMeta(stack.getItemDamage());
-        return repl;
+        return MfrHelper.replacementBlockWithMeta(getBlock(), stack.getItemDamage());
     }
 
     @Override

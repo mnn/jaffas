@@ -269,8 +269,8 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
 
     /* Mine Factory Reloaded */
     @Override
-    public int getPlantId() {
-        return blockID;
+    public Block getPlant() {
+        return this;
     }
 
     @Override
@@ -302,12 +302,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
     }
 
     @Override
-    public int getFertilizableBlockId() {
-        return blockID;
-    }
-
-    @Override
-    public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType) {
+    public boolean canFertilize(World world, int x, int y, int z, FertilizerType fertilizerType) {
         return canGrow(world.getBlockMetadata(x, y, z));
     }
 

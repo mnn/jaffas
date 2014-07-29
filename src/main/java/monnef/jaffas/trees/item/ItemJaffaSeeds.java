@@ -5,9 +5,11 @@
 
 package monnef.jaffas.trees.item;
 
+import monnef.jaffas.food.common.MfrHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -15,6 +17,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
+import powercrystals.minefactoryreloaded.api.ReplacementBlock;
 
 import static monnef.core.utils.BlockHelper.setBlock;
 
@@ -58,7 +61,7 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable, IFactoryPla
 
     @Override
     public Block getPlant(IBlockAccess world, int x, int y, int z) {
-        return this;
+        return Block.getBlockFromItem(this);
     }
 
     @Override
@@ -67,18 +70,18 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable, IFactoryPla
     }
 
     @Override
-    public int getSeedId() {
-        return itemID;
+    public Item getSeed() {
+        return this;
     }
 
     @Override
-    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
-        return blockType;
+    public boolean canBePlanted(ItemStack stack, boolean forFermenting) {
+        return true;
     }
 
     @Override
-    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
-        return 0;
+    public ReplacementBlock getPlantedBlock(World world, int x, int y, int z, ItemStack stack) {
+        return MfrHelper.replacementBlockWithMeta(blockType, 0);
     }
 
     @Override

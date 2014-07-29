@@ -11,6 +11,7 @@ import monnef.core.utils.BlockHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
+import monnef.jaffas.food.common.MfrHelper;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -392,9 +393,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
 
     @Override
     public ReplacementBlock getPlantedBlock(World world, int x, int y, int z, ItemStack stack) {
-        ReplacementBlock planted = new ReplacementBlock(this);
-        planted.setMeta(VALUE_TOP);
-        return planted;
+        return MfrHelper.replacementBlockWithMeta(this, VALUE_TOP);
     }
 
     @Override

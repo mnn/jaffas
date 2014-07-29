@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.block.BlockJaffas;
+import monnef.jaffas.food.common.MfrHelper;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
 import monnef.jaffas.trees.common.WorldGenFruitTrees;
@@ -33,6 +34,7 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import powercrystals.minefactoryreloaded.api.FertilizerType;
 import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 import powercrystals.minefactoryreloaded.api.IFactoryPlantable;
+import powercrystals.minefactoryreloaded.api.ReplacementBlock;
 
 import java.util.List;
 import java.util.Random;
@@ -126,7 +128,7 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
 
         BlockHelper.setAir(world, x, y, z);
 
-        gen = new WorldGenFruitTrees(true, 5, 0, metadata, false, JaffasTrees.leavesList.get(serialNumber).leavesID);
+        gen = new WorldGenFruitTrees(true, 5, 0, metadata, false, JaffasTrees.leavesList.get(serialNumber).leavesBlock);
 
         if (!((WorldGenerator) gen).generate(world, random, x + xShift, y, z + yShift)) {
             setBlock(world, x, y, z, this, metadata);
@@ -204,34 +206,34 @@ public class BlockFruitSapling extends BlockJaffas implements IPlantable, IFacto
     }
 
     @Override
-    public int getFertilizableBlockId() {
-        return blockID;
+    public boolean canFertilize(World world, int x, int y, int z, FertilizerType fertilizerType) {
+        return true;
     }
 
     @Override
-    public boolean canFertilizeBlock(World world, int x, int y, int z, FertilizerType fertilizerType) {
+    public Block getPlant() {
+        return this;
+    }
+
+    @Override
+    public Item getSeed() {
+        return Item.getItemFromBlock(this);
+    }
+
+    @Override
+    public boolean canBePlanted(ItemStack stack, boolean forFermenting) {
         return true;
+    }
+
+    @Override
+    public ReplacementBlock getPlantedBlock(World world, int x, int y, int z, ItemStack stack) {
+        return MfrHelper.replacementBlockWithMeta(this,stack.getItemDamage());
     }
 
     @Override
     public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType) {
         tryGrow(world, x, y, z, rand);
         return true;
-    }
-
-    @Override
-    public int getSeedId() {
-        return blockID;
-    }
-
-    @Override
-    public int getPlantedBlockId(World world, int x, int y, int z, ItemStack stack) {
-        return blockID;
-    }
-
-    @Override
-    public int getPlantedBlockMetadata(World world, int x, int y, int z, ItemStack stack) {
-        return stack.getItemDamage();
     }
 
     @Override
