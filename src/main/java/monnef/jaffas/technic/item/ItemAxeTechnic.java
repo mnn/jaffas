@@ -16,7 +16,7 @@ public class ItemAxeTechnic extends ItemTechnicTool {
     }
 
     @Override
-    protected float getCustomStrVsBlock(ItemStack stack, Block block, int meta) {
+    protected float getCustomStrVsBlock(ItemStack stack, Block block) {
         return Items.diamond_axe.func_150893_a(stack, block);
     }
 }

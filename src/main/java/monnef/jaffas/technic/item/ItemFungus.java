@@ -47,7 +47,7 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
     }
 
     @Override
-    public void getSubItemsCustom(Item par1, CreativeTabs tabs, List<ItemStack> list) {
+    public void getSubItems(Item par1, CreativeTabs tabs, List list) {
         for (Map.Entry<Integer, FungusInfo> fungus : FungiCatalog.catalog.entrySet()) {
             if (fungus.getValue().ordinalItemBind) {
                 list.add(new ItemStack(this, 1, fungus.getKey()));
