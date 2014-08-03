@@ -22,19 +22,17 @@ import monnef.jaffas.food.block.TileSink;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.common.CoolDownRegistry;
-import monnef.jaffas.food.common.SpawnStonePacketUtils;
 import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.entity.EntityLittleSpider;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.network.HomeStonePacket;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 
 import static monnef.jaffas.food.common.CoolDownType.SPAWN_STONE;
@@ -97,7 +95,7 @@ public class ClientProxy extends CommonProxy {
         EntityClientPlayerMP p = (EntityClientPlayerMP) player;
         CoolDownRegistry.setCoolDown(p.getUniqueID(), SPAWN_STONE, secondsRemaining);
         if (openGUI) {
-            ItemSpawnStone stone = SpawnStonePacketUtils.getSpawnStone(p);
+            ItemSpawnStone stone = HomeStonePacket.getSpawnStone(p);
             if (stone != null) {
                 GuiSpawnStone gui = new GuiSpawnStone(p, stone);
                 FMLCommonHandler.instance().showGuiScreen(gui);

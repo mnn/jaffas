@@ -9,8 +9,8 @@ import monnef.core.client.ResourcePathHelper;
 import monnef.core.utils.MathHelper;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.CoolDownType;
-import monnef.jaffas.food.common.SpawnStonePacketUtils;
 import monnef.jaffas.food.item.ItemSpawnStone;
+import monnef.jaffas.food.network.HomeStonePacket;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -100,7 +100,7 @@ public class GuiSpawnStone extends GuiScreen {
     protected void actionPerformed(GuiButton par1GuiButton) {
         switch (par1GuiButton.id) {
             case 0:
-                SpawnStonePacketUtils.sendPortPacket();
+                HomeStonePacket.sendPortPacket();
                 this.mc.thePlayer.closeScreen();
                 break;
 

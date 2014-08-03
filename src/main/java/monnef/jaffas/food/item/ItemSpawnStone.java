@@ -10,7 +10,7 @@ import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.client.Sounds;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.CoolDownRegistry;
-import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
+import monnef.jaffas.food.network.HomeStonePacket;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -40,7 +40,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (!world.isRemote) {
-            SpawnStoneServerPacketSender.sendSyncPacket(player, true);
+            HomeStonePacket.sendSyncPacket(player, true);
         }
 
         return stack;
@@ -109,7 +109,7 @@ public class ItemSpawnStone extends ItemJaffaBase {
             CoolDownRegistry.setCoolDown(player.getUniqueID(), SPAWN_STONE, stone.getCoolDownInMinutes() * 60);
         }
 
-        SpawnStoneServerPacketSender.sendSyncPacket(player, false);
+        HomeStonePacket.sendSyncPacket(player, false);
     }
 
     private void playWhooshEffect(EntityPlayerMP player, World world) {

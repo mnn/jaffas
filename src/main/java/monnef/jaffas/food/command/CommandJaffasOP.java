@@ -7,10 +7,9 @@ package monnef.jaffas.food.command;
 
 import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.WeatherHelper;
-import monnef.jaffas.food.achievement.AchievementsHandler;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.CoolDownType;
-import monnef.jaffas.food.server.SpawnStoneServerPacketSender;
+import monnef.jaffas.food.network.HomeStonePacket;
 import monnef.jaffas.technic.block.TileFungiBox;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
@@ -89,7 +88,7 @@ public class CommandJaffasOP extends CommandBase {
                 return;
             }
             CoolDownRegistry.setCoolDown(player.getUniqueID(), CoolDownType.SPAWN_STONE, 1);
-            SpawnStoneServerPacketSender.sendSyncPacket(player, false);
+            HomeStonePacket.sendSyncPacket(player, false);
             addMessage(commandsender, String.format("Cooldown on home stone has been cleared for a player %s.", playerName));
         }
     }

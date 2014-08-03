@@ -24,6 +24,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.server.FMLServerHandler;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.common.VillagersTradeHandlerWrapper;
+import monnef.core.mod.MonnefCoreNormalMod;
+import monnef.core.network.CorePacketHandlerTrait;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.achievement.AchievementsHandler;
@@ -99,6 +101,8 @@ public class JaffasFood extends JaffasModBase {
     public static OtherModsHelper otherMods;
     public ItemStack guideBook;
 
+    public static CorePacketHandlerTrait packetHandler;
+
     public JaffasFood() {
         super();
 
@@ -172,6 +176,7 @@ public class JaffasFood extends JaffasModBase {
         creativeTab = new JaffaCreativeTab("jaffas");
 
         OtherModsHelper.checkCore();
+        packetHandler = MonnefCoreNormalMod.packetHandler;
 
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
