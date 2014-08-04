@@ -8,6 +8,7 @@ package monnef.jaffas.food.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.ContainerMonnefCore;
+import monnef.core.block.TileContainerMonnefCore;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,12 +17,13 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 
 import static monnef.jaffas.food.block.TileBoard.SLOT_INPUT;
 import static monnef.jaffas.food.block.TileBoard.SLOT_KNIFE;
 import static monnef.jaffas.food.block.TileBoard.SLOT_OUTPUT;
 
-public class ContainerBoard extends ContainerMonnefCore {
+public class ContainerBoard extends TileContainerMonnefCore {
     protected TileBoard board;
     private int lastChopTime;
 
@@ -34,16 +36,6 @@ public class ContainerBoard extends ContainerMonnefCore {
     public void addCraftingToCrafters(ICrafting par1ICrafting) {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.board.chopTime);
-    }
-
-    @Override
-    public int getSlotsCount() {
-        return 3;
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
     }
 
     @Override
@@ -75,7 +67,8 @@ public class ContainerBoard extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlotsFromInventory(IInventory inv) {
+    public void constructSlotsFromTile(TileEntity tile) {
+        IInventory inv = (IInventory) tile;
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 56, 35)); //  input
         addSlotToContainer(new Slot(inv, SLOT_KNIFE, 22, 35)); //  knife
         addSlotToContainer(new Slot(inv, SLOT_OUTPUT, 116, 35)); // output

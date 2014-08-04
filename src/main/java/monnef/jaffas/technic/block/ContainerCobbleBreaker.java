@@ -8,13 +8,15 @@ package monnef.jaffas.technic.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.ContainerMonnefCore;
+import monnef.core.block.TileContainerMonnefCore;
 import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
-public class ContainerCobbleBreaker extends ContainerMonnefCore {
+public class ContainerCobbleBreaker extends TileContainerMonnefCore {
     public final static int SLOT_INPUT = 0;
     public final static int SLOT_OUTPUT = 2;
     public final static int SLOT_FUEL = 1;
@@ -31,17 +33,8 @@ public class ContainerCobbleBreaker extends ContainerMonnefCore {
     }
 
     @Override
-    public int getSlotsCount() {
-        return 3;
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
-    }
-
-    @Override
-    public void constructSlotsFromInventory(IInventory inv) {
+    public void constructSlotsFromTile(TileEntity te) {
+        IInventory inv = (IInventory) te;
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 57, 35));
         addSlotToContainer(new Slot(inv, SLOT_FUEL, 23, 35));
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 124, 35));

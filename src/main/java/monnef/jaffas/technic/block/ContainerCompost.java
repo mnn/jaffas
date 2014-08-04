@@ -8,13 +8,15 @@ package monnef.jaffas.technic.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.ContainerMonnefCore;
+import monnef.core.block.TileContainerMonnefCore;
 import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
-public class ContainerCompost extends ContainerMonnefCore {
+public class ContainerCompost extends TileContainerMonnefCore {
     private final TileCompostCore core;
     public final static int SLOT_INPUT = 0;
     public final static int SLOT_OUTPUT = 1;
@@ -27,11 +29,13 @@ public class ContainerCompost extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlotsFromInventory(IInventory inv) {
+    public void constructSlotsFromTile(TileEntity te) {
+        IInventory inv = (IInventory) te;
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 21, 35));
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 136, 35));
     }
 
+    /*
     @Override
     public int getSlotsCount() {
         return 2;
@@ -41,6 +45,7 @@ public class ContainerCompost extends ContainerMonnefCore {
     public int getOutputSlotsCount() {
         return 1;
     }
+    */
 
     @Override
     public void addCraftingToCrafters(ICrafting crafting) {

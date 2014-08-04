@@ -6,15 +6,17 @@
 package monnef.jaffas.food.block;
 
 import monnef.core.block.ContainerMonnefCore;
+import monnef.core.block.TileContainerMonnefCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
 import java.util.Iterator;
 
-public class ContainerFridge extends ContainerMonnefCore {
+public class ContainerFridge extends TileContainerMonnefCore {
 
     public static final int inventorySize = 20;
     protected TileFridge tileEntity;
@@ -60,17 +62,8 @@ public class ContainerFridge extends ContainerMonnefCore {
     }
 
     @Override
-    public int getSlotsCount() {
-        return inventorySize;
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 0;
-    }
-
-    @Override
-    public void constructSlotsFromInventory(IInventory inv) {
+    public void constructSlotsFromTile(TileEntity tile) {
+        IInventory inv = (IInventory) tile;
         int row, col;
         int colsPerRow = 4;
         for (int i = 0; i < inventorySize; i++) {

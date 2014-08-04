@@ -8,15 +8,17 @@ package monnef.jaffas.food.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.ContainerMonnefCore;
+import monnef.core.block.TileContainerMonnefCore;
 import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
 import static monnef.jaffas.food.block.TileRipeningBox.RIPENING_SLOTS;
 
-public class ContainerRipeningBox extends ContainerMonnefCore {
+public class ContainerRipeningBox extends TileContainerMonnefCore {
     protected TileRipeningBox box;
     private int[] lastRipStatus;
 
@@ -24,16 +26,6 @@ public class ContainerRipeningBox extends ContainerMonnefCore {
         super(inventoryPlayer, te);
         box = te;
         lastRipStatus = new int[RIPENING_SLOTS];
-    }
-
-    @Override
-    public int getSlotsCount() {
-        return RIPENING_SLOTS + 1;
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 1;
     }
 
     @Override
@@ -71,7 +63,8 @@ public class ContainerRipeningBox extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlotsFromInventory(IInventory inv) {
+    public void constructSlotsFromTile(TileEntity tile) {
+        IInventory inv = (IInventory) tile;
         for (int i = 0; i < RIPENING_SLOTS; i++) {
             addSlotToContainer(new Slot(inv, i, 26 + (i % 4) * 20, 26 + (i / 4) * 20));
         }

@@ -6,15 +6,17 @@
 package monnef.jaffas.trees.block;
 
 import monnef.core.block.ContainerMonnefCore;
+import monnef.core.block.TileContainerMonnefCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
 import java.util.Iterator;
 
-public class ContainerFruitCollector extends ContainerMonnefCore {
+public class ContainerFruitCollector extends TileContainerMonnefCore {
 
     protected TileFruitCollector tileEntity;
     protected int lastBurnTime;
@@ -26,7 +28,8 @@ public class ContainerFruitCollector extends ContainerMonnefCore {
     }
 
     @Override
-    public void constructSlotsFromInventory(IInventory inv) {
+    public void constructSlotsFromTile(TileEntity tile) {
+        IInventory inv = (IInventory) tile;
         int row, col;
         int colsPerRow = 2;
         for (int i = 0; i < getSlotsCount(); i++) {
@@ -34,16 +37,6 @@ public class ContainerFruitCollector extends ContainerMonnefCore {
             row = i / colsPerRow;
             addSlotToContainer(new Slot(inv, i, 45 + col * 18, 22 + row * 18));
         }
-    }
-
-    @Override
-    public int getSlotsCount() {
-        return 4;
-    }
-
-    @Override
-    public int getOutputSlotsCount() {
-        return 4;
     }
 
     @Override
