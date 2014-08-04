@@ -59,10 +59,10 @@ public class JaffasXmas extends JaffasModBase {
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
 
-    private monnef.jaffas.food.item.common.Items items;
+    private monnef.jaffas.xmas.item.Items items;
 
     public JaffasXmas() {
-        this.items = new monnef.jaffas.food.item.common.Items();
+        this.items = new monnef.jaffas.xmas.item.Items();
         items.RegisterItemType(JaffaItemType.basic, ItemXmas.class);
         items.RegisterItemType(JaffaItemType.food, ItemXmasFood.class);
         items.InitializeItemInfos();
