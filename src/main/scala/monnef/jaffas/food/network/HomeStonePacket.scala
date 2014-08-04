@@ -12,7 +12,7 @@ import monnef.jaffas.food.JaffasFood._
 import monnef.jaffas.food.item.ItemSpawnStone
 import monnef.core.utils.PlayerHelper
 
-class HomeStonePacket extends JaffasPacketNew {
+class HomeStonePacket extends JaffasPacket {
 
   import HomeStonePacket._
 

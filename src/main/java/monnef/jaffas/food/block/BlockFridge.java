@@ -5,7 +5,6 @@
 
 package monnef.jaffas.food.block;
 
-
 import monnef.core.utils.InventoryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.client.GuiHandler;
@@ -33,7 +32,7 @@ public class BlockFridge extends BlockContainerJaffas {
     private static IIcon FridgeBack;
 
     @Override
-    public void registerIcons(IIconRegister iconRegister) {
+    public void registerBlockIcons(IIconRegister iconRegister) {
         FridgeBottom = iconRegister.registerIcon(generateId(this, 43));
         FridgeTopTop = iconRegister.registerIcon(generateId(this, 40));
         FridgeTopBottom = iconRegister.registerIcon(generateId(this, 41));

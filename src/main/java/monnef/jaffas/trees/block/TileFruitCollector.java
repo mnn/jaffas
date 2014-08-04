@@ -12,16 +12,16 @@ import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
+import monnef.jaffas.technic.network.FruitCollectorPacket;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -193,7 +193,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
                             }
 
                             this.state = CollectorStates.idle;
-                            this.sendStateUpdatePacket();
+                            this.sendStateUpdatePacketNew();
                             this.targetedItem = null;
                         }
                         break;
@@ -260,7 +260,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
                 this.state = CollectorStates.targeted;
                 this.cooldown = 3;
 
-                this.sendStateUpdatePacket();
+                this.sendStateUpdatePacketNew();
                 return true;
             } else {
                 return false;
@@ -270,39 +270,15 @@ public class TileFruitCollector extends TileMachineWithInventory {
         return false;
     }
 
-    private void sendStateUpdatePacket() {
-        Side side = FMLCommonHandler.instance().getEffectiveSide();
-        if (side == Side.CLIENT) {
+    private void sendStateUpdatePacketNew() {
+        if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT) {
             return;
         }
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-        DataOutputStream outputStream = new DataOutputStream(bos);
-        try {
-            outputStream.writeInt(this.xCoord);
-            outputStream.writeInt(this.yCoord);
-            outputStream.writeInt(this.zCoord);
-            outputStream.writeByte(this.state.ordinal());
-            outputStream.writeDouble(this.targetedItem.posX);
-            outputStream.writeDouble(this.targetedItem.posY);
-            outputStream.writeDouble(this.targetedItem.posZ);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+        FruitCollectorPacket packet = new FruitCollectorPacket();
+        packet.init(this, (byte) state.ordinal(), targetedItem);
 
-        Packet250CustomPayload packet = new Packet250CustomPayload();
-        packet.channel = JaffasTrees.channel;
-        packet.data = bos.toByteArray();
-        packet.length = bos.size();
-
-        AxisAlignedBB pbox = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
-        pbox = pbox.expand(collectorSyncDistance, collectorSyncDistance, collectorSyncDistance);
-
-        List<Player> list = worldObj.getEntitiesWithinAABB(Player.class, pbox);
-        for (Player p : list) {
-            PacketDispatcher.sendPacketToPlayer(packet, p);
-        }
-
+        packet.dispatcherMC17().sendToAllAround(xCoord, yCoord, zCoord, worldObj.provider.dimensionId, collectorSyncDistance, packet);
     }
 
     @Override

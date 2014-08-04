@@ -37,6 +37,7 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.network.HomeStonePacket;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
@@ -88,6 +89,7 @@ import monnef.jaffas.technic.item.ItemPickaxeTechnic;
 import monnef.jaffas.technic.item.ItemSpadeTechnic;
 import monnef.jaffas.technic.item.ItemSwordTechnic;
 import monnef.jaffas.technic.item.ItemTechnic;
+import monnef.jaffas.technic.network.FruitCollectorPacket;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -308,6 +310,8 @@ public class JaffasTechnic extends JaffasModBase {
 
         TechnicWorldGen generator = new TechnicWorldGen();
         GameRegistry.registerWorldGenerator(generator, 100); // not a clue what weight should be
+
+        JaffasFood.packetHandler.manager().registerPacket(2, FruitCollectorPacket.class);
 
         installThermalExpansionSupport();
         JaffasFood.PrintInitialized(ModulesEnum.technic);

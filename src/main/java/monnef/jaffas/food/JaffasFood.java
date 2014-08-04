@@ -58,6 +58,7 @@ import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
+import monnef.jaffas.food.network.HomeStonePacket;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
 import net.minecraft.command.ICommandManager;
@@ -200,6 +201,8 @@ public class JaffasFood extends JaffasModBase {
         FMLCommonHandler.instance().bus().register(new PlayerTracker());
 
         SwitchgrassBiomeRegistrar.register();
+
+        packetHandler.manager().registerPacket(1, HomeStonePacket.class);
 
         printInitializedMessage();
     }
