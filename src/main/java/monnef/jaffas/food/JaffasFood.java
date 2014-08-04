@@ -156,6 +156,34 @@ public class JaffasFood extends JaffasModBase {
         }
 
         proxy.registerSounds();
+
+        creativeTab = new JaffaCreativeTab("jaffas");
+
+        OtherModsHelper.checkCore();
+        packetHandler = MonnefCoreNormalMod.packetHandler;
+
+        MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
+
+        createBlocks();
+        items.CreateItems();
+        createJaffaArmorAndSword();
+        registerDuckSpawns();
+        registerCleaverRecords();
+        AchievementsHandler.init();
+        addDungeonLoot();
+
+        registerHandlers();
+
+        MinecraftForge.EVENT_BUS.register(new CustomDrop());
+
+        creativeTab.setup(JaffaItem.jaffaP);
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
+
+        FMLCommonHandler.instance().bus().register(new PlayerTracker());
+
+        SwitchgrassBiomeRegistrar.register();
+
+        packetHandler.manager().registerPacket(1, HomeStonePacket.class);
     }
 
     private void initializeModuleManager() {
@@ -174,35 +202,7 @@ public class JaffasFood extends JaffasModBase {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
-        creativeTab = new JaffaCreativeTab("jaffas");
-
-        OtherModsHelper.checkCore();
-        packetHandler = MonnefCoreNormalMod.packetHandler;
-
-        MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
-
-        createBlocks();
-        items.CreateItems();
-        createJaffaArmorAndSword();
-        registerDuckSpawns();
-        registerCleaverRecords();
-        AchievementsHandler.init();
-        addDungeonLoot();
-
-        registerHandlers();
-
         Recipes.installRecipes();
-        MinecraftForge.EVENT_BUS.register(new CustomDrop());
-
-        //creative tab title
-        creativeTab.setup(JaffaItem.jaffaP);
-        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas", "en_US", "Jaffas and more!");
-
-        FMLCommonHandler.instance().bus().register(new PlayerTracker());
-
-        SwitchgrassBiomeRegistrar.register();
-
-        packetHandler.manager().registerPacket(1, HomeStonePacket.class);
 
         printInitializedMessage();
     }
