@@ -10,6 +10,7 @@ import monnef.core.api.ICustomIcon
 import monnef.jaffas.xmas.common.IconDescriptorXmas
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.block.Block
+import monnef.core.utils.RegistryUtils
 
 abstract class ItemBlockXmasMulti(_block: Block) extends ItemBlockJaffas(_block) with IconDescriptorXmas {
   private var subTitles: Array[String] = null
@@ -17,20 +18,10 @@ abstract class ItemBlockXmasMulti(_block: Block) extends ItemBlockJaffas(_block)
   setHasSubtypes(true)
   this.subNames = this.getSubNames
   this.subTitles = this.getSubTitles
-  this.registerNames(getParentBlock)
 
   override def getMetadata(damageValue: Int): Int = damageValue
 
   def getSubBlocksCount: Int = this.subNames.length
-
-  def registerNames(block: BlockXmasMulti) {
-    var i: Int = 0
-    while (i < subNames.length) {
-      val multiBlockStack: ItemStack = new ItemStack(block, 1, i)
-      LanguageRegistry.addName(multiBlockStack, subTitles(multiBlockStack.getItemDamage))
-      i += 1
-    }
-  }
 
   @SideOnly(Side.CLIENT) override def getIconFromDamage(dmg: Int): IIcon = {
     val idx: Int = MathHelper.clamp_int(dmg, 0, subNames.length)

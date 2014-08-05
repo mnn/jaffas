@@ -81,12 +81,6 @@ public class JaffasXmas extends JaffasModBase {
         } finally {
             config.save();
         }
-    }
-
-    @Override
-    @Mod.EventHandler
-    public void load(FMLInitializationEvent event) {
-        super.load(event);
 
         if (!ModuleManager.isModuleEnabled(ModulesEnum.xmas))
             return;
@@ -105,6 +99,12 @@ public class JaffasXmas extends JaffasModBase {
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
         creativeTab.setup(JaffasXmas.ItemGiantCandy);
+    }
+
+    @Override
+    @Mod.EventHandler
+    public void load(FMLInitializationEvent event) {
+        super.load(event);
 
         JaffasFood.PrintInitialized(ModulesEnum.xmas);
     }
@@ -121,6 +121,7 @@ public class JaffasXmas extends JaffasModBase {
 
         BlockPresent = new BlockPresent(0, Material.cloth, ItemBlockPresent.count);
         RegistryUtils.registerMultiBlock(BlockPresent, ItemBlockPresent.class, ItemBlockPresent.titles);
+        RegistryUtils.registerSubBlockNames(BlockPresent, ((ItemBlockPresent) Item.getItemFromBlock(BlockPresent)).getSubTitles());
     }
 
     private void installRecipes() {
