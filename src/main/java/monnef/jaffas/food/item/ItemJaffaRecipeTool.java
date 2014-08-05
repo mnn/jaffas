@@ -10,13 +10,13 @@ import monnef.jaffas.food.item.common.IItemTool;
 import net.minecraft.item.Item;
 
 public class ItemJaffaRecipeTool extends ItemJaffaBase implements IItemTool {
-    public ItemJaffaRecipeTool(int id) {
-        super(id);
+    public ItemJaffaRecipeTool() {
+        super();
         initialize();
     }
 
-    public ItemJaffaRecipeTool(int id, int usageCount) {
-        super(id);
+    public ItemJaffaRecipeTool(int usageCount) {
+        super();
         setUsageCount(usageCount);
         initialize();
     }

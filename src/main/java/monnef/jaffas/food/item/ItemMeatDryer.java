@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import static monnef.core.utils.BlockHelper.setBlock;
 
 public class ItemMeatDryer extends ItemJaffaBase {
-    public ItemMeatDryer(int id) {
-        super(id);
+    public ItemMeatDryer() {
+        super();
     }
 
     @Override

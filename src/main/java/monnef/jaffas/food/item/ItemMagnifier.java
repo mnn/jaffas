@@ -20,8 +20,8 @@ public class ItemMagnifier extends ItemJaffaRecipeTool {
     private static final int MAXIMAL_IDS_PER_RUN = 32;
     private ItemStack needle;
 
-    public ItemMagnifier(int id) {
-        super(id, 128);
+    public ItemMagnifier() {
+        super(128);
         setInfo("Any unknown seeds?");
     }
 

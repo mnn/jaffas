@@ -103,7 +103,7 @@ public class ItemManager {
         Item newJaffaItem;
         try {
             Class<? extends Item> clazz = ClassMapping.get(module).get(type);
-            Constructor<? extends Item> constructor = clazz.getConstructor(int.class);
+            Constructor<? extends Item> constructor = clazz.getConstructor();
             newJaffaItem = constructor.newInstance();
         } catch (Exception e) {
             e.printStackTrace();

@@ -17,13 +17,8 @@ import java.util.List;
 import static monnef.core.utils.BlockHelper.setBlock;
 
 public class ItemSink extends ItemJaffaBase {
-    public ItemSink(int id) {
-        super(id);
-    }
-
-    public ItemSink(int id, int textureIndex) {
-        super(id);
-        //setIconIndex(textureIndex);
+    public ItemSink() {
+        super();
     }
 
     @Override

@@ -17,8 +17,8 @@ public class ItemPack extends ItemJaffaBase {
     public static final String CONTENT_SIZE_TAG = "contentSize";
     public static final String CONTENT_META_TAG = "contentMeta";
 
-    public ItemPack(int id) {
-        super(id);
+    public ItemPack() {
+        super();
     }
 
     @Override

@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
 public class ItemDuckEgg extends ItemJaffaBase {
-    public ItemDuckEgg(int id) {
-        super(id);
+    public ItemDuckEgg() {
+        super();
     }
 
     @Override

@@ -17,8 +17,8 @@ import static monnef.jaffas.food.JaffasFood.getItem;
 import static monnef.jaffas.food.common.ContentHolder.blockPizza;
 
 public class ItemPizza extends ItemJaffaBase {
-    public ItemPizza(int par1) {
-        super(par1);
+    public ItemPizza() {
+        super();
     }
 
     @Override

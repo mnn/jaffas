@@ -39,8 +39,8 @@ public class ItemJaffaPack extends ItemPack {
         return tmp == null ? null : tmp.copy();
     }
 
-    public ItemJaffaPack(int id) {
-        super(id);
+    public ItemJaffaPack() {
+        super();
     }
 
     @Override
