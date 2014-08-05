@@ -62,7 +62,7 @@ public class BlockJaffaCrops extends BlockFlower implements IFactoryHarvestable,
         this.product = product;
         this.seeds = seeds;
         this.renderer = renderer;
-        BlockMonnefCore$.MODULE$.setBurnProperties(this, 60, 100);
+        BlockMonnefCore$.MODULE$.queueSetBurnProperties(this, 60, 100);
     }
 
     @Override

@@ -283,6 +283,10 @@ public class JaffasTrees extends JaffasModBase {
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
             bonemealingAllowed = config.get(Configuration.CATEGORY_GENERAL, "bonemeal", true).getBoolean(true);
 
+            for (int i = 0; i < leavesBlocksAllocated; i++) {
+                leavesList.add(new LeavesInfo(i));
+            }
+
             ItemBagPlanting.blackList().loadFromString(
                     config.get(Configuration.CATEGORY_GENERAL, "plantingBagBlackList", "", "Planting bag will ignore these items. Format of item (separated by ',' or ';'): <id>[:meta]").getString()
             );
