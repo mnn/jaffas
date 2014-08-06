@@ -13,7 +13,7 @@ import org.lwjgl.opengl.{GL12, GL11}
 import monnef.jaffas.power.block.TileJuiceMaker
 
 class TileJuiceMakerRenderer extends TileSpecialJaffaRenderer {
-  val model = new ModelObj("/juiceMaker.obj", 0, ResourcePathHelper.assemble("juiceMaker.png", ResourceTextureType.TILE))
+  val model = new ModelObj(ResourcePathHelper.assemble("juiceMaker.obj", ResourceTextureType.MODELS), 0, ResourcePathHelper.assemble("juiceMaker.png", ResourceTextureType.TILE))
 
   protected def getTexturePaths: Array[String] = Array()
 

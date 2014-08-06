@@ -20,12 +20,13 @@ import org.lwjgl.opengl.GL11;
 import java.util.ArrayList;
 
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
+import static monnef.core.client.ResourcePathHelper.ResourceTextureType.MODELS;
 
 public class RenderWindTurbine extends Render {
     private static ArrayList<TurbineRenderer> models = new ArrayList<TurbineRenderer>();
 
     static {
-        models.add(new TurbineRenderer("/jaffas_windmill01_hub.obj", "jaffas_windmill01_hub.png", "/jaffas_windmill01_blades.obj", "jaffas_windmill01_blades.png", 90, 0.15f));
+        models.add(new TurbineRenderer("jaffas_windmill01_hub.obj", "jaffas_windmill01_hub.png", "jaffas_windmill01_blades.obj", "jaffas_windmill01_blades.png", 90, 0.15f));
     }
 
     public RenderWindTurbine() {
@@ -59,8 +60,8 @@ public class RenderWindTurbine extends Render {
 
         public TurbineRenderer(String baseModelFileName, String baseTexture, String coloredModelFileName, String coloredTexture, float rotationFix, float zOffset) {
             this.zOffset = zOffset;
-            baseModel = baseModelFileName == null ? null : new ModelObj(baseModelFileName, rotationFix, ResourcePathHelper.assemble(baseTexture, ENTITY));
-            coloredModel = coloredModelFileName == null ? null : new ModelObj(coloredModelFileName, rotationFix, ResourcePathHelper.assemble(coloredTexture, ENTITY));
+            baseModel = baseModelFileName == null ? null : new ModelObj(ResourcePathHelper.assemble(baseModelFileName, MODELS), rotationFix, ResourcePathHelper.assemble(baseTexture, ENTITY));
+            coloredModel = coloredModelFileName == null ? null : new ModelObj(ResourcePathHelper.assemble(coloredModelFileName, MODELS), rotationFix, ResourcePathHelper.assemble(coloredTexture, ENTITY));
         }
 
         public void render(float scale, int colour, float turbineSpin) {
