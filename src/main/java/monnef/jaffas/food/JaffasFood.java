@@ -245,8 +245,9 @@ public class JaffasFood extends JaffasModBase {
 
     @Mod.EventHandler
     public void serverStarting(FMLServerStartingEvent event) {
-        server = FMLServerHandler.instance().getServer();
+        server = event.getServer();
         ICommandManager commandManager = server.getCommandManager();
+
         ServerCommandManager serverCommandManager = ((ServerCommandManager) commandManager);
         addCommands(serverCommandManager);
     }

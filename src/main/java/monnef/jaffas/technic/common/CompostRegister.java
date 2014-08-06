@@ -24,29 +24,52 @@ public class CompostRegister {
     public static final int DEFAULT_FRUIT_COMPOSTING_VALUE = 50;
     public static final int DEFAULT_BLOCK_COMPOSTING_VALUE = 100;
 
-    static {
-        compostItems = HashMultimap.create();
+    private static boolean initialized = false;
 
-        // vanilla
+    public static void fillWithVanillaItems() {
+        if (!initialized) {
+            throw new RuntimeException("not initialized");
+        }
+
         addStack(Items.apple, DEFAULT_FRUIT_COMPOSTING_VALUE);
         addStack(Items.carrot, DEFAULT_FRUIT_COMPOSTING_VALUE);
         addStack(Items.potato, DEFAULT_FRUIT_COMPOSTING_VALUE);
         addStack(Items.melon, DEFAULT_FRUIT_COMPOSTING_VALUE);
+
+        // TODO: finish porting of itemstacks with blocks
+        /*
         addStack(Blocks.reeds, DEFAULT_FRUIT_COMPOSTING_VALUE);
         addStack(Blocks.pumpkin, DEFAULT_BLOCK_COMPOSTING_VALUE);
         addStack(Blocks.cactus, DEFAULT_BLOCK_COMPOSTING_VALUE);
         addStackAnyDamage(Blocks.leaves, DEFAULT_BLOCK_COMPOSTING_VALUE).overrideTitle("Leaves");
         addStackAnyDamage(Blocks.leaves2, DEFAULT_BLOCK_COMPOSTING_VALUE).overrideTitle("Leaves");
+        */
+    }
 
-        // food module
+    public static void fillWithFoodModuleItems() {
+        if (!initialized) {
+            throw new RuntimeException("not initialized");
+        }
+
         int switchgrassCompostValue = DEFAULT_FRUIT_COMPOSTING_VALUE + DEFAULT_FRUIT_COMPOSTING_VALUE / 10;
         add(new ItemStack(blockSwitchgrass, 1, BlockSwitchgrass.VALUE_TOP), switchgrassCompostValue).overrideTitle("Switchgrass");
         addStackAnyDamage(blockSwitchgrassSolid, switchgrassCompostValue * 10);
     }
 
+    public static void init() {
+        if (initialized) {
+            throw new RuntimeException("re-initilization");
+        }
+        initialized = true;
+        compostItems = HashMultimap.create();
+    }
+
     public static CompostItem add(ItemStack stack, int compostingValue) {
         if (stack == null) {
             throw new RuntimeException("invalid stack in item adding to compost register");
+        }
+        if (stack.getItem() == null) {
+            throw new RuntimeException("invalid null item in stack in item adding to compost register");
         }
         if (compostingValue <= 0) {
             throw new RuntimeException("invalid composting value");
@@ -113,7 +136,7 @@ public class CompostRegister {
     }
 
     public static CompostItem addStack(Block block, int meta, int compostingValue) {
-        return add(new ItemStack(block, 1, meta), compostingValue);
+        return add(ItemHelper.getBlockItemStack(block, 1, meta), compostingValue);
     }
 
     public static CompostItem addStack(Item item, int compostingValue) {

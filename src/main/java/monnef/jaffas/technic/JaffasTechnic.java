@@ -68,6 +68,7 @@ import monnef.jaffas.technic.block.redstone.TileAnalogRepeater;
 import monnef.jaffas.technic.block.redstone.TileRandomizer;
 import monnef.jaffas.technic.block.redstone.TileSampler;
 import monnef.jaffas.technic.common.CommonProxy;
+import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.FungusInfo;
@@ -280,12 +281,6 @@ public class JaffasTechnic extends JaffasModBase {
         } finally {
             config.save();
         }
-    }
-
-    @Override
-    @Mod.EventHandler
-    public void load(FMLInitializationEvent event) {
-        super.load(event);
 
         if (!ModuleManager.isModuleEnabled(ModulesEnum.technic))
             return;
@@ -314,6 +309,12 @@ public class JaffasTechnic extends JaffasModBase {
         JaffasFood.packetHandler.manager().registerPacket(2, FruitCollectorPacket.class);
 
         installThermalExpansionSupport();
+    }
+
+    @Override
+    @Mod.EventHandler
+    public void load(FMLInitializationEvent event) {
+        super.load(event);
         JaffasFood.PrintInitialized(ModulesEnum.technic);
     }
 
@@ -335,6 +336,8 @@ public class JaffasTechnic extends JaffasModBase {
             WrenchHelper.registerWrenchItem(omniWrench);
         }
 
+        CompostRegister.fillWithVanillaItems();
+        CompostRegister.fillWithFoodModuleItems();
         GuideBookHelper.generateGuideBook();
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Items.writable_book, jaffarrolNugget);
     }

@@ -296,6 +296,33 @@ public class JaffasTrees extends JaffasModBase {
         } finally {
             config.save();
         }
+
+        if (!ModuleManager.isModuleEnabled(ModulesEnum.trees))
+            return;
+
+        creativeTab = new JaffaCreativeTab("jaffas.trees");
+        guiHandler = new GuiHandlerTrees();
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
+
+        JaffasRegistryHelper.registerTileEntity(TileFruitLeaves.class, "fruitLeaves");
+        JaffasRegistryHelper.registerTileEntity(TileJaffaCrops.class, "jaffaCrops");
+
+        CompostRegister.init();
+        createItems();
+
+        MinecraftForge.addGrassSeed(new ItemStack(itemUnknownSeeds), SEEDS_WEIGHT);
+
+        installRecipes();
+
+        // texture stuff
+        proxy.registerRenderThings();
+
+        //GameRegistry.registerCraftingHandler(new PersistentItemsCraftingHandler());
+
+        registerForestryStuff();
+
+        creativeTab.setup(ItemManager.getItem(JaffaItem.oranges));
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
     }
 
     private void populateBushInfo() {
@@ -402,33 +429,6 @@ public class JaffasTrees extends JaffasModBase {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
-
-        if (!ModuleManager.isModuleEnabled(ModulesEnum.trees))
-            return;
-
-        creativeTab = new JaffaCreativeTab("jaffas.trees");
-        guiHandler = new GuiHandlerTrees();
-        NetworkRegistry.INSTANCE.registerGuiHandler(this, guiHandler);
-
-        JaffasRegistryHelper.registerTileEntity(TileFruitLeaves.class, "fruitLeaves");
-        JaffasRegistryHelper.registerTileEntity(TileJaffaCrops.class, "jaffaCrops");
-
-        createItems();
-
-        MinecraftForge.addGrassSeed(new ItemStack(itemUnknownSeeds), SEEDS_WEIGHT);
-
-        installRecipes();
-
-        // texture stuff
-        proxy.registerRenderThings();
-
-        //GameRegistry.registerCraftingHandler(new PersistentItemsCraftingHandler());
-
-        registerForestryStuff();
-
-        creativeTab.setup(ItemManager.getItem(JaffaItem.oranges));
-        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
-
         JaffasFood.PrintInitialized(ModulesEnum.trees);
     }
 

@@ -38,15 +38,13 @@ class HomeStonePacket extends JaffasPacket {
     }
   }
 
-  override def executeServer(player: EntityPlayerMP) {
-    super.executeServer(player)
+  override def executeClient(player: EntityPlayerSP) {
     if (pType == HomeStonePacketType.SYNC) {
       JaffasFood.proxy.handleSyncPacket(player, secondsRemaining, openGUI)
     } else throw new UnsupportedOperationException
   }
 
-  override def executeClient(player: EntityPlayerSP) {
-    super.executeClient(player)
+  override def executeServer(player: EntityPlayerMP) {
     if (pType == HomeStonePacketType.PORT) {
       val p = player.asInstanceOf[EntityPlayerMP]
 

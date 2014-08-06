@@ -39,8 +39,6 @@ class FruitCollectorPacket extends JaffasPacket {
   }
 
   override def executeClient(player: EntityPlayerSP) {
-    super.executeClient(player)
-
     val collector = player.getEntityWorld.getTileEntity(tileEntityCoordinates._1, tileEntityCoordinates._2, tileEntityCoordinates._3).asInstanceOf[TileFruitCollector]
     collector.updateInnerState(state, targetedItemPosition._1, targetedItemPosition._2, targetedItemPosition._3)
   }
