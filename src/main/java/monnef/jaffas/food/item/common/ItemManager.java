@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.item.common;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.api.ICustomIcon;
 import monnef.core.item.ItemMonnefCore;
@@ -95,6 +96,7 @@ public class ItemManager {
         LanguageRegistry.addName(item, info.getTitle());
         itemToJaffaItem.put(item, ji);
         itemIdToJaffaItem.put(Item.getIdFromItem(item), ji);
+        GameRegistry.registerItem(item, info.getName());
     }
 
     public static Item createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {
