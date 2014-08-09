@@ -18,6 +18,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -106,7 +107,7 @@ public class EntityWindTurbine extends Entity {
     }
 
     private void setItemPrototype(ItemWindTurbine item) {
-        dataWatcher.updateObject(ITEM_PROTOTYPE_WID, item != null ? item : 0);
+        dataWatcher.updateObject(ITEM_PROTOTYPE_WID, item != null ? Item.getIdFromItem(item) : 0);
     }
 
     private void setTurbineRotations(ForgeDirection rotation) {
