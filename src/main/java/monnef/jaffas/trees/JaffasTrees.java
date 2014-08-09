@@ -454,19 +454,24 @@ public class JaffasTrees extends JaffasModBase {
         itemLemon = constructFruit(NotEatable, 68, "lemon", "Lemon");
         OreDictionary.registerOre(LEMON, itemLemon);
         registerFruitItem(itemLemon);
+        RegistryUtils.registerItem(itemLemon);
 
         itemOrange = constructFruit(EatableNormal, 69, "orange", "Orange");
         OreDictionary.registerOre(ORANGE, itemOrange);
         registerFruitItem(itemOrange);
+        RegistryUtils.registerItem(itemOrange);
 
         itemPlum = constructFruit(EatableNormal, 70, "plum", "Plum");
         registerFruitItem(itemPlum);
+        RegistryUtils.registerItem(itemPlum);
 
         itemCoconut = constructFruit(NotEatable, 71, "coconut", "Coconut");
         registerFruitItem(itemCoconut);
+        RegistryUtils.registerItem(itemCoconut);
 
         itemBanana = constructFruit(EatableNormal, 72, "banana", "Banana");
         registerFruitItem(itemBanana);
+        RegistryUtils.registerItem(itemBanana);
 
         registerFruitItem(Items.apple);
 
@@ -488,26 +493,31 @@ public class JaffasTrees extends JaffasModBase {
         itemDebug = new ItemJaffaTreeDebugTool();
         itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");
         LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
+        RegistryUtils.registerItem(itemDebug);
 
         itemStick = new ItemTrees();
         itemStick.setUnlocalizedName("stickImpregnated");
         itemStick.setCustomIconIndex(160);
         LanguageRegistry.addName(itemStick, "Impregnated Stick");
+        RegistryUtils.registerItem(itemStick);
 
         itemRod = new ItemTrees();
         itemRod.setUnlocalizedName("rod").setMaxStackSize(1).setMaxDamage(64);
         itemRod.setCustomIconIndex(161);
         LanguageRegistry.addName(itemRod, "Reinforced Rod");
+        RegistryUtils.registerItem(itemRod);
 
         itemFruitPickerHead = new ItemTrees();
         itemFruitPickerHead.setUnlocalizedName("fruitPickerHead");
         itemFruitPickerHead.setCustomIconIndex(162);
         LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
+        RegistryUtils.registerItem(itemFruitPickerHead);
 
         itemFruitPicker = new ItemTrees();
         itemFruitPicker.setUnlocalizedName("fruitPicker").setMaxStackSize(1).setMaxDamage(256);
         itemFruitPicker.setCustomIconIndex(163);
         LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
+        RegistryUtils.registerItem(itemFruitPicker);
 
         itemUnknownSeeds = new ItemTrees();
         itemUnknownSeeds.setCustomIconIndex(34);

@@ -71,6 +71,7 @@ public class ItemManager {
     }
 
     public static void addItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
+        // TODO: remove title entirely (after successful export) and generate name from JaffaItem enum
         String newTitle = title;
         String newName = name;
         if (title.isEmpty()) {
