@@ -109,6 +109,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.apache.logging.log4j.Level;
+import org.omg.SendingContext.RunTime;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 import java.util.Map;
@@ -405,8 +406,8 @@ public class JaffasTechnic extends JaffasModBase {
         LanguageRegistry.addName(jaffarrolRefined, "Refined Jaffarrol");
 
         limsew = new ItemTechnic(3);
-        limsew.setUnlocalizedName("limsewDust");
         LanguageRegistry.addName(limsew, "Limsew Dust");
+        RegistryUtils.registerItem(limsew, "limsewDust");
 
         blockJaffarrol = new BlockTechnic(4, Material.iron);
         blockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
@@ -421,12 +422,12 @@ public class JaffasTechnic extends JaffasModBase {
         itemCentralUnit = new ItemCentralUnit(6);
 
         funnel = new ItemTechnic(16);
-        funnel.setUnlocalizedName("funnel");
         LanguageRegistry.addName(funnel, "Funnel");
+        RegistryUtils.registerItem(funnel, "funnel");
 
         itemCasing = new ItemTechnic(13);
-        itemCasing.setUnlocalizedName("casing");
         LanguageRegistry.addName(itemCasing, "Casing");
+        RegistryUtils.registerItem(itemCasing, "casing");
 
         itemCasingRefined = new ItemTechnic(14);
         itemCasingRefined.setUnlocalizedName("casingRefined");
@@ -449,6 +450,7 @@ public class JaffasTechnic extends JaffasModBase {
 
         itemLocomotive = new ItemLocomotive(24);
         LanguageRegistry.addName(itemLocomotive, "Mini-Locomotive");
+        RegistryUtils.registerItem(itemLocomotive);
 
         jaffarrolDust = new ItemTechnic(25);
         RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
