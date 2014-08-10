@@ -18,15 +18,16 @@ import net.minecraft.util.ResourceLocation;
 
 // mostly from chicken renderer
 public class RenderDuck extends RenderLiving {
-    private static final ResourceLocation texture = new ResourceLocation(EntityDuck.getTexturePath());
+    private final ResourceLocation texture;
 
     @SideOnly(Side.CLIENT)
     public RenderDuck(ModelBase par1ModelBase, float par2) {
         super(par1ModelBase, par2);
+        texture = new ResourceLocation(EntityDuck.getTexturePath());
     }
 
     public void renderDuck(EntityDuck duck, double par2, double par4, double par6, float par8, float par9) {
-        super.func_110827_b(duck, par2, par4, par6, par8, par9); // doRenderLiving
+        super.doRender(duck, par2, par4, par6, par8, par9);
     }
 
     protected float getWingRotation(EntityDuck duck, float par2) {
@@ -35,17 +36,9 @@ public class RenderDuck extends RenderLiving {
         return (MathHelper.sin(var3) + 1.0F) * var4;
     }
 
-    /**
-     * Defines what float the third param in setRotationAngles of ModelBase is
-     */
     @Override
     protected float handleRotationFloat(EntityLivingBase par1EntityLiving, float par2) {
         return this.getWingRotation((EntityDuck) par1EntityLiving, par2);
-    }
-
-    @Override
-    public void func_110827_b(EntityLiving par1EntityLiving, double par2, double par4, double par6, float par8, float par9) {
-        this.renderDuck((EntityDuck) par1EntityLiving, par2, par4, par6, par8, par9);
     }
 
     @Override

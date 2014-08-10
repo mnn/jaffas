@@ -324,11 +324,16 @@ public class ContentHolder {
     public static void initEntityIDs() {
         jaffaPaintingEntityID = getNextFreeEntityID();
         createPainting();
+
         duckEntityID = getNextFreeEntityID();
         registerDuck();
+
         duckEggEntityID = getNextFreeEntityID();
         registerDuckEgg();
+
         spiderEntityID = getNextFreeEntityID();
         registerLittleSpider();
+
+        JaffasFood.Log.printInfo(String.format("Registered entities: painting @ %d, duck @ %d, duck egg @ %d, little spider @ %d", jaffaPaintingEntityID, duckEntityID, duckEggEntityID, spiderEntityID));
     }
 }

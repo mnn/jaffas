@@ -140,7 +140,7 @@ public class EntityDuck extends EntityAnimal {
 
     @Override
     protected float getSoundVolume() {
-        return 0.5f;
+        return 0.2f;
     }
 
     @Override
@@ -214,6 +214,7 @@ public class EntityDuck extends EntityAnimal {
             return true;
         }
     }
+
 
     public static String getTexturePath() {
         return ResourcePathHelper.assemble("jaffas_duck.png", ENTITY);
