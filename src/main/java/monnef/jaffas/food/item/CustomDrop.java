@@ -6,6 +6,7 @@
 package monnef.jaffas.food.item;
 
 import com.google.common.eventbus.Subscribe;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import monnef.core.utils.EntityHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
@@ -65,7 +66,7 @@ public class CustomDrop {
         return newEntry;
     }
 
-    @Subscribe
+    @SubscribeEvent
     public void entityDrop(LivingDropsEvent event) {
         EntityLivingBase mob = event.entityLiving;
 
