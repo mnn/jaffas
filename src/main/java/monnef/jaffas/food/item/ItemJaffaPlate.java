@@ -82,4 +82,9 @@ public class ItemJaffaPlate extends ItemArmor {
     public boolean unequipWhenDamaged() {
         return repairItem == null;
     }
+
+    @Override
+    public Item setUnlocalizedName(String name) {
+        return super.setUnlocalizedName(Reference.ITEM_NAME_PREFIX + "." + name);
+    }
 }

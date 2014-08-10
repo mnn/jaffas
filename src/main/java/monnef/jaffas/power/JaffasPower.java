@@ -88,7 +88,7 @@ public class JaffasPower extends JaffasModBase {
 
     private boolean debug;
 
-    public static ItemDebug ItemDebug;
+    public static ItemDebug itemDebug;
     public static BlockGenerator generator;
     public static BlockAntenna antenna;
     public static ItemPipeWrench wrench;
@@ -174,14 +174,16 @@ public class JaffasPower extends JaffasModBase {
         RegistryUtils.registerBlock(generator, "Generator");
         registerTileEntity(TileGenerator.class, "jp.generator");
 
-        ItemDebug = new ItemDebug(1);
-        LanguageRegistry.addName(ItemDebug, "Power Debug Tool");
+        itemDebug = new ItemDebug(1);
+        RegistryUtils.registerItem(itemDebug);
+        LanguageRegistry.addName(itemDebug, "Power Debug Tool");
 
         antenna = new BlockAntenna(5);
         RegistryUtils.registerBlock(antenna, "Small Antenna");
         registerTileEntity(TileAntenna.class, "jp.antenna");
 
         wrench = new ItemPipeWrench(1);
+        RegistryUtils.registerItem(wrench);
         LanguageRegistry.addName(wrench, "Pipe Wrench");
 
         linkTool = new ItemLinkTool(0);
@@ -230,6 +232,7 @@ public class JaffasPower extends JaffasModBase {
             RegistryUtils.registerItem(windTurbineMill, "windTurbineMill", "Windmill");
 
             turbineBlade = new ItemTurbineBlade(58);
+            RegistryUtils.registerItem(turbineBlade);
         }
 
         TileEntityBasicProcessingMachine.registerMachine(TileJuiceMaker.class, TileJuiceMaker.getRecipeHandler(), "guijuicemaker.png", "Juice Maker 1000", TileEntityBasicProcessingMachine.MachineRecord.InvType.DOUBLE);

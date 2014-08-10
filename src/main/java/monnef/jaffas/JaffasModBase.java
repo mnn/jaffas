@@ -59,10 +59,10 @@ public abstract class JaffasModBase {
     }
 
     public void load(FMLInitializationEvent event) {
-        PackageToModIdRegistry.registerClassToModId(1);
     }
 
     public void preLoad(FMLPreInitializationEvent event) {
+        PackageToModIdRegistry.registerClassToModId(1);
         handleMetadata();
         config = new Configuration(
                 event.getSuggestedConfigurationFile());

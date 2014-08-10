@@ -112,6 +112,7 @@ import org.apache.logging.log4j.Level;
 import org.omg.SendingContext.RunTime;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
+import java.rmi.registry.Registry;
 import java.util.Map;
 
 import static monnef.core.utils.RegistryUtils.registerMultiBlock;
@@ -402,7 +403,7 @@ public class JaffasTechnic extends JaffasModBase {
         RegistryUtils.registerItem(jaffarrolRaw, "jaffarrolRaw", "Raw Jaffarrol");
 
         jaffarrolRefined = new ItemTechnic(2);
-        jaffarrolRefined.setUnlocalizedName("jaffarrolRefined");
+        RegistryUtils.registerItem(jaffarrolRefined, "jaffarrolRefined");
         LanguageRegistry.addName(jaffarrolRefined, "Refined Jaffarrol");
 
         limsew = new ItemTechnic(3);
@@ -420,6 +421,7 @@ public class JaffasTechnic extends JaffasModBase {
         LanguageRegistry.addName(blockLimsew, "Block of Limsew");
 
         itemCentralUnit = new ItemCentralUnit(6);
+        RegistryUtils.registerItem(itemCentralUnit);
 
         funnel = new ItemTechnic(16);
         RegistryUtils.registerItem(funnel, "funnel");
@@ -430,7 +432,7 @@ public class JaffasTechnic extends JaffasModBase {
         LanguageRegistry.addName(itemCasing, "Casing");
 
         itemCasingRefined = new ItemTechnic(14);
-        itemCasingRefined.setUnlocalizedName("casingRefined");
+        RegistryUtils.registerItem(itemCasingRefined, "casingRefined");
         LanguageRegistry.addName(itemCasingRefined, "Refined Casing");
 
         // jarmor

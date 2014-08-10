@@ -9,7 +9,7 @@ import monnef.core.item.ItemMonnefCore
 import monnef.jaffas.food.item.common.IItemJaffa
 import monnef.jaffas.food.JaffasFood
 import net.minecraft.item.Item
-import monnef.jaffas.food.common.IconDescriptorJaffas
+import monnef.jaffas.food.common.{Reference, IconDescriptorJaffas}
 
 class ItemJaffaBase extends ItemMonnefCore with IItemJaffa with IconDescriptorJaffas {
   maxStackSize = 64
@@ -23,5 +23,5 @@ class ItemJaffaBase extends ItemMonnefCore with IItemJaffa with IconDescriptorJa
 
   override def getCustomIconName: String = if (getCustomIconIndex < 0) "todo" else null
 
-  override def setUnlocalizedName(par1Str: String): Item = super.setUnlocalizedName("jaffas." + par1Str)
+  override def setUnlocalizedName(par1Str: String): Item = super.setUnlocalizedName(Reference.ITEM_NAME_PREFIX + "." + par1Str)
 }
