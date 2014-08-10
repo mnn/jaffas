@@ -74,6 +74,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.apache.logging.log4j.Level;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
+import java.rmi.registry.Registry;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -352,8 +353,9 @@ public class JaffasTrees extends JaffasModBase {
         }
 
         res.setUnlocalizedName(name);
+        RegistryUtils.registerItem(res,name,title);
+
         res.setCustomIconIndex(textureOffset);
-        LanguageRegistry.addName(res, title);
         return res;
     }
 

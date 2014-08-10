@@ -406,8 +406,8 @@ public class JaffasTechnic extends JaffasModBase {
         LanguageRegistry.addName(jaffarrolRefined, "Refined Jaffarrol");
 
         limsew = new ItemTechnic(3);
-        LanguageRegistry.addName(limsew, "Limsew Dust");
         RegistryUtils.registerItem(limsew, "limsewDust");
+        LanguageRegistry.addName(limsew, "Limsew Dust");
 
         blockJaffarrol = new BlockTechnic(4, Material.iron);
         blockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
@@ -422,12 +422,12 @@ public class JaffasTechnic extends JaffasModBase {
         itemCentralUnit = new ItemCentralUnit(6);
 
         funnel = new ItemTechnic(16);
-        LanguageRegistry.addName(funnel, "Funnel");
         RegistryUtils.registerItem(funnel, "funnel");
+        LanguageRegistry.addName(funnel, "Funnel");
 
         itemCasing = new ItemTechnic(13);
-        LanguageRegistry.addName(itemCasing, "Casing");
         RegistryUtils.registerItem(itemCasing, "casing");
+        LanguageRegistry.addName(itemCasing, "Casing");
 
         itemCasingRefined = new ItemTechnic(14);
         itemCasingRefined.setUnlocalizedName("casingRefined");
