@@ -29,13 +29,13 @@ public class TileKeg extends TileEntity {
 
     private static HashMap<Item, KegVesselEntry> vessel;
 
-    static {
+    public static void init() {
         vessel = new HashMap<Item, KegVesselEntry>();
-
         addVessel(KegType.BEER, getItem(JaffaItem.beerMugEmpty), new ItemStack(getItem(JaffaItem.beerMugFull)));
     }
 
     public static KegVesselEntry addVessel(KegType validFor, Item item, ItemStack filledItem) {
+        if (item == null) throw new RuntimeException("Null item");
         KegVesselEntry entry = new KegVesselEntry();
         entry.item = item;
         entry.validFor = validFor;
@@ -66,11 +66,11 @@ public class TileKeg extends TileEntity {
 
     public static boolean isValidVessel(ItemStack input) {
         if (input == null) return false;
-        return vessel.containsKey(input);
+        return vessel.containsKey(input.getItem());
     }
 
     public static KegVesselEntry getVessel(ItemStack input) {
-        return vessel.get(input);
+        return vessel.get(input.getItem());
     }
 
     public boolean onBlockActivated(EntityPlayer player) {
@@ -87,7 +87,7 @@ public class TileKeg extends TileEntity {
                 return false;
             }
             if (type == KegType.EMPTY) {
-                throw new RuntimeException("vessel record is valid for EMPTY keg, this is error.");
+                throw new RuntimeException("Vessel record is valid for EMPTY keg, this is an error.");
             }
             if (liquidAmount < vessel.capacity) {
                 return false;
@@ -127,6 +127,9 @@ public class TileKeg extends TileEntity {
     @Override
     public void writeToNBT(NBTTagCompound tag) {
         super.writeToNBT(tag);
+        if (type == null) {
+            type = KegType.EMPTY;
+        }
         tag.setByte(KEG_TYPE_TAG, (byte) type.ordinal());
         tag.setInteger(LIQUID_AMOUNT_TAG, liquidAmount);
     }
@@ -141,5 +144,9 @@ public class TileKeg extends TileEntity {
         public int capacity = 1;
         public Item item;
         public ItemStack filledVessel;
+    }
+
+    public KegType getLiquidType() {
+        return type;
     }
 }

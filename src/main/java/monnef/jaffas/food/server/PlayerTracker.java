@@ -9,6 +9,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent;
 import monnef.jaffas.food.network.HomeStonePacket;
+import monnef.jaffas.technic.block.TileKeg;
 
 public class PlayerTracker {
     @SubscribeEvent
@@ -18,6 +19,5 @@ public class PlayerTracker {
 
     @SubscribeEvent
     public void onClientConnected(FMLNetworkEvent.ClientConnectedToServerEvent evt){
-
     }
 }

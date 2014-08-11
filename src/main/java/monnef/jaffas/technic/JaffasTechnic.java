@@ -5,12 +5,14 @@
 
 package monnef.jaffas.technic;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -38,6 +40,7 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.network.HomeStonePacket;
+import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
 import monnef.jaffas.technic.block.BlockCompostCore;
@@ -300,7 +303,7 @@ public class JaffasTechnic extends JaffasModBase {
         // texture stuff
         proxy.registerRenderThings();
 
-        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.technic", "en_US", "Jaffas and more! Ores");
+        LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.technic", "en_US", "Jaffas and more! Technic");
         creativeTab.setup(JaffasTechnic.jaffarrolRefined);
 
         itemCentralUnit.registerNames();
@@ -311,6 +314,8 @@ public class JaffasTechnic extends JaffasModBase {
         JaffasFood.packetHandler.manager().registerPacket(2, FruitCollectorPacket.class);
 
         installThermalExpansionSupport();
+
+        FMLCommonHandler.instance().bus().register(new PlayerTracker());
     }
 
     @Override
@@ -342,6 +347,11 @@ public class JaffasTechnic extends JaffasModBase {
         CompostRegister.fillWithFoodModuleItems();
         GuideBookHelper.generateGuideBook();
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Items.writable_book, jaffarrolNugget);
+    }
+
+    @Mod.EventHandler
+    public void serverStarted(FMLServerStartedEvent event) {
+        TileKeg.init();
     }
 
     private void createFungiStuff() {

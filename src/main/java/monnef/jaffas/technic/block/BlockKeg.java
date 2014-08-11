@@ -1,11 +1,15 @@
 package monnef.jaffas.technic.block;
 
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.xmas.JaffasXmas;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.World;
 
 import java.util.Random;
@@ -57,5 +61,12 @@ public class BlockKeg extends BlockTechnic {
     @Override
     public Item getItemDropped(int meta, Random random, int par3) {
         return JaffasTechnic.itemKeg;
+    }
+
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        TileKeg.KegType liquidType = ((TileKeg) world.getTileEntity(x, y, z)).getLiquidType();
+        int dmg = liquidType != null ? liquidType.ordinal() : 0;
+        return new ItemStack(JaffasTechnic.itemKeg, 1, dmg);
     }
 }

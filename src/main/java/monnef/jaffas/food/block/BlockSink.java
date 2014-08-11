@@ -113,7 +113,7 @@ public class BlockSink extends BlockJaffas {
 
         ItemStack currentItem = player.getCurrentEquippedItem();
         if (currentItem != null) {
-            Item filledItem = fillableItems.get(currentItem);
+            Item filledItem = fillableItems.get(currentItem.getItem());
             if (filledItem != null) {
                 changeStateToNoWater(world, x, y, z, meta);
                 doItemSwap(world, player, currentItem, new ItemStack(filledItem, 1, 0));
