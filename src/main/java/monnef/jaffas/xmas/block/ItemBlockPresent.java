@@ -17,7 +17,7 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
             "Small White Present", "Small Blue Present", "Small Yellow Present", "Small Black Present", "Small Magenta Present", "Small Present"};
 
     public ItemBlockPresent() {
-        super(JaffasXmas.BlockPresent);
+        super(JaffasXmas.blockPresent);
         setCustomIconIndex(0);
     }
 
@@ -34,7 +34,7 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
 
     @Override
     public BlockXmasMulti getParentBlock() {
-        return JaffasXmas.BlockPresent;
+        return JaffasXmas.blockPresent;
     }
 
     @SideOnly(Side.CLIENT)

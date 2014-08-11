@@ -32,7 +32,7 @@ public class ItemGiantCandy extends ItemXmas {
         } else {
             y++;
 
-            BlockCandy blockToPlace = JaffasXmas.BlockCandy;
+            BlockCandy blockToPlace = JaffasXmas.blockCandy;
             int direction = MathHelper.floor_double((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
             direction = (direction + 1) % 4;
 

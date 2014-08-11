@@ -52,9 +52,9 @@ public class JaffasXmas extends JaffasModBase {
 
     private boolean debug;
 
-    public static monnef.jaffas.xmas.block.BlockCandy BlockCandy;
-    public static monnef.jaffas.xmas.item.ItemGiantCandy ItemGiantCandy;
-    public static monnef.jaffas.xmas.block.BlockPresent BlockPresent;
+    public static monnef.jaffas.xmas.block.BlockCandy blockCandy;
+    public static monnef.jaffas.xmas.item.ItemGiantCandy itemGiantCandy;
+    public static monnef.jaffas.xmas.block.BlockPresent blockPresent;
 
     public static String textureFile = "/jaffas_04.png";
     public static int renderID;
@@ -98,7 +98,7 @@ public class JaffasXmas extends JaffasModBase {
         proxy.registerRenderThings();
 
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.xmas", "en_US", "Jaffas and more! Christmas");
-        creativeTab.setup(JaffasXmas.ItemGiantCandy);
+        creativeTab.setup(JaffasXmas.itemGiantCandy);
     }
 
     @Override
@@ -110,28 +110,26 @@ public class JaffasXmas extends JaffasModBase {
     }
 
     private void createItems() {
-        BlockCandy = new BlockCandy(16, Material.wood);
-        BlockCandy.setBlockName("jaffas.candy");
-        GameRegistry.registerBlock(BlockCandy, "blockCandy");
-        LanguageRegistry.addName(BlockCandy, "Candy Cane");
+        blockCandy = new BlockCandy(16, Material.wood);
+        GameRegistry.registerBlock(blockCandy, "giantCandyCane");
+        LanguageRegistry.addName(blockCandy, "Candy Cane");
 
-        ItemGiantCandy = new ItemGiantCandy(16);
-        ItemGiantCandy.setUnlocalizedName("jaffas.giantCandy");
-        LanguageRegistry.addName(ItemGiantCandy, "Giant Candy Cane");
+        itemGiantCandy = new ItemGiantCandy(16);
+        RegistryUtils.registerItem(itemGiantCandy, "giantCandy", "Giant Candy Cane");
 
-        BlockPresent = new BlockPresent(0, Material.cloth, ItemBlockPresent.count);
-        RegistryUtils.registerMultiBlock(BlockPresent, ItemBlockPresent.class, ItemBlockPresent.titles);
-        RegistryUtils.registerSubBlockNames(BlockPresent, ((ItemBlockPresent) Item.getItemFromBlock(BlockPresent)).getSubTitles());
+        blockPresent = new BlockPresent(0, Material.cloth, ItemBlockPresent.count);
+        RegistryUtils.registerMultiBlock(blockPresent, ItemBlockPresent.class, ItemBlockPresent.titles);
+        RegistryUtils.registerSubBlockNames(blockPresent, ((ItemBlockPresent) Item.getItemFromBlock(blockPresent)).getSubTitles());
     }
 
     private void installRecipes() {
-        Recipes.addRecipe(new ShapedOreRecipe(new ItemStack(ItemGiantCandy), " W ", "WRW", "WB ", 'W',
+        Recipes.addRecipe(new ShapedOreRecipe(new ItemStack(itemGiantCandy), " W ", "WRW", "WB ", 'W',
                 Recipes.WOOD_PLANK, 'R', new ItemStack(Items.dye, 1, 1), 'B', new ItemStack(Items.dye, 1, 15)));
 
-        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Items.dye, 1, 1),
+        GameRegistry.addRecipe(new ItemStack(blockPresent, 1, 0), "RS ", "PPP", "PPP", 'R', new ItemStack(Items.dye, 1, 1),
                 'S', Items.string, 'P', Items.paper);
 
-        GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, 6), "RS ", "PPP", 'R', new ItemStack(Items.dye, 1, 1),
+        GameRegistry.addRecipe(new ItemStack(blockPresent, 1, 6), "RS ", "PPP", 'R', new ItemStack(Items.dye, 1, 1),
                 'S', Items.string, 'P', Items.paper);
 
         installPresentRecipe(2, 4, true, 1);
@@ -191,10 +189,10 @@ public class JaffasXmas extends JaffasModBase {
 
     private void installPresentRecipe(int ribbonColor, int color, boolean big, int presentMeta) {
         if (big) {
-            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", "PPP", 'A', new ItemStack(Items.dye, 1, ribbonColor),
+            GameRegistry.addRecipe(new ItemStack(blockPresent, 1, presentMeta), "ASB", "PPP", "PPP", 'A', new ItemStack(Items.dye, 1, ribbonColor),
                     'S', Items.string, 'P', Items.paper, 'B', new ItemStack(Items.dye, 1, color));
         } else {
-            GameRegistry.addRecipe(new ItemStack(BlockPresent, 1, presentMeta), "ASB", "PPP", 'A', new ItemStack(Items.dye, 1, ribbonColor),
+            GameRegistry.addRecipe(new ItemStack(blockPresent, 1, presentMeta), "ASB", "PPP", 'A', new ItemStack(Items.dye, 1, ribbonColor),
                     'S', Items.string, 'P', Items.paper, 'B', new ItemStack(Items.dye, 1, color));
         }
     }

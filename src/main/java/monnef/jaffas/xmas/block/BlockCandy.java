@@ -98,12 +98,12 @@ public class BlockCandy extends BlockXmas {
 
     @Override
     public Item getItemDropped(int meta, Random random, int fortune) {
-        return isBlockTopPart(meta) ? null : JaffasXmas.ItemGiantCandy;
+        return isBlockTopPart(meta) ? null : JaffasXmas.itemGiantCandy;
     }
 
     @Override
     public Item getItem(World world, int x, int y, int z) {
-        return JaffasXmas.ItemGiantCandy;
+        return JaffasXmas.itemGiantCandy;
     }
 
     public final static float unit = 1f / 16f;
