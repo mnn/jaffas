@@ -6,6 +6,7 @@ import net.minecraft.client.entity.EntityPlayerSP
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.entity.item.EntityItem
 import monnef.jaffas.trees.block.TileFruitCollector
+import net.minecraft.entity.player.EntityPlayer
 
 /**
  * Handles sync of [server] -> [client] sucking particles
@@ -38,7 +39,7 @@ class FruitCollectorPacket extends JaffasPacket {
     targetedItemPosition = (in.readDouble(), in.readDouble(), in.readDouble())
   }
 
-  override def executeClient(player: EntityPlayerSP) {
+  override def executeClient(player: EntityPlayer) {
     val collector = player.getEntityWorld.getTileEntity(tileEntityCoordinates._1, tileEntityCoordinates._2, tileEntityCoordinates._3).asInstanceOf[TileFruitCollector]
     collector.updateInnerState(state, targetedItemPosition._1, targetedItemPosition._2, targetedItemPosition._3)
   }

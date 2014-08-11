@@ -38,7 +38,7 @@ class HomeStonePacket extends JaffasPacket {
     }
   }
 
-  override def executeClient(player: EntityPlayerSP) {
+  override def executeClient(player: EntityPlayer) {
     if (pType == HomeStonePacketType.SYNC) {
       JaffasFood.proxy.handleSyncPacket(player, secondsRemaining, openGUI)
     } else throw new UnsupportedOperationException

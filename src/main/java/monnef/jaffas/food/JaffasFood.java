@@ -14,6 +14,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartedEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -53,9 +54,11 @@ import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.item.ItemJaffaBase;
 import monnef.jaffas.food.item.ItemJaffaFood;
+import monnef.jaffas.food.item.ItemJaffaPack;
 import monnef.jaffas.food.item.ItemJaffaRecipeTool;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
+import monnef.jaffas.food.item.JaffasHelper;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.food.network.HomeStonePacket;
@@ -166,6 +169,7 @@ public class JaffasFood extends JaffasModBase {
 
         createBlocks();
         items.CreateItems();
+        ItemJaffaPack.initPacks();
         createJaffaArmorAndSword();
         registerDuckSpawns();
         registerCleaverRecords();
@@ -202,6 +206,7 @@ public class JaffasFood extends JaffasModBase {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
+        ItemManager.constructItemIdToJaffaItemMappings();
         Recipes.installRecipes();
 
         printInitializedMessage();
@@ -250,6 +255,11 @@ public class JaffasFood extends JaffasModBase {
 
         ServerCommandManager serverCommandManager = ((ServerCommandManager) commandManager);
         addCommands(serverCommandManager);
+    }
+
+    @Mod.EventHandler
+    public void serverStarted(FMLServerStartedEvent event) {
+        ItemManager.constructItemIdToJaffaItemMappings();
     }
 
     private void addCommands(ServerCommandManager manager) {

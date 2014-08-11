@@ -19,6 +19,7 @@ import java.lang.reflect.Constructor;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ItemManager {
     protected static LinkedHashMap<JaffaItem, JaffaItemInfo> itemsInfo;
@@ -96,8 +97,16 @@ public class ItemManager {
         info.setItem(item);
         LanguageRegistry.addName(item, info.getTitle());
         itemToJaffaItem.put(item, ji);
-        itemIdToJaffaItem.put(Item.getIdFromItem(item), ji);
         GameRegistry.registerItem(item, info.getName());
+    }
+
+    public static void constructItemIdToJaffaItemMappings() {
+        itemIdToJaffaItem.clear();
+        for (Map.Entry<Item, JaffaItem> e : itemToJaffaItem.entrySet()) {
+            int id = Item.getIdFromItem(e.getKey());
+            if (id == -1) throw new RuntimeException("Unable to get proper item id.");
+            itemIdToJaffaItem.put(id, e.getValue());
+        }
     }
 
     public static Item createJaffaItem(JaffaItem ji, JaffaItemType type, ModulesEnum module) {
