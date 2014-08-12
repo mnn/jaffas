@@ -29,6 +29,7 @@ import monnef.jaffas.food.entity.EntityLittleSpider;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.network.HomeStonePacket;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.client.model.ModelChicken;
 import net.minecraft.client.renderer.entity.Render;
@@ -64,6 +65,10 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerBlockHandler(new CustomBlockRenderer());
 
         ClientUtils.registerItemRendererOfBlock(ContentHolder.blockTable, new CustomBlockRenderer());
+
+        CustomBlockRenderer bricksRenderer = new CustomBlockRenderer();
+        bricksRenderer.setForceInventoryColoring(true);
+        ClientUtils.registerItemRendererOfBlock(ContentHolder.blockBricks, bricksRenderer);
     }
 
     private Render constructLittleSpiderRenderer() {

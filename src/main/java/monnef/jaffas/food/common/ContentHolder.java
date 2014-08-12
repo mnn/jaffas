@@ -15,6 +15,7 @@ import monnef.core.utils.EntityHelper;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockBoard;
+import monnef.jaffas.food.block.BlockBricks;
 import monnef.jaffas.food.block.BlockColumn;
 import monnef.jaffas.food.block.BlockCross;
 import monnef.jaffas.food.block.BlockFridge;
@@ -29,6 +30,7 @@ import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.block.BlockSwitchgrassSolid;
 import monnef.jaffas.food.block.BlockTable;
+import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.block.ItemBlockPie;
 import monnef.jaffas.food.block.ItemBlockSwitchgrass;
 import monnef.jaffas.food.block.ItemBlockTable;
@@ -97,6 +99,7 @@ public class ContentHolder {
     public static BlockJDirectional blockDir2;
     public static BlockMeatDryer blockMeatDryer;
     public static BlockRipeningBox blockRipeningBox;
+    public static BlockBricks blockBricks;
 
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -306,6 +309,10 @@ public class ContentHolder {
         ContentHolder.blockRipeningBox = new BlockRipeningBox(257, breakableIronMaterial());
         RegistryUtils.registerBlock(ContentHolder.blockRipeningBox, "ripeningBox", "Ripening Box");
         registerTileEntity(TileRipeningBox.class, "ripeningBox");
+
+        blockBricks = new BlockBricks(291);
+        //RegistryUtils.registerBlock(blockBricks, "smallBrickWall.0", "Small Brick Wall");
+        RegistryUtils.registerMultiBlock(ContentHolder.blockBricks, ItemBlockJaffas.class, BlockBricks.titles(), BlockBricks.subNames());
     }
 
     public static void createJaffaArmorAndSword() {
