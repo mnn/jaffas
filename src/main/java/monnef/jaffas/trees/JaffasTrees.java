@@ -353,7 +353,7 @@ public class JaffasTrees extends JaffasModBase {
         }
 
         res.setUnlocalizedName(name);
-        RegistryUtils.registerItem(res,name,title);
+        RegistryUtils.registerItem(res, name, title);
 
         res.setCustomIconIndex(textureOffset);
         return res;
@@ -456,24 +456,19 @@ public class JaffasTrees extends JaffasModBase {
         itemLemon = constructFruit(NotEatable, 68, "lemon", "Lemon");
         OreDictionary.registerOre(LEMON, itemLemon);
         registerFruitItem(itemLemon);
-        RegistryUtils.registerItem(itemLemon);
 
         itemOrange = constructFruit(EatableNormal, 69, "orange", "Orange");
         OreDictionary.registerOre(ORANGE, itemOrange);
         registerFruitItem(itemOrange);
-        RegistryUtils.registerItem(itemOrange);
 
         itemPlum = constructFruit(EatableNormal, 70, "plum", "Plum");
         registerFruitItem(itemPlum);
-        RegistryUtils.registerItem(itemPlum);
 
         itemCoconut = constructFruit(NotEatable, 71, "coconut", "Coconut");
         registerFruitItem(itemCoconut);
-        RegistryUtils.registerItem(itemCoconut);
 
         itemBanana = constructFruit(EatableNormal, 72, "banana", "Banana");
         registerFruitItem(itemBanana);
-        RegistryUtils.registerItem(itemBanana);
 
         registerFruitItem(Items.apple);
 
