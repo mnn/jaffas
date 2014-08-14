@@ -554,6 +554,7 @@ public class JaffasTrees extends JaffasModBase {
         }
 
         leaves.seedsItem = new ItemFruitSeeds(leaves.saplingBlock, seedTexture, subCount);
+        RegistryUtils.registerItem(leaves.seedsItem, "treeSeeds" + i);
         leaves.seedsItem.serialNumber = i;
         for (int j = 0; j < subCount; j++) {
             String combinedName = leaves.seedsItem.getUnlocalizedName() + "." + j + ".name";

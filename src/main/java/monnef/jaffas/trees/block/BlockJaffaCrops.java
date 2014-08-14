@@ -76,8 +76,9 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
                 float growthRate = this.getGrowthRate(world, x, y, z);
 
                 if (random.nextInt((int) (25.0F / growthRate) + 1) == 0) {
+                    boolean rain = world.isRaining() && world.canBlockSeeTheSky(x, y, z);
                     // slow grow a bit
-                    if (random.nextInt(4) == 0) {
+                    if (random.nextInt(4) == 0 || rain) {
                         growABit(world, x, y, z);
                     }
                 }

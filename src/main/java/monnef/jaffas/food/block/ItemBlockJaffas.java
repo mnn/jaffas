@@ -60,6 +60,11 @@ public class ItemBlockJaffas extends ItemJaffaBase implements IItemBlock {
         return block;
     }
 
+    @Override
+    public boolean suppressSpecialItemBlockHandling() {
+        return false;
+    }
+
     @SideOnly(Side.CLIENT)
     @Override
     public int getSpriteNumber() {

@@ -35,6 +35,12 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
         this.setHasSubtypes(true);
         setCustomIconIndex(textureOffset);
         this.subCount = subCount;
+        useItemName = true;
+    }
+
+    @Override
+    public boolean suppressSpecialItemBlockHandling() {
+        return true;
     }
 
     /**
