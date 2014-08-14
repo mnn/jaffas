@@ -111,7 +111,7 @@ public class JaffasXmas extends JaffasModBase {
 
     private void createItems() {
         blockCandy = new BlockCandy(16, Material.wood);
-        GameRegistry.registerBlock(blockCandy, "giantCandyCane");
+        RegistryUtils.registerBlock(blockCandy);
         LanguageRegistry.addName(blockCandy, "Candy Cane");
 
         itemGiantCandy = new ItemGiantCandy(16);

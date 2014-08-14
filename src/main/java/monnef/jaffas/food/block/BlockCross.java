@@ -15,6 +15,7 @@ public class BlockCross extends BlockJaffas {
     public BlockCross(int texture, Material material) {
         super(texture, material);
         setCreativeTab(null);
+        setBlockName("cross");
         //setRequiresSelfNotify();
     }
 

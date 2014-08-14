@@ -106,7 +106,7 @@ public class BlockLamp extends BlockTechnic {
     public String[] generateSubNames() {
         String[] ret = new String[16];
         for (int i = 0; i < 16; i++) {
-            ret[i] = "decoLamp" + DyeHelper.getDyeColorName(i);
+            ret[i] = DyeHelper.getDyeColorName(i);
         }
         return ret;
     }

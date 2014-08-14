@@ -20,7 +20,7 @@ public class ItemJaffaPainting extends Item {
     public ItemJaffaPainting() {
         super();
         this.setCreativeTab(CreativeTabs.tabDecorations);
-        this.setUnlocalizedName("jaffaPainting");
+        this.setUnlocalizedName("jaffa.painting");
         this.setCreativeTab(JaffasFood.instance.creativeTab);
     }
 

@@ -33,7 +33,7 @@ public class BlockJaffaBomb extends BlockJaffas {
     public BlockJaffaBomb(int index, Material par3Material) {
         super(index, par3Material);
         setCreativeTab(CreativeTabs.tabRedstone);
-        setBlockName("Jaffa BOMB");
+        setBlockName("jaffaBomb");
         setHardness(0.1F);
         setResistance(0.1F);
         this.setCreativeTab(JaffasFood.instance.creativeTab);

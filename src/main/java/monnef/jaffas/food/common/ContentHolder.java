@@ -22,6 +22,7 @@ import monnef.jaffas.food.block.BlockFridge;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.BlockJaffaBomb;
 import monnef.jaffas.food.block.BlockJaffaStatue;
+import monnef.jaffas.food.block.BlockLightlyTintedMulti;
 import monnef.jaffas.food.block.BlockMeatDryer;
 import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockPizza;
@@ -30,6 +31,7 @@ import monnef.jaffas.food.block.BlockSink;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.block.BlockSwitchgrassSolid;
 import monnef.jaffas.food.block.BlockTable;
+import monnef.jaffas.food.block.BlockTintedMulti;
 import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.block.ItemBlockPie;
 import monnef.jaffas.food.block.ItemBlockSwitchgrass;
@@ -100,6 +102,9 @@ public class ContentHolder {
     public static BlockMeatDryer blockMeatDryer;
     public static BlockRipeningBox blockRipeningBox;
     public static BlockBricks blockBricks;
+    public static BlockTintedMulti blockStainedStone;
+    public static BlockTintedMulti blockStainedPolishedStone;
+    public static BlockTintedMulti blockStainedPlanks;
 
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -311,8 +316,19 @@ public class ContentHolder {
         registerTileEntity(TileRipeningBox.class, "ripeningBox");
 
         blockBricks = new BlockBricks(291);
-        //RegistryUtils.registerBlock(blockBricks, "smallBrickWall.0", "Small Brick Wall");
         RegistryUtils.registerMultiBlock(ContentHolder.blockBricks, ItemBlockJaffas.class, BlockBricks.titles(), BlockBricks.subNames());
+
+        blockStainedStone = new BlockTintedMulti(294, Material.rock, "Stained Stone");
+        blockStainedStone.setHardness(1.7F).setResistance(10.0F).setStepSound(Block.soundTypePiston).setBlockName("stainedStone");
+        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedStone, ItemBlockJaffas.class, blockStainedStone.titles(), blockStainedStone.subNames());
+
+        blockStainedPolishedStone = new BlockLightlyTintedMulti(296, Material.rock, "Polished Stained Stone");
+        blockStainedPolishedStone.setHardness(2F).setResistance(15.0F).setStepSound(Block.soundTypePiston).setBlockName("stainedPolishedStone");
+        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPolishedStone, ItemBlockJaffas.class, blockStainedPolishedStone.titles(), blockStainedPolishedStone.subNames());
+
+        blockStainedPlanks = new BlockLightlyTintedMulti(295, Material.wood, "Stained Planks");
+        blockStainedPlanks.setHardness(2.0F).setResistance(4.7F).setStepSound(Block.soundTypeWood).setBlockName("stainedPlanks");
+        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPlanks, ItemBlockJaffas.class, blockStainedPlanks.titles(), blockStainedPlanks.subNames());
     }
 
     public static void createJaffaArmorAndSword() {

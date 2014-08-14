@@ -25,6 +25,7 @@ public class BlockCandy extends BlockXmas {
         setHardness(0.5f);
         setCreativeTab(null);
         setBurnProperties(5, 5);
+        setBlockName("giantCandyCane");
     }
 
     @Override

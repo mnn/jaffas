@@ -69,6 +69,9 @@ public class ClientProxy extends CommonProxy {
         CustomBlockRenderer bricksRenderer = new CustomBlockRenderer();
         bricksRenderer.setForceInventoryColoring(true);
         ClientUtils.registerItemRendererOfBlock(ContentHolder.blockBricks, bricksRenderer);
+        ClientUtils.registerItemRendererOfBlock(ContentHolder.blockStainedStone, bricksRenderer);
+        ClientUtils.registerItemRendererOfBlock(ContentHolder.blockStainedPolishedStone, bricksRenderer);
+        ClientUtils.registerItemRendererOfBlock(ContentHolder.blockStainedPlanks, bricksRenderer);
     }
 
     private Render constructLittleSpiderRenderer() {
