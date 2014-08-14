@@ -10,16 +10,12 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.BlockMonnefCore$;
-import monnef.core.common.CustomIconHelper;
+import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.trees.JaffasTrees;
-import monnef.jaffas.trees.common.Reference;
-import monnef.jaffas.trees.item.ItemJaffaSeeds;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -92,7 +88,11 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     }
 
     public boolean canGrow(int meta) {
-        return meta < phasesMax;
+        return !isMature(meta);
+    }
+
+    public boolean isMature(int meta) {
+        return meta >= phasesMax;
     }
 
     public boolean growABit(World world, int x, int y, int z) {
@@ -180,22 +180,28 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
-        if (metadata == phasesMax) {
-            ret.add(new ItemStack(product));
+        if (isMature(metadata)) {
+            ret.add(constructProduct());
         }
 
-        for (int n = 0; n < 5 + fortune; n++) {
-            if (world.rand.nextInt(10 + phasesMax) <= metadata) {
-                ret.add(new ItemStack(seeds));
+        if (isMature(metadata)) {
+            for (int n = 0; n < 5 + fortune; n++) {
+                if (world.rand.nextInt((15 - 7) + phasesMax) <= metadata) {
+                    ret.add(constructSeeds());
+                }
             }
         }
 
         return ret;
     }
 
+    public ItemStack constructProduct() {
+        return new ItemStack(product);
+    }
+
     @Override
     public Item getItemDropped(int meta, Random random, int par3) {
-        return meta == phasesMax ? product : null;
+        return isMature(meta) ? product : null;
     }
 
     @Override
@@ -206,6 +212,10 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     @SideOnly(Side.CLIENT)
     @Override
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z) {
+        return constructSeeds();
+    }
+
+    public ItemStack constructSeeds() {
         return new ItemStack(seeds);
     }
 
@@ -213,14 +223,9 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
         return phasesMax;
     }
 
-    @Override
-    public void onBlockAdded(World par1World, int par2, int par3, int par4) {
-        super.onBlockAdded(par1World, par2, par3, par4);
-        par1World.setTileEntity(par2, par3, par4, this.createNewTileEntity(par1World));
-    }
-
     // because of Forestry
-    public TileEntity createNewTileEntity(World world) {
+    @Override
+    public TileEntity createTileEntity(World world, int meta) {
         return new TileJaffaCrops();
     }
 
@@ -264,6 +269,16 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     @Override
     public IIcon getIcon(int side, int meta) {
         return getCustomIcon(meta <= phasesMax ? meta : phasesMax);
+    }
+
+    @Override
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float p_149727_7_, float p_149727_8_, float p_149727_9_) {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (isMature(meta)) {
+            WorldHelper.dropItem(world, x, y + 1, z, constructProduct());
+            setBlockMetadata(world, x, y, z, phasesMax - 1);
+            return true;
+        } else return super.onBlockActivated(world, x, y, z, player, side, p_149727_7_, p_149727_8_, p_149727_9_);
     }
 
     /* Mine Factory Reloaded */
@@ -325,6 +340,7 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     public int getPlantMetadata(IBlockAccess world, int x, int y, int z) {
         return 0;
     }
+
 
     public void setSeeds(Item seeds) {
         this.seeds = seeds;
