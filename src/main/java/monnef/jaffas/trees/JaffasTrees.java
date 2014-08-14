@@ -364,18 +364,6 @@ public class JaffasTrees extends JaffasModBase {
         for (EnumMap.Entry<bushType, BushInfo> entry : bushesList.entrySet()) {
             BushInfo info = entry.getValue();
 
-            ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.block, Blocks.farmland);
-            RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
-            seeds.setCustomIconIndex(info.seedsTexture);
-            if (otherMods.isMineFactoryReloadedDetected()) {
-                FactoryRegistry.sendMessage("registerPlantable", seeds);
-            }
-
-            info.itemSeeds = seeds;
-            if (info.drop == DropsFromGrass) {
-                seedsList.add(new ItemStack(seeds));
-            }
-
             Item fruit = constructFruit(info.eatable, info.fruitTexture, info.getFruitLanguageName(), info.fruitTitle);
             fruit.setCreativeTab(creativeTab);
             info.itemFruit = fruit;
@@ -384,10 +372,9 @@ public class JaffasTrees extends JaffasModBase {
             }
 
             Item dropFromPlant = info.product == null ? info.itemFruit : info.product;
-            BlockJaffaCrops crops = new BlockJaffaCrops(info.plantTexture, info.phases, dropFromPlant, info.itemSeeds, info.renderer);
+            BlockJaffaCrops crops = new BlockJaffaCrops(info.plantTexture, info.phases, info.renderer);
             crops.setBlockName(info.getPlantLanguageName());
-            GameRegistry.registerBlock(crops, info.name);
-            LanguageRegistry.addName(crops, info.plantTitle);
+            RegistryUtils.registerBlock(crops, info.name, info.plantTitle);
             info.block = crops;
             if (first) {
                 first = false;
@@ -400,6 +387,21 @@ public class JaffasTrees extends JaffasModBase {
             if (ModuleManager.isModuleEnabled(technic)) {
                 CompostRegister.addStack(dropFromPlant, DEFAULT_FRUIT_COMPOSTING_VALUE);
             }
+
+            ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.block, Blocks.farmland);
+            RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
+            seeds.setCustomIconIndex(info.seedsTexture);
+            if (otherMods.isMineFactoryReloadedDetected()) {
+                FactoryRegistry.sendMessage("registerPlantable", seeds);
+            }
+
+            info.itemSeeds = seeds;
+            if (info.drop == DropsFromGrass) {
+                seedsList.add(new ItemStack(seeds));
+            }
+
+            crops.setSeeds(seeds);
+            crops.setProduct(dropFromPlant);
         }
     }
 

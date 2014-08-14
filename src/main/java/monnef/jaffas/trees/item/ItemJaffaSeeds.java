@@ -29,13 +29,14 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable, IFactoryPla
         super();
         this.blockType = block;
         this.soilBlock = soilBlock;
+        if (block == null) throw new RuntimeException("Null block.");
     }
 
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer par2EntityPlayer, World world, int x, int y, int z, int par7, float par8, float par9, float par10) {
-        if (par7 != 1) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10) {
+        if (side != 1) {
             return false;
-        } else if (par2EntityPlayer == null || (par2EntityPlayer.canPlayerEdit(x, y, z, par7, stack) && par2EntityPlayer.canPlayerEdit(x, y + 1, z, par7, stack))) {
+        } else if (player == null || (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack))) {
             if (canBePlanted(world, x, y, z, stack)) {
                 setBlock(world, x, y + 1, z, this.getPlant(null, 0, 0, 0));
                 --stack.stackSize;
@@ -61,7 +62,7 @@ public class ItemJaffaSeeds extends ItemTrees implements IPlantable, IFactoryPla
 
     @Override
     public Block getPlant(IBlockAccess world, int x, int y, int z) {
-        return Block.getBlockFromItem(this);
+        return blockType;
     }
 
     @Override

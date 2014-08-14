@@ -14,6 +14,9 @@ import java.util.Collection;
 
 import static monnef.core.utils.BlockHelper.setAir;
 
+/**
+ * Forestry integration
+ */
 public class TileJaffaCrops extends TileEntity implements ICrop {
     @Override
     public Collection<ItemStack> harvest() {

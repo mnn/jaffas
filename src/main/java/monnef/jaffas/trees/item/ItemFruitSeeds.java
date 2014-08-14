@@ -71,10 +71,10 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
     /**
      * returns a list of items with the same ID, but different meta (eg: dye returns 16 items)
      */
-    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List par3List) {
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List result) {
         for (int i = 0; i < subCount; i++) {
             if (firstInSequence && i == 0) continue;
-            par3List.add(new ItemStack(item, 1, i));
+            result.add(new ItemStack(item, 1, i));
         }
     }
 
