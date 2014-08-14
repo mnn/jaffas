@@ -6,6 +6,7 @@
 package monnef.jaffas.trees.block;
 
 import monnef.core.utils.BlockHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.trees.JaffasTrees;
@@ -43,7 +44,8 @@ public class TileFruitLeaves extends TileEntity {
     public static int timerMax = 20 * 60;
 
     public static final double turnChance = 0.0165; // 0.022
-    public static int turnChanceMultiplier = 1;
+    public static int turnChanceMultiplier = 1; // for debug purposes
+    public static final double rainMultiplier = 1.5;
 
     private int myMaxAge;
     private int age;
@@ -83,10 +85,21 @@ public class TileFruitLeaves extends TileEntity {
 
     @Override
     public void updateEntity() {
+        if (worldObj.isRemote) {
+            this.invalidate();
+            return;
+        }
+
         if (!checked) {
+            if (this.leavesBlock == null) {
+                this.invalidate();
+                return;
+            }
+
             try {
                 fruit = getActualLeavesType(this.leavesBlock, this.leavesMeta);
             } catch (RuntimeException ex) {
+                JaffasFood.Log.printWarning(String.format("Leaf TE crashed on getting leaf type. @ %d %d %d, world.isRemote: %s", xCoord, yCoord, zCoord, worldObj.isRemote));
                 ex.printStackTrace();
                 this.invalidate();
                 return;
@@ -99,15 +112,20 @@ public class TileFruitLeaves extends TileEntity {
             }
         }
 
-        if (worldObj.isRemote) {
-            return;
-        }
-
         timer++;
         if (timer >= timerMax) {
 
             timer = 0;
-            if (rand.nextDouble() < turnChance * turnChanceMultiplier) {
+
+            int topLeafBlockY = yCoord;
+            while (topLeafBlockY < worldObj.getActualHeight() && worldObj.getBlock(xCoord, topLeafBlockY + 1, zCoord) instanceof BlockFruitLeaves)
+                topLeafBlockY++;
+            boolean isRainingInWorld = worldObj.isRaining();
+            boolean topBlockCanSeeSky = worldObj.canBlockSeeTheSky(xCoord, topLeafBlockY + 1, zCoord);
+            boolean rain = isRainingInWorld && topBlockCanSeeSky;
+            double currentRainMultiplier = rain ? rainMultiplier : 1;
+
+            if (rand.nextDouble() < turnChance * turnChanceMultiplier * currentRainMultiplier) {
                 if (this.fruit != JaffasTrees.FruitType.Vanilla || rand.nextInt(3) == 0) {
                     if (this.getBlockType() == JaffasTrees.leavesList.get(0).leavesBlock || this.getBlockType() == this.leavesBlock) {
                         ChangeBlockAndRespawnMe(this.leavesBlock, this.leavesMeta);
@@ -131,9 +149,6 @@ public class TileFruitLeaves extends TileEntity {
         worldObj.setTileEntity(this.xCoord, this.yCoord, this.zCoord, te);
     }
 
-    /**
-     * Writes a tile entity to NBT.
-     */
     @Override
     public void writeToNBT(NBTTagCompound par1NBTTagCompound) {
         super.writeToNBT(par1NBTTagCompound);
@@ -145,9 +160,6 @@ public class TileFruitLeaves extends TileEntity {
         par1NBTTagCompound.setInteger("leavesMeta", this.leavesMeta);
     }
 
-    /**
-     * Reads a tile entity from NBT.
-     */
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
