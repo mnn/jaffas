@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.api.ICustomIcon;
 import monnef.core.item.ItemMonnefCore;
+import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemInfo;
@@ -38,7 +39,7 @@ public class ItemManager {
         itemIdToJaffaItem = new HashMap<Integer, JaffaItem>();
     }
 
-    public static void RegisterItemTypeForModule(ModulesEnum module, JaffaItemType type, Class<? extends ItemMonnefCore> clazz) {
+    public static void registerItemTypeForModule(ModulesEnum module, JaffaItemType type, Class<? extends ItemMonnefCore> clazz) {
         if (!ClassMapping.containsKey(module)) {
             ClassMapping.put(module, new Hashtable<JaffaItemType, Class<? extends ItemMonnefCore>>());
         }
@@ -79,6 +80,7 @@ public class ItemManager {
             newTitle = name;
             newName = item.toString();
         }
+        newName = item.toString();
         JaffaItemInfo newItem = new JaffaItemInfo(newName);
         newItem.setIconIndex(iconIndex);
         newItem.setTitle(newTitle);
@@ -88,16 +90,16 @@ public class ItemManager {
     }
 
     private static void finalizeItemSetup(JaffaItemInfo info, Item item, JaffaItem ji) {
-        item.setUnlocalizedName(info.getTitle());
+        item.setUnlocalizedName(info.getName());
         if (ICustomIcon.class.isAssignableFrom(item.getClass())) {
             ICustomIcon itemWithIcon = (ICustomIcon) item;
             itemWithIcon.setCustomIconIndex(info.getIconIndex());
             itemWithIcon.setSheetNumber(info.getSheetNumber());
         }
         info.setItem(item);
+        RegistryUtils.registerItem(item, info.getName());
         LanguageRegistry.addName(item, info.getTitle());
         itemToJaffaItem.put(item, ji);
-        GameRegistry.registerItem(item, info.getName());
     }
 
     public static void constructItemIdToJaffaItemMappings() {

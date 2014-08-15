@@ -20,6 +20,7 @@ public class JaffaItemInfo {
         this.setName(name);
     }
 
+    @Deprecated
     public void setName(String name) {
         this.name = name;
     }
@@ -36,10 +37,12 @@ public class JaffaItemInfo {
         this.item = item;
     }
 
+    @Deprecated
     public String getTitle() {
         return title;
     }
 
+    @Deprecated
     public void setTitle(String title) {
         this.title = title;
     }

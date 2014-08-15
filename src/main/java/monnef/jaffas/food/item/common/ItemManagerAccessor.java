@@ -45,7 +45,7 @@ public abstract class ItemManagerAccessor {
     }
 
     public void RegisterItemType(JaffaItemType type, Class<? extends ItemJaffaBase> clazz) {
-        ItemManager.RegisterItemTypeForModule(this.getMyModule(), type, clazz);
+        ItemManager.registerItemTypeForModule(this.getMyModule(), type, clazz);
     }
 
     public int getCurrentSheetNumber() {
