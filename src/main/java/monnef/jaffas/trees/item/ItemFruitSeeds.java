@@ -65,7 +65,7 @@ public class ItemFruitSeeds extends ItemBlockTrees implements IFactoryPlantable 
     public String getUnlocalizedName(ItemStack par1ItemStack) {
         int dmg = par1ItemStack.getItemDamage();
 
-        if (dmg < 0 || dmg >= JaffasTrees.treeTypes.length) {
+        if (dmg < 0 || dmg >= JaffasTrees.treeTypeNames.length) {
             dmg = 0;
         }
 

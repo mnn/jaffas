@@ -6,6 +6,7 @@
 package monnef.jaffas.technic.item;
 
 import monnef.core.utils.BlockHelper;
+import monnef.core.utils.StringsHelper;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.block.TileFungiBox;
 import monnef.jaffas.technic.common.FungiCatalog;
@@ -59,7 +60,7 @@ public class ItemFungus extends ItemTechnic implements IFactoryPlantable {
     public String getUnlocalizedName(ItemStack itemstack) {
         FungusInfo info = FungiCatalog.get(itemstack.getItemDamage());
         if (info == null) return getUnlocalizedName();
-        String subName = info.title.toLowerCase();
+        String subName = StringsHelper.generateNameFromTitle(info.title);
         return getUnlocalizedName() + "." + subName;
     }
 

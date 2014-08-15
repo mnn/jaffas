@@ -13,10 +13,10 @@ import java.util
 import monnef.jaffas.food.item.ItemJaffaFoodTrait
 import monnef.jaffas.food.item.JaffaItem._
 import monnef.jaffas.food.JaffasFood.getItem
+import monnef.core.utils.StringsHelper
 
 class ItemJuiceGlass extends ItemJaffaMultiBase with JuiceLike with ItemJaffaFoodTrait[ItemJuiceGlass] {
-  // TODO: proper names
-  val getSubNames: Array[String] = Juices.glassTitles.toArray
+  val getSubNames: Array[String] = Juices.glassTitles.map(StringsHelper.generateNameFromTitle).toArray
 
   val getSubTitles: Array[String] = Juices.glassTitles.toArray
 

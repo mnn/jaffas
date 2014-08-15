@@ -13,6 +13,6 @@ public class ItemBlockFruitSapling extends ItemBlockTrees {
     public ItemBlockFruitSapling(Block block) {
         super(block);
         BlockFruitSapling myBlock = (BlockFruitSapling) block;
-        subNames = JaffasTrees.constructSubNames(JaffasTrees.saplingNames, myBlock.serialNumber, myBlock.getSubCount());
+        subNames = JaffasTrees.constructSubNames(JaffasTrees.saplingTitles, myBlock.serialNumber, myBlock.getSubCount());
     }
 }

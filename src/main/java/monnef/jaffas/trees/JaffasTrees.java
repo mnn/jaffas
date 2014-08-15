@@ -74,7 +74,6 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.apache.logging.log4j.Level;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
-import java.rmi.registry.Registry;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -137,9 +136,9 @@ public class JaffasTrees extends JaffasModBase {
 
     public static final String channel = "jaffas-02";
 
-    public static final String[] treeTypes = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum", "coconut", "banana"};
-    public static final String[] seedsNames = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds", "Coconut Seeds", "Banana Seeds"};
-    public static final String[] saplingNames = new String[]{"[UNUSED]", "Apple Sapling", "Cocoa Sapling", "Vanilla Sapling", "Lemon Sapling", "Orange Sapling", "Plum Sapling", "Coconut Sapling", "Banana Sapling"};
+    public static final String[] treeTypeNames = new String[]{"normal", "apple", "cocoa", "vanilla", "lemon", "orange", "plum", "coconut", "banana"};
+    public static final String[] seedsTitles = new String[]{"[UNUSED]", "Apple Seeds", "Cocoa Seeds", "Vanilla Seeds", "Lemon Seeds", "Orange Seeds", "Plum Seeds", "Coconut Seeds", "Banana Seeds"};
+    public static final String[] saplingTitles = new String[]{"[UNUSED]", "Apple Sapling", "Cocoa Sapling", "Vanilla Sapling", "Lemon Sapling", "Orange Sapling", "Plum Sapling", "Coconut Sapling", "Banana Sapling"};
 
     private static IGuiHandler guiHandler;
 
@@ -546,7 +545,7 @@ public class JaffasTrees extends JaffasModBase {
         leaves.saplingBlock.serialNumber = i;
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setBlockName(saplingBlockName).setCreativeTab(creativeTab);
-        RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingNames, i, subCount));
+        RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingTitles, i, subCount), constructSubNames(treeTypeNames, i, subCount));
         OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, ANY_DMG));
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerFertilizable", leaves.saplingBlock);
@@ -558,7 +557,7 @@ public class JaffasTrees extends JaffasModBase {
         leaves.seedsItem.serialNumber = i;
         for (int j = 0; j < subCount; j++) {
             String combinedName = leaves.seedsItem.getUnlocalizedName() + "." + j + ".name";
-            LanguageRegistry.instance().addStringLocalization(combinedName, seedsNames[j + i * 4]);
+            LanguageRegistry.instance().addStringLocalization(combinedName, seedsTitles[j + i * 4]);
         }
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerPlantable", leaves.seedsItem);
@@ -583,7 +582,7 @@ public class JaffasTrees extends JaffasModBase {
     }
 
     public static ItemStack getTreeSeeds(int type) {
-        if (type == 0 || type >= JaffasTrees.treeTypes.length) {
+        if (type == 0 || type >= JaffasTrees.treeTypeNames.length) {
             throw new InvalidParameterException("type = " + type);
         }
 

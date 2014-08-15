@@ -15,10 +15,11 @@ import cpw.mods.fml.relauncher.{SideOnly, Side}
 import monnef.jaffas.food.item.ItemJaffaFoodTrait
 import monnef.jaffas.food.item.JaffaItem._
 import monnef.jaffas.food.JaffasFood.getItem
+import monnef.core.utils.StringsHelper
 
 class ItemJuice extends ItemJaffaMultiBase with JuiceLike with ItemJaffaFoodTrait[ItemJuice] {
   // TODO: proper names
-  val getSubNames: Array[String] = Juices.juiceTitles.toArray
+  val getSubNames: Array[String] = Juices.juiceTitles.map(StringsHelper.generateNameFromTitle).toArray
 
   val getSubTitles: Array[String] = Juices.juiceTitles.toArray
 
