@@ -162,7 +162,6 @@ public class JaffasFood extends JaffasModBase {
 
         creativeTab = new JaffaCreativeTab("jaffas");
 
-        OtherModsHelper.checkCore();
         packetHandler = MonnefCoreNormalMod.packetHandler;
 
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
@@ -206,6 +205,7 @@ public class JaffasFood extends JaffasModBase {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
+        OtherModsHelper.checkCore();
         ItemManager.constructItemIdToJaffaItemMappings();
         Recipes.installRecipes();
 

@@ -60,9 +60,12 @@ public class OtherModsHelper {
     }
 
     public static void checkCore() {
+        // TODO: check core
+        /*
         if (!MonnefCorePlugin.isInitialized()) {
             throw new RuntimeException("Core is not properly initialized!");
         }
+        */
     }
 
     private void checkIDResolver() {
