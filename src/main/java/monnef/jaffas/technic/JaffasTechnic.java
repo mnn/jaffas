@@ -345,6 +345,10 @@ public class JaffasTechnic extends JaffasModBase {
 
         CompostRegister.fillWithVanillaItems();
         CompostRegister.fillWithFoodModuleItems();
+        handleGuideBook();
+    }
+
+    private void handleGuideBook() {
         GuideBookHelper.generateGuideBook();
         GameRegistry.addShapelessRecipe(JaffasFood.instance.guideBook.copy(), Items.writable_book, jaffarrolNugget);
     }
