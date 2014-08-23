@@ -18,11 +18,8 @@ public class BushInfo {
     public Item itemFruit;
 
     public String name;
-    public String seedsTitle;
     public int seedsTexture;
-    public String plantTitle;
     public int plantTexture;
-    public String fruitTitle;
     public int fruitTexture;
     public Item product;
     public int phases;

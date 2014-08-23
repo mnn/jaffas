@@ -112,14 +112,12 @@ public class JaffasXmas extends JaffasModBase {
     private void createItems() {
         blockCandy = new BlockCandy(16, Material.wood);
         RegistryUtils.registerBlock(blockCandy);
-        LanguageRegistry.addName(blockCandy, "Candy Cane");
 
         itemGiantCandy = new ItemGiantCandy(16);
-        RegistryUtils.registerItem(itemGiantCandy, "giantCandy", "Giant Candy Cane");
+        RegistryUtils.registerItem(itemGiantCandy, "giantCandy");
 
         blockPresent = new BlockPresent(0, Material.cloth, ItemBlockPresent.count);
-        RegistryUtils.registerMultiBlock(blockPresent, ItemBlockPresent.class, ItemBlockPresent.titles);
-        RegistryUtils.registerSubBlockNames(blockPresent, ((ItemBlockPresent) Item.getItemFromBlock(blockPresent)).getSubTitles());
+        RegistryUtils.registerMultiBlock(blockPresent, ItemBlockPresent.class, ItemBlockPresent.presentSubNamem);
     }
 
     private void installRecipes() {

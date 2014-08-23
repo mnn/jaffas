@@ -20,8 +20,8 @@ public abstract class ItemManagerAccessor {
 
     protected abstract void CreateItems();
 
-    protected void AddItemInfo(JaffaItem item, String name, int iconIndex, String title) {
-        ItemManager.addItemInfo(item, name, iconIndex, title, this.getMyModule(), currentSheetNumber);
+    protected void AddItemInfo(JaffaItem item, int iconIndex) {
+        ItemManager.addItemInfo(item, iconIndex, this.getMyModule(), currentSheetNumber);
     }
 
     protected Item createJaffaItem(JaffaItem ji) {

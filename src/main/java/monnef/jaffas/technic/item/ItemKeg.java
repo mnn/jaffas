@@ -102,8 +102,4 @@ public class ItemKeg extends ItemTechnic {
         String subName = itemstack.getItemDamage() >= subNames.length ? "STRING NOT FOUND" : subNames[itemstack.getItemDamage()];
         return getUnlocalizedName() + "." + subName;
     }
-
-    public void registerTexts() {
-        RegistryUtils.registerSubItems(this, subTitles);
-    }
 }

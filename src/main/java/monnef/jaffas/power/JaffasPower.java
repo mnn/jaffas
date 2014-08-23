@@ -171,52 +171,50 @@ public class JaffasPower extends JaffasModBase {
 
     private void createItems() {
         generator = new BlockGenerator(5);
-        RegistryUtils.registerBlock(generator, "Generator");
+        RegistryUtils.registerBlock(generator);
         registerTileEntity(TileGenerator.class, "jp.generator");
 
         itemDebug = new ItemDebug(1);
         RegistryUtils.registerItem(itemDebug);
-        LanguageRegistry.addName(itemDebug, "Power Debug Tool");
 
         antenna = new BlockAntenna(5);
-        RegistryUtils.registerBlock(antenna, "Small Antenna");
+        RegistryUtils.registerBlock(antenna);
         registerTileEntity(TileAntenna.class, "jp.antenna");
 
         wrench = new ItemPipeWrench(1);
         RegistryUtils.registerItem(wrench);
-        LanguageRegistry.addName(wrench, "Pipe Wrench");
 
         linkTool = new ItemLinkTool(0);
-        RegistryUtils.registerItem(linkTool, "itemLinkTool", "Link Gun");
+        RegistryUtils.registerItem(linkTool, "itemLinkTool");
 
         if (lightningConductorEnabled) {
             lightningConductor = new BlockLightningConductor(5);
-            RegistryUtils.registerBlock(lightningConductor, "Lightning Conductor");
+            RegistryUtils.registerBlock(lightningConductor);
             registerTileEntity(TileLightningConductor.class, "jp.lightningConductor");
         }
 
         kitchenUnit = new BlockKitchenUnit(10, 3);
-        RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateTitles(), kitchenUnit.generateSubNames());
+        RegistryUtils.registerMultiBlock(kitchenUnit, ItemBlockJaffas.class, kitchenUnit.generateSubNames());
         registerTileEntity(TileKitchenUnit.class, "kitchenUnit");
 
         TileEntityBasicProcessingMachine.registerMachine(TileGrinder.class, TileGrinder.getRecipeHandler(), TileEntityBasicProcessingMachine.getDefaultGuiBackgroundTexture(), "Grinder");
         grinder = new BlockGrinder(101, TileGrinder.class, GuiHandler.GuiId.GRINDER, true, false);
-        RegistryUtils.registerBlock(grinder, "grinder", "Grinder");
+        RegistryUtils.registerBlockWithName(grinder, "grinder");
         registerTileEntity(TileGrinder.class, "grinder");
         grinder.setRotationShiftInPlacing(1);
 
         TileEntityBasicProcessingMachine.registerMachine(TileToaster.class, TileToaster.getRecipeHandler(), TileEntityBasicProcessingMachine.getDefaultGuiBackgroundTexture(), "Toaster");
         toaster = new BlockToaster(50, TileToaster.class, GuiHandler.GuiId.TOASTER, true, false);
-        RegistryUtils.registerBlock(toaster, "toaster", "Toaster");
+        RegistryUtils.registerBlockWithName(toaster, "toaster");
         registerTileEntity(TileToaster.class, "toaster");
 
         webHarvester = new BlockWebHarvester(51, breakableIronMaterial(), false, false);
-        RegistryUtils.registerBlock(webHarvester, "webHarvester", "Cobweb Harvester");
+        RegistryUtils.registerBlockWithName(webHarvester, "webHarvester");
         registerTileEntity(TileWebHarvester.class, "webHarvester");
 
         if (windGeneratorEnabled) {
             windGenerator = new BlockWindGenerator(54, breakableIronMaterial(), false, false);
-            RegistryUtils.registerBlock(windGenerator, "windGenerator", "Wind Generator");
+            RegistryUtils.registerBlockWithName(windGenerator, "windGenerator");
             registerTileEntity(TileWindGenerator.class, "windGenerator");
 
             EntityHelper.registerEntity(EntityWindTurbine.class, "jaffasWindGenerator", 160, 1, true, windTurbineEntityID, this);
@@ -224,12 +222,12 @@ public class JaffasPower extends JaffasModBase {
             windTurbineWooden = new ItemWindTurbine(57, 100, 0);
             windTurbineWooden.configure(true, 1, false, 0.1f, 3);
             windTurbineWooden.setupStep(1.3f, 2, 3, 0.2f, 2, 6, 1, 3);
-            RegistryUtils.registerItem(windTurbineWooden, "windTurbineWooden", "Wooden Wind Turbine");
+            RegistryUtils.registerItem(windTurbineWooden, "windTurbineWooden");
 
             windTurbineMill = new ItemWindTurbine(64, 1000, 0);
             windTurbineMill.configure(false, 7, true, 0.02f, 7);
             windTurbineMill.setupStep(0.8f, 2, 3, 0.2f, 2, 6, 1, 3);
-            RegistryUtils.registerItem(windTurbineMill, "windTurbineMill", "Windmill");
+            RegistryUtils.registerItem(windTurbineMill, "windTurbineMill");
 
             turbineBlade = new ItemTurbineBlade(58);
             RegistryUtils.registerItem(turbineBlade);
@@ -237,7 +235,7 @@ public class JaffasPower extends JaffasModBase {
 
         TileEntityBasicProcessingMachine.registerMachine(TileJuiceMaker.class, TileJuiceMaker.getRecipeHandler(), "guijuicemaker.png", "Juice Maker 1000", TileEntityBasicProcessingMachine.MachineRecord.InvType.DOUBLE);
         juiceMaker = new BlockJuiceMaker(51, TileJuiceMaker.class, GuiHandler.GuiId.JUICE_MAKER);
-        RegistryUtils.registerBlock(juiceMaker, "juiceMaker", "Juice Maker 1000");
+        RegistryUtils.registerBlockWithName(juiceMaker, "juiceMaker");
         registerTileEntity(TileJuiceMaker.class, "juiceMaker");
     }
 

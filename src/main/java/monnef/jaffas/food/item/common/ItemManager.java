@@ -5,8 +5,6 @@
 
 package monnef.jaffas.food.item.common;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.api.ICustomIcon;
 import monnef.core.item.ItemMonnefCore;
 import monnef.core.utils.RegistryUtils;
@@ -72,18 +70,10 @@ public class ItemManager {
         return itemIdToJaffaItem.get(itemId);
     }
 
-    public static void addItemInfo(JaffaItem item, String name, int iconIndex, String title, ModulesEnum module, int sheetNumber) {
-        // TODO: remove title entirely (after successful export) and generate name from JaffaItem enum
-        String newTitle = title;
-        String newName = name;
-        if (title.isEmpty()) {
-            newTitle = name;
-            newName = item.toString();
-        }
-        newName = item.toString();
+    public static void addItemInfo(JaffaItem item, int iconIndex, ModulesEnum module, int sheetNumber) {
+        String newName = item.toString();
         JaffaItemInfo newItem = new JaffaItemInfo(newName);
         newItem.setIconIndex(iconIndex);
-        newItem.setTitle(newTitle);
         newItem.setModule(module);
         newItem.setSheetNumber(sheetNumber);
         itemsInfo.put(item, newItem);
@@ -98,7 +88,6 @@ public class ItemManager {
         }
         info.setItem(item);
         RegistryUtils.registerItem(item, info.getName());
-        LanguageRegistry.addName(item, info.getTitle());
         itemToJaffaItem.put(item, ji);
     }
 

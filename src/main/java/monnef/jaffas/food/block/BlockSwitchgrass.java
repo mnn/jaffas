@@ -59,7 +59,7 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
         this.setTickRandomly(true);
         subBlockNames = new String[16];
         for (int i = 0; i < subBlockNames.length; i++) {
-            subBlockNames[i] = "Switchgrass";
+            subBlockNames[i] = "switchgrass";
         }
         setBlockBounds(border, 0, border, borderComplement, 1, borderComplement);
         setBlockName("blockJSwitchgrass");

@@ -326,22 +326,22 @@ public class JaffasTrees extends JaffasModBase {
     }
 
     private void populateBushInfo() {
-        AddBushInfo(bushType.Coffee, "coffee", "Coffee Seeds", 34, "Coffee Plant", 96, "Coffee Beans", 128, null, 2, 1, NotEatable, DropsFromGrass);
-        AddBushInfo(bushType.Strawberry, "strawberry", "Strawberry Seeds", 34, "Strawberry Plant", 99, "Strawberry", 129, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Coffee, "coffee", 34, 96, 128, null, 2, 1, NotEatable, DropsFromGrass);
+        AddBushInfo(bushType.Strawberry, "strawberry", 34, 99, 129, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Onion, "onion", "Onion Seeds", 34, "Onion Plant", 102, "Onion", 130, null, 2, 1, NotEatable, DropsFromGrass);
-        AddBushInfo(bushType.Paprika, "paprika", "Pepper Seeds", 34, "Pepper Plant", 105, "Pepper", 131, null, 2, 1, EatableNormal, DropsFromGrass);
-        AddBushInfo(bushType.Raspberry, "raspberry", "Raspberry Seeds", 34, "Raspberry Plant", 108, "Raspberry", 132, null, 2, 1, EatableNormal, DropsFromGrass);
-        AddBushInfo(bushType.Tomato, "tomato", "Tomato Seeds", 34, "Tomato Plant", 111, "Tomato", 133, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Onion, "onion", 34, 102, 130, null, 2, 1, NotEatable, DropsFromGrass);
+        AddBushInfo(bushType.Paprika, "paprika", 34, 105, 131, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Raspberry, "raspberry", 34, 108, 132, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Tomato, "tomato", 34, 111, 133, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Mustard, "mustard", "Little Mustard Seeds", 34, "Mustard Plant", 114, "Mustard", 134, null, 2, 1, NotEatable, DropsFromGrass);
-        AddBushInfo(bushType.Peanuts, "peanuts", "Little Peanuts", 34, "Peanuts Plant", 117, "Peanuts", 135, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Mustard, "mustard", 34, 114, 134, null, 2, 1, NotEatable, DropsFromGrass);
+        AddBushInfo(bushType.Peanuts, "peanuts", 34, 117, 135, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Pea, "pea", "Little Peas", 34, "Pea Plant", 120, "Pea Pod", 136, null, 2, 1, EatableNormal, DropsFromGrass);
-        AddBushInfo(bushType.Bean, "bean", "Little Beans", 34, "Bean Plant", 123, "Beans", 137, null, 2, 1, NotEatable, DropsFromGrass);
+        AddBushInfo(bushType.Pea, "pea", 34, 120, 136, null, 2, 1, EatableNormal, DropsFromGrass);
+        AddBushInfo(bushType.Bean, "bean", 34, 123, 137, null, 2, 1, NotEatable, DropsFromGrass);
     }
 
-    private ItemJaffaBase constructFruit(EatableType type, int textureOffset, String name, String title) {
+    private ItemJaffaBase constructFruit(EatableType type, int textureOffset, String name) {
         ItemJaffaBase res;
         if (type == NotEatable) {
             res = new ItemJaffaBerry();
@@ -352,7 +352,7 @@ public class JaffasTrees extends JaffasModBase {
         }
 
         res.setUnlocalizedName(name);
-        RegistryUtils.registerItem(res, name, title);
+        RegistryUtils.registerItem(res, name);
 
         res.setCustomIconIndex(textureOffset);
         return res;
@@ -363,7 +363,7 @@ public class JaffasTrees extends JaffasModBase {
         for (EnumMap.Entry<bushType, BushInfo> entry : bushesList.entrySet()) {
             BushInfo info = entry.getValue();
 
-            Item fruit = constructFruit(info.eatable, info.fruitTexture, info.getFruitLanguageName(), info.fruitTitle);
+            Item fruit = constructFruit(info.eatable, info.fruitTexture, info.getFruitLanguageName());
             fruit.setCreativeTab(creativeTab);
             info.itemFruit = fruit;
             if (bushType.isFruit(entry.getKey())) {
@@ -373,7 +373,7 @@ public class JaffasTrees extends JaffasModBase {
             Item dropFromPlant = info.product == null ? info.itemFruit : info.product;
             BlockJaffaCrops crops = new BlockJaffaCrops(info.plantTexture, info.phases, info.renderer);
             crops.setBlockName(info.getPlantLanguageName());
-            RegistryUtils.registerBlock(crops, info.name, info.plantTitle);
+            RegistryUtils.registerBlockWithName(crops, info.name);
             info.block = crops;
             if (first) {
                 first = false;
@@ -388,7 +388,7 @@ public class JaffasTrees extends JaffasModBase {
             }
 
             ItemJaffaSeeds seeds = new ItemJaffaSeeds(info.block, Blocks.farmland);
-            RegistryUtils.registerItem(seeds, info.getSeedsLanguageName(), info.seedsTitle);
+            RegistryUtils.registerItem(seeds, info.getSeedsLanguageName());
             seeds.setCustomIconIndex(info.seedsTexture);
             if (otherMods.isMineFactoryReloadedDetected()) {
                 FactoryRegistry.sendMessage("registerPlantable", seeds);
@@ -408,15 +408,12 @@ public class JaffasTrees extends JaffasModBase {
         OreDictionary.registerOre(FRUIT, fruit);
     }
 
-    private void AddBushInfo(bushType type, String name, String seedsTitle, int seedsTexture, String plantTitle, int plantTexture, String fruitTitle, int fruitTexture, Item product, int phases, int renderer, EatableType eatable, DropType drop) {
+    private void AddBushInfo(bushType type, String name, int seedsTexture, int plantTexture, int fruitTexture, Item product, int phases, int renderer, EatableType eatable, DropType drop) {
         BushInfo info = new BushInfo();
 
         info.name = name;
-        info.seedsTitle = seedsTitle;
         info.seedsTexture = seedsTexture;
-        info.plantTitle = plantTitle;
         info.plantTexture = plantTexture;
-        info.fruitTitle = fruitTitle;
         info.fruitTexture = fruitTexture;
         info.product = product;
         info.phases = phases;
@@ -454,21 +451,21 @@ public class JaffasTrees extends JaffasModBase {
             seedsList.add(getTreeSeeds(i));
         }
 
-        itemLemon = constructFruit(NotEatable, 68, "lemon", "Lemon");
+        itemLemon = constructFruit(NotEatable, 68, "lemon");
         OreDictionary.registerOre(LEMON, itemLemon);
         registerFruitItem(itemLemon);
 
-        itemOrange = constructFruit(EatableNormal, 69, "orange", "Orange");
+        itemOrange = constructFruit(EatableNormal, 69, "orange");
         OreDictionary.registerOre(ORANGE, itemOrange);
         registerFruitItem(itemOrange);
 
-        itemPlum = constructFruit(EatableNormal, 70, "plum", "Plum");
+        itemPlum = constructFruit(EatableNormal, 70, "plum");
         registerFruitItem(itemPlum);
 
-        itemCoconut = constructFruit(NotEatable, 71, "coconut", "Coconut");
+        itemCoconut = constructFruit(NotEatable, 71, "coconut");
         registerFruitItem(itemCoconut);
 
-        itemBanana = constructFruit(EatableNormal, 72, "banana", "Banana");
+        itemBanana = constructFruit(EatableNormal, 72, "banana");
         registerFruitItem(itemBanana);
 
         registerFruitItem(Items.apple);
@@ -485,52 +482,46 @@ public class JaffasTrees extends JaffasModBase {
 
         blockFruitCollector = new BlockFruitCollector();
         GameRegistry.registerBlock(blockFruitCollector, "blockFruitCollector");
-        LanguageRegistry.addName(blockFruitCollector, "Fruit Collector");
         JaffasRegistryHelper.registerTileEntity(TileFruitCollector.class, "fruitcollector");
 
         itemDebug = new ItemJaffaTreeDebugTool();
         itemDebug.setMaxStackSize(1).setUnlocalizedName("jaffaTreeDebug");
-        LanguageRegistry.addName(itemDebug, "Jaffa Tree's Debug Tool");
         RegistryUtils.registerItem(itemDebug);
 
         itemStick = new ItemTrees();
         itemStick.setUnlocalizedName("stickImpregnated");
         itemStick.setCustomIconIndex(160);
-        LanguageRegistry.addName(itemStick, "Impregnated Stick");
         RegistryUtils.registerItem(itemStick);
 
         itemRod = new ItemTrees();
         itemRod.setUnlocalizedName("rod").setMaxStackSize(1).setMaxDamage(64);
         itemRod.setCustomIconIndex(161);
-        LanguageRegistry.addName(itemRod, "Reinforced Rod");
         RegistryUtils.registerItem(itemRod);
 
         itemFruitPickerHead = new ItemTrees();
         itemFruitPickerHead.setUnlocalizedName("fruitPickerHead");
         itemFruitPickerHead.setCustomIconIndex(162);
-        LanguageRegistry.addName(itemFruitPickerHead, "Head of Fruit Picker");
         RegistryUtils.registerItem(itemFruitPickerHead);
 
         itemFruitPicker = new ItemTrees();
         itemFruitPicker.setUnlocalizedName("fruitPicker").setMaxStackSize(1).setMaxDamage(256);
         itemFruitPicker.setCustomIconIndex(163);
-        LanguageRegistry.addName(itemFruitPicker, "Fruit Picker");
         RegistryUtils.registerItem(itemFruitPicker);
 
         itemUnknownSeeds = new ItemTrees();
         itemUnknownSeeds.setCustomIconIndex(34);
         itemUnknownSeeds.setInfo("Magnifier is needed for identification");
-        RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds", "Unknown Seeds");
+        RegistryUtils.registerItem(itemUnknownSeeds, "unknownSeeds");
 
         itemPlantingBagSmall = new ItemBagPlanting(164, 1);
-        RegistryUtils.registerItem(itemPlantingBagSmall, "plantingBagSmall", "Small Farmer's Planting Bag");
+        RegistryUtils.registerItem(itemPlantingBagSmall, "plantingBagSmall");
         itemPlantingBagMedium = new ItemBagPlanting(165, 2);
-        RegistryUtils.registerItem(itemPlantingBagMedium, "plantingBagMedium", "Medium Farmer's Planting Bag");
+        RegistryUtils.registerItem(itemPlantingBagMedium, "plantingBagMedium");
         itemPlantingBagBig = new ItemBagPlanting(166, 3);
-        RegistryUtils.registerItem(itemPlantingBagBig, "plantingBagBig", "Big Farmer's Planting Bag");
+        RegistryUtils.registerItem(itemPlantingBagBig, "plantingBagBig");
 
         itemCollectingBag = new ItemBagCollecting(167);
-        RegistryUtils.registerItem(itemCollectingBag, "collectingBag", "Farmer's Collecting Bag");
+        RegistryUtils.registerItem(itemCollectingBag, "collectingBag");
     }
 
     private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
@@ -539,13 +530,12 @@ public class JaffasTrees extends JaffasModBase {
         leaves.leavesBlock.serialNumber = i;
         leaves.leavesBlock.setBlockName("fruitLeaves" + i).setCreativeTab(creativeTab).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass);
         RegistryUtils.registerBlock(leaves.leavesBlock);
-        LanguageRegistry.addName(leaves.leavesBlock, "Leaves");
 
         leaves.saplingBlock = new BlockFruitSapling(15, subCount);
         leaves.saplingBlock.serialNumber = i;
         String saplingBlockName = "fruitSapling" + i;
         leaves.saplingBlock.setBlockName(saplingBlockName).setCreativeTab(creativeTab);
-        RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(saplingTitles, i, subCount), constructSubNames(treeTypeNames, i, subCount));
+        RegistryUtils.registerMultiBlock(leaves.saplingBlock, ItemBlockFruitSapling.class, constructSubNames(treeTypeNames, i, subCount));
         OreDictionary.registerOre("treeSapling", new ItemStack(leaves.saplingBlock, 1, ANY_DMG));
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerFertilizable", leaves.saplingBlock);

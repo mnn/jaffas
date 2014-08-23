@@ -15,6 +15,8 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
     public static final int count = 12;
     public static final String[] titles = {"White Present", "Blue Present", "Yellow Present", "Black Present", "Magenta Present", "Present",
             "Small White Present", "Small Blue Present", "Small Yellow Present", "Small Black Present", "Small Magenta Present", "Small Present"};
+    public static final String[] presentSubNamem = {"white", "blue", "yellow", "black", "magenta", "question",
+            "whiteSmall", "blueSmall", "yellowSmall", "blackSmall", "magentaSmall", "questionSmall"};
 
     public ItemBlockPresent() {
         super(JaffasXmas.blockPresent);
@@ -23,8 +25,7 @@ public class ItemBlockPresent extends ItemBlockXmasMulti {
 
     @Override
     public String[] getSubNames() {
-        return new String[]{"white", "blue", "yellow", "black", "magenta", "question",
-                "whiteSmall", "blueSmall", "yellowSmall", "blackSmall", "magentaSmall", "questionSmall"};
+        return presentSubNamem;
     }
 
     @Override

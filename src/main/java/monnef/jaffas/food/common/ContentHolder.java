@@ -206,7 +206,6 @@ public class ContentHolder {
     protected static void createPainting() {
         ContentHolder.itemPainting = new ItemJaffaPainting();
         GameRegistry.registerItem(ContentHolder.itemPainting, ContentHolder.itemPainting.getUnlocalizedName());
-        LanguageRegistry.addName(ContentHolder.itemPainting, "Painting");
         EntityHelper.registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, ContentHolder.jaffaPaintingEntityID, jf);
     }
 
@@ -244,39 +243,33 @@ public class ContentHolder {
     public static void createBlocks() {
         ContentHolder.blockFridge = new BlockFridge();
         GameRegistry.registerBlock(ContentHolder.blockFridge, "blockFridge");
-        LanguageRegistry.addName(ContentHolder.blockFridge, "Fridge");
         registerTileEntity(TileFridge.class, "Fridge");
 
         ContentHolder.blockJaffaBomb = new BlockJaffaBomb(35, Material.rock);
         GameRegistry.registerBlock(ContentHolder.blockJaffaBomb, "blockJaffaBomb");
-        LanguageRegistry.addName(ContentHolder.blockJaffaBomb, "Jaffa Cakes BOMB");
 
         ContentHolder.blockCross = new BlockCross(5, Material.rock);
         GameRegistry.registerBlock(ContentHolder.blockCross, "blockCross");
-        LanguageRegistry.addName(ContentHolder.blockCross, "Cross");
         registerTileEntity(TileCross.class, "cross");
 
         ContentHolder.blockSink = new BlockSink(141);
-        RegistryUtils.registerBlock(ContentHolder.blockSink, "blockSink", "Faucet");
+        RegistryUtils.registerBlock(ContentHolder.blockSink);
         registerTileEntity(TileSink.class, "sink");
 
         ContentHolder.blockBoard = new BlockBoard(142, Material.wood);
-        RegistryUtils.registerBlock(ContentHolder.blockBoard, "Kitchen Board");
+        RegistryUtils.registerBlock(ContentHolder.blockBoard);
         registerTileEntity(TileBoard.class, "kitchenBoard");
 
         ContentHolder.blockPizza = new BlockPizza(149, Material.cake);
         RegistryUtils.registerBlock(ContentHolder.blockPizza);
-        LanguageRegistry.addName(ContentHolder.blockPizza, "Block of Pizza");
         registerTileEntity(TilePizza.class, "pizza");
 
         ContentHolder.blockColumn = new BlockColumn(160, Material.rock);
         RegistryUtils.registerBlock(ContentHolder.blockColumn);
-        LanguageRegistry.addName(ContentHolder.blockColumn, "Column");
         registerTileEntity(TileColumn.class, "column");
 
         ContentHolder.blockJaffaStatue = new BlockJaffaStatue(6, Material.iron);
         RegistryUtils.registerBlock(ContentHolder.blockJaffaStatue);
-        LanguageRegistry.addName(ContentHolder.blockJaffaStatue, "Jaffa Statue");
         registerTileEntity(TileJaffaStatue.class, "jaffaStatue");
 
         ContentHolder.blockPie = new BlockPie(156);
@@ -297,38 +290,38 @@ public class ContentHolder {
         }
 
         ContentHolder.blockSwitchgrassSolid = new BlockSwitchgrassSolid(240, 2);
-        RegistryUtils.registerBlock(ContentHolder.blockSwitchgrassSolid, "switchgrassSolid", "Block of Switchgrass");
+        RegistryUtils.registerBlockWithName(ContentHolder.blockSwitchgrassSolid, "switchgrassSolid");
 
         ContentHolder.blockMeatDryer = new BlockMeatDryer(250);
-        RegistryUtils.registerBlock(ContentHolder.blockMeatDryer, "meatDryer", "Meat Dryer");
+        RegistryUtils.registerBlockWithName(ContentHolder.blockMeatDryer, "meatDryer");
         registerTileEntity(TileMeatDryer.class, "MeatDryer");
 
         if (MonnefCorePlugin.debugEnv) {
             ContentHolder.blockDir1 = new BlockJDirectional(35, 2, Material.rock, BlockJDirectional.TextureMappingType.LOG_LIKE);
-            RegistryUtils.registerBlock(ContentHolder.blockDir1, "dir1", "Dir 1 - Log like");
+            RegistryUtils.registerBlockWithName(ContentHolder.blockDir1, "dir1");
 
             ContentHolder.blockDir2 = new BlockJDirectional(35, 6, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
-            RegistryUtils.registerBlock(ContentHolder.blockDir2, "dir2", "Dir 2 - All sides");
+            RegistryUtils.registerBlockWithName(ContentHolder.blockDir2, "dir2");
         }
 
         ContentHolder.blockRipeningBox = new BlockRipeningBox(257, breakableIronMaterial());
-        RegistryUtils.registerBlock(ContentHolder.blockRipeningBox, "ripeningBox", "Ripening Box");
+        RegistryUtils.registerBlockWithName(ContentHolder.blockRipeningBox, "ripeningBox");
         registerTileEntity(TileRipeningBox.class, "ripeningBox");
 
         blockBricks = new BlockBricks(291);
-        RegistryUtils.registerMultiBlock(ContentHolder.blockBricks, ItemBlockJaffas.class, BlockBricks.titles(), BlockBricks.subNames());
+        RegistryUtils.registerMultiBlock(ContentHolder.blockBricks, ItemBlockJaffas.class, BlockBricks.subNames());
 
         blockStainedStone = new BlockTintedMulti(294, Material.rock, "Stained Stone");
         blockStainedStone.setHardness(1.7F).setResistance(10.0F).setStepSound(Block.soundTypePiston).setBlockName("stainedStone");
-        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedStone, ItemBlockJaffas.class, blockStainedStone.titles(), blockStainedStone.subNames());
+        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedStone, ItemBlockJaffas.class, blockStainedStone.subNames());
 
         blockStainedPolishedStone = new BlockLightlyTintedMulti(296, Material.rock, "Polished Stained Stone");
         blockStainedPolishedStone.setHardness(2F).setResistance(15.0F).setStepSound(Block.soundTypePiston).setBlockName("stainedPolishedStone");
-        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPolishedStone, ItemBlockJaffas.class, blockStainedPolishedStone.titles(), blockStainedPolishedStone.subNames());
+        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPolishedStone, ItemBlockJaffas.class, blockStainedPolishedStone.subNames());
 
         blockStainedPlanks = new BlockLightlyTintedMulti(295, Material.wood, "Stained Planks");
         blockStainedPlanks.setHardness(2.0F).setResistance(4.7F).setStepSound(Block.soundTypeWood).setBlockName("stainedPlanks");
-        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPlanks, ItemBlockJaffas.class, blockStainedPlanks.titles(), blockStainedPlanks.subNames());
+        RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPlanks, ItemBlockJaffas.class, blockStainedPlanks.subNames());
     }
 
     public static void createJaffaArmorAndSword() {
@@ -337,7 +330,7 @@ public class ContentHolder {
         LanguageRegistry.addName(ContentHolder.itemJaffaPlate, "Jaffa Hoodie");
 
         ContentHolder.itemJaffaSword = new ItemJaffaSword(88, ContentHolder.EnumToolMaterialJaffas);
-        RegistryUtils.registerItem(ContentHolder.itemJaffaSword, "jaffaSword", "Jaffa Sword");
+        RegistryUtils.registerItem(ContentHolder.itemJaffaSword, "jaffaSword");
     }
 
     public static Item getItem(JaffaItem item) {

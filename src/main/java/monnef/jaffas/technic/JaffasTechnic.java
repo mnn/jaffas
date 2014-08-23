@@ -360,7 +360,7 @@ public class JaffasTechnic extends JaffasModBase {
 
     private void createFungiStuff() {
         fungiBox = new BlockFungiBox(27);
-        RegistryUtils.registerBlock(fungiBox, "fungiBox", "Fungi Box");
+        RegistryUtils.registerBlockWithName(fungiBox, "fungiBox");
         JaffasRegistryHelper.registerTileEntity(TileFungiBox.class, "jaffasFungiBox");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerHarvestable", fungiBox);
@@ -370,16 +370,11 @@ public class JaffasTechnic extends JaffasModBase {
         }
 
         fungus = new ItemFungus(99);
-        RegistryUtils.registerItem(fungus, "jaffasFungus", "Fungus");
-        for (Map.Entry<Integer, FungusInfo> item : FungiCatalog.catalog.entrySet()) {
-            if (item.getValue().ordinalItemBind) {
-                LanguageRegistry.addName(new ItemStack(fungus, 1, item.getKey()), item.getValue().title);
-            }
-        }
+        RegistryUtils.registerItem(fungus, "jaffasFungus");
         FungiCatalog.registerShroomGroups();
 
         mushroomKnife = new ItemMushroomKnife(28);
-        RegistryUtils.registerItem(mushroomKnife, "knifeMushroom", "Mushroom Knife");
+        RegistryUtils.registerItem(mushroomKnife, "knifeMushroom");
     }
 
     private void installThermalExpansionSupport() {
@@ -411,43 +406,36 @@ public class JaffasTechnic extends JaffasModBase {
 
     private void createItemsAndBlocks() {
         jaffarrol = new ItemTechnic(0);
-        RegistryUtils.registerItem(jaffarrol, "jaffarrol", "Jaffarrol Ingot");
+        RegistryUtils.registerItem(jaffarrol, "jaffarrol");
 
         jaffarrolRaw = new ItemTechnic(1);
-        RegistryUtils.registerItem(jaffarrolRaw, "jaffarrolRaw", "Raw Jaffarrol");
+        RegistryUtils.registerItem(jaffarrolRaw, "jaffarrolRaw");
 
         jaffarrolRefined = new ItemTechnic(2);
         RegistryUtils.registerItem(jaffarrolRefined, "jaffarrolRefined");
-        LanguageRegistry.addName(jaffarrolRefined, "Refined Jaffarrol");
 
         limsew = new ItemTechnic(3);
         RegistryUtils.registerItem(limsew, "limsewDust");
-        LanguageRegistry.addName(limsew, "Limsew Dust");
 
         blockJaffarrol = new BlockTechnic(4, Material.iron);
         blockJaffarrol.setBlockName("blockOfJaffarrol").setHardness(6.0F).setResistance(12.0F);
         RegistryUtils.registerBlock(blockJaffarrol);
-        LanguageRegistry.addName(blockJaffarrol, "Block of Jaffarrol");
 
         blockLimsew = new BlockTechnic(5, Material.iron);
         blockLimsew.setBlockName("blockOfLimsew").setHardness(4f).setResistance(7f);
         RegistryUtils.registerBlock(blockLimsew);
-        LanguageRegistry.addName(blockLimsew, "Block of Limsew");
 
         itemCentralUnit = new ItemCentralUnit(6);
         RegistryUtils.registerItem(itemCentralUnit);
 
         funnel = new ItemTechnic(16);
         RegistryUtils.registerItem(funnel, "funnel");
-        LanguageRegistry.addName(funnel, "Funnel");
 
         itemCasing = new ItemTechnic(13);
         RegistryUtils.registerItem(itemCasing, "casing");
-        LanguageRegistry.addName(itemCasing, "Casing");
 
         itemCasingRefined = new ItemTechnic(14);
         RegistryUtils.registerItem(itemCasingRefined, "casingRefined");
-        LanguageRegistry.addName(itemCasingRefined, "Refined Casing");
 
         // jarmor
         int renderIndexJaffarrol = JaffasFood.proxy.addArmor("jarmor");
@@ -458,144 +446,142 @@ public class JaffasTechnic extends JaffasModBase {
 
         blockJaffarrolOre = new BlockOre(17);
         blockJaffarrolOre.setHarvestLevel("pickaxe", 2);
-        RegistryUtils.registerBlock(blockJaffarrolOre, "jaffarrolOre", "Jaffarrol Ore");
+        RegistryUtils.registerBlockWithName(blockJaffarrolOre, "jaffarrolOre");
 
         blockLimsewOre = new BlockOre(18);
         blockLimsewOre.setHarvestLevel("pickaxe", 2);
-        RegistryUtils.registerBlock(blockLimsewOre, "limsewOre", "Limsew Ore");
+        RegistryUtils.registerBlockWithName(blockLimsewOre, "limsewOre");
 
         itemLocomotive = new ItemLocomotive(24);
-        LanguageRegistry.addName(itemLocomotive, "Mini-Locomotive");
         RegistryUtils.registerItem(itemLocomotive);
 
         jaffarrolDust = new ItemTechnic(25);
-        RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust", "Jaffarrol Dust");
+        RegistryUtils.registerItem(jaffarrolDust, "jaffarrolDust");
 
         constructionBlock = new BlockConstruction(30);
-        registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"Construction Block - Alloy", "Construction Block - Alloy-Glass"}, new String[]{"alloy", "glass"});
+        registerMultiBlock(constructionBlock, ItemBlockJaffas.class, new String[]{"alloy", "glass"});
 
         JaffasRegistryHelper.registerTileEntity(TileConstructionDummy.class, "jaffasConstructionDummy");
         JaffasRegistryHelper.registerTileEntity(TileCompostCore.class, "jaffasCompostCore");
 
         dummyConstructionBlock = new BlockConstructionDummy(17);
-        RegistryUtils.registerBlock(dummyConstructionBlock, "dummyConstruction", "Dummy Construction Block - are you a cheater?");
+        RegistryUtils.registerBlockWithName(dummyConstructionBlock, "dummyConstruction");
 
         compostCore = new BlockCompostCore(35, Material.iron);
-        RegistryUtils.registerBlock(compostCore, "compostCore", "Compost Core Block");
+        RegistryUtils.registerBlockWithName(compostCore, "compostCore");
 
         compost = new ItemCompost(29);
-        RegistryUtils.registerItem(compost, "compost", "Compost");
+        RegistryUtils.registerItem(compost, "compost");
         if (JaffasFood.otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerFertilizer", compost);
         }
 
         if (!disableRedstoneGadgets) {
             lampDeco = new BlockLamp(37, 38);
-            registerMultiBlock(lampDeco, ItemBlockJaffas.class, lampDeco.generateTitles(), lampDeco.generateSubNames());
+            registerMultiBlock(lampDeco, ItemBlockJaffas.class, lampDeco.generateSubNames());
             Item.getItemFromBlock(lampDeco).setFull3D();
 
             lamp = new BlockMultiLamp(37);
-            registerRedstoneBlock(lamp, "multiLamp", "Multi-Lamp");
+            registerRedstoneBlock(lamp, "multiLamp");
 
             gems = new ItemTechnic(40);
-            RegistryUtils.registerItem(gems, "colourfulGems", "Colourful Gems");
+            RegistryUtils.registerItem(gems, "colourfulGems");
             gems.setMaxStackSize(16);
 
             rainbowDust = new ItemTechnic(39);
-            RegistryUtils.registerItem(rainbowDust, "rainbowDust", "Rainbow Dust");
+            RegistryUtils.registerItem(rainbowDust, "rainbowDust");
             rainbowDust.setInfo("Maybe a key to the secret cow level?");
 
             repeater = new BlockAnalogRepeater(52, 3);
-            registerRedstoneBlock(repeater, "repeater", "Analog Repeater");
+            registerRedstoneBlock(repeater, "repeater");
             JaffasRegistryHelper.registerTileEntity(TileAnalogRepeater.class, "repeater");
 
             sampler = new BlockSampler(60, 3);
-            registerRedstoneBlock(sampler, "sampler", "Sample-and-hold");
+            registerRedstoneBlock(sampler, "sampler");
             JaffasRegistryHelper.registerTileEntity(TileSampler.class, "sampler");
 
             randomizer = new BlockRandomizer(63, 3);
-            registerRedstoneBlock(randomizer, "randomizer", "Randomizer");
+            registerRedstoneBlock(randomizer, "randomizer");
             JaffasRegistryHelper.registerTileEntity(TileRandomizer.class, "randomizer");
         }
 
         highPlant = new BlockHighPlant(44);
-        RegistryUtils.registerBlock(highPlant, "highPlant", "High Plant");
+        RegistryUtils.registerBlockWithName(highPlant, "highPlant");
 
         highPlantPost = new ItemHightPlantPost(44);
-        RegistryUtils.registerItem(highPlantPost, "highPlantPost", "Plant Post");
+        RegistryUtils.registerItem(highPlantPost, "highPlantPost");
         JaffasRegistryHelper.registerTileEntity(TileHighPlant.class, "highPlantPost");
 
         hop = new ItemTechnic(45);
-        RegistryUtils.registerItem(hop, "hop", "Hop");
+        RegistryUtils.registerItem(hop, "hop");
 
         processedHop = new ItemTechnic(47);
-        RegistryUtils.registerItem(processedHop, "hopProcessed", "Beer Mixture");
+        RegistryUtils.registerItem(processedHop, "hopProcessed");
 
         processedHopInBucket = new ItemTechnic(48);
-        RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket", "Beer Mixture In Bucket");
+        RegistryUtils.registerItem(processedHopInBucket, "hopProcessedInBucket");
         processedHopInBucket.setContainerItem(Items.bucket);
 
         brewedHopInBucket = new ItemTechnic(49);
-        RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket", "Hopped Wort");
+        RegistryUtils.registerItem(brewedHopInBucket, "brewedHopInBucket");
         brewedHopInBucket.setContainerItem(Items.bucket);
 
         hopSeeds = new ItemTechnic(46);
-        RegistryUtils.registerItem(hopSeeds, "hopSeeds", "Hop Seeds");
+        RegistryUtils.registerItem(hopSeeds, "hopSeeds");
 
         hopWeatMixture = new ItemTechnic(50);
-        RegistryUtils.registerItem(hopWeatMixture, "hopWeatMixture", "Mixture of Hop and Wheat");
+        RegistryUtils.registerItem(hopWeatMixture, "hopWeatMixture");
 
         cobbleBreaker = new BlockCobbleBreaker(50, 2, Material.rock, BlockJDirectional.TextureMappingType.ALL_SIDES);
-        RegistryUtils.registerBlock(cobbleBreaker, "cobbleBreaker", "Cobble Breaker");
+        RegistryUtils.registerBlockWithName(cobbleBreaker, "cobbleBreaker");
         JaffasRegistryHelper.registerTileEntity(TileCobbleBreaker.class, "cobbleBreaker");
 
         itemKeg = new ItemKeg(42);
-        RegistryUtils.registerItem(itemKeg, "itemKeg", "Keg");
-        itemKeg.registerTexts();
+        RegistryUtils.registerItem(itemKeg, "itemKeg");
 
         keg = new BlockKeg(42);
-        RegistryUtils.registerBlock(keg, "keg", "Keg");
+        RegistryUtils.registerBlockWithName(keg, "keg");
         JaffasRegistryHelper.registerTileEntity(TileKeg.class, "keg");
 
         itemFermenter = new ItemFermenter(43);
-        RegistryUtils.registerItem(itemFermenter, "itemFermenter", "Fermenter");
+        RegistryUtils.registerItem(itemFermenter, "itemFermenter");
 
         fermenter = new BlockFermenter(43);
-        RegistryUtils.registerBlock(fermenter, "fermenter", "Fermenter Block");
+        RegistryUtils.registerBlockWithName(fermenter, "fermenter");
         JaffasRegistryHelper.registerTileEntity(TileFermenter.class, "fermenter");
         JaffasRegistryHelper.registerTileEntity(TileFermenterInventoryRouter.class, "fermenterInvRouter");
 
         jaffarrolNugget = new ItemTechnic(103);
-        RegistryUtils.registerItem(jaffarrolNugget, "jaffarrolNugget", "Jaffarrol Nugget");
+        RegistryUtils.registerItem(jaffarrolNugget, "jaffarrolNugget");
 
         createTools();
     }
 
-    private void registerRedstoneBlock(Block block, String name, String title) {
-        registerMultiBlock(block, ItemBlockRedstone.class, name, title);
+    private void registerRedstoneBlock(Block block, String name) {
+        registerMultiBlock(block, ItemBlockRedstone.class, name);
     }
 
     private void createTools() {
         EnumToolMaterialJaffarrol.customCraftingMaterial = jaffarrol;
 
         axeJaffarrol = new ItemAxeTechnic(21, EnumToolMaterialJaffarrol);
-        RegistryUtils.registerItem(axeJaffarrol, "axeJaffarrol", "Jaffarrol Axe");
+        RegistryUtils.registerItem(axeJaffarrol, "axeJaffarrol");
         axeJaffarrol.setHarvestLevel("axe", 3);
 
         pickaxeJaffarrol = new ItemPickaxeTechnic(20, EnumToolMaterialJaffarrol);
-        RegistryUtils.registerItem(pickaxeJaffarrol, "pickaxeJaffarrol", "Jaffarrol Pickaxe");
+        RegistryUtils.registerItem(pickaxeJaffarrol, "pickaxeJaffarrol");
         pickaxeJaffarrol.setHarvestLevel("pickaxe", 3);
         TileCobbleBreaker.registerJaffarrolTool(pickaxeJaffarrol);
 
         spadeJaffarrol = new ItemSpadeTechnic(19, EnumToolMaterialJaffarrol);
-        RegistryUtils.registerItem(spadeJaffarrol, "spadeJaffarrol", "Jaffarrol Shovel");
+        RegistryUtils.registerItem(spadeJaffarrol, "spadeJaffarrol");
         spadeJaffarrol.setHarvestLevel("shovel", 3);
 
         hoeJaffarrol = new ItemHoeTechnic(22, EnumToolMaterialJaffarrol);
-        RegistryUtils.registerItem(hoeJaffarrol, "hoeJaffarrol", "Jaffarrol Hoe");
+        RegistryUtils.registerItem(hoeJaffarrol, "hoeJaffarrol");
 
         swordJaffarrol = new ItemSwordTechnic(23, EnumToolMaterialJaffarrol);
-        RegistryUtils.registerItem(swordJaffarrol, "swordJaffarrol", "Jaffarrol Sword");
+        RegistryUtils.registerItem(swordJaffarrol, "swordJaffarrol");
     }
 
     private void installRecipes() {

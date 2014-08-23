@@ -34,7 +34,7 @@ public class BlockPie extends BlockJaffas {
     public static final float f2 = 2F / 16F;
     public static final float f3 = 3F / 16F;
     public static final float f3d = 1F - f3;
-    public static final String[] multiBlockNames = new String[]{"Strawberry Pie", "Raspberry Pie", "Vanilla Pie", "Plum Pie"};
+    public static final String[] multiBlockNames = new String[]{"strawberry", "raspberry", "vanilla", "plum"};
     public static final int[] textureIndexFromMeta = new int[]{156, 157, 159, 158};
     public static IIcon[] icons;
 

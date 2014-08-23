@@ -22,8 +22,7 @@ public class BlockTable extends BlockJaffas {
     private static final int SIDES_COUNT = 4;
     private IIcon[][] icons;
 
-    public static final String[] multiBlockNames = new String[]{"Table with Red Tablecloth", "Table with Green Tablecloth", "Table with Blue Tablecloth"};
-
+    public static final String[] multiBlockNames = new String[]{"red", "green", "blue"};
 
     public BlockTable(int texture, Material material) {
         super(texture, material);

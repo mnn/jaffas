@@ -11,7 +11,6 @@ import net.minecraft.item.Item;
 public class JaffaItemInfo {
     private String name;
     private Item item;
-    private String title;
     private int iconIndex;
     private ModulesEnum module;
     private int sheetNumber;
@@ -35,16 +34,6 @@ public class JaffaItemInfo {
 
     public void setItem(Item item) {
         this.item = item;
-    }
-
-    @Deprecated
-    public String getTitle() {
-        return title;
-    }
-
-    @Deprecated
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public void setIconIndex(int iconIndex) {
