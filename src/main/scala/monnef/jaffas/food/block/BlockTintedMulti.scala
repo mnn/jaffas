@@ -8,8 +8,12 @@ import net.minecraft.item.{ItemStack, Item}
 import net.minecraft.creativetab.CreativeTabs
 import java.util
 import monnef.jaffas.food.common.ContentHolder
+import monnef.core.MonnefCorePlugin
 
 class BlockTintedMulti(_texture: Int, _material: Material, multiItemTitle: String) extends BlockJaffas(_texture, _material) {
+
+  private final val colors: Array[Int] = generateColors()
+  if (MonnefCorePlugin.debugEnv) MonnefCorePlugin.Log.printInfo(s"$multiItemTitle's colors: ${colors.map { ci => ColorHelper.getColor(ci).toString}.mkString(", ")}")
 
   override def colorMultiplier(world: IBlockAccess, x: Int, y: Int, z: Int): Int = {
     colors(world.getBlockMetadata(x, y, z))
@@ -26,12 +30,10 @@ class BlockTintedMulti(_texture: Int, _material: Material, multiItemTitle: Strin
 
   override def getRenderType: Int = ContentHolder.renderBlockID
 
-  private final val colors: Array[Int] = generateColors()
-
   def generateColors(): Array[Int] =
     (for (i <- 0 until 16) yield {
       var c = DyeHelper.getIntColor(i)
-      if (contrastFixEnabled) c = applyContrastFix(i, c)
+      if (contrastFixEnabled) c = applyContrastFix(c, i)
       c = processColor(c, i)
       c
     }).toArray
