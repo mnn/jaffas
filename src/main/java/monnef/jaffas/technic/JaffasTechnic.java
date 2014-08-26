@@ -39,7 +39,6 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
-import monnef.jaffas.food.network.HomeStonePacket;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
@@ -74,7 +73,6 @@ import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
-import monnef.jaffas.technic.common.FungusInfo;
 import monnef.jaffas.technic.common.MushroomCropProvider;
 import monnef.jaffas.technic.common.RepairRecipe;
 import monnef.jaffas.technic.entity.EntityLocomotive;
@@ -112,11 +110,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.apache.logging.log4j.Level;
-import org.omg.SendingContext.RunTime;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
-
-import java.rmi.registry.Registry;
-import java.util.Map;
 
 import static monnef.core.utils.RegistryUtils.registerMultiBlock;
 import static monnef.jaffas.food.JaffasFood.Log;
@@ -322,7 +316,7 @@ public class JaffasTechnic extends JaffasModBase {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
-        JaffasFood.PrintInitialized(ModulesEnum.technic);
+        JaffasFood.printInitialized(ModulesEnum.technic);
     }
 
     private void addDungeonLoot() {

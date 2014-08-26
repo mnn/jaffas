@@ -106,7 +106,7 @@ public class JaffasXmas extends JaffasModBase {
     public void load(FMLInitializationEvent event) {
         super.load(event);
 
-        JaffasFood.PrintInitialized(ModulesEnum.xmas);
+        JaffasFood.printInitialized(ModulesEnum.xmas);
     }
 
     private void createItems() {

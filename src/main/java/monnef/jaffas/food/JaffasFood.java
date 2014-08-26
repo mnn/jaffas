@@ -77,6 +77,7 @@ import java.util.Random;
 
 import static monnef.jaffas.food.common.ContentHolder.addDungeonLoot;
 import static monnef.jaffas.food.common.ContentHolder.createBlocks;
+import static monnef.jaffas.food.common.ContentHolder.createFluids;
 import static monnef.jaffas.food.common.ContentHolder.createJaffaArmorAndSword;
 import static monnef.jaffas.food.common.ContentHolder.initEntityIDs;
 import static monnef.jaffas.food.common.ContentHolder.registerCleaverRecords;
@@ -174,6 +175,7 @@ public class JaffasFood extends JaffasModBase {
         registerCleaverRecords();
         AchievementsHandler.init();
         addDungeonLoot();
+        createFluids();
 
         registerHandlers();
 
@@ -271,7 +273,7 @@ public class JaffasFood extends JaffasModBase {
         manager.registerCommand(new CommandJaffasOP());
     }
 
-    public static void PrintInitialized(ModulesEnum module) {
+    public static void printInitialized(ModulesEnum module) {
         Log.printInfo("Module " + module + " initialized.");
     }
 

@@ -429,7 +429,7 @@ public class JaffasTrees extends JaffasModBase {
     @Mod.EventHandler
     public void load(FMLInitializationEvent event) {
         super.load(event);
-        JaffasFood.PrintInitialized(ModulesEnum.trees);
+        JaffasFood.printInitialized(ModulesEnum.trees);
     }
 
     private void registerForestryStuff() {

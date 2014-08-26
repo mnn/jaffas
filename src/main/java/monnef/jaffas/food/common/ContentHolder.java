@@ -21,6 +21,7 @@ import monnef.jaffas.food.block.BlockCross;
 import monnef.jaffas.food.block.BlockFridge;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.block.BlockJaffaBomb;
+import monnef.jaffas.food.block.BlockJaffaFiniteFluid;
 import monnef.jaffas.food.block.BlockJaffaStatue;
 import monnef.jaffas.food.block.BlockLightlyTintedMulti;
 import monnef.jaffas.food.block.BlockMeatDryer;
@@ -143,6 +144,9 @@ public class ContentHolder {
     static int jaffaPaintingEntityID;
     static int duckEntityID;
     static int duckEggEntityID;
+
+    public static JaffaFluid corrosiveGoo, miningGoo, unstableGoo, waterOfLife;
+    public static BlockJaffaFiniteFluid blockCorrosiveGoo, blockMiningGoo, blockUnstableGoo, blockWaterOfLife;
 
     private static JaffasFood jf;
 
@@ -352,4 +356,23 @@ public class ContentHolder {
 
         JaffasFood.Log.printInfo(String.format("Registered entities: painting @ %d, duck @ %d, duck egg @ %d, little spider @ %d", jaffaPaintingEntityID, duckEntityID, duckEggEntityID, spiderEntityID));
     }
+
+    public static void createFluids() {
+        corrosiveGoo = JaffaFluid.createAndRegister("corrosiveGoo");
+        corrosiveGoo.setViscosity(7000);
+        blockCorrosiveGoo = BlockJaffaFiniteFluid.createAndRegister(corrosiveGoo, 0, 1);
+
+        miningGoo = JaffaFluid.createAndRegister("miningGoo");
+        miningGoo.setViscosity(2000);
+        blockMiningGoo = BlockJaffaFiniteFluid.createAndRegister(miningGoo, 2, 3);
+
+        unstableGoo = JaffaFluid.createAndRegister("unstableGoo");
+        unstableGoo.setLuminosity(7).setViscosity(3000);
+        blockUnstableGoo = BlockJaffaFiniteFluid.createAndRegister(unstableGoo, 4, 5);
+
+        waterOfLife = JaffaFluid.createAndRegister("waterOfLife");
+        waterOfLife.setLuminosity(1);
+        blockWaterOfLife = BlockJaffaFiniteFluid.createAndRegister(waterOfLife, 6, 7);
+    }
+
 }

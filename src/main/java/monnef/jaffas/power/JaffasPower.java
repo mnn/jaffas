@@ -159,7 +159,7 @@ public class JaffasPower extends JaffasModBase {
             MinecraftForge.EVENT_BUS.register(new LightingHandler());
         }
 
-        JaffasFood.PrintInitialized(ModulesEnum.power);
+        JaffasFood.printInitialized(ModulesEnum.power);
     }
 
     @Mod.EventHandler
