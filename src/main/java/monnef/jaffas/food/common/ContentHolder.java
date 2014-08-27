@@ -372,7 +372,7 @@ public class ContentHolder {
 
         waterOfLife = JaffaFluid.createAndRegister("waterOfLife");
         waterOfLife.setLuminosity(1);
-        blockWaterOfLife = BlockJaffaFiniteFluid.createAndRegister(waterOfLife, 6, 7);
+        blockWaterOfLife = BlockJaffaFiniteFluid.createAndRegister(waterOfLife, 298, 297);
     }
 
 }
