@@ -5,23 +5,23 @@ import net.minecraft.block.material.Material
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.util.IIcon
 import monnef.core.common.CustomIconHelper
-import monnef.jaffas.food.common.{JaffaFluid, Reference}
+import monnef.jaffas.food.common.{IconDescriptorJaffas, JaffaFluid, Reference}
 import cpw.mods.fml.relauncher.{Side, SideOnly}
 import net.minecraft.world.{IBlockAccess, World}
 import monnef.core.utils.RegistryUtils
 import monnef.jaffas.food.JaffasFood
+import monnef.core.block.GameObjectDescriptor
 
-class BlockJaffaFiniteFluid(_fluid: Fluid, stillCustomIconIndex: Int, flowingCustomIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) {
+class BlockJaffaFiniteFluid(_fluid: Fluid, stillCustomIconIndex: Int, flowingCustomIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas {
   private var iconStill, iconFlowing: IIcon = _
   setCreativeTab(JaffasFood.instance.creativeTab)
+  setupDefaultValuesFromBlockDescriptor(this)
 
   @SideOnly(Side.CLIENT)
   override def registerBlockIcons(register: IIconRegister) {
     super.registerBlockIcons(register)
-    def genId(index: Int): String = CustomIconHelper.generateId(Reference.ModName, 1, index)
-    def registerIndex(index: Int): IIcon = register.registerIcon(genId(index))
-    iconStill = registerIndex(stillCustomIconIndex)
-    iconFlowing = registerIndex(flowingCustomIconIndex)
+    iconStill = register.registerIcon(CustomIconHelper.generateId(this, stillCustomIconIndex))
+    iconFlowing = register.registerIcon(CustomIconHelper.generateId(this, flowingCustomIconIndex))
   }
 
   @SideOnly(Side.CLIENT)

@@ -360,19 +360,18 @@ public class ContentHolder {
     public static void createFluids() {
         corrosiveGoo = JaffaFluid.createAndRegister("corrosiveGoo");
         corrosiveGoo.setViscosity(7000);
-        blockCorrosiveGoo = BlockJaffaFiniteFluid.createAndRegister(corrosiveGoo, 0, 1);
+        blockCorrosiveGoo = BlockJaffaFiniteFluid.createAndRegister(corrosiveGoo, 300, 299);
 
         miningGoo = JaffaFluid.createAndRegister("miningGoo");
         miningGoo.setViscosity(2000);
-        blockMiningGoo = BlockJaffaFiniteFluid.createAndRegister(miningGoo, 2, 3);
+        blockMiningGoo = BlockJaffaFiniteFluid.createAndRegister(miningGoo, 302, 301);
 
         unstableGoo = JaffaFluid.createAndRegister("unstableGoo");
         unstableGoo.setLuminosity(7).setViscosity(3000);
-        blockUnstableGoo = BlockJaffaFiniteFluid.createAndRegister(unstableGoo, 4, 5);
+        blockUnstableGoo = BlockJaffaFiniteFluid.createAndRegister(unstableGoo, 304, 303);
 
         waterOfLife = JaffaFluid.createAndRegister("waterOfLife");
         waterOfLife.setLuminosity(1);
         blockWaterOfLife = BlockJaffaFiniteFluid.createAndRegister(waterOfLife, 298, 297);
     }
-
 }
