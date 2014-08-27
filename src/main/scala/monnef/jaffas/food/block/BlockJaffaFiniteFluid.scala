@@ -11,11 +11,12 @@ import net.minecraft.world.{IBlockAccess, World}
 import monnef.core.utils.RegistryUtils
 import monnef.jaffas.food.JaffasFood
 import monnef.core.block.GameObjectDescriptor
+import monnef.core.item.CustomItemIconTrait
 
 class BlockJaffaFiniteFluid(_fluid: Fluid, stillCustomIconIndex: Int, flowingCustomIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas {
   private var iconStill, iconFlowing: IIcon = _
   setCreativeTab(JaffasFood.instance.creativeTab)
-  setupDefaultValuesFromBlockDescriptor(this)
+  initCustomIcon()
 
   @SideOnly(Side.CLIENT)
   override def registerBlockIcons(register: IIconRegister) {
@@ -36,6 +37,10 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, stillCustomIconIndex: Int, flowingCus
     if (world.getBlock(x, y, z).getMaterial.isLiquid) false
     else super.displaceIfPossible(world, x, y, z)
   }
+
+  def isFullyFilled(world: World, x: Int, y: Int, z: Int): Boolean = getQuantaValue(world, x, y, z) == quantaPerBlock
+
+  def getMaxMeta(): Int = getMaxRenderHeightMeta
 }
 
 object BlockJaffaFiniteFluid {

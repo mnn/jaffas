@@ -19,6 +19,7 @@ import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food
 import monnef.jaffas.food.item.juice.{ItemJuiceGlass, ItemJuice}
 import net.minecraft.init.Blocks
+import net.minecraftforge.fluids.{FluidRegistry, FluidContainerRegistry}
 
 class Items extends ItemManagerAccessor {
 
@@ -295,6 +296,7 @@ class Items extends ItemManagerAccessor {
     AddItemInfo(JaffaItem.breadCrumbs, 290)
     AddItemInfo(juiceInBottle, 181)
     AddItemInfo(juiceGlass, 186)
+    AddItemInfo(bucketWaterOfLife, 6)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -562,10 +564,9 @@ class Items extends ItemManagerAccessor {
     createJaffaFood(fishStickCooked, 5, 0.95f)
 
     createJaffaItemManual(juiceInBottle, new ItemJuice)
-    getItem(juiceInBottle).asInstanceOf[ItemJuice].registerNames()
-
     createJaffaItemManual(juiceGlass, new ItemJuiceGlass)
-    getItem(juiceGlass).asInstanceOf[ItemJuiceGlass].registerNames()
+
+    createJaffaItemManual(bucketWaterOfLife, new ItemJaffaBucket(ContentHolder.blockWaterOfLife))
 
     createItemsOreDictRegistration()
     addMeatsToDryerDatabase()

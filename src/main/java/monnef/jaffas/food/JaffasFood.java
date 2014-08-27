@@ -35,6 +35,8 @@ import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
 import monnef.jaffas.food.command.CommandJaffas;
 import monnef.jaffas.food.command.CommandJaffasOP;
+import monnef.jaffas.food.common.BucketHandler;
+import monnef.jaffas.food.common.BucketHandler$;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ContentHolder;
@@ -71,6 +73,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import org.apache.logging.log4j.Level;
 
 import java.util.Random;
@@ -82,6 +87,7 @@ import static monnef.jaffas.food.common.ContentHolder.createJaffaArmorAndSword;
 import static monnef.jaffas.food.common.ContentHolder.initEntityIDs;
 import static monnef.jaffas.food.common.ContentHolder.registerCleaverRecords;
 import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
+import static monnef.jaffas.food.common.ContentHolder.waterOfLife;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:monnef-core")
 public class JaffasFood extends JaffasModBase {
@@ -168,6 +174,7 @@ public class JaffasFood extends JaffasModBase {
         MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
 
         createBlocks();
+        createFluids(); // also create blocks
         items.CreateItems();
         ItemJaffaPack.initPacks();
         createJaffaArmorAndSword();
@@ -175,7 +182,6 @@ public class JaffasFood extends JaffasModBase {
         registerCleaverRecords();
         AchievementsHandler.init();
         addDungeonLoot();
-        createFluids();
 
         registerHandlers();
 
@@ -209,9 +215,18 @@ public class JaffasFood extends JaffasModBase {
         super.load(event);
         OtherModsHelper.checkCore();
         ItemManager.constructItemIdToJaffaItemMappings();
+        registerFluidContainers();
         Recipes.installRecipes();
 
         printInitializedMessage();
+    }
+
+    private void registerFluidContainers() {
+        MinecraftForge.EVENT_BUS.register(BucketHandler$.MODULE$);
+
+        FluidStack fluidStack = FluidRegistry.getFluidStack(ContentHolder.waterOfLife.getName(), FluidContainerRegistry.BUCKET_VOLUME);
+        FluidContainerRegistry.registerFluidContainer(fluidStack, Recipes.getItemStack(JaffaItem.bucketWaterOfLife), FluidContainerRegistry.EMPTY_BUCKET);
+        BucketHandler.registerBucket(ContentHolder.blockWaterOfLife, getItem(JaffaItem.bucketWaterOfLife));
     }
 
     @Mod.EventHandler
