@@ -10,23 +10,16 @@ import cpw.mods.fml.relauncher.{Side, SideOnly}
 import net.minecraft.world.{IBlockAccess, World}
 import monnef.core.utils.RegistryUtils
 import monnef.jaffas.food.JaffasFood
-import monnef.core.block.GameObjectDescriptor
+import monnef.core.block.{CustomBlockIconTrait, GameObjectDescriptor}
 import monnef.core.item.CustomItemIconTrait
 
-class BlockJaffaFiniteFluid(_fluid: Fluid, stillCustomIconIndex: Int, flowingCustomIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas {
-  private var iconStill, iconFlowing: IIcon = _
+class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas with CustomBlockIconTrait {
   setCreativeTab(JaffasFood.instance.creativeTab)
-  initCustomIcon()
+  setIconsCount(2)
+  setCustomIconIndex(customIconIndex)
 
   @SideOnly(Side.CLIENT)
-  override def registerBlockIcons(register: IIconRegister) {
-    super.registerBlockIcons(register)
-    iconStill = register.registerIcon(CustomIconHelper.generateId(this, stillCustomIconIndex))
-    iconFlowing = register.registerIcon(CustomIconHelper.generateId(this, flowingCustomIconIndex))
-  }
-
-  @SideOnly(Side.CLIENT)
-  override def getIcon(side: Int, meta: Int): IIcon = if (side == 0 || side == 1) iconStill else iconFlowing
+  override def getIcon(side: Int, meta: Int): IIcon = if (side == 0 || side == 1) icons(1) else icons(0)
 
   override def canDisplace(world: IBlockAccess, x: Int, y: Int, z: Int): Boolean = {
     if (world.getBlock(x, y, z).getMaterial.isLiquid) false
@@ -44,8 +37,8 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, stillCustomIconIndex: Int, flowingCus
 }
 
 object BlockJaffaFiniteFluid {
-  def createAndRegister(fluid: JaffaFluid, stillCustomIconIndex: Int, flowingCustomIconIndex: Int): BlockJaffaFiniteFluid = {
-    val b = new BlockJaffaFiniteFluid(fluid, stillCustomIconIndex, flowingCustomIconIndex)
+  def createAndRegister(fluid: JaffaFluid, customIconIndex: Int): BlockJaffaFiniteFluid = {
+    val b = new BlockJaffaFiniteFluid(fluid, customIconIndex)
     RegistryUtils.registerBlockWithName(b, fluid.getUnlocalizedName)
     b
   }
