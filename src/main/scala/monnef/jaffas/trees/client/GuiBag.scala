@@ -10,6 +10,7 @@ import monnef.jaffas.trees.item.ContainerBag
 import monnef.core.utils.GuiHelper._
 import net.minecraft.util.StatCollector
 import monnef.core.client.ResourcePathHelper
+import monnef.core.utils.LanguageHelper
 
 class GuiBag(container: ContainerBag) extends GuiContainer(container) {
 
@@ -26,7 +27,7 @@ class GuiBag(container: ContainerBag) extends GuiContainer(container) {
   protected override def drawGuiContainerForegroundLayer(par1: Int, par2: Int) {
     super.drawGuiContainerForegroundLayer(par1, par2)
     fontRendererObj.drawString(container.stack.getDisplayName, 8, 4, COLOR_DARK_GRAY)
-    fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 4, COLOR_DARK_GRAY)
+    fontRendererObj.drawString(LanguageHelper.localInventory, 8, ySize - 96 + 4, COLOR_DARK_GRAY)
   }
 
   protected def refreshXY() {

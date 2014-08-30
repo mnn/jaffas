@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.fluid.FakeFluidRegistry;
 import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.EntityHelper;
@@ -63,6 +64,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -70,6 +72,7 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fluids.FluidRegistry;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
@@ -373,5 +376,8 @@ public class ContentHolder {
         waterOfLife = JaffaFluid.createAndRegister("waterOfLife");
         waterOfLife.setLuminosity(1);
         blockWaterOfLife = BlockJaffaFiniteFluid.createAndRegister(waterOfLife, 297);
+
+        FakeFluidRegistry.register(FluidRegistry.WATER, Blocks.water);
+        FakeFluidRegistry.register(FluidRegistry.LAVA, Blocks.lava);
     }
 }

@@ -1,7 +1,6 @@
 package monnef.jaffas.food.common
 
 import net.minecraft.item.{ItemStack, Item}
-import net.minecraft.block.Block
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.event.entity.player.FillBucketEvent
 import net.minecraft.world.World
@@ -9,6 +8,7 @@ import net.minecraft.util.MovingObjectPosition
 import monnef.core.utils.BlockHelper
 import cpw.mods.fml.common.eventhandler.Event.Result
 import monnef.jaffas.food.block.BlockJaffaFiniteFluid
+import monnef.core.utils.scalagameutils._
 
 object BucketHandler {
   private[this] var blockFluidToBucketItem: Map[BlockJaffaFiniteFluid, Item] = Map()

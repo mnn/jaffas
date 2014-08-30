@@ -4,18 +4,41 @@ import net.minecraft.item.{Item, ItemStack}
 import net.minecraft.world.World
 import net.minecraft.entity.player.EntityPlayer
 import monnef.core.utils.scalagameutils._
-import net.minecraftforge.fluids.{FluidContainerRegistry, IFluidBlock, FluidStack}
+import net.minecraftforge.fluids._
 import net.minecraft.util.MovingObjectPosition
-import monnef.core.utils.{BlockHelper, IntegerCoordinates}
+import monnef.core.utils.{LanguageHelper, IntegerCoordinates}
 import net.minecraftforge.common.util.ForgeDirection
-import net.minecraft.init.Blocks
 import java.util
 import net.minecraft.creativetab.CreativeTabs
 import monnef.jaffas.food.common.ContentHolder
+import monnef.core.api.IIntegerCoordinates
+import scala.Some
+import monnef.core.fluid.{FluidPlacer, FakeFluidRegistry}
 
 class ItemSpongeCloth extends ItemJaffaBase {
 
   import ItemSpongeCloth._
+
+  def suckLiquid(stack: ItemStack, pos: IIntegerCoordinates): Option[FluidStack] = {
+    val (x, y, z, world) = (pos.getX, pos.getY, pos.getZ, pos.getWorld)
+    val block = FakeFluidRegistry.wrapOrPass(pos.getBlock)
+    block match {
+      case fluidBlock: IFluidBlock =>
+        val fluidStack = fluidBlock.drain(world, x, y, z, false)
+        val currentFluidStack = getFluidStack(stack)
+        val currentFluidAmount = currentFluidStack.map(_.amount).getOrElse(0)
+        val newAmount = fluidStack.amount + currentFluidAmount
+        val newFluidCompatible = currentFluidStack.isEmpty || currentFluidStack.get.containsFluid(fluidStack)
+        if (newFluidCompatible && newAmount <= FluidContainerRegistry.BUCKET_VOLUME) {
+          var drainedFluidStack = fluidBlock.drain(world, x, y, z, true)
+          if (drainedFluidStack.amount == 0) drainedFluidStack = fluidStack // fixing Forge bug
+          drainedFluidStack.amount += currentFluidAmount
+          Some(drainedFluidStack)
+        } else None
+
+      case _ => None
+    }
+  }
 
   override def onItemRightClick(stack: ItemStack, world: World, player: EntityPlayer): ItemStack = {
     //super.onItemRightClick(stack, world, player)
@@ -25,36 +48,39 @@ class ItemSpongeCloth extends ItemJaffaBase {
       stack
     } else {
       if (obj.typeOfHit == MovingObjectPosition.MovingObjectType.BLOCK) {
-        val hitPos = new IntegerCoordinates(world, obj)
-        val wantedBlockPos = hitPos.shiftInDirectionBy(ForgeDirection.getOrientation(obj.sideHit), 1)
-        val (x, y, z) = (wantedBlockPos.getX, wantedBlockPos.getY, wantedBlockPos.getZ)
-        wantedBlockPos.getBlock match {
-          case fluidBlock: IFluidBlock =>
-            val fluidStack = fluidBlock.drain(world, x, y, z, false)
-            val currentFluidStack = getFluid(stack)
-            val currentFluidAmount = currentFluidStack.map(_.amount).getOrElse(0)
-            val newAmount = fluidStack.amount + currentFluidAmount
-            val newFluidCompatible = currentFluidStack.isEmpty || currentFluidStack.get.containsFluid(fluidStack)
-            if (newFluidCompatible && newAmount <= FluidContainerRegistry.BUCKET_VOLUME) {
-              var drainedFluidStack = fluidBlock.drain(world, x, y, z, true)
-              if (drainedFluidStack.amount == 0) drainedFluidStack = fluidStack // fixing Forge bug
-              drainedFluidStack.amount += currentFluidAmount
-              setFluid(stack, drainedFluidStack)
-              stack
-            } else stack
+        def updateStack(newFluid: FluidStack): Boolean = { setFluidStack(stack, newFluid); true }
 
-          case _ => stack
+        val hitPos = new IntegerCoordinates(world, obj)
+        val oneOutPos = hitPos.shiftInDirectionBy(ForgeDirection.getOrientation(obj.sideHit), 1)
+
+        val sucked = suckLiquid(stack, hitPos) match {
+          case Some(fluid) => updateStack(fluid)
+          case None => suckLiquid(stack, oneOutPos) match {
+            case Some(fluid) => updateStack(fluid)
+            case None => false
+          }
         }
-      } else stack
+        if (!sucked && !isEmptyFlag) {
+          if (tryPlaceLiquid(stack, oneOutPos)) setEmpty(stack)
+        }
+      }
+      stack
     }
+  }
+
+  def tryPlaceLiquid(stack: ItemStack, pos: IIntegerCoordinates): Boolean = FluidPlacer.tryPlace(getFluidStack(stack).get, pos)
+
+  def setEmpty(stack: ItemStack) {
+    stack.initTag()
+    stack.getTagCompound.removeTag(FLUID_KEY)
   }
 
   def isEmpty(stack: ItemStack): Boolean = {
     stack.initTag()
-    getFluid(stack).isEmpty
+    getFluidStack(stack).isEmpty
   }
 
-  def getFluid(stack: ItemStack): Option[FluidStack] = {
+  def getFluidStack(stack: ItemStack): Option[FluidStack] = {
     stack.initTag()
     if (stack.getTagCompound.hasKey(FLUID_KEY)) {
       val fluidTag = stack.getTagCompound.getCompoundTag(FLUID_KEY)
@@ -64,7 +90,7 @@ class ItemSpongeCloth extends ItemJaffaBase {
     } else None
   }
 
-  def setFluid(stack: ItemStack, fluid: FluidStack) {
+  def setFluidStack(stack: ItemStack, fluid: FluidStack) {
     stack.initTag()
     val tag = stack.getTagCompound
     tag.setTag(FLUID_KEY, fluid.writeToNBT(tag.getCompoundTag(FLUID_KEY)))
@@ -72,12 +98,19 @@ class ItemSpongeCloth extends ItemJaffaBase {
 
   override def addInformationCustom(stack: ItemStack, player: EntityPlayer, result: util.List[String], par4: Boolean) {
     super.addInformationCustom(stack, player, result, par4)
-    if (isEmpty(stack)) {
-      result.add("Empty")
-    } else {
-      val fl = getFluid(stack).get
-      result.add(fl.getFluid.getLocalizedName)
-      result.add(fl.amount + "mB")
+    getFluidStack(stack) match {
+      case Some(fluid) =>
+        // result.add(fluid.getFluid.getLocalizedName)
+        result.add(fluid.amount + "mB")
+      case None => result.add("Empty")
+    }
+  }
+
+  override def getItemStackDisplayName(stack: ItemStack): String = {
+    val title = super.getItemStackDisplayName(stack)
+    getFluidStack(stack) match {
+      case Some(fluid) => LanguageHelper.toLocalFormatted("jaffas.spongeCloth.wet", title, fluid.getFluid.getLocalizedName)
+      case None => LanguageHelper.toLocalFormatted("jaffas.spongeCloth.dry", title)
     }
   }
 
@@ -89,7 +122,7 @@ class ItemSpongeCloth extends ItemJaffaBase {
 
     val wol = new ItemStack(this)
     if (ContentHolder.waterOfLife == null) throw new RuntimeException("Water of Life fluid not yet created.")
-    setFluid(wol, new FluidStack(ContentHolder.waterOfLife, FluidContainerRegistry.BUCKET_VOLUME))
+    setFluidStack(wol, new FluidStack(ContentHolder.waterOfLife, FluidContainerRegistry.BUCKET_VOLUME))
     r.add(wol)
   }
 }

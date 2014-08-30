@@ -1,17 +1,15 @@
 package monnef.jaffas.food.block
 
-import net.minecraftforge.fluids.{Fluid, BlockFluidFinite}
+import net.minecraftforge.fluids.{FluidContainerRegistry, FluidStack, Fluid, BlockFluidFinite}
 import net.minecraft.block.material.Material
-import net.minecraft.client.renderer.texture.IIconRegister
-import net.minecraft.util.IIcon
-import monnef.core.common.CustomIconHelper
-import monnef.jaffas.food.common.{IconDescriptorJaffas, JaffaFluid, Reference}
+import net.minecraft.util.{MathHelper, IIcon}
+import monnef.jaffas.food.common.{IconDescriptorJaffas, JaffaFluid}
 import cpw.mods.fml.relauncher.{Side, SideOnly}
 import net.minecraft.world.{IBlockAccess, World}
 import monnef.core.utils.RegistryUtils
 import monnef.jaffas.food.JaffasFood
 import monnef.core.block.{CustomBlockIconTrait, GameObjectDescriptor}
-import monnef.core.item.CustomItemIconTrait
+import net.minecraft.init.Blocks
 
 class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas with CustomBlockIconTrait {
   setCreativeTab(JaffasFood.instance.creativeTab)
@@ -31,15 +29,22 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
     else super.displaceIfPossible(world, x, y, z)
   }
 
-  def isFullyFilled(world: World, x: Int, y: Int, z: Int): Boolean = getQuantaValue(world, x, y, z) == quantaPerBlock
-
-  def getMaxMeta(): Int = getMaxRenderHeightMeta
+  // fixing broken implementation in base class:
+  // - always zero amount of fluid when draining
+  // - setting a block on client makes block flicker
+  override def drain(world: World, x: Int, y: Int, z: Int, doDrain: Boolean): FluidStack = {
+    val r = new FluidStack(getFluid, MathHelper.floor_float(getQuantaPercentage(world, x, y, z) * FluidContainerRegistry.BUCKET_VOLUME))
+    if (doDrain && !world.isRemote) {world.setBlock(x, y, z, Blocks.air)}
+    r
+  }
 }
 
 object BlockJaffaFiniteFluid {
   def createAndRegister(fluid: JaffaFluid, customIconIndex: Int): BlockJaffaFiniteFluid = {
     val b = new BlockJaffaFiniteFluid(fluid, customIconIndex)
     RegistryUtils.registerBlockWithName(b, fluid.getUnlocalizedName)
+    fluid.setBlock(b)
     b
   }
 }
+

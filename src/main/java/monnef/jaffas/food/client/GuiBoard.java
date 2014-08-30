@@ -6,6 +6,7 @@
 package monnef.jaffas.food.client;
 
 import monnef.core.client.GuiContainerMonnefCore;
+import monnef.core.utils.LanguageHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.ContainerBoard;
 import monnef.jaffas.food.block.TileBoard;
@@ -26,7 +27,7 @@ public class GuiBoard extends GuiContainerMonnefCore {
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         fontRendererObj.drawString("Kitchen Board", 8, 6, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString(LanguageHelper.localInventory(), 8, ySize - 96 + 2, 4210752);
 
         if (JaffasFood.debug) {
             String s = String.valueOf(board.getChopTimeScaled(board.chopTime));

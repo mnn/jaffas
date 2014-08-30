@@ -7,6 +7,7 @@ package monnef.jaffas.technic.client;
 
 import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.GuiHelper;
+import monnef.core.utils.LanguageHelper;
 import monnef.jaffas.technic.block.ContainerCobbleBreaker;
 import monnef.jaffas.technic.block.TileCobbleBreaker;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -24,7 +25,7 @@ public class GuiCobbleBreaker extends GuiContainerMonnefCore {
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         fontRendererObj.drawString("Cobble Breaker", 8, 6, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString(LanguageHelper.localInventory(), 8, ySize - 96 + 2, 4210752);
     }
 
     @Override

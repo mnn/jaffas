@@ -6,6 +6,7 @@
 package monnef.jaffas.food.client;
 
 import monnef.core.client.GuiContainerMonnefCore;
+import monnef.core.utils.LanguageHelper;
 import monnef.jaffas.food.block.ContainerFridge;
 import monnef.jaffas.food.block.TileFridge;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -24,7 +25,7 @@ public class GuiFridge extends GuiContainerMonnefCore {
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2) {
         fontRendererObj.drawString("Fridge", 8, 3, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString(LanguageHelper.localInventory(), 8, ySize - 96 + 2, 4210752);
 
         if (TileFridge.tickDivider == 1) {
             String s = String.valueOf(tileEntity.getTemperature());

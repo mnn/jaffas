@@ -8,6 +8,7 @@ package monnef.jaffas.food.client;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.client.GuiContainerMonnefCore;
 import monnef.core.utils.GuiHelper;
+import monnef.core.utils.LanguageHelper;
 import monnef.jaffas.food.block.ContainerRipeningBox;
 import monnef.jaffas.food.block.TileRipeningBox;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -31,7 +32,7 @@ public class GuiRipeningBox extends GuiContainerMonnefCore {
     @Override
     protected void drawGuiContainerForegroundLayer(int param1, int param2) {
         fontRendererObj.drawString("Ripening Box", 8, 6, 4210752);
-        fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, 4210752);
+        fontRendererObj.drawString(LanguageHelper.localInventory(), 8, ySize - 96 + 2, 4210752);
     }
 
     private void renderStatusBars() {

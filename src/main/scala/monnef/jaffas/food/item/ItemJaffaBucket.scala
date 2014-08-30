@@ -1,13 +1,13 @@
 package monnef.jaffas.food.item
 
 import net.minecraft.item.ItemBucket
-import net.minecraft.block.Block
 import monnef.core.block.GameObjectDescriptor
 import monnef.jaffas.food.common.IconDescriptorJaffas
 import monnef.core.item.CustomItemIconTrait
 import net.minecraft.world.World
 import monnef.core.utils.BlockHelper
 import monnef.jaffas.food.block.BlockJaffaFiniteFluid
+import monnef.core.utils.scalagameutils._
 
 class ItemJaffaBucket(liquidBlock: BlockJaffaFiniteFluid) extends ItemBucket(liquidBlock) with GameObjectDescriptor with IconDescriptorJaffas with CustomItemIconTrait {
   if (liquidBlock == null) {
