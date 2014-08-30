@@ -326,19 +326,19 @@ public class JaffasTrees extends JaffasModBase {
     }
 
     private void populateBushInfo() {
-        AddBushInfo(bushType.Coffee, "coffee", 34, 96, 128, null, 2, 1, NotEatable, DropsFromGrass);
-        AddBushInfo(bushType.Strawberry, "strawberry", 34, 99, 129, null, 2, 1, EatableNormal, DropsFromGrass);
+        addBushInfo(bushType.Coffee, "coffee", 34, 96, 128, null, 2, 1, NotEatable, DropsFromGrass);
+        addBushInfo(bushType.Strawberry, "strawberry", 34, 99, 129, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Onion, "onion", 34, 102, 130, null, 2, 1, NotEatable, DropsFromGrass);
-        AddBushInfo(bushType.Paprika, "paprika", 34, 105, 131, null, 2, 1, EatableNormal, DropsFromGrass);
-        AddBushInfo(bushType.Raspberry, "raspberry", 34, 108, 132, null, 2, 1, EatableNormal, DropsFromGrass);
-        AddBushInfo(bushType.Tomato, "tomato", 34, 111, 133, null, 2, 1, EatableNormal, DropsFromGrass);
+        addBushInfo(bushType.Onion, "onion", 34, 102, 130, null, 2, 1, NotEatable, DropsFromGrass);
+        addBushInfo(bushType.Paprika, "paprika", 34, 105, 131, null, 2, 1, EatableNormal, DropsFromGrass);
+        addBushInfo(bushType.Raspberry, "raspberry", 34, 108, 132, null, 2, 1, EatableNormal, DropsFromGrass);
+        addBushInfo(bushType.Tomato, "tomato", 34, 111, 133, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Mustard, "mustard", 34, 114, 134, null, 2, 1, NotEatable, DropsFromGrass);
-        AddBushInfo(bushType.Peanuts, "peanuts", 34, 117, 135, null, 2, 1, EatableNormal, DropsFromGrass);
+        addBushInfo(bushType.Mustard, "mustard", 34, 114, 134, null, 2, 1, NotEatable, DropsFromGrass);
+        addBushInfo(bushType.Peanuts, "peanuts", 34, 117, 135, null, 2, 1, EatableNormal, DropsFromGrass);
 
-        AddBushInfo(bushType.Pea, "pea", 34, 120, 136, null, 2, 1, EatableNormal, DropsFromGrass);
-        AddBushInfo(bushType.Bean, "bean", 34, 123, 137, null, 2, 1, NotEatable, DropsFromGrass);
+        addBushInfo(bushType.Pea, "pea", 34, 120, 136, null, 2, 1, EatableNormal, DropsFromGrass);
+        addBushInfo(bushType.Bean, "bean", 34, 123, 137, null, 2, 1, NotEatable, DropsFromGrass);
     }
 
     private ItemJaffaBase constructFruit(EatableType type, int textureOffset, String name) {
@@ -408,7 +408,7 @@ public class JaffasTrees extends JaffasModBase {
         OreDictionary.registerOre(FRUIT, fruit);
     }
 
-    private void AddBushInfo(bushType type, String name, int seedsTexture, int plantTexture, int fruitTexture, Item product, int phases, int renderer, EatableType eatable, DropType drop) {
+    private void addBushInfo(bushType type, String name, int seedsTexture, int plantTexture, int fruitTexture, Item product, int phases, int renderer, EatableType eatable, DropType drop) {
         BushInfo info = new BushInfo();
 
         info.name = name;
@@ -430,6 +430,7 @@ public class JaffasTrees extends JaffasModBase {
     public void load(FMLInitializationEvent event) {
         super.load(event);
         JaffasFood.printInitialized(ModulesEnum.trees);
+        TileFruitCollector.onLoad();
     }
 
     private void registerForestryStuff() {
@@ -443,9 +444,9 @@ public class JaffasTrees extends JaffasModBase {
     }
 
     private void createItems() {
-        AddFruitTreesSequence(0, 0, 32, 4);
-        AddFruitTreesSequence(1, 4, 32 + 4, 4);
-        AddFruitTreesSequence(2, 8, 32 + 4, 1);
+        addFruitTreesSequence(0, 0, 32, 4);
+        addFruitTreesSequence(1, 4, 32 + 4, 4);
+        addFruitTreesSequence(2, 8, 32 + 4, 1);
 
         for (int i = 1; i < JaffasTrees.leavesTypesCount + 1; i++) {
             seedsList.add(getTreeSeeds(i));
@@ -524,7 +525,7 @@ public class JaffasTrees extends JaffasModBase {
         RegistryUtils.registerItem(itemCollectingBag, "collectingBag");
     }
 
-    private void AddFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
+    private void addFruitTreesSequence(int i, int leavesTexture, int seedTexture, int subCount) {
         LeavesInfo leaves = leavesList.get(i);
         leaves.leavesBlock = new BlockFruitLeaves(leavesTexture, subCount);
         leaves.leavesBlock.serialNumber = i;

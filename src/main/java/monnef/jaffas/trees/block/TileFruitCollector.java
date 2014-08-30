@@ -83,7 +83,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
         fruitList.put(item, dmg);
     }
 
-    static {
+    public static void onLoad() {
         fruitList = new HashMap<Item, Integer>();
         addToFruitList(JaffasTrees.itemLemon);
         addToFruitList(JaffasTrees.itemOrange);
@@ -248,8 +248,9 @@ public class TileFruitCollector extends TileMachineWithInventory {
             EntityItem item = null;
             while (notFound && it.hasNext()) {
                 item = it.next();
-                Integer itemDmg = fruitList.get(item.getEntityItem());
-                if (itemDmg != null && itemDmg == item.getEntityItem().getItemDamage() && canAddToInventory(item)) {
+                ItemStack stack = item.getEntityItem();
+                Integer itemDmg = fruitList.get(stack.getItem());
+                if (itemDmg != null && itemDmg == stack.getItemDamage() && canAddToInventory(item)) {
                     notFound = false;
                 }
             }
