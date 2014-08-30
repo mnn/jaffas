@@ -19,23 +19,28 @@ class ItemSpongeCloth extends ItemJaffaBase {
 
   import ItemSpongeCloth._
 
+  maxStackSize = 1
+
   def suckLiquid(stack: ItemStack, pos: IIntegerCoordinates): Option[FluidStack] = {
     val (x, y, z, world) = (pos.getX, pos.getY, pos.getZ, pos.getWorld)
     val block = FakeFluidRegistry.wrapOrPass(pos.getBlock)
     block match {
       case fluidBlock: IFluidBlock =>
         val fluidStack = fluidBlock.drain(world, x, y, z, false)
-        val currentFluidStack = getFluidStack(stack)
-        val currentFluidAmount = currentFluidStack.map(_.amount).getOrElse(0)
-        val newAmount = fluidStack.amount + currentFluidAmount
-        val newFluidCompatible = currentFluidStack.isEmpty || currentFluidStack.get.containsFluid(fluidStack)
-        if (newFluidCompatible && newAmount <= FluidContainerRegistry.BUCKET_VOLUME) {
-          var drainedFluidStack = fluidBlock.drain(world, x, y, z, true)
-          if (drainedFluidStack.amount == 0) drainedFluidStack = fluidStack // fixing Forge bug
-          drainedFluidStack.amount += currentFluidAmount
-          Some(drainedFluidStack)
-        } else None
-
+        fluidStack match {
+          case null => None
+          case _ =>
+            val currentFluidStack = getFluidStack(stack)
+            val currentFluidAmount = currentFluidStack.map(_.amount).getOrElse(0)
+            val newAmount = fluidStack.amount + currentFluidAmount
+            val newFluidCompatible = currentFluidStack.isEmpty || currentFluidStack.get.containsFluid(fluidStack)
+            if (newFluidCompatible && newAmount <= FluidContainerRegistry.BUCKET_VOLUME) {
+              var drainedFluidStack = fluidBlock.drain(world, x, y, z, true)
+              if (drainedFluidStack.amount == 0) drainedFluidStack = fluidStack // fixing Forge bug
+              drainedFluidStack.amount += currentFluidAmount
+              Some(drainedFluidStack)
+            } else None
+        }
       case _ => None
     }
   }

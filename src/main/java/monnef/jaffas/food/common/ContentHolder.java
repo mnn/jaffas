@@ -377,7 +377,7 @@ public class ContentHolder {
         waterOfLife.setLuminosity(1);
         blockWaterOfLife = BlockJaffaFiniteFluid.createAndRegister(waterOfLife, 297);
 
-        FakeFluidRegistry.register(FluidRegistry.WATER, Blocks.water);
-        FakeFluidRegistry.register(FluidRegistry.LAVA, Blocks.lava);
+        FakeFluidRegistry.register(FluidRegistry.WATER, Blocks.water, Blocks.flowing_water);
+        FakeFluidRegistry.register(FluidRegistry.LAVA, Blocks.lava, Blocks.flowing_lava);
     }
 }

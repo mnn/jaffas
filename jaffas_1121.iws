@@ -63,16 +63,48 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ItemSpongeCloth.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ItemSpongeCloth.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/item/ItemSpongeCloth.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1156" max-vertical-offset="2074">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.55791503" vertical-offset="68" max-vertical-offset="2431">
+              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
               <folding>
                 <element signature="e#33#76#0" expanded="true" />
-                <element signature="e#4048#4418#0" expanded="false" />
-                <element signature="e#4422#4877#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FakeFluidRegistry.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FakeFluidRegistry.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+              <caret line="36" column="50" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+              <folding>
+                <element signature="e#27#80#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FluidPlacer.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FluidPlacer.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+              <caret line="31" column="20" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding>
+                <element signature="e#27#80#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlockFluidClassic.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.2.1121/forgeSrc-1.7.2-10.12.2.1121-sources.jar!/net/minecraftforge/fluids/BlockFluidClassic.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5088" max-vertical-offset="5967">
+              <caret line="177" column="28" selection-start-line="177" selection-start-column="28" selection-end-line="177" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -99,11 +131,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContentHolder.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ContentHolder.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/common/ContentHolder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.4864864" vertical-offset="4279" max-vertical-offset="5151">
-              <caret line="383" column="0" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4279" max-vertical-offset="5151">
+              <caret line="380" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -164,12 +196,12 @@
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/common/BucketHandler.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/core/utils/gameclassespimps/package.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/common/JaffaFluid.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FakeFluidRegistry.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/core/fluid/StaticLiquidIFluidBlockProxy.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/item/ItemSpongeCloth.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FluidPlacer.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/block/BlockJaffaFiniteFluid.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FakeFluidRegistry.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FluidPlacer.scala" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/common/ContentHolder.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/item/ItemSpongeCloth.scala" />
       </list>
     </option>
   </component>
@@ -830,12 +862,12 @@
       <workItem from="1409233625964" duration="7878000" />
       <workItem from="1409309037506" duration="2701000" />
       <workItem from="1409321715228" duration="3249000" />
-      <workItem from="1409391742990" duration="8703000" />
+      <workItem from="1409391742990" duration="10536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="264334000" />
+    <option name="totallyTimeSpent" value="266167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
@@ -1062,6 +1094,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="1833" max-vertical-offset="2703">
           <caret line="130" column="16" selection-start-line="130" selection-start-column="16" selection-end-line="130" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1098,6 +1131,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327616" vertical-offset="724" max-vertical-offset="1632">
           <caret line="76" column="66" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1126,6 +1160,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327616" vertical-offset="690" max-vertical-offset="4947">
           <caret line="90" column="66" selection-start-line="90" selection-start-column="66" selection-end-line="90" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1133,6 +1168,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327616" vertical-offset="180" max-vertical-offset="986">
           <caret line="34" column="66" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1166,14 +1202,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.2.1121/forgeSrc-1.7.2-10.12.2.1121-sources.jar!/net/minecraft/world/World.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3329453" vertical-offset="9081" max-vertical-offset="71893">
-          <caret line="637" column="19" selection-start-line="637" selection-start-column="19" selection-end-line="637" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.2.1121/forgeSrc-1.7.2-10.12.2.1121-sources.jar!/net/minecraft/item/ItemBucket.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2745" max-vertical-offset="3604">
@@ -1188,17 +1216,6 @@
           <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
           <folding>
             <element signature="e#33#69#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.2.1121/forgeSrc-1.7.2-10.12.2.1121-sources.jar!/net/minecraftforge/fluids/BlockFluidClassic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="747" max-vertical-offset="6018">
-          <caret line="70" column="15" selection-start-line="70" selection-start-column="15" selection-end-line="70" selection-end-column="15" />
-          <folding>
-            <element signature="e#1880#1881#0" expanded="false" />
-            <element signature="e#1904#1905#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1277,17 +1294,7 @@
         <state vertical-scroll-proportion="0.116972476" vertical-offset="0" max-vertical-offset="872">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="e#27#71#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FakeFluidRegistry.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4483945" vertical-offset="0" max-vertical-offset="872">
-          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
-          <folding>
-            <element signature="e#27#80#0" expanded="true" />
+            <element signature="e#27#71#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1326,28 +1333,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FluidPlacer.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19495413" vertical-offset="0" max-vertical-offset="872">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding>
-            <element signature="e#27#80#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/item/ItemSpongeCloth.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2074">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="e#33#76#0" expanded="true" />
-            <element signature="e#4048#4418#0" expanded="false" />
-            <element signature="e#4422#4877#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/block/BlockJaffaFiniteFluid.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="952">
@@ -1358,11 +1343,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.2.1121/forgeSrc-1.7.2-10.12.2.1121-sources.jar!/net/minecraft/world/World.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33267328" vertical-offset="9709" max-vertical-offset="71893">
+          <caret line="667" column="16" selection-start-line="667" selection-start-column="16" selection-end-line="667" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.2.1121/forgeSrc-1.7.2-10.12.2.1121-sources.jar!/net/minecraftforge/fluids/BlockFluidClassic.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5088" max-vertical-offset="5967">
+          <caret line="177" column="28" selection-start-line="177" selection-start-column="28" selection-end-line="177" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FakeFluidRegistry.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+          <caret line="36" column="50" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#27#80#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/fluid/FluidPlacer.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="969">
+          <caret line="31" column="20" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#27#80#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/common/ContentHolder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.4864864" vertical-offset="4279" max-vertical-offset="5151">
-          <caret line="383" column="0" selection-start-line="383" selection-start-column="0" selection-end-line="383" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="4279" max-vertical-offset="5151">
+          <caret line="380" column="0" selection-start-line="380" selection-start-column="0" selection-end-line="380" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/food/item/ItemSpongeCloth.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55791503" vertical-offset="68" max-vertical-offset="2431">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="e#33#76#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
