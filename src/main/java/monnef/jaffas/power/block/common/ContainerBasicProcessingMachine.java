@@ -10,6 +10,7 @@ import monnef.core.client.SlotOutput;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.tileentity.TileEntity;
 
 public class ContainerBasicProcessingMachine extends ContainerMachine {
     private static final int SLOT_INPUT = 0;
@@ -20,7 +21,8 @@ public class ContainerBasicProcessingMachine extends ContainerMachine {
     }
 
     @Override
-    public void constructSlotsFromInventory(IInventory inv) {
+    public void constructSlotsFromTile(TileEntity tile) {
+        IInventory inv = (IInventory) tile;
         addSlotToContainer(new Slot(inv, SLOT_INPUT, 42, 35));
         addSlotToContainer(new SlotOutput(inv, SLOT_OUTPUT, 111, 35));
     }
