@@ -31,8 +31,8 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
     @Override
     protected void configurePowerParameters() {
         super.configurePowerParameters();
-        powerNeeded = 100;
-        maxEnergyReceived = 2;
+        powerNeeded *= 5;
+        maxEnergyReceived = powerNeeded / 5 / 2;
         slowingCoefficient = 10;
         if (MonnefCorePlugin.debugEnv) {
             slowingCoefficient = 1;

@@ -112,7 +112,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
     @Override
     protected void configurePowerParameters() {
         super.configurePowerParameters();
-        powerNeeded = 10;
+        powerNeeded /= 2;
     }
 
     @Override

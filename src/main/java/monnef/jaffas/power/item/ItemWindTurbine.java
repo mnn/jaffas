@@ -6,6 +6,7 @@
 package monnef.jaffas.power.item;
 
 import monnef.core.MonnefCorePlugin;
+import monnef.core.power.PowerValues;
 import monnef.core.utils.ColorEnum;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.DyeColor;
@@ -49,7 +50,7 @@ public class ItemWindTurbine extends ItemPower {
         this.radius = radius;
         this.usesColoring = usesColoring;
         this.rotationSpeedPerTick = rotationSpeedPerTick;
-        this.maximalEnergyPerRainyTick = maximalEnergyPerRainyTick;
+        this.maximalEnergyPerRainyTick = maximalEnergyPerRainyTick * PowerValues.totalPowerGenerationCoef();
     }
 
     public float getMaximalEnergyPerRainyTick() {

@@ -49,7 +49,7 @@ public class TileFridge extends TileMachineWithInventory implements IInventory {
     protected void configurePowerParameters() {
         super.configurePowerParameters();
         slowingCoefficient = 20;
-        powerNeeded = 10;
+        powerNeeded /= 2;
     }
 
     @Override

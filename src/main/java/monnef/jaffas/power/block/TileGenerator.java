@@ -11,6 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
+import monnef.core.power.PowerValues;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.power.common.BuildCraftHelper;
@@ -25,7 +26,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileGenerator extends TileMachineWithInventory {
     private static final String BURN_TIME_TAG_NAME = "burnTime";
     private static final String BURN_ITEM_TIME_TAG_NAME = "burnItemTime";
-    private static final float ENERGY_PER_TICK = 1.05f;
+    private static final float ENERGY_PER_TICK = 10.5f * PowerValues.totalPowerGenerationCoef();
     private static final ForgeDirection[] CUSTOMER_DIRECTIONS = new ForgeDirection[]{ForgeDirection.UP, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.WEST, ForgeDirection.EAST};
     public int burnTime = 0;
     public int burnItemTime = 1;
@@ -163,8 +164,6 @@ public class TileGenerator extends TileMachineWithInventory {
     private boolean isCustomerInDirection(ForgeDirection dir) {
         TileEntity customer = getConsumerTileInDirection(dir);
         if (!BuildCraftHelper.isPowerTile(customer)) return false;
-        //IPowerProvider customerProvider = ((IPowerReceptor) customer).getPowerProvider();
-        //return BuildCraftHelper.gotFreeSpaceInEnergyStorage(customerProvider) && BuildCraftHelper.doesWantEnergyFromDirection((IPowerReceptor) customer, dir.getOpposite());
         return BuildCraftHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy((IPowerReceptor) customer, customerDirection.getOpposite());
     }
 
@@ -177,7 +176,6 @@ public class TileGenerator extends TileMachineWithInventory {
             ForgeDirection currentDirection = CUSTOMER_DIRECTIONS[startDirNumber];
             if (isCustomerInDirection(currentDirection)) {
                 IPowerReceptor consumer = (IPowerReceptor) getConsumerTileInDirection(currentDirection);
-                //if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(consumer.getPowerProvider())) {
                 if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(consumer, currentDirection.getOpposite())) {
                     customerDirection = currentDirection;
                     return;
@@ -196,7 +194,7 @@ public class TileGenerator extends TileMachineWithInventory {
     }
 
     private float getSwitchgrassCoef() {
-        return isSwitchgrass ? 1.1f : 1;
+        return isSwitchgrass ? 1.25f : 1;
     }
 
     private void tryGetFuel() {

@@ -220,12 +220,12 @@ public class JaffasPower extends JaffasModBase {
             EntityHelper.registerEntity(EntityWindTurbine.class, "jaffasWindGenerator", 160, 1, true, windTurbineEntityID, this);
 
             windTurbineWooden = new ItemWindTurbine(57, 100, 0);
-            windTurbineWooden.configure(true, 1, false, 0.1f, 3);
+            windTurbineWooden.configure(true, 1, false, 0.1f, 50);
             windTurbineWooden.setupStep(1.3f, 2, 3, 0.2f, 2, 6, 1, 3);
             RegistryUtils.registerItem(windTurbineWooden, "windTurbineWooden");
 
             windTurbineMill = new ItemWindTurbine(64, 1000, 0);
-            windTurbineMill.configure(false, 7, true, 0.02f, 7);
+            windTurbineMill.configure(false, 7, true, 0.02f, 140);
             windTurbineMill.setupStep(0.8f, 2, 3, 0.2f, 2, 6, 1, 3);
             RegistryUtils.registerItem(windTurbineMill, "windTurbineMill");
 
