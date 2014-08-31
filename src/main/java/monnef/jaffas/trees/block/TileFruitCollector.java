@@ -15,7 +15,6 @@ import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.technic.network.FruitCollectorPacket;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -34,8 +33,11 @@ import static monnef.jaffas.food.client.Sounds.SoundsEnum.COLLECTOR_SUCK;
 @ContainerRegistry.ContainerTag(slotsCount = 4, outputSlotsCount = 4, containerClassName = "monnef.jaffas.trees.block.ContainerFruitCollector", guiClassName = "monnef.jaffas.trees.client.GuiFruitCollector")
 public class TileFruitCollector extends TileMachineWithInventory {
 
-    public static final int suckCost = 30;
-    public static Random rand = new Random();
+    public static final int SUCK_COST = 100;
+    public static final int TARGET_COST = 30;
+    public static final int KNOCK_COST = 50;
+
+    public static final Random rand = new Random();
 
     private int eventTime;
 
@@ -46,13 +48,15 @@ public class TileFruitCollector extends TileMachineWithInventory {
     private AxisAlignedBB box;
     private static HashMap<Item, Integer> fruitList;
 
-    private static int collectorSyncDistance = 32;
+    private static final int COLLECTOR_SYNC_DISTANCE = 32;
 
     private double ix, iy, iz;
 
     private String soundToRun = null;
     private float soundVolume = 1f;
-    private boolean findFruitToKnockHarder = false;
+    private boolean aggressiveFruitToKnockFinding = false;
+
+    public static int fruitCollectorRange;
 
     public double getIX() {
         return ix;
@@ -142,10 +146,13 @@ public class TileFruitCollector extends TileMachineWithInventory {
         playQueuedSound();
 
         if (gotPowerToActivate()) {
-            int limit = this.findFruitToKnockHarder ? 15 : 3;
-            this.findFruitToKnockHarder = false;
+            int limit = this.aggressiveFruitToKnockFinding ? 15 : 3;
+            this.aggressiveFruitToKnockFinding = false;
             for (int i = 0; i < limit; i++)
-                if (tryKnockingFruitDown()) break;
+                if (tryKnockingFruitDown()) {
+                    consumePower(KNOCK_COST);
+                    break;
+                }
         }
 
         if (tickCounter % tickDivider == 0) {
@@ -153,17 +160,15 @@ public class TileFruitCollector extends TileMachineWithInventory {
 
             if (gotPowerToActivate()) {
                 eventTime++;
-                consumePower(5);
 
                 switch (state) {
                     case idle:
-                        if (eventTime > 5 && gotPower(suckCost)) {
-                            if (aquireTarget()) {
+                        if (eventTime > 5 && gotPower(SUCK_COST)) {
+                            if (acquireTarget()) {
                                 this.queueSound(COLLECTOR_NOISE.getSoundName(), 0.7F);
-                                consumePower(suckCost);
-                                this.findFruitToKnockHarder = true;
+                                consumePower(TARGET_COST);
                             } else {
-                                consumePower(1);
+                                this.aggressiveFruitToKnockFinding = true;
                             }
                             eventTime = 0;
                         }
@@ -190,6 +195,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
 
                                     worldObj.spawnEntityInWorld(ei);
                                 }
+                                consumePower(SUCK_COST);
                             }
 
                             this.state = CollectorStates.idle;
@@ -203,10 +209,9 @@ public class TileFruitCollector extends TileMachineWithInventory {
     }
 
     private boolean tryKnockingFruitDown() {
-        // 7 x 7 x 7
-        int cx = this.xCoord + computeRandomCoordinate(7);
-        int cy = this.yCoord + rand.nextInt(7);
-        int cz = this.zCoord + computeRandomCoordinate(7);
+        int cx = this.xCoord + computeRandomCoordinate(fruitCollectorRange);
+        int cy = this.yCoord + rand.nextInt(8);
+        int cz = this.zCoord + computeRandomCoordinate(fruitCollectorRange);
 
         if (worldObj.getChunkFromBlockCoords(cx, cz).isChunkLoaded) {
             if (BlockFruitLeaves.haveFruit(worldObj, cx, cy, cz)) {
@@ -237,10 +242,10 @@ public class TileFruitCollector extends TileMachineWithInventory {
         this.soundVolume = volume;
     }
 
-    private boolean aquireTarget() {
+    private boolean acquireTarget() {
         if (!worldObj.isRemote) {
             box = AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord, yCoord, zCoord);
-            box = box.expand(8, 2, 8);
+            box = box.expand(fruitCollectorRange, 2, fruitCollectorRange);
 
             List<EntityItem> list = worldObj.getEntitiesWithinAABB(EntityItem.class, box);
             Iterator<EntityItem> it = list.iterator();
@@ -279,7 +284,7 @@ public class TileFruitCollector extends TileMachineWithInventory {
         FruitCollectorPacket packet = new FruitCollectorPacket();
         packet.init(this, (byte) state.ordinal(), targetedItem);
 
-        packet.dispatcherMC17().sendToAllAround(xCoord, yCoord, zCoord, worldObj.provider.dimensionId, collectorSyncDistance, packet);
+        packet.dispatcherMC17().sendToAllAround(xCoord, yCoord, zCoord, worldObj.provider.dimensionId, COLLECTOR_SYNC_DISTANCE, packet);
     }
 
     @Override

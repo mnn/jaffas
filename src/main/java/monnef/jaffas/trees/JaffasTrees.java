@@ -15,6 +15,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+import gnu.trove.impl.hash.TFloatCharHash;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
@@ -291,6 +292,7 @@ public class JaffasTrees extends JaffasModBase {
                     config.get(Configuration.CATEGORY_GENERAL, "plantingBagBlackList", "", "Planting bag will ignore these items. Format of item (separated by ',' or ';'): <id>[:meta]").getString()
             );
             ItemBagPlanting.blackList().printToLog(Log);
+            TileFruitCollector.fruitCollectorRange = config.get(Configuration.CATEGORY_GENERAL, "fruitCollectorRange", 16).getInt();
         } catch (Exception e) {
             FMLLog.log(Level.FATAL, e, "Mod Jaffas (trees) can't read config file.");
         } finally {
