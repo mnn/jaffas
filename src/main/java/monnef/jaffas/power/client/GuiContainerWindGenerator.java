@@ -47,11 +47,6 @@ public class GuiContainerWindGenerator extends GuiContainerMachine {
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int param1, int param2) {
-        super.drawGuiContainerForegroundLayer(param1, param2);
-    }
-
-    @Override
     public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
         if (isMouseInRect(mousex, mousey, ENERGY_BAR_X, ENERGY_BAR_Y, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT)) {
             currenttip.add("§2Speed:§r");

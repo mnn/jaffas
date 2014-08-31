@@ -31,6 +31,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
+import java.util.Random;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0, containerClassName = "monnef.core.block.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerWindGenerator")
 public class TileWindGenerator extends TileMachineWithInventory {
@@ -50,11 +51,9 @@ public class TileWindGenerator extends TileMachineWithInventory {
     private CustomerState customerState = CustomerState.NONE;
     private IIntegerCoordinates customerPos;
 
-    private static final float lossPerSolidBlock = 0.05f;
     public static final int checkDistance = 15;
     public static final int checkOuterRadius = 2;
     public static int blocksToCheckPerTick = MonnefCorePlugin.debugEnv ? 100 : 5;
-    public static float rainPowerBonusMax = 1.2f; // max +120%
 
     private IWindObstacles obstacles = new WindObstaclesFastFail(this);
 
@@ -170,7 +169,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
     }
 
     private void damageIfTime() {
-        ticksToDamageTurbine -= slowingCoefficient;
+        ticksToDamageTurbine -= getCurrentMaximalSpeed() < 30 ? (rand.nextBoolean() ? 0 : slowingCoefficient) : slowingCoefficient;
         if (ticksToDamageTurbine <= 0) {
             damageTurbineItem(1);
             ticksToDamageTurbine = RandomHelper.generateRandomFromBaseAndSpread(DAMAGE_TIMER_BASE, DAMAGE_TIMER_SPREAD);
@@ -326,19 +325,15 @@ public class TileWindGenerator extends TileMachineWithInventory {
         configureAsPowerSource();
     }
 
-    @Override
-    public boolean isPowerBarRenderingEnabled() {
-        return false;
-    }
-
+    // power bar info is useless, but this way it's more robust
     @Override
     public int getIntegersToSyncCount() {
-        return 2;
+        return super.getIntegersToSyncCount() + 2;
     }
 
     @Override
     public int getCurrentValueOfIntegerToSync(int index) {
-        switch (index) {
+        switch (index - super.getIntegersToSyncCount()) {
             case 0:
                 return getTurbineSpeed();
 
@@ -351,7 +346,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
 
     @Override
     public void setCurrentValueOfIntegerToSync(int index, int value) {
-        switch (index) {
+        switch (index - super.getIntegersToSyncCount()) {
             case 0:
                 turbineSpeed = value;
                 break;
@@ -425,5 +420,10 @@ public class TileWindGenerator extends TileMachineWithInventory {
     public void onItemDebug(EntityPlayer player) {
         if (worldObj.isRemote) return;
         PlayerHelper.addMessage(player, String.format("ObsVolumeCached: %.2f, ObsDebug: %.2f, cMaxSpeed: %d, totRad: %d", obstacles.getObstaclesVolumeWorstScenario(), obstacles.debugCompute(), getCurrentMaximalSpeed(), obstacles.getTotalRadius()));
+    }
+
+    @Override
+    public boolean isPowerBarRenderingEnabled() {
+        return false;
     }
 }
