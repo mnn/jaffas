@@ -10,8 +10,16 @@ import monnef.core.utils.RegistryUtils
 import monnef.jaffas.food.JaffasFood
 import monnef.core.block.{CustomBlockIconTrait, GameObjectDescriptor}
 import net.minecraft.init.Blocks
+import net.minecraft.entity.{EntityLivingBase, Entity}
+import net.minecraft.potion.{Potion, PotionEffect}
 
 class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas with CustomBlockIconTrait {
+
+  private[this] var isPoisonous = false
+  private[this] var doesHeal = false
+  private[this] var doesBurn = false
+  private[this] var hasMiningBonus = false
+
   setCreativeTab(JaffasFood.instance.creativeTab)
   setIconsCount(2)
   setCustomIconIndex(customIconIndex)
@@ -37,14 +45,55 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
     if (doDrain && !world.isRemote) {world.setBlock(x, y, z, Blocks.air)}
     r
   }
+
+  def setIsPoisonous(): BlockJaffaFiniteFluid = {
+    isPoisonous = true
+    this
+  }
+
+  def setDoesHeal(): BlockJaffaFiniteFluid = {
+    doesHeal = true
+    this
+  }
+
+  def setDoesBurn(): BlockJaffaFiniteFluid = {
+    doesBurn = true
+    this
+  }
+
+  def setHasMiningBonus(): BlockJaffaFiniteFluid = {
+    hasMiningBonus = true
+    this
+  }
+
+  override def onEntityCollidedWithBlock(world: World, x: Int, y: Int, z: Int, entity: Entity) {
+    super.onEntityCollidedWithBlock(world, x, y, z, entity)
+    entity match {
+      case e: EntityLivingBase => applyPotionEffect(e)
+      case _ =>
+    }
+  }
+
+  def applyPotionEffect(entity: EntityLivingBase) {
+    if (isPoisonous && !entity.isPotionActive(Potion.poison.id)) entity.addPotionEffect(new PotionEffect(Potion.poison.id, 100, 2))
+    if (doesHeal && !entity.isPotionActive(Potion.regeneration.id)) entity.addPotionEffect(new PotionEffect(Potion.regeneration.id, 10, 1))
+    if (hasMiningBonus) entity.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 10 * 20, 1))
+    if (doesBurn) entity.setFire(8)
+  }
 }
 
 object BlockJaffaFiniteFluid {
   def createAndRegister(fluid: JaffaFluid, customIconIndex: Int): BlockJaffaFiniteFluid = {
     val b = new BlockJaffaFiniteFluid(fluid, customIconIndex)
-    RegistryUtils.registerBlockWithName(b, fluid.getUnlocalizedName)
-    fluid.setBlock(b)
-    b
+    register(fluid, customIconIndex, b)
+  }
+
+  def register[B <: BlockJaffaFiniteFluid](fluid: JaffaFluid, customIconIndex: Int, block: B): B = {
+    RegistryUtils.registerBlockWithName(block, fluid.getUnlocalizedName)
+    fluid.setBlock(block)
+    block
   }
 }
 
+class BlockWaterOfLife(_fluid: Fluid, customIconIndex: Int) extends BlockJaffaFiniteFluid(_fluid, customIconIndex) {
+}
