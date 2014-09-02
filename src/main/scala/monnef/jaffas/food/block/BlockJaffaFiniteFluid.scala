@@ -6,12 +6,18 @@ import net.minecraft.util.{MathHelper, IIcon}
 import monnef.jaffas.food.common.{IconDescriptorJaffas, JaffaFluid}
 import cpw.mods.fml.relauncher.{Side, SideOnly}
 import net.minecraft.world.{IBlockAccess, World}
-import monnef.core.utils.RegistryUtils
+import monnef.core.utils.{IntegerCoordinates, RegistryUtils}
 import monnef.jaffas.food.JaffasFood
 import monnef.core.block.{CustomBlockIconTrait, GameObjectDescriptor}
 import net.minecraft.init.Blocks
 import net.minecraft.entity.{EntityLivingBase, Entity}
 import net.minecraft.potion.{Potion, PotionEffect}
+import java.util.Random
+import monnef.jaffas.food.client.EntityCustomBubbleFX
+import cpw.mods.fml.client.FMLClientHandler
+import monnef.core.utils.scalautils._
+import monnef.jaffas.food.block.BlockJaffaFiniteFluid.{OrangeBubble, BubbleType, WhiteBubble, GreenBubble}
+import monnef.core.api.IIntegerCoordinates
 
 class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas with CustomBlockIconTrait {
 
@@ -19,6 +25,9 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
   private[this] var doesHeal = false
   private[this] var doesBurn = false
   private[this] var hasMiningBonus = false
+  private[this] var bubbles: Option[BubbleType] = None
+  private[this] var destroysBlocks = false
+  private[this] var dropsDestroyedBlocks = false
 
   setCreativeTab(JaffasFood.instance.creativeTab)
   setIconsCount(2)
@@ -66,6 +75,21 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
     this
   }
 
+  def setBubbles(bubbles: BubbleType): BlockJaffaFiniteFluid = {
+    this.bubbles = Some(bubbles)
+    this
+  }
+
+  def setDestroysBlocks(): BlockJaffaFiniteFluid = {
+    destroysBlocks = true
+    this
+  }
+
+  def setDropsDestroyedBlocks(): BlockJaffaFiniteFluid = {
+    dropsDestroyedBlocks = true
+    this
+  }
+
   override def onEntityCollidedWithBlock(world: World, x: Int, y: Int, z: Int, entity: Entity) {
     super.onEntityCollidedWithBlock(world, x, y, z, entity)
     entity match {
@@ -80,6 +104,36 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
     if (hasMiningBonus) entity.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 10 * 20, 1))
     if (doesBurn) entity.setFire(8)
   }
+
+  @SideOnly(Side.CLIENT)
+  override def randomDisplayTick(world: World, x: Int, y: Int, z: Int, rand: Random) {
+    super.randomDisplayTick(world, x, y, z, rand)
+    bubbles match {
+      case Some(bubble) =>
+        if (rand.nextInt(10) < 2)
+          (bubble match {
+            case WhiteBubble => EntityCustomBubbleFX.createWhiteOnSurface _
+            case GreenBubble => EntityCustomBubbleFX.createGreenOnSurface _
+            case OrangeBubble => EntityCustomBubbleFX.createOrangeOnSurface _
+          })(world, x, y, z) |>
+            FMLClientHandler.instance.getClient.effectRenderer.addEffect
+    }
+  }
+
+  override def updateTick(world: World, x: Int, y: Int, z: Int, rand: Random) {
+    if (destroysBlocks && rand.nextInt(10) < 1) {
+      findBlockToMine(world, x, y, z, rand).foreach { pos =>
+        if (dropsDestroyedBlocks) pos.getBlock.dropBlockAsItem(world, pos.getX, pos.getY, pos.getZ, pos.getBlockMetadata, 0)
+        pos.setBlock(Blocks.air)
+      }
+    } else super.updateTick(world, x, y, z, rand)
+  }
+
+  private[this] def findBlockToMine(world: World, x: Int, y: Int, z: Int, rand: Random): Option[IIntegerCoordinates] = {
+    //TODO
+    if (world.isAirBlock(x, y - 1, z)) None
+    else Some(new IntegerCoordinates(x, y - 1, z, world))
+  }
 }
 
 object BlockJaffaFiniteFluid {
@@ -93,6 +147,15 @@ object BlockJaffaFiniteFluid {
     fluid.setBlock(block)
     block
   }
+
+  sealed abstract class BubbleType
+
+  case object WhiteBubble extends BubbleType
+
+  case object GreenBubble extends BubbleType
+
+  case object OrangeBubble extends BubbleType
+
 }
 
 class BlockWaterOfLife(_fluid: Fluid, customIconIndex: Int) extends BlockJaffaFiniteFluid(_fluid, customIconIndex) {
