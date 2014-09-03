@@ -18,28 +18,28 @@ public class Items extends ItemManagerAccessor {
     @Override
     public void InitializeItemInfos() {
         setCurrentSheetNumber(4);
-        AddItemInfo(JaffaItem.xcandyStarRaw, 18);
-        AddItemInfo(JaffaItem.xcandyStar, 6);
-        AddItemInfo(JaffaItem.xcandyStarJam, 7);
-        AddItemInfo(JaffaItem.xcandyStarChoco, 8);
+        addItemInfo(JaffaItem.xcandyStarRaw, 18);
+        addItemInfo(JaffaItem.xcandyStar, 6);
+        addItemInfo(JaffaItem.xcandyStarJam, 7);
+        addItemInfo(JaffaItem.xcandyStarChoco, 8);
 
-        AddItemInfo(JaffaItem.xcandySmallRollRaw, 9);
-        AddItemInfo(JaffaItem.xcandySmallRoll, 9);
-        AddItemInfo(JaffaItem.xcandySmallRollChoco, 10);
+        addItemInfo(JaffaItem.xcandySmallRollRaw, 9);
+        addItemInfo(JaffaItem.xcandySmallRoll, 9);
+        addItemInfo(JaffaItem.xcandySmallRollChoco, 10);
 
-        AddItemInfo(JaffaItem.xcandyChocoCircleRaw, 17);
-        AddItemInfo(JaffaItem.xcandyChocoCircle, 11);
-        AddItemInfo(JaffaItem.xcandyChocoCircleCoated, 12);
-        AddItemInfo(JaffaItem.xcandyChocoCircleSprinkled, 13);
+        addItemInfo(JaffaItem.xcandyChocoCircleRaw, 17);
+        addItemInfo(JaffaItem.xcandyChocoCircle, 11);
+        addItemInfo(JaffaItem.xcandyChocoCircleCoated, 12);
+        addItemInfo(JaffaItem.xcandyChocoCircleSprinkled, 13);
 
-        AddItemInfo(JaffaItem.xcandyChocoBall, 14);
-        AddItemInfo(JaffaItem.xcandyChocoBallSprinkled, 15);
+        addItemInfo(JaffaItem.xcandyChocoBall, 14);
+        addItemInfo(JaffaItem.xcandyChocoBallSprinkled, 15);
 
-        AddItemInfo(JaffaItem.xcandyCane, 16);
+        addItemInfo(JaffaItem.xcandyCane, 16);
 
-        AddItemInfo(JaffaItem.xcandyGingerFigureRaw, 19);
-        AddItemInfo(JaffaItem.xcandyGingerFigure, 20);
-        AddItemInfo(JaffaItem.xcandyGingerCreamed, 21);
+        addItemInfo(JaffaItem.xcandyGingerFigureRaw, 19);
+        addItemInfo(JaffaItem.xcandyGingerFigure, 20);
+        addItemInfo(JaffaItem.xcandyGingerCreamed, 21);
     }
 
     @Override
