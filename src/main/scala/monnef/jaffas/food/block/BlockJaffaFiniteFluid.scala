@@ -1,12 +1,12 @@
 package monnef.jaffas.food.block
 
 import net.minecraftforge.fluids.{FluidContainerRegistry, FluidStack, Fluid, BlockFluidFinite}
-import net.minecraft.block.material.Material
+import net.minecraft.block.material.{MapColor, MaterialLiquid, Material}
 import net.minecraft.util.{MathHelper, IIcon}
 import monnef.jaffas.food.common.{IconDescriptorJaffas, JaffaFluid}
 import cpw.mods.fml.relauncher.{Side, SideOnly}
 import net.minecraft.world.{IBlockAccess, World}
-import monnef.core.utils.{IntegerCoordinates, RegistryUtils}
+import monnef.core.utils._
 import monnef.jaffas.food.JaffasFood
 import monnef.core.block.{CustomBlockIconTrait, GameObjectDescriptor}
 import net.minecraft.init.Blocks
@@ -16,10 +16,17 @@ import java.util.Random
 import monnef.jaffas.food.client.EntityCustomBubbleFX
 import cpw.mods.fml.client.FMLClientHandler
 import monnef.core.utils.scalautils._
-import monnef.jaffas.food.block.BlockJaffaFiniteFluid.{OrangeBubble, BubbleType, WhiteBubble, GreenBubble}
+import monnef.jaffas.food.block.BlockJaffaFiniteFluid.WhiteBubble
 import monnef.core.api.IIntegerCoordinates
+import net.minecraft.block.Block
+import scala.Some
+import scala.annotation.tailrec
+import monnef.jaffas.technic.JaffasTechnic
+import scalagameutils._
 
-class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFluidFinite(_fluid, Material.water) with GameObjectDescriptor with IconDescriptorJaffas with CustomBlockIconTrait {
+class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int, material: Material) extends BlockFluidFinite(_fluid, material) with GameObjectDescriptor with IconDescriptorJaffas with CustomBlockIconTrait {
+
+  import BlockJaffaFiniteFluid._
 
   private[this] var isPoisonous = false
   private[this] var doesHeal = false
@@ -28,6 +35,9 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
   private[this] var bubbles: Option[BubbleType] = None
   private[this] var destroysBlocks = false
   private[this] var dropsDestroyedBlocks = false
+  private[this] var fasterBreaking = false
+  private[this] var unstable = false
+  private[this] var lavaDestabilises: Option[BlockJaffaFiniteFluid] = None
 
   setCreativeTab(JaffasFood.instance.creativeTab)
   setIconsCount(2)
@@ -90,6 +100,21 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
     this
   }
 
+  def setFasterBreaking(): BlockJaffaFiniteFluid = {
+    fasterBreaking = true
+    this
+  }
+
+  def setUnstable(): BlockJaffaFiniteFluid = {
+    unstable = true
+    this
+  }
+
+  def setLavaDestabilises(to: BlockJaffaFiniteFluid): BlockJaffaFiniteFluid = {
+    lavaDestabilises = Some(to)
+    this
+  }
+
   override def onEntityCollidedWithBlock(world: World, x: Int, y: Int, z: Int, entity: Entity) {
     super.onEntityCollidedWithBlock(world, x, y, z, entity)
     entity match {
@@ -121,24 +146,65 @@ class BlockJaffaFiniteFluid(_fluid: Fluid, customIconIndex: Int) extends BlockFl
   }
 
   override def updateTick(world: World, x: Int, y: Int, z: Int, rand: Random) {
-    if (destroysBlocks && rand.nextInt(10) < 1) {
+    if (unstable && rand.nextFloat() < .33f) {
+      BlockHelper.setAir(world, x, y, z)
+      world.newExplosion(null, x + .5, y + .5, z + .5, 5f, true, true)
+    } else if (destroysBlocks && rand.nextFloat() * 2 * 3 < (if (fasterBreaking) 2 else 1) * getQuantaPercentage(world, x, y, z)) {
       findBlockToMine(world, x, y, z, rand).foreach { pos =>
         if (dropsDestroyedBlocks) pos.getBlock.dropBlockAsItem(world, pos.getX, pos.getY, pos.getZ, pos.getBlockMetadata, 0)
         pos.setBlock(Blocks.air)
       }
-    } else super.updateTick(world, x, y, z, rand)
+    } else {
+      super.updateTick(world, x, y, z, rand)
+      checkDestabilisation(world, x, y, z)
+    }
+  }
+
+  private[this] def isValidToMine(world: World, x: Int, y: Int, z: Int): Boolean = {
+    if (world.isAirBlock(x, y, z)) false
+    else {
+      val b = world.getBlock(x, y, z)
+      if (b == JaffasTechnic.constructionBlock) false
+      else if (b.isFluid) false
+      else if (b == Blocks.obsidian) false
+      else if (b.isUnbreakable(world, x, y, z)) false
+      else true
+    }
   }
 
   private[this] def findBlockToMine(world: World, x: Int, y: Int, z: Int, rand: Random): Option[IIntegerCoordinates] = {
-    //TODO
-    if (world.isAirBlock(x, y - 1, z)) None
-    else Some(new IntegerCoordinates(x, y - 1, z, world))
+    @tailrec def loop(rem: Seq[(Int, Int, Int)]): Option[IIntegerCoordinates] = rem match {
+      case (cx, cy, cz) :: t =>
+        if (isValidToMine(world, cx, cy, cz)) Some(new IntegerCoordinates(cx, cy, cz, world))
+        else loop(t)
+      case Nil => None
+    }
+    loop(miningTargets.map { case (cx, cy, cz) => (cx + x, cy + y, cz + z)}.shuffled)
+  }
+
+  override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block) {
+    super.onNeighborBlockChange(world, x, y, z, block)
+    checkDestabilisation(world, x, y, z)
+  }
+
+  private def checkDestabilisation(world: World, x: Int, y: Int, z: Int) {
+    lavaDestabilises match {
+      case Some(to) =>
+        val res = new java.util.ArrayList[IIntegerCoordinates]()
+        WorldHelper.getBlocksInBox(res, world, x, y, z, 1, 1, 0, Blocks.lava, -1)
+        WorldHelper.getBlocksInBox(res, world, x, y, z, 1, 1, 0, Blocks.flowing_lava, -1)
+        if (res.size() > 0) {
+          val meta = world.getBlockMetadata(x, y, z)
+          BlockHelper.setBlock(world, x, y, z, to, meta)
+        }
+      case None =>
+    }
   }
 }
 
 object BlockJaffaFiniteFluid {
-  def createAndRegister(fluid: JaffaFluid, customIconIndex: Int): BlockJaffaFiniteFluid = {
-    val b = new BlockJaffaFiniteFluid(fluid, customIconIndex)
+  def createAndRegister(fluid: JaffaFluid, customIconIndex: Int, material: Material): BlockJaffaFiniteFluid = {
+    val b = new BlockJaffaFiniteFluid(fluid, customIconIndex, material)
     register(fluid, customIconIndex, b)
   }
 
@@ -156,7 +222,15 @@ object BlockJaffaFiniteFluid {
 
   case object OrangeBubble extends BubbleType
 
+  final val miningTargets: Seq[(Int, Int, Int)] = Seq(
+    (1, 0, 0),
+    (-1, 0, 0),
+    (0, 0, 1),
+    (0, 0, -1),
+    (0, -1, 0)
+  )
 }
 
-class BlockWaterOfLife(_fluid: Fluid, customIconIndex: Int) extends BlockJaffaFiniteFluid(_fluid, customIconIndex) {
+object MaterialGoo extends MaterialLiquid(MapColor.limeColor) {
+  setNoPushMobility()
 }

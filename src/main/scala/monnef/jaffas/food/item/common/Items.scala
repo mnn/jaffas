@@ -297,7 +297,10 @@ class Items extends ItemManagerAccessor {
     AddItemInfo(juiceInBottle, 181)
     AddItemInfo(juiceGlass, 186)
     AddItemInfo(bucketWaterOfLife, 6)
-    AddItemInfo(spongeCloth, 6)
+    AddItemInfo(bucketCorrosiveGoo, 6)
+    AddItemInfo(bucketMiningGoo, 6)
+    AddItemInfo(bucketUnstableGoo, 6)
+    AddItemInfo(spongeCloth, 305)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -568,6 +571,9 @@ class Items extends ItemManagerAccessor {
     createJaffaItemManual(juiceGlass, new ItemJuiceGlass)
 
     createJaffaItemManual(bucketWaterOfLife, new ItemJaffaBucket(ContentHolder.blockWaterOfLife))
+    createJaffaItemManual(bucketCorrosiveGoo, new ItemJaffaBucket(ContentHolder.blockCorrosiveGoo))
+    createJaffaItemManual(bucketMiningGoo, new ItemJaffaBucket(ContentHolder.blockMiningGoo))
+    createJaffaItemManual(bucketUnstableGoo, new ItemJaffaBucket(ContentHolder.blockUnstableGoo))
     createJaffaItemManual(spongeCloth, classOf[ItemSpongeCloth])
 
     createItemsOreDictRegistration()

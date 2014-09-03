@@ -80,6 +80,8 @@ public class ItemManager {
     }
 
     private static void finalizeItemSetup(JaffaItemInfo info, Item item, JaffaItem ji) {
+        if (info == null)
+            throw new RuntimeException("Missing info for item " + ji.toString() + ", did you forget to call addItemInfo in Items?");
         item.setUnlocalizedName(info.getName());
         if (ICustomIcon.class.isAssignableFrom(item.getClass())) {
             ICustomIcon itemWithIcon = (ICustomIcon) item;

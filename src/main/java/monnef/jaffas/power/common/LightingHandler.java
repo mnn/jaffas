@@ -8,6 +8,7 @@ package monnef.jaffas.power.common;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import monnef.core.MonnefCorePlugin;
+import monnef.core.api.IIntegerCoordinates;
 import monnef.core.event.LightningGeneratedEvent;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.core.utils.WorldHelper;
@@ -45,12 +46,12 @@ public class LightingHandler {
             w.setBlock(x, y, z, Blocks.mycelium);
         }
 
-        List<IntegerCoordinates> blockInBox = new ArrayList<IntegerCoordinates>();
+        List<IIntegerCoordinates> blockInBox = new ArrayList<IIntegerCoordinates>();
         WorldHelper.getBlocksInBox(blockInBox, w, x, y, z, lightningConductorRadius, -1, -1, conductor, -1);
         if (blockInBox.size() == 0) return;
 
-        ArrayList<IntegerCoordinates> blocksInBoxStrikeAble = new ArrayList<IntegerCoordinates>();
-        for (IntegerCoordinates item : blockInBox) {
+        ArrayList<IIntegerCoordinates> blocksInBoxStrikeAble = new ArrayList<IIntegerCoordinates>();
+        for (IIntegerCoordinates item : blockInBox) {
             if (w.canLightningStrikeAt(item.getX(), item.getY() + 1, item.getZ())) {
                 blocksInBoxStrikeAble.add(item);
             }
@@ -71,7 +72,7 @@ public class LightingHandler {
         }
 
         event.setResult(Event.Result.DENY);
-        IntegerCoordinates best = blocksInBoxStrikeAble.get(bestIndex);
+        IIntegerCoordinates best = blocksInBoxStrikeAble.get(bestIndex);
         w.addWeatherEffect(new EntityLightningBolt(w, best.getX(), best.getY() + 1, best.getZ()));
         Log.printDebug(String.format("Conductor made his work. %d, %d, %d -> %d, %d, %d @ %g", x, y, z, best.getX(), best.getY() + 1, best.getZ(), bestValue));
 

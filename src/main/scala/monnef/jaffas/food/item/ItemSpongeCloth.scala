@@ -5,7 +5,7 @@ import net.minecraft.world.World
 import net.minecraft.entity.player.EntityPlayer
 import monnef.core.utils.scalagameutils._
 import net.minecraftforge.fluids._
-import net.minecraft.util.MovingObjectPosition
+import net.minecraft.util.{IIcon, MovingObjectPosition}
 import monnef.core.utils.{LanguageHelper, IntegerCoordinates}
 import net.minecraftforge.common.util.ForgeDirection
 import java.util
@@ -20,6 +20,7 @@ class ItemSpongeCloth extends ItemJaffaBase {
   import ItemSpongeCloth._
 
   maxStackSize = 1
+  setIconsCount(2)
 
   def suckLiquid(stack: ItemStack, pos: IIntegerCoordinates): Option[FluidStack] = {
     val (x, y, z, world) = (pos.getX, pos.getY, pos.getZ, pos.getWorld)
@@ -120,16 +121,22 @@ class ItemSpongeCloth extends ItemJaffaBase {
   }
 
   override def getSubItems(item: Item, tab: CreativeTabs, result: util.List[_]) {
+    def createStack(fluid: Fluid): ItemStack = {
+      val stack = new ItemStack(this)
+      if (fluid == null) throw new RuntimeException("Fluid not yet created.")
+      setFluidStack(stack, new FluidStack(ContentHolder.waterOfLife, FluidContainerRegistry.BUCKET_VOLUME))
+      stack
+    }
+
     val r = result.asInstanceOf[util.List[ItemStack]]
-
-    val empty = new ItemStack(this)
-    r.add(empty)
-
-    val wol = new ItemStack(this)
-    if (ContentHolder.waterOfLife == null) throw new RuntimeException("Water of Life fluid not yet created.")
-    setFluidStack(wol, new FluidStack(ContentHolder.waterOfLife, FluidContainerRegistry.BUCKET_VOLUME))
-    r.add(wol)
+    r.add(new ItemStack(this))
+    r.add(createStack(ContentHolder.waterOfLife))
+    r.add(createStack(ContentHolder.corrosiveGoo))
+    r.add(createStack(ContentHolder.miningGoo))
+    r.add(createStack(ContentHolder.unstableGoo))
   }
+
+  override def getIconIndex(stack: ItemStack): IIcon = icons(if (isEmpty(stack)) 0 else 1)
 }
 
 object ItemSpongeCloth {
