@@ -6,6 +6,8 @@
 package monnef.jaffas.food.common;
 
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.trees.BushManager;
+import monnef.jaffas.trees.BushType;
 import monnef.jaffas.trees.JaffasTrees;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -38,8 +40,8 @@ public class SeedsHelper {
                 int type = rand.nextInt(JaffasTrees.leavesTypesCount) + 1;
                 seed = JaffasTrees.getTreeSeeds(type);
             } else {
-                int type = rand.nextInt(JaffasTrees.bushesList.size());
-                seed = new ItemStack(JaffasTrees.bushesList.get(JaffasTrees.bushType.values()[type]).itemSeeds);
+                int type = rand.nextInt(BushManager.bushesList().size());
+                seed = new ItemStack(BushManager.bushesList().get(BushType.values()[type]).itemSeeds);
             }
         }
 

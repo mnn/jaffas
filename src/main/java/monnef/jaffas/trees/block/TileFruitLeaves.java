@@ -9,6 +9,7 @@ import monnef.core.utils.BlockHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
+import monnef.jaffas.trees.FruitType;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.ItemFromFruitResult;
 import monnef.jaffas.trees.common.LeavesInfo;
@@ -52,7 +53,7 @@ public class TileFruitLeaves extends TileEntity {
     private int timer;
     private static Random rand = new Random();
     private boolean checked = false;
-    private JaffasTrees.FruitType fruit;
+    private FruitType fruit;
     private Block leavesBlock;
     private int leavesMeta;
 
@@ -126,7 +127,7 @@ public class TileFruitLeaves extends TileEntity {
             double currentRainMultiplier = rain ? rainMultiplier : 1;
 
             if (rand.nextDouble() < turnChance * turnChanceMultiplier * currentRainMultiplier) {
-                if (this.fruit != JaffasTrees.FruitType.Vanilla || rand.nextInt(3) == 0) {
+                if (this.fruit != FruitType.Vanilla || rand.nextInt(3) == 0) {
                     if (this.getBlockType() == JaffasTrees.leavesList.get(0).leavesBlock || this.getBlockType() == this.leavesBlock) {
                         ChangeBlockAndRespawnMe(this.leavesBlock, this.leavesMeta);
                     } else {
@@ -261,7 +262,7 @@ public class TileFruitLeaves extends TileEntity {
         }
     }
 
-    public static ItemFromFruitResult getItemFromFruit(JaffasTrees.FruitType fruit) {
+    public static ItemFromFruitResult getItemFromFruit(FruitType fruit) {
         ItemFromFruitResult res = new ItemFromFruitResult();
 
         switch (fruit) {
@@ -308,7 +309,7 @@ public class TileFruitLeaves extends TileEntity {
         return res;
     }
 
-    public ItemStack getItemFromMetadataAndBlockID(JaffasTrees.FruitType fruit) {
+    public ItemStack getItemFromMetadataAndBlockID(FruitType fruit) {
         int metadata = -1, leavesMetadataType = -1;
         if (debug) {
             metadata = this.getBlockMetadata();

@@ -5,7 +5,7 @@
 
 package monnef.jaffas.trees.common;
 
-import monnef.jaffas.trees.JaffasTrees;
+import monnef.jaffas.trees.BushType;
 import monnef.jaffas.trees.block.BlockJaffaCrops;
 import monnef.jaffas.trees.item.ItemJaffaSeeds;
 import net.minecraft.item.Item;
@@ -24,7 +24,7 @@ public class BushInfo {
     public Item product;
     public int phases;
     public int renderer;
-    public JaffasTrees.bushType type;
+    public BushType type;
     public EatableType eatable;
     public DropType drop;
 

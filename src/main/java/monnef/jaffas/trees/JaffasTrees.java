@@ -15,7 +15,6 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import gnu.trove.impl.hash.TFloatCharHash;
 import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
@@ -43,7 +42,6 @@ import monnef.jaffas.trees.block.TileJaffaCrops;
 import monnef.jaffas.trees.client.GuiHandlerTrees;
 import monnef.jaffas.trees.common.BushInfo;
 import monnef.jaffas.trees.common.CommonProxy;
-import monnef.jaffas.trees.common.DropType;
 import monnef.jaffas.trees.common.EatableType;
 import monnef.jaffas.trees.common.ItemFromFruitResult;
 import monnef.jaffas.trees.common.JaffaCropProvider;
@@ -78,8 +76,6 @@ import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.HashSet;
 
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.getItem;
@@ -122,6 +118,7 @@ import static monnef.jaffas.food.item.JaffaItem.tomatoChopped;
 import static monnef.jaffas.food.item.JaffaItem.woodenBowl;
 import static monnef.jaffas.technic.common.CompostRegister.DEFAULT_BLOCK_COMPOSTING_VALUE;
 import static monnef.jaffas.technic.common.CompostRegister.DEFAULT_FRUIT_COMPOSTING_VALUE;
+import static monnef.jaffas.trees.BushManager.bushesList;
 import static monnef.jaffas.trees.common.DropType.DropsFromGrass;
 import static monnef.jaffas.trees.common.EatableType.EatableNormal;
 import static monnef.jaffas.trees.common.EatableType.NotEatable;
@@ -167,55 +164,6 @@ public class JaffasTrees extends JaffasModBase {
         return fruitType;
     }
 
-    public static enum FruitType {
-        Normal(0), Apple(1), Cocoa(2), Vanilla(3), Lemon(4), Orange(5), Plum(6), Coconut(7), Banana(8);
-        private int value;
-        private int blockNumber;
-        private int metaNumber;
-
-        static {
-            helper.noSeedsAndFruit.add(Normal);
-        }
-
-        FruitType(int value) {
-            this.value = value;
-            this.blockNumber = value % 4;
-            this.metaNumber = value / 4;
-
-            helper.indexToFruitMap.put(value, this);
-        }
-
-        public int getValue() {
-            return value;
-        }
-
-        public int getBlockNumber() {
-            return blockNumber;
-        }
-
-        public static FruitType indexToFruitType(int index) {
-            return helper.indexToFruitMap.get(index);
-        }
-
-        public static boolean doesGenerateFruitAndSeeds(FruitType fruit) {
-            return !helper.noSeedsAndFruit.contains(fruit);
-        }
-
-        public boolean doesGenerateFruitAndSeeds() {
-            return doesGenerateFruitAndSeeds(this);
-        }
-
-        private static class helper {
-            private static HashMap<Integer, FruitType> indexToFruitMap;
-            private static HashSet<FruitType> noSeedsAndFruit;
-
-            static {
-                indexToFruitMap = new HashMap<Integer, FruitType>();
-                noSeedsAndFruit = new HashSet<FruitType>();
-            }
-        }
-    }
-
     @Mod.Instance("Jaffas-Trees")
     public static JaffasTrees instance;
 
@@ -248,20 +196,6 @@ public class JaffasTrees extends JaffasModBase {
 
     public static BlockFruitLeavesDummy dummyLeaves;
 
-    public static enum bushType {
-        Coffee, Strawberry, Onion, Paprika, Raspberry, Tomato, Mustard, Peanuts, Pea, Bean;
-
-        public static boolean isFruit(bushType type) {
-            switch (type) {
-                case Strawberry:
-                case Raspberry:
-                    return true;
-            }
-            return false;
-        }
-    }
-
-    public static EnumMap<bushType, BushInfo> bushesList = new EnumMap<bushType, BushInfo>(bushType.class);
 
     public JaffasTrees() {
         instance = this;
@@ -274,7 +208,7 @@ public class JaffasTrees extends JaffasModBase {
     @Override
     public void preLoad(FMLPreInitializationEvent event) {
         super.preLoad(event);
-        populateBushInfo();
+        BushManager.populateBushInfo();
 
         try {
             config.load();
@@ -327,22 +261,6 @@ public class JaffasTrees extends JaffasModBase {
         LanguageRegistry.instance().addStringLocalization("itemGroup.jaffas.trees", "en_US", "Jaffas and more! Trees");
     }
 
-    private void populateBushInfo() {
-        addBushInfo(bushType.Coffee, "coffee", 34, 96, 128, null, 2, 1, NotEatable, DropsFromGrass);
-        addBushInfo(bushType.Strawberry, "strawberry", 34, 99, 129, null, 2, 1, EatableNormal, DropsFromGrass);
-
-        addBushInfo(bushType.Onion, "onion", 34, 102, 130, null, 2, 1, NotEatable, DropsFromGrass);
-        addBushInfo(bushType.Paprika, "paprika", 34, 105, 131, null, 2, 1, EatableNormal, DropsFromGrass);
-        addBushInfo(bushType.Raspberry, "raspberry", 34, 108, 132, null, 2, 1, EatableNormal, DropsFromGrass);
-        addBushInfo(bushType.Tomato, "tomato", 34, 111, 133, null, 2, 1, EatableNormal, DropsFromGrass);
-
-        addBushInfo(bushType.Mustard, "mustard", 34, 114, 134, null, 2, 1, NotEatable, DropsFromGrass);
-        addBushInfo(bushType.Peanuts, "peanuts", 34, 117, 135, null, 2, 1, EatableNormal, DropsFromGrass);
-
-        addBushInfo(bushType.Pea, "pea", 34, 120, 136, null, 2, 1, EatableNormal, DropsFromGrass);
-        addBushInfo(bushType.Bean, "bean", 34, 123, 137, null, 2, 1, NotEatable, DropsFromGrass);
-    }
-
     private ItemJaffaBase constructFruit(EatableType type, int textureOffset, String name) {
         ItemJaffaBase res;
         if (type == NotEatable) {
@@ -362,13 +280,13 @@ public class JaffasTrees extends JaffasModBase {
 
     private void constructItemsInBushInfo() {
         boolean first = true;
-        for (EnumMap.Entry<bushType, BushInfo> entry : bushesList.entrySet()) {
+        for (EnumMap.Entry<BushType, BushInfo> entry : bushesList().entrySet()) {
             BushInfo info = entry.getValue();
 
             Item fruit = constructFruit(info.eatable, info.fruitTexture, info.getFruitLanguageName());
             fruit.setCreativeTab(creativeTab);
             info.itemFruit = fruit;
-            if (bushType.isFruit(entry.getKey())) {
+            if (BushType.isFruit(entry.getKey())) {
                 registerFruitItem(fruit);
             }
 
@@ -408,23 +326,6 @@ public class JaffasTrees extends JaffasModBase {
 
     public static void registerFruitItem(Item fruit) {
         OreDictionary.registerOre(FRUIT, fruit);
-    }
-
-    private void addBushInfo(bushType type, String name, int seedsTexture, int plantTexture, int fruitTexture, Item product, int phases, int renderer, EatableType eatable, DropType drop) {
-        BushInfo info = new BushInfo();
-
-        info.name = name;
-        info.seedsTexture = seedsTexture;
-        info.plantTexture = plantTexture;
-        info.fruitTexture = fruitTexture;
-        info.product = product;
-        info.phases = phases;
-        info.renderer = renderer;
-        info.type = type;
-        info.eatable = eatable;
-        info.drop = drop;
-
-        bushesList.put(type, info);
     }
 
     @Override
@@ -621,20 +522,20 @@ public class JaffasTrees extends JaffasModBase {
                 new ItemStack(JaffasTrees.itemPlum));
 
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.strawberries)),
-                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit),
-                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit),
-                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit),
-                new ItemStack(bushesList.get(bushType.Strawberry).itemFruit));
+                new ItemStack(bushesList().get(BushType.Strawberry).itemFruit),
+                new ItemStack(bushesList().get(BushType.Strawberry).itemFruit),
+                new ItemStack(bushesList().get(BushType.Strawberry).itemFruit),
+                new ItemStack(bushesList().get(BushType.Strawberry).itemFruit));
         GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.raspberries)),
-                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit),
-                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit),
-                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit),
-                new ItemStack(bushesList.get(bushType.Raspberry).itemFruit));
+                new ItemStack(bushesList().get(BushType.Raspberry).itemFruit),
+                new ItemStack(bushesList().get(BushType.Raspberry).itemFruit),
+                new ItemStack(bushesList().get(BushType.Raspberry).itemFruit),
+                new ItemStack(bushesList().get(BushType.Raspberry).itemFruit));
 
-        GameRegistry.addSmelting(bushesList.get(bushType.Coffee).itemFruit, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
+        GameRegistry.addSmelting(bushesList().get(BushType.Coffee).itemFruit, new ItemStack(getJaffaItem(JaffaItem.coffeeRoasted)), 0.5F);
 
-        RecipesBoard.addRecipe(getFruitStack(bushType.Paprika), new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
-        RecipesBoard.addRecipe(getFruitStack(bushType.Tomato), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
+        RecipesBoard.addRecipe(getFruitStack(BushType.Paprika), new ItemStack(getJaffaItem(JaffaItem.paprikaChopped)));
+        RecipesBoard.addRecipe(getFruitStack(BushType.Tomato), new ItemStack(getJaffaItem(JaffaItem.tomatoChopped)));
 
 
         if (!ModuleManager.isModuleEnabled(technic)) {
@@ -651,15 +552,15 @@ public class JaffasTrees extends JaffasModBase {
 
         Recipes.addMalletShapedRecipe(new ItemStack(getJaffaItem(JaffaItem.coconutPowder)), new ItemStack(itemCoconut));
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), getFruitStack(bushType.Peanuts),
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.browniesPastry)), getFruitStack(BushType.Peanuts),
                 new ItemStack(getItem(JaffaItem.pastrySweet)), new ItemStack(getItem(JaffaItem.chocolate)));
 
-        RecipesBoard.addRecipe(JaffasTrees.getFruitStack(JaffasTrees.bushType.Onion), new ItemStack(getItem(JaffaItem.onionSliced)));
-        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Items.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(bushType.Tomato), getFruitStack(bushType.Tomato));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bottleMustard)), getItem(JaffaItem.bottleEmpty), getFruit(bushType.Mustard), getFruit(bushType.Mustard));
+        RecipesBoard.addRecipe(JaffasTrees.getFruitStack(BushType.Onion), new ItemStack(getItem(JaffaItem.onionSliced)));
+        GameRegistry.addShapelessRecipe(new ItemStack(getJaffaItem(JaffaItem.bottleKetchup)), Items.sugar, getJaffaItem(JaffaItem.bottleEmpty), getFruitStack(BushType.Tomato), getFruitStack(BushType.Tomato));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(JaffaItem.bottleMustard)), getItem(JaffaItem.bottleEmpty), getFruit(BushType.Mustard), getFruit(BushType.Mustard));
 
-        addPieRecipe(getFruit(bushType.Strawberry), pieStrawberryRaw, TilePie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
-        addPieRecipe(getFruit(bushType.Raspberry), pieRaspberryRaw, TilePie.PieType.RASPBERRY, true, getItem(jamRaspberry));
+        addPieRecipe(getFruit(BushType.Strawberry), pieStrawberryRaw, TilePie.PieType.STRAWBERRY, true, getItem(jamStrawberry));
+        addPieRecipe(getFruit(BushType.Raspberry), pieRaspberryRaw, TilePie.PieType.RASPBERRY, true, getItem(jamRaspberry));
         addPieRecipe(null, pieVanillaRaw, TilePie.PieType.VANILLA, true, getItem(jamV));
         addPieRecipe(itemPlum, piePlumRaw, TilePie.PieType.PLUM, true, getItem(jamP));
 
@@ -673,13 +574,13 @@ public class JaffasTrees extends JaffasModBase {
         // new juice recipes
         Juices$.MODULE$.addRecipes();
 
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(peanutsSugar)), Items.sugar, getFruit(bushType.Peanuts));
-        GameRegistry.addRecipe(new ItemStack(getItem(pepperStuffedRaw)), "M", "P", 'M', getItem(mincedMeat), 'P', getFruit(bushType.Paprika));
+        GameRegistry.addShapelessRecipe(new ItemStack(getItem(peanutsSugar)), Items.sugar, getFruit(BushType.Peanuts));
+        GameRegistry.addRecipe(new ItemStack(getItem(pepperStuffedRaw)), "M", "P", 'M', getItem(mincedMeat), 'P', getFruit(BushType.Paprika));
 
         // raw mutton
         // pea         -> raw lamb with peas => lamb with peas (in tin) | + plate -> lamb with peas (plate) + tin
         // tin
-        GameRegistry.addRecipe(getItemStack(lambWithPeasInTinRaw), " M ", "PPP", " T ", 'M', getItem(muttonRaw), 'P', getFruit(bushType.Pea), 'T', getItem(cakeTin));
+        GameRegistry.addRecipe(getItemStack(lambWithPeasInTinRaw), " M ", "PPP", " T ", 'M', getItem(muttonRaw), 'P', getFruit(BushType.Pea), 'T', getItem(cakeTin));
         GameRegistry.addSmelting(getItem(lambWithPeasInTinRaw), getItemStack(lambWithPeasInTin), 5f);
         GameRegistry.addShapelessRecipe(getItemStack(lambWithPeas, 3), getItemStack(lambWithPeasInTin), getItem(plate), getItem(plate), getItem(plate));
         PersistentItemsCraftingHandler.AddPersistentItemRetuningNonJaffaItem(lambWithPeasInTin, false, getItem(cakeTin));
@@ -687,7 +588,7 @@ public class JaffasTrees extends JaffasModBase {
         // beans
         // chopped tomatoes   ->  raw beans with tomato sauce => baked beans with tomato sauce
         // dish
-        GameRegistry.addRecipe(getItemStack(beansWithTomatoRaw), "B", "T", "D", 'B', getFruit(bushType.Bean), 'T', getItem(tomatoChopped), 'D', getItem(woodenBowl));
+        GameRegistry.addRecipe(getItemStack(beansWithTomatoRaw), "B", "T", "D", 'B', getFruit(BushType.Bean), 'T', getItem(tomatoChopped), 'D', getItem(woodenBowl));
         GameRegistry.addSmelting(getItem(beansWithTomatoRaw), getItemStack(beansWithTomato), 3f);
 
         addRecipe(new ShapedOreRecipe(getItemStack(tinDuckOrangeRaw), "OSO", "ODO", " T ", 'D', getItem(duckRaw), 'O', ORANGE, 'S', Items.sugar, 'T', getItem(cakeTin)));
@@ -701,19 +602,19 @@ public class JaffasTrees extends JaffasModBase {
         addRecipe(new ShapedOreRecipe(getItemStack(fruitSalad), "FFF", " B ", 'B', getItem(woodenBowl), 'F', FRUIT));
         addRecipe(new ShapedOreRecipe(getItemStack(fruitSalad, 3), "FFF", "FFF", "BBB", 'B', getItem(woodenBowl), 'F', FRUIT));
 
-        Recipes.addSoupRecipes(getFruit(bushType.Pea), soupPeaRaw, soupPeaCooked, false);
-        Recipes.addSoupRecipes(getFruit(bushType.Tomato), soupTomatoRaw, soupTomatoCooked, false);
+        Recipes.addSoupRecipes(getFruit(BushType.Pea), soupPeaRaw, soupPeaCooked, false);
+        Recipes.addSoupRecipes(getFruit(BushType.Tomato), soupTomatoRaw, soupTomatoCooked, false);
     }
 
-    public static Item getFruit(bushType type) {
-        return bushesList.get(type).itemFruit;
+    public static Item getFruit(BushType type) {
+        return bushesList().get(type).itemFruit;
     }
 
-    public static ItemStack getFruitStack(bushType type) {
+    public static ItemStack getFruitStack(BushType type) {
         return getFruitStack(type, 1);
     }
 
-    public static ItemStack getFruitStack(bushType type, int count) {
+    public static ItemStack getFruitStack(BushType type, int count) {
         return new ItemStack(getFruit(type), count);
     }
 

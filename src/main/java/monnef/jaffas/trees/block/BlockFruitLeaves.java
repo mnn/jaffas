@@ -12,6 +12,7 @@ import monnef.core.common.CustomIconHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.PlayerHelper;
 import monnef.jaffas.food.block.BlockLeavesBaseJaffas;
+import monnef.jaffas.trees.FruitType;
 import monnef.jaffas.trees.JaffasTrees;
 import monnef.jaffas.trees.common.Reference;
 import net.minecraft.block.Block;
@@ -174,7 +175,7 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         if (!(b instanceof BlockFruitLeaves)) return false;
 
         BlockFruitLeaves leaves = (BlockFruitLeaves) b;
-        JaffasTrees.FruitType fruit = JaffasTrees.getActualLeavesType(leaves, BlockFruitLeaves.getLeavesType(meta));
+        FruitType fruit = JaffasTrees.getActualLeavesType(leaves, BlockFruitLeaves.getLeavesType(meta));
         return fruit.doesGenerateFruitAndSeeds();
     }
 

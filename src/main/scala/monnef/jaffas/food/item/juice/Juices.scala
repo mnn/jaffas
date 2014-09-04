@@ -6,9 +6,9 @@
 package monnef.jaffas.food.item.juice
 
 import net.minecraft.item.{Item, ItemStack}
-import monnef.jaffas.trees.JaffasTrees
+import monnef.jaffas.trees.{BushType, JaffasTrees}
 import net.minecraftforge.oredict.OreDictionary
-import JaffasTrees.bushType._
+import BushType._
 import cpw.mods.fml.common.registry.GameRegistry
 import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food.item.JaffaItem
@@ -102,7 +102,7 @@ object JuiceRecipe {
 
   def create(item: => Item, count: Int): Seq[JuiceRecipe] = List(JuiceRecipe({Juices.checkPhase(); new ItemStack(item, count)}))
 
-  def create(bush: JaffasTrees.bushType, count: Int): Seq[JuiceRecipe] = create({Juices.checkPhase(); JaffasTrees.getFruit(bush)}, count)
+  def create(bush: BushType, count: Int): Seq[JuiceRecipe] = create({Juices.checkPhase(); JaffasTrees.getFruit(bush)}, count)
 
   def create(oreName: String, count: Int): () => Seq[JuiceRecipe] = {
     val ores = OreDictionary.getOres(oreName)

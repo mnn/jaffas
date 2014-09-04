@@ -14,14 +14,14 @@ import monnef.core.utils.RandomHelper
 import net.minecraft.block.Block
 import monnef.jaffas.food.JaffasFood.getItem
 import monnef.jaffas.food.item.JaffaItem._
-import monnef.jaffas.trees.JaffasTrees
+import monnef.jaffas.trees.{BushManager, FruitType, JaffasTrees}
 import monnef.jaffas.trees.block.TileFruitLeaves
-import monnef.jaffas.trees.JaffasTrees.FruitType
 import monnef.jaffas.trees.common.BushInfo
 import monnef.jaffas.technic.JaffasTechnic
 import RandomHelper.generateRandomFromInterval
 import monnef.core.common.{IScalaVillagersTradeHandler, IMerchantRecipeListWrapper}
 import net.minecraft.init.Items
+import monnef.jaffas.trees
 
 class VillagersTradeHandler extends IScalaVillagersTradeHandler {
 
@@ -65,7 +65,7 @@ class VillagersTradeHandler extends IScalaVillagersTradeHandler {
     def handleFarmer() {
       if (ModuleManager.isModuleEnabled(ModulesEnum.trees)) {
         for {
-          fruit <- JaffasTrees.FruitType.values()
+          fruit <- trees.FruitType.values()
           if fruit.doesGenerateFruitAndSeeds() // skips "normal" (~ blank) type
           if fruit != FruitType.Cocoa // no dye!
         } {
@@ -74,7 +74,7 @@ class VillagersTradeHandler extends IScalaVillagersTradeHandler {
             if (fres.getStack != null) addTradeBuys(recipeList, fres.getStack, 20, 30, 1)
           }
         }
-        for {bush: BushInfo <- JaffasTrees.bushesList.values().toArray(Array[BushInfo]())} {
+        for {bush: BushInfo <- BushManager.bushesList.values().toArray(Array[BushInfo]())} {
           if (random.nextFloat() < 0.2f) {
             addTradeBuys(recipeList, bush.itemFruit, 18, 28, 1)
           }
