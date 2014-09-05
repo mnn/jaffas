@@ -29,6 +29,7 @@ public class ItemJaffaTool extends ItemJaffaBase {
     protected int durabilityLossOnEntityHit = 2;
     protected int durabilityLossOnBlockBreak = 1;
     protected boolean disableRepairing = true;
+    protected int nearlyDestroyedDamageVsEntity = 0;
 
     public ItemJaffaTool(int textureIndex, Item.ToolMaterial material) {
         super(textureIndex);
@@ -37,6 +38,11 @@ public class ItemJaffaTool extends ItemJaffaBase {
         this.setMaxDamage(material.getMaxUses());
         this.efficiencyOnProperMaterial = material.getEfficiencyOnProperMaterial();
         this.damageVsEntity = material.getDamageVsEntity();
+    }
+
+    @Override
+    public int getCustomDamageVsEntity() {
+        return (int) damageVsEntity;
     }
 
     @Override
@@ -95,25 +101,24 @@ public class ItemJaffaTool extends ItemJaffaBase {
     }
 
     public static boolean nearlyDestroyed(ItemStack stack) {
-        return stack.getMaxDamage() == stack.getItemDamage();
+        return stack.getItemDamage() >= stack.getMaxDamage();
     }
 
     protected void damageTool(int dmg, EntityLivingBase source, ItemStack stack) {
         int newDmg = stack.getItemDamage() + dmg;
-        if (newDmg == stack.getMaxDamage()) {
-            if (source != null) {
-                source.renderBrokenItemStack(stack);
-                refreshDamageAttribute(stack);
-            }
-        }
-        if (newDmg > stack.getMaxDamage()) {
-            dmg = stack.getMaxDamage() - stack.getItemDamage();
-        }
+        boolean justBroke = newDmg >= stack.getMaxDamage();
+
+        if (justBroke && source != null) source.renderBrokenItemStack(stack);
+
+        if (newDmg > stack.getMaxDamage()) dmg = stack.getMaxDamage() - stack.getItemDamage();
         stack.damageItem(dmg, source);
+
+        if (justBroke) refreshDamageAttribute(stack);
     }
 
-    private void refreshDamageAttribute(ItemStack stack) {
-        NBTTagCompound inbt = stack.stackTagCompound;
+    public void refreshDamageAttribute(ItemStack stack) {
+        if (stack.getTagCompound() == null) stack.setTagCompound(new NBTTagCompound());
+        NBTTagCompound inbt = stack.getTagCompound();
         NBTTagCompound nnbt = new NBTTagCompound();
         NBTTagList nnbtl = new NBTTagList();
         AttributeModifier att = new AttributeModifier(SharedMonsterAttributes.attackDamage.getAttributeUnlocalizedName(), getCustomDamageVsEntity(stack), 0);
@@ -141,7 +146,7 @@ public class ItemJaffaTool extends ItemJaffaBase {
     @Override
     public int getCustomDamageVsEntity(ItemStack itemStack) {
         if (nearlyDestroyed(itemStack)) {
-            return 0;
+            return nearlyDestroyedDamageVsEntity;
         }
         return getCustomDamageVsEntity();
     }

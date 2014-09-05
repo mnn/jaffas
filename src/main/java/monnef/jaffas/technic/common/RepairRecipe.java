@@ -6,6 +6,7 @@
 package monnef.jaffas.technic.common;
 
 import monnef.core.utils.ItemHelper;
+import monnef.jaffas.food.item.ItemJaffaTool;
 import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
@@ -46,59 +47,6 @@ public class RepairRecipe extends ShapelessRecipes {
         return res;
     }
 
-    /*
-    @Override
-    public boolean matches(InventoryCrafting inv, World world) {
-        int jaffarrolLeft = jaffarrolCount;
-        int limsewLeft = limsewCount;
-        boolean toolFound = false;
-        ArrayList<ItemStack> requiredItems = new ArrayList<ItemStack>(moreItems);
-
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                ItemStack itemstack = inv.getStackInRowAndColumn(j, i);
-
-                if (itemstack != null) {
-                    boolean found = false;
-                    Iterator iterator = requiredItems.iterator();
-
-                    while (iterator.hasNext()) {
-                        ItemStack suspectedItem = (ItemStack) iterator.next();
-
-                        if (itemstack.itemID == suspectedItem.itemID && (suspectedItem.getItemDamage() == OreDictionary.WILDCARD_VALUE || itemstack.getItemDamage() == suspectedItem.getItemDamage())) {
-                            found = true;
-                            requiredItems.remove(suspectedItem);
-                            break;
-                        }
-                    }
-
-                    if (!found && itemstack.itemID == JaffasTechnic.jaffarrolDust.itemID) {
-                        found = true;
-                        jaffarrolLeft--;
-                    }
-
-                    if (!found && itemstack.itemID == JaffasTechnic.limsew.itemID) {
-                        found = true;
-                        limsewLeft--;
-                    }
-
-                    if (!found && itemstack.itemID == itemToRepair.itemID) {
-                        toolFound = true;
-                        found = true;
-                    }
-
-                    if (!found) {
-                        return false;
-                    }
-                }
-            }
-        }
-
-        return requiredItems.isEmpty() && jaffarrolLeft == 0 && limsewLeft == 0 && toolFound;
-
-    }
-    */
-
     @Override
     public ItemStack getCraftingResult(InventoryCrafting inv) {
         ItemStack tool = null;
@@ -118,15 +66,9 @@ public class RepairRecipe extends ShapelessRecipes {
         ItemStack output = tool.copy();
         int dmg = output.getItemDamage() - repairValue;
         output.setItemDamage(dmg < 0 ? 0 : dmg);
+        ((ItemJaffaTool) output.getItem()).refreshDamageAttribute(output);
         return output;
     }
-
-    /*
-    @Override
-    public int getRecipeSize() {
-        return jaffarrolCount + limsewCount + 1 + moreItems.size();
-    }
-    */
 
     @Override
     public ItemStack getRecipeOutput() {

@@ -6,6 +6,7 @@
 package monnef.jaffas.food.achievement;
 
 import com.google.common.collect.HashMultimap;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.utils.CallerFinder;
 import monnef.jaffas.food.JaffasFood;
@@ -71,8 +72,7 @@ public class AchievementsHandler {
             throw new RuntimeException("Counter not initialized.");
         }
 
-        AchievementHooksHandler handler = new AchievementHooksHandler();
-        MinecraftForge.EVENT_BUS.register(handler);
+        FMLCommonHandler.instance().bus().register(new AchievementHooksHandler());
 
         createAchievements();
         createPage();

@@ -23,6 +23,7 @@ public class ItemJaffaSword extends ItemJaffaTool {
         this.durabilityLossOnBlockBreak = 4;
         this.durabilityLossOnEntityHit = 1;
         this.damageVsEntity += 4;
+        this.nearlyDestroyedDamageVsEntity = -1;
     }
 
     // ---------------
@@ -31,7 +32,7 @@ public class ItemJaffaSword extends ItemJaffaTool {
     // getStrVsBlock
     @Override
     public float func_150893_a(ItemStack stack, Block block) {
-        if (nearlyDestroyed(stack)) return 1f;
+        if (nearlyDestroyed(stack)) return 0;
 
         if (block == Blocks.web) {
             return 15.0F;
