@@ -16,6 +16,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 import scala.Option;
 
 import java.util.HashMap;
@@ -83,15 +84,15 @@ public class PersistentItemsCraftingHandler extends MonnefCoreCraftingHandler {
         for (int i = 0; i < matrix.getSizeInventory(); i++) {
             if (matrix.getStackInSlot(i) != null && !processedSlots.contains(i)) {
                 ingredientsCount++;
-                ItemStack item = matrix.getStackInSlot(i);
-                PersistentItemInfo info = persistentItems.get(item);
+                ItemStack stackInSlot = matrix.getStackInSlot(i);
+                PersistentItemInfo info = persistentItems.get(stackInSlot.getItem());
                 if (info != null) {
                     if (info.damage) {
-                        ItemStack newItem = item.copy();
+                        ItemStack newItem = stackInSlot.copy();
                         newItem.stackSize++;
-                        int newDamage = item.getItemDamage() + 1;
+                        int newDamage = stackInSlot.getItemDamage() + 1;
 
-                        if (newDamage < item.getMaxDamage()) {
+                        if (newDamage < stackInSlot.getMaxDamage()) {
                             newItem.setItemDamage(newDamage);
                             matrix.setInventorySlotContents(i, newItem);
                         } else if (info.substituteItem != null) {
@@ -100,7 +101,7 @@ public class PersistentItemsCraftingHandler extends MonnefCoreCraftingHandler {
                     } else if (info.substituteItem != null) {
                         doSubstitution(matrix, processedSlots, info, player);
                     } else {
-                        item.stackSize++;
+                        stackInSlot.stackSize++;
                     }
                 }
             }
@@ -119,6 +120,7 @@ public class PersistentItemsCraftingHandler extends MonnefCoreCraftingHandler {
     private void handleRolls(IInventory matrix) {
         boolean foundPuff = false;
         int stickSlot = -1, ingredientsCount = 0;
+        ItemStack stickStack = new ItemStack(Items.stick, 1, OreDictionary.WILDCARD_VALUE); // TODO: cache?
 
         for (int i = 0; i < matrix.getSizeInventory(); i++) {
             if (matrix.getStackInSlot(i) != null) {
@@ -126,7 +128,7 @@ public class PersistentItemsCraftingHandler extends MonnefCoreCraftingHandler {
                 ItemStack stack = matrix.getStackInSlot(i);
                 if (stack.getItem() == ItemManager.getItem(JaffaItem.puffPastry)) {
                     foundPuff = true;
-                } else if (stack.getItem() == Items.stick) { // TODO: accept any stick (oredict)
+                } else if (OreDictionary.itemMatches(stickStack, stack, false)) {
                     stickSlot = i;
                 }
             }
