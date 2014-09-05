@@ -108,6 +108,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.apache.logging.log4j.Level;
@@ -663,6 +664,9 @@ public class JaffasTechnic extends JaffasModBase {
         OreDictionary.registerOre("oreLimsew", blockLimsewOre);
 
         GameRegistry.addRecipe(new ItemStack(itemLocomotive), "I F", "BCB", "III", 'F', funnel, 'I', Items.iron_ingot, 'B', Blocks.iron_block, 'C', itemCasingRefined);
+
+        RecipeSorter.register(Reference.ModId + ":repair", RepairRecipe.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
+        RecipeSorter.register(Reference.ModId + ":enchant", EnchantRecipe.class, RecipeSorter.Category.SHAPELESS, "after:minecraft:shapeless");
 
         GameRegistry.addRecipe(new RepairRecipe(2, 1, new ItemStack(JaffasTechnic.swordJaffarrol), 333));
         GameRegistry.addRecipe(new RepairRecipe(3, 1, new ItemStack(JaffasTechnic.axeJaffarrol), 333));

@@ -43,7 +43,7 @@ import java.util.Random;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 
 public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryHarvestable, IFactoryFertilizable {
-    private int phasesMax; // 7
+    private int lastPhase;
     private Item product = Items.wheat;
     private Item seeds = Items.wheat_seeds;
 
@@ -52,17 +52,17 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     private int renderer;
     private int baseTexture;
 
-    public BlockJaffaCrops(int textureIndex, int phasesMax, int renderer) {
+    public BlockJaffaCrops(int textureIndex, int lastPhase, int renderer) {
         super(textureIndex, Material.plants);
         baseTexture = textureIndex;
         this.setTickRandomly(true);
         float half = 0.5F;
         this.setBlockBounds(0.5F - half, 0.0F, 0.5F - half, 0.5F + half, 0.25F, 0.5F + half);
         this.setCreativeTab(null);
-        this.phasesMax = phasesMax;
+        this.lastPhase = lastPhase;
         this.renderer = renderer;
         BlockMonnefCore$.MODULE$.queueSetBurnProperties(this, 60, 100);
-        setIconsCount(phasesMax + 1);
+        setIconsCount(lastPhase + 1);
     }
 
     @Override
@@ -72,15 +72,13 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
         if (world.getBlockLightValue(x, y + 1, z) >= 9) {
             int meta = world.getBlockMetadata(x, y, z);
 
-            if (canGrow(meta)) {
+            if (canGrow(meta) && !JaffasFood.cropGrowthDisabled) {
                 float growthRate = this.getGrowthRate(world, x, y, z);
 
-                if (random.nextInt((int) (25.0F / growthRate) + 1) == 0) {
-                    boolean rain = world.isRaining() && world.canBlockSeeTheSky(x, y, z);
-                    // slow grow a bit
-                    if (random.nextInt(4) == 0 || rain) {
-                        growABit(world, x, y, z);
-                    }
+                int r = random.nextInt((int) (25.0F / growthRate) + 1);
+                boolean rain = world.isRaining() && world.canBlockSeeTheSky(x, y, z);
+                if (r == 0 || (r == 1 && rain)) {
+                    growABit(world, x, y, z);
                 }
             }
         }
@@ -93,7 +91,7 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     }
 
     public boolean isMature(int meta) {
-        return meta >= phasesMax;
+        return meta >= lastPhase;
     }
 
     public boolean growABit(World world, int x, int y, int z) {
@@ -119,7 +117,7 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     public boolean tryBonemeal(World w, int x, int y, int z) {
         if (JaffasTrees.bonemealingAllowed && canGrow(w.getBlockMetadata(x, y, z))) {
             if (!w.isRemote) {
-                if (JaffasFood.rand.nextFloat() < 0.4) growABit(w, x, y, z);
+                growABit(w, x, y, z);
                 return true;
             }
         }
@@ -187,7 +185,7 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
 
         if (isMature(metadata)) {
             for (int n = 0; n < 5 + fortune; n++) {
-                if (world.rand.nextInt((15 - 7) + phasesMax) <= metadata) {
+                if (world.rand.nextInt((15 - 7) + lastPhase) <= metadata) {
                     ret.add(constructSeeds());
                 }
             }
@@ -220,8 +218,8 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
         return new ItemStack(seeds);
     }
 
-    public int getPhasesMax() {
-        return phasesMax;
+    public int getLastPhase() {
+        return lastPhase;
     }
 
     // because of Forestry
@@ -269,7 +267,7 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return getCustomIcon(meta <= phasesMax ? meta : phasesMax);
+        return getCustomIcon(meta <= lastPhase ? meta : lastPhase);
     }
 
     @Override
@@ -277,7 +275,7 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
         int meta = world.getBlockMetadata(x, y, z);
         if (isMature(meta)) {
             WorldHelper.dropItem(world, x, y + 1, z, constructProduct());
-            setBlockMetadata(world, x, y, z, phasesMax - 1);
+            setBlockMetadata(world, x, y, z, 0);
             return true;
         } else return super.onBlockActivated(world, x, y, z, player, side, p_149727_7_, p_149727_8_, p_149727_9_);
     }

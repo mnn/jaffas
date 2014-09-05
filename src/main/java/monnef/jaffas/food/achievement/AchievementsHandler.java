@@ -134,21 +134,19 @@ public class AchievementsHandler {
 
     private static Achievement generateAndRegisterAchievement(String name, int xCoord, int yCoord, Object icon, Achievement requiredInTree, boolean special, String title, String desc) {
         Achievement ach = null;
-        String newId = "achievement.jaffas." + name;
+        String newName = "jaffas." + name;
+        String newId = "achievement." + newName;
 
         if (icon instanceof Item) {
-            ach = new Achievement(newId, name, xCoord, yCoord, (Item) icon, requiredInTree);
+            ach = new Achievement(newId, newName, xCoord, yCoord, (Item) icon, requiredInTree);
         } else if (icon instanceof Block) {
-            ach = new Achievement(newId, name, xCoord, yCoord, (Block) icon, requiredInTree);
+            ach = new Achievement(newId, newName, xCoord, yCoord, (Block) icon, requiredInTree);
         }
         if (ach == null) throw new JaffasException("wrong icon object");
 
         if (special) ach.setSpecial();
-        //AchievementsHelper.removeAchievementFromStatList(ach.statId);
         ach.registerStat();
 
-        addAchievementName(name, title);
-        addAchievementDesc(name, desc);
         allAchievements.put(ach.statId, ach);
         return ach;
     }
@@ -163,18 +161,6 @@ public class AchievementsHandler {
         for (String num : achievementsNeeded) {
             combinedAchievementLookupMap.put(num, ca);
         }
-    }
-
-    @Deprecated
-    private static void addAchievementName(String ach, String name) {
-        LanguageRegistry.instance().addStringLocalization("achievement." + ach, "en_US", name);
-        JaffasFood.Log.printInfo("Localization data: " + "achievement." + ach + "=" + name);
-    }
-
-    @Deprecated
-    private static void addAchievementDesc(String ach, String desc) {
-        LanguageRegistry.instance().addStringLocalization("achievement." + ach + ".desc", "en_US", desc);
-        JaffasFood.Log.printInfo("Localization data: " + "achievement." + ach + ".desc=" + desc);
     }
 
     private static void createPage() {

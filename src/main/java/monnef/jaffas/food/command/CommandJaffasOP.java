@@ -7,6 +7,7 @@ package monnef.jaffas.food.command;
 
 import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.WeatherHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.CoolDownType;
 import monnef.jaffas.food.network.HomeStonePacket;
@@ -20,6 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static monnef.core.utils.PlayerHelper.addMessage;
+import static monnef.jaffas.food.JaffasFood.cropGrowthDisabled;
 
 public class CommandJaffasOP extends CommandBase {
     @Override
@@ -90,6 +92,9 @@ public class CommandJaffasOP extends CommandBase {
             CoolDownRegistry.setCoolDown(player.getUniqueID(), CoolDownType.SPAWN_STONE, 1);
             HomeStonePacket.sendSyncPacket(player, false);
             addMessage(commandsender, String.format("Cooldown on home stone has been cleared for a player %s.", playerName));
+        } else if (parameters.length == 1 && "crop_growth".equals(parameters[0])) {
+            cropGrowthDisabled = !cropGrowthDisabled;
+            addMessage(commandsender, String.format("cropGrowthDisabled: %s", cropGrowthDisabled));
         }
     }
 

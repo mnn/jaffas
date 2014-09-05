@@ -22,7 +22,7 @@ public class BushInfo {
     public int plantTexture;
     public int fruitTexture;
     public Item product;
-    public int phases;
+    public int lastPhase;
     public int renderer;
     public BushType type;
     public EatableType eatable;

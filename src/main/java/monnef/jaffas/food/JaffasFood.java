@@ -114,6 +114,8 @@ public class JaffasFood extends JaffasModBase {
 
     public static CorePacketHandlerTrait packetHandler;
 
+    public static boolean cropGrowthDisabled = false;
+
     public JaffasFood() {
         super();
 

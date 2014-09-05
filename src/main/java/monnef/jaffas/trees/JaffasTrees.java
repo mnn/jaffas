@@ -291,7 +291,7 @@ public class JaffasTrees extends JaffasModBase {
             }
 
             Item dropFromPlant = info.product == null ? info.itemFruit : info.product;
-            BlockJaffaCrops crops = new BlockJaffaCrops(info.plantTexture, info.phases, info.renderer);
+            BlockJaffaCrops crops = new BlockJaffaCrops(info.plantTexture, info.lastPhase, info.renderer);
             crops.setBlockName(info.getPlantLanguageName());
             RegistryUtils.registerBlockWithName(crops, info.name);
             info.block = crops;

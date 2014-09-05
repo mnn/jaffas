@@ -10,14 +10,14 @@ import java.util
 object BushManager {
   var bushesList: util.EnumMap[BushType, BushInfo] = new util.EnumMap[BushType, BushInfo](classOf[BushType])
 
-  private def addBushInfo(`type`: BushType, name: String, seedsTexture: Int, plantTexture: Int, fruitTexture: Int, product: Item, phases: Int, renderer: Int, eatable: EatableType, drop: DropType) {
+  private def addBushInfo(`type`: BushType, name: String, seedsTexture: Int, plantTexture: Int, fruitTexture: Int, product: Item, lastPhase: Int, renderer: Int, eatable: EatableType, drop: DropType) {
     val info: BushInfo = new BushInfo
     info.name = name
     info.seedsTexture = seedsTexture
     info.plantTexture = plantTexture
     info.fruitTexture = fruitTexture
     info.product = product
-    info.phases = phases
+    info.lastPhase = lastPhase
     info.renderer = renderer
     info.`type` = `type`
     info.eatable = eatable
@@ -26,15 +26,16 @@ object BushManager {
   }
 
   def populateBushInfo() {
-    addBushInfo(Coffee, "coffee", 34, 190, 128, null, 2, 1, NotEatable, DropsFromGrass)
-    addBushInfo(Strawberry, "strawberry", 34, 190 + 5 * 1, 129, null, 2, 1, EatableNormal, DropsFromGrass)
-    addBushInfo(Onion, "onion", 34, 102, 130, null, 2, 1, NotEatable, DropsFromGrass)
-    addBushInfo(Paprika, "paprika", 34, 105, 131, null, 2, 1, EatableNormal, DropsFromGrass)
-    addBushInfo(Raspberry, "raspberry", 34, 108, 132, null, 2, 1, EatableNormal, DropsFromGrass)
-    addBushInfo(Tomato, "tomato", 34, 111, 133, null, 2, 1, EatableNormal, DropsFromGrass)
-    addBushInfo(Mustard, "mustard", 34, 114, 134, null, 2, 1, NotEatable, DropsFromGrass)
-    addBushInfo(Peanuts, "peanuts", 34, 117, 135, null, 2, 1, EatableNormal, DropsFromGrass)
-    addBushInfo(Pea, "pea", 34, 120, 136, null, 2, 1, EatableNormal, DropsFromGrass)
-    addBushInfo(Bean, "bean", 34, 123, 137, null, 2, 1, NotEatable, DropsFromGrass)
+    val iconIndex = Stream.from(0).map(190 + _ * 5).toIterator
+    addBushInfo(Coffee, "coffee", 34, iconIndex.next(), 128, null, 4, 1, NotEatable, DropsFromGrass)
+    addBushInfo(Strawberry, "strawberry", 34, iconIndex.next(), 129, null, 4, 1, EatableNormal, DropsFromGrass)
+    addBushInfo(Onion, "onion", 34, iconIndex.next(), 130, null, 4, 1, NotEatable, DropsFromGrass)
+    addBushInfo(Paprika, "paprika", 34, iconIndex.next(), 131, null, 4, 1, EatableNormal, DropsFromGrass)
+    addBushInfo(Raspberry, "raspberry", 34, iconIndex.next(), 132, null, 4, 1, EatableNormal, DropsFromGrass)
+    addBushInfo(Tomato, "tomato", 34, iconIndex.next(), 133, null, 4, 1, EatableNormal, DropsFromGrass)
+    addBushInfo(Mustard, "mustard", 34, iconIndex.next(), 134, null, 4, 1, NotEatable, DropsFromGrass)
+    addBushInfo(Peanuts, "peanuts", 34, iconIndex.next(), 135, null, 4, 1, EatableNormal, DropsFromGrass)
+    addBushInfo(Pea, "pea", 34, iconIndex.next(), 136, null, 4, 1, EatableNormal, DropsFromGrass)
+    addBushInfo(Bean, "bean", 34, iconIndex.next(), 137, null, 4, 1, NotEatable, DropsFromGrass)
   }
 }
