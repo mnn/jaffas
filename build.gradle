@@ -1,3 +1,5 @@
+apply plugin: 'scala'
+
 buildscript {
     repositories {
         mavenCentral()
@@ -18,8 +20,8 @@ buildscript {
 apply plugin: 'forge'
 
 
-version = "1.0"
-group= "tk.monnef.jaffas" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = "bash get_mod_version.bash".execute().text
+group= "tk.monnef.jaffas"
 archivesBaseName = "jaffas"
 
 minecraft {
@@ -52,3 +54,13 @@ jar.archiveName = "${jar.baseName}_$version.${jar.extension}"
 // joint compilation
 sourceSets.main.scala.srcDir "src/main/java"
 sourceSets.main.java.srcDirs = []
+
+dependencies {
+    compile "junit:junit:4.11"
+    testCompile "junit:junit:4.11"
+    compile files('lib/NotEnoughItems-1.7.2-1.0.2.14-dev.jar')
+}
+
+jar {
+	exclude('monnef/core/**')
+}

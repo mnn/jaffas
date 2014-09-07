@@ -25,7 +25,7 @@ import java.util.List;
 public class ItemJaffaTool extends ItemJaffaBase {
     public float efficiencyOnProperMaterial = 4.0F;
     public float damageVsEntity;
-    protected ToolMaterial toolMaterial;
+    protected Item.ToolMaterial toolMaterial;
     protected int durabilityLossOnEntityHit = 2;
     protected int durabilityLossOnBlockBreak = 1;
     protected boolean disableRepairing = true;
