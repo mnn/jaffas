@@ -224,8 +224,9 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
     }
 
     @Override
-    public IIcon getIcon(int par1, int par2) {
-        return isTop(par2) ? blockIcon : bodyIcon;
+    public IIcon getIcon(int side, int meta) {
+        if (isTop(meta)) return blockIcon;
+        else return bodyIcon;
     }
 
     @Override

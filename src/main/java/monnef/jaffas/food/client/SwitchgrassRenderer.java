@@ -68,7 +68,7 @@ public class SwitchgrassRenderer implements ISimpleBlockRenderingHandler {
             newZ += ((double) ((float) (var17 >> 24 & 15L) / 15.0F) - 0.5D) * 0.5D;
         }
 
-        renderer.drawCrossedSquares(block.getIcon(0, 0), newX, newY, newZ, 1.0F);
+        renderer.drawCrossedSquares(block.getIcon(0, world.getBlockMetadata(x, y, z)), newX, newY, newZ, 1.0F);
         return true;
     }
 }
