@@ -63,66 +63,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
+      <file leaf-file-name="RenderWindTurbine.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/power/client/RenderWindTurbine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="505" max-vertical-offset="1411">
-              <caret line="70" column="71" selection-start-line="70" selection-start-column="66" selection-end-line="70" selection-end-column="66" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BlockSwitchgrass.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/block/BlockSwitchgrass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4189189" vertical-offset="3047" max-vertical-offset="5899">
-              <caret line="244" column="0" selection-start-line="244" selection-start-column="0" selection-end-line="244" selection-end-column="0" />
-              <folding>
-                <element signature="e#5380#5381#0" expanded="true" />
-                <element signature="e#5436#5437#0" expanded="true" />
-                <element signature="e#7655#7656#0" expanded="true" />
-                <element signature="e#7680#7681#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Block.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.2-10.12.2.1121/forgeSrc-1.7.2-10.12.2.1121-sources.jar!/net/minecraft/block/Block.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="13719" max-vertical-offset="44727">
-              <caret line="807" column="118" selection-start-line="807" selection-start-column="118" selection-end-line="807" selection-end-column="118" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClientProxy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/client/ClientProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="1343">
-              <caret line="59" column="64" selection-start-line="59" selection-start-column="64" selection-end-line="59" selection-end-column="64" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContentHolder.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/common/ContentHolder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4913" max-vertical-offset="6324">
-              <caret line="289" column="53" selection-start-line="289" selection-start-column="53" selection-end-line="289" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Recipes.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/crafting/Recipes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="6613" max-vertical-offset="9707">
-              <caret line="453" column="0" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5733591" vertical-offset="162" max-vertical-offset="1241">
+              <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -138,7 +83,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/monnef/core/block/TileContainerMonnefCore.java" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/power/block/common/ContainerDoubleBasicProcessingMachine.scala" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/power/common/WindObstaclesBase.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/power/client/GuiContainerWindGenerator.java" />
@@ -189,6 +133,7 @@
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/client/SwitchgrassRenderer.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/crafting/Recipes.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/block/BlockSwitchgrass.java" />
+        <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/power/client/RenderWindTurbine.java" />
       </list>
     </option>
   </component>
@@ -749,23 +694,23 @@
       <workItem from="1410274694233" duration="333000" />
       <workItem from="1410294955302" duration="2822000" />
       <workItem from="1410344737084" duration="1170000" />
-      <workItem from="1410373724942" duration="879000" />
+      <workItem from="1410373724942" duration="1760000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324758000" />
+    <option name="totallyTimeSpent" value="325639000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39420936" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39420936" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17004265" sideWeight="0.5044543" order="2" side_tool="true" content_ui="tabs" />
@@ -859,13 +804,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/achievement/AchievementsHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="371" max-vertical-offset="3247">
-          <caret line="74" column="42" selection-start-line="74" selection-start-column="42" selection-end-line="74" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/client/Sounds.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.20411664" vertical-offset="0" max-vertical-offset="782">
@@ -1195,7 +1133,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/crafting/Recipes.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6613" max-vertical-offset="9707">
+        <state vertical-scroll-proportion="0.639604" vertical-offset="6613" max-vertical-offset="9707">
           <caret line="453" column="0" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
           <folding />
         </state>
@@ -1211,7 +1149,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/client/ClientProxy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="218" max-vertical-offset="1343">
+        <state vertical-scroll-proportion="0.34362933" vertical-offset="247" max-vertical-offset="1343">
           <caret line="59" column="64" selection-start-line="59" selection-start-column="64" selection-end-line="59" selection-end-column="64" />
           <folding />
         </state>
@@ -1227,6 +1165,14 @@
             <element signature="e#7655#7656#0" expanded="true" />
             <element signature="e#7680#7681#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/power/client/RenderWindTurbine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5733591" vertical-offset="162" max-vertical-offset="1241">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>

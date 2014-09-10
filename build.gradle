@@ -60,9 +60,17 @@ dependencies {
 }
 
 jar {
+/*
     exclude('monnef/core/**')
     exclude('buildcraft/**')
     archiveName = "${jar.baseName}_$version.${jar.extension}"
+*/
+    // just pack everything. Forge Gradle's support sucks so we will repack this later on
+    archiveName = "combined.jar"
+
+    doLast {
+        "bash pack.bash".execute()
+    }
 }
 
 // TODO: core
