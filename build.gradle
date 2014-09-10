@@ -49,8 +49,6 @@ processResources
     }
 }
 
-jar.archiveName = "${jar.baseName}_$version.${jar.extension}"
-
 // joint compilation
 sourceSets.main.scala.srcDir "src/main/java"
 sourceSets.main.java.srcDirs = []
@@ -62,5 +60,18 @@ dependencies {
 }
 
 jar {
-	exclude('monnef/core/**')
+    exclude('monnef/core/**')
+    exclude('buildcraft/**')
+    archiveName = "${jar.baseName}_$version.${jar.extension}"
 }
+
+// TODO: core
+task coreJar(type: Jar) {
+    version = "bash get_mod_version.bash".execute().text
+    archiveName = "${jar.baseName}_core_$version.${jar.extension}"
+    exclude('monnef/jaffas/**')
+    exclude('forestry/**')
+    exclude('powercrystals/**')
+}
+
+project.tasks.build.dependsOn coreJar

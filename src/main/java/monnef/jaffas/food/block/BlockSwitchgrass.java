@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import static monnef.core.utils.BlockHelper.setAir;
 import static monnef.core.utils.BlockHelper.setBlockMetadata;
 import static monnef.core.utils.BlockHelper.setBlockWithoutNotify;
 
@@ -239,18 +240,14 @@ public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactor
             PlayerHelper.addMessage(player, "meta: " + meta);
         }
 
-        return false;
-    }
-
-    @Override
-    public int quantityDropped(Random par1Random) {
-        double rnd = par1Random.nextDouble();
-        if (rnd < .2) {
-            return 2;
-        } else if (rnd < .7) {
-            return 1;
+        int bottomY = getBaseY(world, x, y, z);
+        if (!isTop(world.getBlockMetadata(x, bottomY, z))) {
+            dropBlockAsItem(world, x, bottomY + 1, z, 0, 0); // meta, fort
+            setBlockMetadata(world, x, bottomY, z, VALUE_TOP);
+            setAir(world, x, bottomY + 1, z);
         }
-        return 0;
+
+        return false;
     }
 
     @Override
