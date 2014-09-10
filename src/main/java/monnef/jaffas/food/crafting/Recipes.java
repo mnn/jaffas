@@ -450,6 +450,8 @@ public class Recipes {
         // vanilla egg recipes
         addOreRecipe(new ItemStack(Items.cake), "MMM", "SES", "WWW", 'W', WHEAT, 'S', Items.sugar, 'E', ANY_EGG(), 'M', Items.milk_bucket);
         addShapelessOreRecipe(Items.pumpkin_pie, Items.sugar, ANY_EGG(), Blocks.pumpkin);
+
+        addOreRecipe(new ItemStack(Blocks.torch, 8), "W", "S", 'S', WOOD_STICK, 'W', ContentHolder.blockSwitchgrassSolid);
     }
 
     private static void addOmeletRecipe(JaffaItem choppedItem) {
