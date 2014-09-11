@@ -25,7 +25,7 @@ group= "tk.monnef.jaffas"
 archivesBaseName = "jaffas"
 
 minecraft {
-    version = "1.7.2-10.12.1.1060"
+    version = "1.7.2-10.12.2.1121"
     assetDir = "eclipse/assets"
 }
 
@@ -67,10 +67,6 @@ jar {
 */
     // just pack everything. Forge Gradle's support sucks so we will repack this later on
     archiveName = "combined.jar"
-
-    doLast {
-        "bash pack.bash".execute()
-    }
 }
 
 // TODO: core
