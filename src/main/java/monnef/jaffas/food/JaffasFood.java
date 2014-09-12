@@ -89,7 +89,14 @@ import static monnef.jaffas.food.common.ContentHolder.registerCleaverRecords;
 import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
 import static monnef.jaffas.food.common.ContentHolder.waterOfLife;
 
-@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version, dependencies = "after:ThermalExpansion;after:MineFactoryReloaded;after:Forestry;after:BuildCraft|Energy;after:ExtrabiomesXL;required-after:monnef-core")
+@Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version,
+        dependencies = "after:ThermalExpansion;" +
+                "after:MineFactoryReloaded;" +
+                "after:Forestry;" +
+                "after:BuildCraft|Energy;" +
+                "after:ExtrabiomesXL;" +
+                "required-after:" + monnef.core.Reference.ModId + ";" +
+                "required-after:" + monnef.core.Reference.ModIdHelper)
 public class JaffasFood extends JaffasModBase {
     public static final String LAST_VERSION_SHOWN = "lastVersionShown";
 

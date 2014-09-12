@@ -80,7 +80,7 @@ printDone
 printStart "Creating core manifest"
 dir_core_manifest="$dir_core/META-INF"
 ensureDir "$dir_core_manifest"
-echo -e 'Manifest-Version: 1.0\nFMLCorePlugin: monnef.core.MonnefCorePlugin\n' > "$dir_core_manifest/MANIFEST.MF"
+echo -e 'Manifest-Version: 1.0\nFMLCorePlugin: monnef.core.MonnefCorePlugin\nFMLCorePluginContainsFMLMod: yeah\n' > "$dir_core_manifest/MANIFEST.MF"
 printDone
 
 printStart "Packing core"
