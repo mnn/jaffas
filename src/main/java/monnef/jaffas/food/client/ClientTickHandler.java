@@ -111,7 +111,7 @@ public class ClientTickHandler extends ScheduledTicker {
                         } else if (cmp == 1) {
                             if (playerUUID.toLowerCase().equals(monnefUUID)) {
                                 PlayerHelper.addMessage(player, String.format(
-                                        "Local version - §6%s§r is newer than remote - §6%s§r, did you forget to update version file? ",
+                                        "Local version - \u00A76%s\u00A7r is newer than remote - \u00A76%s\u00A7r, did you forget to update version file? ",
                                         VersionHelper.versionToString(thisVersion),
                                         VersionHelper.versionToString(remoteVersion)
                                 ));
@@ -133,7 +133,7 @@ public class ClientTickHandler extends ScheduledTicker {
     }
 
     private void showNewVersionMessage(EntityClientPlayerMP player) {
-        PlayerHelper.addMessage(player, "New version §e" + cachedVersionString + "§r of \"§5" + Reference.ModName + "§r\" is available.");
+        PlayerHelper.addMessage(player, "New version \u00A7e" + cachedVersionString + "\u00A7r of \"\u00A75" + Reference.ModName + "\u00A7r\" is available.");
         PlayerHelper.addMessage(player, "This message will not be shown again, if you want more details use /jam command.");
     }
 

@@ -61,6 +61,6 @@ public class ItemLinkTool extends ItemPower implements IMachineTool {
     }
 
     private void SendMessage(EntityPlayer player, String msg) {
-        PlayerHelper.addMessage(player, "[§9LinkTool§r] " + msg);
+        PlayerHelper.addMessage(player, "[\u00A79LinkTool\u00A7r] " + msg);
     }
 }

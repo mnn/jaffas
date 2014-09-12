@@ -92,9 +92,9 @@ public class ItemWindTurbine extends ItemPower {
     public void addInformationCustom(ItemStack stack, EntityPlayer player, List result, boolean par4) {
         super.addInformationCustom(stack, player, result, par4);
         if (this != JaffasPower.windTurbineMill) result.add(BETA_WARNING_TEXT());
-        result.add(String.format("Radius: §f%s.5m§r", getRadius()));
+        result.add(String.format("Radius: \u00A7f%s.5m\u00A7r", getRadius()));
         if (usesColoring)
-            result.add(String.format("Color: §f%s§r", ColorHelper.getColor(getTurbineColor(stack)).formatTextOrHex()));
+            result.add(String.format("Color: \u00A7f%s\u00A7r", ColorHelper.getColor(getTurbineColor(stack)).formatTextOrHex()));
     }
 
     public float getRotationSpeedPerTick() {

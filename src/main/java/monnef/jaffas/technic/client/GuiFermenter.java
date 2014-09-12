@@ -101,11 +101,11 @@ public class GuiFermenter extends GuiContainerMonnefCore {
         GuiFermenter fermenterGui = (GuiFermenter) gui;
         if (isMouseInRect(mousex, mousey, GuiFermenter.TANK_POS_X, GuiFermenter.TANK_POS_Y, GuiFermenter.TANK_WIDTH, GuiFermenter.TANK_HEIGHT)) {
             TileFermenter tile = fermenterGui.tile;
-            currenttip.add(String.format("§2%s §8(§7%d§8/§7%d§8)§r", tile.getLiquid().getCapTitle(), tile.getLiquidAmount(), TileFermenter.FERMENTER_CAPACITY));
+            currenttip.add(String.format("\u00A72%s \u00A78(\u00A77%d\u00A78/\u00A77%d\u00A78)\u00A7r", tile.getLiquid().getCapTitle(), tile.getLiquidAmount(), TileFermenter.FERMENTER_CAPACITY));
         } else if (isMouseInRect(mousex, mousey, GuiFermenter.WORK_X - 1, GuiFermenter.TANK_POS_Y, GuiFermenter.WORK_WIDTH + 1, GuiFermenter.TANK_HEIGHT)) {
             TileFermenter tile = fermenterGui.tile;
             String percent = tile.getMaxWorkMeter() == 0 ? "?" : String.format("%d", (tile.getWorkMeter() * 100) / tile.getMaxWorkMeter());
-            currenttip.add(String.format("§7%s%%§r", percent));
+            currenttip.add(String.format("\u00A77%s%%\u00A7r", percent));
         }
         return currenttip;
     }

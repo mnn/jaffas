@@ -50,7 +50,7 @@ public class ItemJaffaPack extends ItemPack {
             int contentId = Item.getIdFromItem(getContent(stack).getItem());
             JaffaItem jaffaItem = JaffasFood.instance.items.getJaffaItem(contentId);
             String title = JaffasHelper.getTitle(jaffaItem);
-            result.add("§f  " + title + "§r");
+            result.add("\u00A7f  " + title + "\u00A7r");
         }
     }
 

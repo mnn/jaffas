@@ -74,7 +74,7 @@ public class GuideBookHelper {
                 }
             } else {
                 if (line.startsWith(TITLE_LINE_STARTER)) {
-                    line = String.format("§l%s§r", line.substring(TITLE_LINE_STARTER.length()));
+                    line = String.format("\u00A7l%s\u00A7r", line.substring(TITLE_LINE_STARTER.length()));
                 }
                 bookWriter.addLine(line);
             }

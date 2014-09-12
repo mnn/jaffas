@@ -32,11 +32,11 @@ public class CommandJaffas extends CommandBase {
     }
 
     private void showAbout(ICommandSender sender) {
-        addMessage(sender, String.format("§d%s§r version §6%s§r", Reference.ModName, Reference.Version));
-        addMessage(sender, String.format(" Created by §a%s§r and §a%s§r", monnef.core.Reference.MONNEF, monnef.core.Reference.TIARTYOS));
-        String versionInfo = ClientTickHandler.isVersionStringReady() ? String.format(" current version is §e%s§r", ClientTickHandler.cachedVersionString) : " Unable to get/process remote version.";
+        addMessage(sender, String.format("\u00A7d%s\u00A7r version \u00A76%s\u00A7r", Reference.ModName, Reference.Version));
+        addMessage(sender, String.format(" Created by \u00A7a%s\u00A7r and \u00A7a%s\u00A7r", monnef.core.Reference.MONNEF, monnef.core.Reference.TIARTYOS));
+        String versionInfo = ClientTickHandler.isVersionStringReady() ? String.format(" current version is \u00A7e%s\u00A7r", ClientTickHandler.cachedVersionString) : " Unable to get/process remote version.";
         addMessage(sender, versionInfo);
-        String urlString = monnef.core.Reference.URL_JAFFAS_WIKI.replaceAll("^(http://)(.*$)", "§7$1§7§9$2§r");
+        String urlString = monnef.core.Reference.URL_JAFFAS_WIKI.replaceAll("^(http://)(.*$)", "\u00A77$1\u00A77\u00A79$2\u00A7r");
         addMessage(sender, String.format(" %s", urlString));
     }
 

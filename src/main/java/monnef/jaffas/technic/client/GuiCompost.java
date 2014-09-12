@@ -52,9 +52,9 @@ public class GuiCompost extends GuiContainerMonnefCore {
     public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
         GuiCompost compostGui = (GuiCompost) gui;
         if (isMouseInRect(mousex, mousey, 76, 20, 16, GuiCompost.TANK_METER_HEIGHT_MAX)) {
-            currenttip.add(String.format("§2Compost §8(§7%d§8/§7%d§8)§r", compostGui.core.getTankMeter(), compostGui.core.getMaxTankValue()));
+            currenttip.add(String.format("\u00A72Compost \u00A78(\u00A77%d\u00A78/\u00A77%d\u00A78)\u00A7r", compostGui.core.getTankMeter(), compostGui.core.getMaxTankValue()));
         } else if (isMouseInRect(mousex, mousey, 102, 32, 22, 17)) {
-            currenttip.add(String.format("§7%d%%§r", (compostGui.core.getWorkMeter() * 100) / compostGui.core.getMaxWork()));
+            currenttip.add(String.format("\u00A77%d%%\u00A7r", (compostGui.core.getWorkMeter() * 100) / compostGui.core.getMaxWork()));
         }
         return currenttip;
     }
