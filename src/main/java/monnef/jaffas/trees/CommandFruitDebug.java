@@ -28,5 +28,4 @@ public class CommandFruitDebug extends CommandBase {
         TileFruitLeaves.timerMax = TileFruitLeaves.timerMax == 20 * 60 ? newTimer : 20 * 60;
         PlayerHelper.addMessage(sender, "global timer max set to " + TileFruitLeaves.timerMax);
     }
-
 }

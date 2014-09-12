@@ -2,8 +2,6 @@ package monnef.jaffas.food.network
 
 import monnef.core.network.message.{MessageOut, MessageIn}
 import monnef.jaffas.food.network.HomeStonePacketType.HomeStonePacketType
-import com.ibm.icu.impl.InvalidFormatException
-import net.minecraft.client.entity.EntityPlayerSP
 import net.minecraft.entity.player.{EntityPlayer, EntityPlayerMP}
 import monnef.jaffas.food.JaffasFood
 import monnef.jaffas.food.common.CoolDownRegistry
@@ -11,6 +9,7 @@ import monnef.jaffas.food.common.CoolDownType._
 import monnef.jaffas.food.JaffasFood._
 import monnef.jaffas.food.item.ItemSpawnStone
 import monnef.core.utils.PlayerHelper
+import java.net.ProtocolException
 
 class HomeStonePacket extends JaffasPacket {
 
@@ -30,7 +29,7 @@ class HomeStonePacket extends JaffasPacket {
 
   override def read(in: MessageIn[_]) {
     val typeNum = in.readByte()
-    if (typeNum < 0 || typeNum >= HomeStonePacketType.values.size) throw new InvalidFormatException
+    if (typeNum < 0 || typeNum >= HomeStonePacketType.values.size) throw new ProtocolException()
     pType = HomeStonePacketType(typeNum)
     if (pType == HomeStonePacketType.SYNC) {
       secondsRemaining = in.readInt()

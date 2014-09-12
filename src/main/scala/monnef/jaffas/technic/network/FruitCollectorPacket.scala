@@ -2,7 +2,6 @@ package monnef.jaffas.technic.network
 
 import monnef.jaffas.food.network.JaffasPacket
 import monnef.core.network.message.{MessageOut, MessageIn}
-import net.minecraft.client.entity.EntityPlayerSP
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.entity.item.EntityItem
 import monnef.jaffas.trees.block.TileFruitCollector
