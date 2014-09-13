@@ -1,3 +1,22 @@
+## 0.7.0
+- ported to 1.7.2 (Forge 1121, might not work with other versions)
+- updated plants: added support for right click to collect
+- added more crop stages, now every crop has 5 stages (from 3)
+- sligtly modified some crop textures
+- fixed internal names of food items (breaks current worlds)
+- changed switchgrass - harvestable by right click, no drop quantity randomness
+- fruit collector: slightly changed costs - actions eat more energy, but searching is free
+- updated all blocks and items to use language file (translations are now possible, yay!)
+- updated achievements: use of lang file
+- recipes with sticks accept sticks from oredict, not just vanilla ones
+- raised seed drop from plants
+- machines no longer use energy when not being used (counteracted perdition from BuildCraft power)
+- made collector's range configurable (and boosted it a bit)
+- fixed not-refreshing client-side inventory when spamming sink (holding right mouse button)
+
+## 0.6.3e
+- fixed crash on using broken tool (weird thing is it worked fine, possibly Forge changed something and it got broken)
+
 ## 0.6.3d
 - implemented use of ThermalExpansion 3 API (IMC)
 - fixed double fishStickCooked creation
