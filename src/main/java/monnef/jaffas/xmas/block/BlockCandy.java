@@ -132,7 +132,7 @@ public class BlockCandy extends BlockXmas {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
         BoundsHelper b = new BoundsHelper(meta);
 
-        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2 + b.x1), (double) par3, (double) ((float) par4 + b.y1), (double) ((float) par2 + b.x2), (double) ((float) par3 + b.top), (double) ((float) par4 + b.y2));
+        return AxisAlignedBB.getBoundingBox((double) ((float) par2 + b.x1), (double) par3, (double) ((float) par4 + b.y1), (double) ((float) par2 + b.x2), (double) ((float) par3 + b.top), (double) ((float) par4 + b.y2));
     }
 
     private class BoundsHelper {

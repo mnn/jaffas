@@ -10,10 +10,8 @@ import monnef.core.client.CustomBlockRenderingHelper;
 import monnef.jaffas.food.block.BlockJDirectional;
 import monnef.jaffas.food.common.ContentHolder;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Vec3Pool;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -153,11 +151,6 @@ public class DirectionalBlockRenderer implements ISimpleBlockRenderingHandler {
         @Override
         public boolean extendedLevelsInChunkCache() {
             return false;
-        }
-
-        @Override
-        public Vec3Pool getWorldVec3Pool() {
-            return null;
         }
 
         @Override

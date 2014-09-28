@@ -42,7 +42,7 @@ public class BlockPizza extends BlockJaffas {
 
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
-        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2), (double) par3, (double) ((float) par4), (double) ((float) par2), (double) ((float) par3 + f2), (double) ((float) par4));
+        return AxisAlignedBB.getBoundingBox((double) ((float) par2), (double) par3, (double) ((float) par4), (double) ((float) par2), (double) ((float) par3 + f2), (double) ((float) par4));
     }
 
     public int setRotation(int meta, boolean direction) {

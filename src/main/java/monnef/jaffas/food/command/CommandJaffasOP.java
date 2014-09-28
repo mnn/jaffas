@@ -6,6 +6,7 @@
 package monnef.jaffas.food.command;
 
 import monnef.core.utils.PlayerHelper;
+import monnef.core.utils.ServerUtils;
 import monnef.core.utils.WeatherHelper;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.CoolDownRegistry;
@@ -84,7 +85,7 @@ public class CommandJaffasOP extends CommandBase {
             } else {
                 playerName = parameters[1];
             }
-            EntityPlayer player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(playerName);
+            EntityPlayer player = ServerUtils.getPlayerForUsername(playerName);
             if (player == null) {
                 addMessage(commandsender, "Player not found.");
                 return;

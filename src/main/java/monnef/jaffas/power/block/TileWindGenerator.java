@@ -222,7 +222,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
         }
 
         IIntegerCoordinates pos = getTurbineHubPositionInternal();
-        AxisAlignedBB box = AxisAlignedBB.getAABBPool().getAABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
+        AxisAlignedBB box = AxisAlignedBB.getBoundingBox(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
         List turbs = worldObj.getEntitiesWithinAABB(EntityWindTurbine.class, box);
         if (turbs.size() > 1) {
             killAllTurbinesInFront();
@@ -266,7 +266,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
 
     public void killAllTurbinesInFront() {
         IIntegerCoordinates pos = getTurbineHubPositionInternal();
-        AxisAlignedBB box = AxisAlignedBB.getAABBPool().getAABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
+        AxisAlignedBB box = AxisAlignedBB.getBoundingBox(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1);
         List turbs = worldObj.getEntitiesWithinAABB(EntityWindTurbine.class, box);
         for (Object turb : turbs) {
             ((EntityWindTurbine) turb).setDead();

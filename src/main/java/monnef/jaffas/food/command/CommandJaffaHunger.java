@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.command;
 
+import monnef.core.utils.ServerUtils;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,11 +23,11 @@ public class CommandJaffaHunger extends CommandBase {
     }
 
     @Override
-    public void processCommand(ICommandSender sender, String[] var2) {
+    public void processCommand(ICommandSender sender, String[] args) {
         EntityPlayer player;
 
-        if (var2.length > 0 && var2[0].length() >= 1) {
-            player = MinecraftServer.getServer().getConfigurationManager().getPlayerForUsername(var2[0]);
+        if (args.length > 0 && args[0].length() >= 1) {
+            player = ServerUtils.getPlayerForUsername(args[0]);
             if (player == null) {
                 addMessage(sender, "Player not found.");
                 return;

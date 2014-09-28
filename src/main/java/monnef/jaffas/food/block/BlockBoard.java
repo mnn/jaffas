@@ -122,8 +122,7 @@ public class BlockBoard extends BlockContainerJaffas {
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         int side = meta & 3;
-        //return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double) ((float) x + 0), (double) ((float) y + 0), (double) ((float) z + 0), (double) ((float) x + 1), (double) ((float) y + 0.5), (double) ((float) z + 1));
-        return AxisAlignedBB.getAABBPool().getAABB((double) ((float) x + 0), (double) ((float) y + 0), (double) ((float) z + 0), (double) ((float) x + 1), (double) ((float) y + 0.5), (double) ((float) z + 1));
+        return AxisAlignedBB.getBoundingBox((double) ((float) x + 0), (double) ((float) y + 0), (double) ((float) z + 0), (double) ((float) x + 1), (double) ((float) y + 0.5), (double) ((float) z + 1));
     }
 
     @Override

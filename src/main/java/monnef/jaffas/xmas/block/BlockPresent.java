@@ -44,9 +44,9 @@ public class BlockPresent extends BlockXmasMulti {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
 
         if (meta < 6) {
-            return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2 + f2), (double) par3, (double) ((float) par4 + f2), (double) ((float) par2 + f2d), (double) ((float) par3 + f7d), (double) ((float) par4 + f2d));
+            return AxisAlignedBB.getBoundingBox((double) ((float) par2 + f2), (double) par3, (double) ((float) par4 + f2), (double) ((float) par2 + f2d), (double) ((float) par3 + f7d), (double) ((float) par4 + f2d));
         } else {
-            return AxisAlignedBB.getAABBPool().getAABB((double) ((float) par2 + f4), (double) par3, (double) ((float) par4 + f4), (double) ((float) par2 + f4d), (double) ((float) par3 + f9d), (double) ((float) par4 + f4d));
+            return AxisAlignedBB.getBoundingBox((double) ((float) par2 + f4), (double) par3, (double) ((float) par4 + f4), (double) ((float) par2 + f4d), (double) ((float) par3 + f9d), (double) ((float) par4 + f4d));
         }
     }
 
