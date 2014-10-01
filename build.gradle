@@ -56,7 +56,7 @@ sourceSets.main.java.srcDirs = []
 dependencies {
     compile "junit:junit:4.11"
     testCompile "junit:junit:4.11"
-    compile files('lib/NotEnoughItems-1.7.2-1.0.2.14-dev.jar')
+    compile files('lib/NotEnoughItems-1.7.10-1.0.2.15-dev.jar')
 }
 
 jar {

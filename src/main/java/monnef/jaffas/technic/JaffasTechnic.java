@@ -309,8 +309,6 @@ public class JaffasTechnic extends JaffasModBase {
 
         JaffasFood.packetHandler.manager().registerPacket(2, FruitCollectorPacket.class);
 
-        installThermalExpansionSupport();
-
         FMLCommonHandler.instance().bus().register(new PlayerTracker());
     }
 
@@ -342,6 +340,7 @@ public class JaffasTechnic extends JaffasModBase {
         CompostRegister.fillWithVanillaItems();
         CompostRegister.fillWithFoodModuleItems();
         handleGuideBook();
+        installThermalExpansionSupport();
     }
 
     private void handleGuideBook() {

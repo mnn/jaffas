@@ -2,6 +2,7 @@ package monnef.external;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
+import monnef.core.utils.GameObjectsDumper;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,6 +29,7 @@ public class ThermalExpansionHelper {
     private static ItemStack createTEStack(String itemName) {
         ItemStack stack = GameRegistry.findItemStack(ThermalExpansionModId, itemName, 1);
         if (stack == null) {
+            GameObjectsDumper.dump("gameObjectsFromCrash.csv");
             throw new RuntimeException("Cannot find TE item \"" + itemName + "\".");
         }
         return stack;
