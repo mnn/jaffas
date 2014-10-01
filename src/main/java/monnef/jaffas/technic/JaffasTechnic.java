@@ -118,6 +118,7 @@ import static monnef.core.utils.RegistryUtils.registerMultiBlock;
 import static monnef.jaffas.food.JaffasFood.Log;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.crafting.Recipes.ANY_DMG;
+import static monnef.jaffas.food.crafting.Recipes.WOOD_PLANK;
 import static monnef.jaffas.food.crafting.Recipes.getItemStack;
 import static monnef.jaffas.food.item.JaffaItem._last;
 import static monnef.jaffas.food.item.JaffaItem.beerMugEmpty;
@@ -796,6 +797,21 @@ public class JaffasTechnic extends JaffasModBase {
         TileGrinder.addRecipe(new ItemStack(Items.bread), getItemStack(breadCrumbs), 1500);
         TileGrinder.addRecipe(getItemStack(roll), getItemStack(breadCrumbs), 400);
         TileGrinder.addRecipe(getItemStack(bun), getItemStack(breadCrumbs), 400);
+
+        for (int i = 0; i <= 15; i++) {
+            GameRegistry.addShapedRecipe(new ItemStack(ContentHolder.blockBricks, 16, i),
+                    "BNB", "NDN", "BNB",
+                    'N', jaffarrolNugget,
+                    'B', Blocks.stonebrick,
+                    'D', DyeHelper.getDye(i)
+            );
+            Recipes.addOreRecipe(new ItemStack(ContentHolder.blockStainedPlanks, 16, i),
+                    "BNB", "NDN", "BNB",
+                    'N', jaffarrolNugget,
+                    'B', WOOD_PLANK,
+                    'D', DyeHelper.getDye(i)
+            );
+        }
     }
 
     private void registerPlantingBagRecipes(ItemStack s) {
