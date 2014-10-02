@@ -29,8 +29,4 @@ class WailaCrops extends IWailaDataProvider {
 object WailaCrops {
   final val GROWTH_PRE = "Growth: "
   final val GROWTH_MATURE = "mature"
-
-  def callbackRegister(registrar: IWailaRegistrar) {
-    registrar.registerBodyProvider(new WailaCrops, classOf[BlockJaffaCrops])
-  }
 }

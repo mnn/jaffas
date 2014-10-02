@@ -334,7 +334,7 @@ public class JaffasTrees extends JaffasModBase {
         super.load(event);
         JaffasFood.printInitialized(ModulesEnum.trees);
         TileFruitCollector.onLoad();
-        FMLInterModComms.sendMessage("Waila", "register", "monnef.jaffas.trees.compatibility.WailaCrops$.MODULE$.callbackRegister");
+        FMLInterModComms.sendMessage("Waila", "register", "monnef.jaffas.trees.compatibility.WailaCallback.callbackRegister");
     }
 
     private void registerForestryStuff() {
