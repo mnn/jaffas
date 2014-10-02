@@ -94,6 +94,10 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
         return meta >= lastPhase;
     }
 
+    public String generateGrowthStatusString(int meta) {
+        return String.format("%d%", Math.round(100f * meta / lastPhase));
+    }
+
     public boolean growABit(World world, int x, int y, int z) {
         int meta = world.getBlockMetadata(x, y, z);
         if (canGrow(meta)) {

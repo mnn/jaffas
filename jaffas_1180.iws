@@ -63,6 +63,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="PersistentItemsCraftingHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2125">
+              <caret line="28" column="35" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="BushManager.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/trees/BushManager.scala">
           <provider selected="true" editor-type-id="text-editor">
@@ -75,11 +85,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JaffasTrees.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="JaffasTrees.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/JaffasTrees.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.81386137" vertical-offset="6661" max-vertical-offset="8721">
-              <caret line="546" column="0" selection-start-line="546" selection-start-column="0" selection-end-line="546" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3230" max-vertical-offset="8704">
+              <caret line="335" column="88" selection-start-line="335" selection-start-column="36" selection-end-line="335" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WailaCrops.scala" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/compatibility/WailaCrops.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.42889908" vertical-offset="0" max-vertical-offset="872">
+              <caret line="22" column="2" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="e#43#149#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BlockJaffaCrops.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/block/BlockJaffaCrops.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="543" max-vertical-offset="4743">
+              <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MathHelper.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/utils/MathHelper.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="952">
+              <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -95,9 +137,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/monnef/core/common/ScheduledTicker.scala" />
-        <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/common/ThreadVersionCheck.java" />
-        <option value="$PROJECT_DIR$/src/main/java/monnef/core/client/GuiContainerMachine.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/client/ClientTickHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffas.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/crafting/GuideBookHelper.java" />
@@ -146,6 +185,9 @@
         <option value="$PROJECT_DIR$/src/main/java/monnef/external/ThermalExpansionCustomHelper.java" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/trees/BushManager.scala" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/JaffasTrees.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/monnef/core/utils/MathHelper.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/block/BlockJaffaCrops.java" />
+        <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/compatibility/WailaCrops.scala" />
       </list>
     </option>
   </component>
@@ -469,6 +511,48 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="trees" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1180" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas_1180" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monnef" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jaffas" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="trees" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="compatibility" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WailaCrops.scala" />
+              <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1056,12 +1140,12 @@
       <workItem from="1412177294852" duration="2388000" />
       <workItem from="1412184211672" duration="354000" />
       <workItem from="1412241889541" duration="2486000" />
-      <workItem from="1412264881034" duration="672000" />
+      <workItem from="1412264881034" duration="2311000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="359713000" />
+    <option name="totallyTimeSpent" value="361352000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
@@ -1073,7 +1157,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32182628" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39420936" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39420936" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17004265" sideWeight="0.5044543" order="2" side_tool="true" content_ui="tabs" />
@@ -1082,11 +1166,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.5183824" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.518931" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.48161766" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.48106903" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32516703" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1166,41 +1250,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180.jar!/net/minecraft/util/Vec3.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.48" vertical-offset="0" max-vertical-offset="918">
-          <caret line="12" column="60" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180.jar!/net/minecraft/entity/Entity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="42" max-vertical-offset="7157">
-          <caret line="14" column="33" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35273573" vertical-offset="31283" max-vertical-offset="44387">
-          <caret line="1993" column="30" selection-start-line="1993" selection-start-column="30" selection-end-line="1993" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/cpw/mods/fml/client/registry/ISimpleBlockRenderingHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17708333" vertical-offset="0" max-vertical-offset="576">
-          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/client/DirectionalBlockRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2380">
-          <caret line="17" column="42" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/util/Vec3.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.060390763" vertical-offset="0" max-vertical-offset="4335">
@@ -1527,11 +1576,55 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/JaffasFood.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33944955" vertical-offset="4005" max-vertical-offset="5253">
+          <caret line="256" column="55" selection-start-line="256" selection-start-column="55" selection-end-line="256" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/crafting/PersistentItemsCraftingHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2125">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/JaffasTrees.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81386137" vertical-offset="6661" max-vertical-offset="8721">
-          <caret line="546" column="0" selection-start-line="546" selection-start-column="0" selection-end-line="546" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3230" max-vertical-offset="8704">
+          <caret line="335" column="88" selection-start-line="335" selection-start-column="36" selection-end-line="335" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/core/utils/MathHelper.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="952">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/block/BlockJaffaCrops.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="543" max-vertical-offset="4743">
+          <caret line="97" column="0" selection-start-line="97" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/compatibility/WailaCrops.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42889908" vertical-offset="0" max-vertical-offset="872">
+          <caret line="22" column="2" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#43#149#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -9,6 +9,7 @@ import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
@@ -46,6 +47,7 @@ import monnef.jaffas.trees.common.EatableType;
 import monnef.jaffas.trees.common.ItemFromFruitResult;
 import monnef.jaffas.trees.common.JaffaCropProvider;
 import monnef.jaffas.trees.common.LeavesInfo;
+import monnef.jaffas.trees.compatibility.WailaCrops$;
 import monnef.jaffas.trees.item.ItemBagCollecting;
 import monnef.jaffas.trees.item.ItemBagPlanting;
 import monnef.jaffas.trees.item.ItemBlockFruitSapling;
@@ -253,8 +255,6 @@ public class JaffasTrees extends JaffasModBase {
         // texture stuff
         proxy.registerRenderThings();
 
-        //GameRegistry.registerCraftingHandler(new PersistentItemsCraftingHandler());
-
         registerForestryStuff();
 
         creativeTab.setup(ItemManager.getItem(JaffaItem.oranges));
@@ -334,6 +334,7 @@ public class JaffasTrees extends JaffasModBase {
         super.load(event);
         JaffasFood.printInitialized(ModulesEnum.trees);
         TileFruitCollector.onLoad();
+        FMLInterModComms.sendMessage("Waila", "register", "monnef.jaffas.trees.compatibility.WailaCrops$.MODULE$.callbackRegister");
     }
 
     private void registerForestryStuff() {

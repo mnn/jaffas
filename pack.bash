@@ -62,6 +62,9 @@ if [ -d  "$dir_all/assets/monnef core" ]; then
 fi
 mv "$dir_all/assets" "$dir_jaffas"
 
+# remove soft APIs
+rm -fr "$dir_all/mcp"
+
 # APIs
 mv "$dir_all/buildcraft" "$dir_core"
 mv "$dir_all/forestry" "$dir_jaffas"
