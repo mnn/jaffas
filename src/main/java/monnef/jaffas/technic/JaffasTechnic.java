@@ -22,7 +22,7 @@ import monnef.core.utils.DyeHelper;
 import monnef.core.utils.EntityHelper;
 import monnef.core.utils.ItemHelper;
 import monnef.core.utils.RegistryUtils;
-import monnef.external.ThermalExpansionHelper;
+import monnef.external.ThermalExpansionCustomHelper;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
@@ -376,12 +376,12 @@ public class JaffasTechnic extends JaffasModBase {
     private void installThermalExpansionSupport() {
         if (JaffasFood.otherMods.isTEDetected()) {
             try {
-                ThermalExpansionHelper.init();
-                ThermalExpansionHelper.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
-                ThermalExpansionHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrol), new ItemStack(jaffarrolDust));
-                ThermalExpansionHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrolRefined), new ItemStack(jaffarrolDust));
-                ThermalExpansionHelper.addSmelterDustToIngotsRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
-                ThermalExpansionHelper.addSmelterOreToIngotsRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrol));
+                ThermalExpansionCustomHelper.init();
+                ThermalExpansionCustomHelper.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
+                ThermalExpansionCustomHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrol), new ItemStack(jaffarrolDust));
+                ThermalExpansionCustomHelper.addPulverizerIngotToDustRecipe(new ItemStack(jaffarrolRefined), new ItemStack(jaffarrolDust));
+                ThermalExpansionCustomHelper.addSmelterDustToIngotsRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
+                ThermalExpansionCustomHelper.addSmelterOreToIngotsRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrol));
             } catch (Exception e) {
                 Log.printSevere("Thermal Expansion integration failed - the API may have changed.");
                 e.printStackTrace();
