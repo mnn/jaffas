@@ -543,7 +543,8 @@ public class JaffasTrees extends JaffasModBase {
                     'I', new ItemStack(Blocks.iron_block), 'D', new ItemStack(Items.diamond), 'R', new ItemStack(Blocks.redstone_torch), 'G', new ItemStack(Blocks.gold_block));
         }
 
-        installFruitSeedsRecipes();
+        installTreeSeedsRecipes();
+        BushManager.installSeedRecipes();
 
         Recipes.addShapelessOreRecipe(new ItemStack(itemStick, 4), Recipes.WOOD_STICK, Recipes.WOOD_STICK, Recipes.WOOD_STICK, Recipes.WOOD_STICK, Items.slime_ball);
         GameRegistry.addRecipe(new ItemStack(itemRod), " S ", "ISI", " S ", 'S', itemStick, 'I', Items.iron_ingot);
@@ -564,13 +565,6 @@ public class JaffasTrees extends JaffasModBase {
         addPieRecipe(null, pieVanillaRaw, TilePie.PieType.VANILLA, true, getItem(jamV));
         addPieRecipe(itemPlum, piePlumRaw, TilePie.PieType.PLUM, true, getItem(jamP));
 
-        /*
-        // old juice recipes
-        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceOrange)), getItem(juiceBottle), ORANGE, ORANGE, ORANGE, ORANGE));
-        addRecipe(new ShapelessOreRecipe(new ItemStack(getItem(juiceLemon)), getItem(juiceBottle), LEMON, LEMON, LEMON, LEMON));
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceApple)), getItem(juiceBottle), Item.appleRed, Item.appleRed, Item.appleRed, Item.appleRed);
-        GameRegistry.addShapelessRecipe(new ItemStack(getItem(juiceRaspberry)), getItem(juiceBottle), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry), getFruit(bushType.Raspberry));
-        */
         // new juice recipes
         Juices$.MODULE$.addRecipes();
 
@@ -618,7 +612,7 @@ public class JaffasTrees extends JaffasModBase {
         return new ItemStack(getFruit(type), count);
     }
 
-    private void installFruitSeedsRecipes() {
+    private void installTreeSeedsRecipes() {
         for (int i = 1; i <= leavesTypesCount; i++) {
             int type = i;
             ItemFruitSeeds item = JaffasTrees.leavesList.get(type / 4).seedsItem;
@@ -643,12 +637,7 @@ public class JaffasTrees extends JaffasModBase {
                 throw new RuntimeException("null in fruit!");
             }
 
-            seed.stackSize = 2;
-            GameRegistry.addShapelessRecipe(seed,
-                    fruit.copy(), fruit.copy(), fruit.copy(),
-                    fruit.copy(), fruit.copy(), fruit.copy(),
-                    fruit.copy(), fruit.copy(), fruit.copy()
-            );
+            GameRegistry.addShapelessRecipe(seed, fruit.copy());
         }
     }
 }

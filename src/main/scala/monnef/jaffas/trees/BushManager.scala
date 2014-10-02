@@ -6,6 +6,8 @@ import monnef.jaffas.trees.common.EatableType._
 import monnef.jaffas.trees.common.DropType._
 import monnef.jaffas.trees.BushType._
 import java.util
+import scala.collection.JavaConverters._
+import monnef.jaffas.food.crafting.Recipes
 
 object BushManager {
   var bushesList: util.EnumMap[BushType, BushInfo] = new util.EnumMap[BushType, BushInfo](classOf[BushType])
@@ -37,5 +39,9 @@ object BushManager {
     addBushInfo(Peanuts, "peanuts", 34, iconIndex.next(), 135, null, 4, 1, EatableNormal, DropsFromGrass)
     addBushInfo(Pea, "pea", 34, iconIndex.next(), 136, null, 4, 1, EatableNormal, DropsFromGrass)
     addBushInfo(Bean, "bean", 34, iconIndex.next(), 137, null, 4, 1, NotEatable, DropsFromGrass)
+  }
+
+  def installSeedRecipes() {
+    for ((_, info) <- bushesList.asScala;fruit = info.itemFruit;seed = info.itemSeeds) Recipes.addShapelessOreRecipe(seed, fruit)
   }
 }
