@@ -95,7 +95,7 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
     }
 
     public String generateGrowthStatusString(int meta) {
-        return String.format("%d%", Math.round(100f * meta / lastPhase));
+        return String.format("%d%%", Math.round(100f * meta / lastPhase));
     }
 
     public boolean growABit(World world, int x, int y, int z) {
