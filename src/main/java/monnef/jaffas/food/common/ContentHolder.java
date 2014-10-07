@@ -17,6 +17,7 @@ import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockBoard;
 import monnef.jaffas.food.block.BlockBricks;
+import monnef.jaffas.food.block.BlockCoconutLamp;
 import monnef.jaffas.food.block.BlockColumn;
 import monnef.jaffas.food.block.BlockCross;
 import monnef.jaffas.food.block.BlockFridge;
@@ -39,6 +40,7 @@ import monnef.jaffas.food.block.ItemBlockPie;
 import monnef.jaffas.food.block.ItemBlockSwitchgrass;
 import monnef.jaffas.food.block.ItemBlockTable;
 import monnef.jaffas.food.block.TileBoard;
+import monnef.jaffas.food.block.TileCoconutLamp;
 import monnef.jaffas.food.block.TileColumn;
 import monnef.jaffas.food.block.TileCross;
 import monnef.jaffas.food.block.TileFridge;
@@ -109,6 +111,7 @@ public class ContentHolder {
     public static BlockTintedMulti blockStainedStone;
     public static BlockTintedMulti blockStainedPolishedStone;
     public static BlockTintedMulti blockStainedPlanks;
+    public static BlockCoconutLamp blockCoconutLamp;
 
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),
@@ -329,6 +332,10 @@ public class ContentHolder {
         blockStainedPlanks = new BlockLightlyTintedMulti(295, Material.wood, "Stained Planks");
         blockStainedPlanks.setHardness(2.0F).setResistance(4.7F).setStepSound(Block.soundTypeWood).setBlockName("stainedPlanks");
         RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPlanks, ItemBlockJaffas.class, blockStainedPlanks.subNames());
+
+        blockCoconutLamp = new BlockCoconutLamp(296);
+        RegistryUtils.registerBlock(blockCoconutLamp);
+        registerTileEntity(TileCoconutLamp.class, "coconutLamp");
     }
 
     public static void createJaffaArmorAndSword() {

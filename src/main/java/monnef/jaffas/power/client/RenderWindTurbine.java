@@ -44,7 +44,7 @@ public class RenderWindTurbine extends Render {
         RenderUtils.rotate(turbineRotation);
         float turbineSpin = turbine.animationRotation + partialTickTime * turbine.getCurrentRotationPerTick();
         turbineSpin *= isRotationOdd(turbineRotation) ? -1 : 1;
-        models.get(turbine.getModelId()).render(1, turbine.getColor(), turbineSpin);
+        models.get(turbine.getModelId()).render(turbine.getColor(), turbineSpin);
         GL11.glPopMatrix();
     }
 
@@ -60,20 +60,20 @@ public class RenderWindTurbine extends Render {
 
         public TurbineRenderer(String baseModelFileName, String baseTexture, String coloredModelFileName, String coloredTexture, float rotationFix, float zOffset) {
             this.zOffset = zOffset;
-            baseModel = baseModelFileName == null ? null : new ModelObj(ResourcePathHelper.assemble(baseModelFileName, MODELS), rotationFix, ResourcePathHelper.assemble(baseTexture, ENTITY));
-            coloredModel = coloredModelFileName == null ? null : new ModelObj(ResourcePathHelper.assemble(coloredModelFileName, MODELS), rotationFix, ResourcePathHelper.assemble(coloredTexture, ENTITY));
+            baseModel = baseModelFileName == null ? null : new ModelObj(ResourcePathHelper.assemble(baseModelFileName, MODELS), rotationFix, ResourcePathHelper.assemble(baseTexture, ENTITY), 1);
+            coloredModel = coloredModelFileName == null ? null : new ModelObj(ResourcePathHelper.assemble(coloredModelFileName, MODELS), rotationFix, ResourcePathHelper.assemble(coloredTexture, ENTITY), 1);
         }
 
-        public void render(float scale, int colour, float turbineSpin) {
+        public void render(int colour, float turbineSpin) {
             float angle = 360 * turbineSpin;
             GL11.glRotatef(angle, 0, 0, 1);
             GL11.glTranslatef(0, 0, -zOffset);
             if (baseModel != null) {
-                baseModel.renderWithTexture(scale);
+                baseModel.renderWithTexture();
             }
             if (coloredModel != null) {
                 ColorHelper.getColor(colour, tmpColor);
-                coloredModel.renderWithTextureAndTint(scale, tmpColor);
+                coloredModel.renderWithTextureAndTint(tmpColor);
             }
             GL11.glTranslatef(0, 0, zOffset);
             GL11.glRotatef(-angle, 0, 0, 1);

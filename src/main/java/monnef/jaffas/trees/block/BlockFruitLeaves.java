@@ -427,30 +427,9 @@ public class BlockFruitLeaves extends BlockLeavesBaseJaffas {
         return (oldMeta & 12) | (getLeavesType(leavesMeta));
     }
 
-    // mostly taken from BlockLeaves
     @Override
     public int colorMultiplier(IBlockAccess access, int x, int y, int z) {
-        int red = 0;
-        int green = 0;
-        int blue = 0;
-
-        ColorHelper.IntColor weightedColor = new ColorHelper.IntColor();
-        for (int zShift = -1; zShift <= 1; ++zShift) {
-            for (int xShift = -1; xShift <= 1; ++xShift) {
-                int xBiome = x + xShift;
-                int zBiome = z + zShift;
-                int foliageColor = access.getBiomeGenForCoords(xBiome, zBiome).getBiomeFoliageColor(xBiome, y, zBiome);
-                ColorHelper.IntColor currentFoliageColor = ColorHelper.getColor(foliageColor);
-                red += currentFoliageColor.getRed();
-                green += currentFoliageColor.getGreen();
-                blue += currentFoliageColor.getBlue();
-            }
-        }
-
-        int div = 9;
-        int shift = 10;
-        //return (red / 9 & 255) << 16 | (green / 9 & 255) << 8 | blue / 9 & 255;
-        return ColorHelper.getInt(red / div + shift, green / div + shift, blue / div + shift);
+        return colorMultiplierMixedWithBiomeColor(access, x, y, z);
     }
 
     @Override

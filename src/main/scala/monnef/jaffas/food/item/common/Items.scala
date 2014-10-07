@@ -652,6 +652,7 @@ class Items extends ItemManagerAccessor {
     OreDictionary.registerOre(MALLET, getItemStackAnyDamage(malletDiamond))
     OreDictionary.registerOre(ANY_MILK, VanillaItems.milk_bucket)
     OreDictionary.registerOre(ANY_MILK, getItem(milkBoxFull))
+    OreDictionary.registerOre(Recipes.STRING, net.minecraft.init.Items.string)
   }
 }
 

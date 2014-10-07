@@ -284,6 +284,14 @@ public class BlockJaffaCrops extends BlockTrees implements IPlantable, IFactoryH
         } else return super.onBlockActivated(world, x, y, z, player, side, p_149727_7_, p_149727_8_, p_149727_9_);
     }
 
+    /*
+    // green tint on flowers and products looks awful
+    @Override
+    public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
+        return colorMultiplierMixedWithBiomeColor(world, x, y, z);
+    }
+    */
+
     /* Mine Factory Reloaded */
     @Override
     public Block getPlant() {

@@ -58,6 +58,7 @@ public class Recipes {
     public static final String WOOD_STICK = "stickWood";
     public static final String STONE = "stone";
     public static final String WHEAT = "cropWheat";
+    public static final String STRING = "string";
 
     public static final int JAFFAS_PACK_CONTENT_SIZE = 8;
     public static final int ANY_DMG = OreDictionary.WILDCARD_VALUE;

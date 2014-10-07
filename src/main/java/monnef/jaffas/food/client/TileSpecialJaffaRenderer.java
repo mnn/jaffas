@@ -8,6 +8,7 @@ package monnef.jaffas.food.client;
 import monnef.core.client.PackageToModIdRegistry;
 import monnef.core.client.ResourcePathHelper;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.TILE;
@@ -38,4 +39,7 @@ public abstract class TileSpecialJaffaRenderer extends TileEntitySpecialRenderer
     protected void setModId(String modId) {
         this.modId = modId;
     }
+
+    @Override
+    public abstract void renderTileEntityAt(TileEntity tile, double x, double y, double z, float renderTick);
 }

@@ -13,7 +13,7 @@ import org.lwjgl.opengl.{GL12, GL11}
 import monnef.jaffas.power.block.TileJuiceMaker
 
 class TileJuiceMakerRenderer extends TileSpecialJaffaRenderer {
-  val model = new ModelObj(ResourcePathHelper.assemble("juiceMaker.obj", ResourceTextureType.MODELS), 0, ResourcePathHelper.assemble("juiceMaker.png", ResourceTextureType.TILE))
+  val model = new ModelObj(ResourcePathHelper.assemble("juiceMaker.obj", ResourceTextureType.MODELS), 0, ResourcePathHelper.assemble("juiceMaker.png", ResourceTextureType.TILE), 1 / 5f)
 
   protected def getTexturePaths: Array[String] = Array()
 
@@ -38,7 +38,7 @@ class TileJuiceMakerRenderer extends TileSpecialJaffaRenderer {
     GL11.glScalef(1.0F, -1.0F, -1.0F)
     GL11.glTranslatef(0.5F, 0.5F + 0.5F, 0.5F)
     GL11.glRotatef(angle, 0, 1.0f, 0)
-    model.renderWithTexture(1 / 5f /*0.0625F*/)
+    model.renderWithTexture()
     GL11.glPopMatrix()
   }
 }

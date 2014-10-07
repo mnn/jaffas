@@ -12,6 +12,7 @@ import monnef.core.client.ClientUtils;
 import monnef.core.client.RenderItemInAir;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TileBoard;
+import monnef.jaffas.food.block.TileCoconutLamp;
 import monnef.jaffas.food.block.TileColumn;
 import monnef.jaffas.food.block.TileCross;
 import monnef.jaffas.food.block.TileJaffaStatue;
@@ -54,6 +55,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileJaffaStatue.class, new TileJaffaStatueRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TilePie.class, new TilePieRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileMeatDryer.class, new TileMeatDryerRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCoconutLamp.class, new TileCoconutLampRenderer());
 
         ContentHolder.renderID = RenderingRegistry.getNextAvailableRenderId();
         ContentHolder.renderSwitchgrassID = RenderingRegistry.getNextAvailableRenderId();

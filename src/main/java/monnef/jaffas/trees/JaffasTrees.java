@@ -20,6 +20,7 @@ import monnef.core.utils.RegistryUtils;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.TilePie;
+import monnef.jaffas.food.common.ContentHolder;
 import monnef.jaffas.food.common.JaffaCreativeTab;
 import monnef.jaffas.food.common.JaffasRegistryHelper;
 import monnef.jaffas.food.common.ModuleManager;
@@ -599,6 +600,8 @@ public class JaffasTrees extends JaffasModBase {
 
         Recipes.addSoupRecipes(getFruit(BushType.Pea), soupPeaRaw, soupPeaCooked, false);
         Recipes.addSoupRecipes(getFruit(BushType.Tomato), soupTomatoRaw, soupTomatoCooked, false);
+
+        Recipes.addOreRecipe(new ItemStack(ContentHolder.blockCoconutLamp, 2), "S", "C", 'S', Recipes.STRING, 'C', itemCoconut);
     }
 
     public static Item getFruit(BushType type) {
