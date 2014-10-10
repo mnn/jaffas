@@ -333,7 +333,7 @@ public class ContentHolder {
         blockStainedPlanks.setHardness(2.0F).setResistance(4.7F).setStepSound(Block.soundTypeWood).setBlockName("stainedPlanks");
         RegistryUtils.registerMultiBlock(ContentHolder.blockStainedPlanks, ItemBlockJaffas.class, blockStainedPlanks.subNames());
 
-        blockCoconutLamp = new BlockCoconutLamp(296);
+        blockCoconutLamp = new BlockCoconutLamp(310);
         RegistryUtils.registerBlock(blockCoconutLamp);
         registerTileEntity(TileCoconutLamp.class, "coconutLamp");
     }

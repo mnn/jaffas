@@ -11,7 +11,7 @@ import net.minecraftforge.common.util.ForgeDirection
 import net.minecraft.entity.player.EntityPlayer
 import monnef.core.utils.{scalautils, BlockHelper, PlayerHelper}
 import monnef.core.MonnefCorePlugin
-import monnef.jaffas.food.common.ContentHolder
+import monnef.jaffas.food.common.{ConfigurationManager, ContentHolder}
 import scalautils._
 
 class BlockCoconutLamp(_texture: Int) extends BlockJaffas(_texture, Material.rock) {
@@ -20,6 +20,10 @@ class BlockCoconutLamp(_texture: Int) extends BlockJaffas(_texture, Material.roc
   setStepSound(Block.soundTypeWood)
   setBlockName("coconutLamp")
   setTickRandomly(true)
+  val U = 1f / 16
+  val l = 4 * U
+  val li = 1f - l
+  setBlockBounds(l, 0, l, li, 5 * U, li)
 
   override def getCollisionBoundingBoxFromPool(world: World, x: Int, y: Int, z: Int): AxisAlignedBB = null
 
@@ -29,7 +33,7 @@ class BlockCoconutLamp(_texture: Int) extends BlockJaffas(_texture, Material.roc
 
   @SideOnly(Side.CLIENT) override def randomDisplayTick(world: World, x: Int, y: Int, z: Int, rand: Random) {
     val xx = x + 0.5F
-    val yy = y + 1 / 16f * 5
+    val yy = y + 1 / 16f * 6.5
     val zz = z + 0.5F
 
     world.spawnParticle("smoke", xx, yy, zz, 0.0D, 0.0D, 0.0D)
@@ -56,7 +60,7 @@ class BlockCoconutLamp(_texture: Int) extends BlockJaffas(_texture, Material.roc
 
   override def getRenderType: Int = ContentHolder.renderID
 
-  override def canBlockStay(world: World, x: Int, y: Int, z: Int): Boolean = world.getBlock(x, y - 1, z).getMaterial.isSolid
+  override def canBlockStay(world: World, x: Int, y: Int, z: Int): Boolean = /*world.getBlock(x, y - 1, z).getMaterial.isSolid &&*/ world.isSideSolid(x, y - 1, z, ForgeDirection.UP)
 
   override def onNeighborBlockChange(world: World, x: Int, y: Int, z: Int, block: Block) {
     var drop = false
@@ -72,11 +76,15 @@ class BlockCoconutLamp(_texture: Int) extends BlockJaffas(_texture, Material.roc
 
   override def updateTick(world: World, x: Int, y: Int, z: Int, rand: Random) {
     super.updateTick(world, x, y, z, rand)
-    val blockAbove = world.getBlock(x, y + 1, z)
-    if (blockAbove.isFlammable(world, x, y + 1, z, ForgeDirection.DOWN) && rand.nextInt(5) == 0) {
-      val toCheck = (x, y + 2, z) +: (for (xx <- Seq(-1, 1);zz <- Seq(-1, 1)) yield (x + xx, y + 1, z + zz))
-      val candidates = toCheck.filter { case (xx, yy, zz) => world.isAirBlock(xx, yy, zz)}
-      if (candidates.nonEmpty) candidates.random |> { case (xx, yy, zz) => BlockHelper.setFire(world, xx, yy, zz)}
+    if (ConfigurationManager.hardMode) {
+      val blockAbove = world.getBlock(x, y + 1, z)
+      if (blockAbove.isFlammable(world, x, y + 1, z, ForgeDirection.DOWN) && rand.nextInt(5) == 0) {
+        val toCheck = (x, y + 2, z) +: (for (xx <- Seq(-1, 1);zz <- Seq(-1, 1)) yield (x + xx, y + 1, z + zz))
+        val candidates = toCheck.filter { case (xx, yy, zz) => world.isAirBlock(xx, yy, zz)}
+        if (candidates.nonEmpty) candidates.random |> { case (xx, yy, zz) => BlockHelper.setFire(world, xx, yy, zz)}
+      }
     }
   }
+
+  override def canPlaceBlockAt(world: World, x: Int, y: Int, z: Int): Boolean = super.canPlaceBlockAt(world, x, y, z) && canBlockStay(world, x, y, z)
 }

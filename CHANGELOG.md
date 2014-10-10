@@ -1,3 +1,12 @@
+## 0.7.1
+- ported to 1.7.10
+- fixed thermal expansion integration (move from preload to load/postload?)
+- removed cloaks (MC EULA forbids it) and implemented sash for creators/donators
+- added coconut lamp
+- added Waila support for our crops (maturity meter)
+- lowered tree seeds cost in recipes
+- added recipes for seeds from crop products
+
 ## 0.7.0
 - ported to 1.7.2 (Forge 1121, might not work with other versions)
 - updated plants: added support for right click to collect

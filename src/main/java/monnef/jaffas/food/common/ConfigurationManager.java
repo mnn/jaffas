@@ -36,6 +36,7 @@ public class ConfigurationManager {
     public static String[] craftingTablesWithBrokenCraftingHandlerSupport;
     public static boolean villagerTrades;
     public static boolean disableThermalExpansionIntegration;
+    public static boolean hardMode;
 
     private static final String[] craftingTablesWithBrokenCraftingHandlerSupportDefault;
 
@@ -70,5 +71,6 @@ public class ConfigurationManager {
                 "Custom crafting tables (classes implementing IInventory) with broken or none support for crafting handlers. Default values: " + Joiner.on(", ").join(craftingTablesWithBrokenCraftingHandlerSupportDefault)).getStringList();
         villagerTrades = config.get(CATEGORY_GENERAL, "Custom villager trades enabled", true).getBoolean(true);
         disableThermalExpansionIntegration = config.get(CATEGORY_GENERAL, "disableThermalExpansionIntegration", false).getBoolean(false);
+        hardMode = config.get(CATEGORY_GENERAL, "hardMode", false,"Effects: flammable block above coconut lamp can catch fire").getBoolean(false);
     }
 }
