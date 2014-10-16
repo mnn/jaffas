@@ -75,10 +75,12 @@ import monnef.jaffas.technic.common.EnchantRecipe;
 import monnef.jaffas.technic.common.FungiCatalog;
 import monnef.jaffas.technic.common.MushroomCropProvider;
 import monnef.jaffas.technic.common.RepairRecipe;
+import monnef.jaffas.technic.entity.EntityCombineHarvester;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import monnef.jaffas.technic.item.CentralUnitEnum;
 import monnef.jaffas.technic.item.ItemAxeTechnic;
 import monnef.jaffas.technic.item.ItemCentralUnit;
+import monnef.jaffas.technic.item.ItemCombineHarvester;
 import monnef.jaffas.technic.item.ItemCompost;
 import monnef.jaffas.technic.item.ItemFermenter;
 import monnef.jaffas.technic.item.ItemFungus;
@@ -189,6 +191,7 @@ public class JaffasTechnic extends JaffasModBase {
     public static BlockOre blockJaffarrolOre;
     public static BlockOre blockLimsewOre;
     public static ItemCompost compost;
+    public static ItemCombineHarvester itemCombineHarvester;
 
     public static ItemAxeTechnic axeJaffarrol;
     public static ItemPickaxeTechnic pickaxeJaffarrol;
@@ -199,8 +202,6 @@ public class JaffasTechnic extends JaffasModBase {
     public static boolean generateOres;
     public static boolean disableOreRecipes;
     public static float switchgrassProbability;
-
-    private int LocomotiveEntityID;
 
     public static ItemLocomotive itemLocomotive;
     public static BlockFungiBox fungiBox;
@@ -257,7 +258,6 @@ public class JaffasTechnic extends JaffasModBase {
 
         try {
             config.load();
-            LocomotiveEntityID = EntityHelper.getNextFreeEntityID();
 
             disableRedstoneGadgets = config.get(Configuration.CATEGORY_GENERAL, "disableRedstoneGadgets", false).getBoolean(false);
 
@@ -294,8 +294,7 @@ public class JaffasTechnic extends JaffasModBase {
         installRecipes();
         addDrops();
         addDungeonLoot();
-
-        EntityRegistry.registerModEntity(EntityLocomotive.class, "locomotive", LocomotiveEntityID, this, 100, 5, false);
+        registerEntities();
 
         // texture stuff
         proxy.registerRenderThings();
@@ -311,6 +310,11 @@ public class JaffasTechnic extends JaffasModBase {
         JaffasFood.packetHandler.manager().registerPacket(2, FruitCollectorPacket.class);
 
         FMLCommonHandler.instance().bus().register(new PlayerTracker());
+    }
+
+    private void registerEntities() {
+        EntityHelper.registerModEntity(EntityLocomotive.class, "locomotive", 100, 5, false, this);
+        EntityHelper.registerModEntity(EntityCombineHarvester.class, "combineHarvester", 100, 5, false, this);
     }
 
     @Override
@@ -551,6 +555,9 @@ public class JaffasTechnic extends JaffasModBase {
         RegistryUtils.registerItem(jaffarrolNugget, "jaffarrolNugget");
 
         createTools();
+
+        itemCombineHarvester = new ItemCombineHarvester(103, 0);
+        RegistryUtils.registerItem(itemCombineHarvester, "combineHarvesterGreen");
     }
 
     private void registerRedstoneBlock(Block block, String name) {

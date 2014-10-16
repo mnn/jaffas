@@ -106,7 +106,6 @@ public class JaffasPower extends JaffasModBase {
     public static BlockWindGenerator windGenerator;
     public static ItemWindTurbine windTurbineWooden;
     public static ItemWindTurbine windTurbineMill;
-    private int windTurbineEntityID;
     public static ItemTurbineBlade turbineBlade;
     public static BlockJuiceMaker juiceMaker;
 
@@ -120,9 +119,6 @@ public class JaffasPower extends JaffasModBase {
 
             lightningConductorEnabled = config.get(Configuration.CATEGORY_GENERAL, "lightningConductorEnabled", true).getBoolean(true);
             windGeneratorEnabled = config.get(Configuration.CATEGORY_GENERAL, "windGeneratorEnabled", true).getBoolean(true);
-            if (windGeneratorEnabled) {
-                windTurbineEntityID = EntityHelper.getNextFreeEntityID();
-            }
 
             debug = config.get(Configuration.CATEGORY_GENERAL, "debug", false).getBoolean(false);
         } catch (Exception e) {
@@ -217,7 +213,7 @@ public class JaffasPower extends JaffasModBase {
             RegistryUtils.registerBlockWithName(windGenerator, "windGenerator");
             registerTileEntity(TileWindGenerator.class, "windGenerator");
 
-            EntityHelper.registerEntity(EntityWindTurbine.class, "jaffasWindGenerator", 160, 1, true, windTurbineEntityID, this);
+            EntityHelper.registerModEntity(EntityWindTurbine.class, "jaffasWindGenerator", 160, 1, true, this);
 
             windTurbineWooden = new ItemWindTurbine(57, 100, 0);
             windTurbineWooden.configure(true, 1, false, 0.1f, 50);

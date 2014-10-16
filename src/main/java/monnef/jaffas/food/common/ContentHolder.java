@@ -9,7 +9,6 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.MonnefCorePlugin;
-import monnef.core.fluid.FakeFluidRegistry;
 import monnef.core.utils.BiomeHelper;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.EntityHelper;
@@ -66,7 +65,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.WeightedRandomChestContent;
@@ -74,11 +72,10 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fluids.FluidRegistry;
 import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 
 import static monnef.core.utils.BreakableIronMaterial.breakableIronMaterial;
-import static monnef.core.utils.EntityHelper.getNextFreeEntityID;
+import static monnef.core.utils.EntityHelper.getNextFreeGlobalEntityID;
 import static monnef.jaffas.food.JaffasFood.instance;
 import static monnef.jaffas.food.JaffasFood.otherMods;
 import static monnef.jaffas.food.JaffasFood.proxy;
@@ -216,11 +213,11 @@ public class ContentHolder {
     protected static void createPainting() {
         ContentHolder.itemPainting = new ItemJaffaPainting();
         GameRegistry.registerItem(ContentHolder.itemPainting, ContentHolder.itemPainting.getUnlocalizedName());
-        EntityHelper.registerEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, ContentHolder.jaffaPaintingEntityID, jf);
+        EntityHelper.registerModEntity(EntityJaffaPainting.class, "jaffaPainting", 160, Integer.MAX_VALUE, false, jf);
     }
 
     public static void registerDuck() {
-        EntityHelper.registerEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, ContentHolder.duckEntityID, jf, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
+        EntityHelper.registerGlobalEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, ContentHolder.duckEntityID, jf, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerGrindable", new EntityDuck.MFR());
@@ -228,11 +225,11 @@ public class ContentHolder {
     }
 
     public static void registerDuckEgg() {
-        EntityHelper.registerEntity(EntityDuckEgg.class, "duckEgg", 160, 1, true, ContentHolder.duckEggEntityID, jf);
+        EntityHelper.registerModEntity(EntityDuckEgg.class, "duckEgg", 160, 1, true, jf);
     }
 
     public static void registerLittleSpider() {
-        EntityHelper.registerEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, ContentHolder.spiderEntityID, jf, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
+        EntityHelper.registerGlobalEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, ContentHolder.spiderEntityID, jf, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasSpider.name", "en_US", "Little Spider");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerGrindable", new EntityLittleSpider.MFR());
@@ -352,16 +349,16 @@ public class ContentHolder {
     }
 
     public static void initEntityIDs() {
-        jaffaPaintingEntityID = getNextFreeEntityID();
+        jaffaPaintingEntityID = getNextFreeGlobalEntityID();
         createPainting();
 
-        duckEntityID = getNextFreeEntityID();
+        duckEntityID = getNextFreeGlobalEntityID();
         registerDuck();
 
-        duckEggEntityID = getNextFreeEntityID();
+        duckEggEntityID = getNextFreeGlobalEntityID();
         registerDuckEgg();
 
-        spiderEntityID = getNextFreeEntityID();
+        spiderEntityID = getNextFreeGlobalEntityID();
         registerLittleSpider();
 
         JaffasFood.Log.printInfo(String.format("Registered entities: painting @ %d, duck @ %d, duck egg @ %d, little spider @ %d", jaffaPaintingEntityID, duckEntityID, duckEggEntityID, spiderEntityID));

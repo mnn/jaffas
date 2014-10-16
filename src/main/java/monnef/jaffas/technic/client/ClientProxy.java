@@ -17,6 +17,7 @@ import monnef.jaffas.technic.block.TileHighPlant;
 import monnef.jaffas.technic.block.TileKeg;
 import monnef.jaffas.technic.client.fungi.TileEntityFungiBoxRenderer;
 import monnef.jaffas.technic.common.CommonProxy;
+import monnef.jaffas.technic.entity.EntityCombineHarvester;
 import monnef.jaffas.technic.entity.EntityLocomotive;
 import net.minecraftforge.client.MinecraftForgeClient;
 
@@ -24,6 +25,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void registerRenderThings() {
         RenderingRegistry.registerEntityRenderingHandler(EntityLocomotive.class, new RenderLocomotive());
+        RenderingRegistry.registerEntityRenderingHandler(EntityCombineHarvester.class, new RenderCombineHarvester());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileFungiBox.class, new TileEntityFungiBoxRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCompostCore.class, new TileCompostTankRenderer());
