@@ -1,5 +1,4 @@
 #!/bin/bash
-# uses image magick to crop and resize icon images from sprite sheets
 
 function printDoing {
     echo -n "$1 ... "
@@ -15,9 +14,7 @@ echo "--==============================--"
 echo
 
 printDoing "Preparing directories"
-indir="../../../bin_data/assets"
 output=out
-outputB=outB
 tmpdir=tmp
 optiPNGbin="../optipng-0.7.4-win32/optipng"
 
@@ -34,9 +31,6 @@ fi
 mkdir "$output" &> /dev/null
 rm -fr ./$output/*.png
 
-mkdir "$outputB" &> /dev/null
-rm -fr ./$outputB/*.png
-
 mkdir "$tmpdir" &> /dev/null
 rm -fr ./$tmpdir/*.png
 
@@ -44,30 +38,9 @@ printDone
 
 #---
 
-printDoing "Copying png files"
-find "$indir" -type f | grep -Ei 'assets/.*/textures/items/.*\.png' | xargs -I {} cp {} "$tmpdir"
-printDone
-
-#---
-
-printDoing "Converting"
-for file in "$tmpdir"/*.png ; do
-    filename=$(basename "$file")
-    convert  "$file" -scale 32x32 png8:"$output/$filename"
-done
-printDone
-
-#---
-
-printDoing "Making montage of item icons"
-montage -tile 30x -label '%t' -font Arial -pointsize 10 -background '#000000' -fill 'gray' -define png:size=32x32 -geometry 32x32+7+7 "$output/*.png" montageItems.png
-printDone
-
-#---
-
 printDoing "Preparing blocks and vanilla items"
 rm -fr ./$tmpdir/*.png
-cp ../../../jars/monnefCoreExporter/*.png "./$tmpdir"
+cp ../../../eclipse/monnefCoreExporter/*.png "./$tmpdir"
 printDone
 
 #---
@@ -75,15 +48,15 @@ printDone
 printDoing "Converting blocks and vanilla items"
 for file in "$tmpdir"/*.png ; do
     filename=$(basename "$file")
-    filename=`tr '[:upper:]' '[:lower:]' <<< "$filename"`
-    convert  "$file" -transparent "rgb(255,0,255)" png8:"$outputB/$filename"
+	filename=`sed -r 's/(item\.|tile\.)(.)/Grid_\u\2/' <<< "$filename" | sed -r 's/[jJ]affas\.(.)/\u\1/' | sed -r 's/([a-z])([A-Z])/\1_\2/g'`
+    convert  "$file" -transparent "rgb(255,0,255)" png8:"$output/$filename"
 done
 printDone
 
 #---
 
 printDoing "Making montage of block and vanilla items"
-montage -tile 10x -label '%t' -font Arial -pointsize 10 -background '#000000' -fill 'gray' -define png:size=32x32 -geometry 32x32+75+4 "$outputB/*.png" montageBlocks.png
+montage -tile 10x -label '%t' -font Arial -pointsize 10 -background '#000000' -fill 'gray' -define png:size=32x32 -geometry 32x32+75+4 "$output/*.png" montage.png
 printDone
 
 #---
