@@ -4,10 +4,14 @@ import net.minecraft.entity.{Entity, EntityLiving}
 import net.minecraft.world.World
 import net.minecraft.util.AxisAlignedBB
 import net.minecraft.entity.player.EntityPlayer
+import monnef.core.utils.scalautils._
 
 class EntityCombineHarvester(world: World) extends EntityLiving(world) {
 
   import EntityCombineHarvester._
+
+  var wheelsRotation = 0f
+  var reelRotation = 0f
 
   setSize(SIZE_X, SIZE_Y)
   setCombineBoundingBox()
@@ -36,10 +40,21 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
     addVelocity(0, 0, .1f)
     true
   }
+
+  override def onEntityUpdate() {
+    super.onEntityUpdate()
+    if (world.isRemote) {
+      wheelsRotation = wheelsRotation.boundedAdd(WHEELS_DEGREES_PER_TICK, 360)
+      reelRotation = reelRotation.boundedAdd(REEL_DEGREES_PER_TICK, 360)
+    }
+  }
 }
 
 object EntityCombineHarvester {
   final val SIZE_X = 5f
-  final val SIZE_Z = 10f
-  final val SIZE_Y = 5f
+  final val SIZE_Z = 9f
+  final val SIZE_Y = 4f
+
+  final val WHEELS_DEGREES_PER_TICK = 360f / (5 * 20)
+  final val REEL_DEGREES_PER_TICK = 360f / (3 * 20)
 }

@@ -11,7 +11,7 @@ class ItemCombineHarvester(_texture: Int, combineColor: Int) extends ItemTechnic
   override def onItemUse(stack: ItemStack, player: EntityPlayer, world: World, x: Int, y: Int, z: Int, p_77648_7_ : Int, p_77648_8_ : Float, p_77648_9_ : Float, p_77648_10_ : Float): Boolean = {
     if (!world.isRemote) {
       val combine = new EntityCombineHarvester(world)
-      combine.setPosition(x + .5f, y + .5, z + .5)
+      combine.setPosition(x + .5f, y + 1.5, z + .5)
       world.spawnEntityInWorld(combine)
     }
     true

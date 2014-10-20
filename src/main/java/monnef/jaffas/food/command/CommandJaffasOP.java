@@ -8,15 +8,14 @@ package monnef.jaffas.food.command;
 import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.ServerUtils;
 import monnef.core.utils.WeatherHelper;
-import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.CoolDownRegistry;
 import monnef.jaffas.food.common.CoolDownType;
 import monnef.jaffas.food.network.HomeStonePacket;
+import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.block.TileFungiBox;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.server.MinecraftServer;
 
 import java.util.Arrays;
 import java.util.List;
@@ -96,6 +95,8 @@ public class CommandJaffasOP extends CommandBase {
         } else if (parameters.length == 1 && "crop_growth".equals(parameters[0])) {
             cropGrowthDisabled = !cropGrowthDisabled;
             addMessage(commandsender, String.format("cropGrowthDisabled: %s", cropGrowthDisabled));
+        } else {
+            addMessage(commandsender, "Unknown parameters.");
         }
     }
 

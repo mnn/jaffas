@@ -34,6 +34,7 @@ import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
 import monnef.jaffas.food.command.CommandJaffas;
+import monnef.jaffas.food.command.CommandJaffasClient;
 import monnef.jaffas.food.command.CommandJaffasOP;
 import monnef.jaffas.food.common.BucketHandler;
 import monnef.jaffas.food.common.BucketHandler$;
@@ -71,6 +72,7 @@ import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -295,6 +297,7 @@ public class JaffasFood extends JaffasModBase {
         }
         manager.registerCommand(new CommandJaffas());
         manager.registerCommand(new CommandJaffasOP());
+        ClientCommandHandler.instance.registerCommand(new CommandJaffasClient());
     }
 
     public static void printInitialized(ModulesEnum module) {

@@ -22,10 +22,13 @@ import monnef.jaffas.technic.entity.EntityLocomotive;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 public class ClientProxy extends CommonProxy {
+    public static RenderCombineHarvester renderCombineHarvester;
+
     @Override
     public void registerRenderThings() {
         RenderingRegistry.registerEntityRenderingHandler(EntityLocomotive.class, new RenderLocomotive());
-        RenderingRegistry.registerEntityRenderingHandler(EntityCombineHarvester.class, new RenderCombineHarvester());
+        renderCombineHarvester = new RenderCombineHarvester();
+        RenderingRegistry.registerEntityRenderingHandler(EntityCombineHarvester.class, renderCombineHarvester);
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileFungiBox.class, new TileEntityFungiBoxRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCompostCore.class, new TileCompostTankRenderer());
@@ -41,5 +44,15 @@ public class ClientProxy extends CommonProxy {
 
         ClientUtils.registerItemRendererOfBlock(JaffasTechnic.lamp, lampBlockRenderer);
         ClientUtils.registerItemRendererOfBlock(JaffasTechnic.lampDeco, lampBlockRenderer);
+    }
+
+    @Override
+    public void setCombineWheelsRotationPoint(float x, float y, float z) {
+        renderCombineHarvester.modelWheels().setRotationPoint(x, y, z);
+    }
+
+    @Override
+    public void setCombineReelRotationPoint(float x, float y, float z) {
+        renderCombineHarvester.modelReel().setRotationPoint(x, y, z);
     }
 }
