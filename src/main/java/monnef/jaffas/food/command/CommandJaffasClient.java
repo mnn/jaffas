@@ -1,6 +1,7 @@
 package monnef.jaffas.food.command;
 
 import monnef.jaffas.technic.JaffasTechnic;
+import monnef.jaffas.technic.client.RenderCombineHarvester;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 
@@ -37,6 +38,17 @@ public class CommandJaffasClient extends CommandBase {
                 float y = Float.parseFloat(parameters[2]);
                 float z = Float.parseFloat(parameters[3]);
                 JaffasTechnic.proxy.setCombineReelRotationPoint(x, y, z);
+            } catch (NumberFormatException e) {
+                addMessage(commandsender, "cannot parse number");
+            }
+        } else if (parameters.length == 4 && "comb_cp".equals(parameters[0])) {
+            try {
+                float x = Float.parseFloat(parameters[1]);
+                float y = Float.parseFloat(parameters[2]);
+                float z = Float.parseFloat(parameters[3]);
+                RenderCombineHarvester.CenterPoint$.MODULE$.x_$eq(x);
+                RenderCombineHarvester.CenterPoint$.MODULE$.y_$eq(y);
+                RenderCombineHarvester.CenterPoint$.MODULE$.z_$eq(z);
             } catch (NumberFormatException e) {
                 addMessage(commandsender, "cannot parse number");
             }

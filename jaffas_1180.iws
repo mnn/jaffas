@@ -50,8 +50,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules converted="true" />
     <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
   </component>
   <component name="ErrorTreeViewConfiguration">
     <option name="hideWarnings" value="true" />
@@ -63,25 +63,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="EntityCombineHarvester.scala" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="EntityCombineHarvester.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/entity/EntityCombineHarvester.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5895372" vertical-offset="625" max-vertical-offset="1122">
-              <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
-              <folding>
-                <element signature="e#38#88#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="811" max-vertical-offset="1598">
+              <caret line="68" column="53" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemCombineHarvester.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/item/ItemCombineHarvester.scala">
+      <file leaf-file-name="EntityHorse.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/passive/EntityHorse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
-              <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="18793" max-vertical-offset="27523">
+              <caret line="1265" column="18" selection-start-line="1265" selection-start-column="0" selection-end-line="1266" selection-end-column="0" />
               <folding>
-                <element signature="e#36#71#0" expanded="true" />
+                <element signature="e#8007#8008#0" expanded="true" />
+                <element signature="e#8049#8050#0" expanded="true" />
+                <element signature="e#21610#21611#0" expanded="true" />
+                <element signature="e#21653#21654#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -90,93 +91,68 @@
       <file leaf-file-name="RenderCombineHarvester.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/client/RenderCombineHarvester.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="935">
-              <caret line="26" column="66" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1088">
+              <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandJaffasOP.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffasOP.java">
+      <file leaf-file-name="RenderUtils.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/core/utils/RenderUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
-              <caret line="25" column="15" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="1496">
+              <caret line="93" column="39" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JaffasFood.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/JaffasFood.java">
+      <file leaf-file-name="Entity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/Entity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3004" max-vertical-offset="3876">
-              <caret line="299" column="21" selection-start-line="299" selection-start-column="21" selection-end-line="299" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="441" max-vertical-offset="44387">
+              <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CommandJaffasClient.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="CommandJaffasClient.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffasClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-              <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#380#381#0" expanded="true" />
-                <element signature="e#417#418#0" expanded="true" />
-                <element signature="e#495#496#0" expanded="true" />
-                <element signature="e#522#523#0" expanded="true" />
-                <element signature="e#1716#1717#0" expanded="true" />
-                <element signature="e#1761#1762#0" expanded="true" />
-                <element signature="e#1822#1823#0" expanded="true" />
-                <element signature="e#1846#1847#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommonProxy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/technic/common/CommonProxy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <caret line="14" column="30" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.64705884" vertical-offset="272" max-vertical-offset="986">
+              <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientProxy.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/technic/client/ClientProxy.java">
+      <file leaf-file-name="EntityRenderer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/client/renderer/EntityRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="782">
-              <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="8395" max-vertical-offset="34765">
+              <caret line="576" column="84" selection-start-line="576" selection-start-column="84" selection-end-line="576" selection-end-column="84" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModelObj.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/monnef/core/client/ModelObj.java">
+      <file leaf-file-name="EntityLiving.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityLiving.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1199" max-vertical-offset="1717">
-              <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-              <folding>
-                <element signature="e#2791#2792#0" expanded="true" />
-                <element signature="e#2837#2838#0" expanded="true" />
-                <element signature="e#3685#3686#0" expanded="true" />
-                <element signature="e#3745#3746#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="5745" max-vertical-offset="19567">
+              <caret line="418" column="16" selection-start-line="418" selection-start-column="16" selection-end-line="418" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WavefrontObject.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraftforge/client/model/obj/WavefrontObject.java">
+      <file leaf-file-name="EntityLivingBase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityLivingBase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2858" max-vertical-offset="10948">
-              <caret line="196" column="0" selection-start-line="196" selection-start-column="0" selection-end-line="196" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1189" max-vertical-offset="37111">
+              <caret line="130" column="17" selection-start-line="130" selection-start-column="17" selection-end-line="130" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -192,7 +168,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/monnef/core/client/CustomCloaksHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/core/client/CustomSashHandler.java" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/core/client/ModelSash.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/core/client/SashHandler.scala" />
@@ -239,10 +214,11 @@
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/JaffasFood.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/technic/common/CommonProxy.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/technic/client/ClientProxy.java" />
-        <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffasClient.java" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/item/ItemCombineHarvester.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/client/RenderCombineHarvester.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/entity/EntityCombineHarvester.scala" />
+        <option value="$PROJECT_DIR$/src/main/java/monnef/core/utils/RenderUtils.java" />
+        <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffasClient.java" />
+        <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/client/RenderCombineHarvester.scala" />
       </list>
     </option>
   </component>
@@ -574,10 +550,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EntityCombineHarvester.scala" />
-              <option name="myItemType" value="org.jetbrains.plugins.scala.components.ScalaDefsProjectViewProvider$ScalaFileTreeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1112,6 +1084,21 @@
       <setting name="showProgressMessages" value="true" />
       <method />
     </configuration>
+    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <extension name="scalaCoverage" />
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="package" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workingDirectory" value="$PROJECT_DIR$" />
+      <setting name="searchForTest" value="Across module dependencies" />
+      <setting name="testName" value="" />
+      <setting name="testKind" value="Class" />
+      <setting name="showProgressMessages" value="true" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="ACTIVITY_CLASS" value="" />
@@ -1130,21 +1117,6 @@
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
-      <method />
-    </configuration>
-    <configuration default="true" type="ScalaTestRunConfiguration" factoryName="ScalaTest">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <extension name="scalaCoverage" />
-      <module name="" />
-      <setting name="path" value="" />
-      <setting name="package" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workingDirectory" value="$PROJECT_DIR$" />
-      <setting name="searchForTest" value="Across module dependencies" />
-      <setting name="testName" value="" />
-      <setting name="testKind" value="Class" />
-      <setting name="showProgressMessages" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="Minecraft Client" type="Application" factoryName="Application">
@@ -1445,12 +1417,13 @@
       <workItem from="1412933206488" duration="4352000" />
       <workItem from="1413196344824" duration="905000" />
       <workItem from="1413447870017" duration="9951000" />
-      <workItem from="1413794751103" duration="6993000" />
+      <workItem from="1413794751103" duration="7113000" />
+      <workItem from="1414060345234" duration="3390000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="408024000" />
+    <option name="totallyTimeSpent" value="411534000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
@@ -1462,7 +1435,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32182628" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39420936" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32739422" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17004265" sideWeight="0.5044543" order="2" side_tool="true" content_ui="tabs" />
@@ -1471,11 +1444,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.52389705" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.5231788" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.47610295" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17697228" sideWeight="0.47516558" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32516703" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -1486,14 +1459,14 @@
     </layout>
     <layout-to-restore>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="ASM" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2835821" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16311301" sideWeight="0.48932678" order="0" side_tool="false" content_ui="combo" />
@@ -1509,8 +1482,8 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31333333" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16311301" sideWeight="0.5090312" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1555,41 +1528,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/ai/EntityAIPanic.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.013761468" vertical-offset="233" max-vertical-offset="1105">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/player/EntityPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.51105934" vertical-offset="7313" max-vertical-offset="41089">
-          <caret line="573" column="22" selection-start-line="573" selection-start-column="22" selection-end-line="573" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/item/ItemTechnic.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07798165" vertical-offset="0" max-vertical-offset="872">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/item/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3329453" vertical-offset="6412" max-vertical-offset="22287">
-          <caret line="463" column="19" selection-start-line="463" selection-start-column="19" selection-end-line="463" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityAgeable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3145">
-          <caret line="8" column="52" selection-start-line="8" selection-start-column="52" selection-end-line="8" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityCreature.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6052">
@@ -1601,7 +1539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="275" max-vertical-offset="8551">
           <caret line="37" column="23" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1616,13 +1553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.116972476" vertical-offset="0" max-vertical-offset="3264">
           <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/passive/EntityHorse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3725262" vertical-offset="26132" max-vertical-offset="27421">
-          <caret line="1714" column="26" selection-start-line="1714" selection-start-column="26" selection-end-line="1714" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1644,7 +1574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33944955" vertical-offset="95" max-vertical-offset="2635">
           <caret line="43" column="40" selection-start-line="43" selection-start-column="40" selection-end-line="43" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1652,7 +1581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33254993" vertical-offset="91" max-vertical-offset="969">
           <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1691,14 +1619,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityLivingBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3329453" vertical-offset="34377" max-vertical-offset="37111">
-          <caret line="2187" column="44" selection-start-line="2187" selection-start-column="44" selection-end-line="2187" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/client/renderer/entity/Render.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="129" max-vertical-offset="6154">
@@ -1711,7 +1631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42889908" vertical-offset="0" max-vertical-offset="872">
           <caret line="25" column="37" selection-start-line="16" selection-start-column="0" selection-end-line="25" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1755,7 +1674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="2052" max-vertical-offset="4913">
           <caret line="225" column="70" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1763,7 +1681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1073" max-vertical-offset="1700">
           <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1771,7 +1688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="5000" max-vertical-offset="14382">
           <caret line="316" column="102" selection-start-line="316" selection-start-column="102" selection-end-line="316" selection-end-column="102" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1796,14 +1712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/Entity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9437" max-vertical-offset="44387">
-          <caret line="610" column="16" selection-start-line="610" selection-start-column="16" selection-end-line="610" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/passive/EntityAnimal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.02970297" vertical-offset="5663" max-vertical-offset="6936">
@@ -1815,7 +1723,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="629">
           <caret line="34" column="48" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1823,15 +1730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3476" max-vertical-offset="4335">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityLiving.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3329453" vertical-offset="1958" max-vertical-offset="19567">
-          <caret line="189" column="16" selection-start-line="189" selection-start-column="16" selection-end-line="189" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1847,9 +1745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.07755582" vertical-offset="2" max-vertical-offset="2618">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding>
-            <element signature="method#executeCommand#0;class#CommandHandler#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1857,7 +1752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7849589" vertical-offset="1542" max-vertical-offset="2414">
           <caret line="140" column="0" selection-start-line="140" selection-start-column="0" selection-end-line="140" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1865,7 +1759,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.116972476" vertical-offset="102" max-vertical-offset="2227">
           <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1881,12 +1774,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1199" max-vertical-offset="1717">
           <caret line="113" column="0" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-          <folding>
-            <element signature="e#2791#2792#0" expanded="true" />
-            <element signature="e#2837#2838#0" expanded="true" />
-            <element signature="e#3685#3686#0" expanded="true" />
-            <element signature="e#3745#3746#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1906,24 +1794,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffasClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1054">
-          <caret line="38" column="64" selection-start-line="38" selection-start-column="64" selection-end-line="38" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#380#381#0" expanded="true" />
-            <element signature="e#417#418#0" expanded="true" />
-            <element signature="e#495#496#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#1716#1717#0" expanded="true" />
-            <element signature="e#1761#1762#0" expanded="true" />
-            <element signature="e#1822#1823#0" expanded="true" />
-            <element signature="e#1846#1847#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffasOP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
@@ -1932,31 +1802,112 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/client/RenderCombineHarvester.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="935">
-          <caret line="26" column="66" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/item/ItemCombineHarvester.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
           <caret line="13" column="40" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/pathfinding/PathEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.07798165" vertical-offset="0" max-vertical-offset="1785">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/ai/EntityAIControlledByPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60175437" vertical-offset="2581" max-vertical-offset="3485">
+          <caret line="185" column="24" selection-start-line="185" selection-start-column="24" selection-end-line="185" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityFlying.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33217993" vertical-offset="216" max-vertical-offset="1530">
+          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityLiving.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="5745" max-vertical-offset="19567">
+          <caret line="418" column="16" selection-start-line="418" selection-start-column="16" selection-end-line="418" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/EntityLivingBase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1189" max-vertical-offset="37111">
+          <caret line="130" column="17" selection-start-line="130" selection-start-column="17" selection-end-line="130" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/passive/EntityHorse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="18793" max-vertical-offset="27523">
+          <caret line="1265" column="18" selection-start-line="1265" selection-start-column="0" selection-end-line="1266" selection-end-column="0" />
           <folding>
-            <element signature="e#36#71#0" expanded="true" />
+            <element signature="e#8007#8008#0" expanded="true" />
+            <element signature="e#8049#8050#0" expanded="true" />
+            <element signature="e#21610#21611#0" expanded="true" />
+            <element signature="e#21653#21654#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/entity/Entity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="441" max-vertical-offset="44387">
+          <caret line="85" column="17" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraft/client/renderer/EntityRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="8395" max-vertical-offset="34765">
+          <caret line="576" column="84" selection-start-line="576" selection-start-column="84" selection-end-line="576" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/core/utils/RenderUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="884" max-vertical-offset="1496">
+          <caret line="93" column="39" selection-start-line="93" selection-start-column="39" selection-end-line="93" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/client/RenderCombineHarvester.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1088">
+          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/entity/EntityCombineHarvester.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5895372" vertical-offset="625" max-vertical-offset="1122">
-          <caret line="54" column="22" selection-start-line="54" selection-start-column="22" selection-end-line="54" selection-end-column="22" />
-          <folding>
-            <element signature="e#38#88#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="811" max-vertical-offset="1598">
+          <caret line="68" column="53" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/food/command/CommandJaffasClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.64705884" vertical-offset="272" max-vertical-offset="986">
+          <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

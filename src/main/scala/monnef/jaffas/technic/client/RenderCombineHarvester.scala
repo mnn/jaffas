@@ -7,6 +7,7 @@ import monnef.core.client.{ResourcePathHelper, ModelObj}
 import monnef.core.client.ResourcePathHelper.ResourceTextureType
 import org.lwjgl.opengl.GL11
 import monnef.jaffas.technic.entity.EntityCombineHarvester
+import monnef.core.utils.RenderUtils
 
 class RenderCombineHarvester extends Render {
 
@@ -30,8 +31,12 @@ class RenderCombineHarvester extends Render {
     GL11.glTranslatef(0, 0, -3f)
     //GL11.glRotatef(angle, 0, 1.0f, 0)
     GL11.glRotatef(180, 1f, 0, 0)
+    GL11.glRotatef(180, 0, 1f, 0)
     GL11.glPushAttrib(GL11.GL_ENABLE_BIT)
     GL11.glDisable(GL11.GL_CULL_FACE)
+
+    val baseYRotation = entity.rotationYaw
+    RenderUtils.glRotateAroundPoint(baseYRotation, 0, 1, 0, CenterPoint.x, CenterPoint.y, CenterPoint.z)
 
     modelBody.renderWithTexture()
 
@@ -53,4 +58,9 @@ object RenderCombineHarvester {
   final val WHEELS_NAME = "combine_wheels"
   final val REEL_NAME = "combine_reel"
   final val SCALE = 1f
+
+  object CenterPoint {
+    var (x, y, z) = (0f, 0f, -2f)
+  }
+
 }
