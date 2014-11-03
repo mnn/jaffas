@@ -8,6 +8,7 @@ import monnef.core.client.ResourcePathHelper.ResourceTextureType
 import org.lwjgl.opengl.GL11
 import monnef.jaffas.technic.entity.EntityCombineHarvester
 import monnef.core.utils.RenderUtils
+import monnef.core.MonnefCorePlugin
 
 class RenderCombineHarvester extends Render {
 
@@ -48,9 +49,14 @@ class RenderCombineHarvester extends Render {
 
     GL11.glPopAttrib()
     GL11.glPopMatrix()
+    if (MonnefCorePlugin.debugEnv) renderDebugHelperLines()
   }
 
   override def getEntityTexture(entity: Entity): ResourceLocation = modelBody.getTexture
+
+  private def renderDebugHelperLines() {
+    RenderUtils.glRenderLine(1, 0, 1, 2, 0, 0, 0, 0, 2, 0)
+  }
 }
 
 object RenderCombineHarvester {
@@ -60,7 +66,7 @@ object RenderCombineHarvester {
   final val SCALE = 1f
 
   object CenterPoint {
-    var (x, y, z) = (0f, 0f, -2f)
+    var (x, y, z) = (0f, 0f, .5f)
   }
 
 }
