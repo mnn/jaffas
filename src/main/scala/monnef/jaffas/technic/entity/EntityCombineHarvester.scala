@@ -2,13 +2,12 @@ package monnef.jaffas.technic.entity
 
 import net.minecraft.entity.{EntityLivingBase, SharedMonsterAttributes, Entity, EntityLiving}
 import net.minecraft.world.World
-import net.minecraft.util.{MathHelper, AxisAlignedBB}
+import net.minecraft.util.AxisAlignedBB
 import net.minecraft.entity.player.EntityPlayer
 import monnef.core.utils.scalautils._
 import net.minecraft.item.Item
 import monnef.jaffas.technic.JaffasTechnic
-import monnef.core.utils.MathHelper
-import monnef.jaffas.technic.client.RenderCombineHarvester
+import cpw.mods.fml.relauncher.{SideOnly, Side}
 
 class EntityCombineHarvester(world: World) extends EntityLiving(world) {
 
@@ -16,9 +15,12 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
 
   var wheelsRotation = 0f
   var reelRotation = 0f
+  private var velocityX, velocityY, velocityZ: Double = 0
+  private var clientPosX, clientPosY, clientPosZ: Double = 0
 
   setSize(SIZE_X, SIZE_Y)
   setCombineBoundingBox()
+  randomYawVelocity = 0
 
   def setCombineBoundingBox() {
     /* disabled
@@ -100,6 +102,15 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
         posZ + zDiff - cp.z
       )
     }
+  }
+
+  @SideOnly(Side.CLIENT) override def setPositionAndRotation2(x: Double, y: Double, z: Double, yaw: Float, pitch: Float, newPosRotationIncrements: Int) {
+    super.setPositionAndRotation2(x, y, z, yaw, pitch, newPosRotationIncrements)
+  }
+
+  // disabling looking at other entities and random rotation
+  override def updateEntityActionState() {
+    entityAge += 1
   }
 }
 
