@@ -322,6 +322,7 @@ public class JaffasTechnic extends JaffasModBase {
     public void load(FMLInitializationEvent event) {
         super.load(event);
         JaffasFood.printInitialized(ModulesEnum.technic);
+        EntityCombineHarvester.registerBlockHarvestingInstruction(Blocks.tallgrass, new EntityCombineHarvester.SimpleDestroyBlockHarvestingInstruction());
     }
 
     private void addDungeonLoot() {

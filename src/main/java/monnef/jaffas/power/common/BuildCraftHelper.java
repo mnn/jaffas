@@ -17,10 +17,12 @@ public class BuildCraftHelper {
     }
 
     public static boolean gotFreeSpaceInEnergyStorage(PowerHandler.PowerReceiver receiver) {
+        if (receiver == null) return false; // something weird in BuildCraft power network
         return receiver.getEnergyStored() < receiver.getMaxEnergyStored();
     }
 
     public static boolean gotFreeSpaceInEnergyStorageAndWantsEnergy(PowerHandler.PowerReceiver receiver) {
+        if (receiver == null) return false;
         return gotFreeSpaceInEnergyStorage(receiver) && doesWantEnergy(receiver);
     }
 
@@ -39,6 +41,7 @@ public class BuildCraftHelper {
     }
 
     public static boolean doesWantEnergyFromDirection(IPowerReceptor receptor, ForgeDirection fromSide) {
+        if (receptor == null) return false;
         //return receptor.powerRequest(fromSide) > 0;
         PowerHandler.PowerReceiver receiver = receptor.getPowerReceiver(fromSide);
         return doesWantEnergy(receiver);

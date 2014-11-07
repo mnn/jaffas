@@ -27,19 +27,14 @@ public class TileGenerator extends TileMachineWithInventory {
     private static final String BURN_TIME_TAG_NAME = "burnTime";
     private static final String BURN_ITEM_TIME_TAG_NAME = "burnItemTime";
     private static final float ENERGY_PER_TICK = 10.5f * PowerValues.totalPowerGenerationCoef();
-    private static final ForgeDirection[] CUSTOMER_DIRECTIONS = new ForgeDirection[]{ForgeDirection.UP, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.WEST, ForgeDirection.EAST};
     public int burnTime = 0;
     public int burnItemTime = 1;
 
     public static final int SLOT_FUEL = 0;
 
-    private static final int tickEach = 20;
-    private int tickCounter = 0;
     private boolean isSwitchgrass;
 
     private GeneratorState state = GeneratorState.IDLE;
-    private ForgeDirection customerDirection = ForgeDirection.UNKNOWN;
-    private int startDirNumber;
 
     public TileGenerator() {
         setIsRedstoneSensitive();
@@ -106,45 +101,26 @@ public class TileGenerator extends TileMachineWithInventory {
     @Override
     public void updateEntity() {
         super.updateEntity();
-        tickCounter++;
-
-        if (tickCounter % tickEach == 0) {
-            if (!worldObj.isRemote) {
-                onServerTick();
-            }
-        }
     }
 
-    private void onServerTick() {
-        refreshCustomer();
+    @Override
+    public float getEnergyGeneratedThisTick() {
+        return burnTime > 0 ? ENERGY_PER_TICK * getSwitchgrassCoef() : 0;
+    }
 
-        if (burnTime > 0) {
-            burnTime -= tickEach;
-            if (gotCustomer()) {
-                TileEntity consumerTile = getConsumerTile();
-                if (BuildCraftHelper.isPowerTile(consumerTile)) {
-                    float energy = tickEach * ENERGY_PER_TICK * getSwitchgrassCoef();
-                    //IPowerProvider customerPowerProvider = ((IPowerReceptor) consumerTile).getPowerProvider();
-                    //customerPowerProvider.receiveEnergy(energy, customerDirection.getOpposite());
-                    PowerHandler.PowerReceiver customersPowerReceiver = ((IPowerReceptor) consumerTile).getPowerReceiver(customerDirection.getOpposite());
-                    customersPowerReceiver.receiveEnergy(PowerHandler.Type.ENGINE, energy, customerDirection.getOpposite());
-                }
-            }
-        }
+    @Override
+    public ForgeDirection[] getValidCustomerDirections() {
+        return CUSTOMER_DIRECTIONS_NOT_BOTTOM;
+    }
 
+    @Override
+    protected void onAfterPowerSourceHandling() {
+        super.onAfterPowerSourceHandling();
         if (burnTime <= 0 && gotCustomer() && !isBeingPoweredByRedstone()) {
             burnTime = 0;
             tryGetFuel();
         }
 
-        refreshState();
-    }
-
-    private TileEntity getConsumerTile() {
-        return getConsumerTileInDirection(customerDirection);
-    }
-
-    private void refreshState() {
         GeneratorState newState;
         newState = isBurning() ? GeneratorState.BURNING : GeneratorState.IDLE;
         if (newState != state) {
@@ -153,44 +129,10 @@ public class TileGenerator extends TileMachineWithInventory {
         state = newState;
     }
 
-    private TileEntity getConsumerTileInDirection(ForgeDirection dir) {
-        return (new IntegerCoordinates(this)).shiftInDirectionBy(dir, 1).getBlockTileEntity();
-    }
-
-    private boolean gotCustomer() {
-        return customerDirection != ForgeDirection.UNKNOWN;
-    }
-
-    private boolean isCustomerInDirection(ForgeDirection dir) {
-        TileEntity customer = getConsumerTileInDirection(dir);
-        if (!BuildCraftHelper.isPowerTile(customer)) return false;
-        return BuildCraftHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy((IPowerReceptor) customer, customerDirection.getOpposite());
-    }
-
-    private void refreshCustomer() {
-        customerDirection = ForgeDirection.UNKNOWN;
-        setNextCustomerDirection();
-        int tested = 0;
-
-        while (tested < CUSTOMER_DIRECTIONS.length) {
-            ForgeDirection currentDirection = CUSTOMER_DIRECTIONS[startDirNumber];
-            if (isCustomerInDirection(currentDirection)) {
-                IPowerReceptor consumer = (IPowerReceptor) getConsumerTileInDirection(currentDirection);
-                if (BuildCraftHelper.gotFreeSpaceInEnergyStorage(consumer, currentDirection.getOpposite())) {
-                    customerDirection = currentDirection;
-                    return;
-                }
-            }
-            tested++;
-            setNextCustomerDirection();
-        }
-
-        customerDirection = ForgeDirection.UNKNOWN;
-    }
-
-    private void setNextCustomerDirection() {
-        startDirNumber++;
-        if (startDirNumber >= CUSTOMER_DIRECTIONS.length) startDirNumber = 0;
+    @Override
+    protected void onBeforePowerSourceHandling() {
+        super.onBeforePowerSourceHandling();
+        if (burnTime > 0) burnTime -= 1;
     }
 
     private float getSwitchgrassCoef() {
