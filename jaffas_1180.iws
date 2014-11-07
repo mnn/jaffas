@@ -75,17 +75,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TileMachine.java" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="TileMachine.java" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/monnef/core/block/TileMachine.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.84424776" vertical-offset="1614" max-vertical-offset="6120">
-                  <caret line="132" column="17" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
+                <state vertical-scroll-proportion="0.57168144" vertical-offset="2278" max-vertical-offset="6222">
+                  <caret line="164" column="27" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#4767#4768#0" expanded="true" />
                     <element signature="e#4791#4792#0" expanded="true" />
-                    <element signature="e#6961#6962#0" expanded="true" />
-                    <element signature="e#7007#7008#0" expanded="true" />
+                    <element signature="e#5817#5818#0" expanded="true" />
+                    <element signature="e#5886#5887#0" expanded="true" />
+                    <element signature="e#7092#7093#0" expanded="true" />
+                    <element signature="e#7138#7139#0" expanded="true" />
+                    <element signature="e#7182#7183#0" expanded="true" />
+                    <element signature="e#7250#7251#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -105,10 +109,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="TileGenerator.java" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="TileGenerator.java" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/power/block/TileGenerator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.11681416" vertical-offset="1311" max-vertical-offset="2907">
+                <state vertical-scroll-proportion="0.0" vertical-offset="1311" max-vertical-offset="2907">
                   <caret line="107" column="72" selection-start-line="107" selection-start-column="72" selection-end-line="107" selection-end-column="72" />
                   <folding>
                     <element signature="e#2707#2708#0" expanded="true" />
@@ -122,12 +126,17 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="TileWindGenerator.java" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="TileWindGenerator.java" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/power/block/TileWindGenerator.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="6426">
-                  <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
-                  <folding />
+                <state vertical-scroll-proportion="0.33274338" vertical-offset="4079" max-vertical-offset="6018">
+                  <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#4645#4646#0" expanded="true" />
+                    <element signature="e#4694#4695#0" expanded="true" />
+                    <element signature="e#4768#4769#0" expanded="true" />
+                    <element signature="e#4826#4827#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -144,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/trees/BushManager.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/monnef/core/utils/MathHelper.scala" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/compatibility/WailaCallback.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/trees/compatibility/WailaCrops.scala" />
@@ -193,8 +201,9 @@
         <option value="$PROJECT_DIR$/src/main/scala/monnef/jaffas/technic/entity/EntityCombineHarvester.scala" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/power/common/BuildCraftHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/core/utils/DirectionHelper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/monnef/core/block/TileMachine.java" />
         <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/power/block/TileGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/monnef/jaffas/power/block/TileWindGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/monnef/core/block/TileMachine.java" />
       </list>
     </option>
   </component>
@@ -1266,12 +1275,12 @@
       <workItem from="1415022053718" duration="2106000" />
       <workItem from="1415119824297" duration="3191000" />
       <workItem from="1415272909028" duration="5683000" />
-      <workItem from="1415379495641" duration="4328000" />
+      <workItem from="1415379495641" duration="5286000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430498000" />
+    <option name="totallyTimeSpent" value="431456000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1928" height="1044" extended-state="6" />
@@ -1283,7 +1292,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32182628" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960597" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32739422" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32739422" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32962137" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17004265" sideWeight="0.5044543" order="2" side_tool="true" content_ui="tabs" />
@@ -1705,14 +1714,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/power/block/TileWindGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="6426">
-          <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://D:/gradle/caches/minecraft/net/minecraftforge/forge/1.7.10-10.13.0.1180/forgeSrc-1.7.10-10.13.0.1180-sources.jar!/net/minecraftforge/common/util/ForgeDirection.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="1241">
@@ -1747,23 +1748,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/core/block/TileMachine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84424776" vertical-offset="1614" max-vertical-offset="6120">
-          <caret line="132" column="17" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4767#4768#0" expanded="true" />
-            <element signature="e#4791#4792#0" expanded="true" />
-            <element signature="e#6961#6962#0" expanded="true" />
-            <element signature="e#7007#7008#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/power/block/TileGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11681416" vertical-offset="1311" max-vertical-offset="2907">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1311" max-vertical-offset="2907">
           <caret line="107" column="72" selection-start-line="107" selection-start-column="72" selection-end-line="107" selection-end-column="72" />
           <folding>
             <element signature="e#2707#2708#0" expanded="true" />
@@ -1772,6 +1759,37 @@
             <element signature="e#2886#2887#0" expanded="true" />
             <element signature="e#2960#2961#0" expanded="true" />
             <element signature="e#3013#3014#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/jaffas/power/block/TileWindGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33274338" vertical-offset="4079" max-vertical-offset="6018">
+          <caret line="294" column="0" selection-start-line="294" selection-start-column="0" selection-end-line="294" selection-end-column="0" />
+          <folding>
+            <element signature="e#4645#4646#0" expanded="true" />
+            <element signature="e#4694#4695#0" expanded="true" />
+            <element signature="e#4768#4769#0" expanded="true" />
+            <element signature="e#4826#4827#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/monnef/core/block/TileMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.57168144" vertical-offset="2278" max-vertical-offset="6222">
+          <caret line="164" column="27" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4767#4768#0" expanded="true" />
+            <element signature="e#4791#4792#0" expanded="true" />
+            <element signature="e#5817#5818#0" expanded="true" />
+            <element signature="e#5886#5887#0" expanded="true" />
+            <element signature="e#7092#7093#0" expanded="true" />
+            <element signature="e#7138#7139#0" expanded="true" />
+            <element signature="e#7182#7183#0" expanded="true" />
+            <element signature="e#7250#7251#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -5,8 +5,6 @@
 
 package monnef.jaffas.power.block;
 
-import buildcraft.api.power.IPowerReceptor;
-import buildcraft.api.power.PowerHandler;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.api.IIntegerCoordinates;
 import monnef.core.block.TileMachineWithInventory;
@@ -17,7 +15,6 @@ import monnef.core.utils.PlayerHelper;
 import monnef.core.utils.RandomHelper;
 import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.JaffasFood;
-import monnef.jaffas.power.common.BuildCraftHelper;
 import monnef.jaffas.power.common.IWindObstacles;
 import monnef.jaffas.power.common.WindObstaclesFastFail;
 import monnef.jaffas.power.entity.EntityWindTurbine;
@@ -31,7 +28,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import java.util.List;
-import java.util.Random;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1, outputSlotsCount = 0, containerClassName = "monnef.core.block.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerWindGenerator")
 public class TileWindGenerator extends TileMachineWithInventory {
@@ -45,11 +41,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
 
     private enum TurbineState {UNKNOWN, NO_TURBINE, TURBINE_SPAWNED}
 
-    private enum CustomerState {NONE, BACK, BOTTOM}
-
     private TurbineState turbineState = TurbineState.UNKNOWN;
-    private CustomerState customerState = CustomerState.NONE;
-    private IIntegerCoordinates customerPos;
 
     public static final int checkDistance = 15;
     public static final int checkOuterRadius = 2;
@@ -67,6 +59,8 @@ public class TileWindGenerator extends TileMachineWithInventory {
     private int lastPowerProduction;
     private int speedChangeCoolDown;
     private int ticksToDamageTurbine;
+
+    private float energyGeneratedCurrentTick = 0;
 
     public TileWindGenerator() {
         slowingCoefficient = WORK_EVERY_N_TICKS;
@@ -112,6 +106,8 @@ public class TileWindGenerator extends TileMachineWithInventory {
     @Override
     protected void doMachineWork() {
         if (worldObj.isRemote) return;
+        energyGeneratedCurrentTick = 0;
+        lastPowerProduction = 0;
 
         if (turbineState == TurbineState.UNKNOWN) {
             refreshTurbineEntity();
@@ -130,42 +126,18 @@ public class TileWindGenerator extends TileMachineWithInventory {
     }
 
     private void producePower() {
-        float energyPerTick = turbine.getMaximalEnergyPerRainyTick() * ((float) turbineSpeed / TURBINE_MAX_SPEED);
-        lastPowerProduction = Math.round(energyPerTick * WORK_EVERY_N_TICKS);
-
-        if (customerState == CustomerState.NONE) {
-            lookForCustomer();
-        }
-        if (customerState != CustomerState.NONE) {
-            if (BuildCraftHelper.isPowerTile(customerPos)) {
-                ForgeDirection dir = customerState == CustomerState.BOTTOM ? ForgeDirection.UP : getRotation();
-                IPowerReceptor tile = (IPowerReceptor) customerPos.getTile();
-                float energyTotal = energyPerTick * slowingCoefficient;
-                if (BuildCraftHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy(tile, dir)) {
-                    tile.getPowerReceiver(dir).receiveEnergy(PowerHandler.Type.ENGINE, energyTotal, dir);
-                } else {
-                    // energy wasted
-                    // TODO: add "waste" animation?
-                }
-            } else {
-                customerState = CustomerState.NONE;
-            }
-        }
+        energyGeneratedCurrentTick = turbine.getMaximalEnergyPerRainyTick() * ((float) turbineSpeed / TURBINE_MAX_SPEED);
+        lastPowerProduction = Math.round(energyGeneratedCurrentTick);
     }
 
-    private void lookForCustomer() {
-        customerPos = null;
-        IIntegerCoordinates bellow = new IntegerCoordinates(this).shiftInDirectionBy(ForgeDirection.DOWN, 1);
-        if (BuildCraftHelper.isPowerTile(bellow)) {
-            customerPos = bellow;
-            customerState = CustomerState.BOTTOM;
-        } else {
-            IIntegerCoordinates back = new IntegerCoordinates(this).shiftInDirectionBy(getRotation().getOpposite(), 1);
-            if (BuildCraftHelper.isPowerTile(back)) {
-                customerPos = back;
-                customerState = CustomerState.BACK;
-            }
-        }
+    @Override
+    public float getEnergyGeneratedThisTick() {
+        return energyGeneratedCurrentTick;
+    }
+
+    @Override
+    public ForgeDirection[] getValidCustomerDirections() {
+        return CUSTOMER_DIRECTIONS_BACK_AND_BOTTOM;
     }
 
     private void damageIfTime() {
