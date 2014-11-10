@@ -66,7 +66,7 @@ mv "$dir_all/assets" "$dir_jaffas"
 rm -fr "$dir_all/mcp"
 
 # APIs
-mv "$dir_all/buildcraft" "$dir_core"
+mv "$dir_all/cofh" "$dir_core"
 mv "$dir_all/forestry" "$dir_jaffas"
 mv "$dir_all/powercrystals" "$dir_jaffas"
 

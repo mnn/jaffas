@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.item;
 
-import buildcraft.api.power.PowerHandler;
+import cofh.api.energy.EnergyStorage;
 import monnef.core.block.TileMachine;
 import monnef.core.power.IMachineTool;
 import monnef.core.utils.PlayerHelper;
@@ -26,10 +26,8 @@ public class ItemDebug extends ItemPower implements IMachineTool {
         if (machine == null) {
             print("TE is null");
         } else {
-            PowerHandler powerHandler = machine.getPowerHandler();
-            if (powerHandler != null) {
-                print(String.format("%s: %d/%d(%d)", machine.getPosition().format(), Math.round(powerHandler.getEnergyStored()), (int) powerHandler.getMaxEnergyStored(), (int) powerHandler.getActivationEnergy()));
-            }
+            EnergyStorage energyStorage = machine.getEnergyStorage();
+            print(String.format("%s: %d/%d(%d)", machine.getPosition().format(), Math.round(energyStorage.getEnergyStored()), (int) energyStorage.getMaxEnergyStored(), machine.getPowerNeeded()));
 
             if (machine.getRotation() != null) {
                 print("dir: [" + machine.getRotation().ordinal() + "] " + machine.getRotation().toString() + (machine.getMachineBlock().supportRotation() ? "" : "(doesn't support rotation)"));

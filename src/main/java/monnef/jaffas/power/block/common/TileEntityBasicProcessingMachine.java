@@ -261,7 +261,6 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
                 processingInv[slot] = ItemStack.loadItemStackFromNBT(innerTag);
             }
         }
-        getPowerHandler().readFromNBT(tag);
     }
 
     @Override
@@ -281,7 +280,6 @@ public abstract class TileEntityBasicProcessingMachine extends TileMachineWithIn
             }
         }
         tag.setTag(PROCESSING_INV_TAG, itemList);
-        getPowerHandler().writeToNBT(tag);
     }
 
     public static String getDefaultGuiBackgroundTexture() {

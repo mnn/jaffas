@@ -57,7 +57,7 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
 
         IIntegerCoordinates web = findWeb();
         if (web == null) {
-            getPowerHandler().useEnergy(WEB_SEARCH_ENERGY, WEB_SEARCH_ENERGY, true);
+            getEnergyStorage().extractEnergy(WEB_SEARCH_ENERGY, false);
             return;
         }
 

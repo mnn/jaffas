@@ -31,7 +31,7 @@ public class GuiFridge extends GuiContainerMonnefCore {
             String s = String.valueOf(tileEntity.getTemperature());
             fontRendererObj.drawString(s, 75, 3, 4210752);
 
-            s = String.valueOf(tileEntity.getPowerHandler().getEnergyStored());
+            s = String.valueOf(tileEntity.getEnergyStorage().getEnergyStored());
             fontRendererObj.drawString(s, 90, 15, 4210752);
         }
     }
