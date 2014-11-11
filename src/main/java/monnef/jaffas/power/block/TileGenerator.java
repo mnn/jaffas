@@ -24,6 +24,7 @@ public class TileGenerator extends TileMachineWithInventory {
     private static final float ENERGY_PER_TICK = 10.5f * PowerValues.totalPowerGenerationCoef();
     public int burnTime = 0;
     public int burnItemTime = 1;
+    public int generatedPowerLastTick;
 
     public static final int SLOT_FUEL = 0;
 
@@ -61,7 +62,7 @@ public class TileGenerator extends TileMachineWithInventory {
 
     @Override
     public int getIntegersToSyncCount() {
-        return 2;
+        return 3;
     }
 
     @Override
@@ -72,6 +73,9 @@ public class TileGenerator extends TileMachineWithInventory {
 
             case 1:
                 return burnItemTime;
+
+            case 2:
+                return generatedPowerLastTick;
         }
 
         return -1;
@@ -88,6 +92,9 @@ public class TileGenerator extends TileMachineWithInventory {
                 burnItemTime = value;
                 break;
 
+            case 2:
+                generatedPowerLastTick = value;
+
             default:
                 return;
         }
@@ -99,8 +106,10 @@ public class TileGenerator extends TileMachineWithInventory {
     }
 
     @Override
-    public float getEnergyGeneratedThisTick() {
-        return burnTime > 0 ? ENERGY_PER_TICK * getSwitchgrassCoef() : 0;
+    public int getEnergyGeneratedThisTick() {
+        int value = burnTime > 0 ? Math.round(ENERGY_PER_TICK * getSwitchgrassCoef()) : 0;
+        generatedPowerLastTick = value;
+        return value;
     }
 
     @Override
@@ -131,7 +140,7 @@ public class TileGenerator extends TileMachineWithInventory {
     }
 
     private float getSwitchgrassCoef() {
-        return isSwitchgrass ? 1.25f : 1;
+        return isSwitchgrass ? 1.4f : 1;
     }
 
     private void tryGetFuel() {

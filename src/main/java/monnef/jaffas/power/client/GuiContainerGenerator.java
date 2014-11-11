@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.client;
 
+import monnef.core.power.PowerValues;
 import monnef.jaffas.food.JaffasFood;
 import monnef.core.block.TileMachineWithInventory;
 import monnef.jaffas.power.block.TileGenerator;
@@ -41,6 +42,9 @@ public class GuiContainerGenerator extends GuiContainerMachine {
             String s = String.valueOf(generator.burnTime);
             fontRendererObj.drawString(s, 100, 10, 4210752);
         }
+
+        String info = String.format("%d %s/t", generator.generatedPowerLastTick, PowerValues.UNIT_TITLE());
+        fontRendererObj.drawString(info, 16, 30, 4210752);
     }
 
     @Override

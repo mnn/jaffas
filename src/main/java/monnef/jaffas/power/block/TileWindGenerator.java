@@ -60,7 +60,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
     private int speedChangeCoolDown;
     private int ticksToDamageTurbine;
 
-    private float energyGeneratedCurrentTick = 0;
+    private int energyGeneratedCurrentTick = 0;
 
     public TileWindGenerator() {
         slowingCoefficient = WORK_EVERY_N_TICKS;
@@ -126,12 +126,12 @@ public class TileWindGenerator extends TileMachineWithInventory {
     }
 
     private void producePower() {
-        energyGeneratedCurrentTick = turbine.getMaximalEnergyPerRainyTick() * ((float) turbineSpeed / TURBINE_MAX_SPEED);
-        lastPowerProduction = Math.round(energyGeneratedCurrentTick);
+        energyGeneratedCurrentTick = Math.round(turbine.getMaximalEnergyPerRainyTick() * ((float) turbineSpeed / TURBINE_MAX_SPEED));
+        lastPowerProduction = energyGeneratedCurrentTick;
     }
 
     @Override
-    public float getEnergyGeneratedThisTick() {
+    public int getEnergyGeneratedThisTick() {
         return energyGeneratedCurrentTick;
     }
 

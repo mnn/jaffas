@@ -5,6 +5,7 @@
 
 package monnef.jaffas.power.client;
 
+import monnef.core.power.PowerValues;
 import monnef.core.utils.ColorEnum;
 import monnef.core.utils.ColorHelper;
 import monnef.core.utils.MathHelper;
@@ -52,7 +53,7 @@ public class GuiContainerWindGenerator extends GuiContainerMachine {
             currenttip.add("\u00A72Speed:\u00A7r");
             currenttip.add(String.format(" \u00A77%d\u00A78/\u00A77%d\u00A7r", generator.getTurbineSpeed(), TileWindGenerator.TURBINE_MAX_SPEED));
             currenttip.add("\u00A72Production:\u00A7r");
-            currenttip.add(String.format(" \u00A77%.1f \u00A78MJ/t\u00A7r", generator.getLastPowerProduction() / 10f));
+            currenttip.add(String.format(" \u00A77%d \u00A78%s/t\u00A7r", generator.getLastPowerProduction(), PowerValues.UNIT_TITLE()));
         }
 
         return currenttip;
