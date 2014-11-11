@@ -93,6 +93,8 @@ import monnef.jaffas.technic.item.ItemPickaxeTechnic;
 import monnef.jaffas.technic.item.ItemSpadeTechnic;
 import monnef.jaffas.technic.item.ItemSwordTechnic;
 import monnef.jaffas.technic.item.ItemTechnic;
+import monnef.jaffas.technic.item.ItemUnfailingWaterBucketEmpty;
+import monnef.jaffas.technic.item.ItemUnfailingWaterBucketFull;
 import monnef.jaffas.technic.network.FruitCollectorPacket;
 import monnef.jaffas.trees.BushType;
 import monnef.jaffas.trees.JaffasTrees;
@@ -109,6 +111,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -237,6 +241,9 @@ public class JaffasTechnic extends JaffasModBase {
     public static BlockAnalogRepeater repeater;
     public static BlockSampler sampler;
     public static BlockRandomizer randomizer;
+
+    public static ItemUnfailingWaterBucketEmpty unfailingWaterBucketEmpty;
+    public static ItemUnfailingWaterBucketFull unfailingWaterBucketFull;
 
     /*
     WOOD(0, 59, 2.0F, 0, 15),
@@ -559,7 +566,15 @@ public class JaffasTechnic extends JaffasModBase {
 
         itemCombineHarvester = new ItemCombineHarvester(103, 0);
         RegistryUtils.registerItem(itemCombineHarvester, "combineHarvesterGreen");
+
+        unfailingWaterBucketEmpty = new ItemUnfailingWaterBucketEmpty(104);
+        RegistryUtils.registerItem(unfailingWaterBucketEmpty, "unfailingWaterBucketEmpty");
+
+        unfailingWaterBucketFull = new ItemUnfailingWaterBucketFull(105);
+        RegistryUtils.registerItem(unfailingWaterBucketFull, "unfailingWaterBucketFull");
+        FluidContainerRegistry.registerFluidContainer(FluidRegistry.WATER, new ItemStack(unfailingWaterBucketFull), new ItemStack(unfailingWaterBucketEmpty));
     }
+
 
     private void registerRedstoneBlock(Block block, String name) {
         registerMultiBlock(block, ItemBlockRedstone.class, name);
@@ -820,6 +835,9 @@ public class JaffasTechnic extends JaffasModBase {
                     'D', DyeHelper.getDye(i)
             );
         }
+
+        Recipes.addOreRecipe(unfailingWaterBucketEmpty, "JFJ", "JFJ", "EJE", 'J', jaffarrol, 'F', Items.water_bucket, 'E', Items.bucket);
+        Recipes.addOreRecipe(Items.water_bucket, "F", "E", 'E', Items.bucket, 'F', unfailingWaterBucketFull);
     }
 
     private void registerPlantingBagRecipes(ItemStack s) {
