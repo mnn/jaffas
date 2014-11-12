@@ -1,3 +1,13 @@
+## 0.7.2
+- added unfailing water bucket (endless portable water supply)
+- moved to Redstone Flux power
+- fixed entity registration (lead to conflicting IDs)
+- BuildCraft power integration made more robust (unexpected behaviour of BC API) <- only applies to PRE1 version
+- refactored out power source behavour from generator and wind generator to machine tile class
+- fixed power string in wind generator GUI
+- added power amount label to generator GUI
+- added power unit to label of power machines GUI
+
 ## 0.7.1
 - ported to 1.7.10
 - fixed thermal expansion integration (move from preload to load/postload?)

@@ -5,7 +5,7 @@
 
 package monnef.jaffas.power.block;
 
-import cofh.api.energy.IEnergyHandler;
+import cofh.api.energy.IEnergyReceiver;
 import monnef.core.block.TileMachine;
 import monnef.core.utils.TileEntityHelper;
 import monnef.jaffas.food.JaffasFood;
@@ -34,11 +34,11 @@ public class TileKitchenUnit extends TileMachine {
 
             TileEntity te = worldObj.getTileEntity(xCoord, yCoord + 1, zCoord);
             if (te != null && te instanceof IKitchenUnitAppliance) {
-                if (!RedstoneFluxHelper.isPowerTile(te)) {
+                if (!RedstoneFluxHelper.isTilePowerReceiver(te)) {
                     throw new RuntimeException("is KUAppliance but doesn't accept power? my pos: " + TileEntityHelper.getFormattedCoordinates(this));
                 }
 
-                IEnergyHandler applianceEnergyHandler = (IEnergyHandler) te;
+                IEnergyReceiver applianceEnergyHandler = (IEnergyReceiver) te;
                 if (RedstoneFluxHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy(applianceEnergyHandler, INPUT_SIDE_OF_APPLIANCE)) {
                     int extractedSimulated = energyStorage.extractEnergy(TRANSFER_RATE, true);
                     int accepted = applianceEnergyHandler.receiveEnergy(INPUT_SIDE_OF_APPLIANCE, extractedSimulated, false);
