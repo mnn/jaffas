@@ -42,7 +42,7 @@ public class TileKitchenUnit extends TileMachine {
                 if (RedstoneFluxHelper.gotFreeSpaceInEnergyStorageAndWantsEnergy(applianceEnergyHandler, INPUT_SIDE_OF_APPLIANCE)) {
                     int extractedSimulated = energyStorage.extractEnergy(TRANSFER_RATE, true);
                     int accepted = applianceEnergyHandler.receiveEnergy(INPUT_SIDE_OF_APPLIANCE, extractedSimulated, false);
-                    int extracted = energyStorage.extractEnergy(TRANSFER_RATE, false);
+                    int extracted = energyStorage.extractEnergy(accepted, false);
                     if (accepted != extracted) {
                         JaffasFood.Log.printWarning(String.format("Kitchen unit: numbers don't add up - accepted=%d vs. extracted=%d", accepted, extracted));
                     }

@@ -24,7 +24,6 @@ public class TileGenerator extends TileMachineWithInventory {
     private static final float ENERGY_PER_TICK = 10.5f * PowerValues.totalPowerGenerationCoef();
     public int burnTime = 0;
     public int burnItemTime = 1;
-    public int generatedPowerLastTick;
 
     public static final int SLOT_FUEL = 0;
 
@@ -62,28 +61,29 @@ public class TileGenerator extends TileMachineWithInventory {
 
     @Override
     public int getIntegersToSyncCount() {
-        return 3;
+        return super.getIntegersToSyncCount() + 2;
     }
 
     @Override
     public int getCurrentValueOfIntegerToSync(int index) {
-        switch (index) {
+        int ret = super.getCurrentValueOfIntegerToSync(index);
+        switch (index - super.getIntegersToSyncCount()) {
             case 0:
-                return burnTime;
+                ret = burnTime;
+                break;
 
             case 1:
-                return burnItemTime;
-
-            case 2:
-                return generatedPowerLastTick;
+                ret = burnItemTime;
+                break;
         }
 
-        return -1;
+        return ret;
     }
 
     @Override
     public void setCurrentValueOfIntegerToSync(int index, int value) {
-        switch (index) {
+        super.setCurrentValueOfIntegerToSync(index, value);
+        switch (index - super.getIntegersToSyncCount()) {
             case 0:
                 burnTime = value;
                 break;
@@ -91,12 +91,6 @@ public class TileGenerator extends TileMachineWithInventory {
             case 1:
                 burnItemTime = value;
                 break;
-
-            case 2:
-                generatedPowerLastTick = value;
-
-            default:
-                return;
         }
     }
 
@@ -108,7 +102,7 @@ public class TileGenerator extends TileMachineWithInventory {
     @Override
     public int getEnergyGeneratedThisTick() {
         int value = burnTime > 0 ? Math.round(ENERGY_PER_TICK * getSwitchgrassCoef()) : 0;
-        generatedPowerLastTick = value;
+        setGeneratedPowerLastTick(value);
         return value;
     }
 
@@ -120,7 +114,7 @@ public class TileGenerator extends TileMachineWithInventory {
     @Override
     protected void onAfterPowerSourceHandling() {
         super.onAfterPowerSourceHandling();
-        if (burnTime <= 0 && gotCustomer() && !isBeingPoweredByRedstone()) {
+        if (burnTime <= 0 && (gotCustomer() || !isInternalEnergyStorageFull()) && !isBeingPoweredByRedstone()) {
             burnTime = 0;
             tryGetFuel();
         }
@@ -192,10 +186,5 @@ public class TileGenerator extends TileMachineWithInventory {
         super.writeToNBT(tag);
         tag.setInteger(BURN_TIME_TAG_NAME, this.burnTime);
         tag.setInteger(BURN_ITEM_TIME_TAG_NAME, this.burnItemTime);
-    }
-
-    @Override
-    public boolean isPowerBarRenderingEnabled() {
-        return false;
     }
 }

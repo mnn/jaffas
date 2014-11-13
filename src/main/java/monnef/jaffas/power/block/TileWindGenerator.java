@@ -56,7 +56,6 @@ public class TileWindGenerator extends TileMachineWithInventory {
     private static final int TURBINE_NORMAL_SPEED = 70;
     public static final int TURBINE_MAX_SPEED = 100;
     private IIntegerCoordinates cachedTurbineHubPosition;
-    private int lastPowerProduction;
     private int speedChangeCoolDown;
     private int ticksToDamageTurbine;
 
@@ -107,7 +106,7 @@ public class TileWindGenerator extends TileMachineWithInventory {
     protected void doMachineWork() {
         if (worldObj.isRemote) return;
         energyGeneratedCurrentTick = 0;
-        lastPowerProduction = 0;
+        setGeneratedPowerLastTick(0);
 
         if (turbineState == TurbineState.UNKNOWN) {
             refreshTurbineEntity();
@@ -126,8 +125,8 @@ public class TileWindGenerator extends TileMachineWithInventory {
     }
 
     private void producePower() {
-        energyGeneratedCurrentTick = Math.round(turbine.getMaximalEnergyPerRainyTick() * ((float) turbineSpeed / TURBINE_MAX_SPEED));
-        lastPowerProduction = energyGeneratedCurrentTick;
+        energyGeneratedCurrentTick = Math.round(turbine.getMaximalEnergyPerRainyTick() * (turbineSpeed / TURBINE_MAX_SPEED));
+        setGeneratedPowerLastTick(energyGeneratedCurrentTick);
     }
 
     @Override
@@ -297,34 +296,29 @@ public class TileWindGenerator extends TileMachineWithInventory {
         configureAsPowerSource();
     }
 
-    // power bar info is useless, but this way it's more robust
     @Override
     public int getIntegersToSyncCount() {
-        return super.getIntegersToSyncCount() + 2;
+        return super.getIntegersToSyncCount() + 1;
     }
 
     @Override
     public int getCurrentValueOfIntegerToSync(int index) {
+        int ret = super.getCurrentValueOfIntegerToSync(index);
         switch (index - super.getIntegersToSyncCount()) {
             case 0:
-                return getTurbineSpeed();
-
-            case 1:
-                return lastPowerProduction;
+                ret = getTurbineSpeed();
+                break;
         }
 
-        return -1;
+        return ret;
     }
 
     @Override
     public void setCurrentValueOfIntegerToSync(int index, int value) {
+        super.setCurrentValueOfIntegerToSync(index, value);
         switch (index - super.getIntegersToSyncCount()) {
             case 0:
                 turbineSpeed = value;
-                break;
-
-            case 1:
-                lastPowerProduction = value;
                 break;
         }
     }
@@ -384,18 +378,9 @@ public class TileWindGenerator extends TileMachineWithInventory {
         tag.setInteger(SPEED_TAG, getTurbineSpeed());
     }
 
-    public int getLastPowerProduction() {
-        return lastPowerProduction;
-    }
-
     @Override
     public void onItemDebug(EntityPlayer player) {
         if (worldObj.isRemote) return;
         PlayerHelper.addMessage(player, String.format("ObsVolumeCached: %.2f, ObsDebug: %.2f, cMaxSpeed: %d, totRad: %d", obstacles.getObstaclesVolumeWorstScenario(), obstacles.debugCompute(), getCurrentMaximalSpeed(), obstacles.getTotalRadius()));
-    }
-
-    @Override
-    public boolean isPowerBarRenderingEnabled() {
-        return false;
     }
 }

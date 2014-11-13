@@ -21,6 +21,10 @@ import java.util.List;
 
 public class GuiContainerWindGenerator extends GuiContainerMachine {
     private static final int CHECK_SPACE_BUTTON_ID = 52;
+    public static final int WIND_BAR_X = ENERGY_BAR_X - ENERGY_BAR_WIDTH - 4;
+    public static final int WIND_BAR_Y = ENERGY_BAR_Y;
+    public static final int WIND_BAR_WIDTH = ENERGY_BAR_WIDTH;
+    public static final int WIND_BAR_HEIGHT = ENERGY_BAR_HEIGHT;
 
     private final TileWindGenerator generator;
 
@@ -43,17 +47,17 @@ public class GuiContainerWindGenerator extends GuiContainerMachine {
     @Override
     protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3) {
         super.drawGuiContainerBackgroundLayer(par1, par2, par3);
-        int value = MathHelper.scaleValue(generator.getTurbineSpeed(), TileWindGenerator.TURBINE_MAX_SPEED, ENERGY_BAR_HEIGHT - 2);
-        drawBottomUpBar(x + ENERGY_BAR_X, y + ENERGY_BAR_Y, value, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT, ColorHelper.getColor(ColorEnum.LIGHT_BLUE), ColorHelper.getColor(ColorEnum.BLUE));
+        int value = MathHelper.scaleValue(generator.getTurbineSpeed(), TileWindGenerator.TURBINE_MAX_SPEED, WIND_BAR_HEIGHT - 2);
+        drawBottomUpBar(x + WIND_BAR_X, y + WIND_BAR_Y, value, WIND_BAR_WIDTH, WIND_BAR_HEIGHT, ColorHelper.getColor(ColorEnum.LIGHT_BLUE), ColorHelper.getColor(ColorEnum.BLUE));
     }
 
     @Override
     public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
-        if (isMouseInRect(mousex, mousey, ENERGY_BAR_X, ENERGY_BAR_Y, ENERGY_BAR_WIDTH, ENERGY_BAR_HEIGHT)) {
+        super.fillTooltips(gui, mousex, mousey, currenttip);
+
+        if (isMouseInRect(mousex, mousey, WIND_BAR_X, WIND_BAR_Y, WIND_BAR_WIDTH, WIND_BAR_HEIGHT)) {
             currenttip.add("\u00A72Speed:\u00A7r");
             currenttip.add(String.format(" \u00A77%d\u00A78/\u00A77%d\u00A7r", generator.getTurbineSpeed(), TileWindGenerator.TURBINE_MAX_SPEED));
-            currenttip.add("\u00A72Production:\u00A7r");
-            currenttip.add(String.format(" \u00A77%d \u00A78%s/t\u00A7r", generator.getLastPowerProduction(), PowerValues.UNIT_TITLE()));
         }
 
         return currenttip;

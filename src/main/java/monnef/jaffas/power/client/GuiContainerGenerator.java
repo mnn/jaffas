@@ -43,7 +43,7 @@ public class GuiContainerGenerator extends GuiContainerMachine {
             fontRendererObj.drawString(s, 100, 10, 4210752);
         }
 
-        String info = String.format("%d %s/t", generator.generatedPowerLastTick, PowerValues.UNIT_TITLE());
+        String info = String.format("%d %s/t", generator.getGeneratedPowerLastTick(), PowerValues.UNIT_TITLE());
         fontRendererObj.drawString(info, 16, 30, 4210752);
     }
 
@@ -55,10 +55,5 @@ public class GuiContainerGenerator extends GuiContainerMachine {
             int burn = generator.getBurnTimeScaled(14);
             this.drawTexturedModalRect(x + 80, y + 45 + (13 - burn), 176, 14 - burn, 14, burn);
         }
-    }
-
-    @Override
-    public List<String> fillTooltips(GuiContainer gui, int mousex, int mousey, List<String> currenttip) {
-        return currenttip;
     }
 }
