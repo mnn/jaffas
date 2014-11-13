@@ -1,3 +1,11 @@
+## 0.7.2b
+- rewritten power sources extraction (they are working with internal power storage now), fixes not working energy pipes from other mods
+- added energy bar and generated power amount to power source GUIs
+- partially fixed compatibility with mods using older version of Redstone Flux API
+
+## 0.7.2a
+- updated to latest RedstoneFlux API
+
 ## 0.7.2
 - added unfailing water bucket (endless portable water supply)
 - moved to Redstone Flux power
@@ -10,7 +18,7 @@
 
 ## 0.7.1
 - ported to 1.7.10
-- fixed thermal expansion integration (move from preload to load/postload?)
+- fixed thermal expansion integration
 - removed cloaks (MC EULA forbids it) and implemented sash for creators/donators
 - added coconut lamp
 - added Waila support for our crops (maturity meter)
