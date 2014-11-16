@@ -2,10 +2,10 @@ package monnef.jaffas.food.entity;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import monnef.core.MonnefCorePlugin;
 import monnef.core.client.ResourcePathHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.RandomHelper;
-import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,6 +14,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -61,9 +62,8 @@ public class EntityLittleSpider extends EntityJaffaSpider {
 
     public EntityLittleSpider(World world) {
         super(world);
-        //this.setSize(1.4F, 0.9F);
         this.setSize(0.5F, 0.25F);
-        this.timeUntilNextWeb = this.rand.nextInt(6000) + 6000;
+        this.timeUntilNextWeb = rand.nextInt(1500) + 500;
         this.renderDistanceWeight = 2;
     }
 
@@ -155,7 +155,7 @@ public class EntityLittleSpider extends EntityJaffaSpider {
             aggressiveTime -= 1;
         }
 
-        if (!this.isChild() && !this.worldObj.isRemote && !isAggressive() && --this.timeUntilNextWeb <= 0) {
+        if (!isChild() && !worldObj.isRemote && !isAggressive() && --timeUntilNextWeb <= 0) {
             int x = (int) Math.round(posX);
             int y = (int) Math.round(posY);
             int z = (int) Math.round(posZ);
@@ -166,14 +166,38 @@ public class EntityLittleSpider extends EntityJaffaSpider {
                 }
             }
             if (worldObj.isAirBlock(x, y, z)) {
-                this.timeUntilNextWeb = this.rand.nextInt(8000) + 4000;
+                setNewTimeUntilNextWeb();
                 BlockHelper.setBlock(worldObj, x, y, z, Blocks.web);
                 playWebSound();
             } else {
                 // failed lookup for free space, trying again after some time
-                this.timeUntilNextWeb = 20 * 30;
+                timeUntilNextWeb = rand.nextInt(20 * 60 * 2) + 20 * 30;
             }
         }
+    }
+
+    private void setNewTimeUntilNextWeb() {
+        timeUntilNextWeb = rand.nextInt(4000) + 4000 + calculateBadEnvironmentPenaltyTicks(); // ~5m
+        if (MonnefCorePlugin.debugEnv)
+            MonnefCorePlugin.Log.printInfo(String.format("timeUntilNextWeb for spider @ %f %f %f is now set to %d", posX, posY, posZ, timeUntilNextWeb));
+    }
+
+    private int calculateBadEnvironmentPenaltyTicks() {
+        int x = (int) Math.round(posX);
+        int y = (int) Math.round(posY);
+        int z = (int) Math.round(posZ);
+        int penalty = 0;
+
+        if (worldObj.getFullBlockLightValue(x, y, z) >= 13) penalty += 1000 + rand.nextInt(1000);
+
+        int collideableEntitiesInRange = 0;
+        List<Entity> nearEntities = (List<Entity>) worldObj.getEntitiesWithinAABBExcludingEntity(this, AxisAlignedBB.getBoundingBox(posX, posY, posZ, posX, posY, posZ).expand(3, 1, 3));
+        for (Entity entity : nearEntities) {
+            if (entity.canBeCollidedWith() || entity.getCollisionBox(this) != null) collideableEntitiesInRange++;
+        }
+        penalty += Math.round(20 * 10 * collideableEntitiesInRange * (1 + collideableEntitiesInRange / 5f) * (0.5f + rand.nextFloat()));
+
+        return penalty;
     }
 
     private boolean isAggressive() {

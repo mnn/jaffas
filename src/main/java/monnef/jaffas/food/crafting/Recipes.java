@@ -19,6 +19,7 @@ import monnef.jaffas.food.item.ItemPack;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.power.block.TileGrinder;
+import monnef.jaffas.technic.JaffasTechnic;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -453,6 +454,18 @@ public class Recipes {
         addShapelessOreRecipe(Items.pumpkin_pie, Items.sugar, ANY_EGG(), Blocks.pumpkin);
 
         addOreRecipe(new ItemStack(Blocks.torch, 8), "W", "S", 'S', WOOD_STICK, 'W', ContentHolder.blockSwitchgrassSolid);
+
+        addPileToDustRecipe(pileRedstone, Items.redstone);
+        addPileToDustRecipe(pileEnder, getItem(dustEnder));
+        addPileToDustRecipe(pileGlowstone, Items.glowstone_dust);
+    }
+
+    public static void addPileToDustRecipe(JaffaItem pile, Item dust) {
+        Item pileItem = getItem(pile);
+        addShapelessOreRecipe(dust,
+                pileItem, pileItem, pileItem,
+                pileItem, pileItem, pileItem,
+                pileItem, pileItem, pileItem);
     }
 
     private static void addOmeletRecipe(JaffaItem choppedItem) {

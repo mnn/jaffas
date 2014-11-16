@@ -149,6 +149,7 @@ import static monnef.jaffas.food.item.JaffaItem.jaffarrolLeggins;
 import static monnef.jaffas.food.item.JaffaItem.juiceBottle;
 import static monnef.jaffas.food.item.JaffaItem.mincedMushrooms;
 import static monnef.jaffas.food.item.JaffaItem.onionSliced;
+import static monnef.jaffas.food.item.JaffaItem.pileLimsew;
 import static monnef.jaffas.food.item.JaffaItem.plate;
 import static monnef.jaffas.food.item.JaffaItem.roll;
 import static monnef.jaffas.food.item.JaffaItem.sausage;
@@ -838,6 +839,8 @@ public class JaffasTechnic extends JaffasModBase {
 
         Recipes.addOreRecipe(unfailingWaterBucketEmpty, "JFJ", "JFJ", "EJE", 'J', jaffarrol, 'F', Items.water_bucket, 'E', Items.bucket);
         Recipes.addOreRecipe(Items.water_bucket, "F", "E", 'E', Items.bucket, 'F', unfailingWaterBucketFull);
+
+        Recipes.addPileToDustRecipe(pileLimsew, JaffasTechnic.limsew);
     }
 
     private void registerPlantingBagRecipes(ItemStack s) {

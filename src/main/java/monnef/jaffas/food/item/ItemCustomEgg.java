@@ -1,0 +1,25 @@
+package monnef.jaffas.food.item;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+public abstract class ItemCustomEgg extends ItemJaffaBase {
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        if (!player.capabilities.isCreativeMode) {
+            stack.stackSize--;
+        }
+
+        world.playSoundAtEntity(player, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+
+        if (!world.isRemote) {
+            world.spawnEntityInWorld(createFlyingEggEntity(world, player));
+        }
+
+        return stack;
+    }
+
+    protected abstract Entity createFlyingEggEntity(World world, EntityPlayer player);
+}

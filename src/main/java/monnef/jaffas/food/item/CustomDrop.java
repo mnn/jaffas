@@ -46,7 +46,7 @@ public class CustomDrop {
 
         addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 1f);
         addDrop(EntitySpider.class, JaffaItem.spiderLegRaw, 0.5f);
-        addDrop(EntitySpider.class, new ItemStack(Items.spawn_egg, 1, ContentHolder.spiderEntityID), 0.07f);
+        addDrop(EntitySpider.class, JaffaItem.littleSpiderEggs, 0.1f);
     }
 
     public static CustomDropEntry addDrop(Class<? extends EntityLiving> clazz, JaffaItem item, float chance) {

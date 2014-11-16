@@ -54,6 +54,7 @@ import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.entity.EntityLittleSpider;
+import monnef.jaffas.food.entity.EntitySpiderEgg;
 import monnef.jaffas.food.item.ItemCleaverHookContainer;
 import monnef.jaffas.food.item.ItemJaffaPainting;
 import monnef.jaffas.food.item.ItemJaffaPlate;
@@ -143,11 +144,6 @@ public class ContentHolder {
 
     public static ItemJaffaPainting itemPainting;
 
-    public static int spiderEntityID;
-    static int jaffaPaintingEntityID;
-    static int duckEntityID;
-    static int duckEggEntityID;
-
     public static JaffaFluid corrosiveGoo, miningGoo, unstableGoo, waterOfLife;
     public static BlockJaffaFiniteFluid blockCorrosiveGoo, blockMiningGoo, blockUnstableGoo, blockWaterOfLife;
 
@@ -217,7 +213,7 @@ public class ContentHolder {
     }
 
     public static void registerDuck() {
-        EntityHelper.registerGlobalEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, ContentHolder.duckEntityID, jf, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
+        EntityHelper.registerGlobalEntity(EntityDuck.class, "jaffasDuck", 160, 1, true, jf, ColorHelper.getInt(0, 127, 75), ColorHelper.getInt(200, 200, 255));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasDuck.name", "en_US", "Duck");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerGrindable", new EntityDuck.MFR());
@@ -229,11 +225,15 @@ public class ContentHolder {
     }
 
     public static void registerLittleSpider() {
-        EntityHelper.registerGlobalEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, ContentHolder.spiderEntityID, jf, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
+        EntityHelper.registerGlobalEntity(EntityLittleSpider.class, "jaffasSpider", 160, 1, true, jf, ColorHelper.getInt(122, 122, 122), ColorHelper.getInt(0, 0, 202));
         LanguageRegistry.instance().addStringLocalization("entity.jaffasSpider.name", "en_US", "Little Spider");
         if (otherMods.isMineFactoryReloadedDetected()) {
             FactoryRegistry.sendMessage("registerGrindable", new EntityLittleSpider.MFR());
         }
+    }
+
+    public static void registerSpiderEgg() {
+        EntityHelper.registerModEntity(EntitySpiderEgg.class, "littleSpiderEgg", 160, 1, true, jf);
     }
 
     public static void registerDuckSpawns() {
@@ -349,19 +349,11 @@ public class ContentHolder {
     }
 
     public static void initEntityIDs() {
-        jaffaPaintingEntityID = getNextFreeGlobalEntityID();
         createPainting();
-
-        duckEntityID = getNextFreeGlobalEntityID();
         registerDuck();
-
-        duckEggEntityID = getNextFreeGlobalEntityID();
         registerDuckEgg();
-
-        spiderEntityID = getNextFreeGlobalEntityID();
         registerLittleSpider();
-
-        JaffasFood.Log.printInfo(String.format("Registered entities: painting @ %d, duck @ %d, duck egg @ %d, little spider @ %d", jaffaPaintingEntityID, duckEntityID, duckEggEntityID, spiderEntityID));
+        registerSpiderEgg();
     }
 
     public static void createFluids() {

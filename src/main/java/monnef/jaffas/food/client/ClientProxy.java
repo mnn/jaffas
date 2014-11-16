@@ -27,6 +27,7 @@ import monnef.jaffas.food.entity.EntityDuck;
 import monnef.jaffas.food.entity.EntityDuckEgg;
 import monnef.jaffas.food.entity.EntityJaffaPainting;
 import monnef.jaffas.food.entity.EntityLittleSpider;
+import monnef.jaffas.food.entity.EntitySpiderEgg;
 import monnef.jaffas.food.item.ItemSpawnStone;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.network.HomeStonePacket;
@@ -45,6 +46,7 @@ public class ClientProxy extends CommonProxy {
         RenderingRegistry.registerEntityRenderingHandler(EntityJaffaPainting.class, new RenderJaffaPainting());
         RenderingRegistry.registerEntityRenderingHandler(EntityDuck.class, new RenderDuck(new ModelChicken(), 0.3F));
         RenderingRegistry.registerEntityRenderingHandler(EntityDuckEgg.class, new RenderItemInAir(JaffasFood.getItem(JaffaItem.duckEgg)));
+        RenderingRegistry.registerEntityRenderingHandler(EntitySpiderEgg.class, new RenderItemInAir(JaffasFood.getItem(JaffaItem.littleSpiderEggs)));
         RenderingRegistry.registerEntityRenderingHandler(EntityLittleSpider.class, constructLittleSpiderRenderer());
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileCross.class, new TileCrossRenderer());

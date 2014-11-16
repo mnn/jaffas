@@ -301,6 +301,12 @@ class Items extends ItemManagerAccessor {
     addItemInfo(bucketMiningGoo, 6)
     addItemInfo(bucketUnstableGoo, 6)
     addItemInfo(spongeCloth, 305)
+    addItemInfo(dustEnder, 307)
+    addItemInfo(pileEnder, 308)
+    addItemInfo(pileGlowstone, 309)
+    addItemInfo(pileLimsew, 310)
+    addItemInfo(pileRedstone, 311)
+    addItemInfo(littleSpiderEggs, 312)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -575,6 +581,13 @@ class Items extends ItemManagerAccessor {
     createJaffaItemManual(bucketMiningGoo, new ItemJaffaBucket(ContentHolder.blockMiningGoo))
     createJaffaItemManual(bucketUnstableGoo, new ItemJaffaBucket(ContentHolder.blockUnstableGoo))
     createJaffaItemManual(spongeCloth, classOf[ItemSpongeCloth])
+
+    createJaffaItem(dustEnder)
+    createJaffaItem(pileEnder)
+    createJaffaItem(pileGlowstone)
+    createJaffaItem(pileLimsew)
+    createJaffaItem(pileRedstone)
+    createJaffaItemManual(littleSpiderEggs, classOf[ItemSpiderEgg]).setMaxStackSize(16)
 
     createItemsOreDictRegistration()
     addMeatsToDryerDatabase()
