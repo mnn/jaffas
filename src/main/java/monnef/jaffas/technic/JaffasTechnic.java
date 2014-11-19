@@ -90,11 +90,13 @@ import monnef.jaffas.technic.item.ItemKeg;
 import monnef.jaffas.technic.item.ItemLocomotive;
 import monnef.jaffas.technic.item.ItemMushroomKnife;
 import monnef.jaffas.technic.item.ItemPickaxeTechnic;
+import monnef.jaffas.technic.item.ItemPointedPick;
 import monnef.jaffas.technic.item.ItemSpadeTechnic;
 import monnef.jaffas.technic.item.ItemSwordTechnic;
 import monnef.jaffas.technic.item.ItemTechnic;
 import monnef.jaffas.technic.item.ItemUnfailingWaterBucketEmpty;
 import monnef.jaffas.technic.item.ItemUnfailingWaterBucketFull;
+import monnef.jaffas.technic.item.PointedPickHooks;
 import monnef.jaffas.technic.network.FruitCollectorPacket;
 import monnef.jaffas.trees.BushType;
 import monnef.jaffas.trees.JaffasTrees;
@@ -109,6 +111,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -246,6 +249,8 @@ public class JaffasTechnic extends JaffasModBase {
     public static ItemUnfailingWaterBucketEmpty unfailingWaterBucketEmpty;
     public static ItemUnfailingWaterBucketFull unfailingWaterBucketFull;
 
+    public static ItemPointedPick pointedPick;
+
     /*
     WOOD(0, 59, 2.0F, 0, 15),
     STONE(1, 131, 4.0F, 1, 5),
@@ -318,6 +323,7 @@ public class JaffasTechnic extends JaffasModBase {
         JaffasFood.packetHandler.manager().registerPacket(2, FruitCollectorPacket.class);
 
         FMLCommonHandler.instance().bus().register(new PlayerTracker());
+        MinecraftForge.EVENT_BUS.register(new PointedPickHooks());
     }
 
     private void registerEntities() {
@@ -574,6 +580,10 @@ public class JaffasTechnic extends JaffasModBase {
         unfailingWaterBucketFull = new ItemUnfailingWaterBucketFull(105);
         RegistryUtils.registerItem(unfailingWaterBucketFull, "unfailingWaterBucketFull");
         FluidContainerRegistry.registerFluidContainer(FluidRegistry.WATER, new ItemStack(unfailingWaterBucketFull), new ItemStack(unfailingWaterBucketEmpty));
+
+        pointedPick = new ItemPointedPick(106, EnumToolMaterialJaffarrol);
+        RegistryUtils.registerItem(pointedPick, "pointedPick");
+        pointedPick.setHarvestLevel("pickaxe", 3);
     }
 
 
@@ -841,6 +851,9 @@ public class JaffasTechnic extends JaffasModBase {
         Recipes.addOreRecipe(Items.water_bucket, "F", "E", 'E', Items.bucket, 'F', unfailingWaterBucketFull);
 
         Recipes.addPileToDustRecipe(pileLimsew, JaffasTechnic.limsew);
+
+        Recipes.addOreRecipe(pointedPick, "I J", " I ", "I I", 'I', Items.iron_ingot, 'J', jaffarrol);
+        addToolRecycleRecipe(pointedPick, 1);
     }
 
     private void registerPlantingBagRecipes(ItemStack s) {

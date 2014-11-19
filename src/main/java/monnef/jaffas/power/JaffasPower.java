@@ -150,7 +150,7 @@ public class JaffasPower extends JaffasModBase {
         turbineBlade.registerNames();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
-        MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
+        //MinecraftForge.EVENT_BUS.register(new ItemCleaverHookContainer());
         if (lightningConductorEnabled) {
             MinecraftForge.EVENT_BUS.register(new LightingHandler());
         }

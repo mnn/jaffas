@@ -6,8 +6,10 @@
 package monnef.jaffas.food.item;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import monnef.core.utils.DamageSourceHelper;
 import monnef.core.utils.EntityHelper;
 import monnef.core.utils.PlayerHelper;
+import monnef.core.utils.WorldHelper;
 import monnef.jaffas.food.JaffasFood;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -29,7 +31,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class ItemCleaverHookContainer {
-    private static String DamageSourcePlayer = "player";
 
     private static Random rand = new Random();
 
@@ -60,7 +61,7 @@ public class ItemCleaverHookContainer {
         DamageSource source = event.source;
         EntityLivingBase mob = event.entityLiving;
 
-        if (SourceIsPlayer(source)) {
+        if (DamageSourceHelper.sourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
             if (PlayerHelper.playerHasEquipped(player, getMeatCleaver())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
@@ -76,7 +77,7 @@ public class ItemCleaverHookContainer {
         DamageSource source = event.source;
         EntityLivingBase mob = event.entityLiving;
 
-        if (SourceIsPlayer(source)) {
+        if (DamageSourceHelper.sourceIsPlayer(source)) {
             EntityPlayer player = (EntityPlayer) source.getEntity();
             if (PlayerHelper.playerHasEquipped(player, getMeatCleaver())) {
                 if (AnimalToMeat.containsKey(mob.getClass())) {
@@ -85,22 +86,13 @@ public class ItemCleaverHookContainer {
                         for (int i = 0; i < 2; i++) {
                             if (rand.nextFloat() < .5) {
                                 ItemStack loot = getMeatFromAnimal(animal);
-                                DropLoot(animal, loot);
+                                WorldHelper.dropLoot(animal, loot);
                             }
                         }
                     }
                 }
             }
         }
-    }
-
-    private boolean SourceIsPlayer(DamageSource source) {
-        return source.damageType.equals(DamageSourcePlayer);
-    }
-
-    private void DropLoot(EntityLiving entity, ItemStack loot) {
-        EntityItem item = new EntityItem(entity.worldObj, entity.posX, entity.posY, entity.posZ, loot);
-        entity.worldObj.spawnEntityInWorld(item);
     }
 
     private Item getMeatCleaver() {
