@@ -20,7 +20,7 @@ class ItemPointedPick(_tex: Int, _mat: Item.ToolMaterial) extends ItemTechnicToo
   override def onBlockDestroyed(stack: ItemStack, world: World, block: Block, x: Int, y: Int, z: Int, entity: EntityLivingBase): Boolean = {
     if (!isHarvestAbleBlock(block) &&
       (block.getBlockHardness(world, x, y, z) > 0 || block.getHarvestLevel(world.getBlockMetadata(x, y, z)) > 0)
-    ) damageTool(15, entity, stack)
+    ) damageTool(10, entity, stack)
     super.onBlockDestroyed(stack, world, block, x, y, z, entity)
   }
 }
@@ -29,6 +29,7 @@ object ItemPointedPick {
   def isHarvestAbleBlock(block: Block): Boolean = {
     block match {
       case Blocks.obsidian => true
+      case _ if block.getUnlocalizedName != null && block.getUnlocalizedName.toLowerCase.endsWith("blockskystone") => true
       case _ => false
     }
   }
