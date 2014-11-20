@@ -6,6 +6,7 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.client.ResourcePathHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.RandomHelper;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.CobWebDescriptor;
 import monnef.jaffas.food.common.CobWebInfluencingBlocksCalculator;
 import monnef.jaffas.food.common.CobWebInfluencingBlocksCalculator$;
@@ -34,6 +35,7 @@ import java.util.Random;
 
 import static monnef.core.client.ResourcePathHelper.ResourceTextureType.ENTITY;
 import static monnef.jaffas.food.JaffasFood.getItem;
+import static monnef.jaffas.food.item.JaffaItem.littleSpiderEggs;
 import static monnef.jaffas.food.item.JaffaItem.spiderLegRaw;
 
 public class EntityLittleSpider extends EntityJaffaSpider {
@@ -188,6 +190,11 @@ public class EntityLittleSpider extends EntityJaffaSpider {
                 timeUntilNextWeb = rand.nextInt(20 * 60 * 1) + 20 * 30;
                 if (MonnefCorePlugin.debugEnv) timeUntilNextWeb = 20;
             }
+        }
+
+        int TRY_LAY_EGG_EVERY_N_TICKS = MonnefCorePlugin.debugEnv ? 20 * 3 : 20 * 60 * 1;
+        if (!isChild() && !worldObj.isRemote && !isAggressive() && timeUntilNextWeb % TRY_LAY_EGG_EVERY_N_TICKS == 0 && RandomHelper.rand().nextBoolean()) {
+            dropItem(JaffasFood.getItem(littleSpiderEggs), 1);
         }
     }
 

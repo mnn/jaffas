@@ -11,10 +11,14 @@ import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.utils.IntegerCoordinates;
 import monnef.jaffas.food.JaffasFood;
+import monnef.jaffas.food.common.SpecialCobWebRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
 
 @ContainerRegistry.ContainerTag(slotsCount = 1, containerClassName = "monnef.core.block.ContainerMachine", guiClassName = "monnef.jaffas.power.client.GuiContainerWebHarvester")
 public class TileWebHarvester extends TileMachineWithInventory implements ISidedInventory {
@@ -64,20 +68,36 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
         if (consumeNeededPower() < powerNeeded) {
             return;
         }
-        worldObj.func_147480_a(web.getX(), web.getY(), web.getZ(), false); // destroyBlock
 
-        ItemStack stack = getStackInSlot(0);
-        if (stack == null) {
-            setInventorySlotContents(0, new ItemStack(Items.string));
-        } else {
-            stack.stackSize++;
+        Block webBlock = web.getBlock();
+        ArrayList<ItemStack> drops = webBlock.getDrops(worldObj, web.getX(), web.getY(), web.getZ(), web.getBlockMetadata(), 0);
+        worldObj.func_147480_a(web.getX(), web.getY(), web.getZ(), false); // destroyBlock
+        if (drops.size() > 0) {
+            ItemStack dropsHeadSquashed = drops.get(0);
+            boolean containsOtherItems = false;
+            boolean tooBig = false;
+            for (int i = 1; i < drops.size(); i++) {
+                ItemStack drop = drops.get(i);
+                if (dropsHeadSquashed.isItemEqual(drop)) {
+                    if (drop.stackSize + dropsHeadSquashed.stackSize < dropsHeadSquashed.getMaxStackSize()) {
+                        dropsHeadSquashed.stackSize += drop.stackSize;
+                    } else {
+                        tooBig = true;
+                    }
+                } else {
+                    containsOtherItems = true;
+                }
+            }
+
+            if (tooBig || containsOtherItems) {
+                JaffasFood.Log.printWarning(String.format("Web drops returned more stuff that I can fit into my inventory, web block: %s, tooBig: %s, containsOtherItems: %s", webBlock.getUnlocalizedName(), tooBig, containsOtherItems));
+            }
+            setInventorySlotContents(0, dropsHeadSquashed);
         }
     }
 
     private boolean freeSpaceInInventory() {
-        ItemStack stack = getStackInSlot(0);
-        if (stack == null) return true;
-        return stack.stackSize < stack.getMaxStackSize();
+        return getStackInSlot(0) == null;
     }
 
     private IIntegerCoordinates findWeb() {
@@ -99,7 +119,7 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
             if (MonnefCorePlugin.debugEnv && DEBUG_PRINTS) {
                 JaffasFood.Log.printInfo(String.format("checking if cobweb - %d, %d, %d", x, y, z));
             }
-            found = worldObj.getBlock(x, y, z) == Blocks.web;
+            found = SpecialCobWebRegistry.blockRegistered(worldObj.getBlock(x, y, z));
         } while (tryCount++ < MAX_SCANS_PER_TRY && !found);
         if (found) return new IntegerCoordinates(x, y, z, worldObj);
         return null;
