@@ -6,6 +6,11 @@ import monnef.core.MonnefCorePlugin;
 import monnef.core.client.ResourcePathHelper;
 import monnef.core.utils.BlockHelper;
 import monnef.core.utils.RandomHelper;
+import monnef.jaffas.food.common.CobWebDescriptor;
+import monnef.jaffas.food.common.CobWebInfluencingBlocksCalculator;
+import monnef.jaffas.food.common.CobWebInfluencingBlocksCalculator$;
+import monnef.jaffas.food.common.SpecialCobWebRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,6 +25,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.IFactoryGrindable;
 import powercrystals.minefactoryreloaded.api.MobDrop;
+import scala.Tuple2;
+import scala.collection.Seq;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +71,7 @@ public class EntityLittleSpider extends EntityJaffaSpider {
         super(world);
         this.setSize(0.5F, 0.25F);
         this.timeUntilNextWeb = rand.nextInt(1500) + 500;
+        if (MonnefCorePlugin.debugEnv) this.timeUntilNextWeb = 100;
         this.renderDistanceWeight = 2;
     }
 
@@ -147,6 +155,10 @@ public class EntityLittleSpider extends EntityJaffaSpider {
         return false;
     }
 
+    public static boolean isWeb(Block block) {
+        return SpecialCobWebRegistry.blockRegistered(block);
+    }
+
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
@@ -159,27 +171,32 @@ public class EntityLittleSpider extends EntityJaffaSpider {
             int x = (int) Math.round(posX);
             int y = (int) Math.round(posY);
             int z = (int) Math.round(posZ);
-            if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlock(x, y, z) == Blocks.web) {
+            if (!worldObj.isAirBlock(x, y, z) && isWeb(worldObj.getBlock(x, y, z))) {
                 y++;
-                if (!worldObj.isAirBlock(x, y, z) && worldObj.getBlock(x, y, z) == Blocks.web && rand.nextInt(2) == 0) {
+                if (!worldObj.isAirBlock(x, y, z) && isWeb(worldObj.getBlock(x, y, z)) && rand.nextInt(2) == 0) {
                     y++;
                 }
             }
             if (worldObj.isAirBlock(x, y, z)) {
                 setNewTimeUntilNextWeb();
-                BlockHelper.setBlock(worldObj, x, y, z, Blocks.web);
+                Seq<Tuple2<CobWebDescriptor, Object>> scoreTable = CobWebInfluencingBlocksCalculator.calculateScoreTable(this);
+                Block webBlock = RandomHelper.randomlySelectOne(scoreTable).block().apply();
+                BlockHelper.setBlock(worldObj, x, y, z, webBlock);
                 playWebSound();
             } else {
                 // failed lookup for free space, trying again after some time
-                timeUntilNextWeb = rand.nextInt(20 * 60 * 2) + 20 * 30;
+                timeUntilNextWeb = rand.nextInt(20 * 60 * 1) + 20 * 30;
+                if (MonnefCorePlugin.debugEnv) timeUntilNextWeb = 20;
             }
         }
     }
 
     private void setNewTimeUntilNextWeb() {
         timeUntilNextWeb = rand.nextInt(4000) + 4000 + calculateBadEnvironmentPenaltyTicks(); // ~5m
-        if (MonnefCorePlugin.debugEnv)
-            MonnefCorePlugin.Log.printInfo(String.format("timeUntilNextWeb for spider @ %f %f %f is now set to %d", posX, posY, posZ, timeUntilNextWeb));
+        if (MonnefCorePlugin.debugEnv) {
+            timeUntilNextWeb /= 100;
+            MonnefCorePlugin.Log.printInfo(String.format("timeUntilNextWeb for spider @ %f %f %f is now set to %d (in production *100)", posX, posY, posZ, timeUntilNextWeb));
+        }
     }
 
     private int calculateBadEnvironmentPenaltyTicks() {

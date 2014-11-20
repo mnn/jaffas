@@ -52,7 +52,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
     private int timeToSpore;
     private int timeToGrow;
 
-    private int counter = rand.nextInt(20 * 60);
+    private int counter = rand().nextInt(20 * 60);
 
     private FungusInfo fungusTemplate;
 
@@ -190,7 +190,7 @@ public class TileFungiBox extends TileEntity implements ICrop {
             showSporeEffect = true;
 
             for (int i = 0; i < fungusTemplate.sporeTries; i++) {
-                int randomNeighbour = rand.nextInt(8);
+                int randomNeighbour = rand().nextInt(8);
                 int sx = eightNeighbour[randomNeighbour][0];
                 int sz = eightNeighbour[randomNeighbour][1];
                 TileEntity tile = worldObj.getTileEntity(xCoord + sx, yCoord, zCoord + sz);

@@ -20,7 +20,7 @@ object SpecialCobWebRegistry {
     if (constructed) throw new RuntimeException("Re-constructing databases.")
 
     def addToDb(item: CobWebDescriptor) {
-      db += item.block -> item
+      db += item.block() -> item
       item.influencingBlocks.foreach { ib => infDb += ib.block() ->(ib.value, item)}
     }
     db = db.empty
@@ -30,11 +30,16 @@ object SpecialCobWebRegistry {
     constructed = true
   }
 
+  def registerBlock(desc: CobWebDescriptor) {
+    if (tmpDb.exists(_.block == desc.block)) throw new RuntimeException("Descriptor with same block is already registered!")
+    addToDb(desc)
+  }
+
   def registerAndCreateBlock(desc: CobWebDescriptor): BlockSpecialWeb = {
     val b = new BlockSpecialWeb(desc.textureId)
-    val newDesc = desc.copy(block = b)
+    val newDesc = desc.copy(block = () => b)
     b.descriptor = newDesc
-    addToDb(newDesc)
+    registerBlock(newDesc)
     b
   }
 
@@ -56,4 +61,4 @@ case class CobWebInfluencingBlock(value: Int, block: () => Block, meta: Int = -1
     else true
 }
 
-case class CobWebDescriptor(drop: () => Item, dropMinCount: Int, dropMaxCount: Int, materialName: String, block: Block, textureId: Int, influencingBlocks: Seq[CobWebInfluencingBlock])
+case class CobWebDescriptor(drop: () => Item, dropMinCount: Int, dropMaxCount: Int, materialName: String, block: () => Block, textureId: Int, influencingBlocks: Seq[CobWebInfluencingBlock])

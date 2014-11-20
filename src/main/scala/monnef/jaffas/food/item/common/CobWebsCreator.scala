@@ -21,6 +21,8 @@ object CobWebsCreator {
   }
 
   def create() {
+    SpecialCobWebRegistry.registerBlock(CobWebDescriptor(() => null, 0, 0, "", () => Blocks.web, 0, Seq()))
+
     webEnder = createWrapped(pileEnder, 1, 9, "ender", 313, Seq(
       (2, () => Blocks.wool, DyeHelper.getWoolNum(DyeColor.BLACK)),
       (1, () => Blocks.wool, DyeHelper.getWoolNum(DyeColor.GREEN))
