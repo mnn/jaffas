@@ -19,7 +19,8 @@ object CobWebInfluencingBlocksCalculator {
       y <- sy - NEIGHBORHOOD_RADIUS to sy + NEIGHBORHOOD_RADIUS
       z <- sz - NEIGHBORHOOD_RADIUS to sz + NEIGHBORHOOD_RADIUS
       currentBlock = spider.worldObj.getBlock(x, y, z)
-      (currentValue, desc) <- SpecialCobWebRegistry.getDescriptorInfluencedBy(currentBlock)
+      currentMeta = spider.worldObj.getBlockMetadata(x, y, z)
+      (currentValue, desc) <- SpecialCobWebRegistry.getDescriptorInfluencedBy(currentBlock, currentMeta)
     } {
       if (!res.contains(desc)) res += desc -> 0
       res = res.updated(desc, res(desc) + currentValue)

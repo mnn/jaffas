@@ -34,20 +34,25 @@ object CobWebsCreator {
     ))
 
     webRedstone = createWrapped(pileRedstone, 1, 3, "redstone", 316, Seq(
-      (10, () => Blocks.redstone_block, -1),
-      (4, () => Blocks.redstone_ore, -1),
+      (15, () => Blocks.redstone_block, -1),
+      (5, () => Blocks.redstone_ore, -1),
       (1, () => Blocks.redstone_wire, -1),
       (1, () => Blocks.redstone_lamp, -1),
       (1, () => Blocks.redstone_torch, -1),
       (1, () => Blocks.lit_redstone_lamp, -1),
-      (1, () => Blocks.lit_redstone_ore, -1)
+      (1, () => Blocks.lit_redstone_ore, -1),
+      (1, () => Blocks.powered_repeater, -1),
+      (1, () => Blocks.unpowered_repeater, -1),
+      (1, () => Blocks.powered_comparator, -1),
+      (1, () => Blocks.unpowered_comparator, -1)
     ))
   }
 
   def createLimsewCobWeb() {
     webLimsew = createWrapped(pileLimsew, 1, 3, "limsew", 315, Seq(
-      (10, () => JaffasTechnic.blockLimsew, -1),
-      (4, () => JaffasTechnic.blockLimsewOre, -1)
+      (20, () => JaffasTechnic.blockLimsew, -1),
+      (7, () => JaffasTechnic.blockLimsewOre, -1),
+      (1, () => Blocks.wool, DyeHelper.getWoolNum(DyeColor.LIME))
     ))
   }
 }

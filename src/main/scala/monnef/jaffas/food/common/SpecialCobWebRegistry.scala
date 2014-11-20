@@ -6,7 +6,9 @@ import monnef.jaffas.food.block.BlockSpecialWeb
 
 object SpecialCobWebRegistry {
   private var db = Map[Block, CobWebDescriptor]()
-  private var infDb = Map[Block, (Int, CobWebDescriptor)]()
+  private var infDb = Map[(Block, Int), (Int, CobWebDescriptor)]()
+  private var infDbPlain = Map[Block, (Int, CobWebDescriptor)]()
+  private var infDbNonPlain = Map[(Block, Int), (Int, CobWebDescriptor)]()
 
   private var tmpDb = Seq[CobWebDescriptor]()
 
@@ -21,7 +23,12 @@ object SpecialCobWebRegistry {
 
     def addToDb(item: CobWebDescriptor) {
       db += item.block() -> item
-      item.influencingBlocks.foreach { ib => infDb += ib.block() ->(ib.value, item)}
+      item.influencingBlocks.foreach {
+        ib =>
+          infDb += (ib.block(), ib.meta) ->(ib.value, item)
+          if (ib.meta == -1) infDbPlain += ib.block() ->(ib.value, item)
+          else infDbNonPlain += (ib.block(), ib.meta) ->(ib.value, item)
+      }
     }
     db = db.empty
     infDb = infDb.empty
@@ -47,7 +54,12 @@ object SpecialCobWebRegistry {
 
   def getDescriptor(block: Block): CobWebDescriptor = db(block)
 
-  def getDescriptorInfluencedBy(influencingBlock: Block): Option[(Int, CobWebDescriptor)] = infDb.get(influencingBlock)
+  def getDescriptorInfluencedBy(influencingBlock: Block, meta: Int): Seq[(Int, CobWebDescriptor)] =
+    if (infDbPlain.contains(influencingBlock)) Seq(infDbPlain(influencingBlock))
+    else infDbNonPlain.filter {
+      case ((dbBlock, dbMeta), (value, desc)) =>
+        influencingBlock == dbBlock && dbMeta == meta
+    }.map(_._2).toSeq
 
   def getDescriptors: Seq[CobWebDescriptor] = db.values.toSeq
 }
