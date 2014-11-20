@@ -29,7 +29,6 @@ import monnef.core.network.CorePacketHandlerTrait;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.achievement.AchievementsHandler;
-import monnef.jaffas.food.block.SpecialCobWebRegistry;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
@@ -38,6 +37,7 @@ import monnef.jaffas.food.command.CommandJaffasClient;
 import monnef.jaffas.food.command.CommandJaffasOP;
 import monnef.jaffas.food.common.BucketHandler;
 import monnef.jaffas.food.common.BucketHandler$;
+import monnef.jaffas.food.common.CobWebHarvestingHandler;
 import monnef.jaffas.food.common.CommonProxy;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ContentHolder;
@@ -48,6 +48,7 @@ import monnef.jaffas.food.common.ModulesEnum;
 import monnef.jaffas.food.common.OtherModsHelper;
 import monnef.jaffas.food.common.PlateUnequipper;
 import monnef.jaffas.food.common.Reference;
+import monnef.jaffas.food.common.SpecialCobWebRegistry;
 import monnef.jaffas.food.common.SwitchgrassBiomeRegistrar;
 import monnef.jaffas.food.common.VillagersTradeHandler;
 import monnef.jaffas.food.crafting.LeftoversCraftingHandler;
@@ -212,6 +213,7 @@ public class JaffasFood extends JaffasModBase {
         SwitchgrassBiomeRegistrar.register();
 
         packetHandler.manager().registerPacket(1, HomeStonePacket.class);
+        MinecraftForge.EVENT_BUS.register(new CobWebHarvestingHandler());
     }
 
     private void initializeModuleManager() {

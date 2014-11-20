@@ -5,6 +5,7 @@
 
 package monnef.jaffas.food.item;
 
+import monnef.core.api.IItemSword;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +15,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemJaffaSword extends ItemJaffaTool {
+public class ItemJaffaSword extends ItemJaffaTool implements IItemSword {
 
     public ItemJaffaSword(int textureOffset, Item.ToolMaterial material) {
         super(textureOffset, material);

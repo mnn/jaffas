@@ -5,12 +5,11 @@ import net.minecraft.block.Block
 import monnef.jaffas.food.block._
 import monnef.core.utils.{DyeColor, DyeHelper, StringsHelper, RegistryUtils}
 import monnef.jaffas.food.item.JaffaItem._
-import monnef.jaffas.food.block.CobWebInfluencingBlock
-import monnef.jaffas.food.block.CobWebDescriptor
 import net.minecraft.init.Blocks
 import monnef.jaffas.food.common.ContentHolder._
 import monnef.jaffas.technic.JaffasTechnic
 import monnef.jaffas.food.JaffasFood.getItem
+import monnef.jaffas.food.common.{CobWebInfluencingBlock, CobWebDescriptor, SpecialCobWebRegistry}
 
 object CobWebsCreator {
   private def createWrapped(drop: JaffaItem, dropMin: Int, dropMax: Int, name: String, textureId: Int, influentialBlocks: Seq[(Int, () => Block, Int)]): BlockSpecialWeb = {
