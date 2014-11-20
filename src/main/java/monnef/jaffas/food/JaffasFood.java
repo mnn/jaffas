@@ -22,7 +22,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.server.FMLServerHandler;
 import monnef.core.MonnefCorePlugin;
 import monnef.core.common.VillagersTradeHandlerWrapper;
 import monnef.core.mod.MonnefCoreNormalMod;
@@ -30,6 +29,7 @@ import monnef.core.network.CorePacketHandlerTrait;
 import monnef.core.utils.CustomLogger;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.achievement.AchievementsHandler;
+import monnef.jaffas.food.block.SpecialCobWebRegistry;
 import monnef.jaffas.food.client.GuiHandler;
 import monnef.jaffas.food.command.CommandFridgeDebug;
 import monnef.jaffas.food.command.CommandJaffaHunger;
@@ -61,12 +61,13 @@ import monnef.jaffas.food.item.ItemJaffaPack;
 import monnef.jaffas.food.item.ItemJaffaRecipeTool;
 import monnef.jaffas.food.item.JaffaItem;
 import monnef.jaffas.food.item.JaffaItemType;
-import monnef.jaffas.food.item.JaffasHelper;
 import monnef.jaffas.food.item.common.ItemManager;
 import monnef.jaffas.food.item.common.Items;
 import monnef.jaffas.food.network.HomeStonePacket;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.food.server.ServerTickHandler;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.command.ICommandManager;
 import net.minecraft.command.ServerCommandManager;
 import net.minecraft.item.Item;
@@ -89,7 +90,6 @@ import static monnef.jaffas.food.common.ContentHolder.createJaffaArmorAndSword;
 import static monnef.jaffas.food.common.ContentHolder.initEntityIDs;
 import static monnef.jaffas.food.common.ContentHolder.registerCleaverRecords;
 import static monnef.jaffas.food.common.ContentHolder.registerDuckSpawns;
-import static monnef.jaffas.food.common.ContentHolder.waterOfLife;
 
 @Mod(modid = Reference.ModId, name = Reference.ModName, version = Reference.Version,
         dependencies = "after:ThermalExpansion;" +
@@ -124,6 +124,12 @@ public class JaffasFood extends JaffasModBase {
     public static CorePacketHandlerTrait packetHandler;
 
     public static boolean cropGrowthDisabled = false;
+
+    public static Material webMaterial = new Material(MapColor.clothColor) {
+        public boolean blocksMovement() {
+            return false;
+        }
+    };
 
     public JaffasFood() {
         super();
@@ -228,6 +234,7 @@ public class JaffasFood extends JaffasModBase {
         ItemManager.constructItemIdToJaffaItemMappings();
         registerFluidContainers();
         Recipes.installRecipes();
+        SpecialCobWebRegistry.constructDatabases();
 
         printInitializedMessage();
     }

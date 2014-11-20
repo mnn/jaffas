@@ -589,6 +589,8 @@ class Items extends ItemManagerAccessor {
     createJaffaItem(pileRedstone)
     createJaffaItemManual(littleSpiderEggs, classOf[ItemSpiderEgg]).setMaxStackSize(16)
 
+    CobWebsCreator.create()
+
     createItemsOreDictRegistration()
     addMeatsToDryerDatabase()
     markJaffasRare()

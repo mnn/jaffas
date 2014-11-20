@@ -30,6 +30,7 @@ import monnef.jaffas.food.block.BlockPie;
 import monnef.jaffas.food.block.BlockPizza;
 import monnef.jaffas.food.block.BlockRipeningBox;
 import monnef.jaffas.food.block.BlockSink;
+import monnef.jaffas.food.block.BlockSpecialWeb;
 import monnef.jaffas.food.block.BlockSwitchgrass;
 import monnef.jaffas.food.block.BlockSwitchgrassSolid;
 import monnef.jaffas.food.block.BlockTable;
@@ -110,6 +111,7 @@ public class ContentHolder {
     public static BlockTintedMulti blockStainedPolishedStone;
     public static BlockTintedMulti blockStainedPlanks;
     public static BlockCoconutLamp blockCoconutLamp;
+    public static BlockSpecialWeb webEnder, webGlowstone, webRedstone, webLimsew;
 
     /*
     CLOTH(5, new int[]{1, 3, 2, 1}, 15),

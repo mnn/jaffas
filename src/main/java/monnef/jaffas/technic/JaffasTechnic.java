@@ -13,7 +13,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartedEvent;
-import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import monnef.core.power.WrenchHelper;
@@ -26,6 +25,7 @@ import monnef.external.ThermalExpansionCustomHelper;
 import monnef.jaffas.JaffasModBase;
 import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.block.BlockJDirectional;
+import monnef.jaffas.food.block.BlockSpecialWeb;
 import monnef.jaffas.food.block.ItemBlockJaffas;
 import monnef.jaffas.food.common.ConfigurationManager;
 import monnef.jaffas.food.common.ContentHolder;
@@ -39,6 +39,7 @@ import monnef.jaffas.food.crafting.RecipesBoard;
 import monnef.jaffas.food.item.CustomDrop;
 import monnef.jaffas.food.item.ItemJaffaPlate;
 import monnef.jaffas.food.item.JaffaItem;
+import monnef.jaffas.food.item.common.CobWebsCreator;
 import monnef.jaffas.food.server.PlayerTracker;
 import monnef.jaffas.power.block.TileGrinder;
 import monnef.jaffas.technic.block.BlockCobbleBreaker;
@@ -584,6 +585,8 @@ public class JaffasTechnic extends JaffasModBase {
         pointedPick = new ItemPointedPick(106, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(pointedPick, "pointedPick");
         pointedPick.setHarvestLevel("pickaxe", 3);
+
+        CobWebsCreator.createLimsewCobWeb();
     }
 
 
