@@ -338,6 +338,7 @@ public class JaffasTechnic extends JaffasModBase {
         super.load(event);
         JaffasFood.printInitialized(ModulesEnum.technic);
         EntityCombineHarvester.registerBlockHarvestingInstruction(Blocks.tallgrass, new EntityCombineHarvester.SimpleDestroyBlockHarvestingInstruction());
+        installThermalExpansionSupport();
     }
 
     private void addDungeonLoot() {
@@ -361,7 +362,6 @@ public class JaffasTechnic extends JaffasModBase {
         CompostRegister.fillWithVanillaItems();
         CompostRegister.fillWithFoodModuleItems();
         handleGuideBook();
-        installThermalExpansionSupport();
     }
 
     private void handleGuideBook() {
@@ -395,6 +395,7 @@ public class JaffasTechnic extends JaffasModBase {
 
     private void installThermalExpansionSupport() {
         if (JaffasFood.otherMods.isTEDetected()) {
+            Log.printInfo("Installing recipes for Thermal Expansion.");
             try {
                 ThermalExpansionCustomHelper.init();
                 ThermalExpansionCustomHelper.addPulverizerOreToDustRecipe(new ItemStack(blockJaffarrolOre), new ItemStack(jaffarrolDust));
@@ -727,7 +728,7 @@ public class JaffasTechnic extends JaffasModBase {
         addEnchantRecipe(getItem(jaffarrolBoots), Items.golden_boots);
         addEnchantRecipe(getItem(jaffarrolChest), Items.golden_chestplate);
 
-        Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(blockJaffarrolOre));
+        Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust, 2), new ItemStack(blockJaffarrolOre));
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrol));
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRaw));
         Recipes.addMalletShapedRecipe(new ItemStack(jaffarrolDust), new ItemStack(jaffarrolRefined));
