@@ -83,7 +83,6 @@ public class ItemJaffaTool extends ItemJaffaBase {
      * @param block Used on this.
      * @return Effectiveness.
      */
-
     @Override
     public float func_150893_a(ItemStack stack, Block block) {
         if (nearlyDestroyed(stack)) {
@@ -91,7 +90,7 @@ public class ItemJaffaTool extends ItemJaffaBase {
         }
 
         if (ForgeHooks.isToolEffective(stack, block, UNKNOWN_METADATA)) {
-            return efficiencyOnProperMaterial;
+            return Math.max(efficiencyOnProperMaterial, getCustomStrVsBlock(stack, block));
         }
         return getCustomStrVsBlock(stack, block);
     }

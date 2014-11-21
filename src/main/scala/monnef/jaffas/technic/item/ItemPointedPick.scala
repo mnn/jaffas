@@ -30,7 +30,8 @@ object ItemPointedPick {
   def getHarvestSpeed(block: Block): Option[Int] = {
     block match {
       case Blocks.obsidian => Some(200)
-      case _ if block.getUnlocalizedName != null && block.getUnlocalizedName.toLowerCase.endsWith("blockskystone") => Some(500)
+      case _ if block.getUnlocalizedName == null => None
+      case _ if block.getUnlocalizedName.toLowerCase.endsWith("blockskystone") => Some(500)
       case _ => None
     }
   }
