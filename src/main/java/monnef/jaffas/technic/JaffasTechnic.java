@@ -259,7 +259,7 @@ public class JaffasTechnic extends JaffasModBase {
     EMERALD(3, 1561, 8.0F, 3, 10),
     GOLD(0, 32, 12.0F, 0, 22);
     */
-    public static Item.ToolMaterial EnumToolMaterialJaffarrol = EnumHelper.addToolMaterial("Jaffarrol", 3, 1000, 9.0F, 3, 12);
+    public static Item.ToolMaterial EnumToolMaterialJaffarrol = EnumHelper.addToolMaterial("Jaffarrol", 4, 1000, 10.0F, 5, 12);
 
     public static int lampRenderID;
     private boolean disableRedstoneGadgets;
@@ -325,6 +325,8 @@ public class JaffasTechnic extends JaffasModBase {
 
         FMLCommonHandler.instance().bus().register(new PlayerTracker());
         MinecraftForge.EVENT_BUS.register(new PointedPickHooks());
+
+        installThermalExpansionSupport();
     }
 
     private void registerEntities() {
@@ -338,7 +340,6 @@ public class JaffasTechnic extends JaffasModBase {
         super.load(event);
         JaffasFood.printInitialized(ModulesEnum.technic);
         EntityCombineHarvester.registerBlockHarvestingInstruction(Blocks.tallgrass, new EntityCombineHarvester.SimpleDestroyBlockHarvestingInstruction());
-        installThermalExpansionSupport();
     }
 
     private void addDungeonLoot() {
@@ -600,16 +601,16 @@ public class JaffasTechnic extends JaffasModBase {
 
         axeJaffarrol = new ItemAxeTechnic(21, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(axeJaffarrol, "axeJaffarrol");
-        axeJaffarrol.setHarvestLevel("axe", 3);
+        axeJaffarrol.setHarvestLevel("axe", 4);
 
         pickaxeJaffarrol = new ItemPickaxeTechnic(20, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(pickaxeJaffarrol, "pickaxeJaffarrol");
-        pickaxeJaffarrol.setHarvestLevel("pickaxe", 3);
+        pickaxeJaffarrol.setHarvestLevel("pickaxe", 4);
         TileCobbleBreaker.registerJaffarrolTool(pickaxeJaffarrol);
 
         spadeJaffarrol = new ItemSpadeTechnic(19, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(spadeJaffarrol, "spadeJaffarrol");
-        spadeJaffarrol.setHarvestLevel("shovel", 3);
+        spadeJaffarrol.setHarvestLevel("shovel", 4);
 
         hoeJaffarrol = new ItemHoeTechnic(22, EnumToolMaterialJaffarrol);
         RegistryUtils.registerItem(hoeJaffarrol, "hoeJaffarrol");

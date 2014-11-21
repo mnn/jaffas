@@ -12,25 +12,26 @@ class ItemPointedPick(_tex: Int, _mat: Item.ToolMaterial) extends ItemTechnicToo
 
   setMaxDamage(256)
 
-  override protected def getCustomStrVsBlock(stack: ItemStack, block: Block): Float = {
-    if (isHarvestAbleBlock(block)) 150
-    else super.getCustomStrVsBlock(stack, block)
-  }
+  override protected def getCustomStrVsBlock(stack: ItemStack, block: Block): Float =
+    getHarvestSpeed(block) match {
+      case Some(speed) => speed
+      case None => super.getCustomStrVsBlock(stack, block)
+    }
 
   override def onBlockDestroyed(stack: ItemStack, world: World, block: Block, x: Int, y: Int, z: Int, entity: EntityLivingBase): Boolean = {
-    if (!isHarvestAbleBlock(block) &&
+    if (getHarvestSpeed(block).isEmpty &&
       (block.getBlockHardness(world, x, y, z) > 0 || block.getHarvestLevel(world.getBlockMetadata(x, y, z)) > 0)
-    ) damageTool(10, entity, stack)
+    ) damageTool(5, entity, stack)
     super.onBlockDestroyed(stack, world, block, x, y, z, entity)
   }
 }
 
 object ItemPointedPick {
-  def isHarvestAbleBlock(block: Block): Boolean = {
+  def getHarvestSpeed(block: Block): Option[Int] = {
     block match {
-      case Blocks.obsidian => true
-      case _ if block.getUnlocalizedName != null && block.getUnlocalizedName.toLowerCase.endsWith("blockskystone") => true
-      case _ => false
+      case Blocks.obsidian => Some(200)
+      case _ if block.getUnlocalizedName != null && block.getUnlocalizedName.toLowerCase.endsWith("blockskystone") => Some(500)
+      case _ => None
     }
   }
 }
