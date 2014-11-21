@@ -325,8 +325,6 @@ public class JaffasTechnic extends JaffasModBase {
 
         FMLCommonHandler.instance().bus().register(new PlayerTracker());
         MinecraftForge.EVENT_BUS.register(new PointedPickHooks());
-
-        installThermalExpansionSupport();
     }
 
     private void registerEntities() {
@@ -363,6 +361,7 @@ public class JaffasTechnic extends JaffasModBase {
         CompostRegister.fillWithVanillaItems();
         CompostRegister.fillWithFoodModuleItems();
         handleGuideBook();
+        installThermalExpansionSupport();
     }
 
     private void handleGuideBook() {
