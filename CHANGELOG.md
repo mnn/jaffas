@@ -1,3 +1,13 @@
+## 0.7.3
+- improved little spiders to produce special kinds of cobwebs like ender, redstone, glowstone, limsew dropping piles - those combined create final product
+- added tool to mine obsidian (and sky stone from AE2) - *Pointed Pick*, also hits hard creepers and endermen, chance on spawning enderman when killing zombie or creeper
+- added support for special cobwebs into cobweb harvester
+- added custom little spiders' eggs, replacement for spawner eggs (when entity ID changed those spawner eggs got broken)
+- added spider "happiness" affecting rate of cobweb production (better results in dark, not crowded areas)
+- spiders are spawning eggs - similar to chickens and ducks
+- increased dust gain from mallet recipe (jaffarrol ore -> 2x dust)
+- slightly boosted jaffarrol tools to match tools from other mods - jaffarrol tools were more expensive, yet worse
+
 ## 0.7.2b
 - rewritten power sources extraction (they are working with internal power storage now), fixes not working energy pipes from other mods
 - added energy bar and generated power amount to power source GUIs
