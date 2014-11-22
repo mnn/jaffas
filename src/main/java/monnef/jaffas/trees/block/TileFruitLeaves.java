@@ -91,10 +91,62 @@ public class TileFruitLeaves extends TileEntity {
             return;
         }
 
+        if (!handleInitialization()) {
+            return;
+        }
+
+        timer++;
+        if (timer >= timerMax) {
+            timer = 0;
+            onFruitTimerElapsed();
+        }
+    }
+
+    private void onFruitTimerElapsed() {
+        int topLeafBlockY = yCoord;
+        while (topLeafBlockY < worldObj.getActualHeight() && worldObj.getBlock(xCoord, topLeafBlockY + 1, zCoord) instanceof BlockFruitLeaves)
+            topLeafBlockY++;
+
+        if (rand.nextDouble() < turnChance * turnChanceMultiplier * calculateCurrentRainMultiplier(topLeafBlockY)) {
+            if (canReFruitNow()) {
+                if (this.getBlockType() == JaffasTrees.leavesList.get(0).leavesBlock || this.getBlockType() == this.leavesBlock) {
+                    ChangeBlockAndRespawnMe(this.leavesBlock, this.leavesMeta);
+                } else {
+                    // no leaves block on my position => something went wrong, kill myself
+                    this.invalidate();
+                    if (JaffasTrees.debug)
+                        Log.printInfo(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
+                    return;
+                }
+            }
+        }
+    }
+
+    private double calculateCurrentRainMultiplier(int topLeafBlockY) {
+        boolean isRainingInWorld = worldObj.isRaining();
+        boolean topBlockCanSeeSky = worldObj.canBlockSeeTheSky(xCoord, topLeafBlockY + 1, zCoord);
+        boolean rain = isRainingInWorld && topBlockCanSeeSky;
+        return rain ? rainMultiplier : 1;
+    }
+
+    private boolean canReFruitNow() {
+        switch (fruit) {
+            case Vanilla:
+                return rand.nextInt(3) == 0;
+
+            case Apple:
+                return rand.nextInt(2) == 0;
+
+            default:
+                return true;
+        }
+    }
+
+    private boolean handleInitialization() {
         if (!checked) {
             if (this.leavesBlock == null) {
                 this.invalidate();
-                return;
+                return false;
             }
 
             try {
@@ -103,44 +155,16 @@ public class TileFruitLeaves extends TileEntity {
                 JaffasFood.Log.printWarning(String.format("Leaf TE crashed on getting leaf type. @ %d %d %d, world.isRemote: %s", xCoord, yCoord, zCoord, worldObj.isRemote));
                 ex.printStackTrace();
                 this.invalidate();
-                return;
+                return false;
             }
 
             checked = true;
             if (!fruit.doesGenerateFruitAndSeeds()) {
                 this.invalidate();
-                return;
+                return false;
             }
         }
-
-        timer++;
-        if (timer >= timerMax) {
-
-            timer = 0;
-
-            int topLeafBlockY = yCoord;
-            while (topLeafBlockY < worldObj.getActualHeight() && worldObj.getBlock(xCoord, topLeafBlockY + 1, zCoord) instanceof BlockFruitLeaves)
-                topLeafBlockY++;
-            boolean isRainingInWorld = worldObj.isRaining();
-            boolean topBlockCanSeeSky = worldObj.canBlockSeeTheSky(xCoord, topLeafBlockY + 1, zCoord);
-            boolean rain = isRainingInWorld && topBlockCanSeeSky;
-            double currentRainMultiplier = rain ? rainMultiplier : 1;
-
-            if (rand.nextDouble() < turnChance * turnChanceMultiplier * currentRainMultiplier) {
-                if (this.fruit != FruitType.Vanilla || rand.nextInt(3) == 0) {
-                    if (this.getBlockType() == JaffasTrees.leavesList.get(0).leavesBlock || this.getBlockType() == this.leavesBlock) {
-                        ChangeBlockAndRespawnMe(this.leavesBlock, this.leavesMeta);
-                    } else {
-                        // no leaves block on my position => something went wrong, kill myself
-                        this.invalidate();
-                        if (JaffasTrees.debug)
-                            Log.printInfo(this.xCoord + "," + this.yCoord + "," + this.zCoord + " - wrong block => ending my function");
-                        return;
-                    }
-                }
-            }
-        }
-
+        return true;
     }
 
     private void ChangeBlockAndRespawnMe(Block newBlock, int newMeta) {
