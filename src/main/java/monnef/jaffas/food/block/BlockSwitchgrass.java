@@ -46,7 +46,7 @@ import static monnef.core.utils.BlockHelper.setBlockWithoutNotify;
 
 public class BlockSwitchgrass extends BlockJaffas implements IPlantable, IFactoryHarvestable, IFactoryFertilizable, IFactoryPlantable {
     private static final int BIT_TOP = 3;
-    private static final int MAX_AGE = 7;
+    private static final int MAX_AGE = 3; // reduced to 3 from 7 to speed up growth
     private static final float border = 3f * 1f / 16f;
     private static final float borderComplement = 1f - border;
     public static int maximalHeight = 4;
