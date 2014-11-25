@@ -26,7 +26,6 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
     public static final int WEB_HARVESTER_DIAMETER = 2 * WEB_HARVESTER_RADIUS;
     private static final int WEB_HARVESTER_DIAMETER_SQUARE = WEB_HARVESTER_DIAMETER * WEB_HARVESTER_DIAMETER;
     private static final int WEB_HARVESTER_DIAMETER_CUBE = WEB_HARVESTER_DIAMETER * WEB_HARVESTER_DIAMETER_SQUARE;
-    public static final int WEB_SEARCH_ENERGY = 3;
     public static final int MAX_SCANS_PER_TRY = WEB_HARVESTER_DIAMETER;
     private static final boolean DEBUG_PRINTS = false;
 
@@ -36,12 +35,8 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
     protected void configurePowerParameters() {
         super.configurePowerParameters();
         powerNeeded *= 5;
-        maxEnergyReceived = powerNeeded / 5 / 2;
-        slowingCoefficient = 10;
-        if (MonnefCorePlugin.debugEnv) {
-            slowingCoefficient = 1;
-            powerNeeded = 1;
-        }
+        powerStorage = 10 * powerNeeded;
+        slowingCoefficient = 5;
     }
 
     @Override
@@ -60,18 +55,14 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
         if (!freeSpaceInInventory()) return;
 
         IIntegerCoordinates web = findWeb();
-        if (web == null) {
-            getEnergyStorage().extractEnergy(WEB_SEARCH_ENERGY, false);
-            return;
-        }
-
-        if (consumeNeededPower() < powerNeeded) {
-            return;
-        }
+        if (web == null) return;
+        if (!gotPowerToActivate()) return;
 
         Block webBlock = web.getBlock();
         ArrayList<ItemStack> drops = webBlock.getDrops(worldObj, web.getX(), web.getY(), web.getZ(), web.getBlockMetadata(), 0);
-        worldObj.func_147480_a(web.getX(), web.getY(), web.getZ(), false); // destroyBlock
+        if (!worldObj.func_147480_a(web.getX(), web.getY(), web.getZ(), false)) { // destroyBlock
+            JaffasFood.Log.printWarning("This is rather strange, cobweb has been identified, yet not destroyed?");
+        }
         if (drops.size() > 0) {
             ItemStack dropsHeadSquashed = drops.get(0);
             boolean containsOtherItems = false;
@@ -93,6 +84,8 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
                 JaffasFood.Log.printWarning(String.format("Web drops returned more stuff that I can fit into my inventory, web block: %s, tooBig: %s, containsOtherItems: %s", webBlock.getUnlocalizedName(), tooBig, containsOtherItems));
             }
             setInventorySlotContents(0, dropsHeadSquashed);
+        } else {
+            JaffasFood.Log.printWarning(String.format("Cobweb block %s returned empty drop, this it probably an error.", webBlock.getUnlocalizedName()));
         }
     }
 
