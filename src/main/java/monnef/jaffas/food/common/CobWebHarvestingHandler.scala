@@ -10,6 +10,7 @@ class CobWebHarvestingHandler {
   def onBlockBreakingStart(event: PlayerEvent.BreakSpeed) {
     if (event.block.isInstanceOf[BlockSpecialWeb] &&
       event.entityPlayer != null &&
+      event.entityPlayer.getCurrentEquippedItem != null &&
       ItemHelper.isSword(event.entityPlayer.getCurrentEquippedItem.getItem)) {
       event.newSpeed = 15
     }
