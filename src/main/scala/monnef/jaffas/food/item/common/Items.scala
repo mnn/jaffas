@@ -307,6 +307,7 @@ class Items extends ItemManagerAccessor {
     addItemInfo(pileLimsew, 310)
     addItemInfo(pileRedstone, 311)
     addItemInfo(littleSpiderEggs, 312)
+    addItemInfo(switchgrassCharcoal, 317)
   }
 
   private def registerWolfFood(item: JaffaItem) {
@@ -588,6 +589,8 @@ class Items extends ItemManagerAccessor {
     createJaffaItem(pileLimsew)
     createJaffaItem(pileRedstone)
     createJaffaItemManual(littleSpiderEggs, classOf[ItemSpiderEgg]).setMaxStackSize(16)
+
+    createJaffaItem(switchgrassCharcoal)
 
     CobWebsCreator.create()
 

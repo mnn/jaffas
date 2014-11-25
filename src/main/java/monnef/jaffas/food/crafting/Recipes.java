@@ -458,6 +458,9 @@ public class Recipes {
         addPileToDustRecipe(pileRedstone, Items.redstone);
         addPileToDustRecipe(pileEnder, getItem(dustEnder));
         addPileToDustRecipe(pileGlowstone, Items.glowstone_dust);
+        addShapelessOreRecipe(Items.ender_pearl, ItemHelper.constructStackArray(new ItemStack(getItem(dustEnder)), 9));
+
+        GameRegistry.addSmelting(ContentHolder.blockSwitchgrassSolid, getItemStack(switchgrassCharcoal), 0.15f);
     }
 
     public static void addPileToDustRecipe(JaffaItem pile, Item dust) {

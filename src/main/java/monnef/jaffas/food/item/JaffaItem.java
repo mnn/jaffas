@@ -42,5 +42,5 @@ public enum JaffaItem {
     flyAgaricChopped, meatDryer, driedMeat, beerMugEmpty, beerMugFull, potatesSliced, potatesSlicedInTinRaw, potatesSlicedInTin, crisps, cheeseRaw, cream, lollipop,
     fishFillet, fishStickRaw, fishStickCooked, fryingPanFishStick, fryingPanFishStickRaw, soupPeaRaw, soupPeaCooked, soupFishRaw, soupFishCooked, soupTomatoRaw, soupTomatoCooked,
     breadCrumbs, juiceInBottle, juiceGlass, bucketWaterOfLife, bucketCorrosiveGoo, bucketMiningGoo, bucketUnstableGoo, spongeCloth,
-    dustEnder, pileEnder, pileLimsew, pileRedstone, pileGlowstone, littleSpiderEggs, _last
+    dustEnder, pileEnder, pileLimsew, pileRedstone, pileGlowstone, littleSpiderEggs, switchgrassCharcoal, _last
 }

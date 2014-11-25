@@ -10,7 +10,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import monnef.core.block.TileMachineWithInventory;
 import monnef.core.common.ContainerRegistry;
 import monnef.core.power.PowerValues;
+import monnef.jaffas.food.JaffasFood;
 import monnef.jaffas.food.common.ContentHolder;
+import monnef.jaffas.food.item.JaffaItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -137,13 +139,19 @@ public class TileGenerator extends TileMachineWithInventory {
         return isSwitchgrass ? 1.4f : 1;
     }
 
+    public static boolean isSwitchgrass(Item item) {
+        return item == Item.getItemFromBlock(ContentHolder.blockSwitchgrass) ||
+                item == Item.getItemFromBlock(ContentHolder.blockSwitchgrassSolid) ||
+                item == JaffasFood.getItem(JaffaItem.switchgrassCharcoal);
+    }
+
     private void tryGetFuel() {
         ItemStack fuelStack = getStackInSlot(SLOT_FUEL);
         if (fuelStack != null) {
             int fuelBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
             if (fuelBurnTime > 0) {
                 fuelStack.stackSize--;
-                isSwitchgrass = fuelStack.getItem() == Item.getItemFromBlock(ContentHolder.blockSwitchgrass) || fuelStack.getItem() == Item.getItemFromBlock(ContentHolder.blockSwitchgrassSolid);
+                isSwitchgrass = isSwitchgrass(fuelStack.getItem());
                 if (fuelStack.stackSize <= 0) {
                     setInventorySlotContents(SLOT_FUEL, null);
                 }
