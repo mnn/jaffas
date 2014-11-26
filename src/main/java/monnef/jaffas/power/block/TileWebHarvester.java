@@ -57,6 +57,7 @@ public class TileWebHarvester extends TileMachineWithInventory implements ISided
         IIntegerCoordinates web = findWeb();
         if (web == null) return;
         if (!gotPowerToActivate()) return;
+        consumeNeededPower();
 
         Block webBlock = web.getBlock();
         ArrayList<ItemStack> drops = webBlock.getDrops(worldObj, web.getX(), web.getY(), web.getZ(), web.getBlockMetadata(), 0);
