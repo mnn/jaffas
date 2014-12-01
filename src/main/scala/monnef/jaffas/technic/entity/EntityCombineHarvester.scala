@@ -12,6 +12,7 @@ import monnef.core.api.IIntegerCoordinates
 import monnef.core.utils.{WorldHelper, PlayerHelper, BlockHelper, IntegerCoordinates}
 import net.minecraft.init.Blocks
 import net.minecraft.block.Block
+import monnef.core.MonnefCorePlugin
 
 class EntityCombineHarvester(world: World) extends EntityLiving(world) {
 
@@ -117,7 +118,7 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
   private def calculateCenterReelBlockPosition(): IIntegerCoordinates = {
     val blockY = posY.asInstanceOf[Float]
     val (xDiff, zDiff) = computeXZDiffFromAngleAndDistance(rotationYaw, REEL_FROM_CENTER_DISTANCE)
-    val (blockX, blockZ): (Float, Float) = (posX.asInstanceOf[Float] + xDiff, posZ.asInstanceOf[Float] + zDiff)
+    val (blockX, blockZ): (Float, Float) = (posX.asInstanceOf[Float] + xDiff, posZ.asInstanceOf[Float] + zDiff - 1.5f)
 
     new IntegerCoordinates(
       Math.round(blockX),
@@ -140,14 +141,14 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
 
   private def doHarvesting() {
     val centerBlockPosition = calculateCenterReelBlockPosition()
-    var otherBlocksConfigurationIndex = Math.round(rotationYaw + 360 - 90) / 30 % 4 // TODO: rotation is wrong, shifted or mirrored?
+    var otherBlocksConfigurationIndex = Math.round((rotationYaw + 180 + 90) / 45f) % 4 // TODO: rotation is wrong, shifted or mirrored?
     if (otherBlocksConfigurationIndex < 0) otherBlocksConfigurationIndex += 4
     val otherBlocksOffsets = OTHER_BLOCKS_CONFIGURATIONS(otherBlocksConfigurationIndex)
     val blocksToHarvest = centerBlockPosition +: otherBlocksOffsets.map { case (ox, oz) => centerBlockPosition.move(ox, 0, oz)}
     blocksToHarvest.foreach {
       case pos =>
         tryHarvestBlock(pos)
-        if (pos.isAir) pos.setBlock(Blocks.deadbush)
+        if (MonnefCorePlugin.debugEnv && pos.isAir) pos.setBlock(Blocks.deadbush)
     }
   }
 
@@ -176,7 +177,7 @@ object EntityCombineHarvester {
   final val SIZE_Y = 4f
 
   var CHAIR_FROM_CENTER_DISTANCE = 2f
-  var REEL_FROM_CENTER_DISTANCE = 2.5f
+  var REEL_FROM_CENTER_DISTANCE = 3f
 
   final val WHEELS_DEGREES_PER_TICK = 360f / (5 * 20)
   final val REEL_DEGREES_PER_TICK = 360f / (3 * 20)
@@ -192,12 +193,22 @@ object EntityCombineHarvester {
     (xDiff, zDiff)
   }
 
-  final val OTHER_BLOCKS_CONFIGURATIONS: Seq[Seq[(Int, Int)]] = Seq(
+  private final val REEL_HARVEST_RADIUS = 2
+
+  private final val OTHER_BLOCKS_CONFIGURATIONS_TEMPLATE: Seq[Seq[(Int, Int)]] = Seq(
     Seq((0, 1), (0, -1)),
-    Seq((-1, -1), (1, 1)),
+    Seq((-1, 1), (1, -1)),
     Seq((-1, 0), (1, 0)),
-    Seq((-1, 1), (1, -1))
+    Seq((-1, -1), (1, 1))
   )
+
+  private def dupMul(items: Seq[(Int, Int)], radius: Int): Seq[(Int, Int)] =
+    for {
+      r <- 1 to radius
+      item <- items
+    } yield (item._1 * r, item._2 * r)
+
+  final val OTHER_BLOCKS_CONFIGURATIONS: Seq[Seq[(Int, Int)]] = OTHER_BLOCKS_CONFIGURATIONS_TEMPLATE.map {dupMul(_, REEL_HARVEST_RADIUS)}
 
   abstract class BlockHarvestingInstruction() {
     def canBeHarvested(pos: IIntegerCoordinates): Boolean = canBeHarvested(pos.getWorld, pos.getX, pos.getY, pos.getZ)
@@ -215,11 +226,28 @@ object EntityCombineHarvester {
     override def canBeHarvested(world: World, x: Int, y: Int, z: Int): Boolean = true
 
     override def harvest(world: World, x: Int, y: Int, z: Int, fortune: Int): Seq[ItemStack] = {
-      val b = world.getBlock(x, y, z)
-      val jDrops = b.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), fortune)
-      BlockHelper.setAir(world, x, y, z)
       import scala.collection.JavaConverters._
-      jDrops.asScala
+      val drops = world.getBlock(x, y, z).getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), fortune).asScala
+      afterDropEnumerated(world, x, y, z, fortune)
+      drops
+    }
+
+    protected def afterDropEnumerated(world: World, x: Int, y: Int, z: Int, fortune: Int) {
+      BlockHelper.setAir(world, x, y, z)
+    }
+  }
+
+  class SimpleDestroyMetaSensitiveBlockHarvestingInstruction(harvestMetas: Set[Int]) extends SimpleDestroyBlockHarvestingInstruction {
+    def this(oneMeta: Int) = this(Set(oneMeta))
+
+    override def canBeHarvested(world: World, x: Int, y: Int, z: Int): Boolean =
+      if (harvestMetas.contains(world.getBlockMetadata(x, y, z))) super.canBeHarvested(world, x, y, z)
+      else false
+  }
+
+  class MetaReplantBlockHarvestingInstruction(harvestMetas: Set[Int], replantMeta: Int) extends SimpleDestroyMetaSensitiveBlockHarvestingInstruction(harvestMetas) {
+    override protected def afterDropEnumerated(world: World, x: Int, y: Int, z: Int, fortune: Int) {
+      BlockHelper.setBlockMetadata(world, x, y, z, replantMeta)
     }
   }
 

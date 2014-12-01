@@ -461,6 +461,7 @@ public class Recipes {
         addShapelessOreRecipe(Items.ender_pearl, ItemHelper.constructStackArray(new ItemStack(getItem(dustEnder)), 9));
 
         GameRegistry.addSmelting(ContentHolder.blockSwitchgrassSolid, getItemStack(switchgrassCharcoal), 0.15f);
+        addOreRecipe(new ItemStack(Blocks.torch, 16), "W", "S", 'S', WOOD_STICK, 'W', getItem(switchgrassCharcoal));
     }
 
     public static void addPileToDustRecipe(JaffaItem pile, Item dust) {
