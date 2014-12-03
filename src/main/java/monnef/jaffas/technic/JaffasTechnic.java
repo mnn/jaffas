@@ -70,6 +70,7 @@ import monnef.jaffas.technic.block.redstone.ItemBlockRedstone;
 import monnef.jaffas.technic.block.redstone.TileAnalogRepeater;
 import monnef.jaffas.technic.block.redstone.TileRandomizer;
 import monnef.jaffas.technic.block.redstone.TileSampler;
+import monnef.jaffas.technic.common.CombineHarvesterInstructionsHelper;
 import monnef.jaffas.technic.common.CommonProxy;
 import monnef.jaffas.technic.common.CompostRegister;
 import monnef.jaffas.technic.common.EnchantRecipe;
@@ -337,7 +338,7 @@ public class JaffasTechnic extends JaffasModBase {
     public void load(FMLInitializationEvent event) {
         super.load(event);
         JaffasFood.printInitialized(ModulesEnum.technic);
-        EntityCombineHarvester.registerBlockHarvestingInstruction(Blocks.tallgrass, new EntityCombineHarvester.SimpleDestroyBlockHarvestingInstruction());
+        CombineHarvesterInstructionsHelper.registerAll();
     }
 
     private void addDungeonLoot() {
