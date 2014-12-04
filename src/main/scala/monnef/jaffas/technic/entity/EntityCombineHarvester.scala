@@ -1,5 +1,6 @@
 package monnef.jaffas.technic.entity
 
+import monnef.core.common.MutableFloatVec
 import monnef.jaffas.trees.block.BlockJaffaCrops
 import net.minecraft.entity.{EntityLivingBase, SharedMonsterAttributes, Entity, EntityLiving}
 import net.minecraft.world.{IBlockAccess, IWorldAccess, World}
@@ -99,11 +100,10 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
   override def updateRiderPosition() {
     if (riddenByEntity != null) {
       val (xDiff, zDiff) = computeXZDiffFromAngleAndDistance(rotationYaw, CHAIR_FROM_CENTER_DISTANCE)
-      val cp = ChairPoint
       riddenByEntity.setPosition(
-        posX + xDiff - cp.x,
-        posY + 1 / SIZE_COEF * getMountedYOffset + riddenByEntity.getYOffset - cp.y,
-        posZ + zDiff - cp.z
+        posX + xDiff - chairPoint.x,
+        posY + 1 / SIZE_COEF * getMountedYOffset + riddenByEntity.getYOffset - chairPoint.y,
+        posZ + zDiff - chairPoint.z
       )
     }
   }
@@ -117,10 +117,10 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
     entityAge += 1
   }
 
-  private def calculateCenterReelBlockPosition(): IIntegerCoordinates = {
+  private def calculateCenterReelBlockPosition(distance: Float): IIntegerCoordinates = {
     val blockY = posY.asInstanceOf[Float]
-    val (xDiff, zDiff) = computeXZDiffFromAngleAndDistance(rotationYaw, REEL_FROM_CENTER_DISTANCE)
-    val (blockX, blockZ): (Float, Float) = (posX.asInstanceOf[Float] + xDiff, posZ.asInstanceOf[Float] + zDiff - 1.5f)
+    val (xDiff, zDiff) = computeXZDiffFromAngleAndDistance(rotationYaw, distance)
+    val (blockX, blockZ): (Float, Float) = (posX.asInstanceOf[Float] + xDiff, posZ.asInstanceOf[Float] + zDiff /*- 1.5f*/ )
 
     new IntegerCoordinates(
       Math.round(blockX),
@@ -141,23 +141,39 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
     }
   }
 
+  def computeRadiusFromSection(section: Int): Float = section match {
+    case _ if section == 0 || section == 1 => REEL_FROM_CENTER_DISTANCE + 1
+    case _ => REEL_FROM_CENTER_DISTANCE
+  }
+
   private def doHarvesting() {
-    val centerBlockPosition = calculateCenterReelBlockPosition()
     var otherBlocksConfigurationIndex = Math.round((rotationYaw + 180 + 90) / 45f) % 4 // TODO: rotation is wrong, shifted or mirrored?
+    val centerBlockPosition = calculateCenterReelBlockPosition(computeRadiusFromSection(otherBlocksConfigurationIndex))
     if (otherBlocksConfigurationIndex < 0) otherBlocksConfigurationIndex += 4
     val otherBlocksOffsets = OTHER_BLOCKS_CONFIGURATIONS(otherBlocksConfigurationIndex)
     val blocksToHarvest = centerBlockPosition +: otherBlocksOffsets.map { case (ox, oz) => centerBlockPosition.move(ox, 0, oz)}
+
+    if (debugHarvestingAreaComputation) {
+      val clearRadius = 5
+      for {
+        x <- centerBlockPosition.getX - clearRadius to centerBlockPosition.getX + clearRadius
+        y <- centerBlockPosition.getY - clearRadius to centerBlockPosition.getY + clearRadius
+        z <- centerBlockPosition.getZ - clearRadius to centerBlockPosition.getZ + clearRadius
+        if world.getBlock(x, y, z) == debugBlock
+      } BlockHelper.setAir(world, x, y, z)
+    }
+
     blocksToHarvest.flatMap(b => Seq(b, b.shiftInDirectionBy(ForgeDirection.UP, 1))).foreach {
       case pos =>
         tryHarvestBlock(pos)
-      //if (MonnefCorePlugin.debugEnv && pos.isAir) pos.setBlock(Blocks.deadbush)
+        if (debugHarvestingAreaComputation && pos.isAir) pos.setBlock(debugBlock)
     }
   }
 
   override def onLivingUpdate() {
     super.onLivingUpdate()
     if (canHarvest && world != null) {
-      doHarvesting()
+      if (!world.isRemote) doHarvesting()
     }
   }
 
@@ -180,15 +196,16 @@ object EntityCombineHarvester {
 
   final val SIZE_COEF = 1f
 
-  var CHAIR_FROM_CENTER_DISTANCE = 2f
-  var REEL_FROM_CENTER_DISTANCE = 3f
+  var CHAIR_FROM_CENTER_DISTANCE = 3.5f
+  var REEL_FROM_CENTER_DISTANCE = 3.5f
 
   final val WHEELS_DEGREES_PER_TICK = 360f / (5 * 20)
   final val REEL_DEGREES_PER_TICK = 360f / (3 * 20)
 
-  object ChairPoint {
-    var (x, y, z) = (0f, .5f, 1.5f)
-  }
+  var chairPoint = new MutableFloatVec(0f, .5f, 0f)
+
+  var debugHarvestingAreaComputation = false
+  val debugBlock = Blocks.deadbush
 
   def computeXZDiffFromAngleAndDistance(angleInDeg: Float, distance: Float): (Float, Float) = {
     val angleInRad = (angleInDeg + 90) * Math.PI.asInstanceOf[Float] / 180.0F

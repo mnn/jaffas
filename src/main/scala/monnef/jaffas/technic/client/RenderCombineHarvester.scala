@@ -1,5 +1,6 @@
 package monnef.jaffas.technic.client
 
+import monnef.core.common.MutableFloatVec
 import net.minecraft.client.renderer.entity.Render
 import net.minecraft.entity.Entity
 import net.minecraft.util.ResourceLocation
@@ -29,7 +30,7 @@ class RenderCombineHarvester extends Render {
     GL11.glTranslatef(x.asInstanceOf[Float], y.asInstanceOf[Float], z.asInstanceOf[Float] + 1.0F)
     GL11.glScalef(1.0F, -1.0F, 1.0F)
     //GL11.glTranslatef(0.5F, 1f, 0.5F)
-    GL11.glTranslatef(0, 0, -3f)
+    GL11.glTranslatef(renderShiftPre.x, renderShiftPre.y, renderShiftPre.z)
     //GL11.glRotatef(angle, 0, 1.0f, 0)
     GL11.glRotatef(180, 1f, 0, 0)
     GL11.glRotatef(180, 0, 1f, 0)
@@ -37,7 +38,9 @@ class RenderCombineHarvester extends Render {
     GL11.glDisable(GL11.GL_CULL_FACE)
 
     val baseYRotation = entity.rotationYaw
-    RenderUtils.glRotateAroundPoint(baseYRotation, 0, 1, 0, CenterPoint.x, CenterPoint.y, CenterPoint.z)
+    RenderUtils.glRotateAroundPoint(baseYRotation, 0, 1, 0, centerPoint.x, centerPoint.y, centerPoint.z)
+
+    GL11.glTranslatef(renderShiftPost.x, renderShiftPost.y, renderShiftPost.z)
 
     modelBody.renderWithTexture()
 
@@ -65,8 +68,7 @@ object RenderCombineHarvester {
   final val REEL_NAME = "combine_reel"
   final val SCALE = 1f
 
-  object CenterPoint {
-    var (x, y, z) = (0f, 0f, .5f)
-  }
-
+  val centerPoint = new MutableFloatVec(0, 0, .5f)
+  val renderShiftPre = new MutableFloatVec(0, 0, -1.5f)
+  val renderShiftPost = new MutableFloatVec(0, 0, 1.5f)
 }

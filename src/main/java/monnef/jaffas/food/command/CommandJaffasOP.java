@@ -13,6 +13,8 @@ import monnef.jaffas.food.common.CoolDownType;
 import monnef.jaffas.food.network.HomeStonePacket;
 import monnef.jaffas.technic.JaffasTechnic;
 import monnef.jaffas.technic.block.TileFungiBox;
+import monnef.jaffas.technic.entity.EntityCombineHarvester;
+import monnef.jaffas.technic.entity.EntityCombineHarvester$;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -95,6 +97,9 @@ public class CommandJaffasOP extends CommandBase {
         } else if (parameters.length == 1 && "crop_growth".equals(parameters[0])) {
             cropGrowthDisabled = !cropGrowthDisabled;
             addMessage(commandsender, String.format("cropGrowthDisabled: %s", cropGrowthDisabled));
+        } else if (parameters.length == 1 && "comb_ha".equals(parameters[0])) {
+            EntityCombineHarvester$.MODULE$.debugHarvestingAreaComputation_$eq(!EntityCombineHarvester.debugHarvestingAreaComputation());
+            addMessage(commandsender, String.format("debugHarvestingAreaComputation: %s", EntityCombineHarvester.debugHarvestingAreaComputation()));
         } else {
             addMessage(commandsender, "Unknown parameters.");
         }
