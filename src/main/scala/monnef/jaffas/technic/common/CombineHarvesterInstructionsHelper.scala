@@ -1,8 +1,8 @@
 package monnef.jaffas.technic.common
 
+import monnef.jaffas.technic.common.CombineHarvesterRegistry.{JaffaCropHarvestingInstruction, MetaReplantBlockHarvestingInstruction, SimpleDestroyBlockHarvestingInstruction}
 import monnef.jaffas.technic.entity.EntityCombineHarvester
-import monnef.jaffas.technic.entity.EntityCombineHarvester.{JaffaCropHarvestingInstruction, MetaReplantBlockHarvestingInstruction, SimpleDestroyBlockHarvestingInstruction}
-import monnef.jaffas.trees.{BushManager, JaffasTrees}
+import monnef.jaffas.trees.BushManager
 import net.minecraft.block.Block
 
 object CombineHarvesterInstructionsHelper {
@@ -12,15 +12,15 @@ object CombineHarvesterInstructionsHelper {
   }
 
   private def registerDestroyInstruction(b: Block) {
-    EntityCombineHarvester.registerBlockHarvestingInstruction(b, new SimpleDestroyBlockHarvestingInstruction)
+    CombineHarvesterRegistry.registerBlockHarvestingInstruction(b, new SimpleDestroyBlockHarvestingInstruction)
   }
 
   private def registerMetaDegradationInstruction(b: Block, grownMeta: Int) {
-    EntityCombineHarvester.registerBlockHarvestingInstruction(b, new MetaReplantBlockHarvestingInstruction(Set(grownMeta), 0))
+    CombineHarvesterRegistry.registerBlockHarvestingInstruction(b, new MetaReplantBlockHarvestingInstruction(Set(grownMeta), 0))
   }
 
   private def registerJaffaCropHarvestingInstruction(b: Block) {
-    EntityCombineHarvester.registerBlockHarvestingInstruction(b, new JaffaCropHarvestingInstruction)
+    CombineHarvesterRegistry.registerBlockHarvestingInstruction(b, new JaffaCropHarvestingInstruction)
   }
 
   private def registerVanillaBlocks() {

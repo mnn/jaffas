@@ -1,20 +1,25 @@
 package monnef.jaffas.technic.entity
 
+import java.util.List
+
 import cpw.mods.fml.relauncher.{Side, SideOnly}
 import monnef.core.api.IIntegerCoordinates
 import monnef.core.common.MutableFloatVec
 import monnef.core.utils.scalautils._
 import monnef.core.utils.{BlockHelper, IntegerCoordinates, WorldHelper}
 import monnef.jaffas.technic.JaffasTechnic
+import net.minecraft.block.Block
+import net.minecraft.block.material.Material
+import net.minecraft.entity.item.EntityBoat
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.entity.{Entity, EntityLiving, EntityLivingBase, SharedMonsterAttributes}
-import net.minecraft.init.Blocks
+import net.minecraft.init.{Items, Blocks}
 import net.minecraft.item.Item
-import net.minecraft.util.AxisAlignedBB
+import net.minecraft.util.{MathHelper, AxisAlignedBB}
 import net.minecraft.world.World
 import net.minecraftforge.common.util.ForgeDirection
 
-class EntityCombineHarvester(world: World) extends EntityLiving(world) {
+class EntityCombineHarvester(world: World) extends EntityLiving(world) with EntityTurnable with IRelaxedAccess {
 
   import monnef.jaffas.technic.common.CombineHarvesterRegistry._
   import monnef.jaffas.technic.entity.EntityCombineHarvester._
@@ -40,6 +45,7 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
     )
     */
   }
+
 
   override def setPosition(x: Double, y: Double, z: Double) {
     super.setPosition(x, y, z)
@@ -76,6 +82,7 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
   }
 
   override def moveEntityWithHeading(strafe: Float, forward: Float) {
+    /*
     if (this.riddenByEntity != null) {
       prevRotationYaw = riddenByEntity.rotationYaw
       rotationYaw = riddenByEntity.rotationYaw
@@ -88,6 +95,7 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
     } else {
       super.moveEntityWithHeading(strafe, forward)
     }
+    */
   }
 
   override def applyEntityAttributes() {
@@ -185,6 +193,10 @@ class EntityCombineHarvester(world: World) extends EntityLiving(world) {
       case None => None
     }
   }
+
+  override def setRotationPublic(yaw: Float, pitch: Float) {
+    setRotation(yaw, pitch)
+  }
 }
 
 object EntityCombineHarvester {
@@ -229,3 +241,4 @@ object EntityCombineHarvester {
 
   final val OTHER_BLOCKS_CONFIGURATIONS: Seq[Seq[(Int, Int)]] = OTHER_BLOCKS_CONFIGURATIONS_TEMPLATE.map {dupMul(_, REEL_HARVEST_RADIUS)}
 }
+
